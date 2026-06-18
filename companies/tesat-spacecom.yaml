@@ -1,0 +1,122 @@
+slug: tesat-spacecom
+name: Tesat-Spacecom
+categories: [enabling, qkd]
+hq: Backnang, Baden-Württemberg, Germany
+founded: 1991
+status: acquired
+parent: airbus
+logo:
+  domain: tesat.de
+
+positioning: >
+  Independently operating subsidiary of Airbus Defence and Space;
+  manufactures space-borne optical-communication terminals — the LCT135
+  GEO/LEO laser-comm family flown on the European Data Relay System since
+  2007 and the SCOT family for LEO constellations. The dossier covers
+  Tesat's QKD-payload role: the SCOT80 terminal forms the optical link for
+  Europe's first sovereign LEO QKD satellite, Eagle-1, where Tesat builds
+  both the telescope and the integrated on-board QKD module (C-band
+  phase-encoded BB84 + decoy-state). Eagle-1 launches on Vega-C from Kourou
+  in late 2026 / early 2027.
+
+modalities:
+  qkd:
+    protocol: [BB84, decoy-state]
+    rate_distance: "C-band phase-encoded double-pulse qubits over a SCOT80 free-space downlink (~500-1000 km LEO slant range); on-board QKD module integrated with the optical terminal"
+    deployed_demos:
+      - "Eagle-1 LEO QKD satellite — QKD payload + SCOT80 terminal under build for SES Techcom / ESA / EC (launch late 2026 / early 2027)"
+  enabling:
+    products:
+      - "SCOT80 — scalable optical communication terminal for LEO constellations, 8000 km link range; QKD-capable variant used as the Eagle-1 payload telescope"
+      - "LCT135 — 135 mm aperture laser communication terminal flown on EDRS (SpaceDataHighway), 9 units in orbit since 2007"
+      - "ConLCT — laser terminal product for commercial LEO constellations"
+
+milestones:
+  - date: 2026-04
+    tag: enabling
+    headline: "SCOT80 terminal launched on GPS III-10 (Hedy Lamarr) — first laser-communications test from a GPS satellite at medium Earth orbit"
+    source_url: https://www.tesat.de/products
+    source_type: press
+  - date: 2025-05
+    tag: qkd
+    headline: "EAGLE-1 system description published as arXiv preprint (arXiv:2505.20838) — details Tesat's C-band phase-encoded double-pulse QKD architecture and the SCOT80-based payload"
+    source_url: https://arxiv.org/abs/2505.20838
+    source_type: preprint
+  - date: 2023-05
+    tag: qkd
+    headline: "SES + Tesat announce partnership to develop the EAGLE-1 QKD payload (SCOT80 telescope + on-board QKD module)"
+    source_url: https://www.tesat.de/news/press/932-ses-and-tesat-to-develop-payload-for-europes-first-quantum-cryptography-leo-satellite-system-eagle-1
+    source_type: press
+  - date: 2008-02
+    tag: enabling
+    headline: "Laser link demonstrated between two moving satellites in space (LCT precursor, TerraSAR-X to NFIRE) — described by Tesat as a first of its kind"
+    source_url: https://www.tesat.de/news/blog/information/83-news/616-advanced-capability-evolution-for-optical-laser-communication
+    source_type: blog
+  - date: 1991
+    tag: enabling
+    headline: "Tesat-Spacecom formed from AEG/Telefunken/ANT space communications operations in Backnang"
+    source_url: https://en.wikipedia.org/wiki/Tesat-Spacecom
+    source_type: press
+
+shareholders:
+  - holder: Airbus Defence and Space
+    stake_percent: 100
+    stake_class: controlling
+    as_of: 2026-05
+    source_url: https://www.tesat.de/company
+    note: Wholly-owned, independently operating subsidiary of Airbus Defence and Space
+
+key_personnel:
+  - role: CEO
+    name: Thomas Reinartz
+    since: 2022-03
+    source_url: https://spacenews.com/change-in-management-at-tesat-spacecom/
+  - role: CCO
+    name: Sven Rettig
+    since: 2022
+    source_url: https://www.tesat.de/company
+  - role: VP
+    name: Peter Lust
+    since: null
+    source_url: https://www.tesat.de/company
+
+roadmap:
+  - target: 2026
+    item: "Eagle-1 satellite integration complete; ship to launch site for Vega-C launch from Kourou (late 2026 / early 2027)"
+    source_url: https://arxiv.org/abs/2505.20838
+    tag: qkd
+  - target: 2027
+    item: "Eagle-1 three-year in-orbit validation begins after commissioning — QKD link demonstrations between LEO and European optical ground stations"
+    source_url: https://www.esa.int/Applications/Connectivity_and_Secure_Communications/Eagle-1
+    tag: qkd
+
+current_flagship:
+  name: SCOT80 (Eagle-1 QKD variant)
+  generation: scalable optical communication terminal with integrated QKD module, C-band phase-encoded BB84/decoy-state
+
+references:
+  - kind: preprint
+    citation_key: null
+    url: https://arxiv.org/abs/2505.20838
+    note: "The European Satellite-Based QKD System EAGLE-1 (May 2025) — Tesat-led technical description of the payload"
+  - kind: press
+    citation_key: null
+    url: https://www.tesat.de/news/press/932-ses-and-tesat-to-develop-payload-for-europes-first-quantum-cryptography-leo-satellite-system-eagle-1
+    note: "Tesat press release on the Eagle-1 QKD-payload partnership with SES (May 2023)"
+  - kind: blog
+    citation_key: null
+    url: https://www.tesat.de/products
+    note: Tesat product line page (SCOT80, LCT135, ConLCT, QKD)
+  - kind: press
+    citation_key: null
+    url: https://spacenews.com/change-in-management-at-tesat-spacecom/
+    note: SpaceNews — Reinartz appointed CEO (March 2022)
+
+partial:
+  - key_personnel.2.since
+  - field: modalities.qkd.rate_distance
+    as_of: 2026-05-15
+    note: detailed key-rate vs slant-range numbers for Eagle-1 are not yet public; the description is qualitative pending in-orbit data
+
+last_verified: 2026-05-15
+verification_method: web

@@ -1,0 +1,157 @@
+slug: arqit
+name: Arqit Quantum
+categories: [software, qkd]
+hq: London, UK
+founded: 2017
+status: public
+parent: null
+logo:
+  domain: arqit.uk
+
+positioning: >
+  London-listed (NASDAQ: ARQQ) quantum-safe cryptography vendor selling
+  QuantumCloud — a cloud-delivered Symmetric Key Agreement (SKA) platform-as-
+  a-service for enterprise and defence customers. Originally founded in 2017 to
+  build a global satellite QKD network ("QKDSat") in partnership with ESA and
+  Virgin Orbit; pivoted away from satellite delivery in December 2022 after
+  reclassifying the partly-built satellite as held for sale. The current product
+  is software-only and does not use quantum hardware to generate or distribute
+  keys.
+
+modalities:
+  software:
+    products: [QuantumCloud, NetworkSecure, TradeSecure, SKA-Platform]
+  qkd:
+    protocol: []
+    rate_distance: ""
+    deployed_demos: []
+
+milestones:
+  - date: 2024-04
+    tag: software
+    headline: Founders David Williams and David Bestwick disclose open-market share purchases — reaffirmation following extended share-price decline post-pivot
+    source_url: https://www.globenewswire.com/news-release/2024/04/15/2862701/0/en/Arqit-founders-to-buy-shares.html
+    source_type: press
+  - date: 2023-09
+    tag: software
+    headline: Arqit + SecureCloud+ partnership announced to deliver cyber resilience using SKA to UK defence customers
+    source_url: https://www.globenewswire.com/news-release/2023/09/06/2738198/0/en/Arqit-and-SecureCloud-partner-to-deliver-cyber-resilience-using-Symmetric-Key-Agreement.html
+    source_type: press
+  - date: 2023
+    tag: software
+    headline: "Launches three vertical SKA applications on QuantumCloud — NetworkSecure (firewalls), TradeSecure (trade finance), WalletSecure (digital assets)"
+    source_url: https://arqitgroup.com/resources/arqit-symmetric-key-agreement-for-quantum-safe-security-of-classified-solutions
+    source_type: blog
+  - date: 2022-12
+    tag: qkd
+    headline: "Strategic pivot — Arqit drops plan to operate quantum-encryption satellites; QKDSat assets reclassified as held for sale, ESA contract reclassified as other income. Company commits exclusively to terrestrial cloud-delivered symmetric-key-agreement platform"
+    source_url: https://spacenews.com/arqit-drops-plan-to-operate-quantum-encryption-satellites/
+    source_type: press
+  - date: 2022-12
+    tag: software
+    headline: "Technology Update press release confirming go-to-market pivot from direct enterprise license sales to channel-partner QuantumCloud PaaS"
+    source_url: https://www.globenewswire.com/news-release/2022/12/14/2573636/0/en/Arqit-announces-Technology-Update.html
+    source_type: press
+  - date: 2021-09
+    tag: software
+    headline: Business combination with Centricus Acquisition Corp closes; Arqit lists on NASDAQ as ARQQ at ~$1.4B implied market cap
+    source_url: https://www.businesswire.com/news/home/20210903005453/en/Arqit-and-Centricus-Announce-Closing-of-Business-Combination
+    source_type: filing
+  - date: 2021-05
+    tag: software
+    headline: SPAC merger announced with Centricus Acquisition Corp at $400M PIPE / ~$1.4B implied EV
+    source_url: https://thequantuminsider.com/2021/05/12/quantum-spac-in-space-arqit-limited-to-raise-400-million-through-spac-deal/
+    source_type: press
+  - date: 2017
+    tag: qkd
+    headline: Company founded by David Williams (ex-Avanti Communications founder) and David Bestwick to build a satellite-delivered quantum-key-distribution network
+    source_url: https://thequantuminsider.com/2021/05/12/quantum-spac-in-space-arqit-limited-to-raise-400-million-through-spac-deal/
+    source_type: press
+
+shareholders:
+  - holder: David Williams
+    stake_percent: null
+    stake_class: founder
+    as_of: 2024-04
+    source_url: https://www.globenewswire.com/news-release/2024/04/15/2862701/0/en/Arqit-founders-to-buy-shares.html
+    note: Co-founder & CEO; post-SPAC lock-up expired 2022; open-market purchases disclosed April 2024
+  - holder: David Bestwick
+    stake_percent: null
+    stake_class: founder
+    as_of: 2024-04
+    source_url: https://www.globenewswire.com/news-release/2024/04/15/2862701/0/en/Arqit-founders-to-buy-shares.html
+    note: Co-founder & CTO; open-market purchases disclosed April 2024
+  - holder: Centricus Heritage LLC
+    stake_percent: null
+    stake_class: minority
+    as_of: 2021-09
+    source_url: https://www.businesswire.com/news/home/20211004005529/en/
+    note: SPAC sponsor — post-merger holder; lock-up extension voluntary October 2021
+  - holder: Public float (NASDAQ ARQQ)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024
+    source_url: https://finance.yahoo.com/quote/ARQQ/
+    note: Public float post-SPAC; precise distribution per latest 20-F not confirmed
+
+key_personnel:
+  - role: CEO
+    name: Andy Leaver
+    since: 2024-09
+    source_url: https://ir.arqit.uk/news-events/press-releases/detail/95/arqit-announces-leadership-transition-with-the-appointment
+    note: Joined as CEO after David Williams stepped down on 27 Sept 2024
+  - role: Founder
+    name: David Williams
+    since: 2017
+    source_url: https://www.bloomberg.com/profile/person/17516607
+    note: Co-founder and former CEO (2017 — Sept 2024)
+  - role: Co-founder & CTO
+    name: David Bestwick
+    since: 2017
+    source_url: https://www.globenewswire.com/news-release/2024/04/15/2862701/0/en/Arqit-founders-to-buy-shares.html
+
+roadmap:
+  - target: 2026
+    item: Expansion of SKA channel-partner ecosystem; vertical SKA applications (network, trade, wallet) in production deployments
+    source_url: https://arqitgroup.com/resources/arqit-symmetric-key-agreement-for-quantum-safe-security-of-classified-solutions
+    tag: software
+
+current_flagship:
+  name: QuantumCloud Symmetric Key Agreement Platform
+  generation: software-only PaaS (no quantum hardware in delivery path post-2022 pivot)
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://spacenews.com/arqit-drops-plan-to-operate-quantum-encryption-satellites/
+    note: SpaceNews — canonical reporting on the December 2022 satellite-business cancellation
+  - kind: press
+    citation_key: null
+    url: https://www.globenewswire.com/news-release/2022/12/14/2573636/0/en/Arqit-announces-Technology-Update.html
+    note: Arqit's own Technology Update press release confirming the pivot
+  - kind: press
+    citation_key: null
+    url: https://www.spaceintelreport.com/arqit-quantum-esas-qkdsat-partner-is-quitting-satellites-in-favor-of-terrestrial-quantum-key-distribution/
+    note: Space Intel Report — ESA QKDSat context for the pivot
+  - kind: filing
+    citation_key: null
+    url: https://www.businesswire.com/news/home/20210903005453/en/Arqit-and-Centricus-Announce-Closing-of-Business-Combination
+    note: SPAC business-combination closing announcement (Sep 2021)
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2022/12/16/arqit-wont-pursue-quantum-satellite-side-of-their-strategy-faces-sec-probe/
+    note: TQI — pivot summary plus SEC-probe context
+
+partial:
+  - modalities.qkd.protocol
+  - modalities.qkd.rate_distance
+  - modalities.qkd.deployed_demos
+  - field: shareholders
+    as_of: 2026-05-15
+    note: Precise stake percentages not confirmed against the latest 20-F (SEC); founders' shareholding levels reaffirmed via April 2024 open-market disclosure
+  - field: modalities.qkd
+    as_of: 2026-05-15
+    note: Block retained because QKD was the original positioning; current product is software-only SKA, not QKD. Kept in categories to preserve the cautionary historical record
+
+last_verified: 2026-05-15
+verification_method: web

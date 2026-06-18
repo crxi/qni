@@ -1,0 +1,1566 @@
+# Citation registry for the infographics workspace. Keys are stable —
+# they're referenced from <SourceNote id="..."/> in pages. Pre-loaded
+# entries below cover the planned subjects so the citation id can be
+# referenced from page copy as soon as that subject is built.
+
+- id: ezratty-uqt-2025-p2
+  title: "Understanding Quantum Technologies, Part 2 — Quantum Hardware"
+  authors: ["Olivier Ezratty"]
+  publisher: "Self-published"
+  year: 2025
+  type: book
+  url: "http://www.oezratty.net/wordpress/"
+
+- id: ezratty-uqt-2025-p4
+  title: "Understanding Quantum Technologies, Part 4 — Communications & Sensing"
+  authors: ["Olivier Ezratty"]
+  publisher: "Self-published"
+  year: 2025
+  type: book
+  url: "http://www.oezratty.net/wordpress/"
+
+- id: meddeb-comnet-2025
+  title: "Quantum internet building blocks state of research and development"
+  authors: ["Aref Meddeb"]
+  publisher: "Computer Networks"
+  year: 2025
+  type: paper
+  doi: "10.1016/j.comnet.2025.111151"
+
+- id: kumar-ijndc-2025
+  title: "Quantum Internet: Technologies, Protocols, and Research Challenges"
+  authors: ["Vinay Kumar", "Claudio Cicconetti", "Marco Conti", "Andrea Passarella"]
+  publisher: "International Journal of Networked and Distributed Computing"
+  year: 2025
+  type: paper
+  doi: "10.1007/s44227-025-00060-5"
+
+- id: bravyi-nature-2024
+  title: "High-threshold and low-overhead fault-tolerant quantum memory"
+  authors: ["Sergey Bravyi", "Andrew W. Cross", "Jay M. Gambetta", "Dmitri Maslov", "Patrick Rall", "Theodore J. Yoder"]
+  publisher: "Nature"
+  year: 2024
+  type: paper
+  doi: "10.1038/s41586-024-07107-7"
+  url: "https://arxiv.org/abs/2308.07915"
+  note: "IBM bivariate-bicycle qLDPC code — 12 logical qubits in 288 physical (~24:1), vs ~250:1 for surface code at comparable suppression."
+
+- id: zhao-arxiv-2026
+  title: "Ultra-high-rate quantum error correction with reconfigurable atom arrays"
+  authors: ["Chen Zhao", "Andi Gu", "Casey Duckering", "Nishad Maskara", "Hengyun Zhou"]
+  publisher: "arXiv"
+  year: 2026
+  type: preprint
+  url: "https://arxiv.org/abs/2604.16209"
+  note: "Encoding rate >50% — 1152 physical / 580 logical, ~2:1 ratio on neutral-atom hardware."
+
+- id: itu-g-694-2
+  title: "ITU-T G.694.2 — Spectral grids for WDM applications: CWDM wavelength grid"
+  publisher: "ITU-T"
+  year: 2020
+  type: standard
+  marker: "ITU-T G.694.2"
+
+# ---- Pre-loaded for planned subjects ----
+
+- id: kozlowski-rfc9340
+  title: "Architectural Principles for a Quantum Internet"
+  authors: ["Wojciech Kozlowski", "Stephanie Wehner", "Rodney Van Meter", "Bruno Rijsman", "Angela Sara Cacciapuoti", "Marcello Caleffi", "Shota Nagayama"]
+  publisher: "IETF / IRTF"
+  year: 2023
+  type: standard
+  url: "https://www.rfc-editor.org/rfc/rfc9340"
+  marker: "RFC 9340"
+
+- id: wehner-science-2018
+  title: "Quantum internet: A vision for the road ahead"
+  authors: ["Stephanie Wehner", "David Elkouss", "Ronald Hanson"]
+  publisher: "Science"
+  year: 2018
+  type: paper
+  doi: "10.1126/science.aam9288"
+
+- id: purohit-arxiv-2023
+  title: "Building a Quantum-ready Ecosystem"
+  authors: ["Abhishek Purohit", "Maninder Kaur", "Zeki Can Seskir", "Matthew T. Posner", "Araceli Venegas-Gomez"]
+  publisher: "arXiv:2304.06843"
+  year: 2023
+  type: paper
+  url: "https://arxiv.org/abs/2304.06843"
+
+- id: abane-arxiv-2024
+  title: "Entanglement Routing in Quantum Networks: A Comprehensive Survey"
+  authors: ["Amar Abane", "Michael Cubeddu", "Van Sy Mai", "Abdella Battou"]
+  publisher: "arXiv:2408.01234"
+  year: 2024
+  type: preprint
+  url: "https://arxiv.org/abs/2408.01234"
+  note: "Survey of entanglement-routing protocols. Introduces the proactive / reactive / virtual / opportunistic four-way taxonomy and the routing-vs-forwarding decomposition."
+
+- id: azuma-rmp-95
+  title: "Quantum repeaters: From quantum networks to the quantum internet"
+  authors: ["Koji Azuma", "Sophia E. Economou", "David Elkouss", "Paul Hilaire", "Liang Jiang", "Hoi-Kwong Lo", "Ilan Tzitrin"]
+  publisher: "Reviews of Modern Physics"
+  year: 2023
+  type: paper
+  doi: "10.1103/RevModPhys.95.045006"
+
+- id: sangouard-rmp-83
+  title: "Quantum repeaters based on atomic ensembles and linear optics"
+  authors: ["Nicolas Sangouard", "Christoph Simon", "Hugues de Riedmatten", "Nicolas Gisin"]
+  publisher: "Reviews of Modern Physics"
+  year: 2011
+  type: paper
+  doi: "10.1103/RevModPhys.83.33"
+
+- id: bdcz-prl-1998
+  title: "Quantum repeaters: The role of imperfect local operations in quantum communication"
+  authors: ["H.-J. Briegel", "W. Dür", "J. I. Cirac", "P. Zoller"]
+  publisher: "Physical Review Letters"
+  year: 1998
+  type: paper
+  doi: "10.1103/PhysRevLett.81.5932"
+
+- id: azuma-natcomm-2015
+  title: "All-photonic quantum repeaters"
+  authors: ["Koji Azuma", "Kiyoshi Tamaki", "Hoi-Kwong Lo"]
+  publisher: "Nature Communications"
+  year: 2015
+  type: paper
+  doi: "10.1038/ncomms7787"
+
+- id: bayerbach-sciadv-2023
+  title: "Bell-state measurement exceeding 50 % success probability with linear optics"
+  authors: ["Matthias J. Bayerbach", "Simone E. D'Aurelio", "Peter van Loock", "Stefanie Barz"]
+  publisher: "Science Advances"
+  year: 2023
+  type: paper
+  doi: "10.1126/sciadv.adf4080"
+
+- id: hauser-npjqi-2025
+  title: "Boosted Bell-state measurements for photonic quantum computation"
+  authors: ["Nico Hauser", "Matthias J. Bayerbach", "Simone E. D'Aurelio", "Raphael Weber", "Matteo Santandrea", "Shreya P. Kumar", "Ish Dhand", "Stefanie Barz"]
+  publisher: "npj Quantum Information"
+  year: 2025
+  volume: "11"
+  pages: "41"
+  type: paper
+  doi: "10.1038/s41534-025-00986-2"
+  note: "Boosted-BSM scheme using ancillary photon pairs and a 4×4 multiport interferometer raises the linear-optics BSM ceiling from 50 % to 75 % in theory; experimentally demonstrates (69.3 ± 0.3) %. Companion to Bayerbach SciAdv 2023."
+
+- id: calsamiglia-aphysb-2001
+  title: "Maximum efficiency of a linear-optical Bell-state analyzer"
+  authors: ["Jordi Calsamiglia", "Norbert Lütkenhaus"]
+  publisher: "Applied Physics B"
+  year: 2001
+  type: paper
+  doi: "10.1007/s003400100712"
+  note: "Established the 50 % upper bound for linear-optics polarisation BSM without ancillas."
+
+- id: nielsen-chuang-qcqi
+  title: "Quantum Computation and Quantum Information"
+  authors: ["Michael A. Nielsen", "Isaac L. Chuang"]
+  publisher: "Cambridge University Press"
+  year: 2010
+  type: book
+  note: "10th anniversary edition. §1.3.7 / Box 1.6 gives the standard CNOT + Hadamard + computational-basis-readout circuit for a deterministic Bell-basis projection on matter qubits."
+
+- id: bennett-pra-1996
+  title: "Mixed-state entanglement and quantum error correction"
+  authors: ["Charles H. Bennett", "David P. DiVincenzo", "John A. Smolin", "William K. Wootters"]
+  publisher: "Physical Review A"
+  year: 1996
+  type: paper
+  doi: "10.1103/PhysRevA.54.3824"
+
+- id: meter-ieee-2014
+  title: "Quantum Networking"
+  authors: ["Rodney Van Meter"]
+  publisher: "Wiley / ISTE"
+  year: 2014
+  type: book
+  url: "https://www.wiley.com/en-us/Quantum+Networking-p-9781848215375"
+
+- id: liao-nature-549
+  title: "Satellite-to-ground quantum key distribution"
+  authors: ["Sheng-Kai Liao", "Wen-Qi Cai", "Wei-Yue Liu", "Liang Zhang", "Yang Li", "Ji-Gang Ren", "Juan Yin", "Qi Shen", "Yuan Cao", "Zheng-Ping Li", "Feng-Zhi Li", "Xia-Wei Chen", "Li-Hua Sun", "Jian-Jun Jia", "Jin-Cai Wu", "Xiao-Jun Jiang", "Jian-Feng Wang", "Yong-Mei Huang", "Qiang Wang", "Yi-Lin Zhou", "Lei Deng", "Tao Xi", "Lu Ma", "Tai Hu", "Qiang Zhang", "Yu-Ao Chen", "Nai-Le Liu", "Xiang-Bin Wang", "Zhen-Cai Zhu", "Cheng-Zhi Peng", "Jian-Yu Wang", "Jian-Wei Pan"]
+  publisher: "Nature"
+  year: 2017
+  volume: "549"
+  pages: "43"
+  type: paper
+  doi: "10.1038/nature23655"
+
+- id: yin-science-2017
+  title: "Satellite-based entanglement distribution over 1200 kilometers"
+  authors: ["Juan Yin", "Yuan Cao", "Yu-Huai Li", "Sheng-Kai Liao", "Liang Zhang", "Ji-Gang Ren", "Wen-Qi Cai", "Wei-Yue Liu", "et al."]
+  publisher: "Science"
+  year: 2017
+  type: paper
+  doi: "10.1126/science.aan3211"
+
+- id: ren-nature-2017
+  title: "Ground-to-satellite quantum teleportation"
+  authors: ["Ji-Gang Ren", "Ping Xu", "Hai-Lin Yong", "Liang Zhang", "Sheng-Kai Liao", "Juan Yin", "Wei-Yue Liu", "Wen-Qi Cai", "et al.", "Jian-Wei Pan"]
+  publisher: "Nature"
+  year: 2017
+  volume: "549"
+  pages: "70"
+  type: paper
+  doi: "10.1038/nature23675"
+  note: "Micius uplink teleportation of single-photon qubits from the ground to the satellite, up to ~1400 km, fidelity ~0.80."
+
+- id: liao-prl-2018
+  title: "Satellite-Relayed Intercontinental Quantum Network"
+  authors: ["Sheng-Kai Liao", "Wen-Qi Cai", "Johannes Handsteiner", "Bo Liu", "Juan Yin", "Liang Zhang", "Dominik Rauch", "Matthias Fink", "Ji-Gang Ren", "et al.", "Anton Zeilinger", "Jian-Wei Pan"]
+  publisher: "Physical Review Letters"
+  year: 2018
+  volume: "120"
+  pages: "030501"
+  type: paper
+  doi: "10.1103/PhysRevLett.120.030501"
+  note: "Micius as a trusted relay linking Xinglong, Nanshan and Graz; China–Austria key exchange over 7600 km, enabling a Beijing–Vienna encrypted video call."
+
+- id: xu-science-2019
+  title: "Satellite testing of a gravitationally induced quantum decoherence model"
+  authors: ["Ping Xu", "Yiqiu Ma", "Ji-Gang Ren", "Hai-Lin Yong", "Timothy C. Ralph", "Sheng-Kai Liao", "Juan Yin", "Wei-Yue Liu", "et al.", "Jian-Wei Pan"]
+  publisher: "Science"
+  year: 2019
+  volume: "366"
+  pages: "132"
+  type: paper
+  doi: "10.1126/science.aay5820"
+  note: "Sent time-energy entangled pairs through Earth's gravitational potential to test the 'event formalism'; found no decorrelation, ruling out the model and remaining consistent with standard quantum mechanics."
+
+- id: dai-natphys-2020
+  title: "Towards satellite-based quantum-secure time transfer"
+  authors: ["Hui Dai", "Qi Shen", "Chao-Ze Wang", "Shuang-Lin Li", "Wei-Yue Liu", "Wen-Qi Cai", "Sheng-Kai Liao", "Ji-Gang Ren", "et al.", "Jian-Wei Pan"]
+  publisher: "Nature Physics"
+  year: 2020
+  volume: "16"
+  pages: "848"
+  type: paper
+  doi: "10.1038/s41567-020-0892-y"
+  note: "Satellite-to-ground secure time transfer via two-way QKD; 30 ps precision, 9 kHz rate, QBER below 1%."
+
+- id: lu-rmp-2022
+  title: "Micius quantum experiments in space"
+  authors: ["Chao-Yang Lu", "Yuan Cao", "Cheng-Zhi Peng", "Jian-Wei Pan"]
+  publisher: "Reviews of Modern Physics"
+  year: 2022
+  volume: "94"
+  pages: "035001"
+  type: paper
+  doi: "10.1103/RevModPhys.94.035001"
+  note: "Review of the Micius (QUESS) experiments — covers the satellite's QKD, entanglement-distribution, teleportation and fundamental-physics results."
+
+# ---- Pre-loaded for subject 3 (`metrics`) — channel attenuation references ----
+
+- id: itu-g-652-d
+  title: "ITU-T G.652 — Characteristics of a single-mode optical fibre and cable (the 0.20 dB/km @ 1550 nm reference)"
+  publisher: "ITU-T"
+  year: 2016
+  type: standard
+  url: "https://www.itu.int/rec/T-REC-G.652"
+  marker: "ITU-T G.652.D"
+
+- id: jasion-ofc-2022
+  title: "0.174 dB/km hollow-core double nested antiresonant nodeless fibre (DNANF)"
+  authors: ["Gregory T. Jasion", "Hans Christian Hopper Mulvad", "Yong Chen", "Ian A. Davidson", "Eric Numkam Fokoua", "Thomas D. Bradley", "Marco Petrovich", "Francesco Poletti"]
+  publisher: "Optical Fiber Communication Conference (OFC) postdeadline"
+  year: 2022
+  type: paper
+  url: "https://opg.optica.org/abstract.cfm?uri=OFC-2022-Th4C.7"
+
+- id: lumenisity-microsoft-2024
+  title: "Hollow-core fibre at 0.091 dB/km — commercial deployment (Lumenisity / Microsoft)"
+  publisher: "Microsoft / Lumenisity"
+  year: 2024
+  type: misc
+  url: "https://blogs.microsoft.com/blog/2022/12/09/microsoft-acquires-lumenisity-an-innovator-in-hollow-core-fiber-hcf-cable/"
+
+- id: huang-prl-2024
+  title: "Vacuum beam guide for large-scale quantum networks"
+  authors: ["Yuexun Huang", "Francisco Salces-Carcoba", "Rana X Adhikari", "Amir H. Safavi-Naeini", "Liang Jiang"]
+  publisher: "Physical Review Letters"
+  year: 2024
+  type: paper
+  doi: "10.1103/PhysRevLett.133.020801"
+  marker: "PRL 133, 020801"
+
+- id: schmitt-manderbach-prl-2007
+  title: "Experimental demonstration of free-space decoy-state quantum key distribution over 144 km"
+  authors: ["Tobias Schmitt-Manderbach", "Henning Weier", "Martin Fürst", "Rupert Ursin", "Felix Tiefenbacher", "Thomas Scheidl", "Josep Perdigues", "Zoran Sodnik", "Christian Kurtsiefer", "John G. Rarity", "Anton Zeilinger", "Harald Weinfurter"]
+  publisher: "Physical Review Letters"
+  year: 2007
+  type: paper
+  doi: "10.1103/PhysRevLett.98.010504"
+
+- id: wang-nphoton-2013
+  title: "Direct and full-scale experimental verifications towards ground–satellite quantum key distribution"
+  authors: ["Jian-Yu Wang", "Bin Yang", "Sheng-Kai Liao", "Liang Zhang", "Qi Shen", "Xiao-Fang Hu", "Jin-Cai Wu", "Shi-Ji Yang", "Hao Jiang", "Yan-Lin Tang", "Bo Zhong", "Hao Liang", "Wei-Yue Liu", "Yi-Hua Hu", "Yong-Mei Huang", "Bo Qi", "Ji-Gang Ren", "Ge-Sheng Pan", "Juan Yin", "Jian-Jun Jia", "Yu-Ao Chen", "Kai Chen", "Cheng-Zhi Peng", "Jian-Wei Pan"]
+  publisher: "Nature Photonics"
+  year: 2013
+  volume: "7"
+  pages: "387"
+  type: paper
+  doi: "10.1038/nphoton.2013.89"
+  note: "Hot-air balloon platform simulating satellite mobility; 40 km moving-platform and 96 km high-loss QKD demonstrations."
+
+- id: liu-nsr-2020
+  title: "Drone-based entanglement distribution towards mobile quantum networks"
+  authors: ["Hua-Ying Liu", "Xiao-Hui Tian", "Changsheng Gu", "Pengfei Fan", "Xin Ni", "Ran Yang", "Ji-Ning Zhang", "Mingzhe Hu", "Jian Guo", "Xun Cao", "Xiaopeng Hu", "Gang Zhao", "Yan-Qing Lu", "Yan-Xiao Gong", "Zhenda Xie", "Shi-Ning Zhu"]
+  publisher: "National Science Review"
+  year: 2020
+  volume: "7"
+  pages: "921"
+  type: paper
+  doi: "10.1093/nsr/nwz227"
+  note: "Octocopter-borne entangled-photon source, 200 m drone-to-ground distribution, day/night/rain operation."
+
+- id: liu-prl-2021
+  title: "Optical-Relayed Entanglement Distribution Using Drones as Mobile Nodes"
+  authors: ["Hua-Ying Liu", "Xiao-Hui Tian", "Changsheng Gu", "Pengfei Fan", "Xin Ni", "Ran Yang", "Ji-Ning Zhang", "Mingzhe Hu", "Jian Guo", "Xun Cao", "Xiaopeng Hu", "Gang Zhao", "Yan-Qing Lu", "Yan-Xiao Gong", "Zhenda Xie", "Shi-Ning Zhu"]
+  publisher: "Physical Review Letters"
+  year: 2021
+  volume: "126"
+  pages: "020503"
+  type: paper
+  doi: "10.1103/PhysRevLett.126.020503"
+  note: "Two-drone optical relay extending entanglement distribution to 1 km between ground sites."
+
+# ---- For subject 1 (`qubits`) ----
+
+- id: divincenzo-2000
+  title: "The Physical Implementation of Quantum Computation"
+  authors: ["David P. DiVincenzo"]
+  publisher: "Fortschritte der Physik"
+  year: 2000
+  type: paper
+  doi: "10.1002/1521-3978(200009)48:9/11<771::AID-PROP771>3.0.CO;2-E"
+
+# ---- For subject 2 (`entanglement`) ----
+
+- id: bell-1964
+  title: "On the Einstein Podolsky Rosen Paradox"
+  authors: ["John S. Bell"]
+  publisher: "Physics Physique Физика"
+  year: 1964
+  type: paper
+  doi: "10.1103/PhysicsPhysiqueFizika.1.195"
+
+- id: bennett-prl-1993
+  title: "Teleporting an unknown quantum state via dual classical and Einstein-Podolsky-Rosen channels"
+  authors: ["Charles H. Bennett", "Gilles Brassard", "Claude Crépeau", "Richard Jozsa", "Asher Peres", "William K. Wootters"]
+  publisher: "Physical Review Letters"
+  year: 1993
+  type: paper
+  doi: "10.1103/PhysRevLett.70.1895"
+
+- id: wootters-nature-1982
+  title: "A single quantum cannot be cloned"
+  authors: ["W. K. Wootters", "W. H. Zurek"]
+  publisher: "Nature"
+  year: 1982
+  type: paper
+  doi: "10.1038/299802a0"
+
+- id: bennett-brassard-1984
+  title: "Quantum cryptography: Public key distribution and coin tossing"
+  authors: ["Charles H. Bennett", "Gilles Brassard"]
+  publisher: "Theoretical Computer Science (reprint of Proc. IEEE Int. Conf. Computers, Systems and Signal Processing, Bangalore, 1984)"
+  year: 1984
+  volume: "560"
+  pages: "7"
+  type: paper
+  doi: "10.1016/j.tcs.2014.05.025"
+  note: "The BB84 protocol — the first quantum key distribution scheme, establishing a shared key on single-photon polarisation states whose security rests on measurement disturbance rather than computational hardness."
+
+- id: shor-siamjc-1997
+  title: "Polynomial-time algorithms for prime factorization and discrete logarithms on a quantum computer"
+  authors: ["Peter W. Shor"]
+  publisher: "SIAM Journal on Computing"
+  year: 1997
+  volume: "26"
+  pages: "1484"
+  type: paper
+  doi: "10.1137/S0097539795293172"
+  note: "Shor's algorithm — a cryptographically-relevant quantum computer (CRQC) factors integers and solves discrete logarithms in polynomial time, breaking RSA and elliptic-curve (ECDH) public-key cryptography."
+
+- id: nist-fips-203-2024
+  title: "Module-Lattice-Based Key-Encapsulation Mechanism Standard (FIPS 203)"
+  authors: ["National Institute of Standards and Technology"]
+  publisher: "NIST Federal Information Processing Standards"
+  year: 2024
+  type: standard
+  doi: "10.6028/NIST.FIPS.203"
+  note: "ML-KEM (derived from CRYSTALS-Kyber) — the NIST post-quantum key-encapsulation standard whose security rests on the hardness of the module-learning-with-errors lattice problem, with no known efficient quantum attack."
+
+- id: nist-ir-8105
+  title: "Report on Post-Quantum Cryptography (NISTIR 8105)"
+  authors: ["Lily Chen", "Stephen Jordan", "Yi-Kai Liu", "Dustin Moody", "Rene Peralta", "Ray Perlner", "Daniel Smith-Tone"]
+  publisher: "NIST Internal Report"
+  year: 2016
+  type: standard
+  doi: "10.6028/NIST.IR.8105"
+  note: "NIST's foundational PQC report. Against symmetric ciphers and hashes, Grover's algorithm gives only a quadratic speed-up (halving the effective key length), so doubling the symmetric key size restores the security margin — AES-256 is quantum-resistant, and AES-128 is assessed likely to remain secure for decades."
+
+- id: grassl-pqcrypto-2016
+  title: "Applying Grover's algorithm to AES: quantum resource estimates"
+  authors: ["Markus Grassl", "Brandon Langenberg", "Martin Roetteler", "Rainer Steinwandt"]
+  publisher: "PQCrypto 2016 (LNCS 9606)"
+  year: 2016
+  pages: "29"
+  type: paper
+  doi: "10.1007/978-3-319-29360-8_3"
+  note: "First detailed quantum resource estimates (gate counts, qubits, circuit depth) for a Grover key-search on AES. A cost-estimation paper, not a policy conclusion: it establishes how large and deep the per-iteration AES circuit is; the security implications were drawn out by NIST and by later refinements. arXiv:1512.04965."
+
+- id: jaques-eurocrypt-2020
+  title: "Implementing Grover oracles for quantum key search on AES and LowMC"
+  authors: ["Samuel Jaques", "Michael Naehrig", "Martin Roetteler", "Fernando Virdia"]
+  publisher: "EUROCRYPT 2020 (LNCS 12106)"
+  year: 2020
+  pages: "280"
+  type: paper
+  doi: "10.1007/978-3-030-45724-2_10"
+  note: "The current standard estimate, post-dating Grassl 2016 with lower-cost Grover oracles in the depth-width (DW) cost model under NIST's MAXDEPTH depth bound. NIST uses these numbers to set its post-quantum security categories; they show the naive 2^(n/2) Grover figure is unreachable under realistic depth limits, leaving AES-128's real key-search cost far above brute-force-feasible. Refined further by Huang-Sun 2022, Shi et al. ASIACRYPT 2024 and Zhang et al. IEEE TC 2024 without changing the conclusion. arXiv:1910.01700."
+
+- id: zukowski-prl-1993
+  title: "Event-ready-detectors Bell experiment via entanglement swapping"
+  authors: ["Marek Żukowski", "Anton Zeilinger", "Michael A. Horne", "Artur K. Ekert"]
+  publisher: "Physical Review Letters"
+  year: 1993
+  type: paper
+  doi: "10.1103/PhysRevLett.71.4287"
+
+- id: cacciapuoti-ieeetc-2020
+  title: "When Entanglement Meets Classical Communications: Quantum Teleportation for the Quantum Internet"
+  authors: ["Angela Sara Cacciapuoti", "Marcello Caleffi", "Rodney Van Meter", "Lajos Hanzo"]
+  publisher: "IEEE Transactions on Communications"
+  year: 2020
+  type: paper
+  doi: "10.1109/TCOMM.2020.2978071"
+
+- id: forbes-rpp-2025
+  title: "Heralded generation of entanglement with photons"
+  authors: ["Iain Forbes", "Jonathan C. F. Matthews", "et al."]
+  publisher: "Reports on Progress in Physics"
+  year: 2025
+  type: paper
+  doi: "10.1088/1361-6633/ade0c1"
+
+- id: pompili-science-2021
+  title: "Realization of a multinode quantum network of remote solid-state qubits"
+  authors: ["Matteo Pompili", "Sophie L. N. Hermans", "Simon Baier", "Hans K. C. Beukers", "et al."]
+  publisher: "Science"
+  year: 2021
+  type: paper
+  doi: "10.1126/science.abg1919"
+
+- id: hermans-nature-2022
+  title: "Qubit teleportation between non-neighbouring nodes in a quantum network"
+  authors: ["Sophie L. N. Hermans", "Matteo Pompili", "Hans K. C. Beukers", "Simon Baier", "Johannes Borregaard", "Ronald Hanson"]
+  publisher: "Nature"
+  year: 2022
+  type: paper
+  doi: "10.1038/s41586-022-04697-y"
+
+- id: hensen-nature-2015
+  title: "Loophole-free Bell inequality violation using electron spins separated by 1.3 kilometres"
+  authors: ["B. Hensen", "H. Bernien", "A. E. Dréau", "A. Reiserer", "N. Kalb", "et al.", "Ronald Hanson"]
+  publisher: "Nature"
+  year: 2015
+  volume: "526"
+  pages: "682"
+  type: paper
+  doi: "10.1038/nature15759"
+  note: "Loophole-free Bell test between two NV-centre electron spins 1.3 km apart on the Delft campus — the first demonstration that the Hanson-group nodes can be remotely entangled with heralded success."
+
+- id: humphreys-nature-2018
+  title: "Deterministic delivery of remote entanglement on a quantum network"
+  authors: ["Peter C. Humphreys", "Norbert Kalb", "Jaco P. J. Morits", "Raymond N. Schouten", "Raymond F. L. Vermeulen", "et al.", "Ronald Hanson"]
+  publisher: "Nature"
+  year: 2018
+  volume: "558"
+  pages: "268"
+  type: paper
+  doi: "10.1038/s41586-018-0200-5"
+  note: "Made remote NV-centre entanglement deterministic (on-demand) rather than heralded-when-lucky, raising the delivery rate enough to support a multi-node protocol."
+
+- id: pompili-npjqi-2022
+  title: "Experimental demonstration of entanglement delivery using a quantum network stack"
+  authors: ["Matteo Pompili", "Carlo Delle Donne", "Ingmar te Raa", "Bart van der Vecht", "et al.", "Ronald Hanson"]
+  publisher: "npj Quantum Information"
+  year: 2022
+  volume: "8"
+  pages: "121"
+  type: paper
+  doi: "10.1038/s41534-022-00631-2"
+  note: "First experimental demonstration of a physical- and link-layer network stack delivering entanglement on demand between Delft nodes — the protocol-stack realisation behind RFC 9340's link-layer service."
+
+- id: krutyanskiy-prl-2023
+  title: "Entanglement of trapped-ion qubits separated by 230 metres"
+  authors: ["V. Krutyanskiy", "M. Galli", "V. Krcmarsky", "S. Baier", "D. A. Fioretto", "Y. Pu", "et al."]
+  publisher: "Physical Review Letters"
+  year: 2023
+  type: paper
+  doi: "10.1103/PhysRevLett.130.050803"
+
+- id: kwiat-prl-1995
+  title: "New high-intensity source of polarization-entangled photon pairs"
+  authors: ["Paul G. Kwiat", "Klaus Mattle", "Harald Weinfurter", "Anton Zeilinger", "Alexander V. Sergienko", "Yanhua Shih"]
+  publisher: "Physical Review Letters"
+  year: 1995
+  type: paper
+  doi: "10.1103/PhysRevLett.75.4337"
+
+- id: knaut-nature-2024
+  title: "Entanglement of nanophotonic quantum memory nodes in a telecom network"
+  authors: ["Can M. Knaut", "Aziza Suleymanzade", "Yan-Cheng Wei", "Daniel R. Assumpcao", "et al."]
+  publisher: "Nature"
+  year: 2024
+  type: paper
+  doi: "10.1038/s41586-024-07252-z"
+
+- id: main-nature-2025
+  title: "Distributed quantum computing across an optical network link"
+  authors: ["D. Main", "P. Drmota", "D. P. Nadlinger", "et al."]
+  publisher: "Nature"
+  year: 2025
+  type: paper
+  doi: "10.1038/s41586-024-08404-x"
+
+- id: awschalom-prxquantum-2021
+  title: "Development of Quantum Interconnects (QuICs) for Next-Generation Information Technologies"
+  authors: ["David D. Awschalom", "Karl K. Berggren", "Hannes Bernien", "Sunil Bhave", "Lincoln D. Carr", "et al."]
+  publisher: "PRX Quantum"
+  year: 2021
+  type: paper
+  doi: "10.1103/PRXQuantum.2.017002"
+
+- id: warner-natphys-2025
+  title: "Coherent control of a superconducting qubit using light"
+  authors: ["Hana K. Warner", "Jeffrey Holzgrafe", "Beatriz Yankelevich", "et al.", "Matthew Reagor", "Marko Lončar"]
+  publisher: "Nature Physics"
+  year: 2025
+  type: paper
+  doi: "10.1038/s41567-025-02812-0"
+
+- id: zhou-natphoton-2026
+  title: "A 1-km photonic link connecting superconducting circuits in two dilution refrigerators"
+  authors: ["Yiyu Zhou", "Yufeng Wu", "Chunzhen Li", "Mohan Shen", "Likai Yang", "Jiacheng Xie", "Hong X. Tang"]
+  publisher: "Nature Photonics"
+  year: 2026
+  type: paper
+  doi: "10.1038/s41566-026-01866-7"
+
+- id: jones-njp-2016
+  title: "Design and analysis of communication protocols for quantum repeater networks"
+  authors: ["Cody Jones", "Danny Kim", "Matthew T. Rakher", "Paul G. Kwiat", "Thaddeus D. Ladd"]
+  publisher: "New Journal of Physics"
+  year: 2016
+  type: paper
+  doi: "10.1088/1367-2630/18/8/083015"
+
+- id: duan-nature-414
+  title: "Long-distance quantum communication with atomic ensembles and linear optics"
+  authors: ["L.-M. Duan", "M. D. Lukin", "J. I. Cirac", "P. Zoller"]
+  publisher: "Nature"
+  year: 2001
+  type: paper
+  doi: "10.1038/35106500"
+
+- id: muralidharan-scirep-2016
+  title: "Optimal architectures for long distance quantum communication"
+  authors: ["Sreraman Muralidharan", "Linshu Li", "Jungsang Kim", "Norbert Lütkenhaus", "Mikhail D. Lukin", "Liang Jiang"]
+  publisher: "Scientific Reports"
+  year: 2016
+  type: paper
+  doi: "10.1038/srep20463"
+
+- id: horodecki-pra-1999
+  title: "General teleportation channel, singlet fraction, and quasidistillation"
+  authors: ["Ryszard Horodecki", "Michał Horodecki", "Paweł Horodecki"]
+  publisher: "Physical Review A"
+  year: 1999
+  type: paper
+  doi: "10.1103/PhysRevA.60.1888"
+
+- id: massar-prl-1995
+  title: "Optimal extraction of information from finite quantum ensembles"
+  authors: ["Serge Massar", "Sandu Popescu"]
+  publisher: "Physical Review Letters"
+  year: 1995
+  type: paper
+  doi: "10.1103/PhysRevLett.74.1259"
+
+- id: lauk-qst-2020
+  title: "Perspectives on quantum transduction"
+  authors: ["Nikolai Lauk", "Neil Sinclair", "Schuyler Barzanjeh", "Jacob P. Covey", "Mark Saffman", "Maria Spiropulu", "Christoph Simon"]
+  publisher: "Quantum Science and Technology"
+  year: 2020
+  type: paper
+  doi: "10.1088/2058-9565/ab788a"
+
+- id: dahlberg-sigcomm-2019
+  title: "A link layer protocol for quantum networks"
+  authors: ["Axel Dahlberg", "Matthew Skrzypczyk", "Tim Coopmans", "Leon Wubben", "Filip Rozpędek", "Matteo Pompili", "Arian Stolk", "et al."]
+  publisher: "Proceedings of the ACM Special Interest Group on Data Communication (SIGCOMM)"
+  year: 2019
+  type: paper
+  doi: "10.1145/3341302.3342070"
+
+- id: lucamarini-nature-2018
+  title: "Overcoming the rate–distance limit of quantum key distribution without quantum repeaters"
+  authors: ["Marco Lucamarini", "Zhiliang L. Yuan", "James F. Dynes", "Andrew J. Shields"]
+  publisher: "Nature"
+  year: 2018
+  type: paper
+  doi: "10.1038/s41586-018-0066-6"
+
+- id: broadbent-focs-2009
+  title: "Universal blind quantum computation"
+  authors: ["Anne Broadbent", "Joseph Fitzsimons", "Elham Kashefi"]
+  publisher: "Proceedings of the 50th Annual IEEE Symposium on Foundations of Computer Science (FOCS)"
+  year: 2009
+  type: paper
+  doi: "10.1109/FOCS.2009.36"
+
+- id: lo-prl-mdi-2012
+  title: "Measurement-device-independent quantum key distribution"
+  authors: ["Hoi-Kwong Lo", "Marcos Curty", "Bing Qi"]
+  publisher: "Physical Review Letters"
+  year: 2012
+  type: paper
+  doi: "10.1103/PhysRevLett.108.130503"
+
+- id: gottesman-prl-2012
+  title: "Longer-baseline telescopes using quantum repeaters"
+  authors: ["Daniel Gottesman", "Thomas Jennewein", "Sarah Croke"]
+  publisher: "Physical Review Letters"
+  year: 2012
+  type: paper
+  doi: "10.1103/PhysRevLett.109.070503"
+
+- id: komar-natphys-2014
+  title: "A quantum network of clocks"
+  authors: ["Péter Kómár", "Eric M. Kessler", "Michael Bishof", "Liang Jiang", "Anders S. Sørensen", "Jun Ye", "Mikhail D. Lukin"]
+  publisher: "Nature Physics"
+  year: 2014
+  type: paper
+  doi: "10.1038/nphys3000"
+
+- id: cirac-prl-1999
+  title: "Distributed quantum computation over noisy channels"
+  authors: ["J. Ignacio Cirac", "A. K. Ekert", "S. F. Huelga", "Chiara Macchiavello"]
+  publisher: "Physical Review A"
+  year: 1999
+  type: paper
+  doi: "10.1103/PhysRevA.59.4249"
+
+- id: quisp-icons
+  title: "QuISP network icon library"
+  authors: ["AQUA — Advancing Quantum Architecture (Keio University) / Van Meter et al."]
+  publisher: "GitHub"
+  year: 2022
+  type: misc
+  url: "https://github.com/sfc-aqua/quisp/tree/master/Network%20icons"
+
+- id: openmoji
+  title: "OpenMoji — open-source emoji and icon set"
+  authors: ["HfG Schwäbisch Gmünd and contributors"]
+  publisher: "openmoji.org / GitHub (hfg-gmuend/openmoji)"
+  year: 2024
+  type: misc
+  url: "https://openmoji.org/"
+  note: "Graphics licensed CC-BY-SA 4.0. The Alice (woman), Bob (man), and Eve (hooded figure) cartoon avatars in the key-distribution diagram are OpenMoji glyphs."
+
+- id: dur-pra-2000
+  title: "Three qubits can be entangled in two inequivalent ways"
+  authors: ["W. Dür", "G. Vidal", "J. I. Cirac"]
+  publisher: "Physical Review A"
+  year: 2000
+  type: paper
+  doi: "10.1103/PhysRevA.62.062314"
+  url: "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.62.062314"
+
+- id: bugu-pra-2013
+  title: "Preparing multiphoton W states with linear optics and single-photon sources"
+  authors: ["S. Bugu", "F. Ozaydin", "T. Ferrus", "T. Kodera"]
+  publisher: "Scientific Reports"
+  year: 2013
+  type: paper
+  doi: "10.1038/srep01984"
+  url: "https://www.nature.com/articles/srep01984"
+
+- id: boaron-prl-2018
+  title: "Secure quantum key distribution over 421 km of optical fiber"
+  authors: ["Alberto Boaron", "Gianluca Boso", "Davide Rusca", "Cédric Vulliez", "Claire Autebert", "Misael Caloz", "Matthieu Perrenoud", "Gaëtan Gras", "Félix Bussières", "Ming-Jun Li", "Daniel Nolan", "Anthony Martin", "Hugo Zbinden"]
+  publisher: "Physical Review Letters"
+  year: 2018
+  type: paper
+  doi: "10.1103/PhysRevLett.121.190502"
+
+- id: stephenson-prl-2020
+  title: "High-rate, high-fidelity entanglement of qubits across an elementary quantum network"
+  authors: ["L. J. Stephenson", "D. P. Nadlinger", "B. C. Nichol", "S. An", "P. Drmota", "T. G. Ballance", "K. Thirumalai", "J. F. Goodwin", "D. M. Lucas", "C. J. Ballance"]
+  publisher: "Physical Review Letters"
+  year: 2020
+  type: paper
+  doi: "10.1103/PhysRevLett.124.110501"
+
+- id: vanleent-nature-2022
+  title: "Entangling single atoms over 33 km telecom fibre"
+  authors: ["Tim van Leent", "Matthias Bock", "Florian Fertig", "Robert Garthoff", "Sebastian Eppelt", "Yiru Zhou", "Pooja Malik", "Matthias Seubert", "Tobias Bauer", "Wenjamin Rosenfeld", "Wei Zhang", "Christoph Becher", "Harald Weinfurter"]
+  publisher: "Nature"
+  year: 2022
+  type: paper
+  doi: "10.1038/s41586-022-04764-4"
+
+- id: wang-nature-2021
+  title: "Single ion-qubit exceeding one hour coherence time"
+  authors: ["Pengfei Wang", "Chun-Yang Luan", "Mu Qiao", "Mark Um", "Junhua Zhang", "Ye Wang", "Xiao Yuan", "Mile Gu", "Jingning Zhang", "Kihwan Kim"]
+  publisher: "Nature Communications"
+  year: 2021
+  type: paper
+  doi: "10.1038/s41467-020-20330-w"
+  note: "Ytterbium-171 ground-state qubit: coherence time of 5500 s (~90 min) using dynamical decoupling."
+
+- id: pittaluga-natphoton-2021
+  title: "600-km repeater-like quantum communications with dual-band stabilization"
+  authors: ["Mirko Pittaluga", "Mariella Minder", "Marco Lucamarini", "Mirko Sanzaro", "Robert I. Woodward", "Ming-Jun Li", "Zhiliang Yuan", "Andrew J. Shields"]
+  publisher: "Nature Photonics"
+  year: 2021
+  type: paper
+  doi: "10.1038/s41566-021-00811-0"
+
+- id: liu-prl-2023
+  title: "Experimental twin-field quantum key distribution over 1000-km fiber distance"
+  authors: ["Yang Liu", "Wei-Jun Zhang", "Cong Jiang", "Jiu-Peng Chen", "Chi Zhang", "Wen-Xin Pan", "Di Ma", "Hao Dong", "Jia-Min Xiong", "Cheng-Jun Zhang", "Hao Li", "Rui-Chun Wang", "Jun Wu", "Teng-Yun Chen", "Lixing You", "Xiang-Bin Wang", "Qiang Zhang", "Jian-Wei Pan"]
+  publisher: "Physical Review Letters"
+  year: 2023
+  type: paper
+  doi: "10.1103/PhysRevLett.130.210801"
+
+- id: portrotterdam-press-2024
+  title: "Consortium parties first in the world to build scalable quantum internet connection"
+  publisher: "Port of Rotterdam Authority"
+  year: 2024
+  type: press
+  url: "https://www.portofrotterdam.com/en/news-and-press-releases/consortium-parties-first-world-build-scalable-quantum-internet-connection"
+  marker: "Port of Rotterdam / Q*Bird 2024 (MDI-QKD pilot announcement)"
+
+- id: qbird-quest-2025
+  title: "From theory to network: what sets QUEST apart"
+  publisher: "Q*Bird"
+  year: 2025
+  type: press
+  url: "https://www.q-bird.com/press/from-theory-to-network-what-sets-quest-apart/"
+  marker: "Q*Bird 2025 (QUEST programme — South Holland expansion)"
+
+- id: islam-sciadv-2017
+  title: "Provably secure and high-rate quantum key distribution with time-bin qudits"
+  authors: ["Nurul T. Islam", "Charles Ci Wen Lim", "Clinton Cahall", "Jungsang Kim", "Daniel J. Gauthier"]
+  publisher: "Science Advances"
+  year: 2017
+  type: paper
+  doi: "10.1126/sciadv.1701491"
+
+- id: bland-nature-647
+  title: "Millisecond lifetimes and coherence times in 2D transmon qubits"
+  authors: ["Matthew P. Bland", "Faranak Bahrami", "Nathalie P. de Leon", "Andrew A. Houck"]
+  publisher: "Nature"
+  year: 2025
+  volume: "647"
+  pages: "343"
+  type: paper
+  doi: "10.1038/s41586-025-09687-4"
+  note: "Tantalum-on-silicon 2D transmons; best qubit T1 up to 1.68 ms (quality factor 2.5×10^7), Hahn-echo T2E exceeding T1."
+
+- id: zhong-nature-517
+  title: "Optically addressable nuclear spins in a solid with a six-hour coherence time"
+  authors: ["Manjin Zhong", "Morgan P. Hedges", "Rose L. Ahlefeldt", "John G. Bartholomew", "Sarah E. Beavan", "Sven M. Wittig", "Jevon J. Longdell", "Matthew J. Sellars"]
+  publisher: "Nature"
+  year: 2015
+  volume: "517"
+  pages: "177"
+  type: paper
+  doi: "10.1038/nature14025"
+  note: "151Eu3+:Y2SiO5 ground-state nuclear-spin coherence of 6 h under dynamical decoupling and zero-first-order Zeeman field."
+
+- id: li-nature-2025-jinan
+  title: "Microsatellite-based real-time quantum key distribution"
+  authors: ["Yang Li", "Wen-Qi Cai", "Ji-Gang Ren", "Chao-Zhen Wang", "Mei-Yan Yang", "Liang Zhang", "Hong-Yi Wu", "Yu-Huai Li", "Sheng-Kai Liao", "Cheng-Zhi Peng", "Yuval Gefen", "Charles Feng", "Jian-Wei Pan"]
+  publisher: "Nature"
+  year: 2025
+  type: paper
+  doi: "10.1038/s41586-025-08739-z"
+  note: "Jinan-1 microsatellite (~23 kg, 500 km LEO) demonstrating real-time QKD between Beijing and Stellenbosch ground stations — 12,900 km path, southern-hemisphere first."
+
+- id: liu-nature-652
+  title: "Long-lived remote ion-ion entanglement for scalable quantum repeaters"
+  authors: ["Wen-Zhao Liu", "et al.", "Xiao-Hui Bao", "Qiang Zhang", "Jian-Wei Pan"]
+  publisher: "Nature"
+  year: 2026
+  volume: "652"
+  pages: "51"
+  type: paper
+  doi: "10.1038/s41586-026-10177-4"
+  note: "Heralded remote ion-ion entanglement over 10 km spooled fibre with ~550 ms lifetime — first demonstration where entanglement generation rate exceeds the loss rate."
+
+- id: tittel-arxiv-2501
+  title: "Quantum networks using rare-earth ions"
+  authors: ["Wolfgang Tittel", "Mikael Afzelius", "Hugues de Riedmatten", "Christoph Simon", "Andrei Faraon"]
+  publisher: "arXiv:2501.06110"
+  year: 2025
+  type: preprint
+  url: "https://arxiv.org/abs/2501.06110"
+  note: "Review of rare-earth-ion quantum memories; tabulates AFC-protocol storage-time vs efficiency across Pr/Eu/Yb/Tm:YSO and YGG implementations."
+
+- id: ma-natphys-2021
+  title: "One-hour coherent optical storage in an atomic frequency comb memory"
+  authors: ["Yu Ma", "You-Zhi Ma", "Zong-Quan Zhou", "Chuan-Feng Li", "Guang-Can Guo"]
+  publisher: "Nature Communications"
+  year: 2021
+  type: paper
+  doi: "10.1038/s41467-021-22706-y"
+  note: "Eu:YSO atomic-frequency-comb memory; light storage of one hour."
+
+- id: dudin-natphys-2013
+  title: "Light storage on the time scale of a minute in a cold atomic ensemble"
+  authors: ["Y. O. Dudin", "L. Li", "A. Kuzmich"]
+  publisher: "Physical Review A"
+  year: 2013
+  type: paper
+  doi: "10.1103/PhysRevA.87.031801"
+
+- id: yin-nature-2020
+  title: "Entanglement-based secure quantum cryptography over 1,120 kilometres"
+  authors: ["Juan Yin", "Yu-Huai Li", "Sheng-Kai Liao", "Meng Yang", "Yuan Cao", "Liang Zhang", "Ji-Gang Ren", "Wen-Qi Cai", "Wei-Yue Liu", "Shuang-Lin Li", "Rong Shu", "Yong-Mei Huang", "Lei Deng", "Li Li", "Qiang Zhang", "Nai-Le Liu", "Yu-Ao Chen", "Chao-Yang Lu", "Xiang-Bin Wang", "Feihu Xu", "Jian-Yu Wang", "Cheng-Zhi Peng", "Artur K. Ekert", "Jian-Wei Pan"]
+  publisher: "Nature"
+  year: 2020
+  type: paper
+  doi: "10.1038/s41586-020-2401-y"
+  note: "Micius satellite entanglement-based QKD between Delingha and Nanshan ground stations (1120 km)."
+
+- id: heshami-jmo-2016
+  title: "Quantum memories: emerging applications and recent advances"
+  authors: ["Khabat Heshami", "Duncan G. England", "Peter C. Humphreys", "Philip J. Bustard", "Victor M. Acosta", "Joshua Nunn", "Benjamin J. Sussman"]
+  publisher: "Journal of Modern Optics"
+  year: 2016
+  type: paper
+  doi: "10.1080/09500340.2016.1148212"
+
+- id: bradley-prx-2019
+  title: "A ten-qubit solid-state spin register with quantum memory up to one minute"
+  authors: ["C. E. Bradley", "J. Randall", "M. H. Abobeih", "R. C. Berrevoets", "M. J. Degen", "M. A. Bakker", "M. Markham", "D. J. Twitchen", "T. H. Taminiau"]
+  publisher: "Physical Review X"
+  year: 2019
+  type: paper
+  doi: "10.1103/PhysRevX.9.031045"
+  note: "NV-centre 13C nuclear-spin register: T2 ≥ 75 s (1.5 K), 63 ± 2 s (3.7 K)."
+
+- id: saglamyurek-nature-2011
+  title: "Broadband waveguide quantum memory for entangled photons"
+  authors: ["Erhan Saglamyurek", "Neil Sinclair", "Jeongwan Jin", "Joshua A. Slater", "Daniel Oblak", "Félix Bussières", "Mathew George", "Raimund Ricken", "Wolfgang Sohl", "Wolfgang Tittel"]
+  publisher: "Nature"
+  year: 2011
+  type: paper
+  doi: "10.1038/nature10463"
+
+- id: chou-nature-2018
+  title: "Deterministic teleportation of a quantum gate between two logical qubits"
+  authors: ["Kevin S. Chou", "Jacob Z. Blumoff", "Christopher S. Wang", "Philip C. Reinhold", "Christopher J. Axline", "Yvonne Y. Gao", "Luigi Frunzio", "M. H. Devoret", "Liang Jiang", "R. J. Schoelkopf"]
+  publisher: "Nature"
+  year: 2018
+  type: paper
+  doi: "10.1038/s41586-018-0470-y"
+
+- id: minder-natphoton-2019
+  title: "Experimental quantum key distribution beyond the repeaterless secret key capacity"
+  authors: ["Mariella Minder", "Mirko Pittaluga", "G. L. Roberts", "Marco Lucamarini", "James F. Dynes", "Zhiliang Yuan", "Andrew J. Shields"]
+  publisher: "Nature Photonics"
+  year: 2019
+  type: paper
+  doi: "10.1038/s41566-019-0377-7"
+
+- id: magnard-prl-2020
+  title: "Microwave Quantum Link between Superconducting Circuits Housed in Spatially Separated Cryogenic Systems"
+  authors: ["P. Magnard", "S. Storz", "P. Kurpiers", "J. Schär", "F. Marxer", "J. Lütolf", "T. Walter", "J.-C. Besse", "M. Gabureac", "K. Reuer", "A. Akin", "B. Royer", "A. Blais", "A. Wallraff"]
+  publisher: "Physical Review Letters"
+  year: 2020
+  volume: "125"
+  pages: "260502"
+  type: paper
+  doi: "10.1103/PhysRevLett.125.260502"
+  note: "5 m cryogenic aluminium waveguide linking two transmons in separate dilution refrigerators; deterministic state transfer at 85.8 % fidelity, on-demand remote entanglement."
+
+- id: storz-nature-2023
+  title: "Loophole-free Bell inequality violation with superconducting circuits"
+  authors: ["Simon Storz", "Josua Schär", "Anatoly Kulikov", "Paul Magnard", "Philipp Kurpiers", "Janis Lütolf", "Theo Walter", "Adrian Copetudo", "Kevin Reuer", "Abdulkadir Akin", "Jean-Claude Besse", "Mihai Gabureac", "Graham J. Norris", "Andrés Rosario", "Ferran Martin", "José Martinez", "Waldimar Amaya", "Morgan W. Mitchell", "Carlos Abellan", "Jean-Daniel Bancal", "Nicolas Sangouard", "Baptiste Royer", "Alexandre Blais", "Andreas Wallraff"]
+  publisher: "Nature"
+  year: 2023
+  volume: "617"
+  pages: "265"
+  type: paper
+  doi: "10.1038/s41586-023-05885-0"
+  note: "Loophole-free Bell test between two superconducting qubits over a 30 m cryogenic microwave link."
+
+- id: yam-npjqi-2025
+  title: "Cryogenic microwave link for quantum local area networks"
+  authors: ["W. K. Yam", "M. Renger", "S. Gandorfer", "F. Fesquet", "M. Handschuh", "K. G. Fedorov", "A. Marx", "F. Deppe", "R. Gross"]
+  publisher: "npj Quantum Information"
+  year: 2025
+  volume: "11"
+  pages: "87"
+  type: paper
+  doi: "10.1038/s41534-025-01046-5"
+  note: "6.6 m cryogenic microwave link between two dilution cryostats at 52 mK; continuous-variable entanglement distribution with squeezing 2.10 dB and negativity 0.501."
+
+- id: mollenhauer-natelec-2025
+  title: "A high-efficiency elementary network of interchangeable superconducting qubit devices"
+  authors: ["Michael Mollenhauer", "Abdullah Irfan", "Xi Cao", "Supriya Mandal", "Wolfgang Pfaff"]
+  publisher: "Nature Electronics"
+  year: 2025
+  type: paper
+  doi: "10.1038/s41928-025-01404-3"
+  note: "Detachable low-loss cable interconnect between two superconducting qubit modules; intermodule SWAP at >99 % efficiency in under 100 ns."
+
+# ---- Case-study primary sources (vendor press, project pages, peer-reviewed deployments) ----
+
+- id: epb-quantum-press-2022
+  title: "EPB Quantum Network powered by Qubitekk lowers barriers to commercialization with the only customer-centered quantum-as-a-service network"
+  publisher: "EPB"
+  year: 2022
+  type: press
+  url: "https://epb.com/newsroom/press-releases/epb-quantum-networksm-powered-by-qubitekk-lowers-barriers-to-commercialization-with-the-only-customer-centered-quantum-as-a-service-network/"
+  marker: "EPB 2022 (launch press)"
+
+- id: epb-aliro-press-2023
+  title: "Aliro Quantum's AliroNet chosen as the network controller for EPB Quantum Network powered by Qubitekk"
+  publisher: "EPB"
+  year: 2023
+  type: press
+  url: "https://epb.com/newsroom/press-releases/aironet-chosen-as-the-network-controller-for-epb-quantum-network/"
+  marker: "EPB/Aliro 2023 (controller press)"
+
+- id: epb-qunnect-press-2023
+  title: "Quantum Technology Pioneers Qubitekk and Qunnect Achieve First Equipment Interoperability on EPB Quantum Network powered by Qubitekk"
+  publisher: "EPB"
+  year: 2023
+  type: press
+  url: "https://epb.com/newsroom/press-releases/qubitekk-and-qunnect-achieve-first-equipment-interoperability-on-epb-quantum-network/"
+  marker: "EPB/Qunnect 2023 (interop press)"
+
+- id: epb-ionq-press-2025
+  title: "EPB and IonQ Partner to Establish Chattanooga as the First Quantum Computing and Networking Hub in the U.S."
+  publisher: "EPB"
+  year: 2025
+  type: press
+  url: "https://epb.com/newsroom/press-releases/epb-quantum-center/"
+  marker: "EPB/IonQ 2025 (Quantum Center press)"
+
+- id: ionq-epb-press-2025
+  title: "IonQ Announces $22M Deal with EPB Establishing Chattanooga, Tennessee as the first Quantum Computing & Networking Hub in the U.S."
+  publisher: "IonQ"
+  year: 2025
+  type: press
+  url: "https://investors.ionq.com/news/news-details/2025/IonQ-Announces-22M-Deal-with-EPB-Establishing-Chattanooga-Tennessee-as-the-First-Quantum-Computing--Networking-Hub-in-the-U-S-/default.aspx"
+  marker: "IonQ 2025 (EPB deal press)"
+
+- id: epb-quantum-about
+  title: "EPB Quantum — About Our Network"
+  publisher: "EPB Quantum"
+  year: 2025
+  type: web
+  url: "https://quantum.epb.com/about-our-network/"
+  marker: "EPB Quantum (project page)"
+
+- id: aliro-deployments-whitepaper
+  title: "Real World Quantum Network Deployments — white paper"
+  publisher: "Aliro Quantum"
+  year: 2024
+  type: web
+  url: "https://www.aliroquantum.com/real-world-quantum-network-deployments-white-paper"
+  marker: "Aliro 2024 (deployments WP)"
+
+- id: chen-natphoton-2021-jingu
+  title: "An integrated space-to-ground quantum communication network over 4,600 kilometres"
+  authors: ["Yu-Ao Chen", "Qiang Zhang", "Teng-Yun Chen", "Wen-Qi Cai", "Sheng-Kai Liao", "Jun Zhang", "Kai Chen", "Juan Yin", "Ji-Gang Ren", "Zhu Chen", "Sheng-Long Han", "Qing Yu", "Ken Liang", "Fei Zhou", "Xiao Yuan", "Mei-Sheng Zhao", "Tian-Yin Wang", "Xiao Jiang", "Liang Zhang", "Wei-Yue Liu", "Yang Li", "Qi Shen", "Yuan Cao", "Chao-Yang Lu", "Rong Shu", "Jian-Yu Wang", "Li Li", "Nai-Le Liu", "Feihu Xu", "Xiang-Bin Wang", "Cheng-Zhi Peng", "Jian-Wei Pan"]
+  publisher: "Nature"
+  year: 2021
+  volume: "589"
+  pages: "214"
+  type: paper
+  doi: "10.1038/s41586-020-03093-8"
+  note: "Beijing–Shanghai 2,032 km fibre backbone (32 trusted nodes, decoy-state BB84 with QuantumCTek devices) integrated with Micius satellite to span 4,600 km."
+
+- id: chen-optexpress-17-2009
+  title: "Field test of a practical secure communication network with decoy-state quantum cryptography"
+  authors: ["Teng-Yun Chen", "Hao Liang", "Yang Liu", "Wen-Qi Cai", "Lei Ju", "Wei-Yue Liu", "Jian Wang", "Hao Yin", "Kai Chen", "Zeng-Bing Chen", "Cheng-Zhi Peng", "Jian-Wei Pan"]
+  publisher: "Optics Express"
+  year: 2009
+  volume: "17"
+  pages: "6540"
+  type: paper
+  doi: "10.1364/OE.17.006540"
+  note: "4-node Hefei metropolitan field trial; decoy-state BB84 over 20 km dark fibre with WDM co-existing traffic — the first Chinese multi-node QKD field demonstration."
+
+- id: chen-optexpress-18-2010
+  title: "Metropolitan all-pass and inter-city quantum communication network"
+  authors: ["Teng-Yun Chen", "Jian Wang", "Hao Liang", "Wei-Yue Liu", "Yang Liu", "Xiao Jiang", "Yuan Wang", "Xu Wan", "Wen-Qi Cai", "Lei Ju", "Luo-Kan Chen", "Liu-Jun Wang", "Yuan Gao", "Kai Chen", "Cheng-Zhi Peng", "Zeng-Bing Chen", "Jian-Wei Pan"]
+  publisher: "Optics Express"
+  year: 2010
+  volume: "18"
+  pages: "27217"
+  type: paper
+  doi: "10.1364/OE.18.027217"
+  note: "8-node Hefei metropolitan all-pass QKD network plus a 67 km inter-city link to Wuhu; any-to-any trusted-relay topology with optical switching."
+
+- id: chen-npjqi-7-2021
+  title: "Implementation of a 46-node quantum metropolitan area network"
+  authors: ["Teng-Yun Chen", "Xiao Jiang", "Shi-Biao Tang", "Lei Zhou", "Xiao Yuan", "Hongyi Zhou", "Jian Wang", "Yang Liu", "Luo-Kan Chen", "Wei-Yue Liu", "Hong-Fei Zhang", "Ke Cui", "Hao Liang", "Xiao-Gang Li", "Yingqiu Mao", "Liu-Jun Wang", "Si-Bo Feng", "Qing Chen", "Qiang Zhang", "Li Li", "Nai-Le Liu", "Cheng-Zhi Peng", "Xiongfeng Ma", "Yong Zhao", "Jian-Wei Pan"]
+  publisher: "npj Quantum Information"
+  year: 2021
+  volume: "7"
+  pages: "134"
+  type: paper
+  doi: "10.1038/s41534-021-00474-3"
+  note: "46-node Hefei metropolitan QKD network on commercial fibre; 31-month continuous operation with standard telecom maintenance tooling — the metro layer the Beijing–Shanghai trunk terminates into."
+
+- id: chen-npjqi-11-2025
+  title: "Implementation of carrier-grade quantum communication networks over 10000 km"
+  authors: ["Hao-Ze Chen", "Ming-Han Li", "Yu-Zhou Wang", "Zhen-Geng Zhao", "Cheng Ye", "Fei-Long Li", "Zhu Chen", "Sheng-Long Han", "Bao Tang", "Ya-Jun Miao", "Wei Qi", "et al.", "Jian-Wei Pan"]
+  publisher: "npj Quantum Information"
+  year: 2025
+  volume: "11"
+  pages: "137"
+  type: paper
+  doi: "10.1038/s41534-025-01089-8"
+  note: "Carrier-grade expansion of the Chinese QKD backbone to >10,000 km; 145 fibre backbone nodes, 144 links, 20 metropolitan sub-networks across 17 provinces and 80 cities."
+
+- id: madqci-npjqi-2024
+  title: "MadQCI: a heterogeneous and scalable SDN-QKD network deployed in production facilities"
+  authors: ["V. Martin", "J. P. Brito", "L. Ortiz", "R. B. Méndez", "J. S. Buruaga", "R. J. Vicente", "A. Sebastián-Lombraña", "D. Rincón", "F. Pérez", "C. Sánchez", "M. Peev", "et al."]
+  publisher: "npj Quantum Information"
+  year: 2024
+  volume: "10"
+  pages: "80"
+  type: paper
+  doi: "10.1038/s41534-024-00873-2"
+  note: "MadQCI — 28 QKD modules across 9 nodes on production Telefónica fibre, SDN-managed, three years of continuous operation."
+
+- id: bt-toshiba-press-2022
+  title: "BT and Toshiba launch first commercial trial of quantum secured communication services"
+  publisher: "Toshiba"
+  year: 2022
+  type: press
+  url: "https://www.global.toshiba/ww/news/corporate/2022/04/news-20220427-01.html"
+  marker: "BT/Toshiba 2022 (London QKD launch)"
+
+- id: cqe-chicago-loop-press-2024
+  title: "Chicago expands and activates quantum network, taking steps toward a secure quantum internet"
+  publisher: "University of Chicago / Chicago Quantum Exchange"
+  year: 2024
+  type: press
+  url: "https://news.uchicago.edu/story/chicago-quantum-network-argonne-pritzker-molecular-engineering-toshiba"
+  marker: "CQE 2024 (124-mile loop press)"
+
+- id: chandran-siamjc-43-1
+  title: "Position-Based Cryptography"
+  authors: ["Nishanth Chandran", "Vipul Goyal", "Ryan Moriarty", "Rafail Ostrovsky"]
+  publisher: "SIAM Journal on Computing"
+  year: 2014
+  type: paper
+  doi: "10.1137/100805005"
+  note: "Classical position-based cryptography is impossible against colluding adversaries."
+
+- id: buhrman-siamjc-43-150
+  title: "Position-Based Quantum Cryptography: Impossibility and Constructions"
+  authors: ["Harry Buhrman", "Nishanth Chandran", "Serge Fehr", "Ran Gelles", "Vipul Goyal", "Rafail Ostrovsky", "Christian Schaffner"]
+  publisher: "SIAM Journal on Computing"
+  year: 2014
+  volume: "43"
+  pages: "150-178"
+  type: paper
+  doi: "10.1137/130913687"
+  note: "General QPV is broken by adversaries holding unbounded pre-shared entanglement; secure constructions exist against bounded-entanglement attackers."
+
+- id: kent-pra-84-012326
+  title: "Quantum tagging: Authenticating location via quantum information and relativistic signaling constraints"
+  authors: ["Adrian Kent", "William J. Munro", "Timothy P. Spiller"]
+  publisher: "Physical Review A"
+  year: 2011
+  volume: "84"
+  pages: "012326"
+  type: paper
+  doi: "10.1103/PhysRevA.84.012326"
+  note: "Coined 'quantum tagging'; gave early QPV protocol proposals and identified teleportation-based attacks."
+
+- id: bluhm-natphys-18-623
+  title: "A single-qubit position verification protocol that is secure against multi-qubit attacks"
+  authors: ["Andreas Bluhm", "Matthias Christandl", "Florian Speelman"]
+  publisher: "Nature Physics"
+  year: 2022
+  volume: "18"
+  pages: "623-626"
+  type: paper
+  doi: "10.1038/s41567-022-01577-0"
+  note: "Interleaved-product QPV: single-qubit prepare-and-measure with classical bits; best known attack uses entanglement exponential in the classical bit count."
+
+- id: allerstorfer-prl-135-260801
+  title: "Making Existing Quantum Position Verification Protocols Secure Against Arbitrary Transmission Loss"
+  authors: ["Rene Allerstorfer", "Andreas Bluhm", "Harry Buhrman", "Matthias Christandl", "Llorenç Escolà-Farràs", "Florian Speelman", "Philip Verduyn Lunel"]
+  publisher: "Physical Review Letters"
+  year: 2025
+  volume: "135"
+  pages: "260801"
+  type: paper
+  doi: "10.1103/PhysRevLett.135.260801"
+  note: "Photon-presence pre-commitment makes BB84-style QPV tolerant to arbitrary verifier-to-prover loss, restoring security with the same bounds as the lossless protocol."
+
+- id: kanneworff-qst-10-045004
+  title: "Towards experimental demonstration of quantum position verification using single photons"
+  authors: ["Kirsten Kanneworff", "Mio Poortvliet", "Dirk Bouwmeester", "Rene Allerstorfer", "Philip Verduyn Lunel", "Florian Speelman", "Harry Buhrman", "Petr Steindl", "Wolfgang Löffler"]
+  publisher: "Quantum Science and Technology"
+  year: 2025
+  volume: "10"
+  pages: "045004"
+  type: paper
+  doi: "10.1088/2058-9565/adf2da"
+  note: "First photonic steps toward QPV: Hong-Ou-Mandel-based loss-tolerant scheme on a true single-photon source."
+
+- id: cabrillo-pra-1999
+  title: "Creation of entangled states of distant atoms by interference"
+  authors: ["C. Cabrillo", "J. I. Cirac", "P. García-Fernández", "P. Zoller"]
+  publisher: "Physical Review A"
+  year: 1999
+  volume: "59"
+  pages: "1025"
+  type: paper
+  doi: "10.1103/PhysRevA.59.1025"
+  note: "Single-photon heralding scheme for entangling two distant atoms via which-path erasure at a single midpoint detector."
+
+- id: barrett-kok-pra-2005
+  title: "Efficient high-fidelity quantum computation using matter qubits and linear optics"
+  authors: ["Sean D. Barrett", "Pieter Kok"]
+  publisher: "Physical Review A"
+  year: 2005
+  volume: "71"
+  pages: "060310(R)"
+  type: paper
+  doi: "10.1103/PhysRevA.71.060310"
+  note: "Two-photon heralding scheme: each node emits a photon entangled with its qubit; interference at a midpoint BSM heralds entanglement. Robust to optical-path phase fluctuations; success probability capped at 50% by the linear-optics BSM ceiling."
+
+- id: duan-kimble-prl-2003
+  title: "Scalable photonic quantum computation through cavity-assisted interactions"
+  authors: ["L.-M. Duan", "H. J. Kimble"]
+  publisher: "Physical Review Letters"
+  year: 2003
+  volume: "92"
+  pages: "127902"
+  type: paper
+  doi: "10.1103/PhysRevLett.92.127902"
+  note: "Cavity-mediated deterministic photon-qubit gate: a single photon reflecting off a cavity-coupled emitter acquires a state-conditional phase, entangling photon and qubit without postselection."
+
+- id: ornl-epb-press-2024
+  title: "EPB Quantum Network powered by Qubitekk hosts ORNL's first run on commercial quantum network"
+  publisher: "Oak Ridge National Laboratory"
+  year: 2024
+  type: press
+  url: "https://www.ornl.gov/news/epb-quantum-network-powered-qubitekk-hosts-ornls-first-run-commercial-quantum-network"
+  marker: "ORNL/EPB 2024 (first ORNL run)"
+
+# ─── Industrial signals & programme announcements (2022-2026) ──────────────
+# Vendor / government / agency press, programme pages, and standard PDFs
+# covering current commercial and programme activity.
+
+- id: caltech-mo-arxiv-2024
+  title: "Quantum-enabled microwave-to-optical transduction via silicon nanomechanics"
+  authors: ["Mohammad Mirhosseini group (Caltech)"]
+  publisher: "arXiv"
+  year: 2024
+  type: preprint
+  url: "https://arxiv.org/abs/2406.02704"
+  note: "Caltech 2024 demonstration of continuous quantum-enabled M-O transduction in crystalline silicon — 2.2% external efficiency at <1 added noise photon. The state of the art for end-to-end M-O at quantum-noise levels as of the 4hop-topology workspace pass."
+
+- id: ibm-cisco-qnu-press-2025
+  title: "IBM and Cisco announce plans to build a network of large-scale, fault-tolerant quantum computers"
+  publisher: "IBM Newsroom"
+  year: 2025
+  type: press
+  url: "https://newsroom.ibm.com/2025-11-20-ibm-and-cisco-announce-plans-to-build-a-network-of-large-scale,-fault-tolerant-quantum-computers"
+  local_archive: "reference/web-archive/ibm-cisco-qnu-press-2025.html"
+  marker: "IBM × Cisco × Fermilab/SQMS Quantum Networking Units, 20 Nov 2025"
+  note: |
+    Joint IBM × Cisco × Fermilab/SQMS plan announced 20 Nov 2025 to
+    build a networked distributed quantum computing system by the
+    early 2030s, with a proof-of-concept demonstration within five
+    years (target end of 2030). Stated goal scale: computations
+    spanning tens to hundreds of thousands of qubits across multiple
+    separate cryogenic systems. Three components named as not yet
+    shipping at scale — (1) microwave-to-optical transducers,
+    (2) Quantum Networking Units (QNUs) at each QC node, (3)
+    entanglement-distribution protocols for inter-system qubit
+    transfer. IBM owns the QC processors + QNU interfaces, Cisco
+    owns the networking infrastructure, Fermilab's Superconducting
+    Quantum Materials and Systems Center (SQMS) contributes the
+    underlying materials research.
+
+- id: qunnect-cisco-brooklyn-press-2026
+  title: "Cisco and Qunnect deploy first commercial-grade entanglement-swap network on Brooklyn–Manhattan metro fibre"
+  publisher: "Qunnect"
+  year: 2026
+  type: press
+  url: "https://www.qunnect.inc/press-releases/2026-02-18"
+  local_archive: "reference/web-archive/qunnect-cisco-brooklyn-press-2026.html"
+  marker: "Cisco × Qunnect Brooklyn–Manhattan, 18 Feb 2026"
+  note: |
+    Entanglement-swap demonstration over 17.6 km of deployed telecom
+    fibre between Brooklyn and Manhattan via QTD Systems' datacentre,
+    announced 18 Feb 2026. Measured swap rates: 1.7M+ pairs/hr
+    locally; 5,400 pairs/hr over the deployed-fibre link. Polarisation
+    fidelity >99 % maintained. Hardware: Qunnect Carina; software:
+    Cisco quantum networking stack. The first commercial-fibre metro
+    entanglement-swap demonstration on existing carrier infrastructure
+    — the operational benchmark for entanglement-distribution-as-a-
+    service.
+
+- id: cisco-uqs-press-2026
+  title: "Cisco introduces Universal Quantum Switch, advancing the path to a quantum network"
+  publisher: "Cisco Newsroom"
+  year: 2026
+  type: press
+  url: "https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2026/m04/cisco-introduces-universal-quantum-switch-advancing-the-path-to-a-quantum-network.html"
+  local_archive: "reference/web-archive/cisco-uqs-press-2026.html"
+  marker: "Cisco Universal Quantum Switch (UQS), 23 Apr 2026"
+  note: |
+    Working research prototype announced 23 Apr 2026 (NOT a commercial
+    product). Routes quantum information across polarisation, time-
+    bin, frequency-bin and path encodings via a Cisco-patented
+    conversion engine — the explicit industrial response to the Q2
+    heterogeneity problem. Specs as quoted: room-temperature operation
+    over standard telecom fibre, nanosecond electro-optic switching
+    (1 ns reconfiguration), <1 W power, ≤4 % quantum-state-fidelity
+    degradation during conversion. Named strategic collaborators: IBM,
+    Qunnect, Atom Computing. Complements Cisco's quantum-entanglement
+    chip and network-aware quantum compiler from the Santa Monica
+    quantum labs.
+
+- id: esa-eagle1-mission
+  title: "Eagle-1 — Europe's first sovereign space-based quantum key distribution system"
+  publisher: "European Space Agency"
+  year: 2026
+  type: web
+  url: "https://www.esa.int/Applications/Connectivity_and_Secure_Communications/Eagle-1"
+  local_archive: "reference/web-archive/esa-eagle1-mission.html"
+  marker: "EAGLE-1 (SES / Tesat-Spacecom / ESA)"
+  note: |
+    European sovereign QKD satellite, operated by SES. Launch
+    scheduled late 2026 / early 2027 followed by three years of
+    orbital validation. Platform: SITAEL (Italy); quantum payload:
+    Tesat Spacecom (Germany); optical ground terminals: DLR (Germany)
+    and a Dutch team. LEO orbit; trusted-node QKD with ground-station
+    passes. Consortium: Austria, Belgium, Czech Republic, Germany,
+    Italy, Luxembourg, Netherlands, Switzerland; 20+ European
+    companies involved. System paper: arXiv:2505.20838.
+
+- id: csa-qeyssat-mission
+  title: "QEYSSat — Quantum Encryption and Science Satellite"
+  publisher: "Canadian Space Agency"
+  year: 2025
+  type: web
+  url: "https://www.asc-csa.gc.ca/eng/satellites/qeyssat.asp"
+  local_archive: "reference/web-archive/csa-qeyssat-mission.html"
+  marker: "QEYSSat (CSA mission page)"
+  note: |
+    Canadian Space Agency QKD microsatellite mission; 2026 launch
+    target with a 1-year primary mission (extendable). University of
+    Waterloo Institute for Quantum Computing leads the science;
+    Honeywell designs, builds, tests and launches the satellite.
+    QKD direction: uplink (ground laser to satellite) — the harder
+    direction technically, but enables the satellite as a trusted-
+    node relay between widely-separated ground stations. Motivating
+    target: bypass the ~200 km ground-fibre QKD reach limit.
+
+- id: cqt-spooqy1-2020
+  title: "SpooQy-1 demonstrates quantum entanglement in space"
+  publisher: "Centre for Quantum Technologies, NUS"
+  year: 2020
+  type: web
+  url: "https://www.cqt.sg/highlight/2020-06-spooqy-quantum-satellite/"
+  local_archive: "reference/web-archive/cqt-spooqy1-2020.html"
+  marker: "SpooQy-1 (Singapore CQT / SpeQtral)"
+  note: |
+    2.6 kg CubeSat nanosatellite. Launched to ISS April 2019;
+    deployed to orbit 17 June 2019. Carried a blue-laser-pumped
+    nonlinear-crystal entangled-photon source. The Optica paper
+    (Villar et al., Optica 7(7) 734, 25 June 2020) confirmed entangled
+    pair generation in orbit across the satellite's operational
+    temperature range. CQT (National University of Singapore) led the
+    mission; spinoff SpeQtral commercialised the follow-on programme
+    aimed at satellite-to-ground transmission. First CubeSat-class
+    in-orbit entanglement demonstration.
+
+- id: microsoft-lumenisity-press-2022
+  title: "Microsoft acquires Lumenisity, an innovator in hollow-core fibre (HCF) cable"
+  publisher: "Microsoft"
+  year: 2022
+  type: press
+  url: "https://blogs.microsoft.com/blog/2022/12/09/microsoft-acquires-lumenisity-an-innovator-in-hollow-core-fiber-hcf-cable/"
+  local_archive: "reference/web-archive/microsoft-lumenisity-press-2022.html"
+  marker: "Microsoft / Lumenisity HCF acquisition, 9 Dec 2022"
+  note: |
+    Microsoft acquired Lumenisity Limited in December 2022.
+    Lumenisity: 2017 spinout from the Optoelectronics Research Centre
+    (ORC) at the University of Southampton. The HCF technology
+    transmits light ~47 % faster than standard silica (light speed in
+    vacuum vs in silica) and offers intrusion-detection signatures via
+    the hollow-core design. Microsoft's stated use case: serve
+    customers with strict latency and security requirements in
+    healthcare, finance, government and manufacturing. HCF was
+    pre-commercial at the time of acquisition (CoreSmart had industry
+    recognition but no large-scale deployment yet). Hyperscaler
+    validation that anchors the workspace's HCF working hypothesis.
+
+- id: imda-rs-qkdn-2022
+  title: "IMDA Reference Specification — Quantum Key Distribution Network (RS QKDN), Issue 1"
+  authors: ["Infocomm Media Development Authority (Singapore)"]
+  publisher: "IMDA"
+  year: 2022
+  type: standard
+  url: "https://www.imda.gov.sg/-/media/imda/files/regulation-licensing-and-consultations/ict-standards/telecommunication-standards/reference-spec/imda-rs-qkdn-final.pdf"
+  marker: "IMDA RS QKDN (Issue 1, 2022)"
+  note: "Singapore's first national QKDN regulatory specification — operational requirements for QKD networks deployed on telco infrastructure. Template-relevant for any national QKDN rollout."
+
+- id: imda-rs-secqkdn-draft-2026
+  title: "IMDA Reference Specification — Security Requirements for QKD Networks (RS SecQKDN), Draft Issue 1"
+  authors: ["Infocomm Media Development Authority (Singapore)"]
+  publisher: "IMDA"
+  year: 2026
+  type: standard
+  url: "https://www.imda.gov.sg/-/media/imda/files/regulation-licensing-and-consultations/ict-standards/telecommunication-standards/imda-technical/2026/imda-rs-secqkdn-draft-public-comment.pdf"
+  marker: "IMDA RS SecQKDN (Draft Issue 1, Feb 2026)"
+  note: "Draft tightening of IMDA RS QKDN with operational security requirements; public comment period Feb 2026. First national-regulator framing of QKDN security obligations."
+
+- id: pirker-njp-2019
+  title: "A quantum network stack and protocols for reliable entanglement-based networks"
+  authors: ["Alexander Pirker", "Wolfgang Dür"]
+  publisher: "New Journal of Physics"
+  year: 2019
+  type: paper
+  doi: "10.1088/1367-2630/ab05f7"
+  url: "https://arxiv.org/abs/1810.03556"
+  note: "Three-tier recursive-modular stack — point-to-point entanglement, intra-network graph-state generation, inter-network entanglement routing. The hierarchical-router framing is orthogonal to Wehner/Van Meter and is frequently cited as the 'fifth' canonical stack proposal."
+
+- id: lopez-qirg-multiplane-2026
+  title: "A Multiplane Architecture Proposal for the Quantum Internet"
+  authors: ["Diego Lopez", "Vicente Martin", "Blanca Lopez", "Luis M. Contreras"]
+  publisher: "IRTF Quantum Internet Research Group"
+  year: 2026
+  type: standard
+  url: "https://datatracker.ietf.org/doc/draft-irtf-qirg-qi-multiplane-arch/"
+  marker: "draft-irtf-qirg-qi-multiplane-arch-01 (Feb 2026)"
+  note: "Three-stratum operator-facing architecture (Service / Quantum Fabric / Connectivity), each with four internal planes (resource, control, telemetry, SDN). Adopted by IRTF QIRG as a working draft in Feb 2026; the most operationally concrete post-RFC 9340 proposal in the IRTF channel. Telefónica / UPM / IMDEA Networks authors."
+
+- id: cacciapuoti-ieeetc-2026
+  title: "Quantum Internet Architecture: Unlocking Quantum-Native Routing via Quantum Addressing"
+  authors: ["Angela Sara Cacciapuoti", "Marcello Caleffi"]
+  publisher: "IEEE Transactions on Communications"
+  year: 2026
+  type: paper
+  doi: "10.1109/TCOMM.2025.3650397"
+  url: "https://arxiv.org/abs/2507.19655"
+  note: "Two-plane quantum-native architecture: Quantum Data Plane (entangled-qubit forwarding) + Quantum Control Plane (lifecycle orchestration), plus Quantum Internet Addressing (QIA), Generalised Quantum Forwarding (GQF), and Entanglement-Defined Controllers. Companion IRTF draft: draft-cacciapuoti-qirg-quantum-native-architecture (individual submission, Apr 2026). The first complete post-RFC 9340 architecture with both addressing and forwarding specified."
+
+- id: caleffi-ieeetnse-2026
+  title: "A Quantum Internet Protocol Suite Beyond Layering"
+  authors: ["Marcello Caleffi", "Angela Sara Cacciapuoti"]
+  publisher: "IEEE Transactions on Network Science and Engineering"
+  year: 2026
+  type: paper
+  doi: "10.1109/TNSE.2026.3679795"
+  url: "https://arxiv.org/abs/2602.19998"
+  note: "Rejects the layered model. Replaces encapsulation + demultiplexing with 'ordering by certification': each node runs a local Dynamic Kernel that constructs a Plan of Actions; quantum packets carry a Meta-header with an append-only list of Stamps recording committed actions; the end-to-end stamp sequence forms a distributed certification graph. The only proposal in the landscape that explicitly abandons layering."
+
+- id: fitzi-prl-87-217901
+  title: "Quantum solution to the Byzantine agreement problem"
+  authors: ["Matthias Fitzi", "Nicolas Gisin", "Ueli Maurer"]
+  publisher: "Physical Review Letters"
+  year: 2001
+  type: paper
+  doi: "10.1103/PhysRevLett.87.217901"
+  note: "First proof that detectable broadcast among three parties is achievable quantum-mechanically using pairwise quantum channels and entangled qutrits — a problem provably impossible classically without an honest majority (the classical bound is n ≥ 3f + 1)."
+
+- id: gaertner-prl-100-070504
+  title: "Experimental demonstration of a quantum protocol for Byzantine agreement and liar detection"
+  authors: ["Sebastian Gaertner", "Mohamed Bourennane", "Christian Kurtsiefer", "Adán Cabello", "Harald Weinfurter"]
+  publisher: "Physical Review Letters"
+  year: 2008
+  type: paper
+  doi: "10.1103/PhysRevLett.100.070504"
+  url: "https://arxiv.org/abs/0710.0290"
+  note: "First experimental realisation of quantum Byzantine agreement using four-photon entanglement. (A comment was later published at PRL 101.208901.)"
+
+- id: jing-sciadv-2024
+  title: "Experimental quantum Byzantine agreement on a three-user quantum network with integrated photonics"
+  authors: ["Xinhe Jing", "Cheng Qian", "Chen-Xun Weng", "et al."]
+  publisher: "Science Advances"
+  year: 2024
+  type: paper
+  doi: "10.1126/sciadv.adp2877"
+  url: "https://arxiv.org/abs/2403.11441"
+  note: "Three-user quantum Byzantine agreement on an integrated-photonic network — beats the classical n ≥ 3f + 1 fault-tolerance bound with unconditional security. Current experimental state of the art."
+
+- id: pirandola-aop-12-1012
+  title: "Advances in quantum cryptography"
+  authors: ["Stefano Pirandola", "Ulrik L. Andersen", "Leonardo Banchi", "Mario Berta", "Darius Bunandar", "Roger Colbeck", "Dirk Englund", "Tobias Gehring", "Cosmo Lupo", "Carlo Ottaviani", "Jason L. Pereira", "Mohsen Razavi", "Jamal Shamsul Shaari", "Marco Tomamichel", "Vladyslav C. Usenko", "Giuseppe Vallone", "Paolo Villoresi", "Petros Wallden"]
+  publisher: "Advances in Optics and Photonics"
+  year: 2020
+  type: paper
+  doi: "10.1364/AOP.361502"
+  url: "https://arxiv.org/abs/1906.01645"
+  note: "Comprehensive QKD review. The BB84 / BBM92 secret-key rate stays positive while the QBER is below ~11 % in the asymmetric-protocol analysis (Shor–Preskill); for a Werner-state Bell pair with fidelity F the QBER in either basis is 2(1−F)/3, so F ≈ 0.835 is the cut-off — F ≳ 0.85 is the rule-of-thumb fidelity needed for entanglement-based key distillation."
+
+- id: fowler-pra-86-032324
+  title: "Surface codes: Towards practical large-scale quantum computation"
+  authors: ["Austin G. Fowler", "Matteo Mariantoni", "John M. Martinis", "Andrew N. Cleland"]
+  publisher: "Physical Review A"
+  year: 2012
+  type: paper
+  doi: "10.1103/PhysRevA.86.032324"
+  url: "https://arxiv.org/abs/1208.0928"
+  note: "Canonical surface-code FT-QC analysis. Sets the ~1 % per-gate error threshold below which a logical qubit can be protected with polynomial overhead — the source of the F > 0.99 Bell-pair-fidelity target for distributed quantum computing that uses teleported gates."
+
+- id: pirandola-natcomm-8-15043
+  title: "Fundamental limits of repeaterless quantum communications"
+  authors: ["Stefano Pirandola", "Riccardo Laurenza", "Carlo Ottaviani", "Leonardo Banchi"]
+  publisher: "Nature Communications"
+  year: 2017
+  type: paper
+  doi: "10.1038/ncomms15043"
+  url: "https://arxiv.org/abs/1510.08863"
+  note: "The PLOB bound — for a pure-loss channel with transmittance η, the secret-key (and entanglement-distribution) capacity is upper-bounded by −log₂(1−η) bits per channel use. The canonical 'why repeaters are necessary' theorem: above some loss, no end-to-end protocol can sustain a useful rate without intermediate quantum nodes."
+
+- id: hong-ou-mandel-prl-59-2044
+  title: "Measurement of subpicosecond time intervals between two photons by interference"
+  authors: ["C. K. Hong", "Z. Y. Ou", "L. Mandel"]
+  publisher: "Physical Review Letters"
+  year: 1987
+  type: paper
+  doi: "10.1103/PhysRevLett.59.2044"
+  note: "Original HOM (Hong–Ou–Mandel) experiment. Two indistinguishable photons entering a 50:50 beam splitter on opposite ports always exit on the same side — the 'HOM dip'. The visibility of this dip sets the success rate and output fidelity of every photonic Bell-state measurement, swapping operation, and midpoint-source architecture."
+
+# ── Networked / distributed quantum sensing ──────────────────────────
+# Sensing subject (tier D). Foundations (Degen, Giovannetti) plus the
+# network-required line: clock networks, quantum-enhanced telescopy, and
+# distributed multiparameter estimation. gottesman-prl-2012 and
+# komar-natphys-2014 live above with the other entanglement-era papers.
+
+- id: degen-rmp-2017
+  title: "Quantum sensing"
+  authors: ["C. L. Degen", "F. Reinhard", "P. Cappellaro"]
+  publisher: "Reviews of Modern Physics"
+  year: 2017
+  type: paper
+  doi: "10.1103/RevModPhys.89.035002"
+  note: "The standard reference for quantum sensing. Definitions, sensor platforms (neutral atoms, trapped ions, Rydberg atoms, solid-state spins, superconducting circuits), the sensing protocol, sensitivity, and the quantum Cramér–Rao bound. Experimentalist's viewpoint; deliberately skips atomic clocks and photonic sensors as standalone topics."
+
+- id: giovannetti-natphoton-2011
+  title: "Advances in quantum metrology"
+  authors: ["Vittorio Giovannetti", "Seth Lloyd", "Lorenzo Maccone"]
+  publisher: "Nature Photonics"
+  year: 2011
+  type: paper
+  doi: "10.1038/nphoton.2011.35"
+  note: "The estimation-theory side: parameter estimation, the standard-quantum-limit → Heisenberg-limit scaling argument, and the treatment of noise and experimental imperfections. Shorter and more theoretical than Degen."
+
+- id: zhang-zhuang-qst-2021
+  title: "Distributed quantum sensing"
+  authors: ["Zheshen Zhang", "Quntao Zhuang"]
+  publisher: "Quantum Science and Technology"
+  year: 2021
+  type: paper
+  doi: "10.1088/2058-9565/abd4c3"
+  note: "Formulates distributed quantum sensing from a quantum-information perspective: continuous-variable and discrete-variable protocols, performance limits, and experimental demonstrations. The review that maps onto entangled-network architecture — shared multipartite entanglement across nodes for estimating global parameters, with the entanglement-vs-separable scaling comparison."
+
+- id: komar-prl-2016
+  title: "Quantum Network of Atom Clocks: A Possible Implementation with Neutral Atoms"
+  authors: ["Péter Kómár", "Turker Topcu", "Eric M. Kessler", "Andrei Derevianko", "Vladan Vuletić", "Jun Ye", "Mikhail D. Lukin"]
+  publisher: "Physical Review Letters"
+  year: 2016
+  type: paper
+  doi: "10.1103/PhysRevLett.117.060506"
+  note: "A concrete neutral-atom implementation of the clock-network proposal: GHZ states across separated ensembles via Rydberg-mediated local operations and single-photon channels."
+
+- id: nichol-nature-2022
+  title: "An elementary quantum network of entangled optical atomic clocks"
+  authors: ["B. C. Nichol", "R. Srinivas", "D. P. Nadlinger", "P. Drmota", "D. Main", "G. Araneda", "C. J. Ballance", "D. M. Lucas"]
+  publisher: "Nature"
+  year: 2022
+  type: paper
+  doi: "10.1038/s41586-022-05088-z"
+  note: "Experimental two-node realization of an entangled optical-clock network: two ⁸⁸Sr⁺ ions on a photonic link, with entanglement reducing the frequency-comparison uncertainty by ≈√2 (the Heisenberg-limited value). Proposal (Kómár 2014) → demonstration."
+
+- id: khabiboulline-prl-2019
+  title: "Optical Interferometry with Quantum Networks"
+  authors: ["Emil T. Khabiboulline", "Johannes Borregaard", "Kristiaan De Greve", "Mikhail D. Lukin"]
+  publisher: "Physical Review Letters"
+  year: 2019
+  type: paper
+  doi: "10.1103/PhysRevLett.123.070504"
+  note: "Recasts long-baseline optical interferometry using quantum networks and local quantum memories, reducing the entanglement-distribution cost of Gottesman's telescope-baseline scheme. Companion to the PRA 'Quantum-assisted telescope arrays' analysis."
+
+- id: proctor-prl-2018
+  title: "Multiparameter Estimation in Networked Quantum Sensors"
+  authors: ["Timothy J. Proctor", "Paul A. Knott", "Jacob A. Dunningham"]
+  publisher: "Physical Review Letters"
+  year: 2018
+  type: paper
+  doi: "10.1103/PhysRevLett.120.080501"
+  note: "Establishes the framework for estimating global functions of locally-sensed parameters across a network of entangled sensors, and when entanglement between nodes helps versus local strategies."
+
+- id: eldredge-pra-2018
+  title: "Optimal and secure measurement protocols for quantum sensor networks"
+  authors: ["Zachary Eldredge", "Michael Foss-Feig", "Jonathan A. Gross", "Steven L. Rolston", "Alexey V. Gorshkov"]
+  publisher: "Physical Review A"
+  year: 2018
+  type: paper
+  doi: "10.1103/PhysRevA.97.042337"
+  note: "Optimal protocols for measuring a linear function of field values at networked sensors, plus a security guarantee — the network can be operated so that only the intended recipient learns the result. The secure-network angle that maps onto the quantum-internet framing."
+
+- id: guo-natphys-2020
+  title: "Distributed quantum sensing in a continuous-variable entangled network"
+  authors: ["Xueshi Guo", "Casper R. Breum", "Johannes Borregaard", "Shuro Izumi", "Mikkel V. Larsen", "Tobias Gehring", "Matthias Christandl", "Jonas S. Neergaard-Nielsen", "Ulrik L. Andersen"]
+  publisher: "Nature Physics"
+  year: 2020
+  type: paper
+  doi: "10.1038/s41567-019-0743-x"
+  note: "Experimental continuous-variable demonstration: a multipartite-entangled (CV) three-node network estimates an averaged phase with precision beyond what separable probes allow."
+
+- id: xia-prl-2020
+  title: "Demonstration of a Reconfigurable Entangled Radio-Frequency Photonic Sensor Network"
+  authors: ["Yi Xia", "Wei Li", "William Clark", "Darlene Hart", "Quntao Zhuang", "Zheshen Zhang"]
+  publisher: "Physical Review Letters"
+  year: 2020
+  type: paper
+  doi: "10.1103/PhysRevLett.124.150502"
+  note: "Reconfigurable entangled sensor network for radio-frequency signals, demonstrating an entanglement-enabled advantage for estimating a tunable global parameter across the network."
+
+- id: malia-nature-2022
+  title: "Distributed quantum sensing with mode-entangled spin-squeezed atomic states"
+  authors: ["Benjamin K. Malia", "Yunfan Wu", "Julián Martínez-Rincón", "Mark A. Kasevich"]
+  publisher: "Nature"
+  year: 2022
+  type: paper
+  doi: "10.1038/s41586-022-05363-z"
+  note: "Distributed sensing with mode-entangled, spin-squeezed atomic ensembles — an atomic-platform route to networked sensing beyond the standard quantum limit."
+
+- id: pirandola-natphoton-2018
+  title: "Advances in photonic quantum sensing"
+  authors: ["Stefano Pirandola", "Bhaskar Roy Bardhan", "Tobias Gehring", "Christian Weedbrook", "Seth Lloyd"]
+  publisher: "Nature Photonics"
+  year: 2018
+  type: paper
+  doi: "10.1038/s41566-018-0301-6"
+  note: "Review of photonic quantum sensing — the optical-probe ground that Degen's solid-state-spin-centric review deliberately leaves out. Useful complement for the photonic sensor-network demonstrations."

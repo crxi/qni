@@ -1,0 +1,164 @@
+slug: lquom
+name: LQUOM
+categories: [network, memory]
+hq: Yokohama, Japan
+founded: 2020
+status: private
+parent: null
+logo:
+  domain: lquom.com
+
+positioning: >
+  Quantum-repeater technology startup spun out of Tomoyuki Horikiri's lab at
+  Yokohama National University in 2020. Productises a cavity-enhanced
+  entangled-photon source matched to Pr:YSO rare-earth quantum memory at 606
+  nm for long-distance quantum communication. Sells the LQ-PS-100 two-photon
+  source and runs joint R&D programmes with Japanese telcos and integrators
+  (SoftBank, Toshiba, Anritsu). Demonstrated entangled-photon quantum
+  communication across the Tokyo metropolitan area with SoftBank in 2023;
+  closed a Series B in October 2025 led by SBI Investment and signed a
+  long-distance-QKD joint research agreement with Toshiba in March 2026.
+
+modalities:
+  network:
+    role: repeater
+    products: [LQ-PS-100]
+  memory:
+    platform: pr-yso
+    storage_time_ms: null
+    retrieval_efficiency: null
+    fidelity: null
+    wavelength_nm: 606
+    mode_capacity: null
+
+milestones:
+  - date: 2026-03
+    tag: network
+    headline: Joint research agreement with Toshiba on long-distance QKD using quantum repeater technology — March 2026 to March 2027; Toshiba leads QKD-protocol/architecture studies, LQUOM leads quantum-repeater architecture
+    source_url: https://www.global.toshiba/ww/news/corporate/2026/03/news-20260319-01.html
+    source_type: press
+  - date: 2025-10
+    tag: network
+    headline: Series B closes — led by SBI Investment with ORIX Capital, Osaka University VC, SMBC Venture Capital, JMTC Capital, Anritsu, Bio-Sight Capital; amount undisclosed
+    source_url: https://lquom.com/en/news/lquom-raises-series-b-funding-to-accelerate-the-realization-of-the-quantum-internet/
+    source_type: press
+  - date: 2023-09
+    tag: network
+    headline: SoftBank x LQUOM launch entangled-photon quantum-communication field study across the Tokyo metropolitan area
+    source_url: https://www.softbank.jp/en/corp/news/press/sbkk/2023/20230921_01/
+    source_type: press
+  - date: 2020-01
+    tag: network
+    headline: Company founded as a spinout from the Horikiri Laboratory at Yokohama National University
+    source_url: https://lquom.com/en/
+    source_type: blog
+
+shareholders:
+  - holder: SBI Investment
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-10
+    source_url: https://lquom.com/en/news/lquom-raises-series-b-funding-to-accelerate-the-realization-of-the-quantum-internet/
+    note: Lead investor of October 2025 Series B
+  - holder: Toshiba (Toshiba CVC)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2023
+    source_url: https://thequantuminsider.com/2026/03/30/toshiba-lquom-long-distance-qkd-quantum-repeater-research/
+    note: Strategic investment via Toshiba's corporate venture arm announced 2023; basis for the 2026 joint research agreement
+  - holder: Anritsu
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-10
+    source_url: https://lquom.com/en/news/lquom-raises-series-b-funding-to-accelerate-the-realization-of-the-quantum-internet/
+    note: Test-and-measurement strategic; Series B participant
+  - holder: ORIX Capital
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-10
+    source_url: https://lquom.com/en/news/lquom-raises-series-b-funding-to-accelerate-the-realization-of-the-quantum-internet/
+  - holder: Osaka University Venture Capital
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-10
+    source_url: https://lquom.com/en/news/lquom-raises-series-b-funding-to-accelerate-the-realization-of-the-quantum-internet/
+  - holder: SMBC Venture Capital
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-10
+    source_url: https://lquom.com/en/news/lquom-raises-series-b-funding-to-accelerate-the-realization-of-the-quantum-internet/
+  - holder: Tomoyuki Horikiri
+    stake_percent: null
+    stake_class: founder
+    as_of: 2020
+    source_url: https://lquom.com/en/
+    note: Co-founder; equity undisclosed (private company)
+  - holder: Kazuya Niizeki
+    stake_percent: null
+    stake_class: founder
+    as_of: 2020
+    source_url: https://lquom.com/en/
+    note: Co-founder & CEO; equity undisclosed
+
+key_personnel:
+  - role: Co-founder & CEO
+    name: Kazuya Niizeki
+    since: 2020
+    source_url: https://lquom.com/en/
+  - role: Co-founder, CSO & Director
+    name: Tomoyuki Horikiri
+    since: 2020
+    source_url: https://lquom.com/en/
+    note: Professor at Yokohama National University; runs the Horikiri Lab that the company was spun out of
+  - role: Director, COO & CFO
+    name: Yuya Mochizuki
+    since: 2020
+    source_url: https://lquom.com/en/
+  - role: Advisor
+    name: Feng-Lei Hong
+    since: 2020
+    source_url: https://lquom.com/en/
+
+roadmap:
+  - target: 2027
+    item: Conclude Toshiba joint research programme on optimal QKD-protocol / repeater-architecture combinations for long-distance metro-and-beyond QKD
+    source_url: https://www.global.toshiba/ww/news/corporate/2026/03/news-20260319-01.html
+    tag: network
+  - target: 2026
+    item: Use Series B proceeds to scale large-scale demonstration experiments and reinforce global partnerships toward commercial quantum-repeater deployment
+    source_url: https://lquom.com/en/news/lquom-raises-series-b-funding-to-accelerate-the-realization-of-the-quantum-internet/
+    tag: network
+
+current_flagship:
+  name: LQ-PS-100
+  generation: cavity-enhanced two-photon entangled-photon source matched to Pr:YSO quantum memory (606 nm)
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://www.global.toshiba/ww/news/corporate/2026/03/news-20260319-01.html
+    note: Toshiba x LQUOM joint research agreement on long-distance QKD via quantum repeaters (March 2026)
+  - kind: press
+    citation_key: null
+    url: https://lquom.com/en/news/lquom-raises-series-b-funding-to-accelerate-the-realization-of-the-quantum-internet/
+    note: LQUOM Series B announcement (October 2025)
+  - kind: press
+    citation_key: null
+    url: https://www.softbank.jp/en/corp/news/press/sbkk/2023/20230921_01/
+    note: SoftBank x LQUOM Tokyo entangled-photon quantum-communication field study (Sep 2023)
+  - kind: blog
+    citation_key: null
+    url: https://www.nedo.go.jp/english/activities/startups/company28.html
+    note: NEDO portfolio profile of LQUOM
+
+partial:
+  - modalities.memory.storage_time_ms
+  - modalities.memory.retrieval_efficiency
+  - modalities.memory.fidelity
+  - modalities.memory.mode_capacity
+  - field: shareholders
+    as_of: 2026-05-15
+    note: Stake percentages not disclosed for any holder; only round-participation lists are public
+
+last_verified: 2026-05-15
+verification_method: web

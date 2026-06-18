@@ -1,0 +1,193 @@
+slug: equal1
+name: Equal1
+categories: [qc]
+hq: Dublin, Ireland
+founded: 2017
+status: private
+parent: null
+logo:
+  domain: equal1.com
+
+positioning: >
+  Silicon-spin quantum computing built on a standard 22 nm fully-depleted SOI
+  (FD-SOI) CMOS process at GlobalFoundries (22FDX). Differentiator is the
+  integration of cryogenic CMOS control, readout, and quantum dots on a single
+  die — the "UnityQ" Quantum System-on-Chip — packaged as a rack-mounted server
+  (Bell-1, 2025; RacQ, 2026) with a self-contained closed-cycle cryocooler at
+  ~0.3 K, removing the dilution refrigerator from the deployment envelope.
+  UCD spin-out commercialising work from the UCD School of Electrical and
+  Electronic Engineering (Staszewski group).
+
+modalities:
+  qc:
+    qubit_type: spin-si
+    physical_qubits_current: 6
+    logical_qubits_current: 0
+    one_q_fidelity: 0.994
+    two_q_fidelity: 0.984
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: nearest-neighbour
+    gate_set: []
+
+milestones:
+  - date: 2026-05
+    tag: qc
+    headline: RacQ launched — rack-mounted silicon-spin quantum computer in a standard 19-inch data-centre rack, ~1.6 kW, 0.3 K closed-cycle cryocooler, ~400 kg
+    source_url: https://thequantuminsider.com/2026/05/15/equal1-unveils-hybrid-rack-mounted-silicon-spin-quantum-computer/
+    source_type: press
+  - date: 2026-01
+    tag: qc
+    headline: $60M Series A led by Ireland Strategic Investment Fund (ISIF), bringing total raised to ~$85M
+    source_url: https://www.equal1.com/insights/equal1-raises-60m-to-accelerate-quantum-computing-using-existing-semiconductor-manufacturing
+    source_type: press
+  - date: 2025-04
+    tag: qc
+    headline: Validated commercial CMOS spin-qubit platform on GlobalFoundries 22FDX FD-SOI — tunable-coupling quantum-dot arrays in a production process
+    source_url: https://quantumcomputingreport.com/equal1-validates-cmos-compatible-silicon-spin-qubit-platform-using-globalfoundries-22fdx-process/
+    source_type: press
+  - date: 2025-03
+    tag: qc
+    headline: Bell-1 unveiled — 6-qubit silicon-spin server (UnityQ QSoC), 99.4% 1Q / 98.4% 2Q fidelity, self-contained 0.3 K cryo, 1600 W, 200 kg
+    source_url: https://www.equal1.com/insights/equal1-launches-bell-1-the-first-quantum-system-purpose-built-for-the-hpc-era
+    source_type: press
+  - date: 2021-10
+    tag: qc
+    headline: €6M seed round led by btov Industrial Technologies with Atlantic Bridge
+    source_url: https://thequantuminsider.com/2021/10/05/equal1-receives-e6-million-in-new-seed-capital-from-btov-industrial-technologies-atlantic-bridge/
+    source_type: press
+
+shareholders:
+  - holder: Ireland Strategic Investment Fund (ISIF)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-01
+    source_url: https://www.equal1.com/insights/equal1-raises-60m-to-accelerate-quantum-computing-using-existing-semiconductor-manufacturing
+    note: Lead investor in Jan 2026 $60M Series A
+  - holder: Atlantic Bridge Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-01
+    source_url: https://www.abven.com/news/equal1-raises-60m-in-funding-to-deploy-quantum-computing-technology/
+    note: Participated from 2021 seed through Series A; University Bridge Fund vehicle
+  - holder: European Innovation Council Fund
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-01
+    source_url: https://www.equal1.com/insights/equal1-raises-60m-to-accelerate-quantum-computing-using-existing-semiconductor-manufacturing
+  - holder: Matterwave Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-01
+    source_url: https://www.equal1.com/insights/equal1-raises-60m-to-accelerate-quantum-computing-using-existing-semiconductor-manufacturing
+  - holder: Enterprise Ireland
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-01
+    source_url: https://www.equal1.com/insights/equal1-raises-60m-to-accelerate-quantum-computing-using-existing-semiconductor-manufacturing
+    note: Irish state development agency
+  - holder: Elkstone
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-01
+    source_url: https://www.equal1.com/insights/equal1-raises-60m-to-accelerate-quantum-computing-using-existing-semiconductor-manufacturing
+  - holder: TNO Ventures
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-01
+    source_url: https://www.equal1.com/insights/equal1-raises-60m-to-accelerate-quantum-computing-using-existing-semiconductor-manufacturing
+    note: Investment arm of TNO (Netherlands); pairs with TNO research partnership
+  - holder: btov Industrial Technologies
+    stake_percent: null
+    stake_class: minority
+    as_of: 2021-10
+    source_url: https://thequantuminsider.com/2021/10/05/equal1-receives-e6-million-in-new-seed-capital-from-btov-industrial-technologies-atlantic-bridge/
+    note: Led 2021 €6M seed round
+  - holder: Founders (Leipold, Asker, Staszewski)
+    stake_percent: null
+    stake_class: founder
+    as_of: 2017
+    source_url: https://www.equal1.com/company
+
+key_personnel:
+  - role: CEO
+    name: Jason Lynch
+    since: 2022-02
+    source_url: https://www.rte.ie/news/business/2022/0201/1277082-new-ceo-named-at-equal-1/
+  - role: President & Co-founder
+    name: Dirk Leipold
+    since: 2017
+    source_url: https://www.linkedin.com/in/dirk-leipold-49b86b15/
+    note: Founding CEO; moved to President role in Feb 2022 to focus on processor technology
+  - role: CTO
+    name: Elena Blokhina
+    since: null
+    source_url: https://www.equal1.com/company
+  - role: Co-founder & CIO
+    name: Mike Asker
+    since: 2017
+    source_url: https://www.equal1.com/company
+  - role: Co-founder & Chief Scientist
+    name: R. Bogdan Staszewski
+    since: 2017
+    source_url: https://www.siliconrepublic.com/machines/equal1-breakthrough-quantum-computing-qubits
+    note: Professor, UCD School of Electrical and Electronic Engineering
+
+roadmap:
+  - target: 2026
+    item: RacQ deployments in data-centre environments; CUDA-Q integration via NVIDIA partnership; Q-CTRL Boulder Opal Scale Up autonomous calibration on Bell-1
+    source_url: https://www.hpcwire.com/off-the-wire/equal1-and-nvidia-partner-to-develop-quantum-classical-solutions-for-data-centers/
+    tag: qc
+  - target: long-term
+    item: UnityQ "quantum tile" modular architecture targeting tens of thousands of error-corrected logical qubits and millions of orchestrated physical qubits on chip
+    source_url: https://www.equal1.com/technology
+    tag: qc
+
+current_flagship:
+  name: RacQ
+  generation: silicon-spin (FD-SOI 22 nm), 19-inch rack form factor, 0.3 K closed-cycle cryo
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://www.equal1.com/insights/equal1-launches-bell-1-the-first-quantum-system-purpose-built-for-the-hpc-era
+    note: Bell-1 product launch announcement (March 2025)
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2025/04/17/equal1-announces-successful-validation-of-cmos-process/
+    note: GlobalFoundries 22FDX FD-SOI validation announcement
+  - kind: blog
+    citation_key: null
+    url: https://www.equal1.com/technology
+    note: UnityQ QSoC architecture page
+  - kind: press
+    citation_key: null
+    url: https://quantumcomputingreport.com/equal1-launches-bell-1-6-qubit-silicon-based-quantum-server-for-hpc-environments/
+    note: Bell-1 spec summary (6-qubit SiGe array, fidelities, gate times)
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2026/05/15/equal1-unveils-hybrid-rack-mounted-silicon-spin-quantum-computer/
+    note: RacQ launch coverage (May 2026)
+
+partial:
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.ec_code
+  - modalities.qc.gate_set
+  - field: modalities.qc.one_q_fidelity
+    as_of: 2026-05-24
+    note: 99.4% single-qubit fidelity (84 ns gate) from Bell-1 vendor press / Quantum Computing Report coverage; no peer-reviewed citation linked yet
+  - field: modalities.qc.two_q_fidelity
+    as_of: 2026-05-24
+    note: 98.4% two-qubit fidelity (72 ns gate) from Bell-1 vendor press coverage; no peer-reviewed citation linked yet
+  - field: modalities.qc.connectivity
+    as_of: 2026-05-24
+    note: nearest-neighbour assumed for 6-qubit SiGe quantum-dot array; vendor has not published a formal connectivity graph
+  - field: shareholders
+    as_of: 2026-05-24
+    note: Private company — stake percentages not disclosed; entries are participants in disclosed rounds, ordered by round leadership and recency
+  - key_personnel.2.since
+
+last_verified: 2026-05-24
+verification_method: web

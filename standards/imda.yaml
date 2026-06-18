@@ -1,0 +1,47 @@
+body:
+  id: imda
+  name: Infocomm Media Development Authority of Singapore
+  short_name: IMDA
+  url: https://www.imda.gov.sg
+  scope: >
+    Singapore's national infocomm regulator. Issues Reference
+    Specifications via the Telecommunications Standards Advisory
+    Committee (TSAC). IMDA's QKDN specifications are the first national
+    regulatory documents anywhere to set baseline requirements for QKD
+    network deployment.
+  notes: >
+    IMDA RS documents are non-binding reference specifications but are
+    used as the de-facto procurement baseline for Singapore government
+    and operator QKDN deployments. The 2023 RS QKDN was the world's
+    first such national document.
+
+standards:
+  - id: IMDA RS QKDN
+    title: Quantum Key Distribution Networks (Reference Specification)
+    type: regulatory
+    date: 2023-06
+    group: TSAC
+    tags: [qkdn, security, policy]
+    status: in-force
+    url: https://www.imda.gov.sg/-/media/imda/files/regulation-licensing-and-consultations/ict-standards/telecommunication-standards/reference-spec/imda-rs-qkdn-final.pdf
+    pdf: reference/standards/IMDA/imda-rs-qkdn-final.pdf
+    summary: >
+      Issue 1 (June 2023) - Singapore's national reference specification
+      for QKD networks. Sets requirements for QKD module security, key
+      management, trusted-node operation, and interoperability. First
+      national QKDN regulatory document worldwide.
+
+  - id: IMDA RS SecQKDN
+    title: Secure Deployment of Quantum Key Distribution Networks (Draft Reference Specification)
+    type: regulatory
+    date: 2026-02
+    group: TSAC
+    tags: [qkdn, security, policy]
+    status: draft
+    url: https://www.imda.gov.sg/-/media/imda/files/regulation-licensing-and-consultations/ict-standards/telecommunication-standards/imda-technical/2026/imda-rs-secqkdn-draft-public-comment.pdf
+    pdf: reference/standards/IMDA/imda-rs-secqkdn-draft.pdf
+    summary: >
+      Draft Issue 1 (Feb 2026). Tightens IMDA RS QKDN with operational
+      security controls for QKDN deployment: physical security of
+      trusted nodes, key-management auditing, incident-response
+      requirements. Under public consultation.

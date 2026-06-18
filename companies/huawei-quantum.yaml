@@ -1,0 +1,101 @@
+slug: huawei-quantum
+name: Huawei Technologies (Quantum programme)
+categories: [qkd, network, enabling]
+hq: Shenzhen, Guangdong, China
+founded: 1987
+status: private
+parent: null
+logo:
+  domain: huawei.com
+
+positioning: >
+  Huawei Technologies runs an internal quantum-communication R&D programme
+  spanning continuous-variable QKD (CV-QKD) prototypes from its Munich
+  Research Center and an OTN-integrated QKD board paired with the OptiXtrans
+  E6600 optical transport platform. Public product detail outside China is
+  thin; the most visible deployment is the 2018 Telefónica + UPM Madrid metro
+  CV-QKD field trial, and the headline product is the OptiXtrans E6600 OTN +
+  QKD board marketed to government, electric-power, and transportation
+  customers. Sales geography is dominated by China and a small set of allied
+  markets given US-led export restrictions on Huawei since 2019.
+
+modalities:
+  qkd:
+    protocol: [CV-QKD, BB84]
+    rate_distance: ""
+    deployed_demos:
+      - note: Telefónica + Huawei + UPM Madrid metro CV-QKD field trial — three sites on commercial Telefónica fibre, software-controlled CV-QKD devices from Huawei Munich, SDN-managed (June 2018)
+        source_url: https://www.huawei.com/en/news/2018/6/Telefonica-Huawei-UPM-Field-Trial
+  network:
+    role: integrator
+    products:
+      - OptiXtrans E6600 OTN platform with integrated QKD board
+  enabling:
+    products:
+      - CV-QKD transceiver prototypes (Huawei Munich Research Center)
+      - OptiXtrans E6600 OTN + QKD integrated solution
+
+milestones:
+  - date: 2026-03
+    tag: network
+    headline: OptiXtrans E6600 OTN + QKD integration solution recognised at Lightwave Innovation Reviews; positioned as a single-board OTN + QKD product for government, electric-power, and transportation customers
+    source_url: https://www.huawei.com/en/news/2026/3/nine-lightwave-innovation-award
+    source_type: press
+  - date: 2018-06
+    tag: qkd
+    headline: Telefónica, Huawei, and UPM field-trial CV-QKD on commercial Madrid metro fibre; SDN-controlled QKD across three sites
+    source_url: https://www.huawei.com/en/news/2018/6/Telefonica-Huawei-UPM-Field-Trial
+    source_type: press
+
+shareholders:
+  - holder: Huawei Investment & Holding Co. (employee shareholders via the union)
+    stake_percent: null
+    stake_class: controlling
+    as_of: 2026-05-20
+    source_url: https://www.huawei.com/en/media-center/company-facts
+    note: Huawei is privately held by an employee shareholding scheme; founder Ren Zhengfei holds roughly 0.7 percent of the parent and the remainder is held by the labour-union-administered employee pool. No external equity holders.
+
+key_personnel:
+  - role: Project Leader, Quantum Communication (Huawei Munich Research Center)
+    name: Momtchil Peev
+    since: 2018
+    source_url: https://www.telefonica.com/en/communication-room/press-room/telefonica-huawei-and-upm-perform-a-groundbreaking-field-trial-applying-quantum-cryptography-on-commercial-optical-networks-to-provide-secure-communication-services/
+    note: Publicly named as Huawei's CV-QKD project leader in the 2018 Telefónica + UPM trial; current Huawei role status not independently confirmed.
+
+roadmap: []
+
+current_flagship:
+  name: OptiXtrans E6600 OTN + QKD board
+  generation: Single-board OTN + QKD integration for government, electric-power, and transportation networks (China-led market)
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://www.huawei.com/en/news/2018/6/Telefonica-Huawei-UPM-Field-Trial
+    note: Telefónica + Huawei + UPM CV-QKD field trial on commercial Madrid fibre (June 2018)
+  - kind: press
+    citation_key: null
+    url: https://www.huawei.com/en/news/2026/3/nine-lightwave-innovation-award
+    note: Lightwave Innovation Reviews 2026 — recognition of the OptiXtrans E6600 OTN + QKD integration
+  - kind: press
+    citation_key: null
+    url: https://optics.org/news/9/6/26
+    note: optics.org coverage of UK/Spain QKD field trials including the Huawei + Telefónica + UPM Madrid trial
+  - kind: web
+    citation_key: null
+    url: https://e.huawei.com/en/products/optical-transmission
+    note: Huawei OptiXtrans product family page
+
+partial:
+  - modalities.qkd.rate_distance
+  - field: modalities.qkd.deployed_demos
+    as_of: 2026-05-20
+    note: Huawei's domestic Chinese QKD deployments (electric-power and government customers) are referenced in vendor press but specific link distances, key rates, and customer names are not consistently disclosed in English-language sources. Cited entries are restricted to those independently corroborated by third-party reporting.
+  - field: key_personnel
+    as_of: 2026-05-20
+    note: Huawei does not publish a quantum-programme leadership roster. Momtchil Peev (Munich Research Center) is the only publicly-named quantum lead encountered; Wuhan / Shenzhen R&D leadership for the OptiXtrans QKD board is not separately disclosed in English-language sources.
+  - revenue
+  - headcount
+
+last_verified: 2026-05-20
+verification_method: web

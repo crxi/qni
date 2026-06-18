@@ -1,0 +1,760 @@
+---
+/**
+ * SiteNav — workspace-level navigation rail.
+ *
+ * Layout:
+ *   - Title row: "Quantum Network Infographics".
+ *   - Home link.
+ *   - Subjects grouped by tier with a small uppercase divider above
+ *     each group (TIER_LABEL["A" | "B" | …]). Tiers are *visual*
+ *     dividers, not foldable groups — every subject is visible at
+ *     once. With 15 subjects across 5 tiers, foldable groups don't
+ *     earn the click-to-expand cost.
+ *   - The current subject's `<a>` is followed by an indented `<ol>`
+ *     of in-page sections (when a `sections` array is passed). The
+ *     sections live *under* the current subject in the rail rather
+ *     than as a separate "On this page" group, so the reader keeps
+ *     the subject context while scanning sections.
+ *
+ * On viewports < 60 rem the rail collapses into a sticky-top
+ * horizontal strip, with subjects and sections shown as two
+ * scrollable inline lists separated by a divider; tier labels hide
+ * to save horizontal space.
+ */
+
+import { SUBJECTS, TIER_LABEL, type SubjectTier } from "../lib/subjects";
+import { url } from "../lib/url";
+
+interface Section {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  /** Slug of the current subject; undefined on the landing page. */
+  currentSubject?: string;
+  /** Optional in-page sections — pass an array on subject pages, omit on the landing. */
+  sections?: Section[];
+}
+
+const { currentSubject, sections } = Astro.props;
+
+// Group subjects by tier in a stable A → F order. Tiers without
+// any subjects are skipped (none today, but defensive).
+const TIER_ORDER: SubjectTier[] = ["A", "B", "C", "D", "E", "F"];
+const groupedTiers = TIER_ORDER
+  .map((tier) => ({
+    tier,
+    label: TIER_LABEL[tier],
+    subjects: SUBJECTS.filter((s) => s.tier === tier),
+  }))
+  .filter((g) => g.subjects.length > 0);
+
+// Current tier (used to highlight the current subject's group, not
+// to drive open/closed state — every tier defaults to open and is
+// only collapsed when the user explicitly chose to. See the client
+// script below for the persistence logic.)
+const currentTier = currentSubject
+  ? SUBJECTS.find((s) => s.slug === currentSubject)?.tier ?? null
+  : null;
+---
+
+<nav class="site-nav" aria-label="Site navigation">
+  <div class="site-nav__title-row">
+    <p class="site-nav__title">Quantum Network Infographics</p>
+    <button
+      type="button"
+      class="site-nav__qr-thumb"
+      data-qr-trigger
+      aria-label="Show large QR code linking to this site"
+      title="Show large QR code (scans to qni.pages.dev)"
+    >
+      <img
+        src={url("/images/qr-qni.svg")}
+        alt="QR code linking to https://qni.pages.dev/"
+        width="40"
+        height="40"
+      />
+    </button>
+  </div>
+
+  <ul class="site-nav__list site-nav__list--home">
+    <li>
+      <a href={url("/")} class:list={{ "is-current": !currentSubject }}>Home</a>
+    </li>
+  </ul>
+
+  {groupedTiers.map((group) => (
+    <details
+      class="site-nav__group"
+      data-tier={group.tier}
+      open
+    >
+      <summary class="site-nav__group-label" aria-label={`${group.label} — toggle`}>
+        <span class="site-nav__group-label-text">{group.label}</span>
+        <span class="site-nav__group-chevron" aria-hidden="true">▾</span>
+      </summary>
+      <ul class="site-nav__list site-nav__list--subjects">
+        {group.subjects.map((s) => {
+          const isCurrent = currentSubject === s.slug;
+          return (
+            <li>
+              {s.status === "shipped" ? (
+                <a
+                  href={url(`/${s.slug}`)}
+                  class:list={{ "is-current": isCurrent }}
+                >{s.navLabel ?? s.title}</a>
+              ) : (
+                <span
+                  class="is-planned"
+                  aria-disabled="true"
+                  title="Planned — not yet available"
+                >
+                  {s.navLabel ?? s.title}
+                  <span class="planned-tag">(planned)</span>
+                </span>
+              )}
+
+              {/* In-page sections nest under the current subject only. */}
+              {isCurrent && sections && sections.length > 0 && (
+                <ol class="site-nav__sections" aria-label="On this page">
+                  {sections.map((sec) => (
+                    <li>
+                      <a href={`#${sec.id}`} data-section-target={sec.id}>{sec.label}</a>
+                    </li>
+                  ))}
+                </ol>
+              )}
+            </li>
+          );
+        })}
+
+        {/* Tier F: case-studies index handles its own filter UI — no
+           need to enumerate every case study in the rail. Matches how
+           Tier E /companies works (single index link, not per-vendor). */}
+      </ul>
+    </details>
+  ))}
+</nav>
+
+{/* QR-share dialog — global because the trigger lives in the rail and
+    every page renders the rail. Opens via [data-qr-trigger] anywhere on
+    the page; closes via the × button, ESC, or backdrop click. */}
+<dialog class="qr-dialog" data-qr-dialog aria-label="QR code linking to this site">
+  <div class="qr-dialog__inner">
+    <img
+      src={url("/images/qr-qni.svg")}
+      alt="QR code linking to https://qni.pages.dev/"
+      class="qr-dialog__img"
+      data-qr-img
+    />
+    <p class="qr-dialog__url">https://qni.pages.dev/</p>
+    <div class="qr-dialog__actions" data-pagefind-ignore="all">
+      <a class="qr-action qr-action--whatsapp"
+         href="https://api.whatsapp.com/send/?text=Notes+on+quantum+networking+%E2%80%94+https%3A%2F%2Fqni.pages.dev&type=custom_url&app_absent=0"
+         target="_blank" rel="noopener" aria-label="Share on WhatsApp" title="WhatsApp">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Zm5.3 14.3c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.7-4.4-3.9-.1-.2-1-1.4-1-2.7s.7-1.9.9-2.2c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.5.7 1.9.8 2 .1.1.1.3 0 .5-.1.2-.1.3-.3.5-.1.2-.3.4-.4.5-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1.2-.2.7-.9.9-1.2.2-.3.4-.3.7-.2.3.1 1.8.9 2.2 1 .3.1.5.2.6.3 0 .2 0 .8-.3 1.4Z"
+                fill="currentColor"/>
+        </svg>
+      </a>
+      <a class="qr-action qr-action--linkedin"
+         href="https://www.linkedin.com/uas/login?session_redirect=https%3A%2F%2Fwww.linkedin.com%2FshareArticle%2F%3Furl%3Dhttps%253A%252F%252Fqni.pages.dev"
+         target="_blank" rel="noopener" aria-label="Share on LinkedIn" title="LinkedIn">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.43v6.31zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"
+                fill="currentColor"/>
+        </svg>
+      </a>
+      <a class="qr-action qr-action--x"
+         href="https://x.com/intent/post?text=Notes%20on%20quantum%20networking&url=https%3A%2F%2Fqni.pages.dev"
+         target="_blank" rel="noopener" aria-label="Share on X" title="X (Twitter)">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                fill="currentColor"/>
+        </svg>
+      </a>
+      <a class="qr-action qr-action--facebook"
+         href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fqni.pages.dev"
+         target="_blank" rel="noopener" aria-label="Share on Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.13 8.44 9.88v-6.99H7.9V12h2.54V9.8c0-2.51 1.49-3.89 3.77-3.89 1.09 0 2.24.19 2.24.19v2.46H15.2c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.89h-2.33v6.99C18.34 21.13 22 16.99 22 12z"
+                fill="currentColor"/>
+        </svg>
+      </a>
+      <a class="qr-action qr-action--email"
+         href="mailto:?subject=Quantum%20Network%20Infographics&body=Notes%20on%20quantum%20networking%20%E2%80%94%20https%3A%2F%2Fqni.pages.dev"
+         aria-label="Share via email" title="Email">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path d="M3 6h18v12H3zM3 6l9 7 9-7"
+                fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <button type="button" class="qr-action" data-qr-share
+              aria-label="Share via native share sheet"
+              title="Share (system share sheet)">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v14"
+                fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    <button type="button" class="qr-dialog__close" data-qr-close aria-label="Close QR code">×</button>
+  </div>
+</dialog>
+
+<script is:inline>
+  (function () {
+    const dialog  = document.querySelector("[data-qr-dialog]");
+    const trigger = document.querySelector("[data-qr-trigger]");
+    const closeBtn = document.querySelector("[data-qr-close]");
+    const imgEl   = document.querySelector("[data-qr-img]");
+    const shareBtn = document.querySelector("[data-qr-share]");
+    if (!dialog || !trigger) return;
+    trigger.addEventListener("click", () => dialog.showModal());
+    closeBtn?.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+
+    const SITE_URL   = "https://qni.pages.dev/";
+    const SITE_TITLE = "Quantum Network Infographics";
+    const SHARE_TEXT = "Notes on quantum networking";
+
+    async function qrAsPngBlob(size) {
+      size = size || 1024;
+      const svgUrl = imgEl.getAttribute("src");
+      const resp = await fetch(svgUrl);
+      const svgText = await resp.text();
+      const svgBlob = new Blob([svgText], { type: "image/svg+xml;charset=utf-8" });
+      const objUrl = URL.createObjectURL(svgBlob);
+      try {
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        await new Promise((resolve, reject) => {
+          img.onload = resolve;
+          img.onerror = reject;
+          img.src = objUrl;
+        });
+        const canvas = document.createElement("canvas");
+        canvas.width = canvas.height = size;
+        const ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, size, size);
+        ctx.drawImage(img, 0, 0, size, size);
+        return await new Promise((r) => canvas.toBlob(r, "image/png"));
+      } finally {
+        URL.revokeObjectURL(objUrl);
+      }
+    }
+
+    shareBtn?.addEventListener("click", async () => {
+      const shareData = { title: SITE_TITLE, text: SHARE_TEXT, url: SITE_URL };
+      try {
+        const blob = await qrAsPngBlob(1024);
+        const file = new File([blob], "qni-qr.png", { type: "image/png" });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share(Object.assign({}, shareData, { files: [file] }));
+          return;
+        }
+      } catch (_) { /* fall through */ }
+      if (navigator.share) {
+        try { await navigator.share(shareData); return; }
+        catch (e) { if (e.name === "AbortError") return; }
+      }
+      copyAndPing(shareBtn, SITE_URL);
+    });
+
+    // Fallback used by the native-share button when neither
+    // navigator.share() nor a files-share is available — copy the URL
+    // to the clipboard and ping the share button's tooltip.
+    function copyAndPing(btn, text) {
+      const orig = btn.getAttribute("title");
+      const reset = () => btn.setAttribute("title", orig || "");
+      navigator.clipboard?.writeText(text).then(() => {
+        btn.setAttribute("title", "Copied!");
+        setTimeout(reset, 1600);
+      }).catch(() => {
+        window.prompt("Copy this URL:", text);
+      });
+    }
+  })();
+</script>
+
+<script>
+  type LinkEl = HTMLAnchorElement;
+
+  function init(): void {
+    // Tier-group collapse persistence. Every tier ships SSR'd open
+    // (see `<details open>` above). The user's explicit toggles are
+    // mirrored to localStorage and re-applied on subsequent loads, so
+    // a tier the user closed stays closed everywhere until they open
+    // it again, and vice-versa. Tiers the user never touched stay at
+    // the default (open). Containing the current subject does NOT
+    // override the saved state — landing on a page in a closed tier
+    // shouldn't force-open it against the user's expressed preference.
+    const groups = document.querySelectorAll<HTMLDetailsElement>(".site-nav__group[data-tier]");
+    for (const g of groups) {
+      const tier = g.dataset.tier!;
+      try {
+        const stored = localStorage.getItem(`qni:nav:tier:${tier}`);
+        if (stored === "0") g.open = false;
+        else if (stored === "1") g.open = true;
+      } catch { /* private mode — ignore */ }
+      g.addEventListener("toggle", () => {
+        try { localStorage.setItem(`qni:nav:tier:${tier}`, g.open ? "1" : "0"); } catch {}
+      });
+    }
+
+    // After a full page navigation, pin the now-current subject near the
+    // top of the rail — but not so high that the title row (QNI label +
+    // QR thumb) and the Home link disappear. Reserve their stacked
+    // heights at the top, so the QR is always reachable on first paint.
+    const current = document.querySelector<HTMLElement>(".site-nav .is-current");
+    const rail = current?.closest<HTMLElement>(".page-nav-rail");
+    if (current && rail) {
+      const titleRow = rail.querySelector<HTMLElement>(".site-nav__title-row");
+      const homeList = rail.querySelector<HTMLElement>(".site-nav__list--home");
+      const headerH  = (titleRow?.offsetHeight ?? 0) +
+                       (homeList?.offsetHeight ?? 0) + 12;
+      rail.scrollTop = Math.max(0, current.offsetTop - rail.offsetTop - headerH);
+    }
+
+    // Sync rail scroll to document scroll. At doc-top, the rail keeps the
+    // init pin (current subject near top, sub-sections visible below). At
+    // doc-bottom, the rail is at its own bottom (later tiers visible).
+    // Linear interpolation between the two extremes.
+    //
+    // rAF-coalesced: the raw `scroll` event fires far more often than the
+    // browser paints, so naive sync(read+write per event) trashes layout
+    // and visibly stutters. Reading the geometry once per frame and only
+    // writing when the delta crosses a pixel keeps the rail glued to the
+    // doc scroll without competing with the browser's compositor.
+    if (rail) {
+      const initialScrollTop = rail.scrollTop;
+      let railMax = rail.scrollHeight - rail.clientHeight;
+      let docMax  = document.documentElement.scrollHeight - window.innerHeight;
+      let ticking = false;
+
+      const apply = () => {
+        ticking = false;
+        if (railMax <= initialScrollTop || docMax <= 0) return;
+        const ratio = Math.max(0, Math.min(1, window.scrollY / docMax));
+        const next  = initialScrollTop + (railMax - initialScrollTop) * ratio;
+        if (Math.abs(next - rail.scrollTop) >= 1) rail.scrollTop = next;
+      };
+      const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(apply);
+      };
+      const onResize = () => {
+        railMax = rail.scrollHeight - rail.clientHeight;
+        docMax  = document.documentElement.scrollHeight - window.innerHeight;
+        onScroll();
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onResize, { passive: true });
+    }
+
+    const links = Array.from(
+      document.querySelectorAll<LinkEl>("[data-section-target]"),
+    );
+    if (links.length === 0) return;
+
+    for (const a of links) {
+      a.addEventListener("click", (e) => {
+        const id = a.dataset.sectionTarget;
+        if (!id) return;
+        const el = document.getElementById(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        history.replaceState(null, "", `#${id}`);
+      });
+    }
+
+    const observer = new IntersectionObserver(
+      () => {
+        const visibleIds = new Set<string>();
+        document.querySelectorAll<HTMLElement>("[data-nav-section]").forEach((el) => {
+          const r = el.getBoundingClientRect();
+          if (r.top < window.innerHeight * 0.4 && r.bottom > window.innerHeight * 0.2) {
+            visibleIds.add(el.id);
+          }
+        });
+        let activeId: string | null = null;
+        for (const a of links) {
+          if (visibleIds.has(a.dataset.sectionTarget!)) {
+            activeId = a.dataset.sectionTarget!;
+            break;
+          }
+        }
+        for (const a of links) {
+          a.classList.toggle("is-active", a.dataset.sectionTarget === activeId);
+        }
+      },
+      { rootMargin: "-20% 0px -60% 0px", threshold: [0, 0.5, 1] },
+    );
+
+    for (const a of links) {
+      const el = document.getElementById(a.dataset.sectionTarget!);
+      if (el) observer.observe(el);
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init, { once: true });
+  } else {
+    init();
+  }
+</script>
+
+<style>
+  .site-nav {
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .site-nav__title-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    justify-content: space-between;
+    /* Inset from the rail's right edge so the QR thumb's hover scale
+       doesn't poke into the scrollbar gutter. */
+    padding-inline-end: 6px;
+  }
+  .site-nav__title {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-mute);
+    font-weight: 600;
+    margin: 0;
+    padding-inline-start: var(--space-3);
+    /* Grow to fill, but never shrink below the longest word
+       ("INFOGRAPHICS") — otherwise that unbreakable word overflows its
+       box and crowds the QR thumb to its right. */
+    flex: 1 1 auto;
+  }
+  .site-nav__qr-thumb {
+    flex: 0 0 auto;
+    padding: 2px;
+    background: #ffffff;
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-sm);
+    cursor: zoom-in;
+    line-height: 0;
+    transition: border-color 140ms ease, transform 140ms ease, box-shadow 140ms ease;
+  }
+  .site-nav__qr-thumb:hover,
+  .site-nav__qr-thumb:focus-visible {
+    border-color: var(--color-accent);
+    transform: scale(1.05);
+    outline: none;
+  }
+  .site-nav__qr-thumb img {
+    display: block;
+    width: 34px;
+    height: 34px;
+  }
+
+  /* Tier divider — a coloured pill labelling each tier's subject
+     list. The pill is also the disclosure control (<summary>): click
+     to collapse / re-open the list under it. The current tier is
+     forced open on page load (see <script> at top of this file); the
+     others restore the last user-set state from localStorage. */
+  .site-nav__group { display: grid; gap: var(--space-1); }
+  .site-nav__group[data-tier="A"] { --tier-color: var(--tier-a); }
+  .site-nav__group[data-tier="B"] { --tier-color: var(--tier-b); }
+  .site-nav__group[data-tier="C"] { --tier-color: var(--tier-c); }
+  .site-nav__group[data-tier="D"] { --tier-color: var(--tier-d); }
+  .site-nav__group[data-tier="E"] { --tier-color: var(--tier-e); }
+  .site-nav__group[data-tier="F"] { --tier-color: var(--tier-f); }
+  /* Suppress the native disclosure marker — we use our own chevron. */
+  .site-nav__group > summary { list-style: none; }
+  .site-nav__group > summary::-webkit-details-marker { display: none; }
+  .site-nav__group-label {
+    margin: 0;
+    padding: 3px 10px;
+    background: var(--tier-color, var(--color-rule));
+    color: #fff;
+    border-radius: 3px;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    font-weight: 700;
+    /* Pill spans the rail width so the chevron can sit on the right
+       edge, vertically aligned across every tier. */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 120ms ease;
+  }
+  .site-nav__group-label:hover { opacity: 0.85; }
+  .site-nav__group-label:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  .site-nav__group-chevron {
+    /* Bigger glyph so it reads as a chevron, not a dot. The transform
+       toggles between ▾ (open) and ▾ rotated -90° = right-pointing
+       (closed). */
+    font-size: 1.1rem;
+    line-height: 1;
+    display: inline-block;
+    transition: transform 140ms ease;
+    transform: rotate(0deg);
+  }
+  .site-nav__group:not([open]) .site-nav__group-chevron {
+    transform: rotate(-90deg);
+  }
+  /* When the tier is collapsed, hide its subject list. */
+  .site-nav__group:not([open]) > .site-nav__list {
+    display: none;
+  }
+
+  .site-nav__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-inline-start: 1px solid var(--color-rule);
+  }
+  .site-nav__list li { margin: 0; }
+  /* Case-study entries sit one indent step in from the "Case studies" index,
+     so they read as children of the index rather than as peer subjects. */
+  .site-nav__list--case-study > a { padding-inline-start: var(--space-5); }
+  .site-nav__list a {
+    display: block;
+    padding: var(--space-2) var(--space-3);
+    color: var(--color-text-mute);
+    text-decoration: none;
+    border-inline-start: 2px solid transparent;
+    margin-inline-start: -1px;
+    transition:
+      color 140ms ease,
+      border-color 140ms ease,
+      background 140ms ease;
+  }
+  .site-nav__list a:hover,
+  .site-nav__list a:focus-visible {
+    color: var(--color-text);
+    background: var(--color-surface-2);
+    outline: none;
+  }
+  .site-nav__list a.is-current,
+  .site-nav__list a.is-active {
+    color: var(--color-accent);
+    border-inline-start-color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  /* Planned subjects: show in the rail but don't link. */
+  .site-nav__list .is-planned {
+    display: block;
+    padding: var(--space-2) var(--space-3);
+    color: var(--color-text-mute);
+    border-inline-start: 2px solid transparent;
+    margin-inline-start: -1px;
+    cursor: default;
+    opacity: 0.6;
+  }
+  .site-nav__list .planned-tag {
+    display: inline;
+    font-size: 0.85em;
+    color: var(--color-text-mute);
+    margin-inline-start: 0.4em;
+    font-weight: 400;
+  }
+
+  /* In-page sections nested under the current subject. Indented
+     one step further than subject links and given a slightly
+     smaller font + tighter padding so the visual hierarchy reads
+     "this is a sub-list of where you are". */
+  .site-nav__sections {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-1) var(--space-3);
+    border-inline-start: 1px solid var(--color-rule);
+    font-size: 0.92em;
+  }
+  .site-nav__sections li { margin: 0; }
+  .site-nav__sections a {
+    display: block;
+    padding: var(--space-1) var(--space-3);
+    color: var(--color-text-mute);
+    text-decoration: none;
+    border-inline-start: 2px solid transparent;
+    margin-inline-start: -1px;
+    transition:
+      color 140ms ease,
+      border-color 140ms ease,
+      background 140ms ease;
+  }
+  .site-nav__sections a:hover,
+  .site-nav__sections a:focus-visible {
+    color: var(--color-text);
+    background: var(--color-surface-2);
+    outline: none;
+  }
+  .site-nav__sections a.is-active {
+    color: var(--color-accent);
+    border-inline-start-color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  /* Narrow viewports: the rail renders inside the slide-in drawer
+     (layout-level). The vertical tier tree + sections are the right
+     UI in that context, so the only mobile tweak is to bump tap
+     targets a notch for finger-friendly hit areas. */
+  @media (max-width: 60rem) {
+    .site-nav__list a,
+    .site-nav__list .is-planned {
+      padding-block: var(--space-2);
+    }
+    .site-nav__sections a {
+      padding-block: 6px;
+    }
+  }
+
+  @media print {
+    .site-nav { display: none; }
+  }
+
+  /* QR-share dialog — global control. Trigger lives in the rail title
+     row (.site-nav__qr-thumb); the dialog itself is rendered at the
+     bottom of <SiteNav>. All :global() so the styles reach the dialog
+     which lives outside the scoped component root. */
+  :global(.qr-dialog) {
+    border: none;
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    max-width: none;
+    max-height: none;
+  }
+  :global(.qr-dialog::backdrop) {
+    background: rgba(15, 23, 42, 0.72);
+    backdrop-filter: blur(2px);
+  }
+  :global(.qr-dialog__inner) {
+    position: relative;
+    width: min(90vw, 85vh);
+    background: #ffffff;
+    border-radius: var(--radius);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    padding: clamp(16px, 3vmin, 36px);
+    display: grid;
+    gap: clamp(10px, 2vmin, 20px);
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "img actions"
+      "url url";
+  }
+  :global(.qr-dialog__img) {
+    grid-area: img;
+    width: 100%;
+    height: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    display: block;
+  }
+  :global(.qr-dialog__url) {
+    grid-area: url;
+    margin: 0;
+    text-align: center;
+    font: 700 clamp(1.1rem, 2.6vmin, 2rem)/1.2
+          var(--font-mono, ui-monospace, monospace);
+    color: #1a1f2a;
+    word-break: break-all;
+    letter-spacing: 0.01em;
+  }
+  :global(.qr-dialog__actions) {
+    grid-area: actions;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(8px, 1.4vmin, 14px);
+  }
+  :global(.qr-action) {
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a1f2a;
+    background: #f3f4f6;
+    border: 1px solid color-mix(in srgb, #1a1f2a 12%, transparent);
+    border-radius: 999px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 140ms, border-color 140ms, color 140ms, transform 140ms;
+  }
+  :global(.qr-action:hover),
+  :global(.qr-action:focus-visible) { transform: translateY(-1px); outline: none; }
+  :global(.qr-action svg) { display: block; }
+  :global(.qr-action:not([class*="qr-action--"]):hover),
+  :global(.qr-action:not([class*="qr-action--"]):focus-visible) {
+    background: #1a1f2a; color: #ffffff; border-color: #1a1f2a;
+  }
+  :global(.qr-action--whatsapp:hover),
+  :global(.qr-action--whatsapp:focus-visible) { background: #25d366; color: #fff; border-color: #25d366; }
+  :global(.qr-action--linkedin:hover),
+  :global(.qr-action--linkedin:focus-visible) { background: #0a66c2; color: #fff; border-color: #0a66c2; }
+  :global(.qr-action--x:hover),
+  :global(.qr-action--x:focus-visible) { background: #000000; color: #fff; border-color: #000000; }
+  :global(.qr-action--facebook:hover),
+  :global(.qr-action--facebook:focus-visible) { background: #1877f2; color: #fff; border-color: #1877f2; }
+  :global(.qr-action--email:hover),
+  :global(.qr-action--email:focus-visible) { background: #475569; color: #fff; border-color: #475569; }
+  :global(.qr-dialog__close) {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.92);
+    color: #1a1f2a;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  :global(.qr-dialog__close:hover) {
+    background: #1a1f2a;
+    color: #ffffff;
+    border-color: #1a1f2a;
+  }
+  /* On viewports where the rail collapses to a drawer (≤ 60 rem), drop
+     the QR's side-column layout and stack back to QR-on-top, URL,
+     share-row-at-bottom. The horizontal action row is friendlier for
+     thumbs and avoids a tall narrow dialog. */
+  @media (max-width: 60rem) {
+    :global(.qr-dialog__inner) {
+      width: min(95vw, 95vh);
+      grid-template-columns: 1fr;
+      grid-template-rows: minmax(0, 1fr) auto auto;
+      grid-template-areas: "img" "url" "actions";
+    }
+    :global(.qr-dialog__actions) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+</style>

@@ -1,0 +1,198 @@
+slug: qnu-labs
+name: QNu Labs
+categories: [qkd, enabling, software]
+hq: Bengaluru, Karnataka, India
+founded: 2016
+status: private
+parent: null
+logo:
+  domain: qnulabs.com
+
+positioning: >
+  India's first commercial quantum-safe cybersecurity vendor. Incubated at IIT
+  Madras Research Park in 2016 and headquartered in Bengaluru, QNu Labs ships a
+  trio of quantum-security products: Tropos (laser-based QRNG, ~100 Mbps,
+  NIST SP 800-90B), Armos (fibre-QKD with a decoy-state Differential Phase
+  Shift protocol, ~200 km / 40 dB loss budget), and Hodos (post-quantum
+  cryptography platform integrating NIST-selected PQC algorithms). Anchor
+  customer is the Indian government — supplies QKD and QRNG to the Indian
+  Army, Indian Navy, BEL, DRDO and WESEE, and is the lead vendor on the
+  National Quantum Mission's 1,000-km indigenous quantum communication
+  testbed announced in April 2025.
+
+modalities:
+  qkd:
+    protocol: [BB84, decoy-state, DPS]
+    rate_distance: "Armos: ~8,000 secure bps @ ~50 km metro; ~200 bps @ 200 km / 40 dB SMF; co-exists with 10 Gbps classical on same fibre"
+    deployed_demos:
+      - note: "1,000 km indigenous quantum communication network under National Quantum Mission, built by chaining Armos links; announced by Ministry of Science & Technology"
+        source_url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2114874&reg=3&lang=2
+      - note: "iDEX Open Challenge 2.0 — 150 km QKD system with trusted nodes, trials completed with the Indian Army (2022)"
+        source_url: https://www.qnulabs.com/about-us
+      - note: "25 Armos QKD systems delivered to the Indian Navy (2024)"
+        source_url: https://idrw.org/indias-quantum-leap-qnu-labs-targets-military-grade-networks-beyond-1000-km-under-national-quantum-mission/
+      - note: "Armos QKD performance validation with VIAVI Solutions on MAP-300 test platform — up to 200 km / 40 dB, QBER <4%"
+        source_url: https://thequantuminsider.com/2026/04/09/armos-qkd-real-world-readiness/
+      - note: "500 km indigenous quantum-safe intercity QKD network launched"
+        source_url: https://timestech.in/qnu-labs-launches-indigenous-500-km-quantum-safe-intercity-qkd-network/
+  enabling:
+    products:
+      - "Tropos QRNG — laser / time-of-arrival single-photon QRNG, ~100 Mbps, NIST SP 800-90B certified; deliveries to DRDO and WESEE"
+      - "Armos QKD — fibre QKD appliance, decoy-state DPS protocol, ~200 km / 40 dB reach, 10 Gbps classical co-existence"
+  software:
+    products:
+      - "Hodos — Post-Quantum Cryptography platform integrating NIST-selected PQC algorithms (ML-KEM, ML-DSA family); platform-independent (server, mobile, FPGA, PCIe); hybrid mode with Armos / Tropos / Qosmos"
+      - "Qosmos — Entropy-as-a-Service, delivering Tropos QRNG entropy over APIs"
+      - "dQKD — software-defined / digital QKD offering for IP networks without distance-bound photonic hardware"
+
+milestones:
+  - date: 2025-04
+    tag: qkd
+    headline: National Quantum Mission demonstrates 1,000 km indigenous quantum communication network built on QNu Labs' Armos platform
+    source_url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2114874&reg=3&lang=2
+    source_type: press
+  - date: 2025-04
+    tag: qkd
+    headline: Series A — INR 60 Cr (~$7.1M USD) led by National Quantum Mission (DST, INR 25 Cr); Speciale Invest, Lucky Investment, Tenacity Ventures, Singularity AMC, HDFC participate
+    source_url: https://thequantuminsider.com/2025/04/30/qnu-labs-raises-over-7m-in-funding-led-by-indias-national-quantum-mission/
+    source_type: press
+  - date: 2024
+    tag: qkd
+    headline: 25 Armos QKD systems delivered to the Indian Navy
+    source_url: https://idrw.org/indias-quantum-leap-qnu-labs-targets-military-grade-networks-beyond-1000-km-under-national-quantum-mission/
+    source_type: press
+  - date: 2023-12
+    tag: qkd
+    headline: Pre-Series A — $6.5M raised
+    source_url: https://thequantuminsider.com/2023/12/14/qnu-labs-secures-6-5-million-in-funding/
+    source_type: press
+  - date: 2023
+    tag: qkd
+    headline: ARMOS 2.0 published — commercial QKD product hardened against photon-number-splitting attacks via decoy-state DPS
+    source_url: https://www.researchgate.net/publication/368543286_ARMOS_20_an_ultra-secure_commercial_QKD_product_against_PNS_attacks
+    source_type: preprint
+  - date: 2022
+    tag: qkd
+    headline: Won iDEX Open Challenge 2.0 — 150 km QKD with trusted nodes, Indian Army trials
+    source_url: https://www.qnulabs.com/about-us
+    source_type: blog
+  - date: 2016
+    tag: enabling
+    headline: Founded by Sunil Gupta, Srinivasa Rao Aluri, Mark Mathias and Anil Prabhakar; incubated at IIT Madras Research Park
+    source_url: https://www.qnulabs.com/about-us
+    source_type: blog
+
+shareholders:
+  - holder: National Quantum Mission (DST, Govt. of India)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-04
+    source_url: https://thequantuminsider.com/2025/04/30/qnu-labs-raises-over-7m-in-funding-led-by-indias-national-quantum-mission/
+    note: Lead investor in Series A with INR 25 Cr; sole sovereign backer via DST grant-equity vehicle.
+  - holder: Speciale Invest
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-04
+    source_url: https://thequantuminsider.com/2025/04/30/qnu-labs-raises-over-7m-in-funding-led-by-indias-national-quantum-mission/
+    note: Seed and follow-on investor; Vishesh Rajaram (Managing Partner) named as key backer.
+  - holder: Lucky Investment Managers
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-04
+    source_url: https://india.entrepreneur.com/news-and-trends/qnu-labs-secures-inr-60-cr-in-series-a-led-by-national/490838
+    note: Series A participant.
+  - holder: Tenacity Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-04
+    source_url: https://india.entrepreneur.com/news-and-trends/qnu-labs-secures-inr-60-cr-in-series-a-led-by-national/490838
+    note: Series A participant.
+  - holder: Singularity AMC
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-04
+    source_url: https://india.entrepreneur.com/news-and-trends/qnu-labs-secures-inr-60-cr-in-series-a-led-by-national/490838
+    note: Series A participant.
+
+key_personnel:
+  - role: Co-founder & CEO
+    name: Sunil Gupta
+    since: 2016
+    source_url: https://www.qnulabs.com/about-us
+    note: Previously COO at Paladion Networks.
+  - role: Co-founder & Chairman
+    name: Srinivasa Rao Aluri
+    since: 2016
+    source_url: https://www.qnulabs.com/about-us
+  - role: Co-founder & CTO
+    name: Mark Mathias
+    since: 2017-01
+    source_url: https://in.linkedin.com/in/mark-mathias-72b39bb7
+    note: MS Computer Engineering (Univ. of Maryland), B.Tech ECE (IIT Madras).
+  - role: Co-founder
+    name: Anil Prabhakar
+    since: 2016
+    source_url: https://www.qnulabs.com/about-us
+    note: Professor at IIT Madras (Dept. of Electrical Engineering); brought the QKD physics work out of IITM and onto the QNu commercial roadmap. Listed historically as co-founder; current operational role on the QNu team unclear.
+
+roadmap:
+  - target: 2030
+    item: Scale toward National Quantum Mission's 2,000 km secure-communication target; deliver 1,000 km-plus quantum-safe networks to Indian Army and Indian Navy
+    source_url: https://idrw.org/indias-quantum-leap-qnu-labs-targets-military-grade-networks-beyond-1000-km-under-national-quantum-mission/
+    tag: qkd
+  - target: 2026
+    item: Global commercial expansion of Armos QKD, Tropos QRNG and Hodos PQC; dQKD rollout over IP networks
+    source_url: https://www.qnulabs.com/digital-quantum-key-distribution-qkd
+    tag: qkd
+
+current_flagship:
+  name: Armos QKD
+  generation: ARMOS 2.0 — decoy-state Differential Phase Shift (DPS) fibre QKD, 200 km / 40 dB loss budget, 10 Gbps classical co-existence
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2114874&reg=3&lang=2
+    note: Govt. of India / DST press release — QNu Labs on the 1,000 km NQM testbed (April 2025)
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2025/04/30/qnu-labs-raises-over-7m-in-funding-led-by-indias-national-quantum-mission/
+    note: Series A funding announcement
+  - kind: preprint
+    citation_key: null
+    url: https://www.researchgate.net/publication/368543286_ARMOS_20_an_ultra-secure_commercial_QKD_product_against_PNS_attacks
+    note: "ARMOS 2.0 — commercial QKD product against PNS attacks (decoy-state DPS)"
+  - kind: blog
+    citation_key: null
+    url: https://www.qnulabs.com/quantum-random-number-generator
+    note: Tropos QRNG product page — laser source, time-of-arrival single-photon detection, NIST SP 800-90B
+  - kind: blog
+    citation_key: null
+    url: https://www.qnulabs.com/quantum-key-distribution
+    note: Armos QKD product page
+  - kind: blog
+    citation_key: null
+    url: https://www.qnulabs.com/post-quantum-cryptography
+    note: Hodos PQC product page
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2026/04/09/armos-qkd-real-world-readiness/
+    note: Armos QKD validation study with VIAVI Solutions (MAP-300, 200 km / 40 dB, QBER <4%)
+  - kind: press
+    citation_key: null
+    url: https://idrw.org/indias-quantum-leap-qnu-labs-targets-military-grade-networks-beyond-1000-km-under-national-quantum-mission/
+    note: 1,000 km-plus military quantum-network roadmap under NQM
+
+partial:
+  - field: modalities.qkd.rate_distance
+    as_of: 2026-05-17
+    note: Headline numbers (8 kbps @ 50 km, 200 bps @ 200 km, 40 dB) come from vendor press and the VIAVI validation study; not yet a peer-reviewed publication. ARMOS 2.0 preprint covers protocol security but not the headline rate-distance table.
+  - field: shareholders.0.stake_class
+    as_of: 2026-05-17
+    note: NQM contribution is reported as INR 25 Cr lead but stake percentages of any Series A shareholder are not publicly disclosed.
+  - field: key_personnel.3
+    as_of: 2026-05-17
+    note: Anil Prabhakar listed historically as co-founder; current operational involvement at QNu vs. continuing IIT Madras role not confirmed from primary sources.
+
+last_verified: 2026-05-17
+verification_method: web

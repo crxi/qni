@@ -1,0 +1,188 @@
+slug: sqc
+name: Silicon Quantum Computing
+categories: [qc]
+hq: Sydney, NSW, Australia
+founded: 2017
+status: private
+parent: null
+logo:
+  domain: sqc.com.au
+
+positioning: >
+  Australian silicon-spin quantum-computing company spun out of Michelle
+  Simmons' group at UNSW Sydney, headquartered on the UNSW Kensington campus
+  inside the ARC Centre of Excellence CQC2T. Distinctive among silicon-spin
+  vendors for STM-lithographed atomic-precision placement of phosphorus
+  donors in silicon (P-in-Si), rather than the CMOS-foundry electrostatic
+  quantum-dot route taken by Diraq, Quantum Motion and Intel. First
+  commercial product is the Quantum Twins analog quantum simulator (launched
+  February 2026 for materials and chemistry), with early customers including
+  Commonwealth Bank, Telstra and the Australian Department of Defence.
+
+modalities:
+  qc:
+    qubit_type: spin-si
+    physical_qubits_current: 10
+    logical_qubits_current: 0
+    one_q_fidelity: 0.9999
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: nearest-neighbour
+    gate_set: []
+
+milestones:
+  - date: 2026-02
+    tag: qc
+    headline: Quantum Twins launched — analog quantum simulator for materials and chemistry, with companion Nature paper demonstrating up-to-99.99% qubit fidelity and 0.13 nm atomic placement precision
+    source_url: https://www.sqc.com.au/news/sqc-launches-quantum-twins
+    source_type: press
+  - date: 2025-12
+    tag: qc
+    headline: Multi-qubit multi-register processor results published — qubit quality improves rather than degrades with system scale
+    source_url: https://thequantuminsider.com/2025/12/17/sqc-study-shows-silicon-based-quantum-processor-can-scale-without-loss-of-fidelity/
+    source_type: press
+  - date: 2025-08
+    tag: qc
+    headline: Australian Department of Defence purchases SQC's Watermelon quantum-machine-learning processor
+    source_url: https://en.wikipedia.org/wiki/Silicon_Quantum_Computing
+    source_type: press
+  - date: 2025
+    tag: qc
+    headline: Selected by DARPA for Stage B of the Quantum Benchmarking Initiative
+    source_url: https://www.hpcwire.com/off-the-wire/silicon-quantum-computing-selected-by-darpa-to-advance-into-2nd-stage-of-quantum-benchmarking-initiative/
+    source_type: press
+  - date: 2025
+    tag: qc
+    headline: Grover's-algorithm demonstration reaching 98.87% of the theoretical maximum success probability on silicon spin qubits (Nature Nanotechnology)
+    source_url: https://www.nature.com/articles/s41565-024-01853-5
+    source_type: paper
+  - date: 2024-08
+    tag: qc
+    headline: AUD$50.4M Series A close at AUD$195.3M post-money valuation — CBA, Telstra, UNSW, Australian Federal Government, NSW Government
+    source_url: https://www.startupdaily.net/topic/funding/cba-telstra-back-50-million-series-a-in-silicon-quantum-computing-after-it-set-out-to-raise-130m/
+    source_type: press
+  - date: 2022-06
+    tag: qc
+    headline: Atomic-scale integrated quantum circuit — 10 phosphorus quantum dots placed with sub-nanometre precision in silicon, used as analog simulator of polyacetylene (Nature)
+    source_url: https://www.nature.com/articles/s41586-022-04706-0
+    source_type: paper
+  - date: 2019
+    tag: qc
+    headline: Three-dimensional atom-by-atom transistor demonstrated in silicon (Nature Nanotechnology)
+    source_url: https://www.nature.com/articles/s41565-018-0338-1
+    source_type: paper
+  - date: 2017-05
+    tag: qc
+    headline: SQC incorporated as a UNSW spinout with AUD$83M seed backing from UNSW, Telstra, CBA, Australian Federal Government and NSW Government
+    source_url: https://en.wikipedia.org/wiki/Silicon_Quantum_Computing
+    source_type: press
+  - date: 2012
+    tag: qc
+    headline: Simmons group at UNSW demonstrates a single-atom transistor in silicon (Nature Nanotechnology) — the scientific foundation for SQC's atomic-precision approach
+    source_url: https://www.nature.com/articles/nnano.2012.21
+    source_type: paper
+
+shareholders:
+  - holder: Australian Federal Government
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2024-08
+    source_url: https://www.innovationaus.com/govt-helps-sqc-bank-50m-in-slashed-series-a-round/
+    note: Approximately one-third stake post-Series A (~AUD$40M cumulative across seed + Series A)
+  - holder: UNSW Sydney
+    stake_percent: null
+    stake_class: founder
+    as_of: 2024-08
+    source_url: https://www.startupdaily.net/topic/funding/cba-telstra-back-50-million-series-a-in-silicon-quantum-computing-after-it-set-out-to-raise-130m/
+    note: Founding shareholder; combined UNSW + researcher contribution AUD$25M at Series A
+  - holder: Commonwealth Bank of Australia
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2024-08
+    source_url: https://www.startupdaily.net/topic/funding/cba-telstra-back-50-million-series-a-in-silicon-quantum-computing-after-it-set-out-to-raise-130m/
+    note: AUD$14M at Series A; founding seed investor
+  - holder: Telstra
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2024-08
+    source_url: https://www.startupdaily.net/topic/funding/cba-telstra-back-50-million-series-a-in-silicon-quantum-computing-after-it-set-out-to-raise-130m/
+    note: AUD$10M at Series A; founding seed investor
+  - holder: NSW Government
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2024-08
+    source_url: https://www.startupdaily.net/topic/funding/cba-telstra-back-50-million-series-a-in-silicon-quantum-computing-after-it-set-out-to-raise-130m/
+    note: AUD$8.7M at Series A
+
+key_personnel:
+  - role: Founder & CEO
+    name: Michelle Simmons
+    since: 2017
+    source_url: https://www.sqc.com.au/
+    note: Scientia Professor at UNSW Sydney; Director of the ARC Centre of Excellence for Quantum Computation and Communication Technology (CQC2T); 2018 Australian of the Year
+  - role: Chairman
+    name: Simon Segars
+    since: 2023
+    source_url: https://en.wikipedia.org/wiki/Silicon_Quantum_Computing
+    note: Former CEO of Arm Holdings
+
+roadmap:
+  - target: 2033
+    item: Commercial-scale error-corrected silicon quantum computer
+    source_url: https://postquantum.com/quantum-computing-companies/silicon-quantum-computing/
+    tag: qc
+
+current_flagship:
+  name: Quantum Twins
+  generation: P-in-Si STM-lithographed analog quantum simulator (15,000-register patterned device; 0.13 nm placement precision)
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41586-022-04706-0
+    note: Kiczynski et al., Nature 2022 — atomic-scale integrated circuit simulating polyacetylene
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41565-018-0338-1
+    note: 3D atom-by-atom transistor in silicon (Nature Nanotechnology, 2019)
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/nnano.2012.21
+    note: First single-atom transistor in silicon (Nature Nanotechnology, 2012) — scientific foundation for SQC's STM approach
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41565-024-01853-5
+    note: Grover's-algorithm demonstration at 98.87% of theoretical maximum (Nature Nanotechnology, 2025)
+  - kind: press
+    citation_key: null
+    url: https://www.sqc.com.au/news/sqc-launches-quantum-twins
+    note: Quantum Twins product launch (February 2026)
+  - kind: blog
+    citation_key: null
+    url: https://www.sqc.com.au/technology
+    note: SQC technology overview — STM-lithographed P-in-Si
+
+partial:
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.ec_code
+  - modalities.qc.gate_set
+  - field: modalities.qc.one_q_fidelity
+    as_of: 2026-05-24
+    note: 99.99% headline from SQC December 2025 / February 2026 announcements; awaiting independent benchmarking
+  - field: modalities.qc.physical_qubits_current
+    as_of: 2026-05-24
+    note: 10 reflects the 2022 atomic-scale integrated-circuit demonstrator; the Quantum Twins device patterns 15,000 registers but qubit-count semantics differ for analog simulators
+  - field: shareholders
+    as_of: 2026-05-24
+    note: Stake percentages not publicly disclosed; figures shown are dollar contributions at Series A close (August 2024)
+  - field: key_personnel.1.since
+    as_of: 2026-05-24
+    note: Segars listed as chairman in public references; exact appointment date not confirmed
+  - roadmap
+
+last_verified: 2026-05-24
+verification_method: web

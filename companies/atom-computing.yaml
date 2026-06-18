@@ -1,0 +1,275 @@
+slug: atom-computing
+name: Atom Computing
+categories: [qc]
+hq: Berkeley, California, USA
+founded: 2018
+status: private
+parent: null
+logo:
+  domain: atom-computing.com
+
+positioning: >
+  US neutral-atom quantum-computing company building nuclear-spin qubits in
+  optical tweezer arrays. Founded at UC Berkeley in 2018; HQ in Berkeley, CA
+  with a 17,000 sq-ft systems-build facility in Boulder, CO. First prototype
+  ("Phoenix", 2021) used strontium-87 atoms in a 10x10 array; the second-
+  generation platform pivoted to ytterbium-171 nuclear-spin qubits and in 2023
+  became the first gate-based quantum computer to cross 1,000 qubits
+  (1,180 atoms in a 1,225-site array). Now co-developing the 50-logical-qubit
+  Magne machine with Microsoft for delivery to QuNorth (Copenhagen) in 2027.
+
+modalities:
+  qc:
+    qubit_type: neutral-atom
+    physical_qubits_current: 1180
+    logical_qubits_current: 24
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: 40000
+    ec_code: null
+    connectivity: reconfigurable
+    gate_set: []
+  network:
+    role: research
+    products: []
+
+milestones:
+  - date: 2025-07
+    tag: qc
+    headline: >
+      Microsoft and Atom Computing announce QuNorth partnership — Magne,
+      a 50-logical-qubit / 1,225-physical-qubit neutral-atom machine, to be
+      installed in Copenhagen by EIFO and the Novo Nordisk Foundation
+      (EUR 80M acquisition); operational early 2027
+    source_url: https://thequantuminsider.com/2025/07/17/microsoft-and-atom-computing-partner-on-level-2-quantum-system-for-nordic-users/
+    source_type: press
+  - date: 2024-11
+    tag: qc
+    headline: >
+      Microsoft x Atom Computing demonstrate 24 entangled logical qubits
+      (GHZ state) on neutral-atom hardware; error-detection and correction
+      shown on 28 logical qubits; commercial machine offered via Azure
+      Quantum for 2025 delivery
+    source_url: https://azure.microsoft.com/en-us/blog/quantum/2024/11/19/microsoft-and-atom-computing-offer-a-commercial-quantum-machine-with-the-largest-number-of-entangled-logical-qubits-on-record/
+    source_type: blog
+  - date: 2024-09
+    tag: qc
+    headline: >
+      Unattributed late-stage financing round (~USD 10.5M) with participation
+      from PensionDanmark; sets up Nordic deployment
+    source_url: https://pitchbook.com/profiles/company/231917-41
+    source_type: filing
+  - date: 2023-10
+    tag: qc
+    headline: >
+      Second-generation system unveiled — 1,225-site optical array populated
+      with 1,180 ytterbium-171 nuclear-spin qubits; first gate-based platform
+      past 1,000 qubits
+    source_url: https://www.prnewswire.com/news-releases/quantum-startup-atom-computing-first-to-exceed-1-000-qubits-301964712.html
+    source_type: press
+  - date: 2022-09
+    tag: qc
+    headline: >
+      Opens 17,000 sq-ft systems-build facility in Boulder, CO — site for
+      next-generation 1,000+ qubit machines
+    source_url: https://thequantuminsider.com/2022/09/28/silicon-valley-up-start-atom-computing-chooses-colorado-to-build-next-generation-quantum-computers/
+    source_type: press
+  - date: 2022-01
+    tag: qc
+    headline: >
+      USD 60M Series B led by Third Point Ventures and Prime Movers Lab to
+      build the second-generation machine
+    source_url: https://thequantuminsider.com/2022/01/20/atom-computing-raises-60-million-series-b-to-build-second-generation-quantum-computer/
+    source_type: press
+  - date: 2021-07
+    tag: qc
+    headline: >
+      Unveils Phoenix, first-generation 100-qubit neutral-atom system based
+      on a 10x10 strontium-87 optical tweezer array; closes USD 15M Series A
+    source_url: https://www.prnewswire.com/news-releases/atom-computing-unveils-first-generation-quantum-computing-system----appoints-new-ceo-after-closing-15-million-in-series-a-funding-301338000.html
+    source_type: press
+  - date: 2018-01
+    tag: qc
+    headline: >
+      Company founded by Ben Bloom and Jonathan King in Berkeley, CA;
+      USD 5M seed round
+    source_url: https://chemistry.berkeley.edu/news/atom-computing-receives-vc-funding-create-radical-new-paradigm-quantum-computing
+    source_type: press
+
+shareholders:
+  - holder: Third Point Ventures
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2022-01
+    source_url: https://thequantuminsider.com/2022/01/20/atom-computing-raises-60-million-series-b-to-build-second-generation-quantum-computer/
+    note: Co-led USD 60M Series B (Jan 2022)
+  - holder: Prime Movers Lab
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2022-01
+    source_url: https://thequantuminsider.com/2022/01/20/atom-computing-raises-60-million-series-b-to-build-second-generation-quantum-computer/
+    note: Co-led USD 60M Series B (Jan 2022); prior Series A lead
+  - holder: Innovation Endeavors
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2022-01
+    source_url: https://www.crunchbase.com/organization/atom-computing
+    note: Early-stage investor; participated through Series B
+  - holder: Venrock
+    stake_percent: null
+    stake_class: minority
+    as_of: 2022-01
+    source_url: https://www.crunchbase.com/organization/atom-computing
+    note: Series A / B participation
+  - holder: Prelude Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2022-01
+    source_url: https://www.crunchbase.com/organization/atom-computing
+    note: Participated in Series A / B
+  - holder: PensionDanmark
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-09
+    source_url: https://pitchbook.com/profiles/company/231917-41
+    note: 2024 late-stage financing; tied to subsequent Nordic deployment
+  - holder: Ben Bloom
+    stake_percent: null
+    stake_class: founder
+    as_of: 2018-01
+    source_url: https://atom-computing.com/about-us/
+    note: Co-founder; current CEO
+  - holder: Jonathan King
+    stake_percent: null
+    stake_class: founder
+    as_of: 2018-01
+    source_url: https://atom-computing.com/about-us/
+    note: Co-founder; current Chief Scientist
+
+key_personnel:
+  - role: CEO & Founder
+    name: Ben Bloom
+    since: 2024-07
+    source_url: https://thequantuminsider.com/2024/07/12/ben-bloom-returns-as-ceo-of-atom-computing/
+    note: >
+      Co-founded the company in 2018; CTO during the Rob Hays CEO tenure
+      (2021-2024); returned to CEO role July 2024 after Hays' departure.
+  - role: Co-Founder & Chief Scientist
+    name: Jonathan King
+    since: 2018
+    source_url: https://atom-computing.com/about-us/
+    note: Leads applications and benchmarking
+  - role: Former CEO
+    name: Rob Hays
+    since: 2021
+    source_url: https://www.prnewswire.com/news-releases/atom-computing-unveils-first-generation-quantum-computing-system----appoints-new-ceo-after-closing-15-million-in-series-a-funding-301338000.html
+    note: >
+      CEO from July 2021 through mid-2024; previously held senior roles at
+      Lenovo and Intel. Stepped down July 2024; Bloom resumed CEO.
+
+roadmap:
+  - target: 2025
+    item: >
+      Deliver commercial machine with Microsoft on Azure Quantum based on the
+      24/28-logical-qubit architecture
+    source_url: https://azure.microsoft.com/en-us/blog/quantum/2024/11/19/microsoft-and-atom-computing-offer-a-commercial-quantum-machine-with-the-largest-number-of-entangled-logical-qubits-on-record/
+    tag: qc
+  - target: 2026
+    item: >
+      Advance quantum error correction, develop networking technology for
+      modular scale-up, and design third-generation systems with ~10,000
+      physical qubits (~10x prior generation)
+    source_url: https://atom-computing.com/wp-content/uploads/2025/01/Atom-Computing-Whitepaper-2025.pdf
+    tag: qc
+  - target: 2027
+    item: >
+      Magne — 50 logical qubits built from ~1,225 physical neutral-atom
+      qubits — operational at QuNorth, Copenhagen (with Microsoft); Level-2
+      fault-tolerant commercial system
+    source_url: https://quantumcomputingreport.com/denmarks-qunorth-to-acquire-50-logical-qubit-magne-quantum-computer-from-atom-computing-and-microsoft/
+    tag: qc
+
+current_flagship:
+  name: Atom Computing 2nd-generation system
+  generation: neutral-atom Yb-171 nuclear-spin (1,180-qubit class)
+
+references:
+  - kind: blog
+    citation_key: null
+    url: https://azure.microsoft.com/en-us/blog/quantum/2024/11/19/microsoft-and-atom-computing-offer-a-commercial-quantum-machine-with-the-largest-number-of-entangled-logical-qubits-on-record/
+    note: >
+      Microsoft Azure Quantum blog (Nov 2024) — 24 entangled logical qubits,
+      28 logical qubits with error detection / correction, commercial offering.
+  - kind: press
+    citation_key: null
+    url: https://www.prnewswire.com/news-releases/quantum-startup-atom-computing-first-to-exceed-1-000-qubits-301964712.html
+    note: >
+      First gate-based platform past 1,000 qubits — 1,180 Yb-171 atoms in a
+      1,225-site array (Oct 2023).
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41534-024-00898-7
+    note: >
+      Two-qubit encoding in neutral ytterbium-171 atoms (npj Quantum
+      Information, 2024) — Atom Computing-authored architecture paper for the
+      Yb-171 nuclear-spin platform.
+  - kind: paper
+    citation_key: null
+    url: https://journals.aps.org/prxquantum/abstract/10.1103/28h7-jl1v
+    note: >
+      Three-qubit encoding in Yb-171 atoms for simulating 1+1D QCD (PRX
+      Quantum) — further work on the Yb-171 platform; preprint at
+      arXiv:2507.18426.
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2025/07/17/microsoft-and-atom-computing-partner-on-level-2-quantum-system-for-nordic-users/
+    note: >
+      QuNorth / Magne announcement — 50-logical-qubit machine to Copenhagen
+      via EIFO and Novo Nordisk Foundation (Jul 2025).
+  - kind: blog
+    citation_key: null
+    url: https://atom-computing.com/wp-content/uploads/2025/01/Atom-Computing-Whitepaper-2025.pdf
+    note: 2025 company whitepaper — roadmap, architecture, error-correction plans.
+
+partial:
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.gate_set
+  - field: modalities.qc.coherence_t2_ms
+    as_of: 2026-05-13
+    note: >
+      40-second nuclear-spin coherence widely cited from 2022-2023 Atom
+      Computing announcements; not from a peer-reviewed Atom-Computing paper
+      reference checked here. This is a coherence (idle) time; gate-fidelity
+      figures have not been separately verified here.
+  - field: modalities.qc.ec_code
+    as_of: 2026-05-13
+    note: >
+      Microsoft + Atom Computing 24-logical-qubit work uses a [[d,1,d]] color
+      / surface-style code per Azure Quantum blog; no Atom-Computing
+      peer-reviewed code-paper citation found.
+  - field: modalities.qc.logical_qubits_current
+    as_of: 2026-05-13
+    note: >
+      24 entangled logical qubits demonstrated (28 with EC) in the
+      Microsoft x Atom Computing Nov 2024 blog; the peer-reviewed paper has not been independently confirmed.
+  - field: modalities.network.role
+    as_of: 2026-05-13
+    note: >
+      Atom Computing has stated 2026 networking-technology development as a
+      roadmap item; no networking product or atom-photon entanglement paper
+      has been published under the Atom Computing name as of this
+      verification date. Strontium-87 and Yb-171
+      neutral-atom platforms emit photons at optical wavelengths natively, so
+      a microwave-to-optical transducer is not required for inter-machine
+      photonic interconnect — a structural advantage over superconducting
+      platforms. Closest external reference: PRX Quantum 6, 010101 (2025)
+      and Nature Communications 16 (2025) on nanofiber- and cavity-mediated
+      atom-photon entanglement (not Atom Computing-authored).
+  - shareholders
+  - key_personnel.CTO
+
+last_verified: 2026-05-13
+verification_method: web

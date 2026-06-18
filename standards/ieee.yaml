@@ -1,0 +1,98 @@
+body:
+  id: ieee
+  name: Institute of Electrical and Electronics Engineers
+  short_name: IEEE
+  url: https://standards.ieee.org
+  scope: >
+    IEEE Standards Association develops engineering standards across
+    electrical, electronic, and computing fields. Quantum work is in
+    the IEEE Quantum Initiative; standards live under the Computer
+    Society. All entries below are "P" (project) numbers - active
+    drafts that have not yet been ratified as full IEEE Standards.
+  notes: >
+    Two clusters: P7130-series on quantum-computing definitions and
+    performance metrics, and P3120-series targeting an interoperable
+    programmable-quantum-computer architecture. As of mid-2026 these
+    are pre-publication and serve mainly as community-consensus
+    forums rather than deployable specifications.
+
+standards:
+  - id: P7130
+    title: Standard for Quantum Technologies Definitions
+    type: draft
+    date: 2021-09
+    group: IEEE Computer Society (QCN-WG)
+    tags: [qkd-protocol, qnet]
+    status: draft
+    url: https://standards.ieee.org/ieee/7130/10680/
+    summary: >
+      Vocabulary standard for quantum technologies - terminology for
+      qubit types, gates, error correction, and performance metrics.
+      Intended as the IEEE counterpart to ISO/IEC vocabulary work.
+    note: PAR approved 2021-09; working group is QCN-WG (Quantum Computing Nomenclature).
+
+  - id: P7131
+    title: Standard for Quantum Computing Performance Metrics & Performance Benchmarking
+    type: draft
+    date: 2024
+    group: IEEE Quantum Initiative
+    tags: []
+    status: draft
+    url: https://standards.ieee.org/ieee/7131/10681/
+    summary: >
+      Performance-metric and benchmarking standard for quantum
+      computers: layer-fidelity, quantum-volume successors, application-
+      level benchmarks. Out of /standards page scope (compute, not
+      network) but listed for completeness.
+
+  - id: P3120
+    title: Standard for Quantum Computing Architecture
+    type: draft
+    date: 2024
+    group: IEEE Computer Society
+    tags: []
+    status: draft
+    url: https://standards.ieee.org/ieee/3120/11359/
+    summary: >
+      Architectural standard for quantum computers - defines a
+      technical architecture across qubit modalities (superconducting,
+      neutral atoms, trapped ions, photonic, NV centres) and operating
+      modes (digital, analog). Covers hardware (signal generation),
+      low-level software (error correction), and programming method.
+      Compute-side; tracked here because it anchors the IEEE
+      quantum-standards effort.
+
+  - id: P3155
+    title: Standard for Programmable Quantum Simulator
+    type: draft
+    date: 2024
+    group: IEEE Computer Society
+    tags: []
+    status: draft
+    url: https://standards.ieee.org/ieee/3155/10845/
+    summary: >
+      Programming-method standard for quantum simulators covering
+      analog (target Hamiltonian), digital (non-native Hamiltonian
+      evolution) and hybrid (quantum-quantum, quantum-classical)
+      devices. Compute-side.
+    note: Listed for completeness; not a network standard.
+
+  - id: P3329
+    title: Standard for Quantum Computing Energy Efficiency
+    type: draft
+    date: 2024
+    group: IEEE Computer Society
+    tags: [policy]
+    status: draft
+    url: https://standards.ieee.org/ieee/3329/11162/
+    summary: >
+      Draft standard for measuring and reporting the energy efficiency
+      of quantum computing systems. Defines metrics, measurement
+      methods, and reporting conventions. Compute-side; relevant to the
+      operational-cost framing for data-centre-class quantum systems
+      and to the planning question of whether quantum compute is a net
+      energy win versus the classical baseline for a given workload.
+    note: >
+      Pairs naturally with the IEEE P7130 definitions standard. Not a
+      network standard; included because it is a near-term IEEE
+      deliverable in the quantum-standards estate.

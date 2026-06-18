@@ -1,0 +1,140 @@
+slug: mitsubishi-electric
+name: Mitsubishi Electric Corporation (Quantum R&D)
+categories: [qkd, network]
+hq: Chiyoda, Tokyo, Japan
+founded: 1921
+status: public
+parent: null
+logo:
+  domain: mitsubishielectric.com
+
+positioning: >
+  Mitsubishi Electric's quantum-communications research programme runs out of
+  the Information Technology R&D Center (Kamakura) and MERL (Cambridge MA).
+  One of the four Japanese operators of the NICT-led Tokyo QKD Network in
+  2010, supplying a decoy-state BB84 link on the 24 km Otemachi–Hakusan
+  section. Current work spans a LEO on-orbit QKD payload demonstration with
+  NICT (Terran Orbital Nebula bus, selected January 2026) and a February
+  2025 joint research agreement with Quantinuum K.K., Keio University,
+  SoftBank and partners on scalable quantum information processing. A
+  corporate research programme, not a standalone product line.
+
+business_units:
+  - name: Information Technology R&D Center
+    scope: Quantum cryptography, quantum information processing, satellite optical communications
+    hq: Kamakura, Kanagawa, Japan
+    lead: ""
+    source_url: https://www.mitsubishielectric.com/rd/research/information_technology/index.html
+  - name: Mitsubishi Electric Research Laboratories (MERL)
+    scope: Quantum AI / quantum-algorithm research; US-based wholly-owned subsidiary
+    hq: Cambridge, Massachusetts, USA
+    lead: ""
+    source_url: https://www.merl.com/research/highlights/quantum-ai
+
+modalities:
+  qkd:
+    protocol: [BB84, decoy-state]
+    rate_distance: "Tokyo QKD link (2010): 24 km Otemachi–Hakusan loopback, decoy-state BB84, 13 dB total loss; satellite QKD payload (Terran Orbital Nebula bus) under development for LEO on-orbit demonstration"
+    deployed_demos:
+      - Tokyo QKD Network (2010) — Mitsubishi Electric operated the 24 km Otemachi–Hakusan decoy-state BB84 loopback link alongside NEC, NTT-NICT, Toshiba Cambridge / Stanford, ID Quantique and AIT
+      - Mitsubishi Electric / NICT LEO QKD payload mission (announced 2026-01, in development) — on-orbit demonstration of a satellite QKD + optical-terminal payload on the Terran Orbital Nebula bus
+  network:
+    role: research
+    products: []
+
+milestones:
+  - date: 2026-01
+    tag: qkd
+    headline: Terran Orbital (Lockheed Martin) selected to provide its Nebula satellite bus for the Mitsubishi Electric / NICT LEO QKD on-orbit demonstration mission
+    source_url: https://satnews.com/2026/01/28/terran-orbital-to-provide-nebula-platform-for-mitsubishi-electric-qkd-mission/
+    source_type: press
+  - date: 2025-02
+    tag: network
+    headline: Joint research agreement with Quantinuum K.K., Keio University, SoftBank, Mitsui & Co., Yokohama National University and LQUOM on scalable quantum information processing (intra-site, inter-city and global quantum-internet interconnect)
+    source_url: https://www.mitsubishielectric.com/en/pr/2025/0227/
+    source_type: press
+  - date: 2011-06
+    tag: qkd
+    headline: Sasaki et al. report the Tokyo QKD Network field test in Optics Express; Mitsubishi Electric operated the 24 km Otemachi–Hakusan decoy-state BB84 loopback link
+    source_url: https://opg.optica.org/oe/viewmedia.cfm?uri=oe-19-11-10387&html=true
+    source_type: paper
+  - date: 2010-10
+    tag: qkd
+    headline: Tokyo QKD Network public launch at UQCC2010 — Mitsubishi Electric one of four Japanese operators alongside NEC, NTT-NICT and Toshiba (Cambridge / Stanford)
+    source_url: http://www.uqcc.org/QKDnetwork/
+    source_type: press
+
+shareholders:
+  - holder: The Master Trust Bank of Japan, Ltd. (Trust account)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-03
+    source_url: https://www.mitsubishielectric.com/en/ir/stock/major/
+    note: Largest registered holder; standard Japanese trust-bank custodial vehicle aggregating multiple beneficial owners. Exact percent not confirmed against a public filing.
+  - holder: Custody Bank of Japan, Ltd. (Trust account)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-03
+    source_url: https://www.mitsubishielectric.com/en/ir/stock/major/
+    note: Trust-bank custodial vehicle.
+  - holder: Mitsubishi-group cross-shareholdings
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-03
+    source_url: https://www.mitsubishielectric.com/en/ir/stock/major/
+    note: Mitsubishi Electric is part of the Mitsubishi keiretsu; cross-held by Mitsubishi UFJ Financial Group and other Mitsubishi-group entities. Exact allocations not confirmed against a public filing.
+
+key_personnel:
+  - role: President & CEO, Mitsubishi Electric Corporation
+    name: Kei Uruma
+    since: 2021-07
+    source_url: https://www.mitsubishielectric.com/en/about/management/profile/
+  - role: Director, Information Technology R&D Center
+    name: ""
+    since: ""
+    source_url: https://www.mitsubishielectric.com/rd/research/information_technology/index.html
+    note: Director name not found in English-language materials.
+
+roadmap: []
+
+current_flagship:
+  name: Tokyo QKD Network heritage link + LEO QKD payload (in development)
+  generation: terrestrial decoy-state BB84 (2010 heritage); LEO satellite QKD payload under joint development with NICT, satellite bus contracted to Terran Orbital (2026)
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://opg.optica.org/oe/viewmedia.cfm?uri=oe-19-11-10387&html=true
+    note: Sasaki et al., "Field test of quantum key distribution in the Tokyo QKD Network", Optics Express 19, 10387 (2011) — canonical reference for the Mitsubishi Electric 24 km Otemachi–Hakusan loopback link
+  - kind: press
+    citation_key: null
+    url: https://www.mitsubishielectric.com/en/pr/2025/0227/
+    note: Mitsubishi Electric press release announcing the February 2025 six-party joint research agreement on scalable quantum information processing
+  - kind: press
+    citation_key: null
+    url: https://satnews.com/2026/01/28/terran-orbital-to-provide-nebula-platform-for-mitsubishi-electric-qkd-mission/
+    note: Terran Orbital / Lockheed Martin announcement of the Nebula bus selection for the Mitsubishi Electric LEO QKD demonstration mission (January 2026)
+  - kind: blog
+    citation_key: null
+    url: http://www.uqcc.org/QKDnetwork/
+    note: UQCC project page documenting the 2010 Tokyo QKD Network launch and link assignments
+  - kind: blog
+    citation_key: null
+    url: https://www.merl.com/research/highlights/quantum-ai
+    note: MERL Quantum AI research highlights page
+
+partial:
+  - field: roadmap
+    as_of: 2026-05-20
+    note: Mitsubishi Electric does not publish a public quantum-communications roadmap with target dates. The LEO QKD payload mission has no announced launch date; the Quantinuum / Keio / SoftBank / Mitsui / YNU / LQUOM agreement is open-ended research.
+  - business_units.0.lead
+  - business_units.1.lead
+  - shareholders.0.stake_percent
+  - shareholders.1.stake_percent
+  - shareholders.2.stake_percent
+  - field: key_personnel
+    as_of: 2026-05-20
+    note: Mitsubishi Electric does not publish a dedicated "Head of Quantum" English-language role; the IT R&D Center director and the quantum-cryptography group lead are not separately disclosed.
+
+last_verified: 2026-05-20
+verification_method: web

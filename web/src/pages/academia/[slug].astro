@@ -1,0 +1,246 @@
+---
+/**
+ * /academia/<slug> — per-research-group dossier page.
+ *
+ * Reads qni/academia/<slug>.yaml via the academia loader (see
+ * src/lib/academia.ts). getStaticPaths emits one static page per YAML.
+ */
+import Infographic from "../../layouts/Infographic.astro";
+import Center from "../../components/Center.astro";
+import Stack from "../../components/Stack.astro";
+import SiteNav from "../../components/SiteNav.astro";
+import {
+  ACADEMIA,
+  CATEGORY_LABEL,
+  STALE_THRESHOLD_DAYS,
+  daysSinceVerified,
+  formatDateLabel,
+  type AcademiaGroup,
+} from "../../lib/academia.ts";
+import { url } from "../../lib/url";
+
+export async function getStaticPaths() {
+  return ACADEMIA.map((group) => ({
+    params: { slug: group.slug },
+    props: { group },
+  }));
+}
+
+interface Props { group: AcademiaGroup; }
+const { group } = Astro.props;
+
+const sections = [
+  { id: "overview",    label: "Overview" },
+  { id: "milestones",  label: "Milestones" },
+  { id: "people",      label: "People" },
+  { id: "funding",     label: "Funding" },
+  { id: "references",  label: "References" },
+];
+
+const staleDays = daysSinceVerified(group);
+const isStale = staleDays > STALE_THRESHOLD_DAYS;
+
+function parseDate(input: string | number | Date): number {
+  if (input instanceof Date) return input.getTime();
+  const s = String(input);
+  const [y, m] = s.split("-").map((n) => parseInt(n, 10));
+  return new Date(y, (m ?? 1) - 1).getTime();
+}
+const milestones = [...group.milestones].sort(
+  (a, b) => parseDate(b.date) - parseDate(a.date),
+);
+---
+
+<Infographic title={`${group.name} — academia dossier`} description={group.positioning}>
+  <SiteNav slot="nav" currentSubject="academia" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>{group.name}</h1>
+        <div class="tags">
+          {group.categories.map((c) => (
+            <span class={`cat-pill cat-${c}`}>{CATEGORY_LABEL[c]}</span>
+          ))}
+          <span class="status-pill">{group.status}</span>
+          {group.spinout_company && (
+            <span class="spinout-pill">
+              spinout:{" "}
+              <a href={url(`/companies/${group.spinout_company}`)}>{group.spinout_company}</a>
+            </span>
+          )}
+        </div>
+        <dl class="institution">
+          <div><dt>Institution</dt><dd>{group.institution.name}</dd></div>
+          {group.institution.lab && (
+            <div><dt>Lab / Centre</dt><dd>{group.institution.lab}</dd></div>
+          )}
+          {group.institution.also && (
+            <div><dt>Also</dt><dd>{group.institution.also}</dd></div>
+          )}
+          <div><dt>Location</dt><dd>{group.hq}</dd></div>
+          {group.group_website && (
+            <div>
+              <dt>Group website</dt>
+              <dd><a href={group.group_website} target="_blank" rel="noopener">{group.group_website}</a></dd>
+            </div>
+          )}
+          {group.founded && <div><dt>Group founded</dt><dd>{group.founded}</dd></div>}
+        </dl>
+        <p class="positioning">{group.positioning}</p>
+        {group.current_focus && (
+          <div class="current-focus">
+            <strong>Current focus:</strong> {group.current_focus.name}
+            {group.current_focus.description && ` — ${group.current_focus.description}`}
+          </div>
+        )}
+        {isStale && (
+          <p class="stale">
+            ⚠ Last verified {staleDays} days ago — info may be out of date.
+          </p>
+        )}
+      </header>
+
+      <section id="milestones" data-nav-section>
+        <h2>Milestones</h2>
+        {milestones.length === 0 ? (
+          <p class="empty">No milestones recorded yet.</p>
+        ) : (
+          <ol class="milestones">
+            {milestones.map((m) => (
+              <li>
+                <span class="date">{formatDateLabel(m.date)}</span>
+                <span class="headline">{m.headline}</span>
+                <a class="source" href={m.source_url} target="_blank" rel="noopener">
+                  {m.source_type}
+                </a>
+              </li>
+            ))}
+          </ol>
+        )}
+      </section>
+
+      <section id="people" data-nav-section>
+        <h2>People</h2>
+        {group.key_personnel && group.key_personnel.length > 0 ? (
+          <ul class="people">
+            {group.key_personnel.map((p) => (
+              <li>
+                <strong>{p.name}</strong>
+                <span class="role">— {p.role}</span>
+                {p.since && <span class="since"> (since {p.since})</span>}
+                {p.source_url && (
+                  <>
+                    {" "}
+                    <a href={p.source_url} target="_blank" rel="noopener">↗</a>
+                  </>
+                )}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="empty">PI list not recorded.</p>
+        )}
+      </section>
+
+      <section id="funding" data-nav-section>
+        <h2>Funding</h2>
+        {group.funding_sources && group.funding_sources.length > 0 ? (
+          <ul class="funding">
+            {group.funding_sources.map((f) => (
+              <li>
+                {f.source_url ? (
+                  <strong><a href={f.source_url} target="_blank" rel="noopener">{f.name}</a></strong>
+                ) : (
+                  <strong>{f.name}</strong>
+                )}
+                {f.role && <span class="note"> — {f.role}</span>}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="empty">Funding sources not recorded.</p>
+        )}
+      </section>
+
+      <section id="references" data-nav-section>
+        <h2>References</h2>
+        {group.references && group.references.length > 0 ? (
+          <ul class="refs">
+            {group.references.map((r) => (
+              <li>
+                {r.citation_key && <code>[@{r.citation_key}]</code>}
+                {" "}
+                <a href={r.url} target="_blank" rel="noopener">{r.note || r.url}</a>
+                <span class="kind"> ({r.kind})</span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="empty">No references compiled.</p>
+        )}
+      </section>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<style>
+  .hero { padding-block: var(--space-6) var(--space-4); border-block-end: 1px solid var(--color-rule); display: grid; gap: var(--space-3); }
+  .hero h1 { margin: 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .institution {
+    display: grid; gap: var(--space-1);
+    margin: 0; padding: var(--space-3);
+    background: var(--color-surface-2); border-radius: var(--radius);
+    font-size: var(--text-sm);
+  }
+  .institution div { display: grid; grid-template-columns: 11rem 1fr; gap: var(--space-2); }
+  .institution dt { color: var(--color-text-mute); text-transform: uppercase; letter-spacing: var(--tracking-wide); font-size: var(--text-xs); font-weight: 600; align-self: center; }
+  .institution dd { margin: 0; color: var(--color-text); overflow-wrap: anywhere; }
+  @media (max-width: 40rem) { .institution div { grid-template-columns: 1fr; gap: 0; } }
+  .positioning { margin: 0; }
+  .current-focus {
+    padding: var(--space-3);
+    border-inline-start: 3px solid var(--color-accent);
+    background: var(--color-surface-2);
+    border-radius: var(--radius-sm);
+  }
+  .stale { color: #b85116; font-size: var(--text-sm); }
+  section { display: grid; gap: var(--space-3); min-inline-size: 0; }
+  .milestones, .people, .funding, .refs {
+    display: grid; gap: var(--space-2); padding-inline-start: var(--space-4);
+  }
+  .milestones li { display: grid; grid-template-columns: 6rem 1fr auto; gap: var(--space-2); align-items: baseline; }
+  .milestones .date { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-text-mute); }
+  .milestones .source { text-transform: uppercase; letter-spacing: 0.06em; font-size: var(--text-xs); color: var(--color-accent); }
+  @media (max-width: 40rem) { .milestones li { grid-template-columns: 1fr; } }
+  .role { color: var(--color-text-mute); }
+  .since { color: var(--color-text-mute); font-size: var(--text-sm); }
+  .refs code { font-size: var(--text-xs); background: var(--color-surface-2); padding: 0 0.25rem; border-radius: 4px; }
+  .refs .kind { color: var(--color-text-mute); font-size: var(--text-xs); }
+  .status-pill { display: inline-flex; align-items: center; font-size: var(--text-xs); padding: 0.18rem 0.5rem; border-radius: 999px; background: var(--color-surface-2); color: var(--color-text-mute); }
+  .spinout-pill {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    font-size: var(--text-xs);
+    padding: 0.18rem 0.5rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+    color: var(--color-text-mute);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
+    white-space: nowrap;
+  }
+  .spinout-pill a { color: var(--color-accent); text-decoration: none; font-weight: 600; }
+  .spinout-pill a:hover { text-decoration: underline; }
+  .cat-pill { display: inline-flex; align-items: center; font-size: var(--text-xs); line-height: 1; padding: 0.18rem 0.5rem; border-radius: 999px; border: 1px solid transparent; white-space: nowrap; }
+  .cat-qc            { background: color-mix(in srgb, #3b82f6 18%, transparent); color: #2353c7; border-color: color-mix(in srgb, #3b82f6 40%, transparent); }
+  .cat-qkd           { background: color-mix(in srgb, #8b5cf6 18%, transparent); color: #6c40d9; border-color: color-mix(in srgb, #8b5cf6 40%, transparent); }
+  .cat-memory        { background: color-mix(in srgb, #10b981 18%, transparent); color: #0c8a64; border-color: color-mix(in srgb, #10b981 40%, transparent); }
+  .cat-network       { background: color-mix(in srgb, #06b6d4 18%, transparent); color: #0289a2; border-color: color-mix(in srgb, #06b6d4 40%, transparent); }
+  .cat-source-detect { background: color-mix(in srgb, #f59e0b 18%, transparent); color: #b16e00; border-color: color-mix(in srgb, #f59e0b 40%, transparent); }
+  .cat-sensing       { background: color-mix(in srgb, #ef4444 18%, transparent); color: #c53030; border-color: color-mix(in srgb, #ef4444 40%, transparent); }
+  .cat-software      { background: color-mix(in srgb, #6b7280 18%, transparent); color: #4b5563; border-color: color-mix(in srgb, #6b7280 40%, transparent); }
+  .cat-enabling      { background: color-mix(in srgb, #ec4899 18%, transparent); color: #be1f7a; border-color: color-mix(in srgb, #ec4899 40%, transparent); }
+  .empty { color: var(--color-text-mute); }
+</style>

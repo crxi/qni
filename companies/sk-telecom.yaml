@@ -1,0 +1,240 @@
+slug: sk-telecom
+name: SK Telecom
+categories: [network, qkd, enabling]
+hq: Seoul, South Korea
+founded: 1984
+status: public
+parent: null
+logo:
+  domain: sktelecom.com
+
+positioning: >
+  South Korea's largest mobile carrier (KOSPI:017670, NYSE:SKM) and the
+  operator-side anchor of Korea's commercial quantum-network programme.
+  This dossier covers SKT's *own* quantum activities — its Quantum Tech Lab
+  (est. 2011), the QKD overlay deployed on its commercial 5G/LTE backbone
+  by SK Broadband, the QRNG integration into the Samsung Galaxy Quantum
+  line, and SKT's ITU-T/ETSI standardisation work — not the underlying
+  hardware, which is supplied by ID Quantique (separate dossier;
+  formerly an SKT/SK Square subsidiary, controlling stake transferred to
+  IonQ in May 2025). SKT is now a strategic partner of both IDQ and IonQ
+  via a ~3.1% IonQ equity position taken in the same transaction.
+
+business_units:
+  - name: Quantum Tech Lab
+    scope: Internal R&D arm established 2011; develops QKD/QRNG integration into telecom infrastructure, leads SKT's standardisation contributions, and drives the QKD+PQC hybrid key-management agenda
+    hq: Seoul, South Korea
+    lead: ""
+    source_url: https://news.sktelecom.com/en/853
+  - name: SK Broadband
+    scope: Wholly-owned fixed-line subsidiary; operates the deployed nationwide QKD overlay (Seoul-Daejeon-Daegu trunk, 48-agency government network) using IDQ Cerberis hardware
+    hq: Seoul, South Korea
+    lead: ""
+    source_url: https://www.idquantique.com/idq-and-sk-broadband-complete-phase-one-of-nation-wide-korean-qkd-network/
+
+modalities:
+  qkd:
+    protocol: [BB84, decoy-state]
+    rate_distance: "10 kbps secure key rate over 50 km dedicated quantum channel; AES-256 line encryption multiplexed to 120 Gbps in commercial deployment"
+    deployed_demos:
+      - note: Seoul-Daejeon-Daegu 5G/LTE backbone — ~330 km QKD overlay on SKT's most data-heavy commercial section (2019)
+        source_url: https://www.idquantique.com/sk-telecom-continues-to-protect-its-5g-network-with-quantum-cryptography-technologies/
+      - note: Bundang-Junggu switching-centre link inside Seoul — first production-traffic QKD encryption on a commercial mobile network
+        source_url: https://www.idquantique.com/sk-telecom-continues-to-protect-its-5g-network-with-quantum-cryptography-technologies/
+      - note: Nationwide QKD network for the Korean government — 800 km converged backbone connecting 48 government agencies across 27 QKD links, three rings, one daisy chain, 10 trusted relays; operated by SK Broadband with IDQ
+        source_url: https://www.idquantique.com/idq-and-sk-broadband-complete-phase-one-of-nation-wide-korean-qkd-network/
+      - note: Smart-power-plant 5G quantum-cryptography pilot (with KOSPO) — first industrial-control deployment in Korea
+        source_url: https://www.idquantique.com/id-quantique-and-sk-telecom-announce-the-first-smart-power-plant-secured-by-5g-quantum-cryptography/
+      - note: DGB Daegu Bank mobile-banking service secured end-to-end with QKD-derived keys
+        source_url: https://news.sktelecom.com/en/1233
+      - note: Equinix–SKT inter-data-centre QKD service for enterprise customers in Korea
+        source_url: https://www.datacenterdynamics.com/en/news/equinix-and-sk-telecom-to-provide-quantum-cryptography-between-data-centers/
+  network:
+    role: operator
+    products: []
+  enabling:
+    products:
+      - Galaxy Quantum series — Samsung 5G handsets bundled with IDQ Quantis QRNG chip and SKT services (T-ID 2FA, SK Pay biometric auth, mobile e-certification); Galaxy A Quantum (2020), Quantum 2 (2021), Quantum 3 (2022), Quantum 4 (2023), Quantum 5 (Aug 2024)
+      - QKD+PQC hybrid key-management framework — SKT-led ITU-T contribution combining QKD-secured trunk sections with PQC-secured access sections under one key-management plane
+
+milestones:
+  - date: 2025-05
+    tag: qkd
+    headline: SKT/SK Square swap entire 56.9% IDQ stake for ~3.1% of IonQ (~$228M / KRW 330B all-stock); SKT becomes IonQ strategic partner and continues using IDQ hardware on its QKD network
+    source_url: https://www.ionq.com/news/ionq-completes-acquisition-of-id-quantique-cementing-leadership-in-quantum
+    source_type: press
+  - date: 2025-02
+    tag: qc
+    headline: SKT signs MoU with IonQ on AI + quantum computing
+    source_url: https://www.sktelecom.com/en/press/press_detail.do?idx=1633
+    source_type: press
+  - date: 2024-08
+    tag: enabling
+    headline: Galaxy Quantum 5 launched on SKT — fifth-generation QRNG-equipped handset (28 August 2024)
+    source_url: https://thequantuminsider.com/2024/09/02/sk-telecom-partners-with-id-quantique-for-samsung-galaxy-quantum-5/
+    source_type: press
+  - date: 2023-12
+    tag: qkd
+    headline: SKT × Thales trial PQC on a commercial 5G standalone network — extends quantum-safe protection from QKD-secured trunk to the radio-access edge
+    source_url: https://techblog.comsoc.org/2023/12/20/sk-telecom-and-thales-trial-post-quantum-cryptography-to-enhance-users-protection-on-5g-sa-network/
+    source_type: press
+  - date: 2023-08
+    tag: qkd
+    headline: SKT's QKD-network interworking specs (SDN control for multi-vendor QKD; framework for inter-operator QKD federation) approved as ITU-T study items
+    source_url: https://news.sktelecom.com/en/686
+    source_type: press
+  - date: 2023-06
+    tag: enabling
+    headline: Galaxy Quantum 4 launched (15 March 2023) — fourth-generation QRNG handset on SKT
+    source_url: https://www.idquantique.com/sk-telecom-and-samsung-unveil-the-galaxy-quantum-4/
+    source_type: press
+  - date: 2022-06
+    tag: qkd
+    headline: SK Broadband completes phase one of nationwide QKD network — 800 km backbone protecting communications between 48 Korean government agencies
+    source_url: https://www.idquantique.com/idq-and-sk-broadband-complete-phase-one-of-nation-wide-korean-qkd-network/
+    source_type: press
+  - date: 2020-05
+    tag: enabling
+    headline: Galaxy A Quantum launched on SKT — marketed as the first 5G smartphone with an embedded QRNG chip (2.5 × 2.5 mm IDQ Quantis); pre-order 15-21 May, launch 22 May 2020
+    source_url: https://news.sktelecom.com/en/1291
+    source_type: press
+  - date: 2019
+    tag: qkd
+    headline: SKT applies QKD to the Seoul-Daejeon section of its commercial 5G/LTE backbone — what the company described as the first commercial QKD-secured 5G mobile network
+    source_url: https://www.idquantique.com/sk-telecom-continues-to-protect-its-5g-network-with-quantum-cryptography-technologies/
+    source_type: press
+  - date: 2018-02
+    tag: qkd
+    headline: SKT invests ~KRW 70B (~US$65M) to acquire majority (>50%) stake in ID Quantique
+    source_url: https://www.prnewswire.com/news-releases/sk-telecom-to-invest-in-id-quantique-the-global-leader-in-quantum-safe-crypto-solutions-300603977.html
+    source_type: press
+  - date: 2017-02
+    tag: qkd
+    headline: SKT signs cooperation agreement with Nokia on QKD integration into commercial optical transport
+    source_url: https://www.prnewswire.com/news-releases/sk-telecom-and-nokia-sign-cooperation-agreement-for-quantum-cryptography-300413873.html
+    source_type: press
+  - date: 2014
+    tag: qkd
+    headline: SKT commercialises its first in-house QKD device
+    source_url: https://news.sktelecom.com/en/853
+    source_type: press
+  - date: 2011
+    tag: qkd
+    headline: SKT establishes its Quantum Tech Lab — start of in-house quantum-cryptography R&D programme
+    source_url: https://news.sktelecom.com/en/853
+    source_type: press
+
+shareholders:
+  - holder: SK Inc.
+    stake_percent: 30.57
+    stake_class: controlling
+    as_of: 2024-12
+    source_url: https://www.sktelecom.com/img/eng/persist_report/20250808/SK_Telecom_Annual_Report_2024_ENG_F_0808.pdf
+    note: Holding-company parent of the SK Group; largest single shareholder per SKT's FY2024 annual report.
+  - holder: National Pension Service (Korea)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-12
+    source_url: https://www.sktelecom.com/img/eng/persist_report/20250808/SK_Telecom_Annual_Report_2024_ENG_F_0808.pdf
+    note: Korea's national pension fund is consistently among the top institutional shareholders of major KOSPI issuers; exact stake not confirmed against a public filing
+  - holder: Public float (KOSPI:017670, NYSE:SKM ADR)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-12
+    source_url: https://www.sktelecom.com/en/view/investor/structure.do
+    note: 214,790,053 shares issued as of 31 Dec 2024; widely held domestic and foreign float outside SK Inc.'s controlling block
+  - holder: IonQ (held BY SKT, not IN SKT)
+    stake_percent: 3.1
+    stake_class: strategic
+    as_of: 2025-05
+    source_url: https://www.kedglobal.com/artificial-intelligence/newsView/ked202502270007
+    note: >
+      Listed for traceability — SKT (with SK Square) holds ~3.1% of IonQ
+      received in May 2025 as consideration for the 56.9% IDQ stake. This
+      is an SKT-held position, not a holder of SKT shares.
+
+key_personnel:
+  - role: President & CEO
+    name: Ryu Young-sang
+    since: 2021-11
+    source_url: https://www.sktelecom.com/en/press/press_detail.do?idx=1517
+    note: Appointed CEO Nov 2021 after SKT's split from SK Square; reappointed; public framing of quantum as core to the AI strategy in 2025 IonQ-MoU announcement
+  - role: Chairman of the Board (SK Group)
+    name: Chey Tae-won
+    since: 1998
+    source_url: https://www.sktelecom.com/en/view/esg/board-of-directors.do
+    note: Chairman of SK Inc., SKT's controlling shareholder
+  - role: Head of Quantum Tech Lab
+    name: ""
+    since: ""
+    source_url: https://news.sktelecom.com/en/853
+    note: SKT does not publicly name a single "Head of Quantum Tech Lab" on its newsroom or IR pages; prior public-facing leads include Kwak Seung-hwan (quoted in 2017-2020 announcements) but the current incumbent is not separately identified in the sources reviewed.
+
+roadmap:
+  - target: 2026
+    item: Continued commercial expansion of QKD trunk routes via SK Broadband; integration of QKD with PQC for end-to-end quantum-safe service on 5G SA networks
+    source_url: https://news.sktelecom.com/en/686
+    tag: qkd
+  - target: 2026-2027
+    item: Co-development of AI + quantum-computing services with IonQ (PAA, AIDC, GPUaaS, Edge AI) under the Feb-2025 MoU; integration of IonQ trapped-ion compute access for Korean enterprise customers
+    source_url: https://www.sktelecom.com/en/press/press_detail.do?idx=1633
+    tag: qc
+
+current_flagship:
+  name: SK Broadband nationwide QKD overlay
+  generation: Commercial QKD-secured backbone — Seoul-Daejeon-Daegu trunk (~330 km on 5G/LTE) plus the 800 km 48-agency government network operated under "Quantum-as-a-Service" by SK Broadband, all using IDQ Cerberis-class hardware
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://www.prnewswire.com/news-releases/sk-telecom-to-invest-in-id-quantique-the-global-leader-in-quantum-safe-crypto-solutions-300603977.html
+    note: SKT KRW 70B investment in IDQ — original 26 Feb 2018 announcement
+  - kind: press
+    citation_key: null
+    url: https://news.sktelecom.com/en/1291
+    note: Galaxy A Quantum launch (May 2020) — first 5G handset with embedded QRNG chip
+  - kind: press
+    citation_key: null
+    url: https://www.idquantique.com/idq-and-sk-broadband-complete-phase-one-of-nation-wide-korean-qkd-network/
+    note: SK Broadband 800 km nationwide QKD network — 48 government agencies, 27 QKD links, 10 trusted relays
+  - kind: press
+    citation_key: null
+    url: https://www.idquantique.com/sk-telecom-continues-to-protect-its-5g-network-with-quantum-cryptography-technologies/
+    note: Seoul-Daejeon QKD trunk on commercial 5G/LTE — performance numbers (10 kbps over 50 km, 120 Gbps AES-256 multiplex)
+  - kind: press
+    citation_key: null
+    url: https://www.sktelecom.com/en/press/press_detail.do?idx=1633
+    note: SKT × IonQ MoU on AI + quantum (Feb 2025)
+  - kind: press
+    citation_key: null
+    url: https://www.ionq.com/news/ionq-completes-acquisition-of-id-quantique-cementing-leadership-in-quantum
+    note: IonQ closes acquisition of the SKT/SK Square IDQ stake (6 May 2025) — SKT becomes IonQ strategic partner
+  - kind: blog
+    citation_key: null
+    url: https://news.sktelecom.com/en/853
+    note: SKT newsroom "Path towards a quantum-safe future" — Quantum Tech Lab history (est. 2011, first QKD device 2014)
+  - kind: press
+    citation_key: null
+    url: https://news.sktelecom.com/en/686
+    note: SKT's QKD-network interworking specs approved as ITU-T study items (Aug 2023)
+  - kind: filing
+    citation_key: null
+    url: https://www.sktelecom.com/img/eng/persist_report/20250808/SK_Telecom_Annual_Report_2024_ENG_F_0808.pdf
+    note: SK Telecom Annual Report 2024 — SK Inc. 30.57% stake, 214,790,053 shares outstanding
+
+partial:
+  - field: key_personnel
+    as_of: 2026-05-17
+    note: Public-facing head of SKT's Quantum Tech Lab is not identified by name on the current newsroom or IR pages; Kwak Seung-hwan was the quoted lead in earlier 2017-2020 announcements but the current incumbent could not be confirmed in the sources reviewed.
+  - field: shareholders
+    as_of: 2026-05-17
+    note: Beyond SK Inc.'s 30.57% controlling block (per FY2024 annual report), per-holder percentages for the public float were not separately extracted; KOSPI:017670 has a widely-held float with NPS and major asset managers among the top institutional holders.
+  - modalities.qkd.deployed_demos.metro_count
+  - field: business_units.Quantum Tech Lab.lead
+    as_of: 2026-05-17
+    note: Current lab head not separately disclosed in SKT public sources.
+  - revenue  # FY2024 revenue KRW 17,940.6B (~US$13B) is corporate-wide, not quantum-segment; SKT does not disclose a separate quantum P&L
+  - headcount  # Quantum Tech Lab headcount not separately disclosed
+
+last_verified: 2026-05-17
+verification_method: web

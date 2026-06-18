@@ -1,0 +1,372 @@
+---
+/**
+ * /applications — Applications of the quantum internet
+ *
+ * Tier E · Applications & market.
+ *
+ * Citations:
+ *   - kumar-ijndc-2025 — §3 applications catalogue.
+ *   - wehner-science-2018 — 5-stage application roadmap.
+ *   - cacciapuoti-ieeetc-2020 — networking framing.
+ *   - kozlowski-rfc9340 — link-layer service contract.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SourceNote from "../components/SourceNote.astro";
+import Math from "../components/Math.astro";
+import { url } from "../lib/url";
+
+const sections = [
+  { id: "overview",   label: "Overview" },
+  { id: "qkd",        label: "Secure communication" },
+  { id: "dqc",        label: "Distributed quantum computing" },
+  { id: "bqc",        label: "Blind quantum computing" },
+  { id: "sensing",    label: "Networked sensing & clocks" },
+  { id: "qpv",        label: "Quantum position verification" },
+  { id: "consensus",  label: "Multiparty quantum consensus" },
+  { id: "demands",    label: "Cross-application demands" },
+];
+---
+
+<Infographic
+  title="Applications of the quantum internet"
+  description="The applications that consume Bell pairs as a network resource: QKD, distributed quantum computing, blind quantum computing, networked sensing, clock synchronisation, and quantum position verification. Each places different demands on the network's entanglement-delivery rate, fidelity, and reach."
+  references={[
+    "allerstorfer-prl-135-260801",
+    "bluhm-natphys-18-623",
+    "buhrman-siamjc-43-150",
+    "cacciapuoti-ieeetc-2020",
+    "chandran-siamjc-43-1",
+    "fitzi-prl-87-217901",
+    "gaertner-prl-100-070504",
+    "jing-sciadv-2024",
+    "kanneworff-qst-10-045004",
+    "kent-pra-84-012326",
+    "kozlowski-rfc9340",
+    "kumar-ijndc-2025",
+    "wehner-science-2018",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="applications" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>Applications of the quantum internet</h1>
+        <p>
+          A quantum network's product is delivered Bell pairs. The applications consume
+          them: cryptographic key extraction, teleportation between processors, blind
+          delegation, distributed sensing, and synchronised clocks. Different applications
+          place different demands on the network's entanglement-delivery rate, fidelity,
+          and reach — and the maturity ladder is steep. Today's deployed application is
+          QKD; distributed and blind quantum computing, networked sensing, and
+          quantum position verification are in research or pilot
+          stages <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+        <p>
+          Wehner et al. 2018 organised the application landscape as a five-stage roadmap
+          tied to network capability: trusted-node QKD → prepare-and-measure QKD →
+          entanglement distribution → quantum memory → fault-tolerant. Each stage unlocks
+          its corresponding application class <SourceNote id="wehner-science-2018" />.
+        </p>
+      </header>
+
+      <section id="secure-comms" data-nav-section>
+        <h2>Secure communication</h2>
+        <p>
+          Symmetric encryption gives Alice and Bob a private channel once they share a
+          secret key; the hard part is distributing that key over a public network without
+          an eavesdropper obtaining it. Quantum key distribution is one of three ways to
+          distribute a shared key — alongside classical public-key agreement (RSA, ECDH) and
+          post-quantum cryptography (ML-KEM) — and the only one whose security rests on
+          physics rather than computational hardness. QKD is also the only application of
+          quantum networking with commercial deployment
+          today <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+        <p>
+          The <a href={url("/secure-comms")}>Secure communication</a> subject covers the
+          key-distribution problem, the three ways, and how QKD is realised on the
+          network (BB84, BBM92, MDI-QKD, TF-QKD, high-dimensional QKD) in depth.
+        </p>
+      </section>
+
+      <section id="dqc" data-nav-section>
+        <h2>Distributed quantum computing (DQC)</h2>
+        <p>
+          A single quantum processor with a fixed qubit count is bounded by what its
+          chip-scale platform allows; networking processors into a cluster lets the
+          combined machine run circuits larger than any single node. The networking
+          primitive is <strong>gate teleportation</strong>: a CNOT between qubits at two
+          different nodes is performed by consuming a Bell pair and exchanging a small
+          number of classical bits. The protocol generalises to other two-qubit gates
+          and to higher-fidelity primitives via purification.
+        </p>
+        <p>
+          DQC's demands on the network are strict: gate teleportation requires fidelities
+          above ~0.99 to compose into a useful multi-gate circuit. The end-to-end
+          fidelity drops multiplicatively with depth, so DQC sits at the high-fidelity
+          end of the application spectrum and depends critically on
+          purification <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+      </section>
+
+      <section id="bqc" data-nav-section>
+        <h2>Blind quantum computing (BQC)</h2>
+        <p>
+          A client has sensitive input data and wants a remote quantum server to compute
+          on it without learning the inputs or outputs. <strong>Blind quantum computing</strong>
+          protocols achieve this: the client prepares (or has delivered) qubits in known
+          states known only to them, sends them to the server, and the server executes
+          the computation through measurement-based protocols on those qubits. Because
+          the server never learns the state encoding, it learns nothing about the data.
+        </p>
+        <p>
+          BQC is appealing for high-value privacy use cases — financial computations,
+          pharmaceutical search, government applications. Like DQC it requires high
+          fidelity and is currently research-stage.
+        </p>
+      </section>
+
+      <section id="sensing" data-nav-section>
+        <h2>Networked sensing & clock synchronisation</h2>
+        <p>
+          Entanglement between sensors at separated nodes lets the network estimate
+          a global parameter beyond the standard quantum limit — networked atomic
+          clocks, quantum-enhanced long-baseline telescopy, and distributed
+          multiparameter estimation. Sensing consumes entanglement differently from
+          QKD or DQC: some protocols tolerate lower fidelity, but timing precision
+          and source-of-randomness constraints are
+          tighter <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+        <p>
+          The <a href={url("/sensing")}>Networked &amp; distributed quantum sensing</a>
+          subject covers these in depth, with a reviewed reading list to the primary
+          papers.
+        </p>
+      </section>
+
+      <section id="qpv" data-nav-section>
+        <h2>Quantum position verification</h2>
+        <p>
+          A verifier wants to confirm that a prover is physically located at a claimed
+          point in space — not impersonated by a relay, not co-located with an attacker,
+          not anywhere else on the network. The classical construction is to send a
+          challenge from several reference stations and check that the response arrives
+          with the round-trip timing consistent with the speed of light from the claimed
+          position. Chandran, Goyal, Moriarty and Ostrovsky showed in 2009 that this
+          classical scheme is insecure against colluding adversaries who can record and
+          forward each challenge in parallel <SourceNote id="chandran-siamjc-43-1" />.
+          Replacing the classical challenge with a quantum state forces a different
+          attack model: the no-cloning theorem prevents simple copy-and-forward, so
+          quantum position verification (QPV) is a primitive native to a network that
+          delivers quantum states, not just keys.
+        </p>
+        <p>
+          The catch came quickly. Buhrman, Chandran, Fehr, Gelles, Goyal, Ostrovsky and
+          Schaffner proved that for <em>any</em> QPV protocol, a coalition of adversaries
+          surrounding the claimed position can fake the prover if they share enough
+          pre-distributed entanglement — the attack reduces to instantaneous non-local
+          quantum computation, which is unconditionally possible given unbounded
+          entanglement <SourceNote id="buhrman-siamjc-43-150" />. Earlier teleportation-based
+          attacks on specific proposals were already known from Kent, Munro and
+          Spiller <SourceNote id="kent-pra-84-012326" />. The line of research that survives
+          is protocols where the attackers' entanglement cost grows with the security
+          parameter, so a bounded adversary is provably defeated.
+        </p>
+        <p>
+          Two protocol families dominate the constructive direction. <strong>f-routing</strong>
+          asks the prover to route a quantum state to one of two verifiers depending on
+          a classical bit. <strong>BB84-style QPV</strong> sends a single BB84 qubit
+          alongside a classical basis announcement and requires the prover to measure
+          and return the outcome to both verifiers. Bluhm, Christandl and Speelman
+          constructed an interleaved-product variant whose best known attack consumes
+          entanglement exponential in the number of classical bits exchanged, using only
+          a single qubit on the prover's side <SourceNote id="bluhm-natphys-18-623" />.
+          Loss in the verifier-to-prover channel was a security loophole until
+          Allerstorfer et al. (2025) showed that adding a photon-presence pre-commitment
+          step reduces the security-relevant loss to that of the prover's local
+          apparatus, restoring the original attack bounds for BB84-style
+          QPV <SourceNote id="allerstorfer-prl-135-260801" />. Experimental work is
+          early: Kanneworff et al. (2025) demonstrated the optical building blocks of a
+          loss-tolerant scheme with a true single-photon source, but a full end-to-end
+          QPV deployment with spatially separated verifiers has not been
+          reported <SourceNote id="kanneworff-qst-10-045004" />.
+        </p>
+        <p>
+          QPV binds an identity claim to a physical location in a way no purely classical
+          or PQC primitive can. The use cases are geo-locking of compute resources to
+          named data centres, defence against man-in-the-middle relays where the
+          classical control plane is untrusted, and verifiable delivery of quantum state
+          to a known endpoint. It sits beyond stage 2 of the Wehner roadmap — it needs
+          the channel to carry quantum states, not just to extract keys from them.
+        </p>
+      </section>
+
+      <section id="consensus" data-nav-section>
+        <h2>Multiparty quantum consensus</h2>
+        <p>
+          Byzantine agreement is the textbook distributed-consensus problem: <Math
+          tex="n" /> parties, of which up to <Math tex="f" /> may be arbitrarily faulty,
+          must reach a common decision. Classically the problem is unsolvable when
+          <Math tex="n < 3f + 1" /> — the three-party case
+          with one faulty party is provably impossible. Fitzi, Gisin, and Maurer (2001)
+          showed that <em>detectable broadcast</em>, the natural quantum relaxation, is
+          achievable in exactly this three-party regime using pairwise quantum channels
+          and entangled qutrits <SourceNote id="fitzi-prl-87-217901" />.
+        </p>
+        <p>
+          Gaertner et al. (2008) realised the protocol experimentally with a four-photon
+          entangled state, the first demonstration that the quantum advantage is not
+          purely theoretical <SourceNote id="gaertner-prl-100-070504" />. The current
+          experimental state of the art is Jing et al. (2024) — a three-user
+          quantum-network demonstration on integrated photonics that achieves
+          Byzantine agreement with unconditional security beyond the classical
+          fault-tolerance bound <SourceNote id="jing-sciadv-2024" />.
+        </p>
+        <p>
+          What consensus needs from the network: multi-party entanglement (four-photon
+          GHZ-style states in the worst case) delivered with high fidelity between three
+          or more endpoints, plus a classical side-channel for the broadcast phase. Rate
+          requirements are modest — agreement protocols run once per decision, not
+          continuously — but fidelity is high (the security argument tightens as raw
+          fidelity rises) and the network has to support <em>simultaneous</em> delivery
+          to multiple endpoints, not just point-to-point. Application areas include
+          permissioned blockchains, distributed leader election, and any setting where
+          a classical majority assumption is unavailable.
+        </p>
+      </section>
+
+      <section id="demands" data-nav-section>
+        <h2>Cross-application demands</h2>
+        <p>
+          The six application families have qualitatively different requirements on
+          rate, fidelity, and reach:
+        </p>
+
+        <div class="apps-table-wrap">
+        <table class="apps-table">
+          <thead>
+            <tr>
+              <th scope="col">Application</th>
+              <th scope="col">Rate</th>
+              <th scope="col">Fidelity</th>
+              <th scope="col">Reach</th>
+              <th scope="col">Deployment</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">QKD</th>
+              <td>kbit/s–Mbit/s key rates</td>
+              <td>Modest (~0.85 raw)</td>
+              <td>Metro to satellite</td>
+              <td>Commercial, fielded</td>
+            </tr>
+            <tr>
+              <th scope="row">Distributed QC</th>
+              <td>Per-gate Bell pairs</td>
+              <td>High (≥0.99)</td>
+              <td>Datacentre to metro</td>
+              <td>Research / early proto</td>
+            </tr>
+            <tr>
+              <th scope="row">Blind QC</th>
+              <td>Per-computation</td>
+              <td>High (≥0.99)</td>
+              <td>Client-to-server, any</td>
+              <td>Research</td>
+            </tr>
+            <tr>
+              <th scope="row">Networked sensing</th>
+              <td>Application-specific</td>
+              <td>Protocol-specific</td>
+              <td>City to global</td>
+              <td>Research</td>
+            </tr>
+            <tr>
+              <th scope="row">Position verification</th>
+              <td>Per-challenge single qubits</td>
+              <td>Loss-tolerant constructions exist</td>
+              <td>Light-time bounded geometry</td>
+              <td>Theory + early photonic experiments</td>
+            </tr>
+            <tr>
+              <th scope="row">Multiparty consensus</th>
+              <td>Per-decision (modest)</td>
+              <td>High (security tightens with raw fidelity)</td>
+              <td>Three or more endpoints; metro to inter-DC</td>
+              <td>Theory + three-party photonic demos</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+
+        <p>
+          The metrics subject covers what these demands mean for a network's engineering
+          budget; the maturity subject covers where each application sits on the TRL
+          ladder <SourceNote id="cacciapuoti-ieeetc-2020" />.
+        </p>
+      </section>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-4);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .hero h1 { margin: 0; }
+  .hero p { margin: 0; }
+
+  section { display: grid; gap: var(--space-3); }
+
+  ul {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+  li { line-height: var(--leading-snug); }
+
+  .apps-table-wrap {
+    inline-size: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+  }
+  .apps-table {
+    min-inline-size: 42rem;
+    inline-size: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+  }
+  .apps-table thead th {
+    text-align: start;
+    padding: var(--space-2) var(--space-3);
+    border-block-end: 2px solid var(--color-rule);
+    color: var(--color-text);
+    font-weight: 600;
+  }
+  .apps-table tbody th,
+  .apps-table tbody td {
+    padding: var(--space-2) var(--space-3);
+    vertical-align: top;
+    border-block-end: 1px solid var(--color-rule);
+  }
+  .apps-table tbody th {
+    text-align: start;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+  .apps-table tbody td { color: var(--color-text-mute); }
+  .apps-table tbody tr:last-child th,
+  .apps-table tbody tr:last-child td { border-block-end: 0; }
+</style>

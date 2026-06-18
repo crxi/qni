@@ -1,0 +1,79 @@
+---
+/**
+ * Scene — wrapper for an animated SVG figure.
+ *
+ * Provides the chrome (figure + caption) and tags the wrapper with
+ * `data-scene` so a page's animation script can find it via
+ * `document.querySelectorAll("[data-scene='<id>']")` and pass the
+ * inner element to `mountScene` from lib/anim/useScene.
+ *
+ * The component is content-agnostic — drop SVG (or any DOM) in the
+ * default slot, and write the per-scene animation logic in a small
+ * `<script>` island on the page itself. Examples will appear under
+ * web/src/pages/<subject>.astro when animated subjects ship.
+ *
+ * Three guarantees the component bakes in:
+ *
+ *   1. SSR render is the animation's *end state*. No-JS readers and
+ *      readers with `prefers-reduced-motion: reduce` see the static
+ *      frame; everyone else gets that frame replaced when the script
+ *      kicks in.
+ *   2. The figure has role="figure", a caption is a <figcaption>, and
+ *      the caller passes an aria-label so the scene is navigable.
+ *   3. The animation only plays when scrolled into view (handled by
+ *      `mountScene`, but the wrapper exposes the data-scene hook).
+ */
+interface Props {
+  /** Stable id to target with `mountScene`. Should be unique per page. */
+  id: string;
+  /** Caption rendered below the figure; brief, descriptive. */
+  caption?: string;
+  /** Accessible label; defaults to `caption` when both are provided. */
+  ariaLabel?: string;
+}
+const { id, caption, ariaLabel } = Astro.props;
+const label = ariaLabel ?? caption;
+---
+
+<figure class="scene" data-scene={id} aria-label={label}>
+  <div class="scene__stage">
+    <slot />
+  </div>
+  {caption && <figcaption class="scene__caption">{caption}</figcaption>}
+</figure>
+
+<style>
+  .scene {
+    margin: 0;
+    background: var(--card-bg, #fdfdfb);
+    border: 1px solid var(--card-border, var(--color-rule, #e5e5e0));
+    border-radius: var(--radius);
+    padding: var(--space-3);
+    overflow: hidden;
+  }
+  .scene__stage {
+    /* SVG inside a scene fills the width, scales to its viewBox. */
+    inline-size: 100%;
+  }
+  .scene__stage > svg {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+  }
+  .scene__caption {
+    margin-block-start: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-text-mute);
+    line-height: var(--leading-snug);
+  }
+
+  /* Animations inside scenes opt out under reduced-motion via a
+     class on the SVG (set by the scene's own script when
+     reducedMotion is detected). */
+  @media (prefers-reduced-motion: reduce) {
+    .scene :global(*) {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>

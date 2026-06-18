@@ -1,0 +1,109 @@
+slug: photonspot
+name: Photon Spot
+categories: [source-detect, enabling]
+hq: Monrovia, California, USA
+founded: 2009
+status: private
+parent: null
+logo:
+  domain: photonspot.com
+
+positioning: >
+  US single-photon-detection vendor selling superconducting-nanowire
+  single-photon-detector (SNSPD) systems and sub-Kelvin cryogenic packages
+  to quantum-information, deep-space-optical-comms, and instrumentation
+  customers. Founded in 2009 by Vikas Anant and bootstrapped on product
+  sales and R&D contracts. Longstanding NASA/JPL supplier, with SNSPDs flown
+  on the Deep Space Optical Communications demonstration and the Artemis II
+  laser-comm system. Flagship Eos-series fibre-coupled SNSPDs report >95%
+  system detection efficiency at 1550 nm. Competes with Single Quantum and
+  IDQ; NIST CHIPS Act award funds a large-format SNSPD camera cryostat.
+
+modalities:
+  source-detect:
+    role: detector
+    detection_efficiency: 0.955
+    dark_count_hz: 1.5
+    jitter_ps: 50
+  enabling:
+    products: [Eos 210, Eos 410, sub-Kelvin cryostats, fibre-coupled SNSPD arrays]
+
+milestones:
+  - date: 2024
+    tag: source-detect
+    headline: "Artemis II laser-comm SNSPD systems delivered in collaboration with NASA JPL; supports lunar-mission optical downlink"
+    source_url: https://www.photonspot.com/pages/solutions.html
+    source_type: blog
+  - date: 2023
+    tag: source-detect
+    headline: 8x8 imaging SNSPD array (with JPL) delivered to Heriot-Watt University in a compact rack-based cryogenic system
+    source_url: https://www.photonspot.com/pages/solutions.html
+    source_type: blog
+  - date: 2022-12
+    tag: source-detect
+    headline: "JOSA / Journal of Lightwave Technology — Photon Spot SNSPDs benchmarked in optical-communications system (NIST collaboration)"
+    source_url: https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=934759
+    source_type: paper
+  - date: 2020
+    tag: source-detect
+    headline: "NASA Deep Space Optical Communications — 80 Mb/s downlink demonstrated by JPL using Photon Spot SNSPDs"
+    source_url: https://www.photonspot.com/pages/solutions.html
+    source_type: blog
+  - date: 2009
+    tag: source-detect
+    headline: Photon Spot founded by Vikas Anant (MIT EE PhD 2007) to commercialise SNSPD systems for the research market
+    source_url: https://www.crunchbase.com/person/vikas-anant-60c5
+    source_type: press
+
+shareholders:
+  - holder: Vikas Anant
+    stake_percent: null
+    stake_class: founder
+    as_of: 2009
+    source_url: https://www.crunchbase.com/person/vikas-anant-60c5
+    note: Founder & CEO; company bootstrapped on product sales and R&D contracts — no disclosed external equity
+
+key_personnel:
+  - role: Founder & CEO
+    name: Vikas Anant
+    since: 2009
+    source_url: https://www.photonspot.com/pages/about.html
+
+roadmap:
+  - target: 2026
+    item: Ultra-compact, ultra-low-vibration cryostat for large-format SNSPD cameras (NIST/CHIPS Act award)
+    source_url: https://www.nist.gov/chips/photon-spot-inc-monrovia
+    tag: source-detect
+
+current_flagship:
+  name: Eos series SNSPD
+  generation: fibre-coupled multi-channel SNSPD with sub-Kelvin closed-cycle cryostat (>95% SDE at 1550 nm, ~1-2 cps dark count)
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://www.nist.gov/publications/superconducting-nanowire-single-photon-detectors-98-system-detection-efficiency-1550-nm
+    note: NIST 98% SDE SNSPD paper — broader SNSPD field benchmark; Photon Spot independently reports 95.5% SDE
+  - kind: blog
+    citation_key: null
+    url: https://www.photonspot.com/pages/detectors.html
+    note: Vendor detector product page — wavelength options and SDE figures
+  - kind: blog
+    citation_key: null
+    url: https://www.photonspot.com/pages/solutions.html
+    note: Customer wins — JPL Artemis II, Heriot-Watt, Stuttgart, NASA DSOC
+  - kind: press
+    citation_key: null
+    url: https://www.nist.gov/chips/photon-spot-inc-monrovia
+    note: NIST CHIPS Act SNSPD-cryostat award
+
+partial:
+  - field: milestones
+    as_of: 2026-05-15
+    note: Photon Spot historically rarely issues press releases — milestone dates inferred from vendor solutions page and customer announcements; year-only granularity
+  - field: shareholders
+    as_of: 2026-05-15
+    note: Private, bootstrapped — no disclosed cap table
+
+last_verified: 2026-05-15
+verification_method: web

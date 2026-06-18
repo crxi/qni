@@ -1,0 +1,591 @@
+---
+/**
+ * EncodingDiagram — small SVG figure depicting one qubit-encoding
+ * scheme. Used in the qubits page where the photonic and matter
+ * encoding sections need visual representations rather than prose
+ * alone.
+ *
+ * `kind` selects the diagram. Two families:
+ *   Photonic (flying):  polarisation, time-bin, phase, frequency-bin, dual-rail
+ *   Matter (stationary): transmon, ion, atom, nv, si-spin, majorana
+ *
+ * Each figure is a static ~220×120 px SVG; no animation needed —
+ * the structure is what needs to be conveyed, and a still drawing
+ * does that.
+ */
+
+type Kind =
+  | "polarisation"
+  | "time-bin"
+  | "phase"
+  | "frequency-bin"
+  | "dual-rail"
+  | "transmon"
+  | "ion"
+  | "atom"
+  | "nv"
+  | "siv"
+  | "si-spin"
+  | "majorana"
+  | "ensemble";
+
+interface Props {
+  kind: Kind;
+}
+
+const { kind } = Astro.props;
+
+const ARIA_LABEL: Record<Kind, string> = {
+  polarisation:    "Polarisation encoding diagram",
+  "time-bin":      "Time-bin encoding diagram",
+  phase:           "Phase encoding diagram",
+  "frequency-bin": "Frequency-bin encoding diagram",
+  "dual-rail":     "Dual-rail encoding diagram",
+  transmon:        "Superconducting transmon energy-level diagram",
+  ion:             "Trapped-ion hyperfine sublevel diagram",
+  atom:            "Neutral-atom optical-tweezer diagram",
+  nv:              "NV-centre defect diagram",
+  siv:             "SiV-centre split-vacancy defect diagram",
+  "si-spin":       "Silicon spin-1/2 electron diagram",
+  majorana:        "Topological Majorana parity diagram",
+  ensemble:        "Atomic-ensemble collective spin-wave diagram",
+};
+const ariaLabel = ARIA_LABEL[kind];
+---
+
+<figure class={`encoding encoding--${kind}`}>
+  {kind === "polarisation" && (
+    <svg viewBox="0 0 220 120" role="img" aria-label={ariaLabel}>
+      {/* |0⟩ — horizontal */}
+      <g>
+        <text x="55" y="14" text-anchor="middle" class="enc-ket">|0⟩</text>
+        <circle cx="55" cy="60" r="22" fill="none" stroke="var(--color-rule)" stroke-width="1" />
+        <line x1="32" y1="60" x2="78" y2="60" stroke="var(--color-accent)" stroke-width="2.5"/>
+        <polygon points="78,60 72,56 72,64" fill="var(--color-accent)" />
+        <polygon points="32,60 38,56 38,64" fill="var(--color-accent)" />
+        <text x="55" y="105" text-anchor="middle" class="enc-label">H (horizontal)</text>
+      </g>
+      {/* |1⟩ — vertical */}
+      <g>
+        <text x="165" y="14" text-anchor="middle" class="enc-ket">|1⟩</text>
+        <circle cx="165" cy="60" r="22" fill="none" stroke="var(--color-rule)" stroke-width="1" />
+        <line x1="165" y1="37" x2="165" y2="83" stroke="var(--color-accent)" stroke-width="2.5"/>
+        <polygon points="165,37 161,43 169,43" fill="var(--color-accent)" />
+        <polygon points="165,83 161,77 169,77" fill="var(--color-accent)" />
+        <text x="165" y="105" text-anchor="middle" class="enc-label">V (vertical)</text>
+      </g>
+    </svg>
+  )}
+
+  {kind === "time-bin" && (
+    <svg viewBox="0 0 220 120" role="img" aria-label={ariaLabel}>
+      {/* Time-bin convention as in Knaut 2024 (Nature 629, 573) and
+          Ezratty UQT Pt 2: two distinct time-bin windows on a
+          single timeline, separated by a delay δt. The photon
+          arrives in one of the two windows; |0⟩ = early, |1⟩ =
+          late. The dashed boxes are the detector acceptance
+          windows. The line connecting them is the underlying
+          waveguide / fibre, with time flowing left to right. */}
+
+      {/* |0⟩ — top timeline (photon in the early window) */}
+      <text x="22" y="38" class="enc-ket">|0⟩</text>
+      <line x1="45" y1="35" x2="205" y2="35" stroke="var(--color-rule)" stroke-width="0.6"/>
+      <rect x="55" y="22" width="30" height="26" fill="none"
+            stroke="var(--color-rule)" stroke-width="0.8" stroke-dasharray="3,2"/>
+      <rect x="145" y="22" width="30" height="26" fill="none"
+            stroke="var(--color-rule)" stroke-width="0.8" stroke-dasharray="3,2"/>
+      <circle cx="70" cy="35" r="5" fill="var(--color-accent)"/>
+
+      {/* |1⟩ — bottom timeline (photon in the late window) */}
+      <text x="22" y="78" class="enc-ket">|1⟩</text>
+      <line x1="45" y1="75" x2="205" y2="75" stroke="var(--color-rule)" stroke-width="0.6"/>
+      <rect x="55" y="62" width="30" height="26" fill="none"
+            stroke="var(--color-rule)" stroke-width="0.8" stroke-dasharray="3,2"/>
+      <rect x="145" y="62" width="30" height="26" fill="none"
+            stroke="var(--color-rule)" stroke-width="0.8" stroke-dasharray="3,2"/>
+      <circle cx="160" cy="75" r="5" fill="var(--color-accent)"/>
+
+      {/* Shared bin labels and δt indicator */}
+      <text x="70" y="100" text-anchor="middle" class="enc-label">early</text>
+      <text x="160" y="100" text-anchor="middle" class="enc-label">late</text>
+
+      {/* Time axis arrow */}
+      <line x1="45" y1="112" x2="205" y2="112" stroke="var(--color-rule)" stroke-width="1"/>
+      <polygon points="205,112 200,109 200,115" fill="var(--color-rule)"/>
+      <text x="205" y="120" text-anchor="end" class="enc-label">time</text>
+    </svg>
+  )}
+
+  {kind === "phase" && (
+    <svg viewBox="0 0 220 120" role="img" aria-label={ariaLabel}>
+      {/* Phase is fundamentally an angle on the Bloch sphere
+          equator (relative phase between two amplitudes), not a
+          detectable field oscillation. Drawn here as a top-down
+          view of the equator with the two basis states sitting on
+          antipodal points. φ = 0 ↔ |+⟩ ↔ |0⟩; φ = π ↔ |−⟩ ↔ |1⟩.
+          Same dot-in-mode idiom as the other encodings. */}
+
+      <text x="110" y="16" text-anchor="middle" class="enc-label">Bloch equator (top view)</text>
+
+      {/* equator (dashed ellipse for top-down perspective) */}
+      <ellipse cx="110" cy="62" rx="55" ry="20" fill="none"
+               stroke="var(--color-rule)" stroke-width="1" stroke-dasharray="3,2"/>
+
+      {/* axis through the two antipodal phase points */}
+      <line x1="55" y1="62" x2="165" y2="62" stroke="var(--color-rule)" stroke-width="0.6"/>
+      <circle cx="110" cy="62" r="1.5" fill="var(--color-rule)"/>
+
+      {/* |0⟩ at φ=0 (right) */}
+      <circle cx="165" cy="62" r="5" fill="var(--color-accent)"/>
+      <text x="165" y="46" text-anchor="middle" class="enc-ket">|0⟩</text>
+      <text x="165" y="84" text-anchor="middle" class="enc-label">φ=0</text>
+
+      {/* |1⟩ at φ=π (left) */}
+      <circle cx="55" cy="62" r="5" fill="var(--color-accent)"/>
+      <text x="55" y="46" text-anchor="middle" class="enc-ket">|1⟩</text>
+      <text x="55" y="84" text-anchor="middle" class="enc-label">φ=π</text>
+
+      <text x="110" y="110" text-anchor="middle" class="enc-label">two opposite points on the equator</text>
+    </svg>
+  )}
+
+  {kind === "frequency-bin" && (
+    <svg viewBox="0 0 220 120" role="img" aria-label={ariaLabel}>
+      {/* Top-corner axis label, kept clear of the bin labels below. */}
+      <text x="210" y="14" text-anchor="end" class="enc-label">frequency</text>
+
+      {/* Frequency axis */}
+      <line x1="20" y1="85" x2="200" y2="85" stroke="var(--color-rule)" stroke-width="1.5"/>
+      <polygon points="200,85 195,81 195,89" fill="var(--color-rule)" />
+
+      {/* Two discrete frequency modes drawn as tick marks on the
+          axis; the photon is a filled dot sitting on its mode
+          (the Fock-state marker — one excitation in one mode).
+          Both basis states shown side-by-side so the reader sees
+          the menu, not just one outcome. */}
+
+      {/* ω₁ = |0⟩ */}
+      <line x1="70" y1="80" x2="70" y2="90" stroke="var(--color-rule)" stroke-width="1.5"/>
+      <circle cx="70" cy="55" r="5" fill="var(--color-accent)"/>
+      <text x="70" y="44" text-anchor="middle" class="enc-ket">|0⟩</text>
+      <text x="70" y="103" text-anchor="middle" class="enc-label">ω₁</text>
+
+      {/* ω₂ = |1⟩ */}
+      <line x1="150" y1="80" x2="150" y2="90" stroke="var(--color-rule)" stroke-width="1.5"/>
+      <circle cx="150" cy="55" r="5" fill="var(--color-accent)"/>
+      <text x="150" y="44" text-anchor="middle" class="enc-ket">|1⟩</text>
+      <text x="150" y="103" text-anchor="middle" class="enc-label">ω₂</text>
+    </svg>
+  )}
+
+  {kind === "dual-rail" && (
+    <svg viewBox="0 0 220 120" role="img" aria-label={ariaLabel}>
+      {/* Two parallel waveguides */}
+      <rect x="20" y="34" width="180" height="14" rx="3" fill="var(--color-surface-2)" stroke="var(--color-rule)" stroke-width="1"/>
+      <rect x="20" y="72" width="180" height="14" rx="3" fill="var(--color-surface-2)" stroke="var(--color-rule)" stroke-width="1"/>
+
+      {/* Photon in upper rail (|0⟩) */}
+      <circle cx="60" cy="41" r="5" fill="var(--color-accent)" />
+      <text x="10" y="46" text-anchor="end" class="enc-ket">|0⟩</text>
+      <text x="200" y="30" text-anchor="end" class="enc-label">mode A</text>
+
+      {/* Photon in lower rail (|1⟩) */}
+      <circle cx="160" cy="79" r="5" fill="var(--color-accent)" />
+      <text x="10" y="84" text-anchor="end" class="enc-ket">|1⟩</text>
+      <text x="200" y="106" text-anchor="end" class="enc-label">mode B</text>
+    </svg>
+  )}
+
+  {kind === "transmon" && (
+    <svg viewBox="0 0 220 120" role="img" aria-label={ariaLabel}>
+      {/* LEFT — the device itself: two superconducting capacitor
+          pads bridged by a Josephson junction (the ×, the standard
+          circuit symbol for a JJ). This is what a transmon looks
+          like in plan view on a chip.
+          RIGHT — the qubit that emerges: an anharmonic ladder
+          with the |0⟩↔|1⟩ gap visibly larger than |1⟩↔|2⟩ so a
+          microwave drive at ω₀₁ targets only the qubit transition. */}
+
+      {/* Device label */}
+      <text x="50" y="20" text-anchor="middle" class="enc-label">circuit</text>
+
+      {/* Top capacitor pad */}
+      <rect x="18" y="28" width="64" height="14" rx="3"
+            fill="var(--color-accent)" opacity="0.55"
+            stroke="var(--color-accent)" stroke-width="1.3"/>
+      <text x="50" y="38" text-anchor="middle" fill="var(--color-bg)" font-size="9" font-weight="700">cap</text>
+
+      {/* Wire from top pad down to JJ */}
+      <line x1="50" y1="42" x2="50" y2="55" stroke="var(--color-text)" stroke-width="1.5"/>
+
+      {/* Josephson junction — × in a small box */}
+      <rect x="42" y="55" width="16" height="16" fill="var(--color-bg)"
+            stroke="var(--color-accent)" stroke-width="1.5"/>
+      <line x1="42" y1="55" x2="58" y2="71" stroke="var(--color-accent)" stroke-width="2"/>
+      <line x1="58" y1="55" x2="42" y2="71" stroke="var(--color-accent)" stroke-width="2"/>
+      <text x="64" y="66" class="enc-label">JJ</text>
+
+      {/* Wire from JJ down to bottom pad */}
+      <line x1="50" y1="71" x2="50" y2="84" stroke="var(--color-text)" stroke-width="1.5"/>
+
+      {/* Bottom capacitor pad */}
+      <rect x="18" y="84" width="64" height="14" rx="3"
+            fill="var(--color-accent)" opacity="0.55"
+            stroke="var(--color-accent)" stroke-width="1.3"/>
+      <text x="50" y="94" text-anchor="middle" fill="var(--color-bg)" font-size="9" font-weight="700">cap</text>
+
+      {/* Arrow → connecting circuit to its emergent energy ladder */}
+      <line x1="100" y1="63" x2="128" y2="63" stroke="var(--color-rule)" stroke-width="1.5"/>
+      <polygon points="128,63 122,59 122,67" fill="var(--color-rule)"/>
+
+      {/* RIGHT — emergent qubit (anharmonic ladder) */}
+      <text x="170" y="20" text-anchor="middle" class="enc-label">qubit</text>
+
+      {/* |2⟩ — dashed greyed; small gap above |1⟩ (anharmonicity).
+           Same enc-ket typography as |0⟩, |1⟩ (so the kets read as
+           a family) — only opacity is reduced, since this is the
+           level the qubit deliberately doesn't use. */}
+      <line x1="140" y1="42" x2="200" y2="42" stroke="var(--color-rule)" stroke-width="1.2" stroke-dasharray="3,2"/>
+      <text x="206" y="46" class="enc-ket" opacity="0.45">|2⟩</text>
+
+      {/* |1⟩ — first excited */}
+      <line x1="140" y1="60" x2="200" y2="60" stroke="var(--color-accent)" stroke-width="2.5"/>
+      <text x="206" y="64" class="enc-ket">|1⟩</text>
+
+      {/* |0⟩ — ground; bigger gap to |1⟩ than |1⟩→|2⟩ */}
+      <line x1="140" y1="92" x2="200" y2="92" stroke="var(--color-accent)" stroke-width="2.5"/>
+      <text x="206" y="96" class="enc-ket">|0⟩</text>
+
+      <text x="110" y="115" text-anchor="middle" class="enc-label">JJ + capacitor · anharmonic two-level qubit</text>
+    </svg>
+  )}
+
+  {kind === "ion" && (
+    <svg viewBox="0 0 220 120" role="img" aria-label={ariaLabel}>
+      {/* Linear Paul trap, side view: two RF electrode rods (top
+          and bottom) with the ion levitated between them by the
+          oscillating quadrupole field. The internal qubit is a
+          microwave hyperfine transition shown as a vertical
+          double-arrow next to the ion. */}
+
+      {/* Top RF electrode */}
+      <rect x="40" y="20" width="140" height="9" rx="3" fill="var(--color-rule)"/>
+      <text x="35" y="27" text-anchor="end" class="enc-label">RF</text>
+
+      {/* Bottom RF electrode */}
+      <rect x="40" y="91" width="140" height="9" rx="3" fill="var(--color-rule)"/>
+      <text x="35" y="98" text-anchor="end" class="enc-label">RF</text>
+
+      {/* Equipotential field lines (hint at the quadrupole trap
+          geometry — dashed, weak) */}
+      <ellipse cx="110" cy="60" rx="55" ry="22" fill="none" stroke="var(--color-rule)" stroke-width="0.8" stroke-dasharray="2,2"/>
+      <ellipse cx="110" cy="60" rx="32" ry="13" fill="none" stroke="var(--color-rule)" stroke-width="0.8" stroke-dasharray="2,2"/>
+
+      {/* Ion levitating in the centre */}
+      <circle cx="110" cy="60" r="9" fill="var(--color-accent)"/>
+      <text x="110" y="63" text-anchor="middle" fill="var(--color-bg)" font-size="10" font-weight="700">+</text>
+
+      {/* Hyperfine transition: |0⟩ ↔ |1⟩ at ~12.6 GHz */}
+      <line x1="148" y1="49" x2="148" y2="71" stroke="var(--color-accent)" stroke-width="1.5"/>
+      <polygon points="148,49 144,55 152,55" fill="var(--color-accent)"/>
+      <polygon points="148,71 144,65 152,65" fill="var(--color-accent)"/>
+      <text x="156" y="54" class="enc-ket">|1⟩</text>
+      <text x="156" y="74" class="enc-ket">|0⟩</text>
+
+      <text x="110" y="115" text-anchor="middle" class="enc-label">Yb⁺ in linear Paul trap</text>
+    </svg>
+  )}
+
+  {kind === "atom" && (
+    <svg viewBox="0 0 220 120" role="img" aria-label={ariaLabel}>
+      {/* Optical tweezer: a tightly focused laser beam holds a
+          single atom at its focal point. The atom itself stores
+          the qubit on two hyperfine ground sublevels; gates briefly
+          excite to a Rydberg state (the large dashed orbital). */}
+
+      {/* Laser source bar at the top */}
+      <rect x="98" y="6" width="24" height="3" fill="var(--color-accent)" opacity="0.8"/>
+
+      {/* Converging laser cone */}
+      <path d="M 98 9 L 76 70 L 144 70 L 122 9 Z" fill="var(--color-accent)" opacity="0.18"/>
+      <line x1="98"  y1="9" x2="76"  y2="70" stroke="var(--color-accent)" stroke-width="0.6" stroke-dasharray="2,2"/>
+      <line x1="122" y1="9" x2="144" y2="70" stroke="var(--color-accent)" stroke-width="0.6" stroke-dasharray="2,2"/>
+
+      {/* Rydberg orbital — large dashed circle around the atom */}
+      <circle cx="110" cy="74" r="22" fill="none" stroke="var(--color-rule)" stroke-width="1.2" stroke-dasharray="3,3"/>
+
+      {/* Atom at the focus */}
+      <circle cx="110" cy="74" r="6" fill="var(--color-accent)"/>
+
+      {/* Labels */}
+      <text x="68" y="78" text-anchor="end" class="enc-ket">|0⟩, |1⟩</text>
+      <text x="155" y="76" class="enc-label">Rydberg</text>
+      <text x="155" y="89" class="enc-label">(gate)</text>
+
+      <text x="110" y="115" text-anchor="middle" class="enc-label">tweezer-trapped Rb</text>
+    </svg>
+  )}
+
+  {kind === "nv" && (
+    <svg viewBox="0 0 220 120" role="img" aria-label={ariaLabel}>
+      {/* Diamond lattice fragment with a nitrogen substitution and
+          an adjacent vacancy — the NV defect. The unpaired electron
+          spin lives on the N-V axis; |0⟩ and |1⟩ are two of its
+          three spin sub-levels (mₛ = 0 vs ±1). */}
+
+      {/* Bonds (drawn first; atoms cover endpoints) */}
+      <g stroke="var(--color-rule)" stroke-width="1">
+        <line x1="80"  y1="36" x2="60"  y2="65" />
+        <line x1="80"  y1="36" x2="100" y2="55" />
+        <line x1="140" y1="36" x2="100" y2="55" />
+        <line x1="140" y1="36" x2="160" y2="65" />
+        <line x1="60"  y1="65" x2="80"  y2="93" />
+        <line x1="160" y1="65" x2="140" y2="93" />
+        <line x1="80"  y1="93" x2="100" y2="78" />
+        <line x1="140" y1="93" x2="100" y2="78" />
+        {/* Bond from N down to V (the defect axis) */}
+        <line x1="100" y1="55" x2="100" y2="78" stroke-width="1.5"/>
+      </g>
+
+      {/* Carbon atoms (six surrounding) */}
+      <g fill="var(--color-rule)">
+        <circle cx="80"  cy="36" r="5"/>
+        <circle cx="140" cy="36" r="5"/>
+        <circle cx="60"  cy="65" r="5"/>
+        <circle cx="160" cy="65" r="5"/>
+        <circle cx="80"  cy="93" r="5"/>
+        <circle cx="140" cy="93" r="5"/>
+      </g>
+
+      {/* Nitrogen substitution (slightly larger, accent-coloured) */}
+      <circle cx="100" cy="55" r="8" fill="var(--color-accent)"/>
+      <text x="100" y="59" text-anchor="middle" fill="var(--color-bg)" font-size="10" font-weight="700">N</text>
+
+      {/* Vacancy — empty site, drawn as a dashed open circle */}
+      <circle cx="100" cy="78" r="7" fill="var(--color-bg)" stroke="var(--color-accent)" stroke-width="1.4" stroke-dasharray="2,2"/>
+      <text x="100" y="82" text-anchor="middle" fill="var(--color-accent)" font-size="9" font-weight="700">V</text>
+
+      {/* Spin arrow at the defect — angular momentum along the axis */}
+      <line x1="125" y1="55" x2="125" y2="78" stroke="var(--color-accent)" stroke-width="2"/>
+      <polygon points="125,55 122,61 128,61" fill="var(--color-accent)"/>
+      <text x="135" y="70" class="enc-ket">|0⟩,|1⟩</text>
+
+      <text x="110" y="115" text-anchor="middle" class="enc-label">N-V defect in diamond lattice</text>
+    </svg>
+  )}
+
+  {kind === "siv" && (
+    <svg viewBox="0 0 220 120" role="img" aria-label={ariaLabel}>
+      {/* SiV defect: split-vacancy structure where a Si atom sits
+          at the bond centre between two adjacent C lattice sites
+          that are both vacant. The defect is inversion-symmetric
+          (D₃d), which is why SiV is less sensitive to electric-field
+          noise than NV — and why it has a strong, narrow optical
+          line at 738 nm. */}
+
+      {/* Bonds along the V-Si-V axis and to surrounding C atoms */}
+      <g stroke="var(--color-rule)" stroke-width="1">
+        <line x1="65"  y1="30" x2="100" y2="50" />
+        <line x1="155" y1="30" x2="120" y2="50" />
+        <line x1="65"  y1="100" x2="100" y2="80" />
+        <line x1="155" y1="100" x2="120" y2="80" />
+        {/* Defect axis — drawn slightly bolder */}
+        <line x1="110" y1="46" x2="110" y2="84" stroke-width="1.5"/>
+      </g>
+
+      {/* Surrounding carbon atoms */}
+      <g fill="var(--color-rule)">
+        <circle cx="65"  cy="30" r="5"/>
+        <circle cx="155" cy="30" r="5"/>
+        <circle cx="65"  cy="100" r="5"/>
+        <circle cx="155" cy="100" r="5"/>
+      </g>
+
+      {/* Vacancy 1 (top) — dashed open circle */}
+      <circle cx="110" cy="46" r="7" fill="var(--color-bg)" stroke="var(--color-accent)" stroke-width="1.4" stroke-dasharray="2,2"/>
+      <text x="110" y="50" text-anchor="middle" fill="var(--color-accent)" font-size="9" font-weight="700">V</text>
+
+      {/* Si interstitial (centre) — sits between the two vacancies */}
+      <circle cx="110" cy="65" r="9" fill="var(--color-accent)"/>
+      <text x="110" y="69" text-anchor="middle" fill="var(--color-bg)" font-size="9" font-weight="700">Si</text>
+
+      {/* Vacancy 2 (bottom) */}
+      <circle cx="110" cy="84" r="7" fill="var(--color-bg)" stroke="var(--color-accent)" stroke-width="1.4" stroke-dasharray="2,2"/>
+      <text x="110" y="88" text-anchor="middle" fill="var(--color-accent)" font-size="9" font-weight="700">V</text>
+
+      {/* Spin arrow at the defect (parallel to inversion axis) */}
+      <line x1="138" y1="50" x2="138" y2="80" stroke="var(--color-accent)" stroke-width="2"/>
+      <polygon points="138,50 135,56 141,56" fill="var(--color-accent)"/>
+      <text x="148" y="69" class="enc-ket">|0⟩,|1⟩</text>
+
+      <text x="110" y="115" text-anchor="middle" class="enc-label">SiV split-vacancy · inversion symmetric</text>
+    </svg>
+  )}
+
+  {kind === "si-spin" && (
+    <svg viewBox="0 0 220 120" role="img" aria-label={ariaLabel}>
+      {/* The qubit is a single electron's spin angular momentum.
+          Two side-by-side panels show the up and down spin states
+          explicitly: each panel has the electron sphere, a bold
+          axis arrow showing the angular-momentum direction, and a
+          curly halo around the sphere indicating rotation sense
+          (right-hand rule: thumb up ⇒ CCW from above; thumb down ⇒
+          CW from above). */}
+
+      {/* External B field — fixes the quantisation axis */}
+      <line x1="22" y1="50" x2="22" y2="22" stroke="var(--color-rule)" stroke-width="1.5"/>
+      <polygon points="22,22 19,28 25,28" fill="var(--color-rule)"/>
+      <text x="30" y="32" class="enc-label">B</text>
+
+      {/* LEFT — spin-up electron = |1⟩ */}
+      {/* Halo: dashed ellipse around the sphere with an arrowhead
+           on the right side, suggesting CCW rotation seen from above. */}
+      <ellipse cx="80" cy="60" rx="22" ry="7" fill="none" stroke="var(--color-accent)" stroke-width="1.2" stroke-dasharray="4,2"/>
+      <polygon points="102,57 96,53 96,62" fill="var(--color-accent)"/>
+      {/* Axis arrow drawn first so the sphere overlays its middle */}
+      <line x1="80" y1="32" x2="80" y2="88" stroke="var(--color-text)" stroke-width="2.5"/>
+      <polygon points="80,32 75,41 85,41" fill="var(--color-text)"/>
+      {/* Electron sphere */}
+      <circle cx="80" cy="60" r="13" fill="var(--color-accent)"/>
+      {/* In-sphere portion of the axis (white over cyan so the
+           arrow reads as continuous through the ball) */}
+      <line x1="80" y1="48" x2="80" y2="72" stroke="var(--color-bg)" stroke-width="2.5"/>
+      <text x="80" y="106" text-anchor="middle" class="enc-ket">|1⟩  ↑</text>
+
+      {/* RIGHT — spin-down electron = |0⟩ */}
+      <ellipse cx="160" cy="60" rx="22" ry="7" fill="none" stroke="var(--color-accent)" stroke-width="1.2" stroke-dasharray="4,2"/>
+      {/* Arrowhead on the LEFT side of the halo to flip the
+           rotation sense */}
+      <polygon points="138,63 144,67 144,58" fill="var(--color-accent)"/>
+      <line x1="160" y1="32" x2="160" y2="88" stroke="var(--color-text)" stroke-width="2.5"/>
+      <polygon points="160,88 155,79 165,79" fill="var(--color-text)"/>
+      <circle cx="160" cy="60" r="13" fill="var(--color-accent)"/>
+      <line x1="160" y1="48" x2="160" y2="72" stroke="var(--color-bg)" stroke-width="2.5"/>
+      <text x="160" y="106" text-anchor="middle" class="enc-ket">|0⟩  ↓</text>
+
+      <text x="110" y="118" text-anchor="middle" class="enc-label">electron spin in ²⁸Si quantum dot</text>
+    </svg>
+  )}
+
+  {kind === "majorana" && (
+    <svg viewBox="0 0 220 120" role="img" aria-label={ariaLabel}>
+      {/* Hybrid SC-on-SM nanowire. A semiconductor nanowire
+          (lower bar) is coated by a superconductor (upper bar)
+          along its middle section; under the right conditions, a
+          Majorana zero mode appears at each end of the SC-covered
+          region. The qubit lives in the joint fermion parity of
+          the two MZMs — a non-local degree of freedom. */}
+
+      {/* SM nanowire (full length) */}
+      <rect x="30" y="58" width="160" height="14" rx="2" fill="var(--color-surface-2)" stroke="var(--color-rule)" stroke-width="1.2"/>
+      <text x="20" y="68" text-anchor="end" class="enc-label">SM</text>
+
+      {/* SC overlay (middle section only) */}
+      <rect x="55" y="44" width="110" height="12" rx="2" fill="var(--color-accent)" opacity="0.45" stroke="var(--color-accent)" stroke-width="1"/>
+      <text x="20" y="52" text-anchor="end" class="enc-label">SC</text>
+
+      {/* Majorana zero modes at the two ends of the SC region */}
+      <circle cx="55" cy="65" r="7" fill="var(--color-accent)"/>
+      <circle cx="165" cy="65" r="7" fill="var(--color-accent)"/>
+      <text x="55" y="36" text-anchor="middle" class="enc-label">γ₁</text>
+      <text x="165" y="36" text-anchor="middle" class="enc-label">γ₂</text>
+
+      {/* Two parity states (|0⟩ even, |1⟩ odd) */}
+      <text x="60" y="98" class="enc-ket">|0⟩</text>
+      <text x="83" y="98" class="enc-label">even</text>
+      <text x="125" y="98" class="enc-ket">|1⟩</text>
+      <text x="148" y="98" class="enc-label">odd</text>
+
+      <text x="110" y="115" text-anchor="middle" class="enc-label">Majorana zero modes · joint parity</text>
+    </svg>
+  )}
+
+  {kind === "ensemble" && (
+    <svg viewBox="0 0 220 120" role="img" aria-label={ariaLabel}>
+      {/* Atomic ensemble: N atoms (vapour cell or rare-earth-doped
+          crystal). The qubit is the collective spin state:
+          |0⟩ = all atoms in their ground state (left panel);
+          |1⟩ = a single excitation delocalised symmetrically across
+          all N atoms — a spin-wave (right panel). Two side-by-side
+          clouds make both basis states explicit, matching the rest
+          of the encoding diagrams. */}
+
+      {/* |0⟩ — all-ground panel (left) */}
+      <text x="55" y="14" text-anchor="middle" class="enc-ket">|0⟩</text>
+      <ellipse cx="55" cy="65" rx="42" ry="24"
+               fill="var(--color-surface-2)" stroke="var(--color-rule)"
+               stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+      <g fill="var(--color-rule)">
+        <circle cx="28" cy="52" r="2.4"/>
+        <circle cx="44" cy="52" r="2.4"/>
+        <circle cx="60" cy="52" r="2.4"/>
+        <circle cx="76" cy="52" r="2.4"/>
+        <circle cx="36" cy="65" r="2.4"/>
+        <circle cx="52" cy="65" r="2.4"/>
+        <circle cx="68" cy="65" r="2.4"/>
+        <circle cx="84" cy="65" r="2.4"/>
+        <circle cx="28" cy="78" r="2.4"/>
+        <circle cx="44" cy="78" r="2.4"/>
+        <circle cx="60" cy="78" r="2.4"/>
+        <circle cx="76" cy="78" r="2.4"/>
+      </g>
+      <text x="55" y="105" text-anchor="middle" class="enc-label">all in ground</text>
+
+      {/* |1⟩ — one delocalised excitation (right) */}
+      <text x="165" y="14" text-anchor="middle" class="enc-ket">|1⟩</text>
+      <ellipse cx="165" cy="65" rx="42" ry="24"
+               fill="var(--color-surface-2)" stroke="var(--color-rule)"
+               stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+      <g fill="var(--color-rule)">
+        <circle cx="138" cy="52" r="2.4"/>
+        <circle cx="154" cy="52" r="2.4"/>
+        <circle cx="170" cy="52" r="2.4"/>
+        <circle cx="186" cy="52" r="2.4"/>
+        <circle cx="146" cy="65" r="2.4"/>
+        <circle cx="162" cy="65" r="2.4"/>
+        <circle cx="178" cy="65" r="2.4"/>
+        <circle cx="194" cy="65" r="2.4"/>
+        <circle cx="138" cy="78" r="2.4"/>
+        <circle cx="154" cy="78" r="2.4"/>
+        <circle cx="170" cy="78" r="2.4"/>
+        <circle cx="186" cy="78" r="2.4"/>
+      </g>
+      {/* Spin-wave overlay — the single excitation, shared
+          symmetrically across all atoms, drawn as a sinusoidal phase
+          pattern through the cloud. */}
+      <path
+        d="M 128 65 Q 138 50 148 65 T 168 65 T 188 65 T 202 65"
+        fill="none" stroke="var(--color-accent)" stroke-width="2.2"
+      />
+      <text x="165" y="105" text-anchor="middle" class="enc-label">one excitation, shared</text>
+    </svg>
+  )}
+</figure>
+
+<style>
+  .encoding {
+    margin: 0;
+    padding: var(--space-2);
+    background: var(--color-bg);
+    border-radius: var(--radius-sm);
+  }
+  .encoding svg {
+    inline-size: 100%;
+    block-size: auto;
+    max-block-size: 130px;
+    display: block;
+  }
+  /* :global because Astro's scoped-CSS data attribute doesn't get
+     applied to <text> children inside SVG markup — the class names
+     are unique enough that the global scope isn't a concern. */
+  :global(.enc-ket) {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    fill: var(--color-text);
+  }
+  :global(.enc-label) {
+    font-size: 11px;
+    fill: var(--color-text-mute);
+  }
+</style>

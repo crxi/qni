@@ -1,0 +1,36 @@
+---
+interface Props { value: string | number; label: string; unit?: string; }
+const { value, label, unit } = Astro.props;
+---
+<figure class="stat-callout">
+  <div class="stat-value">{value}{unit && <span class="stat-unit"> {unit}</span>}</div>
+  <figcaption class="stat-label">{label}</figcaption>
+</figure>
+
+<style>
+  .stat-callout {
+    display: grid;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    break-inside: avoid;
+  }
+  .stat-value {
+    font-family: var(--font-sans);
+    font-size: var(--text-stat);
+    font-weight: 700;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    color: var(--stat-value-color);
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-unit { font-size: 0.5em; font-weight: 500; color: var(--stat-label-color); }
+  .stat-label {
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--stat-label-color);
+    max-width: 30ch;
+  }
+</style>

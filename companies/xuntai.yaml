@@ -1,0 +1,229 @@
+slug: xuntai
+name: XT Quantech
+categories: [qkd, enabling]
+hq: Minhang District, Shanghai, China
+founded: 2017
+status: private
+parent: null
+logo:
+  domain: xtquantech.com
+
+positioning: >
+  Shanghai Xuntai Quantum Technology Co., Ltd. (上海循态量子科技有限公司, XT Quantech)
+  is a spin-out of the Quantum Sensing and Information Processing (QSIP) group
+  at Shanghai Jiao Tong University, focusing on continuous-variable QKD (CV-QKD)
+  with local-local-oscillator coherent detection — distinct from the
+  discrete-variable BB84 systems fielded by most Chinese QKD vendors. Founded
+  in 2017 in Shanghai, it released its first commercial CV-QKD product in June
+  2018 and has since expanded to quantum random number generators, security
+  gateways, and coherent detector components. Customers span power, rail
+  transit, gas-utility, and finance sectors in China.
+
+modalities:
+  qkd:
+    protocol: [CV-QKD, GG02, discrete-modulated CV-QKD, one-dimensional CV-QKD]
+    rate_distance: >
+      Gaussian-modulated LLO CV-QKD: 10.37 Mbps @ 20 km, 1.61 Mbps @ 50 km,
+      337 kbps @ 70 km, 58 kbps @ 100 km SMF (NJP 26, 2024; Yingming Zhou
+      co-affiliated with XT Quantech). Multi-protocol system: 1–10 Mbps at
+      10–100 MHz repetition rate (Optics Letters 48, 719, 2023).
+    deployed_demos:
+      - note: >
+          Four-campus CV-QKD metropolitan-area network across Shanghai Jiao Tong
+          University sites (Minhang, Qibao, Xujiahui, Fahua) using XT Quantech
+          CV-QKD hardware; field trial reported in collaboration with QSIP
+        source_url: https://iopscience.iop.org/article/10.1088/1367-2630/ad1b7e
+      - note: >
+          China Academy of Railway Sciences engagement (2022) to explore CV-QKD
+          integration in high-speed rail communication systems
+        source_url: https://www.scmp.com/news/china/science/article/3186402/chinese-companies-begin-embrace-quantum-technology
+      - note: >
+          Participation in China Mobile "Illuminate 100 Cities" quantum test
+          network initiative, announced at China Mobile Partner Conference
+          (October 2024)
+        source_url: https://www.xtquantech.com/qbxw
+      - note: >
+          Collaboration with China Unicom on CUBE-Net 3.0 quantum-secure
+          infrastructure, announced at China Unicom Partner Conference
+          (July 2024)
+        source_url: https://www.xtquantech.com/qbxw
+  enabling:
+    products:
+      - CV-QKD transceivers (CVQKD series) — Gaussian-modulated LLO coherent-detection, 10–100 MHz, 1–10 Mbps secure key
+      - Quantum random number generators (QRNG series) — vacuum-fluctuation homodyne detection entropy source
+      - Quantum security gateways (QSG-200)
+      - Wavelength-division multiplexing equipment (QWDM-100)
+      - Intelligent acceleration network cards (IAC series)
+      - Quantum key and storage security platforms (QKSM series)
+      - Continuous-variable quantum signal sources (chip-level)
+      - Broadband quantum coherent detectors
+      - Bias-point controllers and adjustable attenuators
+
+milestones:
+  - date: 2024-12
+    tag: qkd
+    headline: >
+      Quantum+OTN integrated fusion solution selected as Shanghai outstanding
+      cryptography application solution
+    source_url: https://www.xtquantech.com/qbxw
+    source_type: press
+  - date: 2024-10
+    tag: qkd
+    headline: >
+      Joins China Mobile "Illuminate 100 Cities" quantum test network initiative
+      at China Mobile Partner Conference; separately advances CUBE-Net 3.0
+      quantum-secure infrastructure collaboration with China Unicom
+    source_url: https://www.xtquantech.com/qbxw
+    source_type: press
+  - date: 2024-02
+    tag: qkd
+    headline: >
+      Wang, T. et al., "High key rate continuous-variable quantum key
+      distribution using telecom optical components", New Journal of Physics 26
+      (2024) — Yingming Zhou (XT Quantech) co-author; demonstrates 10.37 Mbps
+      @ 20 km and 58 kbps @ 100 km with Gaussian-modulated LLO CV-QKD
+    source_url: https://iopscience.iop.org/article/10.1088/1367-2630/ad1b7e
+    source_type: paper
+  - date: 2023-09
+    tag: qkd
+    headline: >
+      Wang, T. et al., "Bidirectional multi-band quantum access network"
+      experimental verification published in Photonics Research (DOI:
+      10.1364/PRJ.492448) — multi-user CV-QKD access at >600 bps @ 30 km
+      per user
+    source_url: https://qsip.sjtu.edu.cn/info/1080/1642.htm
+    source_type: paper
+  - date: 2023-02
+    tag: qkd
+    headline: >
+      Wang, T. et al., "Multi-rate and multi-protocol continuous-variable
+      quantum key distribution", Optics Letters 48, 719–722 (2023) — first
+      experimental demonstration of a single CV-QKD system switching between
+      Gaussian, discrete, and one-dimensional modulation protocols at 10–100 MHz
+    source_url: https://opg.optica.org/ol/abstract.cfm?uri=ol-48-3-719
+    source_type: paper
+  - date: 2023-01
+    tag: qkd
+    headline: >
+      Joint announcement with SJTU QSIP of next-generation multi-rate
+      multi-protocol CV-QKD system achieving 1–10 Mbps secure key output with
+      real-time protocol switching
+    source_url: https://www.xtquantech.com/qbxw/384
+    source_type: press
+  - date: 2018-06
+    tag: qkd
+    headline: >
+      Released CV-QKD-based quantum key distribution commercial product at 2018
+      World Mobile Congress Shanghai — described by the company as the first
+      commercial CV-QKD product
+    source_url: https://www.xtquantech.com/qbxw
+    source_type: press
+  - date: 2017-03
+    tag: qkd
+    headline: >
+      Founded as 上海循态量子科技有限公司 (Shanghai Xuntai Quantum Technology Co., Ltd.)
+      in Minhang District, Shanghai, as a spin-out of the QSIP group at SJTU
+    source_url: https://www.xtquantech.com/gsjs
+    source_type: blog
+
+shareholders: []
+
+key_personnel:
+  - role: Chairman & Chief Scientist
+    name: Zeng Guihua (曾贵华)
+    since: 2017
+    source_url: https://www.xtquantech.com/gsjs
+    note: >
+      Tenured professor at Shanghai Jiao Tong University and Director of the
+      Quantum Sensing and Information Processing (QSIP) Research Institute.
+      Humboldt Scholar. Author of 300+ papers with 10,000+ citations; 100+
+      patent applications. Principal investigator of the SJTU CV-QKD research
+      programme that XT Quantech commercialises.
+  - role: CEO & Co-founder
+    name: Wang Chao (汪超)
+    since: 2017
+    source_url: https://www.xtquantech.com/gsjs
+    note: >
+      Legal representative of the company. Wuhan University graduate; SJTU PhD.
+      Over 15 years of telecommunications product R&D management experience.
+      Led development of the company's high-speed CV-QKD systems, QRNG, and
+      quantum security gateways.
+
+roadmap:
+  - target: 2025
+    item: >
+      Expand integrated quantum communication terminal deployments across China
+      Mobile and China Unicom carrier networks through the "Illuminate 100 Cities"
+      and CUBE-Net 3.0 quantum-secure infrastructure programmes
+    source_url: https://www.xtquantech.com/qbxw
+    tag: qkd
+
+current_flagship:
+  name: CV-QKD LLO transceiver system with multi-protocol support
+  generation: >
+    Gaussian-modulated local-local-oscillator CV-QKD; supports Gaussian,
+    discrete, and one-dimensional modulation with real-time switching;
+    10–100 MHz repetition rate, 1–10 Mbps secure key output
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://iopscience.iop.org/article/10.1088/1367-2630/ad1b7e
+    note: >
+      Wang, T., Huang, P., Li, L., Zhou, Y. (XT Quantech), Zeng, G.
+      "High key rate continuous-variable quantum key distribution using telecom
+      optical components." New Journal of Physics 26 (2024).
+      DOI: 10.1088/1367-2630/ad1b7e. Key result: 10.37 Mbps @ 20 km,
+      58 kbps @ 100 km, Gaussian-modulated LLO CV-QKD.
+  - kind: paper
+    citation_key: null
+    url: https://opg.optica.org/ol/abstract.cfm?uri=ol-48-3-719
+    note: >
+      Wang, T., Xu, Y., Zhao, H., Li, L., Huang, P., Zeng, G.
+      "Multi-rate and multi-protocol continuous-variable quantum key
+      distribution." Optics Letters 48, 719–722 (2023).
+      DOI: 10.1364/OL.479647. First demonstration of Gaussian / discrete /
+      one-dimensional protocol switching in a single CV-QKD system.
+  - kind: paper
+    citation_key: null
+    url: https://doi.org/10.1364/PRJ.492448
+    note: >
+      Xu, Y., Wang, T., Zeng, G. et al. "Bidirectional multi-band quantum
+      access network." Photonics Research (2023). Multi-user CV-QKD access
+      at >600 bps @ 30 km per user.
+  - kind: blog
+    citation_key: null
+    url: https://www.xtquantech.com/gsjs
+    note: XT Quantech company profile — founders, technology focus, product lines
+  - kind: press
+    citation_key: null
+    url: https://www.xtquantech.com/qbxw/384
+    note: >
+      XT Quantech news, Jan 2023: joint announcement with SJTU QSIP of
+      multi-rate multi-protocol CV-QKD system
+  - kind: press
+    citation_key: null
+    url: https://www.scmp.com/news/china/science/article/3186402/chinese-companies-begin-embrace-quantum-technology
+    note: >
+      South China Morning Post (2022): Wang Chao on CV-QKD for high-speed rail
+      and affordability trajectory of XT Quantech systems
+
+partial:
+  - shareholders
+  - field: milestones
+    as_of: 2026-06-17
+    note: >
+      Milestones from 2018–2022 sourced from XT Quantech news archive and SJTU
+      press; no independent press or peer-reviewed confirmation for the June 2018
+      "first commercial CV-QKD product" claim beyond vendor's own site.
+  - field: modalities.qkd.deployed_demos
+    as_of: 2026-06-17
+    note: >
+      China Mobile / Unicom partnership milestones and the SJTU multi-campus
+      field trial sourced from vendor news and academic paper affiliations;
+      no independent third-party coverage or peer-reviewed deployment paper found.
+  - modalities.qkd.rate_distance
+  - roadmap
+
+last_verified: 2026-06-17
+verification_method: web

@@ -1,0 +1,196 @@
+slug: diraq
+name: Diraq
+categories: [qc]
+hq: Sydney, NSW, Australia
+founded: 2022
+status: private
+parent: null
+logo:
+  domain: diraq.com
+
+positioning: >
+  Silicon CMOS spin-qubit quantum computing. UNSW Sydney spin-out built around
+  Andrew Dzurak's decade-plus programme on electron-spin qubits in silicon MOS
+  quantum dots. The thesis is foundry compatibility: Diraq designs the device,
+  partner foundries (imec on 300 mm, GlobalFoundries on CMOS development) fabricate
+  it with industry-standard tools. September 2025 Nature paper with imec reported
+  >99% one- and two-qubit gate fidelity and >99.9% SPAM from randomly-selected
+  300 mm samples — achieving scalable error-correction-threshold fidelity from
+  a commercial-fab process rather than a bespoke device.
+
+modalities:
+  qc:
+    qubit_type: spin-si
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: 0.999
+    two_q_fidelity: 0.99
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: nearest-neighbour
+    gate_set: []
+
+milestones:
+  - date: 2025-11
+    tag: qc
+    headline: Selected for Stage B of DARPA Quantum Benchmarking Initiative (utility-scale by 2033)
+    source_url: https://www.diraq.com/newsdesk/diraq-advances-to-next-phase-of-darpas-utility-scale-quantum-computing-initiative
+    source_type: press
+  - date: 2025-09
+    tag: qc
+    headline: Nature paper with imec — industry-fabricated 300 mm silicon spin qubits exceed 99% one- and two-qubit gate fidelity, >99.9% SPAM
+    source_url: https://www.nature.com/articles/s41586-025-09531-9
+    source_type: paper
+  - date: 2025-06
+    tag: qc
+    headline: Reported integration of cryogenic CMOS control electronics with silicon spin qubits
+    source_url: https://www.diraq.com/newsdesk/imec-technology-lights-the-path-to-utility-scale-for-diraq-s-quantum-chips
+    source_type: press
+  - date: 2025-04
+    tag: qc
+    headline: Selected for Stage A of DARPA Quantum Benchmarking Initiative
+    source_url: https://www.darpa.mil/research/programs/quantum-benchmarking-initiative/stage-b-selection
+    source_type: press
+  - date: 2024
+    tag: qc
+    headline: Extended Series A — additional US$33M raised
+    source_url: https://en.wikipedia.org/wiki/Diraq
+    source_type: press
+  - date: 2022-09
+    tag: qc
+    headline: Spun out of UNSW Sydney; Series A US$30M led by Quantonation, Main Sequence, Allectus
+    source_url: https://en.wikipedia.org/wiki/Diraq
+    source_type: press
+
+shareholders:
+  - holder: National Reconstruction Fund Corporation (Australia)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-02
+    source_url: https://www.startupdaily.net/topic/funding/nrf-slings-20-million-at-quantum-computer-startup-diraq/
+    note: AU$20M strategic equity investment (Feb 2026)
+  - holder: Quantonation
+    stake_percent: null
+    stake_class: minority
+    as_of: 2022-09
+    source_url: https://en.wikipedia.org/wiki/Diraq
+    note: Series A lead
+  - holder: Main Sequence Ventures (CSIRO)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2022-09
+    source_url: https://en.wikipedia.org/wiki/Diraq
+    note: Series A participant
+  - holder: Allectus Capital
+    stake_percent: null
+    stake_class: minority
+    as_of: 2022-09
+    source_url: https://en.wikipedia.org/wiki/Diraq
+    note: Series A participant
+  - holder: In-Q-Tel
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2024
+    source_url: https://en.wikipedia.org/wiki/Diraq
+    note: US strategic investor in extended Series A
+  - holder: Andrew Dzurak (founder)
+    stake_percent: null
+    stake_class: founder
+    as_of: 2022
+    source_url: https://www.diraq.com/team
+    note: Founder; stake not disclosed
+
+key_personnel:
+  - role: CEO & Founder
+    name: Andrew Dzurak
+    since: 2022
+    source_url: https://www.diraq.com/team
+    note: UNSW Scientia Professor; founded Diraq as a UNSW spin-out
+  - role: COO
+    name: Stefanie Tardo
+    since: 2022
+    source_url: https://www.diraq.com/team
+  - role: CFO
+    name: Lasantha Thennakoon
+    since: 2022
+    source_url: https://www.diraq.com/team
+  - role: Head of Measurement & Fabrication
+    name: Wee Han Lim
+    since: 2022
+    source_url: https://www.diraq.com/team
+  - role: Head of Engineering
+    name: Chris Escott
+    since: 2022
+    source_url: https://www.diraq.com/team
+  - role: Head of Theory & Product Development
+    name: Andre Saraiva
+    since: 2022
+    source_url: https://www.diraq.com/team
+  - role: Head of Technical Partnerships
+    name: Arne Laucht
+    since: 2022
+    source_url: https://www.diraq.com/team
+  - role: Chairman
+    name: William Jeffrey
+    since: 2022
+    source_url: https://www.diraq.com/team
+
+roadmap:
+  - target: 2033
+    item: Utility-scale silicon-CMOS quantum computer (DARPA QBI target horizon)
+    source_url: https://www.darpa.mil/research/programs/quantum-benchmarking-initiative/stage-b-selection
+    tag: qc
+
+current_flagship:
+  name: imec 300 mm silicon spin-qubit unit cell
+  generation: foundry-fabricated Si-MOS quantum-dot device, gate fidelities >99%
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41586-025-09531-9
+    note: "Industry-compatible silicon spin-qubit unit cells exceeding 99% fidelity, Nature (2025) — Diraq + imec joint paper"
+  - kind: press
+    citation_key: null
+    url: https://www.imec-int.com/en/press/imec-technology-lights-path-utility-scale-diraqs-quantum-chips
+    note: imec press release on the September 2025 Nature result
+  - kind: press
+    citation_key: null
+    url: https://www.electronicspecifier.com/products/quantum/globalfoundries-diraq-to-make-quantum-chips-with-standard-tools/
+    note: GlobalFoundries–Diraq partnership announcement
+  - kind: press
+    citation_key: null
+    url: https://www.diraq.com/newsdesk/diraq-advances-to-next-phase-of-darpas-utility-scale-quantum-computing-initiative
+    note: Diraq DARPA QBI Stage B selection (November 2025)
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.ec_code
+  - modalities.qc.gate_set
+  - field: modalities.qc.connectivity
+    as_of: 2026-05-24
+    note: nearest-neighbour is the typical Si-MOS quantum-dot layout but Diraq has not publicly fixed a connectivity for its target processor
+  - field: shareholders
+    as_of: 2026-05-24
+    note: private-company cap table; investor list confirmed via Wikipedia + press but stake percentages not disclosed
+  - field: key_personnel.1.since
+    as_of: 2026-05-24
+    note: vendor team page does not list start years; 2022 assumed as company founding year
+  - field: key_personnel.2.since
+    as_of: 2026-05-24
+  - field: key_personnel.3.since
+    as_of: 2026-05-24
+  - field: key_personnel.4.since
+    as_of: 2026-05-24
+  - field: key_personnel.5.since
+    as_of: 2026-05-24
+  - field: key_personnel.6.since
+    as_of: 2026-05-24
+  - field: key_personnel.7.since
+    as_of: 2026-05-24
+
+last_verified: 2026-05-24
+verification_method: web

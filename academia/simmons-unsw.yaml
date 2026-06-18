@@ -1,0 +1,164 @@
+slug: simmons-unsw
+name: Simmons group (UNSW Sydney)
+categories: [qc]
+hq: Sydney, NSW, Australia
+status: active
+parent: null
+
+institution:
+  name: UNSW Sydney
+  lab: Centre for Quantum Computation and Communication Technology (CQC2T, ARC Centre of Excellence) · School of Physics
+
+group_website: https://www.unsw.edu.au/staff/michelle-simmons
+group_website_secondary: https://www.cqc2t.org/
+
+positioning: >
+  Atomic-precision phosphorus-in-silicon (P-in-Si) quantum-computing group at
+  UNSW Sydney, led by Scientia Professor Michelle Simmons. The signature
+  method is STM hydrogen-resist lithography followed by phosphine dosing,
+  placing individual donor atoms in the silicon lattice with sub-nanometre
+  precision (0.13 nm, Nature 2026). This is a different architecture from
+  the electrostatic quantum-dot route used by most CMOS-aligned silicon-spin
+  programmes. Current focus is scaling deterministic donor arrays into
+  multi-qubit logic devices. Simmons is also Founder and CEO of the
+  commercial spinout Silicon Quantum Computing (SQC).
+
+modalities:
+  qc:
+    qubit_type: spin-si
+    physical_qubits_current: 10
+    logical_qubits_current: 0
+    one_q_fidelity: 0.9999
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: nearest-neighbour
+    gate_set: []
+
+milestones:
+  - date: 2026-02
+    tag: qc
+    headline: Quantum Twins commercial launch via SQC — companion Nature paper reports 0.13 nm donor placement precision and up-to-99.99% one-qubit fidelity on STM-lithographed P-in-Si devices
+    source_url: https://www.sqc.com.au/news/sqc-launches-quantum-twins
+    source_type: press
+  - date: 2025
+    tag: qc
+    headline: Selected by DARPA for Stage B of the Quantum Benchmarking Initiative (via SQC)
+    source_url: https://www.hpcwire.com/off-the-wire/silicon-quantum-computing-selected-by-darpa-to-advance-into-2nd-stage-of-quantum-benchmarking-initiative/
+    source_type: press
+  - date: 2025
+    tag: qc
+    headline: Grover's-algorithm demonstration on silicon donor spin qubits reaching 98.87% of the theoretical maximum success probability (Nature Nanotechnology)
+    source_url: https://www.nature.com/articles/s41565-024-01853-5
+    source_type: paper
+  - date: 2022-06
+    tag: qc
+    headline: Kiczynski et al. — atomic-scale integrated quantum circuit with 10 phosphorus quantum dots placed atom-by-atom in silicon, operated as an analog simulator of polyacetylene (Nature)
+    source_url: https://www.nature.com/articles/s41586-022-04706-0
+    source_type: paper
+  - date: 2019
+    tag: qc
+    headline: Three-dimensional atom-by-atom transistor demonstrated in silicon (Nature Nanotechnology)
+    source_url: https://www.nature.com/articles/s41565-018-0338-1
+    source_type: paper
+  - date: 2012
+    tag: qc
+    headline: First single-atom transistor in silicon — single phosphorus donor placed by STM lithography (Nature Nanotechnology)
+    source_url: https://www.nature.com/articles/nnano.2012.21
+    source_type: paper
+  - date: 2010
+    tag: qc
+    headline: Single-shot readout of an electron spin bound to a phosphorus donor in silicon (Nature, Morello et al., CQC2T collaboration)
+    source_url: https://www.nature.com/articles/nature09392
+    source_type: paper
+
+key_personnel:
+  - role: Principal Investigator / Scientia Professor
+    name: Michelle Simmons
+    since: 1999
+    source_url: https://www.unsw.edu.au/staff/michelle-simmons
+    note: Joined UNSW Sydney in 1999 as an ARC QEII Fellow; appointed Scientia Professor; 2018 Australian of the Year; Founder and CEO of Silicon Quantum Computing (SQC) since 2017
+  - role: Director, ARC Centre of Excellence for Quantum Computation and Communication Technology (CQC2T)
+    name: Michelle Simmons
+    since: 2011
+    source_url: https://www.cqc2t.org/about/people/
+    note: Founding Director of CQC2T from its establishment as an ARC Centre of Excellence in 2011; CQC2T succeeded the earlier ARC Centre of Excellence for Quantum Computer Technology (2000–2010)
+
+funding_sources:
+  - source: Australian Research Council — Centre of Excellence for Quantum Computation and Communication Technology (CQC2T)
+    source_url: https://www.cqc2t.org/
+    note: Primary research-grant vehicle; CQC2T established 2011, host institution UNSW Sydney
+  - source: Australian Federal Government — strategic quantum funding
+    source_url: https://www.industry.gov.au/science-technology-and-innovation/technology/national-quantum-strategy
+    note: Direct strategic investment into the SQC commercial path and the underlying UNSW research programme
+  - source: DARPA Quantum Benchmarking Initiative (QBI) — Stage B
+    source_url: https://www.hpcwire.com/off-the-wire/silicon-quantum-computing-selected-by-darpa-to-advance-into-2nd-stage-of-quantum-benchmarking-initiative/
+    note: Awarded via SQC in 2025
+  - source: UNSW Sydney — host institution
+    source_url: https://www.cqc2t.org/
+    note: Lab space, infrastructure, and founding equity in SQC
+
+current_focus:
+  name: Atomic-precision quantum computing in silicon
+  description: >
+    Per the UNSW profile (unsw.edu.au/staff/michelle-simmons): building
+    electronic devices in silicon at the atomic scale — including atom-based
+    qubits and 3D atomic electronics — toward a silicon quantum computer,
+    pursued at UNSW as Director of CQC2T and at the Silicon Quantum
+    Computing spinout as Founder and CEO.
+  source_url: https://www.unsw.edu.au/staff/michelle-simmons
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41586-022-04706-0
+    note: Kiczynski et al., Nature 606, 694–699 (2022) — atomic-scale integrated quantum circuit, 10-phosphorus-dot analog simulator of polyacetylene
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41565-024-01853-5
+    note: Grover's-algorithm demonstration at 98.87% of theoretical maximum on donor-Si qubits (Nature Nanotechnology, 2025)
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41565-018-0338-1
+    note: 3D atom-by-atom transistor in silicon (Nature Nanotechnology, 2019)
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/nnano.2012.21
+    note: First single-atom transistor in silicon (Nature Nanotechnology, 2012)
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/nature09392
+    note: Single-shot electron-spin readout of a P donor in silicon (Nature, 2010)
+  - kind: blog
+    citation_key: null
+    url: https://www.cqc2t.org/
+    note: CQC2T centre overview, host of the Simmons group
+
+related_dossiers:
+  - kind: company
+    slug: sqc
+    note: Silicon Quantum Computing — the commercial spinout founded 2017; same site and infrastructure, Simmons is Founder & CEO
+
+partial:
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.ec_code
+  - modalities.qc.gate_set
+  - field: modalities.qc.one_q_fidelity
+    as_of: 2026-05-24
+    note: 99.99% figure from the SQC December 2025 / February 2026 announcements.
+  - field: modalities.qc.physical_qubits_current
+    as_of: 2026-05-24
+    note: 10 reflects the 2022 atomic-scale integrated circuit; 2026 Quantum Twins patterns 15,000 registers but the qubit-count semantics differ for an analog simulator
+  - field: key_personnel.0.since
+    as_of: 2026-05-24
+    note: 1999 is Simmons' UNSW arrival as an ARC QEII Fellow; exact group-formation date not pinned to a primary source
+  - field: key_personnel.1.since
+    as_of: 2026-05-24
+    note: CQC2T as an ARC Centre of Excellence began in 2011; Simmons' Director tenure since establishment, but the precise appointment month is not confirmed against a primary source
+  - group_website_secondary
+
+last_verified: 2026-05-24
+verification_method: web

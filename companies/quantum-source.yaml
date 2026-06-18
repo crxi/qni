@@ -1,0 +1,184 @@
+slug: quantum-source
+name: Quantum Source
+categories: [qc]
+hq: Nes Ziona, Israel
+founded: 2021
+status: private
+parent: null
+logo:
+  domain: qs-labs.com
+
+positioning: >
+  Israeli photonic fault-tolerant quantum-computing company founded in 2021
+  by Oded Melamed, Gil Semo, Dan Charash, and Barak Dayan (Weizmann
+  Institute quantum optics). Uses single atoms trapped near a photonic chip
+  as both deterministic photon sources and photon-photon gate mediators —
+  designed to produce large photonic graph (resource) states
+  deterministically rather than via the probabilistic linear-optical
+  multiplexing that dominates competing photonic-FTQC roadmaps.
+  Pre-commercial; closed a USD 50M Series A in September 2024 led by Eclipse
+  Ventures, bringing total funding above USD 77M.
+
+modalities:
+  qc:
+    qubit_type: photonic
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: null
+    gate_set: []
+
+milestones:
+  - date: 2024-09
+    tag: qc
+    headline: $50M Series A led by Eclipse with Standard Investments, Level VC, Canon Equity and existing investors (Pitango First, Grove Ventures, 10D, Dell Technologies Capital); total funding >$77M
+    source_url: https://www.prnewswire.com/news-releases/quantum-source-raises-50m-series-a-funding-to-make-scalable-useful-quantum-computing-a-reality-302243714.html
+    source_type: press
+  - date: 2023-04
+    tag: qc
+    headline: $12M follow-on raise (Pitango First, Grove Ventures, 10D, Dell Technologies Capital)
+    source_url: https://www.businesswire.com/news/home/20230419005176/en/Quantum-Source-Raises-%2412M-to-Propel-Continued-Development-in-Photonic-Quantum-Computing
+    source_type: press
+  - date: 2022-07
+    tag: qc
+    headline: Out of stealth with a $15M seed round
+    source_url: https://thequantuminsider.com/2022/07/04/israel-based-startup-quantum-source-out-of-stealth-with-15m-seed-round/
+    source_type: press
+  - date: 2021
+    tag: qc
+    headline: Company founded by Oded Melamed, Gil Semo, Dan Charash (semiconductor-industry serial entrepreneurs) and Barak Dayan (Weizmann Institute quantum optics)
+    source_url: https://www.qs-labs.com/news
+    source_type: blog
+
+shareholders:
+  - holder: Eclipse Ventures
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2024-09
+    source_url: https://www.prnewswire.com/news-releases/quantum-source-raises-50m-series-a-funding-to-make-scalable-useful-quantum-computing-a-reality-302243714.html
+    note: Lead investor of the September 2024 Series A
+  - holder: Pitango First
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-09
+    source_url: https://www.prnewswire.com/news-releases/quantum-source-raises-50m-series-a-funding-to-make-scalable-useful-quantum-computing-a-reality-302243714.html
+    note: Existing investor; seed lead
+  - holder: Grove Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-09
+    source_url: https://www.prnewswire.com/news-releases/quantum-source-raises-50m-series-a-funding-to-make-scalable-useful-quantum-computing-a-reality-302243714.html
+  - holder: 10D
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-09
+    source_url: https://www.prnewswire.com/news-releases/quantum-source-raises-50m-series-a-funding-to-make-scalable-useful-quantum-computing-a-reality-302243714.html
+  - holder: Dell Technologies Capital
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2024-09
+    source_url: https://www.prnewswire.com/news-releases/quantum-source-raises-50m-series-a-funding-to-make-scalable-useful-quantum-computing-a-reality-302243714.html
+  - holder: Standard Investments
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-09
+    source_url: https://www.prnewswire.com/news-releases/quantum-source-raises-50m-series-a-funding-to-make-scalable-useful-quantum-computing-a-reality-302243714.html
+  - holder: Canon Equity
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2024-09
+    source_url: https://www.prnewswire.com/news-releases/quantum-source-raises-50m-series-a-funding-to-make-scalable-useful-quantum-computing-a-reality-302243714.html
+  - holder: Oded Melamed
+    stake_percent: null
+    stake_class: founder
+    as_of: 2021
+    source_url: https://www.qs-labs.com/news
+    note: Co-founder & CEO
+  - holder: Barak Dayan
+    stake_percent: null
+    stake_class: founder
+    as_of: 2021
+    source_url: https://www.qs-labs.com/news
+    note: Co-founder & Chief Scientist (Weizmann Institute)
+  - holder: Gil Semo
+    stake_percent: null
+    stake_class: founder
+    as_of: 2021
+    source_url: https://www.qs-labs.com/news
+  - holder: Dan Charash
+    stake_percent: null
+    stake_class: founder
+    as_of: 2021
+    source_url: https://www.qs-labs.com/news
+
+key_personnel:
+  - role: Co-founder & CEO
+    name: Oded Melamed
+    since: 2021
+    source_url: https://www.qs-labs.com/news
+  - role: Co-founder & Chief Scientist
+    name: Barak Dayan
+    since: 2021
+    source_url: https://www.qs-labs.com/news
+    note: Professor of quantum optics, Weizmann Institute of Science
+  - role: Co-founder
+    name: Gil Semo
+    since: 2021
+    source_url: https://www.qs-labs.com/news
+  - role: Co-founder
+    name: Dan Charash
+    since: 2021
+    source_url: https://www.qs-labs.com/news
+  - role: Board Member
+    name: Naftali Bennett
+    since: 2023
+    source_url: https://www.qs-labs.com/news
+    note: Former Prime Minister of Israel
+
+roadmap:
+  - target: 2026
+    item: Scale single-atom-on-photonic-chip system from research demos toward a fault-tolerant photonic processor; Series A capital allocated to engineering hires and commercialisation
+    source_url: https://www.prnewswire.com/news-releases/quantum-source-raises-50m-series-a-funding-to-make-scalable-useful-quantum-computing-a-reality-302243714.html
+    tag: qc
+
+current_flagship:
+  name: Atom-mediated photonic graph-state generator
+  generation: single-atom-on-photonic-chip prototype (pre-commercial)
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://journals.aps.org/prxquantum/
+    note: "Dayan-group: Atom-mediated deterministic generation and stitching of photonic graph states (PRX Quantum)"
+  - kind: paper
+    citation_key: null
+    url: https://www.science.org/doi/10.1126/science.1254699
+    note: "Shomroni et al., All-optical routing of single photons by a one-atom switch (Science, 2014) — foundational Dayan-group result underpinning the deterministic photon-photon gate approach"
+  - kind: press
+    citation_key: null
+    url: https://www.prnewswire.com/news-releases/quantum-source-raises-50m-series-a-funding-to-make-scalable-useful-quantum-computing-a-reality-302243714.html
+    note: $50M Series A press release (September 2024)
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2022/07/04/israel-based-startup-quantum-source-out-of-stealth-with-15m-seed-round/
+    note: $15M seed announcement (July 2022)
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.ec_code
+  - modalities.qc.connectivity
+  - modalities.qc.gate_set
+  - field: shareholders
+    as_of: 2026-05-15
+    note: Private company; only round-participation lists are public. Stake percentages undisclosed.
+
+last_verified: 2026-05-15
+verification_method: web

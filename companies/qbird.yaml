@@ -1,0 +1,186 @@
+slug: qbird
+name: Q*Bird
+categories: [qkd]
+hq: Delft, Netherlands
+founded: 2022
+status: private
+parent: null
+logo:
+  domain: q-bird.com
+
+positioning: >
+  Dutch quantum-secure communications start-up, spun out of QuTech (TU Delft
+  / TNO) in January 2022. Q*Bird positions itself as the only commercial
+  provider of Measurement-Device-Independent QKD (MDI-QKD). The Falqon®
+  Series implements a hub-and-spoke, multi-node architecture in which a
+  central measurement hub performs Bell-state measurements between end-node-
+  emitted photons — removing all detector-side-channel vulnerabilities and
+  letting many users share one hub. Early reference deployments span the
+  Port of Rotterdam pilot, a 132 km cross-border Benelux link, and first
+  national MDI-QKD networks in Spain (UPM Madrid) and Ireland (Walton/SETU).
+
+modalities:
+  qkd:
+    protocol: [MDI-QKD, decoy-state]
+    rate_distance: "Falqon hub-and-spoke MDI-QKD; demonstrated 132 km cross-border Benelux link (Arlon hub, ESA Redu and University of Luxembourg nodes); Madrid deployment runs 30–50 km from hub to each end node"
+    deployed_demos:
+      - note: Port of Rotterdam — described as the first scalable quantum network pilot; central hub installed in Eurofiber data centre, with Customs and nautical service providers added as end nodes. Consortium with Port of Rotterdam Authority, Single Quantum, Cisco, Eurofiber, Portbase, Intermax, InnovationQuarter under Quantum Delta NL.
+        source_url: https://www.portofrotterdam.com/en/news-and-press-releases/consortium-parties-first-world-build-scalable-quantum-internet-connection
+      - note: 132 km cross-border MDI-QKD link in the Benelux — four-node network with hub in Arlon (Belgium) connecting the University of Luxembourg QCI Lab in Kirchberg and ESA's Redu facility, with BeQCI (Belnet, imec, Ghent University) and LUQCIA.
+        source_url: https://www.q-bird.com/press/fortifying-europes-quantum-communication-qbird-and-beqci-achieve-the-first-cross-border-mdi-qkd-link-in-benelux/
+      - note: Spain's first multi-node MDI-QKD network — UPM-led Falqon deployment across two INTA sites and one Ministerio del Interior SGSICS site in Madrid; three end nodes, one centre hub, one optical switch, 30–50 km hub-to-node fibre.
+        source_url: https://www.q-bird.com/press/leading-europes-quantum-frontier-upm-and-qbird-launch-spains-first-multi-node-mdi-qkd-network/
+      - note: Ireland's first MDI-QKD network — with the Walton Institute (SETU) under IrelandQCI / EuroQCI; four end nodes (two Dublin data centres, DCU, Trinity College Dublin), centre hub at HEAnet/ASIERA, ESB Telecoms dark fibre.
+        source_url: https://wordpress.waltoninstitute.ie/2026/03/26/irelands-quantum-leap-walton-institute-at-setu-and-qbird-deploy-irelands-first-qkd-network-with-expandable-architecture/
+      - note: QUEST — expansion of the Port of Rotterdam pilot into South Holland with multiple interconnected hubs; Q*Bird-led with Single Quantum, Eurofiber, InnovationQuarter, funded by Quantum Delta NL, ERDF and Kansen voor West.
+        source_url: https://www.q-bird.com/press/from-theory-to-network-what-sets-quest-apart/
+
+milestones:
+  - date: 2026-03
+    tag: qkd
+    headline: Ireland's first multi-node MDI-QKD network deployed with Walton Institute (SETU) — hub-and-spoke across Dublin data centres, DCU and Trinity College Dublin
+    source_url: https://wordpress.waltoninstitute.ie/2026/03/26/irelands-quantum-leap-walton-institute-at-setu-and-qbird-deploy-irelands-first-qkd-network-with-expandable-architecture/
+    source_type: press
+  - date: 2026-01
+    tag: qkd
+    headline: Spain's first multi-node MDI-QKD network — UPM and Q*Bird launch Falqon deployment across INTA and Ministerio del Interior sites in Madrid
+    source_url: https://www.q-bird.com/press/leading-europes-quantum-frontier-upm-and-qbird-launch-spains-first-multi-node-mdi-qkd-network/
+    source_type: press
+  - date: 2026-01
+    tag: qkd
+    headline: EIC Accelerator 2025 award signed — €2.5M grant + €5M equity (€7.5M blended) for the NEXUS project; programme start 1 Dec 2025
+    source_url: https://www.q-bird.com/press/qbird-secures-e2-5m-grant-and-e5m-equity-from-eic-accelerator-to-scale-europes-quantum-secure-networks/
+    source_type: press
+  - date: 2025-06
+    tag: qkd
+    headline: First cross-border MDI-QKD link in the Benelux — 132 km, four-node network linking ESA Redu, University of Luxembourg (Kirchberg) and Arlon hub
+    source_url: https://www.q-bird.com/press/fortifying-europes-quantum-communication-qbird-and-beqci-achieve-the-first-cross-border-mdi-qkd-link-in-benelux/
+    source_type: press
+  - date: 2025-01
+    tag: qkd
+    headline: Multi-user simultaneous link demonstrated on the Falqon hub-and-spoke architecture
+    source_url: https://thequantuminsider.com/2025/01/16/qbird-introduces-scalable-multipoint-quantum-key-distribution-for-secure-networks/
+    source_type: press
+  - date: 2024-05
+    tag: qkd
+    headline: €2.5M seed round closed — co-led by QDNL Participations and Cottonwood Technology Fund, with InnovationQuarter
+    source_url: https://www.q-bird.com/press/qbird-raises-e2-5-million-to-accelerate-growth-of-its-falqon-quantum-security-technology/
+    source_type: press
+  - date: 2024-05
+    tag: qkd
+    headline: Port of Rotterdam scalable quantum-network pilot announced — consortium with Port Authority, Single Quantum, Cisco, Eurofiber, Portbase, Intermax, InnovationQuarter under Quantum Delta NL
+    source_url: https://www.portofrotterdam.com/en/news-and-press-releases/consortium-parties-first-world-build-scalable-quantum-internet-connection
+    source_type: press
+  - date: 2022-01
+    tag: qkd
+    headline: Q*Bird founded as a QuTech (TU Delft / TNO) spin-out by Ingrid Romijn, Joshua Slater and Remon Berrevoets
+    source_url: https://www.q-bird.com/about-us/
+    source_type: blog
+
+shareholders:
+  - holder: QDNL Participations
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-05
+    source_url: https://www.q-bird.com/press/qbird-raises-e2-5-million-to-accelerate-growth-of-its-falqon-quantum-security-technology/
+    note: Co-lead of the May 2024 €2.5M seed round; Quantum Delta NL's investment vehicle.
+  - holder: Cottonwood Technology Fund
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-05
+    source_url: https://www.q-bird.com/press/qbird-raises-e2-5-million-to-accelerate-growth-of-its-falqon-quantum-security-technology/
+    note: Co-lead of the May 2024 €2.5M seed round.
+  - holder: InnovationQuarter
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-05
+    source_url: https://www.q-bird.com/press/qbird-raises-e2-5-million-to-accelerate-growth-of-its-falqon-quantum-security-technology/
+    note: Participated in the May 2024 €2.5M seed round; regional development agency for South Holland.
+  - holder: European Innovation Council Fund
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-01
+    source_url: https://www.q-bird.com/press/qbird-secures-e2-5m-grant-and-e5m-equity-from-eic-accelerator-to-scale-europes-quantum-secure-networks/
+    note: €5M equity component of the EIC Accelerator 2025 award (alongside a €2.5M grant); signed January 2026.
+  - holder: Founders (Romijn, Slater, Berrevoets)
+    stake_percent: null
+    stake_class: founder
+    as_of: 2026-01
+    source_url: https://www.q-bird.com/about-us/
+    note: Founding team retains equity; exact split not disclosed.
+
+key_personnel:
+  - role: CEO & Co-founder
+    name: Ingrid Romijn
+    since: 2022-01
+    source_url: https://www.q-bird.com/about-us/
+  - role: CTO & Co-founder
+    name: Joshua Slater
+    since: 2022-01
+    source_url: https://www.q-bird.com/about-us/
+    note: Quantum cryptography researcher with prior posts in the Netherlands, Canada, Germany and Austria; ~15 years on quantum-cryptography R&D before Q*Bird.
+  - role: CTIO (Chief Technology & Innovation Officer) & Co-founder
+    name: Remon Berrevoets
+    since: 2022-01
+    source_url: https://www.q-bird.com/about-us/
+    note: Optics engineer; prior hands-on quantum-security hardware work at QuTech / TU Delft.
+
+roadmap:
+  - target: 2025-2028
+    item: NEXUS (EIC Accelerator) — improve MDI-QKD hardware efficiency, develop next-generation optical modules, enable high-density user deployments, and build orchestration for multi-operator quantum networking across Europe
+    source_url: https://www.q-bird.com/press/qbird-secures-e2-5m-grant-and-e5m-equity-from-eic-accelerator-to-scale-europes-quantum-secure-networks/
+    tag: qkd
+  - target: 2026
+    item: QUEST — expand Port of Rotterdam pilot into South Holland with multiple interconnected hubs, additional end nodes, Eurofiber backbone integration
+    source_url: https://www.q-bird.com/press/from-theory-to-network-what-sets-quest-apart/
+    tag: qkd
+
+current_flagship:
+  name: Falqon® Series
+  generation: hub-and-spoke MDI-QKD with Quantum Domain Controller (QDC) for multi-node / multi-tenant network management
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://www.portofrotterdam.com/en/news-and-press-releases/consortium-parties-first-world-build-scalable-quantum-internet-connection
+    note: Port of Rotterdam Authority — consortium announcement of the first scalable quantum-internet pilot (2024)
+  - kind: press
+    citation_key: null
+    url: https://www.q-bird.com/press/qbird-secures-e2-5m-grant-and-e5m-equity-from-eic-accelerator-to-scale-europes-quantum-secure-networks/
+    note: EIC Accelerator 2025 — NEXUS award (€2.5M grant + €5M equity), signed January 2026
+  - kind: press
+    citation_key: null
+    url: https://www.q-bird.com/press/qbird-raises-e2-5-million-to-accelerate-growth-of-its-falqon-quantum-security-technology/
+    note: €2.5M seed round (May 2024) — QDNL Participations and Cottonwood Technology Fund co-lead, with InnovationQuarter
+  - kind: press
+    citation_key: null
+    url: https://www.q-bird.com/press/leading-europes-quantum-frontier-upm-and-qbird-launch-spains-first-multi-node-mdi-qkd-network/
+    note: Spain's first multi-node MDI-QKD network — UPM + Q*Bird, Madrid (January 2026)
+  - kind: press
+    citation_key: null
+    url: https://www.q-bird.com/press/fortifying-europes-quantum-communication-qbird-and-beqci-achieve-the-first-cross-border-mdi-qkd-link-in-benelux/
+    note: 132 km cross-border MDI-QKD link, Belgium ↔ Luxembourg (June 2025)
+  - kind: press
+    citation_key: null
+    url: https://wordpress.waltoninstitute.ie/2026/03/26/irelands-quantum-leap-walton-institute-at-setu-and-qbird-deploy-irelands-first-qkd-network-with-expandable-architecture/
+    note: Ireland's first multi-node MDI-QKD network — Walton Institute (SETU), IrelandQCI / EuroQCI (March 2026)
+  - kind: blog
+    citation_key: null
+    url: https://www.q-bird.com/about-us/
+    note: Q*Bird company page — founding, founders, HQ
+  - kind: blog
+    citation_key: null
+    url: https://www.q-bird.com/press/from-theory-to-network-what-sets-quest-apart/
+    note: QUEST programme — Port of Rotterdam expansion with Eurofiber, Single Quantum, InnovationQuarter
+
+partial:
+  - field: modalities.qkd.rate_distance
+    as_of: 2026-05-17
+    note: Q*Bird has not published a single canonical key-rate-vs-distance number for Falqon; only deployment distances (132 km Benelux, 30–50 km Madrid hub-to-node) are disclosed.
+  - shareholders
+  - field: shareholders
+    as_of: 2026-05-17
+    note: Stake percentages not disclosed for any investor; ordering reflects round seniority not equity rank.
+
+last_verified: 2026-05-17
+verification_method: web

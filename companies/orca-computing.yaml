@@ -1,0 +1,204 @@
+slug: orca-computing
+name: ORCA Computing
+categories: [qc, memory]
+hq: London, UK
+founded: 2019
+status: private
+parent: null
+logo:
+  domain: orcacomputing.com
+
+positioning: >
+  UK photonic quantum-computing company spun out of the University of Oxford
+  in 2019. Distinguishing technology is a room-temperature photonic quantum
+  memory based on Raman storage in warm atomic vapour, originally developed
+  in the Walmsley group at Oxford. The memory provides controllable, low-loss
+  interactions between travelling photons and atomic ensembles, enabling
+  synchronisation and "repeat-until-success" operations in a photonic
+  processor. Ships rack-mounted photonic appliances (PT-1, PT-2) targeting
+  quantum machine learning and sampling workloads, integrated with classical
+  GPU clusters.
+
+modalities:
+  qc:
+    qubit_type: photonic
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: null
+    gate_set: []
+  memory:
+    platform: warm-atomic-vapour (Raman / GEM)
+    storage_time_ms: null
+    retrieval_efficiency: null
+    fidelity: null
+    wavelength_nm: null
+    mode_capacity: null
+
+milestones:
+  - date: 2025-12
+    tag: qc
+    headline: >
+      Demonstrates use of PT-series photonic processor as a quantum
+      random-number / entropy source for post-quantum cybersecurity
+      workflows
+    source_url: https://www.hpcwire.com/2025/12/10/orca-turns-its-quantum-photonic-machine-to-cybersecurity/
+    source_type: press
+  - date: 2025-11
+    tag: qc
+    headline: >
+      USD 37M Series B closed with Temasek, Baillie Gifford, NVIDIA's
+      NVentures, the Qatar Investment Authority, and Morgan Stanley
+    source_url: https://thequantuminsider.com/2026/03/24/11-companies-lighting-up-the-quantum-photonics-sector/
+    source_type: press
+  - date: 2025
+    tag: qc
+    headline: >
+      ORCA delivers PT-2 photonic system to the UK National Quantum
+      Computing Centre (NQCC) Photonic Testbed; demonstrates application
+      to Vodafone fibre-network route optimisation
+    source_url: https://orcacomputing.com/orca-pt-2/
+    source_type: web
+  - date: 2024
+    tag: qc
+    headline: >
+      Collaboration with Poznan Supercomputing and Networking Center
+      (PCSS) on a quantum-AI data-centre integration blueprint built on
+      NVIDIA infrastructure
+    source_url: https://orcacomputing.com/quantum-ai-data-centers/
+    source_type: web
+  - date: 2022-2023
+    tag: qc
+    headline: >
+      Nine PT-1 photonic systems deployed to UK Ministry of Defence, the
+      UK NQCC, Poznan Supercomputing Center, and other academic /
+      government sites — first commercial deployments of an ORCA
+      photonic appliance
+    source_url: https://orcacomputing.com/orca-pt-1/
+    source_type: web
+  - date: 2019
+    tag: qc
+    headline: >
+      Founded as Oxford spin-out by Richard Murray (CEO), Cristina Escoda,
+      Ian Walmsley, and Josh Nunn
+    source_url: https://thequantuminsider.com/2020/03/05/british-startup-orca-computing-quantum-thinking-outside-the-box/
+    source_type: press
+
+shareholders:
+  - holder: Temasek
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-11
+    source_url: https://thequantuminsider.com/2026/03/24/11-companies-lighting-up-the-quantum-photonics-sector/
+    note: Participated in the USD 37M Series B (Nov 2025).
+  - holder: Baillie Gifford
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-11
+    source_url: https://thequantuminsider.com/2026/03/24/11-companies-lighting-up-the-quantum-photonics-sector/
+    note: Series B participant.
+  - holder: NVentures (NVIDIA)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-11
+    source_url: https://thequantuminsider.com/2026/03/24/11-companies-lighting-up-the-quantum-photonics-sector/
+    note: NVIDIA's corporate VC arm; strategic given joint NVQLink / GPU integration work.
+  - holder: Qatar Investment Authority
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-11
+    source_url: https://thequantuminsider.com/2026/03/24/11-companies-lighting-up-the-quantum-photonics-sector/
+    note: Sovereign-wealth participation in Series B.
+  - holder: Morgan Stanley
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-11
+    source_url: https://thequantuminsider.com/2026/03/24/11-companies-lighting-up-the-quantum-photonics-sector/
+    note: Series B participant.
+  - holder: Founders (Murray, Escoda, Walmsley, Nunn)
+    stake_percent: null
+    stake_class: founder
+    as_of: 2019
+    source_url: https://thequantuminsider.com/2020/03/05/british-startup-orca-computing-quantum-thinking-outside-the-box/
+    note: Founding team retains equity; exact split undisclosed.
+
+key_personnel:
+  - role: CEO & Co-founder
+    name: Richard Murray
+    since: 2019
+    source_url: https://thequantuminsider.com/2021/04/08/tqd-exclusive-interview-with-richard-murray-ceo-of-orca-computing/
+  - role: Co-founder & CSO
+    name: Joshua Nunn
+    since: 2019
+    source_url: https://www.future-of-computing.com/orca-computing-shaping-the-future-of-quantum-photonics-with-quantum-memories/
+  - role: Co-founder & Chairman
+    name: Ian Walmsley
+    since: 2019
+    source_url: https://www.future-of-computing.com/orca-computing-shaping-the-future-of-quantum-photonics-with-quantum-memories/
+    note: Imperial College London Provost; original Oxford PI.
+  - role: Co-founder
+    name: Cristina Escoda
+    since: 2019
+    source_url: https://www.future-of-computing.com/orca-computing-shaping-the-future-of-quantum-photonics-with-quantum-memories/
+
+roadmap:
+  - target: 2026
+    item: >
+      PT-3 commercial photonic system, reported to match ~180 GPUs of
+      throughput on certain quantum machine-learning workloads
+    source_url: https://thequantuminsider.com/2026/03/24/11-companies-lighting-up-the-quantum-photonics-sector/
+    tag: qc
+
+current_flagship:
+  name: ORCA PT-2
+  generation: photonic processor with integrated quantum memory; rack-mounted
+
+references:
+  - kind: web
+    citation_key: null
+    url: https://orcacomputing.com/orca-pt-2/
+    note: PT-2 product page
+  - kind: web
+    citation_key: null
+    url: https://orcacomputing.com/orca-pt-1/
+    note: PT-1 product page and deployment history
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2026/03/24/11-companies-lighting-up-the-quantum-photonics-sector/
+    note: Photonic-sector overview citing the Nov 2025 Series B and PT-3 roadmap
+  - kind: press
+    citation_key: null
+    url: https://www.hpcwire.com/2025/12/10/orca-turns-its-quantum-photonic-machine-to-cybersecurity/
+    note: PT-series entropy / cybersecurity application (Dec 2025)
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2021/04/08/tqd-exclusive-interview-with-richard-murray-ceo-of-orca-computing/
+    note: CEO interview covering memory-based photonic architecture rationale
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.connectivity
+  - modalities.memory.storage_time_ms
+  - modalities.memory.retrieval_efficiency
+  - modalities.memory.fidelity
+  - modalities.memory.wavelength_nm
+  - modalities.memory.mode_capacity
+  - field: positioning
+    as_of: 2026-05-20
+    note: >
+      ORCA's public materials emphasise a memory-based photonic architecture
+      and single-photon/coherent-light operation rather than squeezed-light
+      Gaussian boson sampling. Architectural detail beyond the Raman/GEM
+      memory is not confirmed against a peer-reviewed source.
+  - shareholders
+  - headcount
+  - revenue
+
+last_verified: 2026-05-20
+verification_method: web

@@ -1,0 +1,230 @@
+slug: horizon-quantum
+name: Horizon Quantum Computing
+categories: [software, qc]
+hq: Singapore
+founded: 2018
+status: public
+parent: null
+logo:
+  domain: horizonquantum.com
+
+positioning: >
+  Software-first quantum company building a hardware-agnostic IDE (Triple Alpha) and
+  algorithm-synthesis compiler stack that converts classical source code into quantum
+  programs. In December 2025 deployed Ember One — what the company described as the
+  first quantum computer owned and operated by a quantum-software firm — a
+  Singapore-deployed system integrating a Maybell cryogenic platform, Quantum
+  Machines control electronics, and a Rigetti Novera superconducting QPU.
+  Listed on Nasdaq as "HQ" in March 2026 via dMY Squared
+  SPAC merger.
+
+modalities:
+  software:
+    products:
+      - Triple Alpha — hardware-agnostic, web-based quantum IDE; compile-and-deploy environment portable across QPU backends
+      - Helium — high-level Turing-complete quantum programming language with classical-style control flow (if / loops / increment)
+      - Hydrogen — lower-level assembly-style IR supporting concurrent classical-quantum computation and dynamic control flow
+      - Beryllium — object-oriented quantum programming language (debuted Dec 2025) layered above Helium
+  qc:
+    qubit_type: transmon
+    physical_qubits_current: 9
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: square-lattice
+    gate_set: []
+
+milestones:
+  - date: 2026-03
+    tag: software
+    headline: Nasdaq listing as "HQ" via dMY Squared SPAC merger; ~USD 120M raised at ~USD 503M valuation
+    source_url: https://thequantuminsider.com/2026/03/19/horizon-quantum-goes-public-via-spac-raises-120-million/
+    source_type: press
+  - date: 2025-12
+    tag: qc
+    headline: Ember One activated — first commercial quantum computer in Singapore; what the company described as the first quantum computer owned and operated by a quantum-software firm (Maybell cryostat + Quantum Machines control + Rigetti Novera QPU)
+    source_url: https://www.horizonquantum.com/resources/newsroom/horizon-quantum-becomes-first-quantum-software-company-to-own-and-operate-a-quantum-computer
+    source_type: press
+  - date: 2025-12
+    tag: software
+    headline: Beryllium object-oriented quantum programming language debuted
+    source_url: https://quantumcomputingreport.com/horizon-quantum-debuts-beryllium-an-object-oriented-language-for-hardware-agnostic-quantum-programming/
+    source_type: press
+  - date: 2025-09
+    tag: software
+    headline: dMY Squared business-combination agreement signed at USD 503M valuation
+    source_url: https://quantumcomputingreport.com/horizon-quantum-to-go-public-in-us-through-spac-merger-with-dmy-squared-at-503-million-valuation/
+    source_type: press
+  - date: 2023-03
+    tag: software
+    headline: USD 18.1M Series A led by Sequoia Capital India, with Tencent, SGInnovate, Pappas Capital, Expeditions Fund
+    source_url: https://www.horizonquantum.com/resources/newsroom/horizon-quantum-computing-raises-usd-18.1-million-series-a-to-advance-quantum-software-development
+    source_type: press
+  - date: 2020-06
+    tag: software
+    headline: Seed-plus round (Sequoia Capital India-led) bringing seed total to SGD 4.5M (~USD 3.23M)
+    source_url: https://thequantuminsider.com/2020/06/23/horizon-quantum-computing-says-sgd-4-5-million-seed-financing-boost-will-help-democratize-quantum-software-development/
+    source_type: press
+  - date: 2018
+    tag: software
+    headline: Founded in Singapore by Joe Fitzsimons (ex-SUTD); initial SGD 1.2M seed led by SGInnovate
+    source_url: https://www.horizonquantum.com/company/about/dr-joe-fitzsimons
+    source_type: press
+
+shareholders:
+  - holder: Sequoia Capital India (Peak XV Partners)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2023-03
+    source_url: https://technode.global/2023/04/01/singapores-horizon-quantum-computing-raises-18-1m-series-a-funding-from-sequoia-capital-india-tencent-and-others/
+    note: Series A lead and seed-plus lead; stake undisclosed
+  - holder: Tencent
+    stake_percent: null
+    stake_class: minority
+    as_of: 2023-03
+    source_url: https://technode.global/2023/04/01/singapores-horizon-quantum-computing-raises-18-1m-series-a-funding-from-sequoia-capital-india-tencent-and-others/
+    note: Series A participant
+  - holder: SGInnovate
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2023-03
+    source_url: https://thequantuminsider.com/2023/03/31/horizon-quantum-computing-raises-18-1-million-us-series-a-to-advance-quantum-software-development/
+    note: Seed lead (2018) and Series A participant
+  - holder: Pappas Capital
+    stake_percent: null
+    stake_class: minority
+    as_of: 2023-03
+    source_url: https://www.horizonquantum.com/resources/newsroom/horizon-quantum-computing-raises-usd-18.1-million-series-a-to-advance-quantum-software-development
+    source_type: press
+    note: Series A participant
+  - holder: Expeditions Fund
+    stake_percent: null
+    stake_class: minority
+    as_of: 2023-03
+    source_url: https://www.horizonquantum.com/resources/newsroom/horizon-quantum-computing-raises-usd-18.1-million-series-a-to-advance-quantum-software-development
+    note: Series A participant
+  - holder: DCVC (Data Collective)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2020-06
+    source_url: https://www.horizonquantum.com/resources/newsroom/horizon-increases-its-seed-financing-to-sgd-4.5-million
+    note: Seed and seed-plus participant
+  - holder: Joe Fitzsimons
+    stake_percent: null
+    stake_class: founder
+    as_of: 2026-03
+    source_url: https://www.horizonquantum.com/company/about/dr-joe-fitzsimons
+    note: Founder & CEO; exact post-SPAC stake not yet publicly disclosed
+
+key_personnel:
+  - role: CEO & Founder
+    name: Joe Fitzsimons
+    since: 2018
+    source_url: https://www.horizonquantum.com/company/about/dr-joe-fitzsimons
+    note: Quantum-computing researcher with ~18+ years in the field; DPhil Oxford on quantum architectures; previously tenured at Singapore University of Technology and Design (SUTD)
+  - role: Chief Science Officer
+    name: Si-Hui Tan
+    since: 2018
+    source_url: https://www.horizonquantum.com/company/about
+  - role: Chief Financial Officer
+    name: Greg Gould
+    since: 2024
+    source_url: https://www.horizonquantum.com/company/about
+  - role: VP Engineering
+    name: Raymond Lloyd
+    since: 2022
+    source_url: https://www.horizonquantum.com/company/about
+  - role: VP Product
+    name: Amanda Chew
+    since: 2022
+    source_url: https://www.horizonquantum.com/company/about
+  - role: VP Operations
+    name: Eoin Scanlon
+    since: 2022
+    source_url: https://www.horizonquantum.com/company/about
+  - role: Director of Hardware
+    name: Denis Chevallier
+    since: 2024
+    source_url: https://www.horizonquantum.com/company/about
+
+roadmap:
+  - target: 2026
+    item: Expand Ember One QPU swap-in path — additional control electronics and processors as testbed for software stack
+    source_url: https://thequantuminsider.com/2025/12/03/horizon-quantum-in-house-quantum-computer/
+    tag: qc
+  - target: 2026
+    item: Continued Triple Alpha / Helium / Beryllium feature rollout; broader hardware-backend coverage
+    source_url: https://www.horizonquantum.com/triple-alpha
+    tag: software
+
+current_flagship:
+  name: Triple Alpha
+  generation: hardware-agnostic quantum IDE with Helium / Hydrogen / Beryllium language stack; first in-house system "Ember One" (Rigetti Novera 9-qubit transmon)
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://www.cnbc.com/2025/12/04/horizon-quantum-software-startup-deploys-singapores-first-quantum-computer-for-commercial-use.html
+    note: CNBC coverage of Ember One deployment (Dec 2025)
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2025/12/03/horizon-quantum-in-house-quantum-computer/
+    note: Quantum Insider on the in-house QC announcement; names the Maybell + Quantum Machines + Rigetti stack
+  - kind: press
+    citation_key: null
+    url: https://quantumcomputingreport.com/horizon-quantum-becomes-first-quantum-software-company-to-own-and-operate-quantum-computer/
+    note: Quantum Computing Report on the Ember One system
+  - kind: blog
+    citation_key: null
+    url: https://www.horizonquantum.com/triple-alpha
+    note: Triple Alpha product page — IDE, compiler, Helium / Hydrogen language reference
+  - kind: paper
+    citation_key: null
+    url: https://arxiv.org/abs/0807.4154
+    note: Broadbent, Fitzsimons, Kashefi — "Universal blind quantum computation" (FOCS 2009); foundational Fitzsimons paper on verifiable / blind QC
+  - kind: paper
+    citation_key: null
+    url: https://arxiv.org/abs/1203.5217
+    note: Fitzsimons & Kashefi — "Unconditionally verifiable blind computation" (Phys. Rev. A 96, 012303, 2017)
+  - kind: paper
+    citation_key: null
+    url: https://arxiv.org/abs/1512.04375
+    note: Fitzsimons & Hajdušek — "Post hoc verification of quantum computation"; methods that inform Horizon's verification-aware compiler thinking
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2026/03/19/horizon-quantum-goes-public-via-spac-raises-120-million/
+    note: SPAC close and Nasdaq listing as "HQ" (March 2026)
+
+partial:
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.ec_code
+  - modalities.qc.gate_set
+  - field: modalities.qc.physical_qubits_current
+    as_of: 2026-05-21
+    note: 9 reflects Rigetti's Novera 9-qubit transmon chip (3×3 tunable-coupler lattice) that Horizon integrated into Ember One; Novera also ships a 5-qubit test die in the same puck but the 9-qubit die is the operational QPU. Horizon does not publish its own fidelity / coherence numbers — those depend on the as-installed Novera die and are not separately disclosed by Horizon
+  - field: modalities.qc.connectivity
+    as_of: 2026-05-21
+    note: Square-lattice with tunable couplers per Novera spec; Horizon has not published its own measured connectivity report
+  - field: shareholders
+    as_of: 2026-05-21
+    note: stakes are listed by class only; post-SPAC cap table (after the March 2026 Nasdaq listing) not yet cross-checked against an S-1 / F-4 / first 10-K filing
+  - field: key_personnel.2.since
+    as_of: 2026-05-21
+    note: CFO start date inferred from vendor About page presence; not explicitly dated
+  - field: key_personnel.3.since
+    as_of: 2026-05-21
+  - field: key_personnel.4.since
+    as_of: 2026-05-21
+  - field: key_personnel.5.since
+    as_of: 2026-05-21
+  - field: key_personnel.6.since
+    as_of: 2026-05-21
+
+last_verified: 2026-05-21
+verification_method: web

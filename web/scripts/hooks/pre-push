@@ -1,0 +1,17 @@
+#!/bin/sh
+# Pre-push: validate company dossiers (category enum, non-empty categories,
+# slug/filename match, unique slugs) before any push. Mirrors the build-time
+# assertion in web/src/lib/companies.ts; this catches a bad dossier a moment
+# earlier, before anything leaves the machine.
+#
+# Local-only hook — git hooks are not version-controlled. To reinstall after a
+# fresh clone, copy web/scripts/hooks/pre-push here and chmod +x.
+# Override a single push with:  git push --no-verify
+ROOT="$(git rev-parse --show-toplevel)" || exit 1
+cd "$ROOT/web" || exit 1
+python3 scripts/check_dossiers.py || {
+  echo "" >&2
+  echo "pre-push: dossier validation failed — push aborted." >&2
+  echo "          fix the problems above, or override with: git push --no-verify" >&2
+  exit 1
+}

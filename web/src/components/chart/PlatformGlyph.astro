@@ -1,0 +1,169 @@
+---
+/**
+ * PlatformGlyph — one platform's SVG group. First-class element with:
+ *   - data-platform-id, data-platform-kind for selection / styling
+ *   - dotted leader line(s) from box bottom to axis dots
+ *   - hover/focus → highlight self + dim siblings (CSS only)
+ *   - click → emits 'platform-click' event the page can use to scroll
+ *
+ * The glyph is pure SVG so the chart prints cleanly and screen readers
+ * can navigate it via <title> and tabindex.
+ */
+import type { PlatformLayout } from "../../lib/stacking";
+import {
+  LINE_GAP, FIRST_BASELINE_DY, PAD_X,
+  ROLE_ORDER, CHIP_LETTER, CHIP_W, CHIP_GAP, CHIP_PAD_RIGHT, CHIP_PAD_TOP,
+} from "../../lib/stacking";
+import { lighten } from "../../lib/chart-helpers";
+
+interface Props {
+  layout: PlatformLayout;
+  axisDotY: number;
+}
+
+const { layout: L, axisDotY } = Astro.props;
+const { p, xl, xr, boxTop, boxBot, boxH, anchors, color, isRange, bodyLines } = L;
+const fill = lighten(color);
+const w = xr - xl;
+const kind = p.kind ?? "computer";
+const sortedAnchors = [...anchors].sort((a, b) => a - b);
+
+// Capability chip strip — top-right of the box. Roles in p.roles get
+// filled chips with a white letter; absent roles get outline-only
+// chips with a faint letter so the trio always reads as a triplet
+// (the chart shows what a platform *is not* used for, not just what
+// it is). Strip geometry mirrors render.py.
+const rolesSet = new Set(p.roles ?? []);
+const stripXr = xr - CHIP_PAD_RIGHT;
+const stripXl = stripXr - (CHIP_W * ROLE_ORDER.length + CHIP_GAP * (ROLE_ORDER.length - 1));
+const chipY = boxTop + CHIP_PAD_TOP;
+const chips = ROLE_ORDER.map((role, i) => {
+  const x = stripXl + i * (CHIP_W + CHIP_GAP);
+  const on = rolesSet.has(role);
+  return {
+    role, x, y: chipY,
+    fill: on ? color : "#ffffff",
+    stroke: on ? color : "#bbbbbb",
+    letter: CHIP_LETTER[role],
+    letterFill: on ? "#ffffff" : "#999999",
+  };
+});
+---
+
+<g
+  class="platform-glyph"
+  data-platform-id={p.id}
+  data-platform-kind={kind}
+  tabindex="0"
+  role="link"
+  aria-label={`${p.label} — jump to platform detail`}
+>
+  <title>{p.label}{p.subtitle ? ` · ${p.subtitle}` : ""}</title>
+
+  {/* The leader lines (box bottom → axis dot) are rendered in
+      SpectrumChart's leaders-back / leaders-front layers, not here,
+      so they sit consistently behind every box by default and float
+      to the top on hover regardless of platform source order. */}
+
+  {/* Range bar at axis level for platforms with a wavelength/freq range */}
+  {isRange && sortedAnchors.length === 2 && (
+    <line
+      class="range-bar"
+      x1={sortedAnchors[0]} y1={boxBot} x2={sortedAnchors[1]} y2={boxBot}
+      stroke={color} stroke-width="1.5"
+    />
+  )}
+
+  {/* The box itself. The chart now uses capability chips at top-right
+      to convey compute / memory / source role support, replacing the
+      old solid-vs-dashed border distinction. */}
+  <rect
+    class="glyph-box"
+    x={xl} y={boxTop} width={w} height={boxH}
+    rx="6" ry="6"
+    fill={fill}
+    stroke={color}
+    stroke-width="1.5"
+  />
+
+  {/* Title, subtitle, vendor lines */}
+  {bodyLines.map((line, i) => (
+    <text
+      class={`gtext gtext--${line.cls}`}
+      x={xl + PAD_X}
+      y={boxTop + FIRST_BASELINE_DY + i * LINE_GAP}
+    >{line.text}</text>
+  ))}
+
+  {/* Capability chips */}
+  {chips.map((c) => (
+    <g class="cap-chip-group">
+      <rect
+        x={c.x} y={c.y} width={CHIP_W} height={CHIP_W}
+        rx="2" ry="2"
+        fill={c.fill}
+        stroke={c.stroke}
+        stroke-width="1"
+      />
+      <text
+        class="cap-chip-letter"
+        x={c.x + CHIP_W / 2}
+        y={c.y + CHIP_W - 3}
+        text-anchor="middle"
+        fill={c.letterFill}
+      >{c.letter}</text>
+    </g>
+  ))}
+
+  {/* Axis-anchor notches and dots, drawn on top of the leader so they're crisp */}
+  {anchors.map((ax) => (
+    <g>
+      {ax >= xl && ax <= xr && (
+        <line x1={ax} y1={boxBot - 4} x2={ax} y2={boxBot}
+              stroke={color} stroke-width="2" />
+      )}
+      <circle class="axis-dot" cx={ax} cy={axisDotY} r="3" fill={color} />
+    </g>
+  ))}
+</g>
+
+<style>
+  .platform-glyph {
+    cursor: pointer;
+    transition: opacity 180ms ease, filter 180ms ease;
+  }
+  .platform-glyph:focus { outline: none; }
+
+  /* Title sits above the rest */
+  .gtext { pointer-events: none; user-select: none; }
+  .gtext--p-name { font-weight: 700; font-size: 13px; fill: #111; }
+  .gtext--p-sub  { font-weight: 700; font-size: 10.5px; fill: #222; }
+  .gtext--vendor { font-weight: 700; font-size: 10.5px; fill: #555; }
+
+  .cap-chip-letter {
+    font-size: 9px;
+    font-weight: 700;
+    pointer-events: none;
+    user-select: none;
+  }
+  .cap-chip-group { pointer-events: none; }
+
+  /* Hover/focus highlight on this glyph (handled by parent .chart class). */
+  :global(.spectrum-chart.has-active) .platform-glyph { opacity: 0.35; }
+  :global(.spectrum-chart.has-active) .platform-glyph[data-active="yes"] { opacity: 1; }
+
+  .platform-glyph[data-active="yes"] .glyph-box {
+    filter: drop-shadow(0 4px 12px oklch(0 0 0 / 0.12));
+    stroke-width: 2.2;
+  }
+  .platform-glyph[data-active="yes"] .axis-dot { r: 4.5; }
+
+  .platform-glyph:focus-visible .glyph-box {
+    stroke-width: 2.6;
+    filter: drop-shadow(0 4px 12px oklch(0 0 0 / 0.15));
+  }
+
+  @media print {
+    .platform-glyph { opacity: 1 !important; }
+  }
+</style>

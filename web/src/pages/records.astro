@@ -1,0 +1,656 @@
+---
+/**
+ * /records — Distance and time records in quantum networking
+ *
+ * Tier E · Applications & market.
+ *
+ * Four sortable tables: QKD distance, matter-modality entanglement distance,
+ * qubit coherence, and demonstrated memory storage. Each row tied to a
+ * primary peer-reviewed source where possible.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SourceNote from "../components/SourceNote.astro";
+
+const sections = [
+  { id: "overview",     label: "Overview" },
+  { id: "qkd",          label: "QKD distance" },
+  { id: "entanglement", label: "Entanglement distance" },
+  { id: "coherence",    label: "Coherence times" },
+  { id: "storage",      label: "Memory storage" },
+  { id: "method",       label: "What counts as a record" },
+];
+---
+
+<Infographic
+  title="Records — quantum-networking distance and time"
+  description="Distance and time records across QKD, entanglement distribution, qubit coherence, and quantum-memory storage. Sortable; grounded in primary peer-reviewed sources."
+  references={[
+    "yin-science-2017",
+    "yin-nature-2020",
+    "liao-nature-549",
+    "li-nature-2025-jinan",
+    "boaron-prl-2018",
+    "lucamarini-nature-2018",
+    "minder-natphoton-2019",
+    "pittaluga-natphoton-2021",
+    "liu-prl-2023",
+    "knaut-nature-2024",
+    "vanleent-nature-2022",
+    "stephenson-prl-2020",
+    "krutyanskiy-prl-2023",
+    "liu-nature-652",
+    "pompili-science-2021",
+    "hermans-nature-2022",
+    "wang-nature-2021",
+    "bland-nature-647",
+    "bradley-prx-2019",
+    "zhong-nature-517",
+    "ma-natphys-2021",
+    "dudin-natphys-2013",
+    "chou-nature-2018",
+    "saglamyurek-nature-2011",
+    "heshami-jmo-2016",
+    "tittel-arxiv-2501",
+    "meddeb-comnet-2025",
+    "azuma-rmp-95",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="records" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>Records — quantum-networking distance and time</h1>
+        <p>
+          Quantum-networking progress is most legible in the distance and time
+          numbers: how far a key was distributed, how far two matter qubits were
+          entangled, how long a qubit kept its phase, how long a quantum state
+          stayed retrievable from a memory. The four tables below collect the
+          best-published numbers across the field, each row grounded in a primary
+          peer-reviewed source.
+        </p>
+        <p>
+          Click any column header to sort. The criteria for what counts as a
+          record are at the bottom of the page.
+        </p>
+      </header>
+
+      <section id="qkd" data-nav-section>
+        <h2>QKD distance</h2>
+        <p>
+          QKD records split by protocol family. Decoy-state BB84 is the workhorse
+          for terrestrial fibre; twin-field QKD (TF-QKD) breaks the repeaterless
+          rate–loss bound by interfering single photons at a central station;
+          satellite links use Micius-class downlinks to skip the fibre-loss
+          budget entirely <SourceNote id="azuma-rmp-95" />.
+        </p>
+
+        <div class="rec-table-wrap">
+        <table class="rec-table" data-sortable>
+          <thead>
+            <tr>
+              <th data-sort="text">Protocol</th>
+              <th data-sort="numeric">Year</th>
+              <th data-sort="numeric">Distance (km)</th>
+              <th data-sort="text">Medium</th>
+              <th data-sort="text">Key rate</th>
+              <th data-sort="text">Group / lab</th>
+              <th data-sort="text">Citation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Decoy-state BB84</td>
+              <td>2018</td>
+              <td>421</td>
+              <td>Fibre (ultra-low-loss)</td>
+              <td>0.25 bit/s @ 405 km</td>
+              <td>Geneva (Zbinden)</td>
+              <td>Boaron PRL 121.190502 <SourceNote id="boaron-prl-2018" /></td>
+            </tr>
+            <tr>
+              <td>TF-QKD (proposal)</td>
+              <td>2018</td>
+              <td>550</td>
+              <td>Fibre (modelled)</td>
+              <td>Beats PLOB bound</td>
+              <td>Toshiba CRL (Lucamarini)</td>
+              <td>Lucamarini Nature 557.400 <SourceNote id="lucamarini-nature-2018" /></td>
+            </tr>
+            <tr>
+              <td>TF-QKD</td>
+              <td>2019</td>
+              <td>90.8</td>
+              <td>Fibre (lab)</td>
+              <td>First sub-PLOB demo</td>
+              <td>Toshiba CRL (Minder)</td>
+              <td>Minder NatPhoton 13.334 <SourceNote id="minder-natphoton-2019" /></td>
+            </tr>
+            <tr>
+              <td>TF-QKD (dual-band)</td>
+              <td>2021</td>
+              <td>605</td>
+              <td>Fibre</td>
+              <td>0.0034 bit/s @ 605 km</td>
+              <td>Toshiba Europe (Pittaluga)</td>
+              <td>Pittaluga NatPhoton 15.530 <SourceNote id="pittaluga-natphoton-2021" /></td>
+            </tr>
+            <tr>
+              <td>TF-QKD (sending-or-not)</td>
+              <td>2023</td>
+              <td>1002</td>
+              <td>Fibre (ultra-low-loss)</td>
+              <td>0.0034 bit/s @ 952 km</td>
+              <td>USTC (Pan)</td>
+              <td>Liu PRL 130.210801 <SourceNote id="liu-prl-2023" /></td>
+            </tr>
+            <tr>
+              <td>Decoy-state BB84 (satellite-to-ground)</td>
+              <td>2017</td>
+              <td>1200</td>
+              <td>Satellite downlink (Micius)</td>
+              <td>~kbit/s</td>
+              <td>USTC / Micius (Liao, Pan)</td>
+              <td>Liao Nature 549.43 <SourceNote id="liao-nature-549" /></td>
+            </tr>
+            <tr>
+              <td>Entanglement-based (E91/BBM92, satellite)</td>
+              <td>2017</td>
+              <td>1203</td>
+              <td>Satellite double downlink (Micius)</td>
+              <td>~1 Hz pair rate</td>
+              <td>USTC / Micius (Yin)</td>
+              <td>Yin Science 356.1140 <SourceNote id="yin-science-2017" /></td>
+            </tr>
+            <tr>
+              <td>Entanglement-based QKD (satellite)</td>
+              <td>2020</td>
+              <td>1120</td>
+              <td>Satellite double downlink (Micius)</td>
+              <td>~0.12 bit/s</td>
+              <td>USTC / Micius (Yin)</td>
+              <td>Yin Nature 582.501 <SourceNote id="yin-nature-2020" /></td>
+            </tr>
+            <tr>
+              <td>Decoy-state BB84 (microsatellite, intercontinental)</td>
+              <td>2025</td>
+              <td>12900</td>
+              <td>Microsatellite downlink (Jinan-1, ~23 kg, 500 km LEO)</td>
+              <td>Real-time keying, one-time-pad image transfer</td>
+              <td>USTC + Stellenbosch (Li, Pan)</td>
+              <td>Li Nature (2025) <SourceNote id="li-nature-2025-jinan" /></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <section id="entanglement" data-nav-section>
+        <h2>Entanglement distribution between matter qubits, by modality</h2>
+        <p>
+          The relevant number here is the separation between two stationary
+          qubits that have been heralded into a Bell pair — not the distance a
+          photon travelled. Quantum frequency conversion (QFC) into the telecom
+          band is the enabling technique on every fibre-based row.
+        </p>
+
+        <div class="rec-table-wrap">
+        <table class="rec-table" data-sortable>
+          <thead>
+            <tr>
+              <th data-sort="text">Modality</th>
+              <th data-sort="numeric">Year</th>
+              <th data-sort="numeric">Distance (km)</th>
+              <th data-sort="text">Wavelength path</th>
+              <th data-sort="text">Technique</th>
+              <th data-sort="text">Group</th>
+              <th data-sort="text">Citation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SiV centre (diamond)</td>
+              <td>2024</td>
+              <td>35</td>
+              <td>737 nm ↔ 1350 nm telecom O</td>
+              <td>QFC + nuclear-spin memory</td>
+              <td>Harvard (Lukin)</td>
+              <td>Knaut Nature 629.573 <SourceNote id="knaut-nature-2024" /></td>
+            </tr>
+            <tr>
+              <td>Neutral atom (Rb)</td>
+              <td>2022</td>
+              <td>33</td>
+              <td>780 nm ↔ 1517 nm telecom L</td>
+              <td>QFC, single atoms in optical traps</td>
+              <td>LMU Munich (Weinfurter)</td>
+              <td>van Leent Nature 607.69 <SourceNote id="vanleent-nature-2022" /></td>
+            </tr>
+            <tr>
+              <td>NV centre (diamond)</td>
+              <td>2021</td>
+              <td>~0.03</td>
+              <td>637 nm native (no QFC)</td>
+              <td>Three-node repeater, swapping</td>
+              <td>Delft (Hanson)</td>
+              <td>Pompili Science 372.259 <SourceNote id="pompili-science-2021" /></td>
+            </tr>
+            <tr>
+              <td>NV centre (deterministic teleport)</td>
+              <td>2022</td>
+              <td>~0.03</td>
+              <td>637 nm native</td>
+              <td>Memory-assisted teleportation</td>
+              <td>Delft (Hanson)</td>
+              <td>Hermans Nature 605.663 <SourceNote id="hermans-nature-2022" /></td>
+            </tr>
+            <tr>
+              <td>Trapped ion (Ba⁺/Yb⁺, long-lived)</td>
+              <td>2026</td>
+              <td>10</td>
+              <td>Visible ↔ telecom (QFC)</td>
+              <td>Long-lived memory; rate exceeds loss</td>
+              <td>USTC (Liu, Bao, Pan)</td>
+              <td>Liu Nature 652.51 <SourceNote id="liu-nature-652" /></td>
+            </tr>
+            <tr>
+              <td>Trapped ion (Ca⁺)</td>
+              <td>2023</td>
+              <td>0.23</td>
+              <td>854 nm ↔ 1550 nm telecom C</td>
+              <td>QFC, two-photon BSM</td>
+              <td>Innsbruck (Northup)</td>
+              <td>Krutyanskiy PRL 130.050803 <SourceNote id="krutyanskiy-prl-2023" /></td>
+            </tr>
+            <tr>
+              <td>Trapped ion (Sr⁺)</td>
+              <td>2020</td>
+              <td>0.002</td>
+              <td>422 nm native</td>
+              <td>High-rate two-photon BSM</td>
+              <td>Oxford (Lucas)</td>
+              <td>Stephenson PRL 124.110501 <SourceNote id="stephenson-prl-2020" /></td>
+            </tr>
+            <tr>
+              <td>Atomic ensemble (DLCZ)</td>
+              <td>—</td>
+              <td>—</td>
+              <td>Survey reports demonstrations to ~50 km</td>
+              <td>QFC of DLCZ heralding photons</td>
+              <td>various; see Meddeb 2025 §3.7</td>
+              <td>[primary cite pending] <SourceNote id="meddeb-comnet-2025" /></td>
+            </tr>
+            <tr>
+              <td>Superconducting transmon</td>
+              <td>—</td>
+              <td>0.030</td>
+              <td>Microwave, cryogenic waveguide</td>
+              <td>Direct microwave link (no transduction)</td>
+              <td>survey (Meddeb 2025 §3.7)</td>
+              <td>[primary cite pending] <SourceNote id="meddeb-comnet-2025" /></td>
+            </tr>
+            <tr>
+              <td>Quantum dot (single emitter)</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>Spin–photon entanglement reported; remote-spin entanglement record at network range [unverified]</td>
+              <td>—</td>
+              <td>[unverified]</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <p class="note">
+          "Distance" is the fibre or free-space path length between the matter
+          qubits, not photon path through repeaters. The trapped-ion and
+          transmon rows reflect that those platforms are early in the
+          remote-entanglement-over-fibre curve — neither has a published demo
+          past a few hundred metres.
+        </p>
+      </section>
+
+      <section id="coherence" data-nav-section>
+        <h2>Coherence times by qubit modality</h2>
+        <p>
+          T<sub>2</sub> is the timescale over which a qubit retains phase
+          information. T<sub>2</sub><sup>*</sup> is the inhomogeneous-dephasing
+          time without active correction. Long T<sub>2</sub> is achieved with
+          dynamical decoupling (XY8, CPMG) and isotopic purification; numbers
+          below are the best published values for each modality and reflect the
+          measurement protocol in the source.
+        </p>
+
+        <div class="rec-table-wrap">
+        <table class="rec-table" data-sortable>
+          <thead>
+            <tr>
+              <th data-sort="text">Modality</th>
+              <th data-sort="numeric">T₂</th>
+              <th data-sort="text">Conditions</th>
+              <th data-sort="numeric">Year</th>
+              <th data-sort="text">Group</th>
+              <th data-sort="text">Citation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Atomic ensemble (¹⁵¹Eu³⁺:Y₂SiO₅ nuclear spin)</td>
+              <td data-sort-value="21600">6 h</td>
+              <td>2 K, dynamical decoupling at zero-first-order-Zeeman field</td>
+              <td>2015</td>
+              <td>ANU (Sellars)</td>
+              <td>Zhong Nature 517.177 <SourceNote id="zhong-nature-517" /></td>
+            </tr>
+            <tr>
+              <td>Trapped ion (¹⁷¹Yb⁺ ground state)</td>
+              <td data-sort-value="5500">92 min</td>
+              <td>Magnetic-field-insensitive clock state, dynamical decoupling</td>
+              <td>2021</td>
+              <td>Tsinghua (Kim)</td>
+              <td>Wang NatComms 12.233 <SourceNote id="wang-nature-2021" /></td>
+            </tr>
+            <tr>
+              <td>NV centre (¹³C nuclear spin)</td>
+              <td data-sort-value="75">75 s</td>
+              <td>1.5 K, isotopically purified diamond, XY8 decoupling</td>
+              <td>2019</td>
+              <td>Delft (Taminiau)</td>
+              <td>Bradley PRX 9.031045 <SourceNote id="bradley-prx-2019" /></td>
+            </tr>
+            <tr>
+              <td>Neutral atom (Rb ground state)</td>
+              <td data-sort-value="10">~10 s</td>
+              <td>Magic-wavelength optical-lattice trapping</td>
+              <td>—</td>
+              <td>various</td>
+              <td>see Meddeb 2025 §2.1 <SourceNote id="meddeb-comnet-2025" /></td>
+            </tr>
+            <tr>
+              <td>SiV centre (²⁹Si nuclear spin)</td>
+              <td data-sort-value="1">~1 s</td>
+              <td>Mixing-chamber temperatures, XY8 decoupling</td>
+              <td>2024</td>
+              <td>Harvard (Lukin)</td>
+              <td>Knaut Nature 629.573 <SourceNote id="knaut-nature-2024" /></td>
+            </tr>
+            <tr>
+              <td>Superconducting transmon (2D)</td>
+              <td data-sort-value="0.00168">1.68 ms (T₁); T₂ₑ ≳ T₁</td>
+              <td>~10 mK, tantalum-on-silicon, refined junction deposition</td>
+              <td>2025</td>
+              <td>Princeton (Bland, de Leon, Houck)</td>
+              <td>Bland Nature 647.343 <SourceNote id="bland-nature-647" /></td>
+            </tr>
+            <tr>
+              <td>NV centre (electron spin)</td>
+              <td data-sort-value="0.0012">1.2 ms</td>
+              <td>Room temperature, ¹²C purified, dynamical decoupling</td>
+              <td>—</td>
+              <td>Stuttgart / Delft</td>
+              <td>see Azuma RMP 95.045006 <SourceNote id="azuma-rmp-95" /></td>
+            </tr>
+            <tr>
+              <td>Quantum dot (electron spin)</td>
+              <td data-sort-value="0.0000003">~300 ns</td>
+              <td>InGaAs, optical dynamical decoupling</td>
+              <td>—</td>
+              <td>various</td>
+              <td>see Meddeb 2025 <SourceNote id="meddeb-comnet-2025" /></td>
+            </tr>
+            <tr>
+              <td>Photonic (flying qubit)</td>
+              <td data-sort-value="">—</td>
+              <td>Loss-limited rather than dephasing-limited; coherence not directly comparable</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <p class="note">
+          Rows where the year or citation reads as "—" are well-established
+          field benchmarks reported by the survey literature
+          (Meddeb 2025 §2.1; Azuma RMP 2023) rather than a single primary
+          paper.
+        </p>
+      </section>
+
+      <section id="storage" data-nav-section>
+        <h2>Memory storage time</h2>
+        <p>
+          Storage time is the demonstrated retrieval of a quantum state from a
+          memory after a controllable delay, not the bare coherence time of the
+          underlying qubit. Numbers below pair the storage duration with the
+          fidelity at that time, where reported.
+        </p>
+
+        <div class="rec-table-wrap">
+        <table class="rec-table" data-sortable>
+          <thead>
+            <tr>
+              <th data-sort="text">Platform</th>
+              <th data-sort="numeric">Storage time</th>
+              <th data-sort="text">Fidelity at that time</th>
+              <th data-sort="numeric">Year</th>
+              <th data-sort="text">Group</th>
+              <th data-sort="text">Citation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Eu:YSO atomic-frequency-comb memory (3-level AFC + spin control)</td>
+              <td data-sort-value="3600">1 h</td>
+              <td>~0.96 retrieval fidelity (classical light)</td>
+              <td>2021</td>
+              <td>USTC (Li, Zhou)</td>
+              <td>Ma NatComms 12.2381 <SourceNote id="ma-natphys-2021" />; reviewed in <SourceNote id="tittel-arxiv-2501" /></td>
+            </tr>
+            <tr>
+              <td>NV ¹³C nuclear-spin register (10 qubits)</td>
+              <td data-sort-value="75">75 s</td>
+              <td>Single-qubit fidelity preserved at T₂ scale</td>
+              <td>2019</td>
+              <td>Delft (Taminiau)</td>
+              <td>Bradley PRX 9.031045 <SourceNote id="bradley-prx-2019" /></td>
+            </tr>
+            <tr>
+              <td>Cold-atom ensemble (Rb spin wave)</td>
+              <td data-sort-value="16">16 s</td>
+              <td>~0.5 retrieval efficiency at &gt;1 min</td>
+              <td>2013</td>
+              <td>Georgia Tech (Kuzmich)</td>
+              <td>Dudin PRA 87.031801 <SourceNote id="dudin-natphys-2013" /></td>
+            </tr>
+            <tr>
+              <td>Trapped-ion remote-entanglement memory</td>
+              <td data-sort-value="0.55">~550 ms</td>
+              <td>Heralded ion-ion entanglement lifetime over 10 km fibre</td>
+              <td>2026</td>
+              <td>USTC (Liu, Bao, Pan)</td>
+              <td>Liu Nature 652.51 <SourceNote id="liu-nature-652" /></td>
+            </tr>
+            <tr>
+              <td>SiV centre ²⁹Si nuclear memory (network-grade)</td>
+              <td data-sort-value="0.2">200 ms</td>
+              <td>0.69(7) Bell-state fidelity over 35 km fibre</td>
+              <td>2024</td>
+              <td>Harvard (Lukin)</td>
+              <td>Knaut Nature 629.573 <SourceNote id="knaut-nature-2024" /></td>
+            </tr>
+            <tr>
+              <td>Superconducting cavity (3D)</td>
+              <td data-sort-value="0.001">~1 ms</td>
+              <td>Logical-qubit gate teleportation between cavities</td>
+              <td>2018</td>
+              <td>Yale (Schoelkopf)</td>
+              <td>Chou Nature 561.368 <SourceNote id="chou-nature-2018" /></td>
+            </tr>
+            <tr>
+              <td>Photonic delay-line (fibre loop)</td>
+              <td data-sort-value="0.001">~1 ms</td>
+              <td>Loss-limited; ~0.2 dB/km accumulation</td>
+              <td>—</td>
+              <td>various</td>
+              <td>see Heshami JMO 63.2005 <SourceNote id="heshami-jmo-2016" /></td>
+            </tr>
+            <tr>
+              <td>Rare-earth-doped waveguide (Tm:LiNbO₃)</td>
+              <td data-sort-value="0.00000007">~7 ns</td>
+              <td>Heralded entangled-photon retrieval; AFC delay</td>
+              <td>2011</td>
+              <td>Calgary (Tittel)</td>
+              <td>Saglamyurek Nature 469.512 <SourceNote id="saglamyurek-nature-2011" /></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <section id="method" data-nav-section>
+        <h2>What counts as a record</h2>
+        <p>Inclusion criteria for the tables above:</p>
+        <ul>
+          <li><strong>Primary peer-reviewed source.</strong> Nature, Science, PRL, PRA, Nature Photonics, Nature Communications, and equivalents. Preprints accepted only when the published version is not yet available. Press releases and conference talks are not enough on their own.</li>
+          <li><strong>Demonstrated, not projected.</strong> Modelled extrapolations and proposal-only numbers are excluded except where flagged as such (e.g. Lucamarini 2018's TF-QKD proposal).</li>
+          <li><strong>Modality means the qubit that stored or carried the state</strong> — for entanglement-distribution rows that is the matter qubit being entangled, not the photonic carrier.</li>
+          <li><strong>Coherence vs storage are different.</strong> A long bare T<sub>2</sub> does not imply a long demonstrated storage; the storage table records actual write-store-retrieve experiments, not Ramsey or spin-echo measurements alone.</li>
+          <li><strong>Records age.</strong> Rows marked "[unverified]" or "—" are placeholders for entries we have not yet tied to a primary source in the indexed library. They will be replaced as the catalogue is updated.</li>
+        </ul>
+        <p>
+          The field's compilation papers — Meddeb 2025 Table 5 for memory TRL,
+          Azuma 2023 §III for repeater milestones, Wehner 2018 for stage gates —
+          are the survey-level companion reading <SourceNote id="meddeb-comnet-2025" /><SourceNote id="azuma-rmp-95" />.
+        </p>
+      </section>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<script is:inline>
+  // Sortable tables — click a <th data-sort="..."> to reorder rows.
+  // Numeric columns parse the first floating-point number in the cell;
+  // "—", "[unverified]", and blanks sort last in ascending order.
+  (function () {
+    function parseNumeric(s) {
+      if (!s) return Number.POSITIVE_INFINITY;
+      var m = s.replace(/,/g, "").match(/-?\d+(?:\.\d+)?(?:e-?\d+)?/i);
+      return m ? parseFloat(m[0]) : Number.POSITIVE_INFINITY;
+    }
+    function cellSortKey(cell, type) {
+      var raw = cell.getAttribute("data-sort-value");
+      if (raw === null) raw = cell.textContent;
+      raw = (raw || "").trim();
+      if (type === "numeric") return parseNumeric(raw);
+      return raw;
+    }
+    function sortTable(table, colIdx, type, asc) {
+      var tbody = table.tBodies[0];
+      var rows = Array.prototype.slice.call(tbody.rows);
+      rows.sort(function (a, b) {
+        var av = cellSortKey(a.cells[colIdx], type);
+        var bv = cellSortKey(b.cells[colIdx], type);
+        if (type === "numeric") {
+          return asc ? av - bv : bv - av;
+        }
+        return asc ? String(av).localeCompare(String(bv)) : String(bv).localeCompare(String(av));
+      });
+      rows.forEach(function (r) { tbody.appendChild(r); });
+    }
+    document.querySelectorAll("table[data-sortable]").forEach(function (table) {
+      var ths = table.tHead.rows[0].cells;
+      Array.prototype.forEach.call(ths, function (th, idx) {
+        var type = th.getAttribute("data-sort");
+        if (!type) return;
+        th.classList.add("sortable");
+        th.addEventListener("click", function () {
+          var asc = th.getAttribute("data-asc") !== "true";
+          Array.prototype.forEach.call(ths, function (other) {
+            other.removeAttribute("data-asc");
+            other.classList.remove("sorted-asc", "sorted-desc");
+          });
+          th.setAttribute("data-asc", asc ? "true" : "false");
+          th.classList.add(asc ? "sorted-asc" : "sorted-desc");
+          sortTable(table, idx, type, asc);
+        });
+      });
+    });
+  })();
+</script>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-4);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .hero h1 { margin: 0; }
+  .hero p { margin: 0; }
+
+  section { display: grid; gap: var(--space-3); }
+  p.note {
+    font-size: var(--text-sm);
+    color: var(--color-text-mute);
+    line-height: var(--leading-snug);
+    margin: 0;
+  }
+  ul {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+  li { line-height: var(--leading-snug); }
+
+  .rec-table-wrap {
+    inline-size: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+  }
+  .rec-table {
+    min-inline-size: 60rem;
+    inline-size: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+  }
+  .rec-table thead th {
+    text-align: start;
+    padding: var(--space-2) var(--space-3);
+    border-block-end: 2px solid var(--color-rule);
+    color: var(--color-text);
+    font-weight: 600;
+    background: var(--card-bg);
+    position: sticky;
+    inset-block-start: 0;
+  }
+  .rec-table thead th.sortable {
+    cursor: pointer;
+    user-select: none;
+  }
+  .rec-table thead th.sortable::after {
+    content: " \2195";
+    color: var(--color-text-mute);
+    font-weight: 400;
+  }
+  .rec-table thead th.sorted-asc::after { content: " \2191"; color: var(--color-text); }
+  .rec-table thead th.sorted-desc::after { content: " \2193"; color: var(--color-text); }
+  .rec-table tbody td {
+    padding: var(--space-2) var(--space-3);
+    vertical-align: top;
+    border-block-end: 1px solid var(--color-rule);
+    color: var(--color-text-mute);
+  }
+  .rec-table tbody td:first-child { color: var(--color-text); font-weight: 500; }
+  .rec-table tbody tr:last-child td { border-block-end: 0; }
+</style>
+</content>
+</invoke>

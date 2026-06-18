@@ -1,0 +1,42 @@
+---
+/**
+ * AnnotationArrow — labelled horizontal arrow with sublabel.
+ * Both project arrows (Microwave-to-optical transducer, QFC) converge
+ * on the C-band (1550 nm) so the chart reads "everything ends up at telecom".
+ */
+import type { Geom } from "../../lib/geom";
+import type { Annotation } from "../../lib/data";
+
+interface Props {
+  geom: Geom;
+  annotation: Annotation;
+  index: number;
+  y: number;
+}
+
+const { geom: g, annotation: ann, index, y } = Astro.props;
+const xFrom = g.xOfHz(ann.from_hz);
+const xTo = g.xOfHz(ann.to_hz);
+const cx = (xFrom + xTo) / 2;
+---
+
+<g class="annotation" data-annotation-index={index}>
+  <line
+    x1={xFrom} y1={y}
+    x2={xTo}   y2={y}
+    stroke={ann.color}
+    stroke-width="1.8"
+    marker-end={`url(#arrow-${index})`}
+  />
+  <text x={cx} y={y - 6} class="ann-label" text-anchor="middle" fill={ann.color}>
+    {ann.label}
+  </text>
+  <text x={cx} y={y + 16} class="ann-sub" text-anchor="middle">
+    {ann.sublabel}
+  </text>
+</g>
+
+<style>
+  .ann-label { font-size: 12px; font-weight: 700; }
+  .ann-sub   { font-size: 10px; fill: #555; }
+</style>

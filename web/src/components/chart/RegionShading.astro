@@ -1,0 +1,78 @@
+---
+/**
+ * RegionShading — page-wide rectangles that tint each spectrum region
+ * (microwave / near-IR / visible / UV) behind the platforms. The visible
+ * region gets a rainbow gradient (defined in <defs>); others use a solid
+ * tint at low opacity.
+ *
+ * The <defs> block — including the rainbow linearGradient and the
+ * arrowhead markers used by AnnotationArrow — is also produced here, so
+ * the chart only has one <defs> section.
+ */
+import type { Geom } from "../../lib/geom";
+import type { RegionDef, RainbowStop, Annotation } from "../../lib/data";
+
+interface Props {
+  geom: Geom;
+  regions: RegionDef[];
+  rainbowStops?: RainbowStop[];
+  annotations: Annotation[];
+  regionTop: number;
+  regionBot: number;
+}
+
+const { geom: g, regions, rainbowStops, annotations, regionTop, regionBot } = Astro.props;
+
+const rainbowDefs = (() => {
+  if (!rainbowStops || rainbowStops.length === 0) return null;
+  const xs = rainbowStops.map((s) => g.xOfNm(s.nm));
+  const xLo = Math.min(...xs);
+  const xHi = Math.max(...xs);
+  const span = xHi - xLo || 1;
+  return { xLo, xHi, stops: rainbowStops.map((s, i) => ({
+    offset: ((xs[i] - xLo) / span) * 100,
+    color: s.color,
+  })) };
+})();
+---
+
+<defs>
+  {rainbowDefs && (
+    <linearGradient
+      id="rainbow"
+      x1={rainbowDefs.xLo} y1="0"
+      x2={rainbowDefs.xHi} y2="0"
+      gradientUnits="userSpaceOnUse"
+    >
+      {rainbowDefs.stops.map((s) => (
+        <stop offset={`${s.offset.toFixed(1)}%`} stop-color={s.color} />
+      ))}
+    </linearGradient>
+  )}
+  {annotations.map((ann, i) => (
+    <marker
+      id={`arrow-${i}`}
+      viewBox="0 0 10 10"
+      refX="9" refY="5"
+      markerWidth="8" markerHeight="8"
+      orient="auto"
+    >
+      <path d="M0,0 L10,5 L0,10 Z" fill={ann.color} />
+    </marker>
+  ))}
+</defs>
+
+<g class="region-shading">
+  {regions.flatMap((r) => {
+    const isRainbow = r.gradient === "rainbow";
+    const fill = isRainbow ? "url(#rainbow)" : (r.color ?? "#eee");
+    const opacity = isRainbow ? 0.42 : 0.55;
+    return g.xRangesIn(r.from_hz, r.to_hz).map(([xl, xr]) => (
+      <rect
+        x={xl} y={regionTop}
+        width={xr - xl} height={regionBot - regionTop}
+        fill={fill} opacity={opacity}
+      />
+    ));
+  })}
+</g>

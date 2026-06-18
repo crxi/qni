@@ -1,0 +1,98 @@
+slug: wehner-delft
+name: Wehner group (TU Delft / QuTech)
+categories: [network]
+hq: Delft, Netherlands
+status: active
+parent: null
+
+institution:
+  name: Delft University of Technology
+  lab: QuTech (joint TU Delft + TNO) · Department of Quantum & Computer Engineering · Department of Software Technology
+
+group_website: https://qutech.nl/person/stephanie-wehner/
+
+positioning: >
+  Theory and protocols group at QuTech, the theory-side sibling to the
+  Hanson experimental NV-network programme. Stephanie Wehner is co-author
+  of RFC 9340, the IETF "Architectural Principles for a Quantum Internet"
+  document, and lead author of the canonical Wehner-Elkouss-Hanson Science
+  2018 "stages of a quantum internet" roadmap. The group works on
+  link-layer and network-layer protocols, simulation (NetSquid), and
+  integration testing on the QuTech testbed. Wehner serves as Roadmap
+  Coordinator of the EU Quantum Internet Alliance and coordinates the
+  Dutch QNetworks programme; she previously held a faculty position at
+  CQT NUS before joining Delft.
+
+modalities:
+  network:
+    role: protocols
+    products:
+      - "RFC 9340 (IETF) — architectural principles for a quantum internet"
+      - "NetSquid quantum-network simulator"
+      - "Link-layer / network-layer protocol stack for the QuTech testbed"
+
+milestones:
+  - date: 2023-03
+    tag: network
+    headline: "RFC 9340 — Architectural Principles for a Quantum Internet (IRTF; Kozlowski, Wehner, Van Meter, Rijsman, Cacciapuoti, Caleffi, Nagayama)"
+    source_url: https://www.rfc-editor.org/rfc/rfc9340
+    source_type: paper
+  - date: 2022-2026
+    tag: network
+    headline: "Quantum Internet Alliance Phase 2 launched (Horizon Europe)"
+    source_url: https://quantuminternetalliance.org/
+    source_type: press
+  - date: 2018-10
+    tag: network
+    headline: "Wehner, Elkouss, Hanson — 'Quantum internet: A vision for the road ahead' (Science 362:eaam9288), the canonical six-stage quantum-internet roadmap"
+    source_url: https://www.science.org/doi/10.1126/science.aam9288
+    source_type: paper
+
+shareholders: []
+
+key_personnel:
+  - role: Principal Investigator · Antoni van Leeuwenhoek Professor · QIA Roadmap Coordinator
+    name: Stephanie Wehner
+    since: 2014
+    source_url: https://qutech.nl/person/stephanie-wehner/
+
+funding_sources:
+  - name: European Research Council (ERC)
+    source_url: https://erc.europa.eu/homepage
+  - name: Dutch Research Council (NWO)
+    source_url: https://www.nwo.nl/
+  - name: EU Horizon Europe — Quantum Internet Alliance (QIA)
+    source_url: https://quantuminternetalliance.org/
+  - name: Dutch National Growth Fund — Quantum Delta NL / QNetworks programme
+    source_url: https://quantumdelta.nl/
+
+current_focus:
+  name: Quantum cryptography, communication and large-scale quantum networks
+  description: >
+    Per the QuTech profile (qutech.nl/person/stephanie-wehner): understanding
+    the laws of quantum mechanics in order to construct better networks and
+    computers, with extensive work in quantum cryptography and communication
+    and current work with the Quantum Internet Alliance toward realising a
+    large-scale quantum network.
+  source_url: https://qutech.nl/person/stephanie-wehner/
+
+references:
+  - kind: paper
+    citation_key: wehner-science-2018
+    url: https://www.science.org/doi/10.1126/science.aam9288
+    note: Wehner, Elkouss, Hanson — six-stage quantum-internet roadmap
+  - kind: paper
+    citation_key: kozlowski-rfc9340
+    url: https://www.rfc-editor.org/rfc/rfc9340
+    note: RFC 9340 — Architectural Principles for a Quantum Internet (Wehner co-author)
+
+partial:
+  - field: key_personnel
+    as_of: 2026-05-24
+    note: Dossier intentionally lists only Wehner as PI; senior collaborators inside the broader QuTech Quantum Internet Division (Borregaard, Hanson) are tracked under their own dossiers.
+  - field: group_website
+    as_of: 2026-05-24
+    note: No standalone "Wehner Lab" landing page on qutech.nl; the PI profile page is used in its place.
+
+last_verified: 2026-05-24
+verification_method: web

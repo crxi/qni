@@ -1,0 +1,136 @@
+slug: quix-quantum
+name: QuiX Quantum
+categories: [qc, enabling]
+hq: Enschede, Netherlands
+founded: 2019
+status: private
+parent: null
+logo:
+  domain: quixquantum.com
+
+positioning: >
+  Dutch photonic-hardware company spun out of the University of Twente in
+  2019. Builds reconfigurable photonic processors on low-loss
+  silicon-nitride integrated waveguides — universal interferometer meshes
+  used as the linear-optical core of a photonic quantum computer. The
+  flagship 20-mode silicon-nitride processor reports ~2.9 dB loss and >90%
+  transformation fidelity across its 20 programmable modes. Sells
+  processors as modules and as full
+  single-photon systems to academic and industrial customers. Closed a EUR
+  15M Series A in July 2025 to deliver a first-generation universal
+  single-photon quantum computer.
+
+modalities:
+  qc:
+    qubit_type: photonic
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: programmable-mesh
+    gate_set: []
+  enabling:
+    products:
+      - 20-mode universal photonic processor (silicon nitride)
+      - 8-mode photonic processor
+      - Full single-photon quantum computing system (announced 2026)
+
+milestones:
+  - date: 2025-07
+    tag: qc
+    headline: >
+      EUR 15M Series A closed; proceeds earmarked for the first-generation
+      universal single-photon quantum computer
+    source_url: https://www.eu-startups.com/2025/07/dutch-startup-quix-quantum-secures-e15-million-to-deliver-first-generation-universal-photonic-quantum-computer
+    source_type: press
+  - date: 2022
+    tag: enabling
+    headline: >
+      Releases 20-mode silicon-nitride universal photonic processor —
+      reported ~2.9 dB loss and >90% transformation fidelity
+    source_url: https://www.quixquantum.com/products/quantum-photonic-processor
+    source_type: web
+  - date: 2021
+    tag: enabling
+    headline: First-generation 8-mode silicon-nitride photonic processor shipped to academic customers
+    source_url: https://www.laserfocusworld.com/optics/article/16566918/new-dutch-silicon-nitride-photonics-company-quix-aims-at-quantum-computing
+    source_type: press
+  - date: 2019
+    tag: qc
+    headline: Founded as University of Twente spin-out
+    source_url: https://www.laserfocusworld.com/optics/article/16566918/new-dutch-silicon-nitride-photonics-company-quix-aims-at-quantum-computing
+    source_type: press
+
+shareholders:
+  - holder: Series A investors (EUR 15M, 2024)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024
+    source_url: https://www.quixquantum.com/news/quix-quantum-series-a
+    note: Round announced 2024; individual investor identities not independently confirmed.
+  - holder: Founders (University of Twente team)
+    stake_percent: null
+    stake_class: founder
+    as_of: 2019
+    source_url: https://www.laserfocusworld.com/optics/article/16566918/new-dutch-silicon-nitride-photonics-company-quix-aims-at-quantum-computing
+    note: Founder equity assumed retained; cap-table not disclosed.
+
+key_personnel:
+  - role: CEO
+    name: Stefan Hengesbach
+    since: 2021
+    source_url: https://www.quixquantum.com/
+    note: >
+      Listed publicly as QuiX Quantum CEO; previously at Fraunhofer ILT.
+      Title taken from press references; not confirmed against the
+      vendor's team page.
+
+roadmap:
+  - target: 2026
+    item: >
+      First-generation universal single-photon quantum computing system
+      delivered, moving beyond boson-sampling-only product line
+    source_url: https://www.quixquantum.com/news/quix-quantum-series-a
+    tag: qc
+
+current_flagship:
+  name: 20-mode universal photonic processor
+  generation: silicon-nitride, programmable interferometer mesh
+
+references:
+  - kind: web
+    citation_key: null
+    url: https://www.quixquantum.com/products/quantum-photonic-processor
+    note: Quantum photonic processor product page (20-mode silicon-nitride)
+  - kind: press
+    citation_key: null
+    url: https://www.quixquantum.com/news/quix-quantum-series-a
+    note: EUR 15M Series A announcement (2024) — universal single-photon system roadmap
+  - kind: press
+    citation_key: null
+    url: https://www.laserfocusworld.com/optics/article/16566918/new-dutch-silicon-nitride-photonics-company-quix-aims-at-quantum-computing
+    note: Founding-era profile in Laser Focus World
+  - kind: blog
+    citation_key: null
+    url: https://www.quixquantum.com/documents/quix-quantum-photonic-processor
+    note: Vendor whitepaper on the photonic processor
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - field: positioning
+    as_of: 2026-05-20
+    note: >
+      Platform identified as silicon-nitride photonics per QuiX's own
+      product page.
+  - shareholders
+  - key_personnel
+  - revenue
+  - headcount
+
+last_verified: 2026-05-20
+verification_method: web

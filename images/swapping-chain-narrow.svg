@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 345" role="img" aria-labelledby="swap-title swap-desc">
+  <title id="swap-title">Entanglement swapping at a relay node (narrow layout)</title>
+  <desc id="swap-desc">Top row: two short Bell pairs, A entangled with A′ and B′ entangled with B. The inner qubits A′ and B′ sit at the same relay location and are jointly measured by a Bell-state measurement apparatus drawn directly beneath them. The BSM yields two classical bits, which travel to the receiver to select a Pauli correction. Result, shown on the bottom row: A and B are now entangled. This is the narrow variant of swapping-chain.svg, used where vertical space is constrained (LOI.html etc.).</desc>
+
+  <defs>
+    <style>
+      .sw-node    { fill: #ffffff; stroke: #1a1f2a; stroke-width: 1.5; }
+      .sw-lbl     { font-family: "Inter", system-ui, sans-serif; font-size: 14px; fill: #1a1f2a; font-weight: 600; }
+      .sw-lbl-mu  { font-family: "Inter", system-ui, sans-serif; font-size: 12px; fill: #5a6472; }
+      .sw-lbl-result { font-family: "Inter", system-ui, sans-serif; font-size: 13px; fill: #1a1f2a; font-style: italic; }
+      .sw-ent     { stroke: #a8408d; stroke-width: 2.5; fill: none; }
+      .sw-bits    { stroke: #5a6472; stroke-width: 1.5; fill: none; stroke-dasharray: 5 3; stroke-linejoin: round; stroke-linecap: round; }
+    </style>
+    <marker id="sw-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#5a6472"/>
+    </marker>
+  </defs>
+
+  <!-- Top row (unchanged geometry from swapping-chain.svg) -->
+  <circle class="sw-node" cx="50"  cy="50" r="18"/>
+  <text   class="sw-lbl"  x="50"   y="55" text-anchor="middle">A</text>
+  <circle class="sw-node" cx="750" cy="50" r="18"/>
+  <text   class="sw-lbl"  x="750"  y="55" text-anchor="middle">B</text>
+
+  <rect x="325" y="22" width="150" height="56" rx="4"
+        fill="none" stroke="#5a6472" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="400" y="18" text-anchor="middle"
+        font-family="Inter, system-ui, sans-serif" font-size="11" fill="#5a6472"
+        font-style="italic">relay R</text>
+
+  <circle class="sw-node" cx="359" cy="50" r="18"/>
+  <text   class="sw-lbl"  x="359"  y="55" text-anchor="middle">A′</text>
+  <path   class="sw-ent"  d="M 68,50 q 17,-10 34,0 t 34,0 t 34,0 t 34,0 t 34,0 t 34,0 t 34,0 t 34,0"/>
+
+  <circle class="sw-node" cx="441" cy="50" r="18"/>
+  <text   class="sw-lbl"  x="441"  y="55" text-anchor="middle">B′</text>
+  <path   class="sw-ent"  d="M 459,50 q 17,-10 34,0 t 34,0 t 34,0 t 34,0 t 34,0 t 34,0 t 34,0 t 34,0"/>
+
+  <!-- BSM apparatus (mirrors BSM.svg, kept in sync by hand). -->
+  <svg x="300" y="52.35" width="200" height="169" viewBox="0 0 640 540" overflow="visible">
+    <defs>
+      <style>
+        .bsm-glass { fill: #d9eef9; stroke: #000000; stroke-width: 3; stroke-linejoin: round; }
+        .bsm-coat  { stroke: #000000; stroke-width: 2.5; stroke-linecap: round; }
+        .bsm-bs    { fill: #1a1f2a; stroke: none; }
+        .bsm-beam  { stroke: #5a6472; stroke-width: 2; fill: none; stroke-linecap: round; }
+        .bsm-det   { fill: #000000; stroke: #000000; stroke-width: 0.5; }
+      </style>
+      <marker id="bsm-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M0,0 L10,5 L0,10 Z" fill="#5a6472"/>
+      </marker>
+      <symbol id="bsm-detector" overflow="visible">
+        <path class="bsm-det" d="M -14,0 A 14,14 0 0 1 14,0 Z"/>
+      </symbol>
+    </defs>
+
+    <line class="bsm-beam" x1="190" y1="50"  x2="450" y2="310"/>
+    <line class="bsm-beam" x1="450" y1="310" x2="510" y2="370" marker-end="url(#bsm-arr)"/>
+    <line class="bsm-beam" x1="450" y1="310" x2="390" y2="370" marker-end="url(#bsm-arr)"/>
+    <line class="bsm-beam" x1="450" y1="50"  x2="190" y2="310"/>
+    <line class="bsm-beam" x1="190" y1="310" x2="130" y2="370" marker-end="url(#bsm-arr)"/>
+    <line class="bsm-beam" x1="190" y1="310" x2="250" y2="370" marker-end="url(#bsm-arr)"/>
+
+    <rect class="bsm-bs" x="312" y="140" width="16" height="80" rx="4"/>
+
+    <polygon class="bsm-glass" points="190,270 230,310 190,350 150,310"/>
+    <line class="bsm-coat" x1="190" y1="270" x2="190" y2="350"/>
+    <polygon class="bsm-glass" points="450,270 490,310 450,350 410,310"/>
+    <line class="bsm-coat" x1="450" y1="270" x2="450" y2="350"/>
+
+    <use href="#bsm-detector" transform="translate(130,370) rotate(-135)"/>
+    <use href="#bsm-detector" transform="translate(250,370) rotate(135)"/>
+    <use href="#bsm-detector" transform="translate(390,370) rotate(-135)"/>
+    <use href="#bsm-detector" transform="translate(510,370) rotate(135)"/>
+  </svg>
+
+  <!-- Classical-bits arrow (unchanged y=190 — sits to the right of the BSM). -->
+  <text class="sw-lbl-mu" x="400" y="190" text-anchor="middle">BSM outcome</text>
+  <text class="sw-lbl-mu" x="590" y="182" text-anchor="middle">2 classical bits</text>
+  <line class="sw-bits" x1="455" y1="190" x2="720" y2="190" marker-end="url(#sw-arr)"/>
+
+  <!-- Result row — pulled up from y=355 to y=265 to tighten the gap
+       between BSM bottom (~y=221) and the long Bell-pair line. -->
+  <circle class="sw-node" cx="50"  cy="265" r="18"/>
+  <text   class="sw-lbl"  x="50"   y="270" text-anchor="middle">A</text>
+  <circle class="sw-node" cx="750" cy="265" r="18"/>
+  <text   class="sw-lbl"  x="750"  y="270" text-anchor="middle">B</text>
+  <path   class="sw-ent"  d="M 68,265 q 17.5,-10 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0"/>
+
+  <text class="sw-lbl-result" x="400" y="315" text-anchor="middle">⇒ A and B are now entangled</text>
+</svg>

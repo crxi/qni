@@ -1,0 +1,163 @@
+slug: aqt
+name: Alpine Quantum Technologies (AQT)
+categories: [qc]
+hq: Innsbruck, Austria
+founded: 2018
+status: private
+parent: null
+logo:
+  domain: aqt.eu
+
+positioning: >
+  Trapped-ion quantum computers built around calcium-40 (and ytterbium where
+  the wavelength suits) optical qubits in rack-mounted 19-inch form factor.
+  University of Innsbruck spin-out from the Blatt / Zoller groups, founded
+  in 2018 by Rainer Blatt, Thomas Monz, and Peter Zoller — the team that
+  realised the first controlled-NOT gate on trapped ions. Sells full-stack
+  systems (PINE, MARMOT, IBEX) to HPC centres and research institutes across
+  Europe, with cloud access via Amazon Braket and Scaleway. IBEX Q1 (12
+  qubits, 24-qubit entanglement demonstrated) went live on Amazon Braket in
+  November 2025.
+
+modalities:
+  qc:
+    qubit_type: trapped-ion
+    physical_qubits_current: 24
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: all-to-all
+    gate_set: []
+
+milestones:
+  - date: 2026-02
+    tag: qc
+    headline: AQT + Scaleway launch European quantum cloud access — IBEX systems offered through Scaleway alongside the Amazon Braket integration
+    source_url: https://thequantuminsider.com/2026/02/19/aqt-and-scaleway-launch-european-quantum-cloud-access/
+    source_type: press
+  - date: 2025-11
+    tag: qc
+    headline: IBEX Q1 (12-qubit trapped-ion system) goes live on Amazon Braket; 24-qubit entanglement and a fault-tolerant universal gate set demonstrated on AQT hardware
+    source_url: https://aws.amazon.com/blogs/quantum-computing/amazon-braket-launches-trapped-ion-quantum-computer-from-alpine-quantum-technologies/
+    source_type: press
+  - date: 2025-06
+    tag: qc
+    headline: Inauguration event at AQT headquarters attended by the Presidents of Germany (Steinmeier) and Austria (Van der Bellen)
+    source_url: https://www.aqt.eu/news/
+    source_type: press
+  - date: 2025
+    tag: qc
+    headline: PIAST-Q trapped-ion quantum computer delivered to Poznańskie Centrum Superkomputerowo-Sieciowe (PCSS), Poland, under the Euro-QCS Poland programme
+    source_url: https://www.aqt.eu/news/
+    source_type: press
+  - date: 2024-12
+    tag: qc
+    headline: First EuroHPC trapped-ion system operational at LRZ Quantum Integration Centre, procured jointly with Munich Quantum Valley (€12.28M total contract)
+    source_url: https://www.lrz.de/en/news/detail/eurohpc-ju-tender-european-quantum-system-at-lrz
+    source_type: press
+  - date: 2019
+    tag: qc
+    headline: "€10M co-investment from the Austrian research-promotion agency FFG and the University of Innsbruck"
+    source_url: https://globalventuring.com/university/innsbruck-helps-spinout-aqt-activate-funding/
+    source_type: press
+  - date: 2018-02
+    tag: qc
+    headline: AQT founded as a University of Innsbruck spin-out by Rainer Blatt, Thomas Monz, and Peter Zoller
+    source_url: https://www.aqt.eu/about/
+    source_type: web
+
+shareholders:
+  - holder: University of Innsbruck
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2019
+    source_url: https://globalventuring.com/university/innsbruck-helps-spinout-aqt-activate-funding/
+    note: Co-investor alongside FFG in the 2019 €10M round; technology-transfer route from the Blatt / Zoller labs
+  - holder: FFG (Austrian Research Promotion Agency)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2019
+    source_url: https://globalventuring.com/university/innsbruck-helps-spinout-aqt-activate-funding/
+    note: Non-dilutive funding via Austria's National Foundation for Research, Technology and Development
+  - holder: aws (Austrian Wirtschaftsservice)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2018
+    source_url: https://en.everybodywiki.com/Alpine_Quantum_Technologies
+    note: Pre-seed non-dilutive funding from the state-owned economic development bank
+  - holder: IVT (Tyrol Federation of Industrialists private foundation)
+    stake_percent: 15
+    stake_class: minority
+    as_of: 2019-05
+    source_url: https://globalventuring.com/university/innsbruck-helps-spinout-aqt-activate-funding/
+    note: Six-figure euro investment; reportedly holds a 15% stake per Global Venturing
+  - holder: Founders (Blatt, Monz, Zoller)
+    stake_percent: null
+    stake_class: founder
+    as_of: 2018-02
+    source_url: https://www.aqt.eu/about/
+
+key_personnel:
+  - role: CEO & Co-founder
+    name: Thomas Monz
+    since: 2018
+    source_url: https://www.aqt.eu/about/
+  - role: Co-founder & Senior Advisor
+    name: Rainer Blatt
+    since: 2018
+    source_url: https://www.aqt.eu/about/
+    note: Professor at University of Innsbruck; pioneer of trapped-ion quantum computing
+  - role: Co-founder
+    name: Peter Zoller
+    since: 2018
+    source_url: https://www.aqt.eu/about/
+    note: Professor at University of Innsbruck and IQOQI
+
+roadmap: []
+# AQT has not published a multi-year public roadmap with dated milestones;
+# near-term direction is set by EuroHPC delivery commitments and cloud-platform
+# expansion (Amazon Braket, Scaleway).
+
+current_flagship:
+  name: IBEX Q1
+  generation: 12-qubit trapped-ion (Ca-40), 19-inch rack-mounted; 24-qubit entanglement demonstrated
+
+references:
+  - kind: blog
+    citation_key: null
+    url: https://www.aqt.eu/about/
+    note: Vendor about-page with founding history
+  - kind: press
+    citation_key: null
+    url: https://aws.amazon.com/blogs/quantum-computing/amazon-braket-launches-trapped-ion-quantum-computer-from-alpine-quantum-technologies/
+    note: AWS Braket integration announcement
+  - kind: press
+    citation_key: null
+    url: https://www.lrz.de/en/news/detail/eurohpc-ju-tender-european-quantum-system-at-lrz
+    note: LRZ EuroHPC system inauguration
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2026/02/19/aqt-and-scaleway-launch-european-quantum-cloud-access/
+    note: Scaleway cloud-access launch
+
+partial:
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.gate_set
+  - field: modalities.qc.physical_qubits_current
+    as_of: 2026-05-20
+    note: IBEX Q1 commercial offering is 12 qubits; 24-qubit entanglement is a research demonstration on the same hardware family. PINE MODULE specifies up to 50 qubits per AQT product literature.
+  - field: shareholders
+    as_of: 2026-05-20
+    note: Private; exact equity split among founders, university, and state agencies not disclosed. IVT 15% figure sourced from Global Venturing 2019 reporting.
+  - field: roadmap
+    as_of: 2026-05-20
+    note: No public multi-year roadmap with dated milestones.
+
+last_verified: 2026-05-20
+verification_method: web

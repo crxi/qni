@@ -1,0 +1,145 @@
+slug: xanadu
+name: Xanadu Quantum Technologies
+categories: [qc]
+hq: Toronto, Ontario, Canada
+founded: 2016
+status: public
+parent: null
+logo:
+  domain: xanadu.ai
+
+positioning: >
+  Photonic quantum computing company building room-temperature,
+  fibre-networked machines based on continuous-variable squeezed light and
+  GKP (Gottesman-Kitaev-Preskill) bosonic qubits. Founded in Toronto in 2016
+  by Christian Weedbrook; demonstrated quantum computational advantage with
+  Borealis (Nature 606, 75, 2022) and launched Aurora in January 2025 — a
+  universal modular photonic QC across four server racks, 35 chips, and 13
+  km of fibre. Ships the open-source PennyLane SDK alongside the X-series /
+  Borealis / Aurora hardware lines, with Borealis available on AWS Braket.
+  Listed publicly on Nasdaq and TSX via a 2026 SPAC merger with Crane Harbor
+  Acquisition Corp.
+
+modalities:
+  qc:
+    qubit_type: photonic
+    physical_qubits_current: 12
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: gkp
+    connectivity: photonic-link
+    gate_set: []
+
+milestones:
+  - date: 2026
+    tag: qc
+    headline: Xanadu lists publicly on Nasdaq and TSX via SPAC merger with Crane Harbor Acquisition Corp. (~$3.1B pre-merger valuation, >$300M raised); first Canadian tech IPO since 2021
+    source_url: https://betakit.com/xanadu-to-go-public-on-nasdaq-and-tsx-in-3-6-billion-usd-spac-deal/
+    source_type: filing
+  - date: 2025-06
+    tag: qc
+    headline: First on-chip generation of GKP states demonstrated — silicon-nitride waveguides on 300 mm wafers, plus improved photon-number-resolving detection; building block for scalable photonic FTQC
+    source_url: https://thequantuminsider.com/2025/06/05/xanadu-demonstrates-scalable-building-block-for-photonic-quantum-computers/
+    source_type: press
+  - date: 2025-01
+    tag: qc
+    headline: Aurora launched and Nature-published — universal modular photonic QC across four server racks, 35 photonic chips, 13 km fibre, 12 qubits, all room-temperature; demonstrates real-time photonic error detection and correction
+    source_url: https://www.xanadu.ai/press/xanadu-introduces-aurora-worlds-first-scalable-networked-and-modular-quantum-computer
+    source_type: press
+  - date: 2025
+    tag: qc
+    headline: Advances to Stage B of DARPA Quantum Benchmarking Initiative (path to a "useful" QC by 2033)
+    source_url: https://thequantuminsider.com/2025/06/05/xanadu-demonstrates-scalable-building-block-for-photonic-quantum-computers/
+    source_type: press
+  - date: 2022-06
+    tag: qc
+    headline: "Nature paper: Borealis demonstrates quantum computational advantage with a fully programmable photonic processor (216 squeezed modes, Gaussian boson sampling, 36 μs vs 9,000 yr classical)"
+    source_url: https://www.nature.com/articles/s41586-022-04725-x
+    source_type: paper
+  - date: 2022-06
+    tag: qc
+    headline: Borealis described by Xanadu as the first publicly accessible quantum-advantage machine; made available via AWS Braket
+    source_url: https://aws.amazon.com/blogs/quantum-computing/explore-quantum-computational-advantage-with-xanadus-borealis-device-on-amazon-braket/
+    source_type: blog
+  - date: 2016
+    tag: qc
+    headline: Company founded in Toronto by Christian Weedbrook (CEO)
+    source_url: https://www.canadianinnovators.org/ceo-directory/christian-weedbrook
+    source_type: press
+
+shareholders:
+  - holder: Christian Weedbrook
+    stake_percent: null
+    stake_class: founder
+    as_of: 2026
+    source_url: https://fortune.com/2026/04/22/christian-weedbrook-ceo-xanadu-quantum-technologies-net-worth-nvidia/
+    note: Founder & CEO; substantial post-IPO insider holdings (private percent not disclosed)
+  - holder: Crane Harbor Acquisition Corp. (SPAC sponsor)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026
+    source_url: https://betakit.com/xanadu-to-go-public-on-nasdaq-and-tsx-in-3-6-billion-usd-spac-deal/
+    note: SPAC merger counterparty for the 2026 public listing
+  - holder: NVIDIA
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026
+    source_url: https://fortune.com/2026/04/22/christian-weedbrook-ceo-xanadu-quantum-technologies-net-worth-nvidia/
+    note: Strategic investor flagged in Fortune coverage of the public listing
+
+key_personnel:
+  - role: Founder & CEO
+    name: Christian Weedbrook
+    since: 2016
+    source_url: https://www.canadianinnovators.org/ceo-directory/christian-weedbrook
+
+roadmap:
+  - target: 2029
+    item: ~1,000 logical qubits at ~100:1 logical-to-physical ratio (~100,000 physical qubits)
+    source_url: https://www.tomshardware.com/tech-industry/quantum-computing/quantum-photonics-roadmap-how-xanadu-and-psiquantum-are-looking-to-transfer-qubits-through-beams-of-light
+    tag: qc
+  - target: 2026
+    item: Integrate HyperLight thin-film lithium-niobate (TFLN) waveguides to reduce photonic loss vs silicon nitride
+    source_url: https://thequantuminsider.com/2025/06/05/xanadu-demonstrates-scalable-building-block-for-photonic-quantum-computers/
+    tag: qc
+
+current_flagship:
+  name: Aurora
+  generation: modular networked photonic QC (4 server racks, 35 chips, 13 km fibre, 12 qubits, GKP-encoded)
+
+references:
+  - kind: paper
+    citation_key: Madsen.Nature.606.75
+    url: https://www.nature.com/articles/s41586-022-04725-x
+    note: "Madsen et al., Nature 606, 75 (2022) — quantum computational advantage with Borealis"
+  - kind: press
+    citation_key: null
+    url: https://www.xanadu.ai/press/xanadu-introduces-aurora-worlds-first-scalable-networked-and-modular-quantum-computer
+    note: Aurora launch announcement (Jan 2025)
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2025/06/05/xanadu-demonstrates-scalable-building-block-for-photonic-quantum-computers/
+    note: On-chip GKP generation milestone (June 2025)
+  - kind: blog
+    citation_key: null
+    url: https://aws.amazon.com/blogs/quantum-computing/explore-quantum-computational-advantage-with-xanadus-borealis-device-on-amazon-braket/
+    note: AWS Braket integration of Borealis
+
+partial:
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.gate_set
+  - field: shareholders
+    as_of: 2026-05-15
+    note: Post-SPAC ownership detail (DEF 14A / S-4 cap table) not yet cross-checked against the 2026 merger filings; institutional stakes will need to be added from the post-combination 13Fs
+  - field: key_personnel
+    as_of: 2026-05-15
+    note: Only the founder/CEO is captured; CTO/CFO/Chief Scientist roles not surfaced from primary sources
+
+last_verified: 2026-05-15
+verification_method: web

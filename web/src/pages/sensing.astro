@@ -1,0 +1,508 @@
+---
+/**
+ * /sensing — Networked & distributed quantum sensing
+ *
+ * Tier D · Applications. Split out of /applications so the
+ * network-required sensing line (clock networks, quantum-enhanced
+ * telescopy, distributed multiparameter estimation) has room for a
+ * grounded literature review.
+ *
+ * Citations:
+ *   - degen-rmp-2017, giovannetti-natphoton-2011 — sensing/metrology foundations.
+ *   - zhang-zhuang-qst-2021 — the distributed-sensing review.
+ *   - komar-natphys-2014, komar-prl-2016, nichol-nature-2022 — clock networks.
+ *   - gottesman-prl-2012, khabiboulline-prl-2019 — quantum-enhanced telescopy.
+ *   - proctor-prl-2018, eldredge-pra-2018 — distributed-estimation theory.
+ *   - guo-natphys-2020, xia-prl-2020, malia-nature-2022 — networked demos.
+ *   - pirandola-natphoton-2018 — photonic-sensing complement.
+ *   - wehner-science-2018, kumar-ijndc-2025 — quantum-internet framing.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SourceNote from "../components/SourceNote.astro";
+import Callout from "../components/Callout.astro";
+
+const sections = [
+  { id: "overview",  label: "Overview" },
+  { id: "clocks",    label: "Networked clocks" },
+  { id: "telescopy", label: "Quantum-enhanced telescopy" },
+  { id: "distributed", label: "Distributed estimation" },
+  { id: "demonstrations", label: "Demonstrations" },
+  { id: "papers",    label: "Key papers" },
+];
+
+// Seminal-paper review. Each entry links straight to the original
+// (DOI). Grouped to match the prose sections above.
+const doi = (d: string) => `https://doi.org/${d}`;
+const paperGroups = [
+  {
+    heading: "Foundations",
+    papers: [
+      {
+        title: "Quantum sensing",
+        cite: "Degen, Reinhard & Cappellaro · Rev. Mod. Phys. 89, 035002 (2017)",
+        href: doi("10.1103/RevModPhys.89.035002"),
+        review:
+          "The standard reference. Definitions, the sensing protocol, sensitivity, and the quantum Cramér–Rao bound across platforms. Single-sensor and experimentalist-facing — it deliberately leaves clocks and photonic sensors to other reviews, so it's the floor under everything below, not the networked story itself.",
+      },
+      {
+        title: "Advances in quantum metrology",
+        cite: "Giovannetti, Lloyd & Maccone · Nat. Photonics 5, 222 (2011)",
+        href: doi("10.1038/nphoton.2011.35"),
+        review:
+          "The estimation-theory side: why entangled probes can push precision from the standard-quantum-limit (∝1/√N) toward the Heisenberg limit (∝1/N), and what noise does to that promise. Short and theoretical — read it for the scaling argument every networked-sensing claim rests on.",
+      },
+      {
+        title: "Distributed quantum sensing",
+        cite: "Zhang & Zhuang · Quantum Sci. Technol. 6, 043001 (2021)",
+        href: doi("10.1088/2058-9565/abd4c3"),
+        review:
+          "The review that maps directly onto network architecture: shared multipartite entanglement across nodes to estimate a global parameter (a weighted sum of locally-sensed quantities), with the entangled-vs-separable scaling comparison for both continuous- and discrete-variable protocols. The best single entry point for the qni-relevant material.",
+      },
+    ],
+  },
+  {
+    heading: "Networked clocks",
+    papers: [
+      {
+        title: "A quantum network of clocks",
+        cite: "Kómár et al. · Nat. Phys. 10, 582 (2014)",
+        href: doi("10.1038/nphys3000"),
+        review:
+          "The proposal. GHZ-entangle the qubits of geographically separated optical clocks and the network compares frequencies at the Heisenberg limit, with the internal structure giving security against external and internal attackers. The clearest statement of timekeeping as an application that the network is load-bearing for, not incidental to.",
+      },
+      {
+        title: "Quantum Network of Atom Clocks: A Possible Implementation with Neutral Atoms",
+        cite: "Kómár et al. · Phys. Rev. Lett. 117, 060506 (2016)",
+        href: doi("10.1103/PhysRevLett.117.060506"),
+        review:
+          "A concrete hardware path for the 2014 proposal: GHZ states across separated neutral-atom ensembles built via Rydberg-mediated local gates and linked by single-photon channels. Read it for what the clock-network protocol actually asks of the nodes.",
+      },
+      {
+        title: "An elementary quantum network of entangled optical atomic clocks",
+        cite: "Nichol et al. · Nature 609, 689 (2022)",
+        href: doi("10.1038/s41586-022-05088-z"),
+        review:
+          "Proposal → demonstration. Two strontium ions ~2 m apart entangled over a photonic link, with entanglement cutting the frequency-comparison uncertainty by ≈√2 — the Heisenberg-limited value for two nodes. The first time the clock-network advantage was shown between two separately-housed, remotely-entangled systems.",
+      },
+    ],
+  },
+  {
+    heading: "Quantum-enhanced telescopy",
+    papers: [
+      {
+        title: "Longer-baseline telescopes using quantum repeaters",
+        cite: "Gottesman, Jennewein & Croke · Phys. Rev. Lett. 109, 070503 (2012)",
+        href: doi("10.1103/PhysRevLett.109.070503"),
+        review:
+          "The original idea: replace the lossy physical photon link between two telescopes with pre-shared entanglement, so the interferometric baseline can be extended far beyond what a direct optical connection allows. Turns very-long-baseline interferometry into a consumer of distributed Bell pairs.",
+      },
+      {
+        title: "Optical Interferometry with Quantum Networks",
+        cite: "Khabiboulline et al. · Phys. Rev. Lett. 123, 070504 (2019)",
+        href: doi("10.1103/PhysRevLett.123.070504"),
+        review:
+          "Updates Gottesman with quantum memories and network primitives, cutting the entanglement-distribution cost and making the scheme look like a service running on a quantum-internet stack rather than a bespoke link. Pair it with the companion 'Quantum-assisted telescope arrays' analysis.",
+      },
+    ],
+  },
+  {
+    heading: "Distributed estimation & demonstrations",
+    papers: [
+      {
+        title: "Multiparameter Estimation in Networked Quantum Sensors",
+        cite: "Proctor, Knott & Dunningham · Phys. Rev. Lett. 120, 080501 (2018)",
+        href: doi("10.1103/PhysRevLett.120.080501"),
+        review:
+          "Sets up the general problem — estimating a global function of parameters sensed locally at different nodes — and shows when entanglement between nodes beats purely local strategies. The theory backbone for the demonstrations below.",
+      },
+      {
+        title: "Optimal and secure measurement protocols for quantum sensor networks",
+        cite: "Eldredge et al. · Phys. Rev. A 97, 042337 (2018)",
+        href: doi("10.1103/PhysRevA.97.042337"),
+        review:
+          "Optimal protocols for measuring a linear combination of fields across networked sensors, plus a security guarantee that only the intended recipient learns the result. The secure-network angle that ties sensing back to the same trust model as the rest of the quantum internet.",
+      },
+      {
+        title: "Distributed quantum sensing in a continuous-variable entangled network",
+        cite: "Guo et al. · Nat. Phys. 16, 281 (2020)",
+        href: doi("10.1038/s41567-019-0743-x"),
+        review:
+          "Experimental CV demonstration: a three-node multipartite-entangled network estimates an averaged phase with precision beyond any separable-probe strategy. One of the first end-to-end distributed-sensing advantages on real hardware.",
+      },
+      {
+        title: "Demonstration of a Reconfigurable Entangled Radio-Frequency Photonic Sensor Network",
+        cite: "Xia et al. · Phys. Rev. Lett. 124, 150502 (2020)",
+        href: doi("10.1103/PhysRevLett.124.150502"),
+        review:
+          "An entangled sensor network for radio-frequency signals that can be reconfigured to weight different nodes, showing the entanglement advantage holds for a tunable global parameter — a step toward application-shaped sensor networks.",
+      },
+      {
+        title: "Distributed quantum sensing with mode-entangled spin-squeezed atomic states",
+        cite: "Malia, Wu, Martínez-Rincón & Kasevich · Nature 612, 661 (2022)",
+        href: doi("10.1038/s41586-022-05363-z"),
+        review:
+          "Distributed sensing using mode-entangled, spin-squeezed atomic ensembles — an atomic-platform route to networked sensing past the standard quantum limit, complementing the photonic CV and RF demonstrations.",
+      },
+      {
+        title: "Advances in photonic quantum sensing",
+        cite: "Pirandola et al. · Nat. Photonics 12, 724 (2018)",
+        href: doi("10.1038/s41566-018-0301-6"),
+        review:
+          "Reviews the photonic-probe ground that Degen's solid-state-centric survey leaves out — useful background for the photonic and CV sensor-network demonstrations above.",
+      },
+    ],
+  },
+];
+---
+
+<Infographic
+  title="Networked & distributed quantum sensing"
+  description="Sensing applications where the quantum network is load-bearing: entangling sensors at separated nodes to measure a global parameter beyond the standard quantum limit. Networked atomic clocks, quantum-enhanced long-baseline telescopy, and distributed multiparameter estimation — with a reviewed reading list linking to the primary papers."
+  references={[
+    "degen-rmp-2017",
+    "eldredge-pra-2018",
+    "giovannetti-natphoton-2011",
+    "gottesman-prl-2012",
+    "guo-natphys-2020",
+    "khabiboulline-prl-2019",
+    "komar-natphys-2014",
+    "komar-prl-2016",
+    "kumar-ijndc-2025",
+    "malia-nature-2022",
+    "nichol-nature-2022",
+    "pirandola-natphoton-2018",
+    "proctor-prl-2018",
+    "wehner-science-2018",
+    "xia-prl-2020",
+    "zhang-zhuang-qst-2021",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="sensing" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>Networked &amp; distributed quantum sensing</h1>
+        <p>
+          A single quantum sensor that uses an entangled probe can push its
+          precision from the standard quantum limit (uncertainty falling as
+          1/√N in the number of probes) toward the Heisenberg limit
+          (1/N) <SourceNote id="giovannetti-natphoton-2011" />. The networked
+          version distributes that entanglement <em>across separated nodes</em>:
+          a shared multipartite state lets the network estimate a
+          <em>global</em> parameter — a weighted combination of quantities each
+          sensed locally — better than any set of independent sensors
+          could <SourceNote id="zhang-zhuang-qst-2021" />. That is the sensing
+          regime where the quantum network is the enabling resource, not an
+          implementation detail.
+        </p>
+        <p>
+          The single-sensor foundations are covered by the standard quantum-sensing
+          review <SourceNote id="degen-rmp-2017" />; what follows is the line that
+          needs a network. Wehner et al. 2018 list both clock synchronisation and
+          telescope-baseline extension as quantum-internet applications, sitting
+          above the entanglement-distribution stage of the
+          roadmap <SourceNote id="wehner-science-2018" />. Sensing consumes
+          entanglement differently from QKD or distributed computing — some
+          protocols tolerate lower fidelity, but timing precision and the
+          source-of-randomness constraints are tighter <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+        <Callout label="The precision limits — shot-noise, Heisenberg, entanglement">
+          <ul>
+            <li><strong>Standard quantum limit (shot-noise limit).</strong> The best
+              precision from N independent probes (atoms or photons) measured and
+              averaged: the uncertainty shrinks only as 1/√N — the same statistical
+              scaling as averaging more coin flips. It is the baseline a quantum sensor
+              tries to beat.</li>
+            <li><strong>Heisenberg limit.</strong> The ultimate precision quantum
+              mechanics allows when the N probes are entangled and act together — the
+              uncertainty shrinks as 1/N, a quadratic improvement over the standard
+              quantum limit. Reaching it requires entanglement.</li>
+            <li><strong>Multipartite entanglement.</strong> Entanglement shared among
+              three or more parties at once, not just a pair, so a measurement at one
+              node is correlated with all the others. It is what lets separated sensors
+              behave as one instrument.</li>
+            <li><strong>Global parameter.</strong> A single quantity built from values
+              in several places at once — say a weighted average of the field at each
+              node — rather than one local reading.</li>
+          </ul>
+        </Callout>
+      </header>
+
+      <section id="clocks" data-nav-section>
+        <h2>Networked atomic clocks</h2>
+        <p>
+          Distributing an entangled (GHZ-type) state between the qubits of
+          geographically separated optical atomic clocks lets the network's joint
+          frequency measurement scale at the Heisenberg limit rather than the
+          shot-noise limit, while the protocol's internal structure provides
+          security against both external and internal
+          attackers <SourceNote id="komar-natphys-2014" />. A concrete neutral-atom
+          implementation builds the GHZ state through Rydberg-mediated local gates
+          and single-photon links between
+          ensembles <SourceNote id="komar-prl-2016" />.
+        </p>
+        <p>
+          The first experimental realisation entangled two <sup>88</sup>Sr<sup>+</sup> ions about two
+          metres apart over a photonic link and showed the frequency-comparison
+          uncertainty drop by ≈√2 — the Heisenberg-limited value for two nodes —
+          demonstrating the clock-network advantage between separately-housed,
+          remotely-entangled systems <SourceNote id="nichol-nature-2022" />.
+        </p>
+        <Callout label="Optical clocks, GHZ states, and Rydberg gates">
+          <ul>
+            <li><strong>Optical atomic clock.</strong> A clock that counts the ticks of
+              an atom's optical-frequency transition (hundreds of THz) rather than a
+              microwave one (as in caesium clocks), giving far higher precision.</li>
+            <li><strong>GHZ state.</strong> A maximally-entangled state of many qubits
+              (after Greenberger–Horne–Zeilinger) in which every party is correlated
+              together — the workhorse entangled state for clock networks.</li>
+            <li><strong>Rydberg-mediated.</strong> Built using atoms briefly excited to
+              high-energy "Rydberg" states, which interact strongly across micron
+              distances; that strong interaction drives the fast entangling gates
+              between atoms in an ensemble.</li>
+          </ul>
+        </Callout>
+      </section>
+
+      <section id="telescopy" data-nav-section>
+        <h2>Quantum-enhanced telescopy</h2>
+        <p>
+          Very-long-baseline interferometry resolves fine detail by combining
+          light collected at widely separated telescopes; the limit is the loss in
+          physically carrying one telescope's photons to the other. Gottesman,
+          Jennewein and Croke showed the physical link can be replaced with
+          pre-shared entanglement, so the effective baseline — and the angular
+          resolution — extends far beyond what a direct optical connection
+          allows <SourceNote id="gottesman-prl-2012" />. The scheme turns
+          astronomical interferometry into a consumer of distributed Bell pairs.
+        </p>
+        <p>
+          Khabiboulline et al. recast this using quantum memories and
+          quantum-network primitives, cutting the entanglement-distribution cost
+          so the approach reads as a service on a quantum-internet stack rather
+          than a one-off link <SourceNote id="khabiboulline-prl-2019" />.
+        </p>
+        <Callout label="Interferometry and baseline">
+          <ul>
+            <li><strong>Interferometry.</strong> Combining the light waves collected at
+              two telescopes and reading their interference pattern; the finer the
+              interference can be measured, the finer the detail that can be resolved.</li>
+            <li><strong>Baseline.</strong> The distance between the two telescopes.
+              Angular resolution improves as the baseline grows — which is why
+              extending it (here, with shared entanglement) is the whole point.</li>
+          </ul>
+        </Callout>
+      </section>
+
+      <section id="distributed" data-nav-section>
+        <h2>Distributed multiparameter estimation</h2>
+        <p>
+          Beyond clocks and telescopes, the general problem is estimating a global
+          function of parameters sensed locally at different nodes. Proctor, Knott
+          and Dunningham set up the framework and identify when entanglement
+          between nodes beats purely local
+          strategies <SourceNote id="proctor-prl-2018" />; Eldredge et al. give
+          optimal protocols for measuring a linear combination of fields across the
+          network, together with a guarantee that only the intended recipient
+          learns the result — the same trust model as the rest of the quantum
+          internet <SourceNote id="eldredge-pra-2018" />.
+        </p>
+        <p>
+          The advantage has been shown on hardware across platforms: a
+          continuous-variable three-node photonic
+          network <SourceNote id="guo-natphys-2020" />, a reconfigurable
+          radio-frequency photonic sensor network <SourceNote id="xia-prl-2020" />,
+          and mode-entangled spin-squeezed atomic
+          ensembles <SourceNote id="malia-nature-2022" />. For the photonic-probe
+          background these build on, see the photonic-sensing
+          review <SourceNote id="pirandola-natphoton-2018" />.
+        </p>
+        <Callout label="Continuous- vs discrete-variable, and spin squeezing">
+          <ul>
+            <li><strong>Continuous-variable (CV) vs discrete-variable (DV).</strong> Two
+              ways to carry quantum information: DV in countable states (a single
+              photon's polarisation, a qubit), CV in continuous quantities (the
+              amplitude and phase of a light field). CV sensing uses squeezed light; DV
+              uses single photons or qubits.</li>
+            <li><strong>Spin-squeezed state.</strong> An entangled state of many atoms
+              in which the quantum noise of the measured quantity is squeezed below the
+              standard-quantum-limit level — improving precision, at the cost of extra
+              noise in a quantity you do not care about.</li>
+          </ul>
+        </Callout>
+      </section>
+
+      <section id="demonstrations" data-nav-section>
+        <h2>Demonstrations to date</h2>
+        <p>
+          The hardware realisations across the clock-network and distributed-sensing
+          lines. Early and small-scale, but each shows an entanglement advantage on
+          real apparatus rather than in simulation.
+        </p>
+        <div class="demo-table-wrap">
+          <table class="demo-table">
+            <thead>
+              <tr>
+                <th scope="col">Platform</th>
+                <th scope="col">Scale</th>
+                <th scope="col">Demonstrated result</th>
+                <th scope="col">Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Trapped ions (<sup>88</sup>Sr<sup>+</sup>)</th>
+                <td>2 nodes, ~2 m, photonic link</td>
+                <td>Entangled optical-clock comparison; frequency-comparison uncertainty
+                  reduced by ≈√2 — the Heisenberg-limited value for two nodes</td>
+                <td><SourceNote id="nichol-nature-2022" /></td>
+              </tr>
+              <tr>
+                <th scope="row">Spin-squeezed atomic ensembles</th>
+                <td>Mode-entangled, multi-mode (lab)</td>
+                <td>Distributed sensing with mode-entangled spin-squeezed states, below
+                  the standard quantum limit</td>
+                <td><SourceNote id="malia-nature-2022" /></td>
+              </tr>
+              <tr>
+                <th scope="row">RF-photonic sensor network</th>
+                <td>Reconfigurable multi-node (lab)</td>
+                <td>Entanglement-enhanced estimation of a weighted radio-frequency
+                  signal, with reconfigurable node weighting</td>
+                <td><SourceNote id="xia-prl-2020" /></td>
+              </tr>
+              <tr>
+                <th scope="row">Continuous-variable photonic</th>
+                <td>3 nodes (lab)</td>
+                <td>Distributed phase estimation below the standard quantum limit via
+                  multipartite CV entanglement</td>
+                <td><SourceNote id="guo-natphys-2020" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="papers" data-nav-section>
+        <h2>Key papers</h2>
+        <p>
+          The network-required sensing line, grouped from the metrology foundations
+          through the two flagship use cases to distributed estimation and its
+          experimental demonstrations.
+        </p>
+
+        {paperGroups.map((group) => (
+          <div class="paper-group">
+            <h3>{group.heading}</h3>
+            <ul class="paper-list">
+              {group.papers.map((p) => (
+                <li class="paper">
+                  <a class="paper__title" href={p.href} rel="noopener" target="_blank">
+                    {p.title}
+                  </a>
+                  <span class="paper__cite">{p.cite}</span>
+                  <p class="paper__review">{p.review}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </section>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-4);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .hero h1 { margin: 0; }
+  .hero p { margin: 0; }
+
+  section { display: grid; gap: var(--space-3); }
+
+  .paper-group { display: grid; gap: var(--space-2); margin-block-start: var(--space-3); }
+  .paper-group h3 {
+    margin: 0;
+    font-size: var(--text-base);
+    color: var(--color-text);
+  }
+
+  .paper-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: var(--space-3);
+  }
+  .paper {
+    display: grid;
+    gap: 2px;
+    padding: var(--space-3) var(--space-4);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+  }
+  .paper__title {
+    font-weight: 600;
+    color: var(--color-text);
+    line-height: var(--leading-snug);
+  }
+  .paper__title:hover { color: var(--color-accent); }
+  .paper__cite {
+    font-size: var(--text-sm);
+    color: var(--color-text-mute);
+    font-family: var(--font-mono);
+  }
+  .paper__review {
+    margin: var(--space-1) 0 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-mute);
+  }
+
+  .demo-table-wrap {
+    inline-size: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+  }
+  .demo-table {
+    min-inline-size: 44rem;
+    inline-size: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+  }
+  .demo-table thead th {
+    text-align: start;
+    padding: var(--space-2) var(--space-3);
+    border-block-end: 2px solid var(--color-rule);
+    color: var(--color-text);
+    font-weight: 600;
+  }
+  .demo-table tbody th,
+  .demo-table tbody td {
+    padding: var(--space-2) var(--space-3);
+    vertical-align: top;
+    border-block-end: 1px solid var(--color-rule);
+  }
+  .demo-table tbody th {
+    text-align: start;
+    font-weight: 600;
+    color: var(--color-text);
+    white-space: nowrap;
+  }
+  .demo-table tbody td { color: var(--color-text-mute); }
+  .demo-table tbody tr:last-child th,
+  .demo-table tbody tr:last-child td { border-block-end: 0; }
+</style>

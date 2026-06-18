@@ -1,0 +1,166 @@
+slug: quantlr
+# Slug retained for URL stability; the operating entity rebranded to
+# HEQA Security in February 2024 (same legal entity).
+name: HEQA Security (formerly QuantLR)
+categories: [qkd]
+hq: Modiin, Israel
+founded: 2018
+status: private
+parent: null
+logo:
+  domain: heqa-sec.com
+
+positioning: >
+  Fibre-based QKD vendor (rebranded to HEQA Security in February 2024)
+  positioned on cost: the LoQomo 1 packages a QKD transmitter, receiver, and
+  key-management system into a single 1U enclosure, targeting telecom
+  operators, data centres, critical infrastructure, and government. Founded
+  in 2018 by Yanir Farber and Hagai Eisenberg as a Hebrew University of
+  Jerusalem spin-out. Commercial deployments include the Israeli Ministry of
+  Defense (with HUB Security) and an NVIDIA ConnectX-6 integration for
+  Israeli data centres. Partnered with Singapore's SpeQtral to bridge
+  terrestrial fibre QKD with satellite QKD.
+
+modalities:
+  qkd:
+    protocol: [BB84, decoy-state]
+    rate_distance: ""
+    deployed_demos:
+      - name: Israeli Ministry of Defense — quantum-secure cloud
+        source_url: https://heqa-sec.com/blog/quantlr-partners-with-hub-to-secure-israeli-ministry-of-defense/
+        note: With HUB Security; user identification and document encryption over public cloud using QKD-generated keys.
+      - name: NVIDIA ConnectX-6 integration
+        source_url: https://militaryembedded.com/cyber/cybersecurity/israeli-data-centers-secured-from-cyber-attacks-with-quantlr-and-nvidia
+        note: QKD-generated keys delivered to NVIDIA ConnectX-6 NICs for Israeli data-centre protection; consortium funded by the Israel Innovation Authority and the Israel MoD DDR&D.
+      - name: SpeQtral space-to-terrestrial Secure Quantum Node
+        source_url: https://heqa-sec.com/blog/space-and-terrestrial-qkd-announcement/
+        note: Joint development of a key-transfer node bridging SpeQtral satellite QKD with QuantLR terrestrial fibre QKD; funded by the Singapore-Israel Industrial R&D (SIIRD) Foundation.
+
+milestones:
+  - date: 2024-02
+    tag: qkd
+    headline: Rebrand from QuantLR to HEQA Security
+    source_url: https://www.linkedin.com/posts/heqa-sec_introducing-heqa-security-activity-7163533931923947520-eAlw
+    source_type: press
+  - date: 2023-02
+    tag: qkd
+    headline: LoQomo 1 commercial launch — QKD transmitter, receiver, and KMS in a single 1U enclosure
+    source_url: https://thequantuminsider.com/2023/02/22/quantlr-launches-first-commercial-product-loqomo1/
+    source_type: press
+  - date: 2022-01
+    tag: qkd
+    headline: Israeli Ministry of Defense engagement via HUB Security for quantum-secure cloud
+    source_url: https://www.prnewswire.com/il/news-releases/hub-security-to-provide-the-israeli-ministry-of-defense-with-new-quantum-security-solution-301453583.html
+    source_type: press
+  - date: 2021-02
+    tag: qkd
+    headline: SpeQtral partnership — space-to-terrestrial QKD integration, SIIRD-funded
+    source_url: https://heqa-sec.com/blog/space-and-terrestrial-qkd-announcement/
+    source_type: press
+  - date: 2021-01
+    tag: qkd
+    headline: VentureIsrael / OurCrowd / Labs/02 investment round
+    source_url: https://www.prnewswire.com/news-releases/ventureisrael-invests-in-israeli-startup-quantlr-developer-of-the-worlds-most-cost-affordable-quantum-cryptography-solution-301210721.html
+    source_type: press
+  - date: 2019-11
+    tag: qkd
+    headline: Proof-of-concept QKD platform announced; "90% cost reduction" positioning
+    source_url: https://www.prnewswire.com/news-releases/quantlrs-successfully-deployed-proof-of-concept-platform-is-a-major-breakthrough-in-low-cost-ultimately-secure-quantum-key-distribution---quantum-safe-networking-is-now-a-reality-300966130.html
+    source_type: press
+
+shareholders:
+  - holder: OurCrowd
+    stake_percent: null
+    stake_class: minority
+    as_of: 2021-01
+    source_url: https://www.prnewswire.com/news-releases/ventureisrael-invests-in-israeli-startup-quantlr-developer-of-the-worlds-most-cost-affordable-quantum-cryptography-solution-301210721.html
+    note: Equity-crowdfunding platform; participated in 2021 round.
+  - holder: VentureIsrael
+    stake_percent: null
+    stake_class: minority
+    as_of: 2021-01
+    source_url: https://www.prnewswire.com/news-releases/ventureisrael-invests-in-israeli-startup-quantlr-developer-of-the-worlds-most-cost-affordable-quantum-cryptography-solution-301210721.html
+    note: Israeli deep-tech fund; lead announcement of 2021 round.
+  - holder: Labs/02
+    stake_percent: null
+    stake_class: minority
+    as_of: 2021-01
+    source_url: https://www.prnewswire.com/news-releases/ventureisrael-invests-in-israeli-startup-quantlr-developer-of-the-worlds-most-cost-affordable-quantum-cryptography-solution-301210721.html
+    note: Jerusalem early-stage fund / incubator.
+  - holder: Yanir Farber
+    stake_percent: null
+    stake_class: founder
+    as_of: 2018
+    source_url: https://thequantuminsider.com/2023/02/22/quantlr-launches-first-commercial-product-loqomo1/
+    note: Co-founder and CEO.
+  - holder: Hagai Eisenberg
+    stake_percent: null
+    stake_class: founder
+    as_of: 2018
+    source_url: https://www.linkedin.com/in/hagai-eisenberg/
+    note: Co-founder and Chief Scientist; Professor at Hebrew University of Jerusalem.
+
+key_personnel:
+  - role: CEO
+    name: Nir Bar-Lev
+    since: 2024
+    source_url: https://heqa-sec.com/about/
+    note: Joined as CEO around the Feb 2024 rebrand to HEQA Security; previously co-founded ClearML and held roles at Google.
+  - role: Co-founder & COO
+    name: Yanir Farber
+    since: 2018
+    source_url: https://thequantuminsider.com/2023/02/22/quantlr-launches-first-commercial-product-loqomo1/
+    note: Founding CEO (2018 — early 2024); moved to COO at the HEQA rebrand.
+  - role: Co-founder & Chief Scientist
+    name: Hagai Eisenberg
+    since: 2018
+    source_url: https://www.linkedin.com/in/hagai-eisenberg/
+    note: Professor of Physics at the Hebrew University of Jerusalem.
+
+roadmap:
+  - target: 2026
+    item: Sceptre product line — Hub & Spoke (point-to-multipoint), Duo (edge node), Link (QKD + PQC overlay + KMS in 1U), succeeding the LoQomo line under HEQA branding.
+    source_url: https://heqa-sec.com/
+    tag: qkd
+
+current_flagship:
+  name: LoQomo 1
+  generation: fibre QKD, 1U integrated TX/RX/KMS appliance
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2023/02/22/quantlr-launches-first-commercial-product-loqomo1/
+    note: LoQomo 1 launch coverage (February 2023).
+  - kind: press
+    citation_key: null
+    url: https://quantumcomputingreport.com/quantlr-introduces-its-loqomo-1-qkd-product-for-quantum-cybersecurity/
+    note: LoQomo 1 product profile.
+  - kind: blog
+    citation_key: null
+    url: https://heqa-sec.com/blog/space-and-terrestrial-qkd-announcement/
+    note: QuantLR x SpeQtral space-to-terrestrial QKD partnership (Feb 2021).
+  - kind: press
+    citation_key: null
+    url: https://www.insidequantumtechnology.com/news-archive/singapore-based-speqtral-partners-with-israels-quantlr-to-provide-a-solution-to-quantum-computer-attacks/
+    note: SpeQtral / QuantLR partnership coverage.
+  - kind: press
+    citation_key: null
+    url: https://militaryembedded.com/cyber/cybersecurity/israeli-data-centers-secured-from-cyber-attacks-with-quantlr-and-nvidia
+    note: QuantLR + NVIDIA ConnectX-6 integration for Israeli data centres.
+  - kind: blog
+    citation_key: null
+    url: https://heqa-sec.com/
+    note: HEQA Security product landing page (Sceptre line successors).
+
+partial:
+  - modalities.qkd.rate_distance
+  - field: modalities.qkd.protocol
+    as_of: 2026-05-21
+    note: BB84 + decoy-state inferred from category (commercial fibre DV-QKD appliance) and Eisenberg group's prior polarisation-encoded BB84 work at HUJI; not confirmed against a LoQomo 1 datasheet (vendor gates specs behind a contact form).
+  - field: shareholders
+    as_of: 2026-05-21
+    note: Stake percentages not disclosed for any holder; 2021 round size and post-money also undisclosed. No public Series A filing.
+
+last_verified: 2026-05-21
+verification_method: web

@@ -1,0 +1,722 @@
+---
+/**
+ * /purification — Entanglement purification
+ *
+ * Tier A · Foundations.
+ *
+ * Citations:
+ *   - bennett-pra-1996 — Bennett, DiVincenzo, Smolin, Wootters,
+ *     PRA 54, 3824 (1996). The BBPSSW purification protocol.
+ *   - kumar-ijndc-2025 — current network survey.
+ *   - kozlowski-rfc9340 — link-layer service framing.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SourceNote from "../components/SourceNote.astro";
+import Callout from "../components/Callout.astro";
+import Math from "../components/Math.astro";
+
+const sections = [
+  { id: "overview", label: "Overview" },
+  { id: "why",      label: "Why purify" },
+  { id: "protocol", label: "The BBPSSW protocol" },
+  { id: "tradeoff", label: "Throughput vs fidelity" },
+  { id: "role",     label: "Network role" },
+];
+---
+
+<Infographic
+  title="Entanglement purification"
+  description="Purification takes two low-fidelity Bell pairs and produces one higher-fidelity pair, at the cost of throughput. The BBPSSW protocol uses local CNOTs and measurement at each end, with classical comparison of the outcomes. This page covers why purification matters, the protocol, and the throughput/fidelity trade-off."
+  references={[
+    "bennett-pra-1996",
+    "horodecki-pra-1999",
+    "kozlowski-rfc9340",
+    "massar-prl-1995",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="purification" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>Entanglement purification</h1>
+        <p>
+          Bell pairs delivered through a noisy quantum channel are imperfect — their
+          fidelity to the ideal Bell state is below 1.
+          <strong>Heralded Entanglement Purification (HEP)</strong> — also called
+          <em>distillation</em> — is the family of protocols that take two (or more)
+          low-fidelity Bell pairs and produce one pair of higher fidelity, at the cost
+          of throughput. "Heralded" because the protocol announces success or failure
+          on each round, and the network only consumes pairs that have been
+          announced clean. The canonical protocol is BBPSSW, from Bennett, Brassard,
+          Popescu, Schumacher, Smolin and Wootters (1996)
+          <SourceNote id="bennett-pra-1996" />.
+        </p>
+        <p>
+          Purification is the network's response to fidelity loss. Each entanglement-
+          generation event has imperfections; each swap at a relay multiplies them. By
+          sacrificing some pairs to clean others up, the network can keep delivered
+          fidelity above whatever threshold downstream applications need (teleportation,
+          QKD key extraction, distributed quantum computing).
+        </p>
+      </header>
+
+      <section id="why" data-nav-section>
+        <h2>Why purify</h2>
+        <p>
+          A perfect Bell pair has fidelity <Math tex="F = 1" />. Real channels deliver
+          mixed states with <Math tex="F < 1" /> — typical numbers in current memory-based
+          repeater experiments are <Math tex="F \\sim 0.7\\,\\text{–}\\,0.9" /> on a single
+          link. Two problems compound:
+        </p>
+        <ul>
+          <li>
+            <strong>Multi-hop multiplication.</strong> Chained entanglement swapping
+            multiplies per-link fidelities (see the swapping subject). Two hops at
+            <Math tex="F = 0.85" /> each give an end-to-end pair at roughly
+            <Math tex="F \\sim 0.72" /> after the swap; ten hops at
+            <Math tex="F = 0.95" /> each fall to <Math tex="\\sim 0.6" />. Without
+            countermeasures, fidelity decays exponentially in the number of hops.
+          </li>
+          <li>
+            <strong>Application thresholds.</strong> Many downstream protocols simply do
+            not work below a fidelity threshold. For teleportation of an arbitrary qubit
+            through a Bell pair, the average output fidelity is
+            <Math tex="(2F+1)/3" />, where <Math tex="F" /> is the pair's singlet
+            fraction (its overlap with the closest Bell state)
+            <SourceNote id="horodecki-pra-1999" />. Below
+            <Math tex="F = \\tfrac{1}{2}" /> the output drops to ⅔ — what a classical
+            measure-and-prepare strategy alone can already
+            achieve <SourceNote id="massar-prl-1995" /> — and the entanglement provides
+            no quantum advantage. Practical applications need the Bell pair well above
+            this threshold.
+          </li>
+        </ul>
+        <p>
+          Purification flips the trade. Spend more pairs to get fewer pairs, but each
+          one is cleaner. Since long-distance distribution is throughput-limited anyway
+          (Bell-pair generation rates are slow), trading a factor of throughput for a
+          factor of fidelity is often the right deal.
+        </p>
+      </section>
+
+      <section id="protocol" data-nav-section>
+        <h2>The BBPSSW protocol</h2>
+        <p>
+          The simplest purification primitive consumes two Bell pairs and probabilistically
+          produces one cleaner pair. Alice and Bob each hold one half of each pair —
+          <Math tex="(a_1, b_1)" /> are the <em>source</em> pair (the one we hope to keep)
+          and <Math tex="(a_2, b_2)" /> are the <em>target</em> pair (consumed in the
+          measurement). The protocol is local at each side, with one round of classical
+          communication to reconcile outcomes.
+        </p>
+
+        <ol class="dt-steps">
+          <li>
+            <strong>Local CNOTs.</strong> Alice applies a CNOT with
+            <Math tex="a_1" /> as control and <Math tex="a_2" /> as target. Bob applies
+            the same operation locally: <Math tex="b_1" /> control,
+            <Math tex="b_2" /> target.
+          </li>
+          <li>
+            <strong>Measure the target pair.</strong> Alice measures
+            <Math tex="a_2" /> in the computational basis (the standard
+            <Math tex="|0\\rangle" /> / <Math tex="|1\\rangle" /> basis); Bob measures
+            <Math tex="b_2" />. Each gets a 1-bit outcome.
+          </li>
+          <li>
+            <strong>Compare classically.</strong> Alice and Bob exchange their target-pair
+            outcomes over a classical channel.
+          </li>
+          <li>
+            <strong>Decide.</strong> If the outcomes match (both 0 or both 1), the source
+            pair <Math tex="(a_1, b_1)" /> is <em>kept</em> — its fidelity has been
+            increased. If they disagree, the source pair is discarded; the round is a
+            failure and produces nothing.
+          </li>
+        </ol>
+
+        <figure class="dt" id="dt-fig" data-dt>
+          <svg viewBox="0 0 720 320" role="img"
+               aria-label="Purification animation: two noisy Bell pairs are combined via local CNOTs and a target-pair Bell-basis measurement; matching outcomes keep the source pair at higher fidelity, mismatching outcomes discard it."
+               data-dt-svg>
+            <defs>
+              {/* BSM meter glyph — matches images/icon-bsm-meter.svg so it
+                  reads the same as the matter-side BSM in the ops figure. */}
+              <symbol id="dt-meter" viewBox="0 0 36 28" overflow="visible">
+                <rect x="2" y="2" width="32" height="24" rx="2"
+                      fill="var(--color-bg)" stroke="var(--color-text)" stroke-width="1.6"/>
+                <path d="M 6 22 A 12 12 0 0 1 30 22 Z"
+                      fill="none" stroke="var(--color-text)" stroke-width="1.4"/>
+                <line x1="10" y1="13" x2="8"  y2="11" stroke="var(--color-text)" stroke-width="1.1"/>
+                <line x1="18" y1="10" x2="18" y2="8"  stroke="var(--color-text)" stroke-width="1.1"/>
+                <line x1="26" y1="13" x2="28" y2="11" stroke="var(--color-text)" stroke-width="1.1"/>
+                <line x1="18" y1="22" x2="27" y2="12"
+                      stroke="#d97706" stroke-width="2.0" stroke-linecap="round"/>
+                <circle cx="18" cy="22" r="1.6" fill="var(--color-text)"/>
+              </symbol>
+            </defs>
+
+            {/* ─── Endpoint labels ─────────────────────────────── */}
+            <text x="104" y="28" text-anchor="middle" class="dt-label">Alice</text>
+            <text x="616" y="28" text-anchor="middle" class="dt-label">Bob</text>
+
+            {/* ─── Two endpoint nodes (HEP style) ──────────────── */}
+            <rect x="36"  y="48" width="136" height="200" rx="6"
+                  fill="#ffffff" stroke="#8a929e" stroke-width="1"/>
+            <rect x="548" y="48" width="136" height="200" rx="6"
+                  fill="#ffffff" stroke="#8a929e" stroke-width="1"/>
+
+            {/* ─── Source pair (a1 ↔ b1) at y=110 ──────────────── */}
+            <text data-dt-source-flabel x="360" y="88"
+                  text-anchor="middle" class="dt-flabel">source pair · F = 0.70</text>
+            <path data-dt-source-line d="" class="dt-bond"/>
+
+            {/* a1 — memory qubit (left) */}
+            <g class="dt-qubit">
+              <circle cx="104" cy="110" r="13" class="dt-mem"/>
+              <text x="104" y="114" class="dt-qletter">M</text>
+            </g>
+            {/* b1 — memory qubit (right) */}
+            <g class="dt-qubit">
+              <circle cx="616" cy="110" r="13" class="dt-mem"/>
+              <text x="616" y="114" class="dt-qletter">M</text>
+            </g>
+
+            {/* ─── Target pair (a2 ↔ b2) at y=190 ──────────────── */}
+            <path data-dt-target-line d="" class="dt-bond"/>
+            <text data-dt-target-flabel x="360" y="218"
+                  text-anchor="middle" class="dt-flabel dt-flabel--target">target pair · F = 0.70</text>
+
+            <g data-dt-slot="a2" class="dt-qubit">
+              <circle cx="104" cy="190" r="13" class="dt-mem"/>
+              <text x="104" y="194" class="dt-qletter">M</text>
+            </g>
+            <g data-dt-slot="b2" class="dt-qubit">
+              <circle cx="616" cy="190" r="13" class="dt-mem"/>
+              <text x="616" y="194" class="dt-qletter">M</text>
+            </g>
+
+            {/* ─── CNOTs: control on a1/b1, target on a2/b2 ────── */}
+            <g data-dt-cnot-a opacity="0">
+              <line x1="104" y1="123" x2="104" y2="177"
+                    stroke="var(--color-accent)" stroke-width="2"/>
+              <circle cx="104" cy="123" r="3" fill="var(--color-accent)"/>
+              <circle cx="104" cy="177" r="8" fill="none"
+                      stroke="var(--color-accent)" stroke-width="2"/>
+              <line x1="104" y1="169" x2="104" y2="185"
+                    stroke="var(--color-accent)" stroke-width="2"/>
+              <line x1="96"  y1="177" x2="112" y2="177"
+                    stroke="var(--color-accent)" stroke-width="2"/>
+            </g>
+            <g data-dt-cnot-b opacity="0">
+              <line x1="616" y1="123" x2="616" y2="177"
+                    stroke="var(--color-accent)" stroke-width="2"/>
+              <circle cx="616" cy="123" r="3" fill="var(--color-accent)"/>
+              <circle cx="616" cy="177" r="8" fill="none"
+                      stroke="var(--color-accent)" stroke-width="2"/>
+              <line x1="616" y1="169" x2="616" y2="185"
+                    stroke="var(--color-accent)" stroke-width="2"/>
+              <line x1="608" y1="177" x2="624" y2="177"
+                    stroke="var(--color-accent)" stroke-width="2"/>
+            </g>
+            <text data-dt-cnot-a-label x="130" y="155" class="dt-action-label" opacity="0">CNOT</text>
+            <text data-dt-cnot-b-label x="590" y="155" class="dt-action-label" text-anchor="end" opacity="0">CNOT</text>
+
+            {/* ─── Matter-side BSM meters on the target qubits ─── */}
+            <g data-dt-meter-a opacity="0">
+              <use data-dt-meter-a-glyph href="#dt-meter" x="66" y="208" width="44" height="34"/>
+              <text data-dt-bit-a x="138" y="232" class="dt-bit">0</text>
+            </g>
+            <g data-dt-meter-b opacity="0">
+              <use data-dt-meter-b-glyph href="#dt-meter" x="610" y="208" width="44" height="34"/>
+              <text data-dt-bit-b x="582" y="232" text-anchor="end" class="dt-bit">0</text>
+            </g>
+
+            {/* ─── Solid grey classical channel (Aliro convention) ─ */}
+            <line x1="36" y1="270" x2="684" y2="270"
+                  stroke="#9aa3af" stroke-width="1"/>
+            <text x="360" y="290" text-anchor="middle" class="dt-channel">
+              classical channel · compare outcomes
+            </text>
+            {/* Comparison verdict label, appears in phase 4 */}
+            <text data-dt-verdict x="360" y="262" text-anchor="middle"
+                  class="dt-verdict" opacity="0">match</text>
+          </svg>
+
+          <ol class="dt-step-list" data-dt-steps>
+            <li data-dt-step="1"><strong>1.</strong> Two noisy Bell pairs at <Math tex="F = 0.70" /></li>
+            <li data-dt-step="2"><strong>2.</strong> Alice and Bob each apply a local CNOT (source → target)</li>
+            <li data-dt-step="3"><strong>3.</strong> Measure the target pair locally</li>
+            <li data-dt-step="4"><strong>4.</strong> Compare outcomes over the classical channel</li>
+            <li data-dt-step="5"><strong>5a.</strong> Match → keep source pair, heralded at <Math tex="F' \\approx 0.74" /></li>
+            <li data-dt-step="5b"><strong>5b.</strong> Mismatch → discard, try again</li>
+          </ol>
+
+          <figcaption>
+            Each cycle alternates between a success (outcomes match — source
+            pair is heralded as kept, its wavy bond thickens and its fidelity
+            ticks from <Math tex="F = 0.70" /> to <Math tex="F' \\approx 0.74" />
+            per BBPSSW) and a failure (outcomes disagree — source pair fades and
+            the round produces nothing). The target pair is consumed either way.
+            Real protocols can reach much higher fidelity by recursing — feeding
+            purified pairs back in as input to another round.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="tradeoff" data-nav-section>
+        <h2>Throughput vs fidelity</h2>
+        <p>
+          BBPSSW spends two pairs to (probabilistically) produce one cleaner pair. With
+          <Math tex="\\varepsilon \\equiv (1 - F) / 3" />, the success probability is
+          <Math tex="P_\\text{succ} = F^2 + 2 F \\varepsilon + 5 \\varepsilon^2" />, and
+          on success the output fidelity is
+          <Math tex="F' = (F^2 + \\varepsilon^2) / (F^2 + 2 F \\varepsilon + 5 \\varepsilon^2)" />.
+          Plugging the figure's starting point: <Math tex="F = 0.70" /> gives
+          <Math tex="F' \\approx 0.74" /> with <Math tex="P_\\text{succ} \\approx 0.68" />.
+          Two takeaways:
+        </p>
+        <ul>
+          <li>
+            <strong>Each round at least halves the throughput.</strong> Two pairs in,
+            zero or one out. Successive rounds compound this: purifying once costs ½
+            throughput, twice costs ¼, etc.
+          </li>
+          <li>
+            <strong>Each round increases fidelity provided the input was already above
+            <Math tex="F = 1/2" /></strong>. Below that threshold, BBPSSW's output is
+            <em>worse</em> than the input — there's no useful entanglement to amplify,
+            so purification can't bootstrap from purely classical noise. This is why
+            generation must already deliver above-threshold pairs before purification
+            can help.
+          </li>
+        </ul>
+        <Callout label="Variants and recursion">
+          <p>
+            Real purification protocols recurse. Two purified pairs from one round can
+            be fed in as inputs to a second round, producing a doubly-purified pair at
+            yet higher fidelity. The cost is throughput compounding (¼ for two rounds,
+            ⅛ for three, …). The protocol family extends to multi-pair generalisations
+            (Deutsch et al. 1996) and protocols tuned for specific noise channels.
+            Across all variants, the BBPSSW pattern — <em>local operations, measure a
+            sacrificial target pair, classical reconcile</em> — is the structural core.
+          </p>
+        </Callout>
+      </section>
+
+      <section id="role" data-nav-section>
+        <h2>Network role</h2>
+        <p>
+          Purification lives at the link or end-to-end layer. A network's
+          entanglement-generation rate sets the supply of low-fidelity Bell pairs;
+          purification is the post-processing that turns that supply into a smaller
+          supply of high-fidelity pairs the application layer can actually use. RFC 9340
+          treats purification as part of the layered service contract — the link layer
+          delivers Bell pairs, optionally with purification rounds applied, at a
+          specified fidelity <SourceNote id="kozlowski-rfc9340" />.
+        </p>
+        <p>
+          Two related subjects pick up the threads:
+        </p>
+        <ul>
+          <li>
+            <strong>Repeaters</strong> integrate generation, swapping, and purification
+            into the 1G / 2G / 3G architectural families. The role of purification
+            differs across generations — central in 1G and 2G, replaced by quantum error
+            correction in 3G. <em>Covered in the</em> <strong>repeaters</strong>
+            <em>subject.</em>
+          </li>
+          <li>
+            <strong>Metrics</strong> grounds the fidelity numbers we've been throwing
+            around — what counts as "low" or "high" fidelity, what application thresholds
+            actually require, and how fidelity composes with loss along a real channel.
+            <em>Covered in the</em> <strong>metrics</strong> <em>subject.</em>
+          </li>
+        </ul>
+      </section>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<script type="module" is:inline>
+  // Purification animation. Six-phase loop, alternating success
+  // and failure cycles so the reader sees both outcomes:
+  //   1. Setup — two noisy Bell pairs visible at F ≈ 0.70.
+  //   2. Local CNOTs at Alice and Bob (source → target).
+  //   3. Measurement of the target pair on each side.
+  //   4. Classical comparison — match / mismatch label.
+  //   5. Decision:
+  //        success → source pair stays, F label rises, line thickens
+  //        failure → source pair fades out (discarded)
+  //   6. Hold, then reset.
+  // Successive cycles alternate success / failure deterministically.
+  const fig = document.querySelector("[data-dt]");
+  if (fig) {
+    const svg         = fig.querySelector("[data-dt-svg]");
+    const sourceLine  = svg.querySelector("[data-dt-source-line]");
+    const sourceFLab  = svg.querySelector("[data-dt-source-flabel]");
+    const targetLine  = svg.querySelector("[data-dt-target-line]");
+    const targetFLab  = svg.querySelector("[data-dt-target-flabel]");
+    const cnotA       = svg.querySelector("[data-dt-cnot-a]");
+    const cnotB       = svg.querySelector("[data-dt-cnot-b]");
+    const cnotALabel  = svg.querySelector("[data-dt-cnot-a-label]");
+    const cnotBLabel  = svg.querySelector("[data-dt-cnot-b-label]");
+    const meterA      = svg.querySelector("[data-dt-meter-a]");
+    const meterB      = svg.querySelector("[data-dt-meter-b]");
+    const meterAUse   = svg.querySelector("[data-dt-meter-a-glyph]");
+    const meterBUse   = svg.querySelector("[data-dt-meter-b-glyph]");
+    const bitA        = svg.querySelector("[data-dt-bit-a]");
+    const bitB        = svg.querySelector("[data-dt-bit-b]");
+    const slotA2      = svg.querySelector('[data-dt-slot="a2"]');
+    const slotB2      = svg.querySelector('[data-dt-slot="b2"]');
+    const verdict     = svg.querySelector("[data-dt-verdict]");
+    const stepEls     = Array.from(fig.querySelectorAll("[data-dt-step]"));
+
+    // Wavy entanglement-bond path generator — sinusoidal flat-ended path
+    // matching the convention in scripts/diagrams/entanglement_ops.py.
+    function buildWavy(x0, x1, y, amp, halfWl) {
+      const span = x1 - x0;
+      const nHalf = Math.max(Math.floor(span / halfWl), 2);
+      const usedSpan = nHalf * halfWl;
+      const pad = (span - usedSpan) / 2;
+      const sx = x0 + pad;
+      const parts = [`M ${x0} ${y} L ${sx} ${y}`];
+      parts.push(`q ${halfWl / 2} ${-amp} ${halfWl} 0`);
+      for (let i = 0; i < nHalf - 1; i++) parts.push(`t ${halfWl} 0`);
+      parts.push(`L ${x1} ${y}`);
+      return parts.join(" ");
+    }
+    // Source bond endpoints sit just outside the M qubits.
+    const SRC_X0 = 117, SRC_X1 = 603, SRC_Y = 110;
+    const TGT_Y = 190;
+    sourceLine.setAttribute("d", buildWavy(SRC_X0, SRC_X1, SRC_Y, 4, 14));
+    targetLine.setAttribute("d", buildWavy(SRC_X0, SRC_X1, TGT_Y, 4, 14));
+
+    // Detector-style pulse on meter arrival: stroke-width interpolated
+    // from a thicker peak back to baseline over PULSE_DUR.
+    const PULSE_DUR = 280;
+    const flash = { MA: 0, MB: 0 };
+    function pulse(side, now) { flash[side] = now + PULSE_DUR; }
+    function updateBorders(now) {
+      for (const [side, useEl] of [["MA", meterAUse], ["MB", meterBUse]]) {
+        if (!useEl) continue;
+        const remaining = flash[side] - now;
+        // The pulse rides on the parent <g>'s scale so it nudges the whole
+        // meter slightly larger on click, then settles back.
+        const scale = remaining > 0 ? 1 + 0.08 * (remaining / PULSE_DUR) : 1;
+        useEl.parentNode.setAttribute(
+          "transform",
+          scale === 1 ? "" : `translate(${side === "MA" ? 88 : 632} 225) scale(${scale}) translate(${side === "MA" ? -88 : -632} -225)`
+        );
+      }
+    }
+
+    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function setOpacity(el, op) { el.setAttribute("opacity", String(op)); }
+    function highlightStep(n) {
+      for (const el of stepEls) {
+        const isActive = el.dataset.dtStep === String(n);
+        el.classList.toggle("dt-step--active", isActive);
+      }
+    }
+
+    if (reducedMotion) {
+      setOpacity(sourceLine, 1);
+      sourceLine.setAttribute("stroke-width", "3.0");
+      sourceFLab.textContent = "source pair · F = 0.74 ✓";
+      setOpacity(targetLine, 0);
+      setOpacity(targetFLab, 0);
+      setOpacity(cnotA, 1);
+      setOpacity(cnotB, 1);
+      setOpacity(meterA, 1);
+      setOpacity(meterB, 1);
+      bitA.textContent = "0";
+      bitB.textContent = "0";
+      verdict.textContent = "match — keep source";
+      setOpacity(verdict, 1);
+      highlightStep(5);
+    } else {
+      const T_SETUP   = 1500;
+      const T_CNOT    = 1650;
+      const T_MEAS    = 1500;
+      const T_COMP    = 1500;
+      const T_DECIDE  = 1650;
+      const T_HOLD    = 1350;
+      const T_PAUSE   = 375;
+      const T_TOTAL   = T_SETUP + T_CNOT + T_MEAS + T_COMP + T_DECIDE + T_HOLD + T_PAUSE;
+
+      let running = false;
+      let cycleStart = 0;
+      let success = true;
+      let outcome = 0; // 0 = both 0, 1 = both 1 (when success); for fail: a≠b
+      let firedMeasure = false;
+
+      function ease(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      }
+
+      function pickCycle() {
+        // Deterministically alternate success / failure so the
+        // reader sees both branches; pick a random outcome
+        // pattern within each branch.
+        success = !success;
+        if (success) {
+          // both 0 or both 1, randomly
+          outcome = Math.random() < 0.5 ? 0 : 1;
+          bitA.textContent = String(outcome);
+          bitB.textContent = String(outcome);
+          verdict.textContent = "match — keep source";
+        } else {
+          // 01 or 10
+          const flip = Math.random() < 0.5;
+          bitA.textContent = flip ? "0" : "1";
+          bitB.textContent = flip ? "1" : "0";
+          verdict.textContent = "mismatch — discard";
+        }
+      }
+
+      function frame(now) {
+        if (!running) return;
+        const elapsed = now - cycleStart;
+
+        if (elapsed < T_SETUP) {
+          highlightStep(1);
+          // Reset state
+          setOpacity(sourceLine, 1);
+          sourceLine.setAttribute("stroke-width", "1.7");
+          sourceFLab.textContent = "source pair · F = 0.70";
+          setOpacity(sourceFLab, 1);
+          setOpacity(targetLine, 1);
+          setOpacity(targetFLab, 1);
+          setOpacity(slotA2, 1);
+          setOpacity(slotB2, 1);
+          setOpacity(cnotA, 0);
+          setOpacity(cnotB, 0);
+          setOpacity(cnotALabel, 0);
+          setOpacity(cnotBLabel, 0);
+          setOpacity(meterA, 0);
+          setOpacity(meterB, 0);
+          setOpacity(verdict, 0);
+        } else if (elapsed < T_SETUP + T_CNOT) {
+          highlightStep(2);
+          const t = (elapsed - T_SETUP) / T_CNOT;
+          const e = ease(t);
+          setOpacity(cnotA, e);
+          setOpacity(cnotB, e);
+          setOpacity(cnotALabel, e);
+          setOpacity(cnotBLabel, e);
+        } else if (elapsed < T_SETUP + T_CNOT + T_MEAS) {
+          highlightStep(3);
+          if (!firedMeasure) {
+            pulse("MA", now);
+            pulse("MB", now);
+            firedMeasure = true;
+          }
+          const t = (elapsed - T_SETUP - T_CNOT) / T_MEAS;
+          const e = ease(t);
+          setOpacity(cnotA, 1 - e * 0.5);
+          setOpacity(cnotB, 1 - e * 0.5);
+          setOpacity(meterA, e);
+          setOpacity(meterB, e);
+          // Target pair is being consumed: target qubits fade
+          setOpacity(slotA2, 1 - e * 0.5);
+          setOpacity(slotB2, 1 - e * 0.5);
+          setOpacity(targetLine, 1 - e * 0.6);
+          setOpacity(targetFLab, 1 - e * 0.6);
+        } else if (elapsed < T_SETUP + T_CNOT + T_MEAS + T_COMP) {
+          highlightStep(4);
+          const t = (elapsed - T_SETUP - T_CNOT - T_MEAS) / T_COMP;
+          const e = ease(t);
+          setOpacity(verdict, e);
+          // Target fully consumed
+          setOpacity(targetLine, 0.4 * (1 - e));
+          setOpacity(targetFLab, 0.4 * (1 - e));
+          setOpacity(slotA2, 0.5 * (1 - e));
+          setOpacity(slotB2, 0.5 * (1 - e));
+        } else if (elapsed < T_SETUP + T_CNOT + T_MEAS + T_COMP + T_DECIDE) {
+          highlightStep(success ? 5 : 6);
+          const t = (elapsed - T_SETUP - T_CNOT - T_MEAS - T_COMP) / T_DECIDE;
+          const e = ease(t);
+          setOpacity(targetLine, 0);
+          setOpacity(targetFLab, 0);
+          setOpacity(slotA2, 0);
+          setOpacity(slotB2, 0);
+          if (success) {
+            // Source pair improves: BBPSSW with F=0.70 yields F'≈0.7353,
+            // which we display as 0.74 (matches the static ops figure).
+            const w = 1.7 + e * 1.3;  // 1.7 → 3.0 (matches .bond--thick)
+            sourceLine.setAttribute("stroke-width", String(w));
+            const F = 0.70 + e * 0.04; // 0.70 → 0.74 per BBPSSW
+            sourceFLab.textContent = `source pair · F = ${F.toFixed(2)} ✓ heralded`;
+            setOpacity(sourceLine, 1);
+          } else {
+            // Source pair discarded
+            setOpacity(sourceLine, 1 - e);
+            sourceLine.setAttribute("stroke-width", "1.7");
+            sourceFLab.textContent = `source pair · discarded ✗`;
+            setOpacity(sourceFLab, 1 - e * 0.4);
+          }
+        } else if (elapsed < T_TOTAL - T_PAUSE) {
+          highlightStep(success ? 5 : 6);
+          // Hold final state
+        } else if (elapsed >= T_TOTAL) {
+          cycleStart = now;
+          pickCycle();
+          firedMeasure = false;
+          // Re-set sourceFLab opacity (might have been faded on failure)
+          setOpacity(sourceFLab, 1);
+        }
+
+        updateBorders(now);
+        requestAnimationFrame(frame);
+      }
+
+      pickCycle();
+      const observer = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && !running) {
+            running = true;
+            cycleStart = performance.now();
+            pickCycle();
+            requestAnimationFrame(frame);
+          } else if (!entry.isIntersecting) {
+            running = false;
+          }
+        }
+      });
+      observer.observe(fig);
+    }
+  }
+</script>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-4);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .hero h1 { margin: 0; }
+  .hero p { margin: 0; }
+
+  section { display: grid; gap: var(--space-3); }
+
+  ol.dt-steps {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+  ol.dt-steps li { line-height: var(--leading-snug); }
+  ul {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+  li { line-height: var(--leading-snug); }
+
+  .dt {
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .dt svg {
+    inline-size: 100%;
+    block-size: auto;
+    display: block;
+  }
+  .dt figcaption {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-mute);
+  }
+
+  ol.dt-step-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 4px;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+  }
+  ol.dt-step-list li {
+    padding: var(--space-1) var(--space-2);
+    border-inline-start: 3px solid transparent;
+    color: var(--color-text-mute);
+    transition: color 200ms ease, border-color 200ms ease, background 200ms ease;
+  }
+  ol.dt-step-list li.dt-step--active {
+    color: var(--color-text);
+    border-inline-start-color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+  }
+
+  :global(.dt-label) {
+    font-size: 13px;
+    font-weight: 700;
+    fill: var(--color-text);
+  }
+  :global(.dt-flabel) {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    fill: var(--color-text);
+    font-weight: 600;
+  }
+  :global(.dt-channel) {
+    font-size: 10px;
+    fill: var(--color-text-mute);
+    font-style: italic;
+  }
+  :global(.dt-action-label) {
+    font-size: 11px;
+    font-weight: 700;
+    fill: var(--color-accent);
+    letter-spacing: 0.05em;
+  }
+  :global(.dt-bit) {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 700;
+    fill: var(--color-text);
+  }
+  :global(.dt-verdict) {
+    font-size: 12px;
+    font-weight: 700;
+    fill: var(--color-accent);
+  }
+  /* Memory-qubit circle (HEP style: purple fill, dark purple stroke, white M) */
+  :global(.dt-mem) {
+    fill: #9b87c4;
+    stroke: #6048a3;
+    stroke-width: 1;
+  }
+  :global(.dt-qletter) {
+    font-family: sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    fill: #ffffff;
+    text-anchor: middle;
+  }
+  /* Wavy entanglement bond — photon-blue, matches scripts/diagrams/...ops.py */
+  :global(.dt-bond) {
+    stroke: #1a4a99;
+    stroke-width: 1.7;
+    fill: none;
+    transition: stroke-width 200ms ease;
+  }
+  :global(.dt-flabel--target) {
+    fill: var(--color-text-mute);
+  }
+</style>

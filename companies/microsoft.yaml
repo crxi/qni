@@ -1,0 +1,187 @@
+slug: microsoft
+name: Microsoft (Quantum)
+categories: [qc]
+hq: Redmond, Washington, USA
+founded: 1975
+status: public
+parent: null
+logo:
+  domain: microsoft.com
+
+positioning: >
+  Topological-qubit quantum-computing programme inside Microsoft Research, built
+  on indium-arsenide / aluminium "topoconductor" heterostructures hosting Majorana
+  zero modes. The dossier scopes the Microsoft Quantum division (led by Krysta
+  Svore) and its Station Q condensed-matter lab in Santa Barbara; it excludes
+  Microsoft's broader cloud, AI, and productivity businesses. The same division
+  operates Azure Quantum, a hybrid cloud platform that brokers access to
+  third-party hardware (IonQ trapped ions, Quantinuum H-series, Pasqal neutral
+  atoms, Rigetti superconducting, plus others) alongside Microsoft's own
+  topological roadmap.
+
+business_units:
+  - name: Microsoft Quantum
+    scope: Topological-qubit hardware (Majorana 1 and successors), Q# / Azure Quantum software stack, DARPA US2QC fault-tolerant prototype design
+    hq: Redmond, Washington, USA
+    lead: Krysta Svore (Technical Fellow and Corporate Vice President, Advanced Quantum Development)
+  - name: Microsoft Station Q
+    scope: Condensed-matter theory and experiment for topological quantum computing; the long-running Majorana research programme
+    hq: Santa Barbara, California, USA (UC Santa Barbara campus)
+    lead: Chetan Nayak (Technical Fellow; Station Q scientific lead)
+
+modalities:
+  qc:
+    qubit_type: majorana
+    physical_qubits_current: 8
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: null
+    gate_set: []
+
+milestones:
+  - date: 2025-02
+    tag: qc
+    headline: Majorana 1 unveiled — 8-qubit topological processor on an InAs/Al "topoconductor" heterostructure; companion Nature paper reports interferometric single-shot parity measurement
+    source_url: https://azure.microsoft.com/en-us/blog/quantum/2025/02/19/microsoft-unveils-majorana-1-the-worlds-first-quantum-processor-powered-by-topological-qubits/
+    source_type: press
+  - date: 2025-02
+    tag: qc
+    headline: "Aghaee et al. (Microsoft Quantum), 'Interferometric single-shot parity measurement in InAs-Al hybrid devices', Nature 638, 651-655"
+    source_url: https://www.nature.com/articles/s41586-024-08445-2
+    source_type: paper
+  - date: 2025-02
+    tag: qc
+    headline: DARPA selects Microsoft and PsiQuantum for the final Validation & Co-Design stage of the US2QC programme — fault-tolerant prototype design
+    source_url: https://thequantuminsider.com/2025/02/07/darpa-selects-microsoft-psiquantum-for-final-phase-of-its-useful-quantum-computer-program/
+    source_type: press
+  - date: 2024-02
+    tag: qc
+    headline: DARPA US2QC programme advances Microsoft to next phase — design of a fault-tolerant prototype based on topological qubits
+    source_url: https://azure.microsoft.com/en-us/blog/quantum/2024/02/08/darpa-selects-microsoft-to-continue-the-development-of-a-utility-scale-quantum-computer/
+    source_type: press
+  - date: 2023-06
+    tag: qc
+    headline: "Microsoft Quantum, 'InAs-Al hybrid devices passing the topological gap protocol', Phys. Rev. B 107, 245423 — the protocol later contested in published Comments"
+    source_url: https://journals.aps.org/prb/abstract/10.1103/PhysRevB.107.245423
+    source_type: paper
+  - date: 2021-03
+    tag: qc
+    headline: Retraction of Kouwenhoven et al. (Nature 2018) "Quantized Majorana conductance" — earlier Microsoft-affiliated Majorana claim withdrawn after re-analysis
+    source_url: https://www.nature.com/articles/s41586-021-03373-x
+    source_type: paper
+  - date: 2005
+    tag: qc
+    headline: Microsoft establishes Station Q at UC Santa Barbara — long-term research bet on topological quantum computing
+    source_url: https://azure.microsoft.com/en-us/solutions/quantum-computing/
+    source_type: blog
+
+key_personnel:
+  - role: Chairman & CEO, Microsoft
+    name: Satya Nadella
+    since: 2014-02
+    source_url: https://news.microsoft.com/source/exec/satya-nadella/
+    note: Parent-company CEO; quantum reports up through Microsoft Research / EVP AI & Research
+  - role: Technical Fellow & Corporate Vice President, Advanced Quantum Development
+    name: Krysta Svore
+    since: 2023
+    source_url: https://www.microsoft.com/en-us/research/people/
+    note: Microsoft Quantum division lead; long-time leader of QuArC (Quantum Architectures and Computation) since the mid-2010s
+  - role: Technical Fellow & Corporate Vice President of Quantum
+    name: Matthias Troyer
+    since: 2017
+    source_url: https://www.microsoft.com/en-us/research/people/mtroyer/
+    note: Quantum applications and resource-estimation lead; ex-ETH Zurich computational physicist
+  - role: Technical Fellow; Scientific Lead, Station Q
+    name: Chetan Nayak
+    since: 2005
+    source_url: https://www.microsoft.com/en-us/research/people/cnayak/
+    note: Long-running condensed-matter theorist at Station Q; principal spokesperson for the Majorana 1 result
+  - role: Distinguished Scientist; Founding Director, Station Q
+    name: Michael Freedman
+    since: 2005
+    source_url: https://www.microsoft.com/en-us/research/people/michaelf/
+    note: Fields medallist; founded Station Q in 2005
+
+roadmap:
+  - target: 2027-2028
+    item: DARPA US2QC fault-tolerant prototype — small-scale system processing logical qubits backed by thousands of topological physical qubits
+    source_url: https://www.darpa.mil/research/programs/underexplored-systems-for-utility-scale-quantum-computing
+    tag: qc
+  - target: long-term
+    item: Utility-scale topological quantum computer at ~1 M qubits on a single palm-sized chip
+    source_url: https://azure.microsoft.com/en-us/blog/quantum/2025/02/19/microsoft-unveils-majorana-1-the-worlds-first-quantum-processor-powered-by-topological-qubits/
+    tag: qc
+
+current_flagship:
+  name: Majorana 1
+  generation: 8-qubit topological processor on InAs/Al "topoconductor" heterostructure (research prototype)
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41586-024-08445-2
+    note: "Aghaee et al. (Microsoft Quantum), 'Interferometric single-shot parity measurement in InAs-Al hybrid devices', Nature 638, 651-655 (2025); DOI 10.1038/s41586-024-08445-2"
+  - kind: preprint
+    citation_key: null
+    url: https://arxiv.org/abs/2503.08944
+    note: Legg, "Comment on 'Interferometric single-shot parity measurement in InAs-Al hybrid devices', Microsoft Quantum, Nature 638, 651-655 (2025)" — published critique of the parity-measurement interpretation
+  - kind: preprint
+    citation_key: null
+    url: https://arxiv.org/abs/2502.19560
+    note: Legg, "Comment on 'InAs-Al hybrid devices passing the topological gap protocol', Microsoft Quantum, Phys. Rev. B 107, 245423 (2023)" — critique of the topological-gap-protocol methodology
+  - kind: paper
+    citation_key: null
+    url: https://journals.aps.org/prb/abstract/10.1103/PhysRevB.107.245423
+    note: Microsoft Quantum, "InAs-Al hybrid devices passing the topological gap protocol", Phys. Rev. B 107, 245423 (2023)
+  - kind: press
+    citation_key: null
+    url: https://azure.microsoft.com/en-us/blog/quantum/2025/02/19/microsoft-unveils-majorana-1-the-worlds-first-quantum-processor-powered-by-topological-qubits/
+    note: Majorana 1 launch announcement on the Azure Quantum blog
+  - kind: blog
+    citation_key: null
+    url: https://learn.microsoft.com/en-us/azure/quantum/qc-target-list
+    note: Current list of third-party quantum hardware available through Azure Quantum (IonQ, Quantinuum, Pasqal, Rigetti, others)
+  - kind: press
+    citation_key: null
+    url: https://www.sciencenews.org/article/microsoft-topological-quantum-majorana
+    note: Science News coverage of community skepticism following the Majorana 1 announcement (Mar 2025)
+
+partial:
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.ec_code
+  - modalities.qc.connectivity
+  - modalities.qc.gate_set
+  - field: modalities.qc.physical_qubits_current
+    as_of: 2026-05-24
+    note: 8 reflects the Majorana 1 device topology described in Microsoft's Feb 2025 announcement; the underlying Nature paper demonstrates interferometric parity readout on a single device pair, not gate operations across 8 qubits
+  - field: modalities.qc.qubit_type
+    as_of: 2026-05-24
+    note: "Topological / Majorana-zero-mode encoding is Microsoft's claim; independent groups have published Comments contesting both the 2023 topological-gap-protocol paper and the 2025 Nature parity-measurement paper; peer-reviewed responses pending."
+  - field: key_personnel.1.since
+    as_of: 2026-05-24
+    note: Svore has led Microsoft's quantum software work since the mid-2010s; the current Corporate VP / division-lead title dates to around 2023 per public bios
+  - field: key_personnel.2.since
+    as_of: 2026-05-24
+    note: Troyer joined Microsoft from ETH Zurich in 2017; current Technical Fellow / Corporate VP title dates from later
+  - field: roadmap.0.target
+    as_of: 2026-05-24
+    note: DARPA US2QC Stage C (Validation & Co-Design) timeline is not publicly disclosed in months; "2027-2028" is an estimate inferred from programme structure
+  - shareholders
+
+shareholders:
+  - holder: Microsoft Corporation (NASDAQ MSFT)
+    stake_percent: 100
+    stake_class: parent
+    as_of: 2026-05
+    source_url: https://www.microsoft.com/en-us/investor/default
+    note: Microsoft Quantum is an internal research division of Microsoft Corporation, not a separately capitalised entity; ownership rolls up to MSFT public shareholders. Top MSFT institutional holders (Vanguard, BlackRock, State Street) are disclosed in MSFT's annual DEF 14A proxy filing.
+
+last_verified: 2026-05-24
+verification_method: web

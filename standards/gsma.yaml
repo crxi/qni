@@ -1,0 +1,96 @@
+body:
+  id: gsma
+  name: GSM Association
+  short_name: GSMA
+  url: https://www.gsma.com
+  scope: >
+    Industry association of mobile network operators. Publishes
+    technical guidelines (IG-series, "Industry Guidelines") that
+    operators use as common reference points for inter-operator
+    services. Quantum work sits in the GSMA Post-Quantum Telco Network
+    Task Force.
+  notes: >
+    IG documents are not normative standards. They synthesise operator
+    consensus on architecture, terminology, and use cases - useful for
+    procurement language but not certification.
+
+standards:
+  - id: IG.11
+    title: Quantum Computing, Networking and Security
+    type: guideline
+    date: 2021-03
+    group: GSMA Post-Quantum Telco Network Task Force
+    tags: [qkdn, qnet, crypto-meta, policy]
+    status: in-force
+    url: https://www.gsma.com/newsroom/wp-content/uploads/IG-11-Quantum-Computing-Networking-and-Security.pdf
+    pdf: reference/GSMA/20210326 IG.11 Quantum Computing, Networking and Security.pdf
+    summary: >
+      Operator primer on quantum threats and quantum networking;
+      first deliverable of GSMA's quantum task force.
+
+  - id: IG.12
+    title: Quantum Networking and Service
+    type: guideline
+    date: 2021-12
+    group: GSMA Post-Quantum Telco Network Task Force
+    tags: [qkdn, qnet]
+    status: in-force
+    url: https://www.gsma.com/newsroom/wp-content/uploads/IG-12-Quantum-Networking-and-Service.pdf
+    pdf: reference/GSMA/20211201 IG.12 Quantum Networking and Service.pdf
+    summary: Operator view of QKDN and entanglement-network service models.
+
+  - id: IG.14
+    title: Quantum Hardware Abstraction Layer for Quantum Computing and Networking
+    type: guideline
+    date: 2022-12
+    group: GSMA Post-Quantum Telco Network Task Force
+    tags: [qkdn, qnet]
+    status: in-force
+    url: https://www.gsma.com/get-involved/working-groups/gsma_resources/ig-14-quantum-hardware-abstraction-layer-for-quantum-computing-and-networking/
+    pdf: reference/GSMA/20221221 IG.14 Quantum Hardware Abstraction Layer for Quantum Computing and Networking.pdf
+    summary: >
+      Hardware-abstraction-layer concept for plugging heterogeneous
+      quantum endpoints into a common control plane. An informal
+      vendor-neutral-port specification concept, not a formal standards
+      deliverable.
+
+  - id: IG.18
+    title: Opportunities and Challenges for Hybrid (QKD and PQC) Scenarios
+    type: guideline
+    date: 2024-10
+    group: GSMA Post-Quantum Telco Network Task Force
+    tags: [qkdn, crypto-meta]
+    status: in-force
+    url: https://www.gsma.com/newsroom/wp-content/uploads/IG.18-Hybrid-QKD-and-PQC-security-scenarios-and-use-cases-Whitepaper-v1.0-002.pdf
+    pdf: reference/GSMA/20241020 IG.18 Opportunities and Challenges for Hybrid (QKD andPQC) Scenarios.pdf
+    summary: >
+      Architecture options for combining QKD and PQC in operator
+      networks. Operator counterpart to ETSI TS 103 744 and ITU-T
+      X.1714.
+
+  - id: IG.19
+    title: Quantum Technologies - Telecom Use Cases
+    type: guideline
+    date: 2026-02
+    group: GSMA Post-Quantum Telco Network Task Force
+    tags: [qkdn, qnet, sensing]
+    status: in-force
+    url: https://www.gsma.com/solutions-and-impact/technologies/quantum-technologies/gsma_resources/quantum-technologies-telecom-use-cases/
+    pdf: reference/GSMA/20260225 IG.19 Quantum Technologies - Telcom Use Cases.pdf
+    summary: >
+      Operator-curated catalogue of quantum-technology use cases across
+      telecom: QKDN, quantum networking, sensing, distributed compute,
+      clock distribution.
+
+  - id: GSMA-Intelligence-2026
+    title: GSMA Intelligence - Quantum Technologies for Telecoms (industry report)
+    type: technical-report
+    date: 2026-02
+    group: GSMA Intelligence
+    tags: [policy]
+    status: informational
+    url: https://www.gsmaintelligence.com/research/taking-the-pulse-operator-views-and-plans-on-quantum-technologies
+    pdf: reference/GSMA/20260220 GSMA Intelligenge Report.pdf
+    summary: >
+      Companion industry-analysis report to IG.19; market sizing,
+      deployment timelines, regulatory landscape across regions.

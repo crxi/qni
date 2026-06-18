@@ -1,0 +1,183 @@
+slug: delft-circuits
+name: Delft Circuits
+categories: [enabling]
+hq: Delft, Netherlands
+founded: 2017
+status: private
+parent: null
+logo:
+  domain: delft-circuits.com
+
+positioning: >
+  Delft Circuits manufactures cryogenic I/O cabling for quantum computers, specifically
+  the Cri/oFlex® family of superconducting flex cables that carry microwave control and
+  readout signals into dilution refrigerators. The cables use polyimide Kapton® substrates
+  with silver or superconducting NbTi conductors and integrate attenuation and filtering
+  directly into the flex assembly, replacing dense coaxial cable bundles at higher channel
+  density and lower thermal load. Primary customers are quantum-computing hardware builders,
+  dilution-refrigerator manufacturers, and cryogenic research laboratories. Founded in 2017
+  as a TU Delft spin-off by Daan Kuitenbrouwer and Sal Jua Bosman; the company has grown
+  to 50+ staff and operates an in-house Quantum Fab cleanroom in Delft.
+
+modalities:
+  enabling:
+    products:
+      - "Cri/oFlex® 2 — 8-channel superconducting flex cable; stripline NbTi on Kapton®; integrated filtering and attenuation; 0.3 mm thickness per cable"
+      - "Cri/oFlex® 3 / CF3-X — fully filtered monolithic flex cable (launched 2023); integrated attenuators across temperature stages"
+      - "Cri/oFlex® loaders — modular cage assemblies delivering up to 256 channels per loader in current generation (1,024 projected 2027; 4,096 projected 2029)"
+      - "Custom flex solutions — application-specific line types (flux bias, microwave drive, signal, readout)"
+
+milestones:
+  - date: 2026-04
+    tag: enabling
+    headline: Karen Keenan appointed COO; Maarten Hendriks moves to lead Quantum Fab expansion
+    source_url: https://thequantuminsider.com/2026/04/07/delft-circuits-karen-keenan-coo-appointment/
+    source_type: press
+  - date: 2025-12
+    tag: enabling
+    headline: "Martin Danoesastro appointed CEO; €8M Series A extension closes, raising total Series A to €15M; new investors Paeonia Group and Waves Capital Partners join"
+    source_url: https://thequantuminsider.com/2025/12/03/delft-circuits-new-ceo-financing/
+    source_type: press
+  - date: 2025-09
+    tag: enabling
+    headline: "Bluefors partnership announced: Cri/oFlex® integrated as standard I/O in Bluefors XLDsl dilution refrigerators (up to 1,536 lines per system); joint validation paper submitted"
+    source_url: https://thequantuminsider.com/2025/09/30/delft-circuits-and-bluefors-join-forces-on-scalable-quantum-i-o-for-next-generation-quantum-computers/
+    source_type: press
+  - date: 2025-09
+    tag: enabling
+    headline: "5-year I/O roadmap published: 256 channels/loader today → 1,024 by 2027 → 4,096 by 2029; targets 40,000+ qubit systems"
+    source_url: https://thequantuminsider.com/2025/09/19/delft-circuits-presents-its-i-o-roadmap-for-scaling-quantum-computers-towards-thousands-of-qubits/
+    source_type: press
+  - date: 2023-09
+    tag: enabling
+    headline: "€6.3M Series A closed: DTXL (€5M lead), High-Tech Gründerfonds, QuVest participating; funds production scale-up and team growth"
+    source_url: https://thequantuminsider.com/2023/09/07/dtxl-invests-e6-3-million-series-a-in-delft-circuits/
+    source_type: press
+  - date: 2017
+    tag: enabling
+    headline: Delft Circuits B.V. incorporated as TU Delft spin-off; Cri/oFlex® beta testing underway
+    source_url: https://physicsworld.com/a/delft-circuits-cryogenic-rf-cable-innovations-offer-a-flexible-path-to-quantum-scalability/
+    source_type: press
+
+shareholders:
+  - holder: DeepTech XL (DTXL)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-12
+    source_url: https://thequantuminsider.com/2025/12/03/delft-circuits-new-ceo-financing/
+    note: Series A lead (€5M of €6.3M, Sep 2023); continuing investor in Series A extension (Dec 2025)
+  - holder: High-Tech Gründerfonds (HTGF)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-12
+    source_url: https://www.htgf.de/en/htgf-series-a-delft-circuits/
+    note: Co-investor in Series A (Sep 2023) and Series A extension (Dec 2025)
+  - holder: QuVest Capital
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-12
+    source_url: https://thequantuminsider.com/2025/12/03/delft-circuits-new-ceo-financing/
+    note: Co-investor in Series A and Series A extension
+  - holder: Paeonia Group
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-12
+    source_url: https://thequantuminsider.com/2025/12/03/delft-circuits-new-ceo-financing/
+    note: New investor in Series A extension (Dec 2025)
+  - holder: Waves Capital Partners
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-12
+    source_url: https://thequantuminsider.com/2025/12/03/delft-circuits-new-ceo-financing/
+    note: New investor in Series A extension (Dec 2025)
+  - holder: Daan Kuitenbrouwer, Sal Jua Bosman
+    stake_percent: null
+    stake_class: founder
+    as_of: 2017
+    source_url: https://physicsworld.com/a/delft-circuits-cryogenic-rf-cable-innovations-offer-a-flexible-path-to-quantum-scalability/
+    note: Co-founders; combined stake undisclosed; both continue in strategic and R&D roles
+
+key_personnel:
+  - role: CEO
+    name: Martin Danoesastro
+    since: 2025-12
+    source_url: https://thequantuminsider.com/2025/12/03/delft-circuits-new-ceo-financing/
+  - role: COO
+    name: Karen Keenan
+    since: 2026-04
+    source_url: https://thequantuminsider.com/2026/04/07/delft-circuits-karen-keenan-coo-appointment/
+  - role: CCO
+    name: Robby Ferdinandus
+    since: null
+    source_url: https://thequantuminsider.com/2026/04/07/delft-circuits-karen-keenan-coo-appointment/
+  - role: Co-Founder
+    name: Daan Kuitenbrouwer
+    since: 2017
+    source_url: https://physicsworld.com/a/delft-circuits-cryogenic-rf-cable-innovations-offer-a-flexible-path-to-quantum-scalability/
+  - role: Co-Founder
+    name: Sal Jua Bosman
+    since: 2017
+    source_url: https://physicsworld.com/a/delft-circuits-cryogenic-rf-cable-innovations-offer-a-flexible-path-to-quantum-scalability/
+
+roadmap:
+  - target: 2026
+    item: Series B fundraise; further Quantum Fab capacity expansion in Delft
+    source_url: https://thequantuminsider.com/2025/12/03/delft-circuits-new-ceo-financing/
+    tag: enabling
+  - target: 2027
+    item: "1,024 channels per loader (Cri/oFlex® next generation)"
+    source_url: https://thequantuminsider.com/2025/09/19/delft-circuits-presents-its-i-o-roadmap-for-scaling-quantum-computers-towards-thousands-of-qubits/
+    tag: enabling
+  - target: 2029
+    item: "4,096 channels per loader; target system scale 40,000+ qubits; 32× density advantage over coaxial baseline"
+    source_url: https://thequantuminsider.com/2025/09/19/delft-circuits-presents-its-i-o-roadmap-for-scaling-quantum-computers-towards-thousands-of-qubits/
+    tag: enabling
+
+current_flagship:
+  name: "Cri/oFlex® (256-channel-per-loader generation)"
+  generation: Superconducting NbTi flex cable with integrated filtering and attenuation; 8 channels per flex, 0.3 mm thickness
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2025/12/03/delft-circuits-new-ceo-financing/
+    note: Series A extension (€8M) and CEO appointment, Dec 2025
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2023/09/07/dtxl-invests-e6-3-million-series-a-in-delft-circuits/
+    note: Series A (€6.3M) announcement, Sep 2023
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2025/09/30/delft-circuits-and-bluefors-join-forces-on-scalable-quantum-i-o-for-next-generation-quantum-computers/
+    note: Bluefors integration partnership announcement, Sep 2025
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2025/09/19/delft-circuits-presents-its-i-o-roadmap-for-scaling-quantum-computers-towards-thousands-of-qubits/
+    note: 5-year I/O scalability roadmap, Sep 2025
+  - kind: blog
+    citation_key: null
+    url: https://physicsworld.com/a/delft-circuits-cryogenic-rf-cable-innovations-offer-a-flexible-path-to-quantum-scalability/
+    note: Physics World feature — Cri/oFlex® technology overview and founding background
+  - kind: preprint
+    citation_key: null
+    url: https://arxiv.org/abs/2410.01053
+    note: "Paluch et al. (2024) — thermalization of flexible microwave striplines measured with a superconducting qubit; validates thermal performance of flex cable architecture"
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2026/04/07/delft-circuits-karen-keenan-coo-appointment/
+    note: COO appointment (Karen Keenan) and Quantum Fab expansion, Apr 2026
+
+partial:
+  - field: founded
+    as_of: 2026-06-17
+    note: "Activities started 2016; B.V. incorporated 2017 — sources differ; 2017 used as formal founding year"
+  - key_personnel.2.since
+  - field: shareholders
+    as_of: 2026-06-17
+    note: All stake percentages undisclosed — private company; rows reflect publicly announced lead/participant roles only
+  - field: modalities.enabling.products
+    as_of: 2026-06-17
+    note: Bluefors joint validation paper submitted but not yet published in peer-reviewed venue as of last_verified
+
+last_verified: 2026-06-17
+verification_method: web

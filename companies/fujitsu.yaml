@@ -1,0 +1,208 @@
+slug: fujitsu
+name: Fujitsu
+categories: [qc, software]
+hq: Kawasaki, Kanagawa, Japan
+founded: 1935
+status: public
+parent: null
+logo:
+  domain: fujitsu.com
+
+positioning: >
+  Japanese IT conglomerate whose quantum-computing programme runs out of the
+  RIKEN RQC-Fujitsu Collaboration Center (Wako, Saitama; established April
+  2021) with RIKEN and NTT. The joint group built Japan's first domestically
+  developed superconducting quantum computer (64 qubits, October 2023),
+  followed by a 256-qubit machine (April 2025), with a 10,000-plus-qubit /
+  250-logical-qubit system targeted for FY2030 under NEDO's Post-5G programme.
+  Funding spans MEXT Q-LEAP, Cabinet Office Moonshot Goal 6, and NEDO. The
+  separately marketed "Digital Annealer" is quantum-inspired CMOS hardware,
+  not a quantum computer.
+
+business_units:
+  - name: RIKEN RQC-Fujitsu Collaboration Center
+    scope: Superconducting transmon QC hardware (64 / 256 / 1000-qubit roadmap), jointly operated with RIKEN; NTT contributes qubit-control software
+    hq: RIKEN Wako Campus, Saitama, Japan
+    lead: Yasunobu Nakamura (Director; also Director, RIKEN Center for Quantum Computing)
+  - name: Fujitsu Research — Quantum Laboratory
+    scope: Hybrid quantum computing platform (40-qubit quantum simulator + superconducting hardware), STAR early-FTQC architecture, quantum software, diamond-spin-qubit R&D with Delft/QuTech
+    hq: Kawasaki, Kanagawa, Japan
+    lead: Vivek Mahajan (Fujitsu CTO; corporate sponsor)
+  - name: Digital Annealer business
+    scope: Quantum-INSPIRED classical Ising-model accelerator and cloud service for combinatorial optimisation; emulates qubits in a digital circuit, runs at room temperature — NOT a quantum computer
+    hq: Kawasaki, Kanagawa, Japan
+    lead: null
+
+modalities:
+  qc:
+    qubit_type: transmon
+    physical_qubits_current: 256
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: "3D vertical-wiring lattice; qubits arranged in 4-qubit unit cells (256-qubit system)"
+    gate_set: []
+  software:
+    products:
+      - Fujitsu Hybrid Quantum Computing Platform (offered to enterprise/research partners since Oct 2023; combines real superconducting hardware with the 40-qubit simulator)
+      - Fujitsu Quantum Simulator — 40-qubit state-vector simulator, built on Qulacs, exposes a Qiskit-compatible SDK
+      - Digital Annealer cloud service (quantum-INSPIRED combinatorial optimisation; classical hardware, listed here only because Fujitsu markets it within the same quantum portfolio)
+
+milestones:
+  - date: 2026-03
+    tag: qc
+    headline: Fujitsu and University of Osaka publish new error-impact-reduction techniques for chemical-material energy calculations on early-FTQC quantum computers (STAR architecture)
+    source_url: https://global.fujitsu/en-global/pr/news/2026/03/25-01
+    source_type: press
+  - date: 2025-08
+    tag: qc
+    headline: Fujitsu starts official development of a 10,000-plus-qubit superconducting quantum computer (250 logical qubits) targeting FY2030 completion; backed by NEDO Post-5G programme; partners include AIST, RIKEN, Osaka University, Delft/QuTech
+    source_url: https://global.fujitsu/en-global/pr/news/2025/08/01-01-en
+    source_type: press
+  - date: 2025-05
+    tag: qc
+    headline: Keysight Quantum Control System selected as the qubit-control electronics for the Fujitsu/RIKEN 256-qubit system
+    source_url: https://www.keysight.com/us/en/about/newsroom/news-releases/2025/0515-pr25-073-keysight-quantum-control-system-embedded-within-fujitsu-and-rikens-world-leading-256-qubit-quantum-computer.html
+    source_type: press
+  - date: 2025-04
+    tag: qc
+    headline: Fujitsu and RIKEN unveil 256-qubit superconducting quantum computer at the RIKEN RQC-Fujitsu Collaboration Center; high-density 3D implementation in single dilution refrigerator; integrated into hybrid quantum computing platform in Q1 FY2025
+    source_url: https://www.riken.jp/en/news_pubs/news/2025/20250422_1/index.html
+    source_type: press
+  - date: 2024-08
+    tag: qc
+    headline: Fujitsu and Osaka University publish STAR — a "space-time efficient analog-rotation" early-FTQC architecture aimed at running useful algorithms on a few-hundred-logical-qubit machine
+    source_url: https://resou.osaka-u.ac.jp/en/research/2024/20240828_1
+    source_type: press
+  - date: 2024-06
+    tag: qc
+    headline: Fujitsu to install a superconducting quantum computer system at AIST's G-QuAT facility (Tsukuba) — second instance of the 64-qubit-class hardware
+    source_url: https://info.archives.global.fujitsu/global/about/resources/news/press-releases/2024/0618-01.html
+    source_type: press
+  - date: 2024-03
+    tag: qc
+    headline: RIKEN/Fujitsu/NTT/Osaka/AIST joint quantum-computing platform receives MEXT Prime Minister's Award for Science and Technology
+    source_url: https://info.archives.global.fujitsu/global/about/resources/news/press-releases/2024/0315-01.html
+    source_type: press
+  - date: 2023-12
+    tag: qc
+    headline: Japan's third quantum computer launched at Osaka University (64-qubit-class system based on the RIKEN/Fujitsu architecture)
+    source_url: https://info.archives.global.fujitsu/global/about/resources/news/press-releases/2023/1220-01.html
+    source_type: press
+  - date: 2023-10
+    tag: qc
+    headline: Fujitsu and RIKEN announce a 64-qubit superconducting quantum computer at the RQC-Fujitsu Collaboration Center; NTT contributes qubit-control software; hybrid quantum computing platform launched for joint-research partners
+    source_url: https://info.archives.global.fujitsu/global/about/resources/news/press-releases/2023/1005-01.html
+    source_type: press
+  - date: 2023-03
+    tag: qc
+    headline: Japan's first domestically built superconducting quantum computer goes online at RIKEN (64 qubits; MEXT Q-LEAP-funded; precursor to the Fujitsu collaboration machine); cloud service launches via the joint research group
+    source_url: https://info.archives.global.fujitsu/global/about/resources/news/press-releases/2023/0324-01.html
+    source_type: press
+  - date: 2021-04
+    tag: qc
+    headline: RIKEN RQC-Fujitsu Collaboration Center established at RIKEN Wako Campus
+    source_url: https://www.riken.jp/en/research/labs/rqc/riken_fujitsu/index.html
+    source_type: press
+
+shareholders:
+  - holder: The Master Trust Bank of Japan, Ltd. (trust account)
+    stake_percent: 17.01
+    stake_class: minority
+    as_of: 2025-05
+    source_url: https://global.fujitsu/en-global/ir/stock/information
+    note: Largest shareholder per Fujitsu's investor-relations stock-information page as of 9 May 2025; trust-bank custody account aggregating multiple beneficial owners
+  - holder: Custody Bank of Japan, Ltd. (trust account)
+    stake_percent: 6.86
+    stake_class: minority
+    as_of: 2025-05
+    source_url: https://global.fujitsu/en-global/ir/stock/information
+    note: Second-largest shareholder per Fujitsu IR as of 9 May 2025; trust-bank custody account
+
+key_personnel:
+  - role: Representative Director, President & CEO (Fujitsu Limited)
+    name: Takahito Tokita
+    since: 2019-06
+    source_url: https://global.fujitsu/en-global/about/corporate/management
+  - role: EVP, CTO & Head of System Platform (Fujitsu Limited)
+    name: Vivek Mahajan
+    since: 2021-07
+    source_url: https://global.fujitsu/en-global/about/corporate/management
+    note: Corporate sponsor of Fujitsu's quantum programme; joined from prior roles at GE, Oracle and IBM
+  - role: Director, RIKEN RQC-Fujitsu Collaboration Center (and Director, RIKEN Center for Quantum Computing)
+    name: Yasunobu Nakamura
+    since: 2021-04
+    source_url: https://www.riken.jp/en/research/labs/rqc/riken_fujitsu/index.html
+    note: Pioneer of the superconducting charge qubit (Nature 1999); leads the joint hardware programme
+
+roadmap:
+  - target: 2026
+    item: 1,000-qubit superconducting system installed in a new building at Fujitsu Technology Park (Kawasaki)
+    source_url: https://www.riken.jp/en/news_pubs/news/2025/20250422_1/index.html
+    tag: qc
+  - target: FY2030
+    item: 10,000-plus physical-qubit superconducting system operating with 250 logical qubits, using Fujitsu's STAR early-FTQC architecture; NEDO Post-5G programme funded through FY2027
+    source_url: https://global.fujitsu/en-global/pr/news/2025/08/01-01-en
+    tag: qc
+  - target: FY2035
+    item: 1,000 logical qubits via integration of superconducting and diamond-spin qubits (with Delft/QuTech collaboration)
+    source_url: https://global.fujitsu/en-global/pr/news/2025/08/01-01-en
+    tag: qc
+
+current_flagship:
+  name: RIKEN/Fujitsu 256-qubit superconducting quantum computer
+  generation: transmon, 3D vertical-wiring lattice (4-qubit unit cells); deployed in Fujitsu's hybrid quantum computing platform from Q1 FY2025
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://www.riken.jp/en/news_pubs/news/2025/20250422_1/index.html
+    note: RIKEN press release — 256-qubit superconducting quantum computer (April 2025)
+  - kind: press
+    citation_key: null
+    url: https://global.fujitsu/en-global/pr/news/2025/08/01-01-en
+    note: Fujitsu press — official development start of 10,000-plus-qubit system targeting FY2030 (Aug 2025)
+  - kind: press
+    citation_key: null
+    url: https://info.archives.global.fujitsu/global/about/resources/news/press-releases/2023/1005-01.html
+    note: Fujitsu/RIKEN press — 64-qubit superconducting system + hybrid quantum computing platform launch (Oct 2023)
+  - kind: press
+    citation_key: null
+    url: https://info.archives.global.fujitsu/global/about/resources/news/press-releases/2023/0324-01.html
+    note: Japan's first homemade 64-qubit superconducting quantum computer cloud-service launch (March 2023; MEXT Q-LEAP)
+  - kind: press
+    citation_key: null
+    url: https://www.riken.jp/en/research/labs/rqc/riken_fujitsu/index.html
+    note: RIKEN RQC-Fujitsu Collaboration Center — establishment and scope (April 2021)
+  - kind: press
+    citation_key: null
+    url: https://resou.osaka-u.ac.jp/en/research/2024/20240828_1
+    note: Fujitsu/Osaka University STAR early-FTQC architecture (Aug 2024)
+  - kind: press
+    citation_key: null
+    url: https://www.keysight.com/us/en/about/newsroom/news-releases/2025/0515-pr25-073-keysight-quantum-control-system-embedded-within-fujitsu-and-rikens-world-leading-256-qubit-quantum-computer.html
+    note: Keysight QCS selected as qubit-control electronics for the 256-qubit system (May 2025)
+  - kind: blog
+    citation_key: null
+    url: https://global.fujitsu/en-global
+    note: Fujitsu product page — Digital Annealer described as "quantum-inspired" architecture; emulates qubits in a classical digital circuit, runs at room temperature. Listed for completeness; NOT a quantum computer.
+
+partial:
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.ec_code
+  - modalities.qc.gate_set
+  - field: modalities.qc.connectivity
+    as_of: 2026-05-17
+    note: 3D vertical-wiring lattice with 4-qubit unit cells described in vendor press for the 256-qubit system; no peer-reviewed architecture paper yet cited
+  - field: shareholders
+    as_of: 2026-05-17
+    note: Only the top two shareholders (both trust-bank custody accounts) are surfaced from Fujitsu IR as of 9 May 2025; underlying beneficial owners not disclosed at this level. Cross-check next annual securities report (yuka shoken hokokusho) for finer breakdown.
+
+last_verified: 2026-05-17
+verification_method: web

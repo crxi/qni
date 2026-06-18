@@ -1,0 +1,36 @@
+---
+import type { FiberBand } from "../../lib/data";
+
+interface Props {
+  bands: FiberBand[];
+  x: number;
+  y: number;
+}
+
+const { bands, x, y } = Astro.props;
+---
+
+<g class="fibre-band-legend">
+  <text x={x} y={y} class="legend-h">ITU-T fibre bands</text>
+  {bands.map((b, i) => {
+    const rowY = y + 16 + i * 14;
+    const weight = b.emphasis ? "700" : "400";
+    return (
+      <g>
+        <rect
+          x={x} y={rowY - 8} width="10" height="10"
+          fill={b.color} stroke="#666" stroke-width="0.5"
+        />
+        <text x={x + 16} y={rowY} class="legend" font-weight={weight}>
+          <tspan font-weight="700">{b.id}</tspan>
+          {`  ${b.range_nm[0]}–${b.range_nm[1]} nm  · "${b.name}"`}
+        </text>
+      </g>
+    );
+  })}
+</g>
+
+<style>
+  .legend-h { font-size: 11px; fill: #444; font-weight: 600; }
+  .legend   { font-size: 10px; fill: #444; }
+</style>

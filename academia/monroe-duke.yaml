@@ -1,0 +1,134 @@
+slug: monroe-duke
+name: Monroe group (Duke / Maryland JQI)
+categories: [qc, network]
+hq: Durham, North Carolina, USA
+status: active
+parent: null
+
+institution:
+  name: Duke University
+  lab: Duke Quantum Center · Department of Electrical & Computer Engineering · Department of Physics
+  also: Joint Quantum Institute (JQI, University of Maryland / NIST) — historical and continuing affiliation
+
+group_website: https://quantum.duke.edu/
+
+positioning: >
+  Christopher Monroe's group works on trapped-ion quantum computing and
+  ion-photon networking, and produced the foundational demonstrations of
+  remote ion-ion entanglement via heralded photon interference that
+  underpin modern matter-qubit network architectures. Monroe co-founded
+  IonQ in 2015 (see companies/ionq.yaml) and relocated the primary
+  laboratory from JQI Maryland to Duke around 2021 as founding Director
+  of the Duke Quantum Center. Current effort centres on multi-species
+  Ba-138 / Yb-171 ion-trap nodes for modular ion-network testbeds.
+
+modalities:
+  qc:
+    qubit_type: trapped-ion
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: ""
+    gate_set: []
+  network:
+    role: testbed
+    products:
+      - "Multi-species (Ba-138 / Yb-171) ion-trap network nodes — Duke Quantum Center"
+      - "Heralded ion-photon and ion-ion entanglement testbeds (JQI / Duke)"
+
+spinout_company: ionq
+
+milestones:
+  - date: 2007-09
+    tag: network
+    headline: Observation of entanglement between a single trapped atom and a single photon
+    source_url: https://www.nature.com/articles/nature06118
+    source_type: paper
+  - date: 2014-09
+    tag: network
+    headline: Modular entanglement of atomic qubits using photons and phonons — heralded ion-ion Bell pair across a metre-scale link
+    source_url: https://www.nature.com/articles/nphys3150
+    source_type: paper
+  - date: 2015-05
+    tag: qc
+    headline: IonQ co-founded by Christopher Monroe and Jungsang Kim (Duke), commercialising trapped-ion quantum computing
+    source_url: https://www.ionq.com/news
+    source_type: press
+  - date: 2021-01
+    tag: qc
+    headline: Duke Quantum Center established; primary trapped-ion lab relocates from JQI Maryland to Duke
+    source_url: https://quantum.duke.edu/
+    source_type: press
+  - date: 2023-04
+    tag: network
+    headline: Multi-species Ba-138 / Yb-171 ion-trap node demonstrations for modular ion networks
+    source_url: https://arxiv.org/abs/2304.05153
+    source_type: preprint
+
+funding_sources:
+  - name: Army Research Office (ARO)
+    role: Long-running programme support for trapped-ion quantum computing and networking
+    source_url: https://arl.devcom.army.mil/who-we-are/aro/
+  - name: Air Force Office of Scientific Research (AFOSR)
+    role: Trapped-ion and atomic-physics basic-research grants
+    source_url: https://www.afrl.af.mil/AFOSR/
+  - name: IARPA
+    role: LogiQ and successor programmes on logical-qubit demonstrations
+    source_url: https://www.iarpa.gov/
+  - name: National Science Foundation (NSF)
+    role: Quantum Leap Challenge Institutes and core atomic-physics grants
+    source_url: https://www.nsf.gov/
+  - name: U.S. Department of Energy (DOE)
+    role: Quantum Information Science research awards
+    source_url: https://science.osti.gov/
+  - name: Duke University / Duke Quantum Center
+    role: Host institution; direct institutional funding since 2021
+    source_url: https://quantum.duke.edu/
+  - name: Joint Quantum Institute (U. Maryland / NIST)
+    role: Historical and continuing host affiliation; co-funded ion-photon programme through ~2021
+    source_url: https://jqi.umd.edu/
+
+key_personnel:
+  - role: Principal Investigator; Director, Duke Quantum Center
+    name: Christopher Monroe
+    since: 2021
+    source_url: https://quantum.duke.edu/profile/christopher-r-monroe/
+
+current_focus:
+  name: Trapped-ion quantum computing and networking
+  description: ""
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/nature06118
+    note: "Moehring et al. Nature 449, 68 (2007) — entanglement between a single trapped atom and a single photon"
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/nphys3150
+    note: "Hucul et al. Nat. Phys. 11, 37 (2015) — modular entanglement of atomic qubits using photons and phonons"
+  - kind: preprint
+    citation_key: null
+    url: https://arxiv.org/abs/2304.05153
+    note: Multi-species Ba-138 / Yb-171 ion-trap node for modular ion networks
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.connectivity
+  - field: group_website
+    as_of: 2026-05-24
+    note: Duke Quantum Center maintains the Monroe-lab landing page; URL may redirect as the site is reorganised post-relocation.
+  - field: current_focus.description
+    as_of: 2026-05-24
+    note: monroelab.duke.edu returned ECONNREFUSED on automated retrieval and the related iontrap.umd.edu and Duke Quantum Center URLs were not accessible; rather than synthesise, left blank pending the group publishing a stable focus statement.
+
+last_verified: 2026-05-24
+verification_method: web

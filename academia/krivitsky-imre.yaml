@@ -1,0 +1,122 @@
+slug: krivitsky-imre
+name: Krivitsky group (A*STAR IMRE)
+categories: [source-detect, sensing]
+hq: Singapore
+status: active
+parent: null
+
+institution:
+  name: A*STAR (Agency for Science, Technology and Research)
+  lab: Institute of Materials Research and Engineering (IMRE) — Quantum Technologies for Engineering department
+  also: null
+
+group_website: https://research.a-star.edu.sg/researcher/leonid-krivitsky/
+
+positioning: >
+  Leonid Krivitsky's group at A*STAR IMRE works on single-photon
+  instrumentation, quantum imaging with undetected photons, and quantum
+  sensing. The lab pioneered mid-infrared microscopy and spectroscopy
+  using SPDC photon pairs detected in the visible — decoupling sensing
+  and detection wavelengths so silicon detectors can image molecular
+  fingerprints in the mid-IR. Krivitsky heads the Quantum Technologies
+  for Engineering department at IMRE; the group also develops
+  integrated single-photon sources and detectors used by Singapore's
+  broader quantum programme alongside CQT and SpeQtral.
+
+modalities:
+  source-detect:
+    role: both
+    detection_efficiency: null
+    dark_count_hz: null
+    jitter_ps: null
+  sensing:
+    target_quantity: "quantum imaging / mid-IR spectroscopy with undetected photons"
+    sensitivity: "broadband mid-IR fingerprint-region spectroscopy via SPDC photon pairs (visible detection)"
+
+milestones:
+  - date: 2025
+    tag: sensing
+    headline: Quantum-enhanced imaging and metrology with undetected photons via squeezed-light homodyne detection
+    source_url: https://www.nature.com/articles/s41598-025-27056-z
+    source_type: paper
+  - date: 2022-06
+    tag: sensing
+    headline: Broadband quantum spectroscopy at the fingerprint mid-infrared region
+    source_url: https://pubs.acs.org/doi/10.1021/acsphotonics.2c00464
+    source_type: paper
+  - date: 2021-11
+    tag: source-detect
+    headline: Broadband diffraction of correlated photons from crystal superlattices (multi-crystal nonlinear interferometer)
+    source_url: https://iopscience.iop.org/article/10.1088/2058-9565/ac33b9
+    source_type: paper
+  - date: 2020-11
+    tag: sensing
+    headline: Microscopy with undetected photons in the mid-infrared
+    source_url: https://www.science.org/doi/10.1126/sciadv.abd0264
+    source_type: paper
+  - date: 2016-01
+    tag: sensing
+    headline: Infrared spectroscopy with visible light — foundational demonstration of spectroscopy via undetected photons
+    source_url: https://www.nature.com/articles/nphoton.2015.252
+    source_type: paper
+
+funding_sources:
+  - name: A*STAR (Agency for Science, Technology and Research)
+    role: Host agency; core institutional funding for IMRE and the Quantum Technologies for Engineering department
+    source_url: https://www.a-star.edu.sg/imre
+  - name: National Research Foundation (NRF) Singapore — Quantum Engineering Programme
+    role: National competitive grants supporting quantum-sensing and single-photon instrumentation work
+    source_url: https://www.nrf.gov.sg/404.html
+
+key_personnel:
+  - role: Principal Scientist / Group Leader — Head, Quantum Technologies for Engineering, IMRE
+    name: Leonid Krivitsky
+    since: null
+    source_url: https://research.a-star.edu.sg/researcher/leonid-krivitsky/
+
+roadmap: []
+
+current_focus:
+  name: Quantum metrology, sensing and information processing
+  description: >
+    Per A*STAR's profile (research.a-star.edu.sg): scientific interests in
+    quantum metrology and sensing and quantum information processing,
+    pursued within the Quantum Technologies for Engineering department at
+    A*STAR's Institute of Materials Research and Engineering (IMRE).
+  source_url: https://research.a-star.edu.sg/researcher/leonid-krivitsky/
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/nphoton.2015.252
+    note: "Kalashnikov, Paterova, Kulik, Krivitsky, Nature Photonics 10, 98 (2016) — infrared spectroscopy with visible light"
+  - kind: paper
+    citation_key: null
+    url: https://www.science.org/doi/10.1126/sciadv.abd0264
+    note: "Kviatkovsky et al., Science Advances 6, eabd0264 (2020) — mid-IR microscopy with undetected photons"
+  - kind: paper
+    citation_key: null
+    url: https://pubs.acs.org/doi/10.1021/acsphotonics.2c00464
+    note: "Broadband quantum spectroscopy at the fingerprint mid-IR region, ACS Photonics 9, 2151 (2022)"
+  - kind: paper
+    citation_key: null
+    url: https://iopscience.iop.org/article/10.1088/2058-9565/ac33b9
+    note: "Broadband diffraction of correlated photons from crystal superlattices, Quantum Sci. Technol. (2021)"
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41598-025-27056-z
+    note: "Quantum-enhanced imaging and metrology with undetected photons via squeezed-light homodyne detection, Sci. Rep. (2025)"
+
+partial:
+  - modalities.source-detect.detection_efficiency
+  - modalities.source-detect.dark_count_hz
+  - modalities.source-detect.jitter_ps
+  - field: key_personnel.0.since
+    as_of: 2026-05-24
+    note: A*STAR profile does not state appointment date; Krivitsky has led the IMRE quantum group at least since the 2015 Nature Photonics paper from Singapore.
+  - field: funding_sources
+    as_of: 2026-05-24
+    note: A*STAR and NRF QEP are the standard funders for IMRE quantum work; specific grant numbers not confirmed from individual paper acknowledgements.
+
+last_verified: 2026-05-24
+verification_method: web

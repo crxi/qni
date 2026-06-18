@@ -1,0 +1,179 @@
+slug: id-quantique
+name: ID Quantique
+categories: [qkd, source-detect, enabling]
+hq: Geneva, Switzerland
+founded: 2001
+status: acquired
+parent: ionq
+logo:
+  domain: idquantique.com
+
+positioning: >
+  A commercial QKD vendor founded in 2001, among the earliest in the field,
+  spun out of the University of Geneva by Nicolas Gisin, Grégoire Ribordy,
+  Hugo Zbinden, and Olivier Guinnard. Sells turnkey fibre-QKD systems (Cerberis and Clavis XG,
+  with the 4th-generation Clavis XG reaching ~14,000 AES-256 keys/hour at 24
+  dB loss over up to 150 km of SMF), single-photon detectors (ID230 InGaAs,
+  ID281 SNSPD), and Quantis QRNG chips embedded in Samsung Galaxy "Quantum"
+  phones. Founding member of ETSI ISG-QKD and supplier of the QKD hardware
+  for Slovakia's EuroQCI rollout. Acquired by SK Telecom (majority stake,
+  2018) and then by IonQ (controlling stake, May 2025).
+
+modalities:
+  qkd:
+    protocol: [BB84, decoy-state, COW]
+    rate_distance: "~14,000 AES-256 keys/hour @ 24 dB loss, up to 150 km SMF (Clavis XG)"
+    deployed_demos:
+      - note: 800 km nationwide QKD backbone in South Korea with SK Broadband / SKT
+        source_url: https://www.idquantique.com/id-quantique-and-sk-telecom-announce-the-worlds-first-5g-smartphone-equipped-with-a-quantum-random-number-generator-qrng-chipset/
+      - note: Slovakia's first national quantum communication network (EuroQCI), all QKD hardware supplied by IDQ
+        source_url: https://www.idquantique.com/ionq-slovakias-quantum-communication-network/
+      - note: ESA EAGLE-1 and E2EQSS satellite-QKD subsystems
+        source_url: https://www.idquantique.com/ionq-slovakias-quantum-communication-network/
+  source-detect:
+    role: detector
+    detection_efficiency: null
+    dark_count_hz: null
+    jitter_ps: 40
+  enabling:
+    products:
+      - Quantis QRNG chip (2.5 x 2.5 mm CMOS, in Samsung Galaxy Quantum series)
+      - Quantis QRNG PCIe / USB appliances
+      - Clarion KX key-management system
+
+milestones:
+  - date: 2025-05
+    tag: qkd
+    headline: IonQ closes acquisition of controlling stake in ID Quantique
+    source_url: https://www.ionq.com/news/ionq-completes-acquisition-of-id-quantique-cementing-leadership-in-quantum
+    source_type: press
+  - date: 2025-02
+    tag: qkd
+    headline: IonQ signs definitive agreement to acquire IDQ; strategic partnership with SK Telecom announced
+    source_url: https://www.ionq.com/news/ionq-to-acquire-id-quantique-enter-into-strategic-partnership-with-sk
+    source_type: press
+  - date: 2024
+    tag: source-detect
+    headline: ID281 Pro launched — rack-mount SNSPD system, up to 16 channels, <40 ps jitter
+    source_url: https://www.idquantique.com/id-quantique-launches-the-id281-pro/
+    source_type: press
+  - date: 2021-05
+    tag: qkd
+    headline: Cerberis XG launched — 4th-generation 1U QKD platform, up to 90 km
+    source_url: https://www.idquantique.com/id-quantique-unveils-its-4th-generation-of-quantum-key-distribution-qkd-the-cerberis-xg-the-ultimate-in-quantum-safe-security/
+    source_type: press
+  - date: 2020-05
+    tag: enabling
+    headline: Quantis QRNG chip ships in Samsung Galaxy A Quantum — what the company and SK Telecom described as the first 5G phone with a quantum entropy source
+    source_url: https://www.idquantique.com/id-quantique-and-sk-telecom-announce-the-worlds-first-5g-smartphone-equipped-with-a-quantum-random-number-generator-qrng-chipset/
+    source_type: press
+  - date: 2018-02
+    tag: qkd
+    headline: SK Telecom acquires majority stake (~$65M) in ID Quantique
+    source_url: https://www.crunchbase.com/acquisition/sktelecom-acquires-id-quantique--1dcedeec
+    source_type: press
+  - date: 2008
+    tag: qkd
+    headline: Founding member of ETSI ISG-QKD; leads work on QKD-014 / QKD-020 key-delivery and multi-vendor interfaces
+    source_url: https://www.idquantique.com/idq-leads-standardization-efforts-at-etsi-to-faster-the-adoption-of-qkd-technology/
+    source_type: press
+  - date: 2001
+    tag: qkd
+    headline: Founded by Nicolas Gisin, Grégoire Ribordy, Hugo Zbinden, Olivier Guinnard — spin-out of University of Geneva
+    source_url: https://www.idquantique.com/about-idq/company-profile/
+    source_type: blog
+
+shareholders:
+  - holder: IonQ
+    stake_percent: null
+    stake_class: controlling
+    as_of: 2025-05
+    source_url: https://www.ionq.com/news/ionq-completes-acquisition-of-id-quantique-cementing-leadership-in-quantum
+    note: >
+      Acquired the 56.9% block jointly held by SK Telecom and SK Square via all-stock
+      swap (4,215,740 IonQ common shares, ~$228M / KRW 330B); closed 6 May 2025.
+      Remaining ~43% held by founders, Swisscom and other historical minority investors.
+  - holder: SK Telecom
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-02
+    source_url: https://www.ionq.com/news/ionq-to-acquire-id-quantique-enter-into-strategic-partnership-with-sk
+    note: >
+      Held majority of IDQ from 2018 to 2025; swapped entire 56.9% stake (with SK Square)
+      for ~3.1% of IonQ. No longer an IDQ shareholder — relationship is now an MoU-based
+      global quantum strategic partnership (distribution, joint commercial/technical work).
+
+key_personnel:
+  - role: CEO & Co-founder
+    name: Grégoire Ribordy
+    since: 2001
+    source_url: https://www.idquantique.com/about-idq/management-team/
+  - role: Vice-Chairman of the Board
+    name: Grégoire Ribordy
+    since: 2025-05
+    source_url: https://www.idquantique.com/about-idq/management-team/
+    note: Post-IonQ-acquisition board structure; IonQ CEO Niccolo de Masi chairs.
+  - role: Chairman of the Board
+    name: Niccolo de Masi
+    since: 2025-05
+    source_url: https://www.idquantique.com/about-idq/management-team/
+    note: CEO of IonQ; took the IDQ chair on close of acquisition.
+  - role: Chief Operating Officer
+    name: Christophe Gaillard
+    since: 2020
+    source_url: https://www.idquantique.com/about-idq/management-team/
+  - role: Chief Revenue Officer
+    name: Marc Nikles
+    since: 2020
+    source_url: https://www.idquantique.com/about-idq/management-team/
+  - role: Chief Financial Officer
+    name: Benoît Lamamy
+    since: 2020
+    source_url: https://www.idquantique.com/about-idq/management-team/
+  - role: Co-founder
+    name: Nicolas Gisin
+    since: 2001
+    source_url: https://www.idquantique.com/about-idq/company-profile/
+    note: >
+      Co-founder and former Chief Scientist; emeritus professor at UNIGE. No longer
+      listed on the current IDQ management team or board page (post-2025); retains
+      historical co-founder status.
+
+roadmap:
+  - target: 2026
+    item: Continued EuroQCI rollouts and integration with IonQ's quantum-networking stack
+    source_url: https://www.ionq.com/news/ionq-completes-acquisition-of-id-quantique-cementing-leadership-in-quantum
+    tag: qkd
+
+current_flagship:
+  name: Clavis XG
+  generation: 4th-generation fibre QKD, long-reach production system
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://www.ionq.com/news/ionq-completes-acquisition-of-id-quantique-cementing-leadership-in-quantum
+    note: IonQ closes IDQ acquisition (May 2025)
+  - kind: press
+    citation_key: null
+    url: https://www.idquantique.com/etsi-releases-qkd-protection-profile/
+    note: ETSI QKD Protection Profile — IDQ-led standardisation
+  - kind: preprint
+    citation_key: null
+    url: https://arxiv.org/abs/0809.5264
+    note: High-speed coherent one-way QKD prototype — original COW protocol paper from the UNIGE / IDQ group
+  - kind: blog
+    citation_key: null
+    url: https://www.idquantique.com/quantum-safe-security/products/clavis-xg-qkd-system/
+    note: Clavis XG product page — 150 km reach, 14k AES-256 keys/hour @ 24 dB
+  - kind: blog
+    citation_key: null
+    url: https://www.idquantique.com/quantum-detection-systems/products/id281-snspd-system/
+    note: ID281 SNSPD product page
+
+partial:
+  - modalities.source-detect.detection_efficiency
+  - modalities.source-detect.dark_count_hz
+
+last_verified: 2026-05-13
+verification_method: web

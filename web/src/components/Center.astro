@@ -1,0 +1,13 @@
+---
+interface Props { max?: string; gutter?: string; }
+const { max = "var(--content-width)", gutter = "var(--space-4)" } = Astro.props;
+---
+<div class="center" style={`--center-max: ${max}; --center-gutter: ${gutter};`}><slot /></div>
+<style>
+  .center {
+    box-sizing: content-box;
+    max-inline-size: var(--center-max);
+    margin-inline: auto;
+    padding-inline: var(--center-gutter);
+  }
+</style>

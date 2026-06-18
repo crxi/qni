@@ -1,0 +1,223 @@
+slug: quantinuum
+name: Quantinuum
+categories: [qc, software]
+hq: Broomfield, Colorado, USA
+founded: 2021
+status: private
+parent: honeywell
+logo:
+  domain: quantinuum.com
+
+positioning: >
+  Trapped-ion quantum computing built on a racetrack Quantum Charge-Coupled
+  Device (QCCD) architecture, where ions are physically shuttled between
+  trap zones to give all-to-all connectivity and high-fidelity two-qubit
+  gates. Formed in 2021 from the merger of Honeywell Quantum Solutions and
+  Cambridge Quantum; majority-owned by Honeywell. Sells H-Series systems
+  (H1, H2, Helios) via cloud and on-premise, and ships InQuanto (quantum
+  chemistry) and lambeq (quantum NLP) software stacks. Has published among the highest reported Quantum Volume figures across its H-Series generations and
+  demonstrated, with Microsoft, logical qubits with error rates below their
+  physical constituents.
+
+modalities:
+  qc:
+    qubit_type: trapped-ion
+    physical_qubits_current: 98
+    logical_qubits_current: 48
+    one_q_fidelity: 0.999975
+    two_q_fidelity: 0.99921
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: qLDPC
+    connectivity: all-to-all
+    gate_set: []
+  software:
+    products:
+      - InQuanto (quantum computational chemistry platform)
+      - lambeq (quantum natural-language processing toolkit)
+      - TKET (quantum compiler and circuit-optimisation SDK)
+
+milestones:
+  - date: 2026-05
+    tag: qc
+    headline: Form S-1 publicly filed with the SEC for proposed Nasdaq IPO (ticker QNT); previously submitted confidentially in April 2026
+    source_url: https://www.quantinuum.com/press-releases/honeywell-announces-quantinuums-filing-of-registration-statement-for-proposed-initial-public-offering
+    source_type: filing
+  - date: 2025-11
+    tag: qc
+    headline: Helios commercial launch — 98 Ba+ qubits, 99.921% two-qubit gate fidelity, 94-qubit GHZ state, 48 logical qubits
+    source_url: https://www.quantinuum.com/press-releases/quantinuum-announces-commercial-launch-of-new-helios-quantum-computer-that-offers-unprecedented-accuracy-to-enable-generative-quantum-ai-genqai
+    source_type: press
+  - date: 2024-09
+    tag: qc
+    headline: 12 reliable logical qubits demonstrated on H2 with Microsoft's qubit-virtualisation system, used for an end-to-end chemistry simulation
+    source_url: https://azure.microsoft.com/en-us/blog/quantum/2024/09/10/microsoft-and-quantinuum-create-12-logical-qubits-and-demonstrate-a-hybrid-end-to-end-chemistry-simulation/
+    source_type: press
+  - date: 2024-06
+    tag: qc
+    headline: H2-1 upgraded to 56 trapped-ion qubits; Quantum Volume reaches 2^23 (8,388,608) and 100x improvement over Google 2019 random-circuit-sampling benchmark
+    source_url: https://www.quantinuum.com/press-releases/quantinuum-launches-industry-first-trapped-ion-56-qubit-quantum-computer-that-challenges-the-worlds-best-supercomputers
+    source_type: press
+  - date: 2024-04
+    tag: qc
+    headline: First logical qubits with error rates better than physical — [[7,1,3]] and [[12,2,4]] codes with up to 800x suppression, joint work with Microsoft Azure Quantum
+    source_url: https://arxiv.org/abs/2404.02280
+    source_type: preprint
+  - date: 2021-11
+    tag: qc
+    headline: Quantinuum formed from merger of Honeywell Quantum Solutions and Cambridge Quantum Computing
+    source_url: https://www.quantinuum.com/press-releases/honeywell-announces-the-closing-of-300-million-equity-investment-round-for-quantinuum-at-5b-pre-money-valuation
+    source_type: press
+
+shareholders:
+  - holder: Honeywell
+    stake_percent: 54
+    stake_class: controlling
+    as_of: 2025-09
+    source_url: https://www.honeywell.com/us/en/press/2025/09/honeywell-announces-600-million-capital-raise-for-quantinuum-at-10b-pre-money-equity-valuation-to-advance-quantum-computing-at-scale
+    note: majority owner since the 2021 merger; reaffirmed ~54% at the Sep 2025 $600M raise; Quantinuum publicly filed Form S-1 on 8 May 2026, no per-shareholder breakdown disclosed yet
+  - holder: Cambridge Quantum Holdings (incl. Ilyas Khan and former CQ shareholders)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-08
+    source_url: https://www.quantinuum.com/press-releases/honeywell-announces-600-million-capital-raise-for-quantinuum-at-10b-pre-money-equity-valuation-to-advance-quantum-computing-at-scale
+    note: legacy Cambridge Quantum equity rolled at the 2021 merger; participated in the Aug 2025 round alongside Honeywell
+  - holder: JPMorgan Chase
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-08
+    source_url: https://www.quantinuum.com/press-releases/honeywell-announces-600-million-capital-raise-for-quantinuum-at-10b-pre-money-equity-valuation-to-advance-quantum-computing-at-scale
+    note: entered Jan 2024 round; followed-on in Aug 2025
+  - holder: Mitsui & Co.
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-08
+    source_url: https://www.quantinuum.com/press-releases/honeywell-announces-600-million-capital-raise-for-quantinuum-at-10b-pre-money-equity-valuation-to-advance-quantum-computing-at-scale
+    note: Japan distribution partner; entered Jan 2024 round; followed-on in Aug 2025
+  - holder: Amgen
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-08
+    source_url: https://www.quantinuum.com/press-releases/honeywell-announces-600-million-capital-raise-for-quantinuum-at-10b-pre-money-equity-valuation-to-advance-quantum-computing-at-scale
+    note: strategic biotech customer; entered Jan 2024 round
+  - holder: Quanta Computer
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-08
+    source_url: https://www.quantinuum.com/press-releases/honeywell-announces-600-million-capital-raise-for-quantinuum-at-10b-pre-money-equity-valuation-to-advance-quantum-computing-at-scale
+    note: new strategic investor in the Aug 2025 $600M round
+  - holder: NVentures (NVIDIA)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-08
+    source_url: https://www.quantinuum.com/press-releases/honeywell-announces-600-million-capital-raise-for-quantinuum-at-10b-pre-money-equity-valuation-to-advance-quantum-computing-at-scale
+    note: NVIDIA's corporate venture arm; new investor Aug 2025
+  - holder: QED Investors
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-08
+    source_url: https://www.quantinuum.com/press-releases/honeywell-announces-600-million-capital-raise-for-quantinuum-at-10b-pre-money-equity-valuation-to-advance-quantum-computing-at-scale
+    note: new investor Aug 2025
+  - holder: Serendipity Capital
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-08
+    source_url: https://www.quantinuum.com/press-releases/honeywell-announces-600-million-capital-raise-for-quantinuum-at-10b-pre-money-equity-valuation-to-advance-quantum-computing-at-scale
+    note: follow-on investor Aug 2025
+
+key_personnel:
+  - role: President & CEO
+    name: Rajeeb (Raj) Hazra
+    since: 2023-02
+    source_url: https://www.quantinuum.com/press-releases/quantinuum-names-rajeeb-raj-hazra-chief-executive-officer
+  - role: Founder, Board Vice Chair & Head of Special Projects
+    name: Ilyas Khan
+    since: 2021-11
+    source_url: https://www.quantinuum.com/company/about
+  - role: Chairman of the Board
+    name: Vimal Kapur
+    since: 2023
+    source_url: https://www.quantinuum.com/company/about
+  - role: Chief Financial Officer
+    name: Nitesh Sharan
+    since: 2024
+    source_url: https://www.quantinuum.com/company/about
+  - role: Chief Strategy Officer & GM, Quantinuum Consulting Services
+    name: Kevin Dehoff
+    since: 2024
+    source_url: https://www.quantinuum.com/company/about
+  - role: Chief Commercial Officer
+    name: Larry Stack
+    since: 2024
+    source_url: https://www.quantinuum.com/company/about
+  - role: Chief Marketing Officer
+    name: Lawrence Schwartz
+    since: 2024
+    source_url: https://www.quantinuum.com/company/about
+  - role: Chief Legal Counsel & SVP Government Relations
+    name: Kaniah Konkoly-Thege
+    since: 2022
+    source_url: https://www.quantinuum.com/company/about
+  - role: Chief Scientist for Algorithms and Innovation
+    name: Harry Buhrman
+    since: 2024
+    source_url: https://www.quantinuum.com/company/about
+  - role: Chief Scientist for Hardware Technology Development
+    name: Patty Lee
+    since: 2021
+    source_url: https://www.quantinuum.com/company/about
+  - role: VP & GM, Compute Platforms Group
+    name: Jenni Strabley
+    since: 2023
+    source_url: https://www.quantinuum.com/company/about
+
+roadmap:
+  - target: 2026
+    item: Quantinuum Nasdaq IPO (Form S-1 publicly filed 8 May 2026; ticker QNT; previously confidentially submitted April 2026)
+    source_url: https://thequantuminsider.com/2026/04/22/honeywell-announces-quantinuums-confidential-submission-of-draft-registration-statement-for-proposed-ipo/
+    tag: qc
+  - target: 2027
+    item: Sol — first commercial 2D-grid QCCD system, scaling logical-qubit count under qLDPC codes
+    source_url: https://www.quantinuum.com/press-releases/quantinuum-unveils-accelerated-roadmap-to-achieve-universal-fault-tolerant-quantum-computing-by-2030
+    tag: qc
+  - target: 2029
+    item: Apollo — universal, fully fault-tolerant system targeting thousands of physical qubits and hundreds of logical qubits, circuits with millions of gates
+    source_url: https://www.quantinuum.com/blog/quantinuum-overcomes-last-major-hurdle-to-deliver-scalable-universal-fault-tolerant-quantum-computers-by-2029
+    tag: qc
+
+current_flagship:
+  name: Helios
+  generation: trapped-ion QCCD gen-3 (Ba+)
+
+references:
+  - kind: preprint
+    citation_key: null
+    url: https://arxiv.org/abs/2404.02280
+    note: Paetznick, da Silva et al. — logical qubits with better-than-physical error rates on H2 (Microsoft/Quantinuum, 2024)
+  - kind: press
+    citation_key: null
+    url: https://www.quantinuum.com/press-releases/quantinuum-announces-commercial-launch-of-new-helios-quantum-computer-that-offers-unprecedented-accuracy-to-enable-generative-quantum-ai-genqai
+    note: Helios commercial launch — 98 physical qubits, 48 logical qubits (Nov 2025)
+  - kind: press
+    citation_key: null
+    url: https://www.quantinuum.com/press-releases/quantinuum-unveils-accelerated-roadmap-to-achieve-universal-fault-tolerant-quantum-computing-by-2030
+    note: Accelerated roadmap to universal fault-tolerant QC by 2030 (Helios -> Sol -> Apollo)
+  - kind: blog
+    citation_key: null
+    url: https://www.quantinuum.com/blog/quantinuums-h-series-hits-56-physical-qubits-that-are-all-to-all-connected-and-departs-the-era-of-classical-simulation
+    note: H2 upgrade to 56 qubits, QV = 2^23
+  - kind: press
+    citation_key: null
+    url: https://www.honeywell.com/us/en/press/2025/09/honeywell-announces-600-million-capital-raise-for-quantinuum-at-10b-pre-money-equity-valuation-to-advance-quantum-computing-at-scale
+    note: $600M capital raise at $10B pre-money valuation (Sep 2025); Honeywell remains majority owner (~54%)
+
+partial:
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.gate_set
+  - field: modalities.qc.ec_code
+    as_of: 2026-05-13
+    note: announced as qLDPC in Helios press; no code-paper citation yet
+
+last_verified: 2026-05-13
+verification_method: web

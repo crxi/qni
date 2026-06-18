@@ -1,0 +1,393 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 760" role="img" aria-labelledby="q1-title q1-desc">
+  <title id="q1-title">Q1 end-to-end stack — heterogeneous transmon ↔ Diamond-SiV link, layer by layer</title>
+  <desc id="q1-desc">A seven-layer stack diagram answering LOI Q1: what's required, from the compute layer down, to move quantum information between two QCs. Node A (superconducting transmon, microwave-native) on the left column, Node B (Diamond-SiV, visible-native) on the right. Each layer is a horizontal band: Application (data qubit ψ at each end); Logical/QEC (surface-code patches at the endpoints — EC lives at the endpoints, not in the channel); Network service (the abstraction "Bell pair on demand"); Distillation (raw pairs purified to high fidelity); Link/swap (1G repeater chain with three SiV relays and four photonic BSMs, abbreviated); Encoding + bridges (M-O transduction at A, QFC at B and relays, time-bin encoding on the fibre); Physical channel (telecom O-band photons in fibre, ~0.3 dB/km). The asymmetry is the point: A's microwave matter qubit needs M-O transduction (current SOTA &lt;1%); B's 737 nm SiV qubit needs QFC (50–80% mature). Wavelengths grounded in Knaut et al. Nature 629.573 (2024).</desc>
+
+  <defs>
+    <style>
+      .band-a { fill: #f7f8fa; }
+      .band-b { fill: #ffffff; }
+      .title  { font: 600 18px "Inter", system-ui, sans-serif; fill: #1a1f2a; text-anchor: middle; }
+      .sub    { font: 12.5px "Inter", system-ui, sans-serif; fill: #4a4f57; text-anchor: middle; }
+      .layer-num { font: 700 11px "Inter", system-ui, sans-serif; fill: #8a8f99; letter-spacing: 0.08em; }
+      .layer-name{ font: 700 14px "Inter", system-ui, sans-serif; fill: #1a1f2a; }
+      .layer-hint{ font: 11.5px "Inter", system-ui, sans-serif; fill: #5a6472; }
+      .col-head  { font: 700 13px "Inter", system-ui, sans-serif; fill: #1a1f2a; text-anchor: middle; }
+      .col-sub   { font: 11.5px "Inter", system-ui, sans-serif; fill: #4a4f57; text-anchor: middle; }
+      .mid-head  { font: 600 12.5px "Inter", system-ui, sans-serif; fill: #5a6472; text-anchor: middle; font-style: italic; }
+      .cell-lbl  { font: 600 12.5px "Inter", system-ui, sans-serif; fill: #1a1f2a; text-anchor: middle; }
+      .cell-sub  { font: 11.5px "Inter", system-ui, sans-serif; fill: #4a4f57; text-anchor: middle; }
+      .cell-num  { font: 11.5px "Inter", system-ui, sans-serif; fill: #2272dd; text-anchor: middle; }
+      .right-note{ font: 11.5px "Inter", system-ui, sans-serif; fill: #5a6472; }
+      .data      { fill: #f29453; stroke: #8a3f0e; stroke-width: 1.2; }
+      .data-lbl  { font: 700 13px "Inter", system-ui, sans-serif; fill: #ffffff; text-anchor: middle; dominant-baseline: middle; }
+      .matter    { fill: #22c55e; stroke: #1a1f2a; stroke-width: 1.2; }
+      .matter-lbl{ font: 700 12px "Inter", system-ui, sans-serif; fill: #ffffff; text-anchor: middle; dominant-baseline: middle; }
+      .ent       { stroke: #c84a9b; stroke-width: 2; fill: none; stroke-linecap: round; }
+      .ent-lbl   { font: 600 12px "Inter", system-ui, sans-serif; fill: #c84a9b; text-anchor: middle; }
+      .mo-block  { fill: #fdeacf; stroke: #b8783c; stroke-width: 1.4; }
+      .qfc-block { fill: #e2eef9; stroke: #5a83b3; stroke-width: 1.4; }
+      .badge-mo  { font: 700 12px "Inter", system-ui, sans-serif; fill: #8a3f0e; text-anchor: middle; }
+      .badge-qfc { font: 700 12px "Inter", system-ui, sans-serif; fill: #1d4e7c; text-anchor: middle; }
+      .qec-cell  { fill: #ffffff; stroke: #5a6472; stroke-width: 1; }
+      .fibre     { stroke: #2272dd; stroke-width: 4; fill: none; stroke-linecap: round; opacity: 0.55; }
+      .photon-dot{ fill: #2f6fd6; }
+      .col-div   { stroke: #d8dce3; stroke-width: 1; stroke-dasharray: 3 3; fill: none; }
+      .band-div  { stroke: #e6e9ee; stroke-width: 1; fill: none; }
+      .pbsm-mini { fill: #ffffff; stroke: #5a6472; stroke-width: 1; }
+      .swap-x    { stroke: #5a6472; stroke-width: 1.4; fill: none; }
+      .arrow     { stroke: #5a6472; stroke-width: 1.4; fill: none; }
+      .arrow-mut { stroke: #aab0ba; stroke-width: 1.2; fill: none; stroke-dasharray: 3 3; }
+      .footer    { font: 11.5px "Inter", system-ui, sans-serif; fill: #5a6472; text-anchor: middle; }
+    </style>
+    <marker id="arr-end" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5a6472"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text class="title" x="550" y="26">Q1 stack — heterogeneous transmon ↔ Diamond-SiV link, layer by layer</text>
+  <text class="sub"   x="550" y="46">what's required from the compute layer down · wavelengths from Knaut et al. Nature 629.573 (2024)</text>
+
+  <!-- Column headers (y 62-100) -->
+  <rect x="200" y="62" width="240" height="38" rx="4" fill="#fffaf3" stroke="#e6c79a" stroke-width="1"/>
+  <text class="col-head" x="320" y="79">Node A · superconducting transmon</text>
+  <text class="col-sub"  x="320" y="94">data qubit at ~5 GHz microwave · in a dilution fridge</text>
+
+  <text class="mid-head" x="550" y="79">shared network · classical control plane</text>
+  <text class="mid-head" x="550" y="94">(layer-spanning service the network provides)</text>
+
+  <rect x="660" y="62" width="240" height="38" rx="4" fill="#f3f8fd" stroke="#9bbad9" stroke-width="1"/>
+  <text class="col-head" x="780" y="79">Node B · Diamond-SiV</text>
+  <text class="col-sub"  x="780" y="94">data + comm qubit at 737 nm (visible) · cryogenic</text>
+
+  <!-- Layer band geometry: 7 bands × 86px each = 602px, from y=108 to y=710 -->
+  <!-- Band centres: 151, 237, 323, 409, 495, 581, 667 -->
+
+  <!-- Alternating band backgrounds -->
+  <rect class="band-a" x="0" y="108" width="1100" height="86"/>
+  <rect class="band-b" x="0" y="194" width="1100" height="86"/>
+  <rect class="band-a" x="0" y="280" width="1100" height="86"/>
+  <rect class="band-b" x="0" y="366" width="1100" height="86"/>
+  <rect class="band-a" x="0" y="452" width="1100" height="86"/>
+  <rect class="band-b" x="0" y="538" width="1100" height="86"/>
+  <rect class="band-a" x="0" y="624" width="1100" height="86"/>
+
+  <!-- Band dividers -->
+  <line class="band-div" x1="0" y1="194" x2="1100" y2="194"/>
+  <line class="band-div" x1="0" y1="280" x2="1100" y2="280"/>
+  <line class="band-div" x1="0" y1="366" x2="1100" y2="366"/>
+  <line class="band-div" x1="0" y1="452" x2="1100" y2="452"/>
+  <line class="band-div" x1="0" y1="538" x2="1100" y2="538"/>
+  <line class="band-div" x1="0" y1="624" x2="1100" y2="624"/>
+
+  <!-- Column dividers (vertical guides through layer area) -->
+  <line class="col-div" x1="190" y1="108" x2="190" y2="710"/>
+  <line class="col-div" x1="460" y1="108" x2="460" y2="710"/>
+  <line class="col-div" x1="640" y1="108" x2="640" y2="710"/>
+  <line class="col-div" x1="910" y1="108" x2="910" y2="710"/>
+
+  <!-- ============================================================
+       L7 — APPLICATION  (y 108-194, centre 151)
+       ============================================================ -->
+  <text class="layer-num"  x="20" y="138">L7</text>
+  <text class="layer-name" x="20" y="156">Application</text>
+  <text class="layer-hint" x="20" y="172">user data qubit |ψ⟩</text>
+  <text class="layer-hint" x="20" y="187">the thing being shared</text>
+
+  <!-- ψ_A -->
+  <circle class="data" cx="320" cy="151" r="16"/>
+  <text class="data-lbl" x="320" y="151">ψ</text>
+  <text class="cell-sub" x="320" y="183">data qubit at A</text>
+
+  <!-- ↔ middle arrow -->
+  <line class="arrow" x1="350" y1="151" x2="750" y2="151" marker-end="url(#arr-end)"/>
+  <line class="arrow" x1="750" y1="151" x2="350" y2="151" marker-end="url(#arr-end)"/>
+  <text class="mid-head" x="550" y="143">share / teleport |ψ⟩ between A and B</text>
+
+  <!-- ψ_B -->
+  <circle class="data" cx="780" cy="151" r="16"/>
+  <text class="data-lbl" x="780" y="151">ψ</text>
+  <text class="cell-sub" x="780" y="183">data qubit at B</text>
+
+  <text class="right-note" x="930" y="155">Goal of Q1</text>
+
+  <!-- ============================================================
+       L6 — LOGICAL / QEC  (y 194-280, centre 237)
+       ============================================================ -->
+  <text class="layer-num"  x="20" y="224">L6</text>
+  <text class="layer-name" x="20" y="242">Logical · QEC</text>
+  <text class="layer-hint" x="20" y="258">surface code at the</text>
+  <text class="layer-hint" x="20" y="273">endpoints, not channel</text>
+
+  <!-- QEC patch A: 4×4 grid centred at (320, 237) -->
+  <g transform="translate(298 215)">
+    <rect class="qec-cell" x="0"  y="0"  width="11" height="11"/>
+    <rect class="qec-cell" x="11" y="0"  width="11" height="11"/>
+    <rect class="qec-cell" x="22" y="0"  width="11" height="11"/>
+    <rect class="qec-cell" x="33" y="0"  width="11" height="11"/>
+    <rect class="qec-cell" x="0"  y="11" width="11" height="11"/>
+    <rect class="qec-cell" x="11" y="11" width="11" height="11"/>
+    <rect class="qec-cell" x="22" y="11" width="11" height="11"/>
+    <rect class="qec-cell" x="33" y="11" width="11" height="11"/>
+    <rect class="qec-cell" x="0"  y="22" width="11" height="11"/>
+    <rect class="qec-cell" x="11" y="22" width="11" height="11"/>
+    <rect class="qec-cell" x="22" y="22" width="11" height="11"/>
+    <rect class="qec-cell" x="33" y="22" width="11" height="11"/>
+    <rect class="qec-cell" x="0"  y="33" width="11" height="11"/>
+    <rect class="qec-cell" x="11" y="33" width="11" height="11"/>
+    <rect class="qec-cell" x="22" y="33" width="11" height="11"/>
+    <rect class="qec-cell" x="33" y="33" width="11" height="11"/>
+  </g>
+  <text class="cell-sub" x="320" y="271">|ψ⟩_L → 16 physical</text>
+
+  <text class="mid-head" x="550" y="232">EC protects the endpoints' data qubits.</text>
+  <text class="mid-head" x="550" y="248">The channel itself is not error-corrected</text>
+  <text class="mid-head" x="550" y="263">— it relies on purification (L4) and heralding.</text>
+
+  <!-- QEC patch B -->
+  <g transform="translate(758 215)">
+    <rect class="qec-cell" x="0"  y="0"  width="11" height="11"/>
+    <rect class="qec-cell" x="11" y="0"  width="11" height="11"/>
+    <rect class="qec-cell" x="22" y="0"  width="11" height="11"/>
+    <rect class="qec-cell" x="33" y="0"  width="11" height="11"/>
+    <rect class="qec-cell" x="0"  y="11" width="11" height="11"/>
+    <rect class="qec-cell" x="11" y="11" width="11" height="11"/>
+    <rect class="qec-cell" x="22" y="11" width="11" height="11"/>
+    <rect class="qec-cell" x="33" y="11" width="11" height="11"/>
+    <rect class="qec-cell" x="0"  y="22" width="11" height="11"/>
+    <rect class="qec-cell" x="11" y="22" width="11" height="11"/>
+    <rect class="qec-cell" x="22" y="22" width="11" height="11"/>
+    <rect class="qec-cell" x="33" y="22" width="11" height="11"/>
+    <rect class="qec-cell" x="0"  y="33" width="11" height="11"/>
+    <rect class="qec-cell" x="11" y="33" width="11" height="11"/>
+    <rect class="qec-cell" x="22" y="33" width="11" height="11"/>
+    <rect class="qec-cell" x="33" y="33" width="11" height="11"/>
+  </g>
+  <text class="cell-sub" x="780" y="271">|ψ⟩_L → 16 physical</text>
+
+  <text class="right-note" x="930" y="241">EC = endpoints</text>
+
+  <!-- ============================================================
+       L5 — NETWORK SERVICE  (y 280-366, centre 323)
+       ============================================================ -->
+  <text class="layer-num"  x="20" y="310">L5</text>
+  <text class="layer-name" x="20" y="328">Network service</text>
+  <text class="layer-hint" x="20" y="344">"Bell pair on demand"</text>
+  <text class="layer-hint" x="20" y="359">RFC 9340 abstraction</text>
+
+  <!-- Big service box spanning A→B -->
+  <rect x="220" y="298" width="660" height="50" rx="8" fill="#fbe9f2" stroke="#c84a9b" stroke-width="1.4"/>
+  <circle class="matter" cx="240" cy="323" r="10"/>
+  <text class="matter-lbl" x="240" y="323">A</text>
+  <path class="ent" d="M252 323 Q 280 311, 300 323 T 348 323 T 396 323 T 444 323 T 492 323 T 540 323 T 588 323 T 636 323 T 684 323 T 732 323 T 780 323 T 828 323 T 848 323"/>
+  <circle class="matter" cx="860" cy="323" r="10"/>
+  <text class="matter-lbl" x="860" y="323">B</text>
+  <text class="cell-lbl" x="550" y="319">|Φ⁺⟩_AB  delivered on request</text>
+  <text class="cell-sub" x="550" y="338">teleport, distribute keys, run distributed protocols</text>
+
+  <text class="right-note" x="930" y="319">RFC 9340</text>
+  <text class="right-note" x="930" y="335">link-layer</text>
+
+  <!-- ============================================================
+       L4 — DISTILLATION  (y 366-452, centre 409)
+       ============================================================ -->
+  <text class="layer-num"  x="20" y="396">L4</text>
+  <text class="layer-name" x="20" y="414">Distillation</text>
+  <text class="layer-hint" x="20" y="430">raw pairs → high-F pair</text>
+  <text class="layer-hint" x="20" y="445">consumes N to make 1</text>
+
+  <!-- A side: 3 small Bell-pair glyphs above 1 better one -->
+  <g transform="translate(280 380)">
+    <circle class="matter" cx="0"  cy="0" r="6"/>
+    <path class="ent" d="M6 0 Q 18 -6, 30 0" />
+    <circle class="matter" cx="36" cy="0" r="6"/>
+
+    <circle class="matter" cx="0"  cy="14" r="6"/>
+    <path class="ent" d="M6 14 Q 18 8, 30 14" />
+    <circle class="matter" cx="36" cy="14" r="6"/>
+
+    <circle class="matter" cx="0"  cy="28" r="6"/>
+    <path class="ent" d="M6 28 Q 18 22, 30 28" />
+    <circle class="matter" cx="36" cy="28" r="6"/>
+
+    <line class="arrow" x1="18" y1="38" x2="18" y2="50" marker-end="url(#arr-end)"/>
+
+    <circle class="matter" cx="0"  cy="58" r="8"/>
+    <path class="ent" d="M8 58 Q 18 52, 28 58" stroke-width="2.5"/>
+    <circle class="matter" cx="36" cy="58" r="8"/>
+  </g>
+  <text class="cell-sub" x="316" y="448">N raw → 1 high-F</text>
+
+  <!-- Mid arrow -->
+  <text class="mid-head" x="550" y="395">F_raw → F_target via BBPSSW / DEJMPS</text>
+  <line class="arrow" x1="430" y1="409" x2="670" y2="409" stroke-dasharray="6 4" stroke="#aab0ba"/>
+  <text class="cell-sub" x="550" y="428">trade rate for fidelity</text>
+
+  <!-- B side: mirrored -->
+  <g transform="translate(740 380)">
+    <circle class="matter" cx="0"  cy="0" r="6"/>
+    <path class="ent" d="M6 0 Q 18 -6, 30 0" />
+    <circle class="matter" cx="36" cy="0" r="6"/>
+
+    <circle class="matter" cx="0"  cy="14" r="6"/>
+    <path class="ent" d="M6 14 Q 18 8, 30 14" />
+    <circle class="matter" cx="36" cy="14" r="6"/>
+
+    <circle class="matter" cx="0"  cy="28" r="6"/>
+    <path class="ent" d="M6 28 Q 18 22, 30 28" />
+    <circle class="matter" cx="36" cy="28" r="6"/>
+
+    <line class="arrow" x1="18" y1="38" x2="18" y2="50" marker-end="url(#arr-end)"/>
+
+    <circle class="matter" cx="0"  cy="58" r="8"/>
+    <path class="ent" d="M8 58 Q 18 52, 28 58" stroke-width="2.5"/>
+    <circle class="matter" cx="36" cy="58" r="8"/>
+  </g>
+  <text class="cell-sub" x="776" y="448">N raw → 1 high-F</text>
+
+  <text class="right-note" x="930" y="405">if F &lt; threshold</text>
+  <text class="right-note" x="930" y="421">at endpoints</text>
+
+  <!-- ============================================================
+       L3 — LINK / SWAP  (y 452-538, centre 495)
+       ============================================================ -->
+  <text class="layer-num"  x="20" y="482">L3</text>
+  <text class="layer-name" x="20" y="500">Link · swap</text>
+  <text class="layer-hint" x="20" y="516">1G repeater chain</text>
+  <text class="layer-hint" x="20" y="531">3 SiV relays · 4 pBSMs</text>
+
+  <!-- Repeater chain across the middle.
+       Matter qubits at: A=240, R1L=348, R1R=380, R2L=520, R2R=552, R3L=688, R3R=720, B=860 (yC=495)
+       pBSMs at midpoints: 294, 450, 620, 790 -->
+  <g>
+    <!-- A -->
+    <circle class="matter" cx="240" cy="495" r="11"/>
+    <text class="matter-lbl" x="240" y="495">A</text>
+
+    <!-- R1 pair -->
+    <circle class="matter" cx="348" cy="495" r="9"/>
+    <circle class="matter" cx="380" cy="495" r="9"/>
+    <text class="cell-sub"  x="364" y="525">R₁</text>
+
+    <!-- R2 pair -->
+    <circle class="matter" cx="520" cy="495" r="9"/>
+    <circle class="matter" cx="552" cy="495" r="9"/>
+    <text class="cell-sub"  x="536" y="525">R₂</text>
+
+    <!-- R3 pair -->
+    <circle class="matter" cx="688" cy="495" r="9"/>
+    <circle class="matter" cx="720" cy="495" r="9"/>
+    <text class="cell-sub"  x="704" y="525">R₃</text>
+
+    <!-- B -->
+    <circle class="matter" cx="860" cy="495" r="11"/>
+    <text class="matter-lbl" x="860" y="495">B</text>
+
+    <!-- pBSM 1 between A and R1L (midpoint 294) -->
+    <rect class="pbsm-mini" x="280" y="487" width="28" height="16" rx="2"/>
+    <line class="swap-x" x1="280" y1="487" x2="308" y2="503"/>
+    <line class="swap-x" x1="308" y1="487" x2="280" y2="503"/>
+    <text class="cell-sub" x="294" y="478">pBSM</text>
+
+    <!-- pBSM 2 between R1R and R2L (midpoint 450) -->
+    <rect class="pbsm-mini" x="436" y="487" width="28" height="16" rx="2"/>
+    <line class="swap-x" x1="436" y1="487" x2="464" y2="503"/>
+    <line class="swap-x" x1="464" y1="487" x2="436" y2="503"/>
+    <text class="cell-sub" x="450" y="478">pBSM</text>
+
+    <!-- pBSM 3 between R2R and R3L (midpoint 620) -->
+    <rect class="pbsm-mini" x="606" y="487" width="28" height="16" rx="2"/>
+    <line class="swap-x" x1="606" y1="487" x2="634" y2="503"/>
+    <line class="swap-x" x1="634" y1="487" x2="606" y2="503"/>
+    <text class="cell-sub" x="620" y="478">pBSM</text>
+
+    <!-- pBSM 4 between R3R and B (midpoint 790) -->
+    <rect class="pbsm-mini" x="776" y="487" width="28" height="16" rx="2"/>
+    <line class="swap-x" x1="776" y1="487" x2="804" y2="503"/>
+    <line class="swap-x" x1="804" y1="487" x2="776" y2="503"/>
+    <text class="cell-sub" x="790" y="478">pBSM</text>
+
+    <!-- short ent arcs from each matter to its pBSM -->
+    <path class="ent" d="M251 495 Q 270 480, 280 491"/>
+    <path class="ent" d="M308 491 Q 320 480, 339 495"/>
+    <path class="ent" d="M389 495 Q 410 480, 436 491"/>
+    <path class="ent" d="M464 491 Q 488 480, 511 495"/>
+    <path class="ent" d="M561 495 Q 580 480, 606 491"/>
+    <path class="ent" d="M634 491 Q 658 480, 679 495"/>
+    <path class="ent" d="M729 495 Q 750 480, 776 491"/>
+    <path class="ent" d="M804 491 Q 830 480, 849 495"/>
+  </g>
+
+  <text class="right-note" x="930" y="488">extend reach</text>
+  <text class="right-note" x="930" y="504">past fibre loss</text>
+
+  <!-- ============================================================
+       L2 — ENCODING + BRIDGES  (y 538-624, centre 581)
+       ============================================================ -->
+  <text class="layer-num"  x="20" y="568">L2</text>
+  <text class="layer-name" x="20" y="586">Encoding · bridges</text>
+  <text class="layer-hint" x="20" y="602">photon encoding +</text>
+  <text class="layer-hint" x="20" y="617">wavelength bridges</text>
+
+  <!-- A: M-O block -->
+  <rect class="mo-block" x="260" y="558" width="120" height="46" rx="6"/>
+  <text class="badge-mo" x="320" y="577">M-O transduction</text>
+  <text class="cell-sub" x="320" y="591">5 GHz → 1350 nm</text>
+  <text class="cell-num" x="320" y="617">η &lt; 1% · current SOTA</text>
+
+  <!-- Middle: encoding callout + telecom photon path -->
+  <text class="mid-head" x="550" y="568">photonic encoding on the fibre</text>
+  <text class="cell-sub" x="550" y="586">time-bin (Knaut 2024) · also dual-rail, polarisation</text>
+  <line class="fibre" x1="385" y1="600" x2="635" y2="600"/>
+  <circle class="photon-dot" cx="445" cy="600" r="3"/>
+  <circle class="photon-dot" cx="510" cy="600" r="3"/>
+  <circle class="photon-dot" cx="575" cy="600" r="3"/>
+  <text class="cell-num" x="550" y="617">all photons on the link at 1350 nm telecom O-band</text>
+
+  <!-- B: QFC block -->
+  <rect class="qfc-block" x="720" y="558" width="120" height="46" rx="6"/>
+  <text class="badge-qfc" x="780" y="577">QFC</text>
+  <text class="cell-sub" x="780" y="591">737 → 1350 nm</text>
+  <text class="cell-num" x="780" y="617">η ≈ 5.4% · PPLN pump 1623 nm</text>
+
+  <text class="right-note" x="930" y="572">bridges are</text>
+  <text class="right-note" x="930" y="588">asymmetric:</text>
+  <text class="right-note" x="930" y="604">M-O hard,</text>
+  <text class="right-note" x="930" y="620">QFC mature</text>
+
+  <!-- ============================================================
+       L1 — PHYSICAL  (y 624-710, centre 667)
+       ============================================================ -->
+  <text class="layer-num"  x="20" y="654">L1</text>
+  <text class="layer-name" x="20" y="672">Physical</text>
+  <text class="layer-hint" x="20" y="688">telecom fibre</text>
+  <text class="layer-hint" x="20" y="703">~0.3 dB/km @ 1350 nm</text>
+
+  <!-- A side: fridge icon -->
+  <rect x="270" y="644" width="100" height="46" rx="4" fill="#eef2f7" stroke="#5a6472" stroke-width="1"/>
+  <text class="cell-lbl" x="320" y="664">dilution fridge</text>
+  <text class="cell-sub" x="320" y="681">~10 mK</text>
+
+  <!-- Middle: long fibre line with photons -->
+  <line class="fibre" x1="375" y1="667" x2="725" y2="667"/>
+  <circle class="photon-dot" cx="420" cy="667" r="3.5"/>
+  <circle class="photon-dot" cx="490" cy="667" r="3.5"/>
+  <circle class="photon-dot" cx="560" cy="667" r="3.5"/>
+  <circle class="photon-dot" cx="630" cy="667" r="3.5"/>
+  <circle class="photon-dot" cx="700" cy="667" r="3.5"/>
+  <text class="cell-sub" x="550" y="654">single-mode fibre · Knaut 35 km deployed Boston-metro · 17 dB loss</text>
+  <text class="cell-sub" x="550" y="697">SNSPDs at receivers · ~2.5 Hz dark counts</text>
+
+  <!-- B side: diamond chip icon -->
+  <rect x="730" y="644" width="100" height="46" rx="4" fill="#eef2f7" stroke="#5a6472" stroke-width="1"/>
+  <text class="cell-lbl" x="780" y="664">diamond chip</text>
+  <text class="cell-sub" x="780" y="681">nanophotonic cavity</text>
+
+  <text class="right-note" x="930" y="664">classical</text>
+  <text class="right-note" x="930" y="680">channel runs</text>
+  <text class="right-note" x="930" y="696">alongside</text>
+
+  <!-- Footer -->
+  <text class="footer" x="550" y="734">Knaut et al. Nature 629.573 (2024) for wavelengths and 35 km deployed-fibre demo · Awschalom et al. PRX Quantum 2.017002 (2021) for QuIC stack framing</text>
+  <text class="footer" x="550" y="750">QEC + purification live at endpoints (L4, L6) · bridges (L2) appear only where adjacent layers mismatch in wavelength or modality · no QFC/M-O on the middle fibre — already at telecom</text>
+</svg>

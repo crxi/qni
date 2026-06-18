@@ -1,0 +1,220 @@
+slug: iqm
+name: IQM Quantum Computers
+categories: [qc]
+hq: Espoo, Finland
+founded: 2018
+status: private
+parent: null
+logo:
+  domain: meetiqm.com
+
+positioning: >
+  Superconducting (transmon) quantum-computer vendor selling on-premises
+  systems to HPC centres, national labs, and universities, with a Europe-led
+  commercial footprint (Munich, Paris, Madrid, Singapore offices alongside
+  Espoo HQ). Founded in 2018 as an Aalto University / VTT spin-out by Jan
+  Goetz, Mikko Möttönen, Kuan Yen Tan, and Juha Vartiainen. Delivered a
+  54-qubit Radiance to LRZ in 2025 under Euro-Q-Exa and is contracted to
+  deliver a 300-qubit system to VTT in 2027. Raised USD 320M in September
+  2025 led by Ten Eleven Ventures; SPAC merger with Real Asset Acquisition
+  Corp announced February 2026.
+
+modalities:
+  qc:
+    qubit_type: transmon
+    physical_qubits_current: 54
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: nearest-neighbour
+    gate_set: []
+
+milestones:
+  - date: 2026-02
+    tag: qc
+    headline: SPAC merger with Real Asset Acquisition Corp. announced at ~$1.8B pre-money valuation; targets Nasdaq Global Market listing under ticker IQMX with parallel Nasdaq Helsinki listing
+    source_url: https://www.cnbc.com/2026/02/23/finlands-iqm-listing-quantum-computing.html
+    source_type: filing
+  - date: 2025-09
+    tag: qc
+    headline: $320M growth round led by Ten Eleven Ventures; Tesi, Elo, Varma, Schwarz Group, Winbond, EIC, Bayern Kapital participated; valuation reaches unicorn status with €515M total raised
+    source_url: https://www.cnbc.com/2025/09/03/quantum-computing-startup-iqm-raises-320-million.html
+    source_type: press
+  - date: 2025-05
+    tag: qc
+    headline: Agreement with VTT to deliver a 150-qubit Radiance system in 2026 and a 300-qubit system (two 150-qubit processors connected) in 2027
+    source_url: https://www.businesswire.com/news/home/20250519294177/en/IQM-to-Deliver-World-leading-300-qubit-Quantum-Computer-to-Finland
+    source_type: press
+  - date: 2024
+    tag: qc
+    headline: Euro-Q-Exa contract — IQM selected to deliver a 54-qubit Radiance in H2 2025 and a 150-qubit Radiance by end-2026, integrated with the LRZ national supercomputer
+    source_url: https://www.lrz.de/en/news/detail/iqm-selected-to-deliver-two-advanced-quantum-computers-as-part-of-euro-q-exa-hybrid-system
+    source_type: press
+  - date: 2023-11
+    tag: qc
+    headline: IQM Radiance announced — 150-qubit superconducting system roadmap product
+    source_url: https://thequantuminsider.com/2023/11/09/iqm-quantum-computers-aims-at-150-qubit-system-with-iqm-radiance/
+    source_type: press
+  - date: 2022-07
+    tag: qc
+    headline: "€128M Series A2 closes (July 2022)"
+    source_url: https://thequantuminsider.com/2022/07/22/finnish-startup-iqm-raises-e128m-in-series-a2-funding/
+    source_type: press
+  - date: 2020-11
+    tag: qc
+    headline: "€39M Series A; IQM Spark 5-qubit system targeted at universities and research institutes"
+    source_url: https://tech.eu/2020/11/10/iqm-series-a/
+    source_type: press
+  - date: 2019
+    tag: qc
+    headline: "€11.2M seed round (Maki.vc, Tesi, MIG Fonds, Vito Ventures)"
+    source_url: https://www.helsinkitimes.fi/business/16554-finnish-quantum-computing-start-up-raises-11-2m-in-seed-capital.html
+    source_type: press
+  - date: 2018
+    tag: qc
+    headline: IQM founded in Espoo as an Aalto University / VTT spin-out by Jan Goetz, Mikko Möttönen, Kuan Yen Tan, and Juha Vartiainen
+    source_url: https://en.wikipedia.org/wiki/IQM_Quantum_Computers
+    source_type: web
+
+shareholders:
+  - holder: Ten Eleven Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-09
+    source_url: https://techcrunch.com/2025/09/03/brand-new-unicorn-iqm-sets-its-sights-beyond-europe-for-its-quantum-computers/
+    note: Lead investor in the 2025 $320M round; IQM's first U.S. investor
+  - holder: Tesi (Finnish Industry Investment)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-09
+    source_url: https://tesi.fi/en/article/iqm-does-groundbreaking-work-in-quantum-computing/
+    note: Investor since 2019 seed; increased stake in 2025
+  - holder: Schwarz Group
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-09
+    source_url: https://techfundingnews.com/iqm-quantum-computers-secures-e275m-to-power-europes-quantum-leap/
+  - holder: Winbond Electronics Corporation
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-09
+    source_url: https://techfundingnews.com/iqm-quantum-computers-secures-e275m-to-power-europes-quantum-leap/
+  - holder: Elo Mutual Pension Insurance
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-09
+    source_url: https://techfundingnews.com/iqm-quantum-computers-secures-e275m-to-power-europes-quantum-leap/
+  - holder: Varma Mutual Pension Insurance
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-09
+    source_url: https://techfundingnews.com/iqm-quantum-computers-secures-e275m-to-power-europes-quantum-leap/
+  - holder: EIC Fund (European Innovation Council)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-09
+    source_url: https://techfundingnews.com/iqm-quantum-computers-secures-e275m-to-power-europes-quantum-leap/
+  - holder: Bayern Kapital
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-09
+    source_url: https://techfundingnews.com/iqm-quantum-computers-secures-e275m-to-power-europes-quantum-leap/
+  - holder: Maki.vc
+    stake_percent: null
+    stake_class: minority
+    as_of: 2019
+    source_url: https://www.helsinkitimes.fi/business/16554-finnish-quantum-computing-start-up-raises-11-2m-in-seed-capital.html
+    note: Seed-round participant
+  - holder: MIG Fonds
+    stake_percent: null
+    stake_class: minority
+    as_of: 2019
+    source_url: https://www.helsinkitimes.fi/business/16554-finnish-quantum-computing-start-up-raises-11-2m-in-seed-capital.html
+  - holder: Founders (Goetz, Möttönen, Tan, Vartiainen)
+    stake_percent: null
+    stake_class: founder
+    as_of: 2025-09
+    source_url: https://en.wikipedia.org/wiki/IQM_Quantum_Computers
+
+key_personnel:
+  - role: CEO & Co-founder
+    name: Jan Goetz
+    since: 2018
+    source_url: https://iqm.tech/company/about-iqm/
+  - role: Chief Scientist & Co-founder
+    name: Mikko Möttönen
+    since: 2018
+    source_url: https://iqm.tech/company/about-iqm/
+    note: Aalto University Professor; one of the founding scientists
+  - role: VP / Co-founder
+    name: Kuan Yen Tan
+    since: 2018
+    source_url: https://en.wikipedia.org/wiki/IQM_Quantum_Computers
+  - role: VP / Co-founder
+    name: Juha Vartiainen
+    since: 2018
+    source_url: https://en.wikipedia.org/wiki/IQM_Quantum_Computers
+
+roadmap:
+  - target: 2030
+    item: Fault-tolerant quantum computing — hundreds of logical qubits via QLDPC error correction and >1M physical qubits across merged topologies
+    source_url: https://iqm.tech/company/press-releases/
+    tag: qc
+  - target: 2027
+    item: 300-qubit system to VTT (two networked 150-qubit Radiance processors)
+    source_url: https://www.businesswire.com/news/home/20250519294177/en/IQM-to-Deliver-World-leading-300-qubit-Quantum-Computer-to-Finland
+    tag: qc
+  - target: 2026
+    item: 150-qubit Radiance deliveries to VTT (mid-2026) and LRZ (end-2026), purpose-built for QEC research with tunable couplers and pulse-level control access
+    source_url: https://www.lrz.de/en/news/detail/iqm-selected-to-deliver-two-advanced-quantum-computers-as-part-of-euro-q-exa-hybrid-system
+    tag: qc
+  - target: 2025
+    item: 54-qubit Radiance delivery to LRZ (H2 2025) as first phase of Euro-Q-Exa
+    source_url: https://www.lrz.de/en/news/detail/iqm-selected-to-deliver-two-advanced-quantum-computers-as-part-of-euro-q-exa-hybrid-system
+    tag: qc
+
+current_flagship:
+  name: IQM Radiance
+  generation: superconducting transmon, 20 / 54 / 150-qubit variants
+
+references:
+  - kind: blog
+    citation_key: null
+    url: https://iqm.tech/technology/roadmap/
+    note: Vendor roadmap page
+  - kind: press
+    citation_key: null
+    url: https://iqm.tech/press-releases/iqm-launches-iqm-radiance-a-150-qubit-system-paving-the-way-to-quantum-advantage/
+    note: Radiance launch announcement
+  - kind: press
+    citation_key: null
+    url: https://www.cnbc.com/2026/02/23/finlands-iqm-listing-quantum-computing.html
+    note: 2026 SPAC merger announcement
+  - kind: press
+    citation_key: null
+    url: https://www.cnbc.com/2025/09/03/quantum-computing-startup-iqm-raises-320-million.html
+    note: $320M 2025 round
+  - kind: web
+    citation_key: null
+    url: https://en.wikipedia.org/wiki/IQM_Quantum_Computers
+    note: Company-history reference
+
+partial:
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.ec_code
+  - modalities.qc.gate_set
+  - field: modalities.qc.physical_qubits_current
+    as_of: 2026-05-20
+    note: 54-qubit Radiance (LRZ delivery, H2 2025) is the largest IQM system shipped at time of writing; 150-qubit systems contracted but not yet delivered
+  - field: shareholders
+    as_of: 2026-05-20
+    note: Private equity stakes not disclosed; investor list compiled from announced round participation. Post-SPAC cap table will become public on Real Asset proxy / S-4 filing.
+
+last_verified: 2026-05-20
+verification_method: web

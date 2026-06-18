@@ -1,0 +1,1321 @@
+body:
+  id: itu-t
+  name: International Telecommunication Union - Telecommunication Standardization Sector
+  short_name: ITU-T
+  url: https://www.itu.int/en/ITU-T/Pages/default.aspx
+  scope: >
+    UN treaty body. Develops Recommendations that member states use as
+    references in national regulation. Quantum work is split across
+    Study Groups: SG13 (network architecture, lead on Y.3800 QKDN series
+    and quantum-network supplements), SG17 (security, X.17xx series),
+    SG11 (signalling, Q.4160 series), SG15 (transport, sync).
+  notes: >
+    Y.3800-series covers QKD networks. X.17xx covers QKDN security.
+    Q.416x covers QKDN signalling. Y.Sup98 (2025) is the first
+    substantive ITU-T document on entanglement-based quantum networks
+    and lays out a seven-Study-Group roadmap. The pre-standardisation
+    feeder was FG-QIT4N (Focus Group on Quantum Information Technology
+    for Networks, 2019-2021).
+
+standards:
+  # Y.3800 series - QKDN architecture and operations (SG13)
+  - id: Y.3800
+    title: Overview on networks supporting quantum key distribution
+    type: recommendation
+    date: 2019-10
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3800/en
+    pdf: reference/standards/ITU/Y.3800.pdf
+    summary: >
+      Foundational recommendation of the Y.3800-series. Defines QKDN
+      reference architecture, layered model (quantum, key-management,
+      QKDN-management, service), and basic functions of trusted-node
+      key relay.
+
+  - id: Y.3801
+    title: Functional requirements for quantum key distribution networks
+    type: recommendation
+    date: 2020-04
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3801/en
+    pdf: reference/standards/ITU/Y.3801.pdf
+    summary: >
+      Functional requirements on a QKDN at the quantum, key-management,
+      and service layers.
+
+  - id: Y.3802
+    title: Quantum key distribution networks - Functional architecture
+    type: recommendation
+    date: 2020-12
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3802/en
+    pdf: reference/standards/ITU/Y.3802.pdf
+    summary: >
+      Detailed functional architecture: trusted node, KM agent, KSA,
+      and the reference points between them (Ak, Kx, Kq, Ck).
+
+  - id: Y.3803
+    title: Quantum key distribution networks - Key management
+    type: recommendation
+    date: 2020-12
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3803/en
+    pdf: reference/standards/ITU/Y.3803.pdf
+    summary: >
+      Key-management procedures: key relay across trusted nodes,
+      key-pool maintenance, supply to applications.
+
+  - id: Y.3804
+    title: Quantum key distribution networks - Control and management
+    type: recommendation
+    date: 2025-04
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3804/en
+    pdf: reference/standards/ITU/Y.3804.pdf
+    summary: >
+      Control- and management-plane functions for QKDN operations,
+      fault, configuration, accounting, performance, security.
+
+  - id: Y.3805
+    title: Quantum key distribution networks - Software-defined networking control
+    type: recommendation
+    date: 2021-12
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3805/en
+    pdf: reference/standards/ITU/Y.3805.pdf
+    summary: >
+      SDN controller for QKDN: separation of control and forwarding,
+      programmability of key-management functions.
+
+  - id: Y.3806
+    title: Quantum key distribution networks - Requirements for quality of service assurance
+    type: recommendation
+    date: 2021-09
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3806/en
+    pdf: reference/standards/ITU/Y.3806.pdf
+    summary: QoS-assurance requirements for QKDN.
+
+  - id: Y.3807
+    title: Quantum key distribution networks - Quality of service parameters
+    type: recommendation
+    date: 2022-02
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3807/en
+    pdf: reference/standards/ITU/Y.3807.pdf
+    summary: >
+      Defines QoS parameters (key-generation rate, key-relay latency,
+      key-pool occupancy, availability) and their measurement intent.
+
+  - id: Y.3808
+    title: Integration of quantum key distribution network and secure storage network
+    type: recommendation
+    date: 2024-09
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3808/en
+    pdf: reference/standards/ITU/Y.3808.pdf
+    summary: >
+      Framework for integrating QKDN with secret-sharing-based secure
+      storage networks.
+
+  - id: Y.3809
+    title: A role-based model in quantum key distribution networks deployment
+    type: recommendation
+    date: 2022-02
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3809/en
+    pdf: reference/standards/ITU/Y.3809.pdf
+    summary: >
+      Roles model for QKDN deployment (operator, customer, service
+      provider) and the responsibilities of each.
+
+  - id: Y.3810
+    title: Quantum key distribution network interworking - Framework
+    type: recommendation
+    date: 2024-09
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3810/en
+    pdf: reference/standards/ITU/Y.3810.pdf
+    summary: >
+      Framework for interworking between QKDNs operated by different
+      administrative domains - the precondition for cross-operator
+      key relay.
+
+  - id: Y.3811
+    title: Quantum key distribution networks - Functional architecture for quality of service assurance
+    type: recommendation
+    date: 2022-09
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3811/en
+    pdf: reference/standards/ITU/Y.3811.pdf
+    summary: Functional architecture supporting the Y.3806/Y.3807 QoS work.
+
+  - id: Y.3812
+    title: Quantum key distribution networks - Requirements for machine learning based quality of service assurance
+    type: recommendation
+    date: 2022-09
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3812/en
+    pdf: reference/standards/ITU/Y.3812.pdf
+    summary: >
+      Requirements for using ML to predict and assure QKDN QoS
+      parameters.
+
+  - id: Y.3813
+    title: Quantum key distribution network interworking - Functional requirements
+    type: recommendation
+    date: 2024-09
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3813/en
+    pdf: reference/standards/ITU/Y.3813.pdf
+    summary: Functional requirements for the interworking model of Y.3810.
+
+  - id: Y.3814
+    title: Quantum key distribution networks - Functional requirements and architecture for machine learning enablement
+    type: recommendation
+    date: 2023-01
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3814/en
+    pdf: reference/standards/ITU/Y.3814.pdf
+    summary: ML-enablement functions across the QKDN architecture.
+
+  - id: Y.3815
+    title: Quantum key distribution networks - Overview of resilience
+    type: recommendation
+    date: 2023-09
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3815/en
+    pdf: reference/standards/ITU/Y.3815.pdf
+    summary: >
+      Resilience concepts for QKDN: failure modes (link, node, key-pool
+      starvation), recovery objectives.
+
+  - id: Y.3816
+    title: Quantum key distribution networks - Functional architecture enhancement of machine learning based quality of service assurance
+    type: recommendation
+    date: 2023-09
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3816/en
+    pdf: reference/standards/ITU/Y.3816.pdf
+    summary: Architecture enhancements to Y.3811 for ML-driven QoS.
+
+  - id: Y.3817
+    title: Quantum key distribution network interworking - Requirements for quality of service assurance
+    type: recommendation
+    date: 2024-09
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3817/en
+    pdf: reference/standards/ITU/Y.3817.pdf
+    summary: QoS-assurance requirements for inter-domain QKDN interworking.
+
+  - id: Y.3818
+    title: Quantum key distribution network interworking - Architecture
+    type: recommendation
+    date: 2024-09
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3818/en
+    pdf: reference/standards/ITU/Y.3818.pdf
+    summary: Architectural specification for inter-domain QKDN interworking.
+
+  - id: Y.3819
+    title: Quantum key distribution networks - Requirements and architectural model for autonomic management and control enablement
+    type: recommendation
+    date: 2023-12
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3819/en
+    pdf: reference/standards/ITU/Y.3819.pdf
+    summary: >
+      Autonomic (closed-loop, self-managing) operations for QKDN
+      management planes.
+
+  - id: Y.3820
+    title: Quantum key distribution network interworking - Software-defined networking control
+    type: recommendation
+    date: 2024-09
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3820/en
+    pdf: reference/standards/ITU/Y.3820.pdf
+    summary: SDN control for inter-domain QKDN interworking.
+
+  - id: Y.3821
+    title: Quantum key distribution networks - Requirements for resilience
+    type: recommendation
+    date: 2024-04
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3821/en
+    pdf: reference/standards/ITU/Y.3821.pdf
+    summary: Formal resilience requirements following the Y.3815 overview.
+
+  - id: Y.3822
+    title: Quantum key distribution networks - Requirements for autonomic quality of service assurance
+    type: recommendation
+    date: 2024-09
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3822/en
+    pdf: reference/standards/ITU/Y.3822.pdf
+    summary: Requirements binding autonomic management to the QoS framework.
+
+  - id: Y.3824
+    title: Quantum key distribution network federation - Reference models
+    type: recommendation
+    date: 2024-09
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3824/en
+    pdf: reference/standards/ITU/Y.3824.pdf
+    summary: >
+      Reference models for federation across QKDNs - a model lighter
+      than full interworking, intended for trust-and-billing
+      relationships.
+
+  - id: Y.3825
+    title: Integration of quantum key distribution network and time-sensitive network - Framework
+    type: recommendation
+    date: 2024-09
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3825/en
+    pdf: reference/standards/ITU/Y.3825.pdf
+    summary: >
+      Framework for binding QKDN key supply to time-sensitive networks
+      (deterministic latency for industrial / utility use).
+
+  - id: Y.3826
+    title: Integration of quantum key distribution network and user network supporting end-to-end modern cryptography services - Framework
+    type: recommendation
+    date: 2024-09
+    group: SG13
+    tags: [qkdn, crypto-meta]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3826/en
+    pdf: reference/standards/ITU/Y.3826.pdf
+    summary: >
+      Framework for using QKD-supplied keys alongside conventional /
+      post-quantum cryptography in end-to-end services.
+
+  - id: Y.3827
+    title: Quantum key distribution networks - Measurement methodology for quality of service parameters
+    type: recommendation
+    date: 2025-04
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3827/en
+    pdf: reference/standards/ITU/Y.3827.pdf
+    summary: How to measure the Y.3807 QoS parameters in practice.
+
+  - id: Y.3828
+    title: Integration of quantum key distribution network and user network supporting end-to-end modern cryptography services - Requirements for quality of service
+    type: recommendation
+    date: 2025-04
+    group: SG13
+    tags: [qkdn, crypto-meta]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3828/en
+    pdf: reference/standards/ITU/Y.3828.pdf
+    summary: QoS requirements for the Y.3826 integration framework.
+
+  - id: Y.3829
+    title: Quantum key distribution networks interworking - Functional architecture for quality-of-service assurance
+    type: recommendation
+    date: 2025-08
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3829/en
+    pdf: reference/standards/ITU/Y.3829.pdf
+    summary: QoS-assurance functional architecture for inter-domain interworking.
+
+  - id: Y.3830
+    title: Quantum key distribution networks - Procedures for key supply protection and recovery for resilience
+    type: recommendation
+    date: 2025-08
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3830/en
+    pdf: reference/standards/ITU/Y.3830.pdf
+    summary: Operational procedures binding the Y.3821 resilience requirements.
+
+  - id: Y.3834
+    title: Quantum key distribution networks - Functional architecture enhancement for autonomic quality of service assurance
+    type: recommendation
+    date: 2025-12
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3834/en
+    pdf: reference/standards/ITU/Y.3834.pdf
+    summary: Architecture upgrade combining autonomic operations with QoS assurance.
+
+  # Y-series Supplements (informational)
+  - id: Y.Sup70
+    title: ITU-T Y.3800-series - Quantum key distribution networks - Applications of machine learning
+    type: supplement
+    date: 2021-07
+    group: SG13
+    tags: [qkdn]
+    status: informational
+    url: https://www.itu.int/rec/T-REC-Y.Sup70/en
+    pdf: reference/standards/ITU/Y.Sup70.pdf
+    summary: Informational survey of ML use cases across QKDN management.
+
+  - id: Y.Sup74
+    title: ITU-T Y.3800-series - Standardization roadmap on quantum key distribution networks
+    type: supplement
+    date: 2023-03
+    group: SG13
+    tags: [qkdn]
+    status: informational
+    url: https://www.itu.int/rec/T-REC-Y.Sup74/en
+    pdf: reference/standards/ITU/Y.Sup74.pdf
+    summary: Roadmap surveying QKDN standardisation across ITU-T, ETSI, ISO/IEC, IEEE.
+
+  - id: Y.Sup75
+    title: ITU-T Y.3000-series - Quantum key distribution networks - Quantum-enabled future networks
+    type: supplement
+    date: 2023-03
+    group: SG13
+    tags: [qkdn, qnet]
+    status: informational
+    url: https://www.itu.int/rec/T-REC-Y.Sup75/en
+    pdf: reference/standards/ITU/Y.Sup75.pdf
+    summary: >
+      First ITU-T document looking past QKDN to entanglement-based
+      future networks; predecessor of Y.Sup98.
+
+  - id: Y.Sup79
+    title: ITU-T Y.3800-series - Quantum key distribution networks - Role in end-to-end cryptographic services with non-quantum cryptography
+    type: supplement
+    date: 2023-11
+    group: SG13
+    tags: [qkdn, crypto-meta]
+    status: informational
+    url: https://www.itu.int/rec/T-REC-Y.Sup79/en
+    pdf: reference/standards/ITU/Y.Sup79.pdf
+    summary: >
+      How QKDN keys compose with conventional and post-quantum
+      cryptography in end-to-end services - the hybrid-stack rationale.
+
+  - id: Y.Sup80
+    title: ITU-T Y.3800-series - Quantum key distribution networks use cases
+    type: supplement
+    date: 2023-11
+    group: SG13
+    tags: [qkdn]
+    status: informational
+    url: https://www.itu.int/rec/T-REC-Y.Sup80/en
+    pdf: reference/standards/ITU/Y.Sup80.pdf
+    summary: Catalogue of QKDN deployment use cases (telco, finance, government, critical infrastructure).
+
+  - id: Y.Sup89
+    title: ITU-T Y.3800-series - Analysis of synchronization in quantum key distribution networks
+    type: supplement
+    date: 2025-03
+    group: SG13
+    tags: [qkdn]
+    status: informational
+    url: https://www.itu.int/rec/T-REC-Y.Sup89/en
+    pdf: reference/standards/ITU/Y.Sup89.pdf
+    summary: >
+      Timing and synchronization analysis for QKDN - clock accuracy,
+      jitter, and their interaction with key-generation throughput.
+
+  - id: Y.Sup98
+    title: ITU-T Y.3800-series - Technical considerations towards quantum networks
+    type: supplement
+    date: 2025-11
+    group: SG13
+    tags: [qnet, qkdn]
+    status: informational
+    url: https://www.itu.int/rec/T-REC-Y.Sup98/en
+    summary: >
+      The most substantive ITU-T document on entanglement-based
+      networking. Defines quantum network ("entangled-qubits-assisted
+      network"), quantum repeater, quantum router, entanglement
+      purification, entanglement swapping. §10 lays out a seven-Study-
+      Group standardisation roadmap (SG2/11/12/13/15/17/20).
+
+  - id: Y.TR-QN-UC
+    title: Use cases of quantum networks beyond QKDN
+    type: technical-report
+    date: 2023-11
+    group: SG13
+    tags: [qnet]
+    status: informational
+    url: https://www.itu.int/dms_pub/itu-t/opb/tut/T-TUT-QN-2023-1-PDF-E.pdf
+    summary: >
+      Technical Report cataloguing quantum-network applications beyond
+      key distribution: distributed quantum computing, blind / delegated
+      computation, networked sensing, clock synchronisation.
+
+  # X-series (SG17, Security)
+  - id: X.1702
+    title: Quantum noise random number generator architecture
+    type: recommendation
+    date: 2019-11
+    group: SG17
+    tags: [qrng, security]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-X.1702/en
+    pdf: reference/standards/ITU/X.1702.pdf
+    summary: >
+      Architecture for QRNGs based on quantum-noise sources;
+      conditioning, health-test, and entropy-claim requirements.
+
+  - id: X.1710
+    title: Security framework for quantum key distribution networks
+    type: recommendation
+    date: 2020-10
+    group: SG17
+    tags: [qkdn, security]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-X.1710/en
+    pdf: reference/standards/ITU/X.1710.pdf
+    summary: Threat model and security framework for QKDNs - the SG17 root.
+
+  - id: X.1712
+    title: Security requirements and measures for quantum key distribution networks - Key management
+    type: recommendation
+    date: 2021-10
+    group: SG17
+    tags: [qkdn, security]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-X.1712/en
+    pdf: reference/standards/ITU/X.1712.pdf
+    summary: Security requirements specific to the QKDN key-management layer.
+
+  - id: X.1713
+    title: Security requirements for the protection of quantum key distribution nodes
+    type: recommendation
+    date: 2024-04
+    group: SG17
+    tags: [qkdn, security]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-X.1713/en
+    pdf: reference/standards/ITU/X.1713.pdf
+    summary: >
+      Physical, logical, and operational protection requirements for
+      QKD trusted nodes.
+
+  - id: X.1714
+    title: Key combination and confidential key supply for quantum key distribution networks
+    type: recommendation
+    date: 2020-10
+    group: SG17
+    tags: [qkdn, security, crypto-meta]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-X.1714/en
+    pdf: reference/standards/ITU/X.1714.pdf
+    summary: >
+      Methods for combining QKD-derived keys with other key sources
+      and supplying them to applications confidentially.
+
+  - id: X.1715
+    title: Security requirements and measures for integration of quantum key distribution network and secure storage network
+    type: recommendation
+    date: 2022-07
+    group: SG17
+    tags: [qkdn, security]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-X.1715/en
+    pdf: reference/standards/ITU/X.1715.pdf
+    summary: Security requirements for the QKDN+secure-storage combination.
+
+  - id: X.1716
+    title: Authentication and authorization in quantum key distribution network
+    type: recommendation
+    date: 2024-10
+    group: SG17
+    tags: [qkdn, security]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-X.1716/en
+    pdf: reference/standards/ITU/X.1716.pdf
+    summary: Authentication and authorization mechanisms for QKDN users and nodes.
+
+  - id: X.1717
+    title: Security requirements and measures for quantum key distribution network - Control and management
+    type: recommendation
+    date: 2024-10
+    group: SG17
+    tags: [qkdn, security]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-X.1717/en
+    pdf: reference/standards/ITU/X.1717.pdf
+    summary: Security requirements for the QKDN control- and management-plane (Y.3804 surface).
+
+  - id: X.1811
+    title: Security guidelines for applying quantum-safe algorithms in IMT-2020 systems
+    type: recommendation
+    date: 2021-04
+    group: SG17
+    tags: [crypto-meta, security]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-X.1811/en
+    pdf: reference/standards/ITU/X.1811.pdf
+    summary: >
+      Guidelines for deploying post-quantum cryptography in 5G / IMT-2020
+      systems. The ITU's flagship PQC-in-mobile recommendation.
+
+  # Q-series (SG11, signalling)
+  - id: Q.4160
+    title: Quantum key distribution networks - Protocol framework
+    type: recommendation
+    date: 2023-12
+    group: SG11
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Q.4160/en
+    pdf: reference/standards/ITU/Q.4160.pdf
+    summary: Protocol framework for QKDN signalling - umbrella for Q.4161-Q.4164.
+
+  - id: Q.4161
+    title: Protocols for Ak interfaces for quantum key distribution networks
+    type: recommendation
+    date: 2023-12
+    group: SG11
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Q.4161/en
+    pdf: reference/standards/ITU/Q.4161.pdf
+    summary: Wire protocol for the Ak reference point (application-to-key-manager).
+
+  - id: Q.4162
+    title: Protocols for Kq-1 interfaces for quantum key distribution networks
+    type: recommendation
+    date: 2023-12
+    group: SG11
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Q.4162/en
+    pdf: reference/standards/ITU/Q.4162.pdf
+    summary: Wire protocol for the Kq-1 reference point (key-manager to QKD module).
+
+  - id: Q.4163
+    title: Protocols for Kx interfaces for quantum key distribution networks
+    type: recommendation
+    date: 2023-12
+    group: SG11
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Q.4163/en
+    pdf: reference/standards/ITU/Q.4163.pdf
+    summary: Wire protocol for the Kx reference point (inter-key-manager, key relay).
+
+  - id: Q.4164
+    title: Protocols for Ck interfaces for quantum key distribution networks
+    type: recommendation
+    date: 2025-04
+    group: SG11
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Q.4164/en
+    pdf: reference/standards/ITU/Q.4164.pdf
+    summary: Wire protocol for the Ck reference point (QKDN controller to key-manager).
+
+  # Technical tutorials / reports
+  - id: T-TUT-QKD-2025-1
+    title: Standardization consideration of satellite-based QKDN
+    type: technical-report
+    date: 2025-03
+    group: SG13
+    tags: [qkdn, qkd-protocol]
+    status: informational
+    url: https://www.itu.int/pub/T-TUT-QKD-2025-1
+    pdf: reference/standards/ITU/T-TUT-QKD-2025-1-PDF-E.pdf
+    summary: >
+      Technical Report (TR.SQKDN) surveying satellite-QKD architectures,
+      link budgets, and the standardisation gaps for space-ground QKDN
+      integration.
+
+  # FG-QIT4N deliverables (pre-standardisation, 2019-2021)
+  - id: FG-QIT4N-D1.1
+    title: Quantum information technology for networks terminology - Network aspects of quantum information technologies
+    type: technical-report
+    date: 2021-11
+    group: FG-QIT4N
+    tags: [qkdn, qnet]
+    status: informational
+    url: https://www.itu.int/dms_pub/itu-t/opb/fg/T-FG-QIT4N-2021-D1.1-PDF-E.pdf
+    summary: >
+      Pre-standardisation terminology deliverable from the Focus Group
+      on Quantum Information Technology for Networks. Feeder into
+      ITU-T quantum-network vocabulary work.
+    note: FG-QIT4N closed 2021; deliverables fed SG13/SG17 work programmes.
+
+  - id: FG-QIT4N-D1.2
+    title: Quantum information technology for networks use cases - Network aspects of quantum information technologies
+    type: technical-report
+    date: 2021-11
+    group: FG-QIT4N
+    tags: [qkdn, qnet]
+    status: informational
+    url: https://www.itu.int/dms_pub/itu-t/opb/fg/T-FG-QIT4N-2021-D1.2-PDF-E.pdf
+    summary: Use-case catalogue feeding Y.Sup75 / Y.Sup80.
+
+  - id: FG-QIT4N-D1.4
+    title: Standardization outlook and technology maturity - Network aspects of quantum information technologies
+    type: technical-report
+    date: 2021-11
+    group: FG-QIT4N
+    tags: [qkdn, qnet]
+    status: informational
+    url: https://www.itu.int/dms_pub/itu-t/opb/fg/T-FG-QIT4N-2021-D1.4-PDF-E.pdf
+    summary: >
+      Standardisation outlook and technology-maturity assessment;
+      feeder into Y.Sup74 / Y.Sup98 roadmaps.
+
+  - id: FG-QIT4N-D2.1
+    title: "Quantum information technology for networks terminology: Quantum key distribution network"
+    type: technical-report
+    date: 2021-11
+    group: FG-QIT4N
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/pub/T-FG-QIT4N-2021-D2.1
+
+  - id: FG-QIT4N-D2.2
+    title: "Quantum information technology for networks use cases: Quantum key distribution network"
+    type: technical-report
+    date: 2021-11
+    group: FG-QIT4N
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/pub/T-FG-QIT4N-2021-D2.2
+
+  - id: FG-QIT4N-D2.3.1
+    title: "Quantum key distribution network protocols: Quantum layer"
+    type: technical-report
+    date: 2021-11
+    group: FG-QIT4N
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/pub/T-FG-QIT4N-2021-D2.3.1
+
+  - id: FG-QIT4N-D2.3.2
+    title: "Quantum key distribution network protocols: Key management layer, QKDN control layer and QKDN management layer"
+    type: technical-report
+    date: 2021-11
+    group: FG-QIT4N
+    tags: [qkd-protocol, qkdn]
+    status: in-force
+    url: https://www.itu.int/pub/T-FG-QIT4N-2021-D2.3.2
+
+  - id: FG-QIT4N-D2.4
+    title: Quantum key distribution network transport technologies
+    type: technical-report
+    date: 2021-11
+    group: FG-QIT4N
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/pub/T-FG-QIT4N-2021-D2.4
+
+  - id: FG-QIT4N-D2.5
+    title: "Standardization outlook and technology maturity: Quantum key distribution network"
+    type: technical-report
+    date: 2021-11
+    group: FG-QIT4N
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/pub/T-FG-QIT4N-2021-D2.5
+
+  - id: GSTR-OCN
+    title: "ITU-T technical report GSTR-OCN, \"Optical clocks and their networking\""
+    type: technical-report
+    group: SG 15
+    tags: [qnet]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=21610
+
+  - id: Q.4165
+    title: Quantum key distribution network interworking – Protocol framework
+    type: recommendation
+    date: 2026-01
+    group: SG11
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Q.4165/en
+
+  - id: Q.QKDN_Cq
+    title: Protocols for Cq interfaces for quantum key distribution networks
+    type: technical-report
+    group: SG 11
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=20886
+
+  - id: Q.QKDN_GC
+    title: General control protocols for interfaces on quantum key distribution network controller for quantum key distribution networks
+    type: technical-report
+    group: SG 11
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=20885
+
+  - id: Q.QKDN_Mk
+    title: Protocols for interfaces on quantum key distribution network manager for quantum key distribution networks
+    type: technical-report
+    group: SG 11
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=20878
+
+  - id: Q.QKDN_Pro-car
+    title: Protocols for cryptographic application registration in quantum key distribution networks
+    type: technical-report
+    group: SG 11
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23779
+
+  - id: Q.QKDNi_KM
+    title: Protocols for interfaces between key managers for quantum key distribution network interworking
+    type: technical-report
+    group: SG 11
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=20882
+
+  - id: QSTR.MP_QKDN
+    title: Monitoring parameters for quantum key distribution network
+    type: technical-report
+    group: SG 11
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=22243
+
+  - id: QSTR-USSD
+    title: Low resource requirement, quantum resistant, encryption of unstructured supplementary service data (USSD)
+    type: technical-report
+    date: 2026-03
+    group: SG11
+    tags: [qkdn]
+    status: in-force
+
+  - id: SEC-QKD
+    title: Security considerations for quantum key distribution networks
+    type: technical-report
+    date: 2020-03
+    group: SG17
+    tags: [qkdn, security]
+    status: in-force
+    url: https://www.itu.int/pub/T-TUT-QKD-2020-1
+
+  - id: TR.qs-dlt
+    title: Guidelines for quantum-safe distributed ledger technologies systems
+    type: technical-report
+    date: 2023-09
+    group: SG17
+    tags: [crypto-meta]
+    status: in-force
+    url: https://www.itu.int/pub/T-TUT-ICTS-2023-5
+
+  - id: TR.SQKDN
+    title: Standardization consideration of satellite-based QKDN
+    type: technical-report
+    date: 2025-03
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+
+  - id: X.1711
+    title: Framework of quantum key distribution (QKD) protocols in QKD network
+    type: draft
+    group: SG 17
+    tags: [qkd-protocol, qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=21807
+
+  - id: X.1715 (2022) Amd. 1
+    title: Editorial corrections and clarifications
+    type: recommendation
+    date: 2024-04
+    group: SG17
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-X.1715/en
+
+  - id: X.1718
+    title: Security requirements and measures for quantum key distribution Network interworking
+    type: draft
+    group: SG 17
+    tags: [qkdn, security]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=21806
+
+  - id: X.508rev
+    title: "Information Technology - Open systems Interconnection - The Directory: Key management and public-key infrastructure establishment and maintenance"
+    type: draft
+    group: SG 17
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23761
+
+  - id: X.510rev
+    title: Information Technology - Open systems Interconnection - The Directory - Protocol specifications for secure operations
+    type: draft
+    group: SG 17
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23763
+
+  - id: X.migrate
+    title: Information Technology - Open systems Interconnection - The Directory - Generic methods for migration of cryptographic algorithms
+    type: draft
+    group: SG 17
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23760
+
+  - id: X.qsdlt-ca
+    title: Guidelines for building crypto-agility and migration for quantum-safe DLT systems
+    type: draft
+    group: SG 17
+    tags: [crypto-meta]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=21798
+
+  - id: X.sec_QKDNi_ccm
+    title: Security requirements and measures for quantum key distribution network interworking - Concatenated model
+    type: draft
+    group: SG 17
+    tags: [qkdn, security]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23755
+
+  - id: X.sec-QKDN-un-req
+    title: Security requirements for the integration of quantum key distribution network and user network
+    type: draft
+    group: SG 17
+    tags: [qkdn, security]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23756
+
+  - id: XSTR.ac-pqc
+    title: "Technical Report: Guidance on use of advanced cryptography based on Post Quantum Cryptography (PQC)"
+    type: technical-report
+    group: SG 17
+    tags: [crypto-meta]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=21810
+
+  - id: XSTR.hyb_qsafe
+    title: "Technical Report: Overview of key management of hybrid approaches for quantum-safe communications"
+    type: technical-report
+    group: SG 17
+    tags: [crypto-meta]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=21808
+
+  - id: XSTR.kdc_QKDN
+    title: "Technical Report: Key distribution center based approaches in the service layer to manage keys supplied by QKDN"
+    type: technical-report
+    group: SG 17
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=21809
+
+  - id: XSTR.QKDN-SP
+    title: "Technical Report: Overview of security profile for Quantum Key Distribution Networks in hybrid mode"
+    type: technical-report
+    group: SG 17
+    tags: [qkdn, security]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=21811
+
+  - id: XSTR.QKDN-ZTA
+    title: Technical implications of applying zero trust architecture into QKDN
+    type: technical-report
+    group: SG 17
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23757
+
+  - id: XSTR.qrbp
+    title: Quantum readiness, best practices and guidelines
+    type: technical-report
+    group: SG 17
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23758
+
+  - id: XSTR.SQKDN-SC
+    title: "Technical Report: Security consideration for satellite-based quantum key distribution network"
+    type: technical-report
+    group: SG 17
+    tags: [qkdn, security]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=22281
+
+  - id: XSTR-HYB-QKD
+    title: Overview of hybrid approaches for key exchange with quantum key distribution
+    type: technical-report
+    date: 2022-05
+    group: SG17
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/pub/T-TUT-ICTS-2022-1
+
+  - id: Y.Sup100
+    title: ITU-T Y.3800-series - Use cases of multi-point coordination in quantum key distribution networks
+    type: supplement
+    date: 2026-02
+    group: SG13
+    tags: [qkdn]
+    status: informational
+    url: https://www.itu.int/rec/T-REC-Y.Sup100/en
+
+  - id: Y.3823
+    title: Quantum key distribution networks - Allocation of the end-to-end quality of service
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=21410
+
+  - id: Y.3831
+    title: Integration of quantum key distribution network and user networks supporting end-to-end modern cryptography services – Functional architecture
+    type: recommendation
+    date: 2025-12
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3831/en
+
+  - id: Y.3832
+    title: Quantum key distribution networks – Framework for orchestration
+    type: recommendation
+    date: 2025-12
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3832/en
+
+  - id: Y.3833
+    title: Quantum key distribution networks – Dependability assessment
+    type: recommendation
+    date: 2025-12
+    group: SG13
+    tags: [qkdn]
+    status: in-force
+    url: https://www.itu.int/rec/T-REC-Y.3833/en
+
+  - id: Y.3835
+    title: Integration of quantum key distribution network and user network supporting end-to-end modern cryptography services - functional architecture for quality of service assurance
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=22216
+
+  - id: Y.QKD-IPSec-fr
+    title: Framework for integration of quantum key distribution and IPSec
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=21437
+
+  - id: Y.QKDN-car-fr
+    title: Quantum key distribution networks - Framework of cryptographic application registration
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23443
+
+  - id: Y.QKDN-das-req
+    title: Quantum key distribution networks-Requirements for dependability assurance
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23883
+
+  - id: Y.QKDN-dtn-qos-re
+    title: Requirements for Integration of Quantum Key Distribution Network and Digital Twin Network for Quality of Service Assurance
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23698
+
+  - id: Y.QKDN-ekm
+    title: Framework of quantum key distribution network for supporting edge key management
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23444
+
+  - id: Y.QKDN-GQT
+    title: Generic Quantum Key Distribution Network Template
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=21443
+
+  - id: Y.QKDNi_ccm
+    title: Quantum key distribution network interworking - Concatenating model
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23704
+
+  - id: Y.QKDNi_km
+    title: Quantum key distribution network interworking - Key management
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23888
+
+  - id: Y.QKDN-nq-cmo
+    title: Integration of quantum key distribution network and user network supporting end-to-end modern cryptography services - Control, management, and orchestration
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23887
+
+  - id: Y.QKDN-nq-trust-fr
+    title: Requirements and framework of integration of QKDN, user network supporting end-to-end modern cryptography services, and trust
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23885
+
+  - id: Y.QKDN-pkpe-fr
+    title: Quantum key distribution networks - Framework for proactive end-to-end key pre-establishment
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23889
+
+  - id: Y.QKDN-QOdrQ
+    title: Quantum key distribution networks - Quantitative objectives for delay-related QoS parameters
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23435
+
+  - id: Y.QKDN-qos-fr-req
+    title: Requirements of QoS assurance for QKDN federation
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=21412
+
+  - id: Y.QKDN-QoS-KR
+    title: Quantum Key Distribution Networks - Quality of service parameters of Key Relay
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23882
+
+  - id: Y.QKDN-qos-req-or
+    title: Requirements of quality of service assurance for quantum key distribution network orchestration
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23881
+
+  - id: Y.QKDN-qos-req-rs
+    title: Requirements of quality of service assurance for quantum key distribution network resilience
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23434
+
+  - id: Y.QKDN-qos-sdnc
+    title: QoS assurance requirements for quantum key distribution networks enabled by software defined networking control
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=21414
+
+  - id: Y.QKDN-safr
+    title: Quantum key distribution networks - Framework for service awareness
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=21436
+
+  - id: Y.QKDN-slicing
+    title: Requirements and framework of quantum key distribution network slicing
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=21442
+
+  - id: Y.QKDN-UNmd
+    title: Framework of integration of quantum key distribution network and user network supporting mobile devices
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23702
+
+  - id: Y.QKDN-unp-qos
+    title: Requirements and framework for Integration of Quantum Key Distribution Network and Utility Network Protocols for Quality of Service Assurance
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23700
+
+  - id: Y.QKD-TLS
+    title: Quantum Key Distribution integration with Transport Layer Security 1.3
+    type: draft
+    group: SG 13
+    tags: [qkdn, security]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=21432
+
+  - id: Y.SQKDN.-fra
+    title: Satellite-based quantum key distribution network - functional requirements and architecture
+    type: draft
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23701
+
+  - id: Y.Sup.QENS-roadmap
+    title: Standardization roadmap on quantum enhanced networking and services for study period 2025
+    type: supplement
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23439
+
+  - id: Y.Sup.QKDN-SITS
+    title: Server-Initiated Time Synchronization Mechanism in Quantum Key Distribution Networks
+    type: supplement
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23706
+
+  - id: Y.Sup.QN-arch
+    title: Technical considerations of quantum network architecture
+    type: supplement
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23705
+
+  - id: YSTR.eQKDN-pqc
+    title: Enhancing network functionality of Quantum Key Distribution Networks with Post Quantum Cryptography
+    type: technical-report
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23707
+
+  - id: YSTR.QKDN-Ma
+    title: Impact Analysis of Measurement-assisted QKD schemes on QKDNs
+    type: technical-report
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=22218
+
+  - id: YSTR.QKDN-nq-trust
+    title: Guideline for integration of QKDN, UNemc, and trust enabled service provisioning
+    type: technical-report
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23440
+
+  - id: YSTR.QKDN-PPQ
+    title: Plug?and?Play?1xN Quantum?Key Distribution Module for QKDN
+    type: technical-report
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23441
+
+  - id: YSTR.QKDN-sms
+    title: Technical elements of secure multicast support in QKDN based on trusted relay
+    type: technical-report
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23442
+
+  - id: YSTR.QN-TB
+    title: Analysis of quantum network architecture from existing testbeds
+    type: technical-report
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23709
+
+  - id: YSTR.UQKDN
+    title: Overview of Quantum Key Distribution in Underwater Networks
+    type: technical-report
+    group: SG 13
+    tags: [qkdn]
+    status: draft
+    url: https://www.itu.int/ITU-T/workprog/wp_item.aspx?isn=23448

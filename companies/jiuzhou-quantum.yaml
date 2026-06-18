@@ -1,0 +1,184 @@
+slug: jiuzhou-quantum
+name: Jiuzhou Quantum (QTEC)
+categories: [qkd, enabling]
+hq: Tongxiang / Hangzhou, Zhejiang, China
+founded: 2012
+status: public
+parent: null
+logo:
+  domain: qtec.cn
+
+positioning: >
+  Zhejiang Jiuzhou Quantum Information Technology Co., Ltd. (QTEC) is a
+  Chinese QKD and quantum-cryptography application vendor headquartered in
+  Tongxiang / Hangzhou, Zhejiang. Sells fibre QKD equipment (QD705 / QD706
+  series), single-photon detectors, quantum random-number generators,
+  key-management "quantum key cloud" platforms, and integrated quantum-
+  security products (encryption gateways, VPNs, secure mobile phones).
+  Positions itself as the principal secondary vendor in a Chinese QKD market
+  dominated by QuantumCTek. Listed on China's NEEQ since June 2016 (837638).
+
+modalities:
+  qkd:
+    protocol: [BB84, decoy-state]
+    rate_distance: ""
+    deployed_demos:
+      - note: Self-developed QD705 / QD706-L QKD devices passed China Academy of Information and Communications Technology (CAICT) TaiR Lab testing; first batch of products certified under China's State Cryptography Administration (OSCCA / SCA) commercial-cryptography testing (July 2021)
+        source_url: http://www.qtec.cn/
+      - note: 'Co-author of Chinese industry standard YD/T 3907.2-2022 — "Key Components and Modules for QKD based on the BB84 Protocol — Part 2: Single Photon Detector"'
+        source_url: http://www.qtec.cn/
+      - note: Quantum-security application products deployed in Chinese government, electric-power, finance, defence, energy, transport and public-safety sectors (per company statements; specific customer list not publicly itemised)
+        source_url: http://www.qtec.cn/
+  enabling:
+    products:
+      - QD705 / QD706-L Quantum Key Distribution (QKD) systems
+      - Single-photon detectors (InGaAs)
+      - Quantum Random Number Generator (QRNG) modules and "quantum true-random-number" chip
+      - '"Quantum key cloud" / commercial-cryptography-compliant key-management platform'
+      - Quantum cloud shield, quantum-security firewall, quantum-security VPN, quantum-security router
+      - Quantum-security camera, walkie-talkie, secure mobile phone
+
+milestones:
+  - date: 2025-08
+    tag: qkd
+    headline: 2025 half-year report filed (NEEQ 837638) — continuing quantum-secure-communications and QRNG product business
+    source_url: https://pdf.dfcfw.com/pdf/H2_AN202508261734789734_1.pdf
+    source_type: filing
+  - date: 2025-05
+    tag: qkd
+    headline: 2024 Annual Shareholders Meeting held in Hangzhou; 2024 Board of Directors work report approved
+    source_url: https://xinsanban.eastmoney.com/Article/NoticeContent?id=AN202505161673821769
+    source_type: filing
+  - date: 2025-04
+    tag: qkd
+    headline: 2024 annual report filed on NEEQ (837638)
+    source_url: http://news.10jqka.com.cn/field/sn/20250424/51822601.shtml
+    source_type: filing
+  - date: 2021-07
+    tag: qkd
+    headline: QKD device and QRNG independently developed by Jiuzhou pass first-batch State Cryptography Administration (OSCCA / SCA) commercial-cryptography testing
+    source_url: http://www.qtec.cn/
+    source_type: blog
+  - date: 2016-09
+    tag: qkd
+    headline: Tsinghua University – Jiuzhou Quantum Joint Laboratory for Quantum Networks established; Andrew Yao (姚期智) and chairman Zheng Shaohui (郑韶辉) named director / deputy director
+    source_url: https://baike.baidu.com/item/%E6%B5%99%E6%B1%9F%E4%B9%9D%E5%B7%9E%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E6%8A%80%E6%9C%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/20830440
+    source_type: press
+  - date: 2016-07
+    tag: qkd
+    headline: USTC issues a public statement disputing Jiuzhou's announced involvement in the Shanghai–Hangzhou QKD line (reported by Sixth Tone, 2016)
+    source_url: https://www.sixthtone.com/news/1000967
+    source_type: press
+  - date: 2016-06
+    tag: qkd
+    headline: Listed on China's NEEQ / New Third Board (stock code 837638) — marketed as "China's first quantum-communication stock"
+    source_url: https://xinsanban.eastmoney.com/F10/CompanyInfo/Introduction/837638
+    source_type: filing
+  - date: 2015-11
+    tag: qkd
+    headline: Re-incorporated as a joint-stock company (浙江九州量子信息技术股份有限公司) via overall transformation of Tongxiang Dufei Communication Technology Co., Ltd. (桐乡市都飞通信科技有限公司)
+    source_url: http://notice.10jqka.com.cn/api/pdf/c9fba7284200e38e_1714041726/%E4%B9%9D%E5%B7%9E%E9%87%8F%E5%AD%90:2023%E5%B9%B4%E5%B9%B4%E5%BA%A6%E6%8A%A5%E5%91%8A.pdf
+    source_type: filing
+  - date: 2012-07
+    tag: qkd
+    headline: Predecessor entity founded in Tongxiang, Zhejiang
+    source_url: https://stock.qianzhan.com/neeq/gongsixinxi_837638.OC.html
+    source_type: filing
+
+shareholders:
+  - holder: Zheng Shaohui (郑韶辉) and concert parties
+    stake_percent: null
+    stake_class: controlling
+    as_of: 2025-08
+    source_url: https://pdf.dfcfw.com/pdf/H2_AN202508261734789734_1.pdf
+    note: >
+      Founder-chairman Zheng Shaohui is the company's de facto controlling
+      shareholder per NEEQ annual / half-year filings. Exact stake percentage
+      and full concert-party list are in the Chinese-language
+      half-year report and not confirmed here.
+
+key_personnel:
+  - role: Chairman (董事长) & Founder
+    name: Zheng Shaohui (郑韶辉)
+    since: 2012
+    source_url: https://baike.baidu.com/item/%E6%B5%99%E6%B1%9F%E4%B9%9D%E5%B7%9E%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E6%8A%80%E6%9C%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/20830440
+  - role: Director, Tsinghua–Jiuzhou Quantum Network Joint Laboratory (advisory)
+    name: Andrew Chi-Chih Yao (姚期智)
+    since: 2016-09
+    source_url: https://baike.baidu.com/item/%E6%B5%99%E6%B1%9F%E4%B9%9D%E5%B7%9E%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E6%8A%80%E6%9C%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/20830440
+    note: Tsinghua academician; advisory role through the joint-laboratory agreement, not a corporate-officer position
+
+roadmap:
+  - target: 2026
+    item: Continued NEEQ-listed quantum-secure-communications + QRNG product business; ongoing R&D on optical quantum computing systems and components per public filings
+    source_url: https://pdf.dfcfw.com/pdf/H2_AN202508261734789734_1.pdf
+    tag: qkd
+
+current_flagship:
+  name: QD705 / QD706-L QKD systems + QRNG chip / "quantum key cloud" platform
+  generation: BB84 decoy-state fibre QKD; OSCCA-certified commercial-cryptography product line
+
+references:
+  - kind: filing
+    citation_key: null
+    url: https://pdf.dfcfw.com/pdf/H2_AN202508261734789734_1.pdf
+    note: Jiuzhou Quantum 2025 半年度报告 (Half-Year Report), NEEQ 837638
+  - kind: filing
+    citation_key: null
+    url: http://notice.10jqka.com.cn/api/pdf/c9fba7284200e38e_1714041726/%E4%B9%9D%E5%B7%9E%E9%87%8F%E5%AD%90:2023%E5%B9%B4%E5%B9%B4%E5%BA%A6%E6%8A%A5%E5%91%8A.pdf
+    note: Jiuzhou Quantum 2023 年度报告 (Annual Report), NEEQ 837638
+  - kind: filing
+    citation_key: null
+    url: https://xinsanban.eastmoney.com/F10/CompanyInfo/Introduction/837638
+    note: Eastmoney NEEQ F10 company profile, stock 837638
+  - kind: vendor
+    citation_key: null
+    url: http://www.qtec.cn/
+    note: Jiuzhou Quantum / QTEC corporate website
+  - kind: press
+    citation_key: null
+    url: https://www.sixthtone.com/news/1000967
+    note: Sixth Tone (2016) — context on USTC dispute over Jiuzhou's Shanghai–Hangzhou marketing claims
+  - kind: press
+    citation_key: null
+    url: https://global.chinadaily.com.cn/a/202203/30/WS6243baa9a310fd2b29e541f6.html
+    note: China Daily — quantum-industry profile mentioning QTEC
+
+partial:
+  - field: name
+    as_of: 2026-05-17
+    note: >
+      User-supplied vendor hint was "JN Optoelectronics (九州光电)". Research did
+      not surface any active quantum vendor named 九州光电 / "JN Optoelectronics".
+      The closest match — and almost certainly the intended target — is
+      浙江九州量子信息技术股份有限公司 (Zhejiang Jiuzhou Quantum Information Technology,
+      English short name QTEC). Slug set to jiuzhou-quantum accordingly.
+      The Shandong / Jinan / Qingdao metro-QKD deployments mentioned in the
+      hints are dominated by QuantumCTek (USTC spin-out) and USTC academic
+      groups, not by Jiuzhou — Jiuzhou's headquarters and principal commercial
+      activity are in Zhejiang (Tongxiang / Hangzhou), not Shandong.
+  - field: hq
+    as_of: 2026-05-17
+    note: >
+      Company registered in Tongxiang (桐乡市), Zhejiang; principal operating
+      office reported in Hangzhou per the 2024 annual shareholders meeting
+      venue. The user-supplied hint of "Shandong" appears to be a confusion
+      with Shandong-province QKD networks (Jinan QMAN, Jinan↔Qingdao TF-QKD)
+      which are QuantumCTek / USTC programmes, not Jiuzhou.
+  - modalities.qkd.rate_distance
+  - field: shareholders
+    as_of: 2026-05-17
+    note: Controlling-shareholder identification (Zheng Shaohui + concert parties) is from public NEEQ filings; exact percentages and full ownership chain not confirmed from the Chinese-language half-year report
+  - field: milestones
+    as_of: 2026-05-17
+    note: >
+      Detailed Shandong-area deployments could not be verified to Jiuzhou
+      Quantum; principal Shandong QKD references (Jinan QMAN, Jinan↔Qingdao
+      511 km TF-QKD, Jinan-1 micro-satellite) belong to QuantumCTek and USTC
+      research groups. A Jiuzhou-specific Shandong contract, if one exists,
+      was not surfaced by web search.
+  - key_personnel
+  - current_flagship.generation
+
+last_verified: 2026-05-17
+verification_method: web

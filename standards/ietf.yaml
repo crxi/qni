@@ -1,0 +1,172 @@
+body:
+  id: ietf
+  name: Internet Engineering Task Force / Internet Research Task Force
+  short_name: IETF/IRTF
+  url: https://www.ietf.org
+  scope: >
+    The IETF produces Internet standards (RFCs) by rough consensus.
+    Quantum-network work sits in the IRTF's Quantum Internet Research
+    Group (QIRG) - a research group whose remit is to feed an eventual
+    IETF working group. Quantum-safe cryptography work lives in IETF
+    working groups (TLS, IPsec/IKEv2, CFRG).
+  notes: >
+    QIRG produces informational RFCs and Internet Drafts. The IETF
+    proper has produced RFCs for hybrid PQC in IKEv2 and PSK-based
+    quantum-resistance, but no normative quantum-network RFCs yet.
+
+standards:
+  # QIRG Informational RFCs
+  - id: RFC 9340
+    title: Architectural Principles for a Quantum Internet
+    type: recommendation
+    date: 2023-03
+    group: QIRG
+    tags: [qnet]
+    status: informational
+    url: https://datatracker.ietf.org/doc/rfc9340/
+    pdf: reference/standards/IETF/rfc9340.txt
+    summary: >
+      The foundational architectural document for the quantum Internet.
+      Defines stages of quantum-network functionality (trusted-repeater,
+      prepare-and-measure, entanglement-distribution, quantum-memory,
+      few-qubit-fault-tolerant, fault-tolerant). §3.5 is the only
+      published document that names heterogeneous-endpoint interop
+      as a first-class architectural concern.
+
+  - id: RFC 9583
+    title: Application Scenarios for the Quantum Internet
+    type: recommendation
+    date: 2024-06
+    group: QIRG
+    tags: [qnet]
+    status: informational
+    url: https://datatracker.ietf.org/doc/rfc9583/
+    pdf: reference/standards/IETF/rfc9583.txt
+    summary: >
+      Companion to RFC 9340. Catalogues application scenarios
+      (cryptography, sensing, distributed quantum computing, clock
+      synchronization) and maps each to the architectural-stage
+      requirements of RFC 9340.
+
+  # QIRG Active Drafts (status: draft)
+  - id: draft-irtf-qirg-qi-multiplane-arch
+    title: Architecture of a Multi-Plane Quantum Internet
+    type: draft
+    date: 2025-10
+    group: QIRG
+    tags: [qnet]
+    status: draft
+    url: https://datatracker.ietf.org/doc/draft-irtf-qirg-qi-multiplane-arch/
+    summary: >
+      Multi-plane architecture (data, control, management) for quantum
+      networks. Lopez et al. Adopted as a QIRG work item.
+    note: Latest revision -01 as of late 2025; tracker URL serves current rev.
+
+  - id: draft-cacciapuoti-qirg-quantum-native-architecture
+    title: Quantum-Native Network Architecture
+    type: draft
+    date: 2025-09
+    group: QIRG
+    tags: [qnet]
+    status: draft
+    url: https://datatracker.ietf.org/doc/draft-cacciapuoti-qirg-quantum-native-architecture/
+    summary: >
+      Proposal for a quantum-native network architecture that does not
+      shoehorn quantum primitives onto a classical OSI model.
+      Cacciapuoti et al.
+
+  - id: draft-hajdusek-qirg-timing-physics
+    title: Timing and Physics Considerations for the Quantum Internet
+    type: draft
+    date: 2025-09
+    group: QIRG
+    tags: [qnet]
+    status: draft
+    url: https://datatracker.ietf.org/doc/draft-hajdusek-qirg-timing-physics/
+    summary: >
+      Timing budgets and physics constraints (decoherence, clock
+      synchronization, classical-channel latency) for quantum-network
+      protocol design. Hajdusek et al.
+
+  - id: draft-van-meter-qirg-quantum-network-architecture
+    title: A Quantum Network Architecture
+    type: draft
+    date: 2024
+    group: QIRG
+    tags: [qnet]
+    status: draft
+    url: https://datatracker.ietf.org/doc/draft-van-meter-qirg-quantum-network-architecture/
+    summary: >
+      Architecture proposal by Van Meter et al. covering link layer,
+      network layer, and end-to-end services for an entanglement-based
+      quantum Internet.
+
+  - id: draft-zhu-qirg-qdcp
+    title: Quantum Datagram Control Protocol (QDCP)
+    type: draft
+    date: 2025-10
+    group: QIRG
+    tags: [qnet]
+    status: draft
+    url: https://datatracker.ietf.org/doc/draft-zhu-qirg-qdcp/
+    summary: >
+      Proposed wire protocol for quantum-datagram control over a
+      heterogeneous quantum network. One of the candidates to become
+      the first specification-level quantum-network RFC.
+
+  # IETF quantum-safe cryptography RFCs (quantum-relevant)
+  - id: RFC 8784
+    title: Mixing Preshared Keys in the Internet Key Exchange Protocol Version 2 (IKEv2) for Post-quantum Security
+    type: recommendation
+    date: 2020-06
+    group: IPSECME WG
+    tags: [crypto-meta]
+    status: in-force
+    url: https://datatracker.ietf.org/doc/rfc8784/
+    pdf: reference/standards/IETF/rfc8784.txt
+    summary: >
+      Adds a pre-shared key into IKEv2 alongside the classical Diffie-
+      Hellman so that a future quantum computer cannot break the
+      session by recording it today. The pragmatic "ship something
+      now" quantum-safe IPsec deployment.
+
+  - id: RFC 9242
+    title: Intermediate Exchange in the Internet Key Exchange Protocol Version 2 (IKEv2)
+    type: recommendation
+    date: 2022-05
+    group: IPSECME WG
+    tags: [crypto-meta]
+    status: in-force
+    url: https://datatracker.ietf.org/doc/rfc9242/
+    pdf: reference/standards/IETF/rfc9242.txt
+    summary: >
+      Adds an intermediate IKEv2 exchange. Enabling building block for
+      RFC 9370 (multiple key exchanges) - lets very large post-quantum
+      KEMs be fragmented across multiple messages.
+
+  - id: RFC 9370
+    title: Multiple Key Exchanges in the Internet Key Exchange Protocol Version 2 (IKEv2)
+    type: recommendation
+    date: 2023-05
+    group: IPSECME WG
+    tags: [crypto-meta]
+    status: in-force
+    url: https://datatracker.ietf.org/doc/rfc9370/
+    pdf: reference/standards/IETF/rfc9370.txt
+    summary: >
+      Lets IKEv2 negotiate multiple key exchanges in series so that a
+      classical ECDHE and a post-quantum KEM can both contribute to the
+      session key (hybrid PQC).
+
+  - id: RFC 9867
+    title: ML-KEM Post-Quantum Key Encapsulation Mechanism for the Internet Key Exchange Protocol Version 2 (IKEv2)
+    type: recommendation
+    date: 2025
+    group: IPSECME WG
+    tags: [crypto-meta]
+    status: in-force
+    url: https://datatracker.ietf.org/doc/rfc9867/
+    pdf: reference/standards/IETF/rfc9867.txt
+    summary: >
+      Specifies how to use NIST's ML-KEM (FIPS 203, formerly Kyber)
+      inside IKEv2. The post-quantum IPsec wire-format RFC.

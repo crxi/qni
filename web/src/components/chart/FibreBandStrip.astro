@@ -1,0 +1,67 @@
+---
+/**
+ * FibreBandStrip — ITU-T G.694.2 fibre bands rendered as:
+ *   1. A colored top strip with letter labels (O / E / S / C / L / U)
+ *   2. Full-height tinted vertical bands behind the platforms, so each
+ *      band's wavelength range is visible at a glance.
+ * The C-band gets visual emphasis (taller strip, bolder label, denser tint).
+ */
+import type { Geom } from "../../lib/geom";
+import type { FiberBand } from "../../lib/data";
+
+interface Props {
+  geom: Geom;
+  bands: FiberBand[];
+  stripTop: number;
+  regionBot: number;
+}
+
+const { geom: g, bands, stripTop, regionBot } = Astro.props;
+const stripH = 14;
+const tintTop = stripTop + stripH;
+---
+
+<g class="fibre-bands">
+  {bands.map((b) => {
+    const xl = g.xOfNm(b.range_nm[1]); // longer wavelength → lower freq → smaller x
+    const xr = g.xOfNm(b.range_nm[0]);
+    const w = xr - xl;
+    const emph = !!b.emphasis;
+    return (
+      <g class="band" data-band-id={b.id} data-emph={emph ? "yes" : "no"}>
+        <title>{b.id} band — {b.range_nm[0]}–{b.range_nm[1]} nm · {b.name}</title>
+
+        {/* Full-height tint behind platforms */}
+        <rect
+          x={xl} y={tintTop} width={w} height={regionBot - tintTop}
+          fill={b.color}
+          opacity={emph ? 0.22 : 0.14}
+        />
+
+        {/* Top label strip */}
+        <rect
+          x={xl}
+          y={stripTop - (emph ? 4 : 0)}
+          width={w}
+          height={stripH + (emph ? 4 : 0)}
+          fill={b.color}
+          stroke={emph ? "#222" : "#666"}
+          stroke-width={emph ? 1.4 : 0.6}
+          rx="2" ry="2"
+        />
+
+        <text
+          x={(xl + xr) / 2}
+          y={stripTop - 8}
+          class="itu-letter"
+          text-anchor="middle"
+          font-weight={emph ? "800" : "600"}
+        >{b.id}</text>
+      </g>
+    );
+  })}
+</g>
+
+<style>
+  .itu-letter { font-size: 11px; fill: #555; font-weight: 600; }
+</style>

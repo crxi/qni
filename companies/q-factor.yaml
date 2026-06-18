@@ -1,0 +1,188 @@
+slug: q-factor
+name: Q-Factor
+categories: [qc]
+hq: Tel Aviv, Israel
+founded: 2026
+status: private
+parent: null
+logo:
+  domain: q-factor.tech
+
+positioning: >
+  Israeli neutral-atom quantum-computing startup spun out of the Weizmann
+  Institute and Technion atomic-physics groups, emerged from stealth in
+  April 2026 with a USD 24M seed round co-led by NFX and TPY Capital, with
+  Intel Capital, Korea Investment Partners, and the Israel Innovation
+  Authority participating. Pursues a Rydberg-interaction architecture with a
+  stated long-term scaling target beyond one million qubits. Pre-product as
+  of mid-2026, with first-generation high-qubit testbeds under assembly.
+  Founded by Nir Davidson, Ofer Firstenberg, Yoav Sagi, and Guy Raz.
+
+modalities:
+  qc:
+    qubit_type: neutral-atom
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: null
+    gate_set: []
+
+milestones:
+  - date: 2026-04
+    tag: qc
+    headline: Emerged from stealth with $24M seed round led by NFX and TPY Capital; Intel Capital, Korea Investment Partners, Deep33, the Matias family, and the Israel Innovation Authority participated
+    source_url: https://www.intelcapital.com/q-factor-emerges-from-stealth-with-24m-and-backing-from-intel-capital-to-build-million-qubit-quantum-computer/
+    source_type: press
+  - date: 2026-04
+    tag: qc
+    headline: Company incorporated to commercialise ultracold-atom and Rydberg-physics research from Weizmann Institute of Science and Technion
+    source_url: https://thequantuminsider.com/2026/04/06/q-factor-emerges-from-stealth-with-24-million-and-backing-from-intel-capital/
+    source_type: press
+
+shareholders:
+  - holder: NFX
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-04
+    source_url: https://www.intelcapital.com/q-factor-emerges-from-stealth-with-24m-and-backing-from-intel-capital-to-build-million-qubit-quantum-computer/
+    note: Co-lead of $24M seed round (April 2026)
+  - holder: TPY Capital
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-04
+    source_url: https://www.intelcapital.com/q-factor-emerges-from-stealth-with-24m-and-backing-from-intel-capital-to-build-million-qubit-quantum-computer/
+    note: Co-lead of $24M seed round (April 2026)
+  - holder: Intel Capital
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-04
+    source_url: https://www.intelcapital.com/q-factor-emerges-from-stealth-with-24m-and-backing-from-intel-capital-to-build-million-qubit-quantum-computer/
+    note: Participated in seed round
+  - holder: Korea Investment Partners
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-04
+    source_url: https://thequantuminsider.com/2026/04/06/q-factor-emerges-from-stealth-with-24-million-and-backing-from-intel-capital/
+    source_type: press
+    note: Seed round participant
+  - holder: Deep33
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-04
+    source_url: https://thequantuminsider.com/2026/04/06/q-factor-emerges-from-stealth-with-24-million-and-backing-from-intel-capital/
+    note: Seed round participant
+  - holder: Matias family
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-04
+    source_url: https://thequantuminsider.com/2026/04/06/q-factor-emerges-from-stealth-with-24-million-and-backing-from-intel-capital/
+    note: Seed round participant
+  - holder: Weizmann Institute of Science
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-04
+    source_url: https://thequantuminsider.com/2026/04/06/q-factor-emerges-from-stealth-with-24-million-and-backing-from-intel-capital/
+    note: Founding research institution; retains equity per launch coverage
+  - holder: Technion – Israel Institute of Technology
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-04
+    source_url: https://thequantuminsider.com/2026/04/06/q-factor-emerges-from-stealth-with-24-million-and-backing-from-intel-capital/
+    note: Founding research institution; retains equity per launch coverage
+
+key_personnel:
+  - role: Co-founder
+    name: Nir Davidson
+    since: 2026
+    source_url: https://thequantuminsider.com/2026/04/06/q-factor-emerges-from-stealth-with-24-million-and-backing-from-intel-capital/
+    note: Former Dean of Physics, Weizmann Institute; ultracold-atoms group leader
+  - role: Co-founder & Chief Scientist
+    name: Ofer Firstenberg
+    since: 2026
+    source_url: https://thequantuminsider.com/2026/04/06/q-factor-emerges-from-stealth-with-24-million-and-backing-from-intel-capital/
+    note: Weizmann Institute; quantum optics and Rydberg physics (prior postdoctoral work at Harvard and MIT)
+  - role: Co-founder
+    name: Yoav Sagi
+    since: 2026
+    source_url: https://thequantuminsider.com/2026/04/06/q-factor-emerges-from-stealth-with-24-million-and-backing-from-intel-capital/
+    note: Technion; neutral-atom manipulation
+  - role: Co-founder
+    name: Guy Raz
+    since: 2026
+    source_url: https://thequantuminsider.com/2026/04/06/q-factor-emerges-from-stealth-with-24-million-and-backing-from-intel-capital/
+    note: Physicist with ~20 years of leadership across deep-tech startups; the sole non-academic founder
+
+roadmap:
+  - target: null
+    item: First-generation high-qubit testbeds (assembly funded by 2026 seed round)
+    source_url: https://www.intelcapital.com/q-factor-emerges-from-stealth-with-24m-and-backing-from-intel-capital-to-build-million-qubit-quantum-computer/
+    tag: qc
+  - target: null
+    item: Architecture aimed at scaling beyond one million neutral-atom qubits
+    source_url: https://thequantuminsider.com/2026/04/06/q-factor-emerges-from-stealth-with-24-million-and-backing-from-intel-capital/
+    tag: qc
+
+current_flagship:
+  name: null
+  generation: pre-product (neutral-atom testbed under assembly)
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2026/04/06/q-factor-emerges-from-stealth-with-24-million-and-backing-from-intel-capital/
+    note: Quantum Insider stealth-exit coverage (6 April 2026)
+  - kind: press
+    citation_key: null
+    url: https://www.calcalistech.com/ctechnews/article/bj0iyqbhzl
+    note: CTech stealth-exit coverage with founder bios
+  - kind: press
+    citation_key: null
+    url: https://en.globes.co.il/en/article-quantum-computing-co-q-factor-raises-24m-1001539552
+    note: Globes coverage of seed round
+  - kind: press
+    citation_key: null
+    url: https://www.hpcwire.com/off-the-wire/q-factor-emerges-from-stealth-with-24m-to-advance-scalable-neutral-atom-quantum-systems/
+    note: HPCwire syndicated launch release
+  - kind: press
+    citation_key: null
+    url: https://www.ynetnews.com/tech-and-digital/article/bj3f0nwnbe
+    note: Ynetnews launch coverage
+  - kind: blog
+    citation_key: null
+    url: https://q-factor.tech
+    note: Vendor website (placeholder "launching soon" page as of May 2026)
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.ec_code
+  - modalities.qc.connectivity
+  - modalities.qc.gate_set
+  - field: modalities.qc.qubit_type
+    as_of: 2026-05-21
+    note: Confirmed as neutral-atom Rydberg-interaction architecture; specific atomic species (Rb / Cs / Sr) not disclosed in launch materials
+  - field: founded
+    as_of: 2026-05-21
+    note: Calcalist reports founding in 2026; "months after its founding" framing in launch coverage suggests incorporation in late 2025 or early 2026 — exact registration date not public
+  - field: current_flagship.name
+    as_of: 2026-05-21
+    note: No named system; first-generation testbeds described as under assembly
+  - field: shareholders
+    as_of: 2026-05-21
+    note: Stake percentages not disclosed; private seed round with no public cap table
+  - field: key_personnel
+    as_of: 2026-05-21
+    note: No CEO publicly named in launch coverage; Guy Raz is the sole non-academic co-founder and the likely operating lead, but the title has not been confirmed
+  - field: roadmap
+    as_of: 2026-05-21
+    note: Million-qubit target is the stated long-term ambition without a dated milestone schedule
+
+last_verified: 2026-05-21
+verification_method: web

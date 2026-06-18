@@ -1,0 +1,129 @@
+slug: mesa-quantum
+name: Mesa Quantum
+categories: [sensing, memory]
+hq: Boulder, Colorado, USA
+founded: 2023
+status: private
+parent: null
+logo:
+  domain: mesaquantum.com
+
+positioning: >
+  Early-stage chip-scale quantum-sensor startup commercialising vapour-cell
+  atomic clocks and Rydberg-atom RF sensors out of Svenja Knappe's group at
+  CU Boulder, originally NIST/JILA atomic-clock-on-a-chip work. Founded in
+  2023 by Sristy Agrawal (CEO) and Knappe; incubated via NSF I-Corps Hub
+  West. Primary market is alternative position-navigation-and-timing
+  (Alt-PNT) for GPS-denied operations, with a USD 1.9M SpaceWERX SBIR
+  contract supporting miniaturised atomic clocks as a GPS alternative. The
+  vapour-cell platform shares physical lineage with warm-atom quantum
+  memories used in quantum-networking.
+
+modalities:
+  sensing:
+    target_quantity: clock
+    sensitivity: ""
+  memory:
+    platform: vapour-cell
+    storage_time_ms: null
+    retrieval_efficiency: null
+    fidelity: null
+    wavelength_nm: null
+    mode_capacity: null
+
+milestones:
+  - date: 2025-04
+    tag: sensing
+    headline: First recipient of the Colorado OEDIT Advanced Industries Early-Stage Capital and Retention Grant ($500K) to build a Boulder R&D facility
+    source_url: https://thequantuminsider.com/2025/04/17/mesa-quantum-technologies-is-first-recipient-of-state-quantum-grant/
+    source_type: press
+  - date: 2024-09
+    tag: sensing
+    headline: $3.7M seed round announced; SpaceWERX SBIR contract ($1.9M) to demonstrate miniaturised atomic clocks as GPS alternative
+    source_url: https://mesaquantum.com/seed-funding-press-release/
+    source_type: press
+  - date: 2023
+    tag: sensing
+    headline: Company founded by Sristy Agrawal (CEO) and Svenja Knappe (faculty, CU Boulder Mechanical Engineering; ex-NIST/JILA atomic-clock-on-a-chip lead); incubated via NSF I-Corps Hub West
+    source_url: https://www.colorado.edu/venturepartners/startup-portfolio/mesa-quantum-systems-inc
+    source_type: blog
+
+shareholders:
+  - holder: HAX (SOSV)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2024-09
+    source_url: https://hax.co/company/mesa-quantum/
+    note: Hard-tech accelerator backer
+  - holder: TFX Capital
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-09
+    source_url: https://tfxcap.com/mesa-quantum-wins-8th-annual-veteran-startup-showcase-startup-developing-advanced-sensors-for-improved-atomic-clocks/
+    note: Veteran-startup-focused VC
+  - holder: Sristy Agrawal
+    stake_percent: null
+    stake_class: founder
+    as_of: 2023
+    source_url: https://www.colorado.edu/venturepartners/startup-portfolio/mesa-quantum-systems-inc
+  - holder: Svenja Knappe
+    stake_percent: null
+    stake_class: founder
+    as_of: 2023
+    source_url: https://www.colorado.edu/venturepartners/startup-portfolio/mesa-quantum-systems-inc
+
+key_personnel:
+  - role: Co-founder & CEO
+    name: Sristy Agrawal
+    since: 2023
+    source_url: https://www.colorado.edu/venturepartners/startup-portfolio/mesa-quantum-systems-inc
+  - role: Co-founder
+    name: Svenja Knappe
+    since: 2023
+    source_url: https://www.colorado.edu/venturepartners/startup-portfolio/mesa-quantum-systems-inc
+    note: Faculty at CU Boulder Mechanical Engineering; pioneered NIST chip-scale atomic clock work
+  - role: CTO
+    name: Wale Lawal
+    since: 2023
+    source_url: https://mesaquantum.com/
+
+roadmap:
+  - target: 2026
+    item: Deliver miniaturised chip-scale atomic clock prototypes to SpaceWERX programme of record for GPS-denied PNT
+    source_url: https://mesaquantum.com/seed-funding-press-release/
+    tag: sensing
+
+current_flagship:
+  name: Chip-scale vapour-cell atomic clock (prototype)
+  generation: pre-commercial
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://mesaquantum.com/seed-funding-press-release/
+    note: $3.7M seed funding announcement (Sept 2024)
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2025/04/17/mesa-quantum-technologies-is-first-recipient-of-state-quantum-grant/
+    note: Colorado OEDIT $500K grant
+  - kind: blog
+    citation_key: null
+    url: https://www.colorado.edu/venturepartners/startup-portfolio/mesa-quantum-systems-inc
+    note: CU Boulder Venture Partners portfolio profile
+
+partial:
+  - modalities.sensing.sensitivity
+  - modalities.memory.storage_time_ms
+  - modalities.memory.retrieval_efficiency
+  - modalities.memory.fidelity
+  - modalities.memory.wavelength_nm
+  - modalities.memory.mode_capacity
+  - field: categories
+    as_of: 2026-05-15
+    note: "Networking/memory relevance is by physical-platform lineage only — Mesa Quantum's public product roadmap is atomic clocks and Rydberg RF sensors for Alt-PNT, not quantum memory or networking. Memory classification is editorial."
+  - field: shareholders
+    as_of: 2026-05-15
+    note: Only accelerator and pitch-contest backers are public; seed-round cap table not disclosed
+
+last_verified: 2026-05-15
+verification_method: web

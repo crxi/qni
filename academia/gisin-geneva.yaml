@@ -1,0 +1,145 @@
+slug: gisin-geneva
+name: Gisin group (Geneva)
+categories: [qkd, memory]
+hq: Geneva, Switzerland
+founded: 1988
+status: active
+parent: null
+
+institution:
+  name: University of Geneva
+  lab: Group of Applied Physics — Optique (GAP-Optique) · Department of Applied Physics
+  also: ID Quantique (spinout, 2001) shares lineage and several staff
+
+group_website: https://www.unige.ch/gap/qic/
+
+positioning: >
+  Foundational European experimental QKD group. Nicolas Gisin (now
+  emeritus) ran the long-distance Bell-test and fibre-QKD programme
+  through the 1990s–2010s, including the 1998 Lake Geneva
+  installed-fibre Bell-violation test, and co-founded ID Quantique
+  in 2001 with Grégoire Ribordy and Hugo Zbinden. The experimental
+  line continues under Hugo Zbinden at GAP-Optique, which delivered
+  the Boaron et al. 405 km field-fibre QKD record (PRL 121.190502,
+  2018). Current thrusts are long-haul fibre QKD and rare-earth-doped
+  crystal quantum memories under Rob Thew.
+
+modalities:
+  qkd:
+    protocol: [BB84, COW, MDI-QKD, twin-field]
+    rate_distance: "Secure key over 405 km field-deployed ultra-low-loss fibre (Boaron PRL 121.190502, 2018); commercial Geneva-cantonal-election fibre link in 2007"
+    deployed_demos:
+      - "Geneva cantonal election fibre QKD link, 2007 (with ID Quantique)"
+      - "405 km field-fibre QKD demo, 2018 (Boaron et al.)"
+  memory:
+    platform: rare-earth-doped crystal (Eu:Y2SiO5, Pr:Y2SiO5, Nd:YSO)
+    storage_time_ms: null
+    retrieval_efficiency: null
+    fidelity: null
+    wavelength_nm: null
+    mode_capacity: null
+
+milestones:
+  - date: 2018-11
+    tag: qkd
+    headline: Secure-key QKD over 405 km of field-deployed ultra-low-loss fibre (Boaron et al.)
+    source_url: https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.121.190502
+    source_type: paper
+  - date: 2007-10
+    tag: qkd
+    headline: First commercial QKD-secured election count, Geneva canton (with ID Quantique)
+    source_url: https://www.newscientist.com/article/dn12786-quantum-cryptography-to-protect-swiss-election/
+    source_type: press
+  - date: 2001
+    tag: qkd
+    headline: Co-founded ID Quantique (Gisin, Ribordy, Zbinden) — first commercial QKD vendor
+    source_url: https://www.idquantique.com/about-idq/company-profile/
+    source_type: press
+  - date: 1998
+    tag: qkd
+    headline: Long-distance Bell-state violation over 10 km of installed Swisscom fibre (Tittel et al.)
+    source_url: https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.81.3563
+    source_type: paper
+  - date: 1995
+    tag: qkd
+    headline: Underwater Bell test over installed Lake Geneva telecom fibre (4 km)
+    source_url: https://journals.aps.org/pra/abstract/10.1103/PhysRevA.57.3229
+    source_type: paper
+
+funding_sources:
+  - name: Swiss National Science Foundation (SNSF)
+    role: Long-running programme grants; Sinergia and NCCR-QSIT participation
+    source_url: https://www.snf.ch/en
+  - name: European Research Council (ERC)
+    role: Advanced Grants (Gisin) and subsequent ERC support to group members
+    source_url: https://erc.europa.eu/homepage
+  - name: NCCR Quantum Science and Technology (NCCR-QSIT)
+    role: Swiss national centre of competence in research, QKD and memory work packages
+    source_url: https://nccr-qsit.ethz.ch/about.html
+
+key_personnel:
+  - role: Founder, Professor Emeritus
+    name: Nicolas Gisin
+    since: 1988
+    source_url: https://www.unige.ch/gap/qic/qtech/
+  - role: Professor, head of experimental QKD line (GAP-Optique)
+    name: Hugo Zbinden
+    since: 1995
+    source_url: https://www.unige.ch/gap/qic/qtech/
+  - role: Professor, quantum memories and photon-pair sources
+    name: Rob Thew
+    since: 2003
+    source_url: https://www.unige.ch/gap/qic/qtech/
+  - role: Former group member; CTO at ID Quantique
+    name: Félix Bussières
+    since: 2014
+    source_url: https://www.idquantique.com/
+
+roadmap:
+  - target: 2025-2027
+    item: Push twin-field and MDI-QKD over deployed Swiss telecom fibre; integrate rare-earth-crystal memories into repeater testbeds
+    source_url: https://www.unige.ch/gap/qic/qtech/research
+    tag: qkd
+
+current_focus:
+  name: Quantum information and communication
+  description: >
+    Per the group's own framing (unige.ch/gap/qic): the applied physics
+    department at the University of Geneva studies a wide range of subjects
+    in quantum information and communication, organised around four areas —
+    quantum technologies, quantum repeaters and memories, quantum networks,
+    and quantum theory — as a collaborative effort spanning theory and
+    experiment, fundamental and applied research.
+  source_url: https://www.unige.ch/gap/qic/
+
+spinout_company: id-quantique
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.121.190502
+    note: "Boaron et al. PRL 121, 190502 (2018) — 405 km field-fibre QKD"
+  - kind: paper
+    citation_key: null
+    url: https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.81.3563
+    note: "Tittel et al. PRL 81, 3563 (1998) — long-distance Bell violation"
+  - kind: paper
+    citation_key: null
+    url: https://journals.aps.org/pra/abstract/10.1103/PhysRevA.57.3229
+    note: "Tittel et al. PRA 57, 3229 (1998) — Lake Geneva fibre Bell test"
+
+partial:
+  - modalities.memory.storage_time_ms
+  - modalities.memory.retrieval_efficiency
+  - modalities.memory.fidelity
+  - modalities.memory.wavelength_nm
+  - modalities.memory.mode_capacity
+  - field: founded
+    as_of: 2026-05-24
+    note: "1988 reflects Gisin's UniGe appointment; GAP-Optique as a named group consolidated through the 1990s."
+  - field: key_personnel.Hugo_Zbinden.since
+    as_of: 2026-05-24
+    note: "Zbinden has been at GAP since the mid-1990s; exact tenure start not stated on group page."
+
+last_verified: 2026-05-24
+verification_method: web

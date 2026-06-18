@@ -1,0 +1,72 @@
+---
+/**
+ * ZoomableFigure — wraps an <img> with a small toolbar (download +
+ * expand-to-zoom). Pair with a single <ZoomModal /> per page; the modal
+ * binds to every [data-zoom-open] button on the page.
+ *
+ * Props:
+ *   src           — image URL for the inline <img> (usually the SVG).
+ *   alt           — alt text for the inline image.
+ *   downloadHref  — file the download button points at. Defaults to a
+ *                   2K PNG sibling derived from `src` (s/\.svg$/_2k.png/).
+ *                   Prefer the PNG companion: SVGs open in-browser instead
+ *                   of downloading on most browsers, the file is larger,
+ *                   and dense diagrams need a higher pixel density anyway.
+ *                   Pass the same URL as `src` if no PNG exists.
+ *   downloadName  — filename suggestion on the download anchor.
+ *   wrapperClass  — optional extra class on the outer <figure>.
+ *
+ * Slot:
+ *   default       — the figcaption element (and any other figure children).
+ */
+const {
+  src,
+  alt,
+  downloadHref,
+  downloadName,
+  wrapperClass,
+} = Astro.props as {
+  src: string;
+  alt: string;
+  downloadHref?: string;
+  downloadName?: string;
+  wrapperClass?: string;
+};
+
+const dlHref = downloadHref || src.replace(/\.svg(\?|#|$)/, "_2k.png$1");
+const dlName = downloadName || dlHref.split("/").pop() || "figure.png";
+---
+<figure class:list={["zfig", wrapperClass]}>
+  <div class="zfig__toolbar">
+    <a class="zfig__btn"
+       href={dlHref}
+       download={dlName}
+       aria-label="Download this figure as PNG"
+       title="Download PNG (2K)">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+        <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"
+              fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <button class="zfig__btn" type="button"
+            data-zoom-open
+            aria-label="Open zoom view of this figure"
+            title="Expand">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+        <path d="M4 10V4h6M20 10V4h-6M4 14v6h6M20 14v6h-6"
+              fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+  <div class="zfig__img-wrap">
+    <img src={src} data-zoomable-src={src} alt={alt}/>
+  </div>
+  <slot />
+</figure>
+
+{/* .zfig styles live in web/src/styles/figure-toolbar.css and are
+    loaded globally from the Infographic layout. Component-scoped
+    styles here would only ship on pages that import this component,
+    leaving the inline-markup variant unstyled. */}

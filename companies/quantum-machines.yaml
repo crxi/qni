@@ -1,0 +1,203 @@
+slug: quantum-machines
+name: Quantum Machines
+categories: [enabling, software]
+hq: Tel Aviv, Israel
+founded: 2018
+status: private
+parent: null
+logo:
+  domain: quantum-machines.co
+
+positioning: >
+  Quantum-control hardware and software vendor. Ships the OPX family of
+  pulse-level controllers (OPX, OPX+, OPX1000) and the QUA programming
+  language used to drive superconducting, trapped-ion, neutral-atom, and
+  spin qubits; the installed base spans more than half of the organisations
+  building quantum computers worldwide. Co-developed NVIDIA DGX Quantum
+  (OPX1000 + Grace Hopper, sub-4 us round-trip) as a GPU-coupled
+  quantum-control reference platform. Founded in Tel Aviv in
+  2018 by Weizmann Institute alumni Itamar Sivan, Yonatan Cohen, and Nissim
+  Ofek; closed a USD 170M Series C in February 2025 led by PSG Equity,
+  taking cumulative funding to USD 280M.
+
+modalities:
+  enabling:
+    products:
+      - OPX1000 (modular high-density quantum controller, up to 64 output / 16 input channels in 3U)
+      - OPX+ (ultra-fast quantum controller, predecessor generation)
+      - OPX (original quantum-orchestration controller)
+      - QDAC-II / QDAC-II Compact (ultra-low-noise DACs for spin-qubit control)
+      - Octave (RF up/down-conversion to 18 GHz)
+      - QSwitch, QBox (signal routing and breakout)
+      - NVIDIA DGX Quantum (joint product: OPX1000 + Grace Hopper via PCIe, sub-4 µs round-trip)
+  software:
+    products:
+      - QUA (pulse-level quantum-control programming language)
+      - QUAlibrate (automated calibration framework)
+      - OPX-Cloud / Orchestration Platform (hybrid quantum-classical control)
+
+milestones:
+  - date: 2026-05
+    tag: enabling
+    headline: Acquisition of TU Delft spin-off QHarbor; opening of Delft R&D hub for software-defined experimentation
+    source_url: https://www.quantum-machines.co/press-release/quantum-machines-acquires-qharbor-software-platform-europe-expansion/
+    source_type: press
+  - date: 2026-02
+    tag: enabling
+    headline: Selected as flagship hub at the Illinois Quantum and Microelectronics Park (IQMP) — first major US R&D footprint outside HQ
+    source_url: https://www.quantum-machines.co/press-release/quantum-machines-flagship-hub-illinois-quantum-microelectronics-park/
+    source_type: press
+  - date: 2025-02
+    tag: enabling
+    headline: $170M Series C led by PSG Equity (Intel Capital, Red Dot participating); cumulative funding $280M
+    source_url: https://www.quantum-machines.co/press-release/quantum-machines-raises-170-million-in-series-c-funding/
+    source_type: press
+  - date: 2024-11
+    tag: enabling
+    headline: Joint demo with NVIDIA — reinforcement-learning calibration of a Rigetti chip via DGX Quantum (OPX1000 + Grace Hopper)
+    source_url: https://techcrunch.com/2024/11/02/quantum-machines-and-nvidia-use-machine-learning-to-get-closer-to-an-error-corrected-quantum-computer/
+    source_type: press
+  - date: 2023-03
+    tag: enabling
+    headline: NVIDIA DGX Quantum announced at GTC — OPX1000 + Grace Hopper GPU-coupled quantum-control reference platform
+    source_url: https://nvidianews.nvidia.com/news/nvidia-announces-new-system-for-accelerated-quantum-classical-computing
+    source_type: press
+  - date: 2023-08
+    tag: enabling
+    headline: OPX1000 launched — modular controller targeting 1000-qubit-class systems
+    source_url: https://www.quantum-machines.co/press-release/quantum-machines-introduces-opx1000-the-quantum-control-solution-for-large-scale-quantum-computing/
+    source_type: press
+  - date: 2021-09
+    tag: enabling
+    headline: $50M Series B led by Red Dot Capital Partners (Exor, Samsung NEXT, Claridge, Valor, Atreides, TLV Partners, Battery Ventures participating)
+    source_url: https://www.quantum-machines.co/blog/quantum-machines-raises-50-million/
+    source_type: press
+  - date: 2018
+    tag: enabling
+    headline: Founded by Itamar Sivan, Yonatan Cohen, Nissim Ofek (Weizmann Institute alumni)
+    source_url: https://www.weizmann.ac.il/WeizmannCompass/sections/alumni/building-the-machines-of-the-future
+    source_type: press
+
+shareholders:
+  - holder: PSG Equity
+    stake_percent: null
+    stake_class: controlling
+    as_of: 2025-02
+    source_url: https://psgequity.com/news/quantum-machines-raises-170m-as-its-customer-base-exceeds-50-of-companies-developing-quantum-computers/
+    note: Series C lead, February 2025; stake undisclosed
+  - holder: Intel Capital
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-02
+    source_url: https://www.quantum-machines.co/press-release/quantum-machines-raises-170-million-in-series-c-funding/
+    note: Strategic investor; participated in Series C
+  - holder: Red Dot Capital Partners
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-02
+    source_url: https://www.quantum-machines.co/press-release/quantum-machines-raises-170-million-in-series-c-funding/
+    note: Series B lead (2021); Series C participant
+  - holder: TLV Partners
+    stake_percent: null
+    stake_class: minority
+    as_of: 2021-09
+    source_url: https://www.quantum-machines.co/blog/quantum-machines-raises-50-million/
+    note: Series A lead, Series B participant
+  - holder: Exor / Samsung NEXT / Claridge Israel / Valor Equity Partners / Atreides Management / Battery Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2021-09
+    source_url: https://www.quantum-machines.co/blog/quantum-machines-raises-50-million/
+    note: Joined Series B (Sep 2021)
+  - holder: Itamar Sivan, Yonatan Cohen, Nissim Ofek
+    stake_percent: null
+    stake_class: founder
+    as_of: 2018
+    source_url: https://www.quantum-machines.co/about/
+    note: Co-founders; combined stake undisclosed
+
+key_personnel:
+  - role: Co-Founder & CEO
+    name: Itamar Sivan
+    since: 2018
+    source_url: https://www.quantum-machines.co/about/
+  - role: Co-Founder & CTO
+    name: Yonatan Cohen
+    since: 2018
+    source_url: https://www.quantum-machines.co/about/
+  - role: Co-Founder & Chief Engineer
+    name: Nissim Ofek
+    since: 2018
+    source_url: https://www.quantum-machines.co/about/
+  - role: CFO
+    name: Nir Ackerman
+    since: null
+    source_url: https://www.quantum-machines.co/about/
+  - role: Chief of Operations
+    name: Shaul Galila
+    since: null
+    source_url: https://www.quantum-machines.co/about/
+  - role: Chief Business Officer
+    name: Omri Shoshan
+    since: null
+    source_url: https://www.quantum-machines.co/about/
+  - role: Chief People Officer
+    name: Hila Manoach
+    since: null
+    source_url: https://www.quantum-machines.co/about/
+  - role: VP Marketing
+    name: Yonatan Snir
+    since: null
+    source_url: https://www.quantum-machines.co/about/
+
+roadmap:
+  - target: 2026+
+    item: Scale OPX1000-based control stacks toward tens-of-thousands-of-qubits systems; deepen DGX Quantum integration for real-time QEC decoders
+    source_url: https://www.quantum-machines.co/press-release/quantum-machines-raises-170-million-in-series-c-funding/
+    tag: enabling
+
+current_flagship:
+  name: OPX1000
+  generation: Modular high-density quantum controller (3U, up to 64 output / 16 input channels, PPU-based real-time classical processing)
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://www.quantum-machines.co/press-release/quantum-machines-raises-170-million-in-series-c-funding/
+    note: Series C announcement (Feb 2025)
+  - kind: press
+    citation_key: null
+    url: https://www.quantum-machines.co/press-release/quantum-machines-introduces-opx1000-the-quantum-control-solution-for-large-scale-quantum-computing/
+    note: OPX1000 launch announcement (Aug 2023)
+  - kind: blog
+    citation_key: null
+    url: https://www.quantum-machines.co/products/opx1000/
+    note: OPX1000 product page and spec summary
+  - kind: press
+    citation_key: null
+    url: https://nvidianews.nvidia.com/news/nvidia-announces-new-system-for-accelerated-quantum-classical-computing
+    note: NVIDIA DGX Quantum announcement (GTC 2023)
+  - kind: press
+    citation_key: null
+    url: https://www.quantum-machines.co/press-release/quantum-machines-acquires-qharbor-software-platform-europe-expansion/
+    note: QHarbor acquisition / Delft R&D hub (May 2026)
+  - kind: blog
+    citation_key: null
+    url: https://www.quantum-machines.co/about/
+    note: Leadership roster and global office locations
+
+partial:
+  - key_personnel.3.since
+  - key_personnel.4.since
+  - key_personnel.5.since
+  - key_personnel.6.since
+  - key_personnel.7.since
+  - field: shareholders.0.stake_class
+    as_of: 2026-05-21
+    note: PSG marked controlling as Series C lead; actual board control / stake percent not disclosed
+  - field: shareholders
+    as_of: 2026-05-21
+    note: All stake percentages undisclosed — private company, no equivalent of 13F/S-1; rows reflect publicly announced lead/participant roles only
+
+last_verified: 2026-05-21
+verification_method: web

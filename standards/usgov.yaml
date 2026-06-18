@@ -1,0 +1,60 @@
+body:
+  id: usgov
+  name: United States Government quantum strategy and blueprint documents
+  short_name: US.GOV
+  url: https://www.quantum.gov
+  scope: >
+    Inter-agency quantum-policy documents under the National Quantum
+    Initiative (NQI). Not standards in the SDO sense; they are
+    national-strategy reports that drive funding priorities, define the
+    R&D roadmap, and shape procurement language. Authors span DOE,
+    NIST, NSF, OSTP, NSA, and the DoD.
+  notes: >
+    US quantum standardisation proper happens at NIST (PQC FIPS 203/204/
+    205) and at SDOs the US participates in (IEEE, ISO/IEC, IETF, ITU).
+    The documents below are the high-level strategy layer that sits
+    above those.
+
+standards:
+  - id: DOE-Quantum-Internet-Blueprint
+    title: From Long-Distance Entanglement to Building a Nationwide Quantum Internet - Report of the DOE Quantum Internet Blueprint Workshop
+    type: technical-report
+    date: 2020-05
+    group: DOE Office of Science
+    tags: [qnet, policy]
+    status: informational
+    url: https://www.energy.gov/sites/default/files/2020/07/f76/QuantumWkshpRpt20FINAL_Nav_0.pdf
+    pdf: reference/US.GOV/20200505 Report of the DOE Quantum Internet Blueprint Workshop.pdf
+    summary: >
+      DOE's foundational quantum-Internet blueprint. Lays out the
+      multi-decade roadmap from current QKD demos through entanglement-
+      based repeaters to a fault-tolerant quantum Internet. The US
+      counterpart to ITU-T Y.Sup98 and RFC 9340.
+
+  - id: US-Strategic-Vision-Quantum-Networks
+    title: A Strategic Vision for America's Quantum Networks
+    type: technical-report
+    date: 2020-02
+    group: OSTP / NQCO
+    tags: [qnet, qkdn, policy]
+    status: informational
+    url: https://www.quantum.gov/wp-content/uploads/2021/01/A-Strategic-Vision-for-Americas-Quantum-Networks-Feb-2020.pdf
+    pdf: reference/US.GOV/A-Strategic-Vision-for-Americas-Quantum-Networks-Feb-2020.pdf
+    summary: >
+      White House OSTP / National Quantum Coordination Office strategic
+      vision document. Sets US policy goals for quantum networking and
+      coordinates federal agency roles.
+
+  - id: NQI-Annual-Report-FY2025
+    title: National Quantum Initiative Supplement to the President's FY 2025 Budget (Annual Report)
+    type: technical-report
+    date: 2025
+    group: NQCO / NSTC
+    tags: [policy]
+    status: informational
+    url: https://www.quantum.gov/wp-content/uploads/2024/12/NQI-Annual-Report-FY2025.pdf
+    pdf: reference/US.GOV/NQI-Annual-Report-FY2025.pdf
+    summary: >
+      Annual report on NQI activities and budget across DOE, NIST, NSF,
+      DoD, NASA, and IC agencies. The primary public accounting of US
+      quantum spend.

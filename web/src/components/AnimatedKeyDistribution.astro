@@ -1,0 +1,695 @@
+---
+/**
+ * AnimatedKeyDistribution — the key-distribution diagram, animated.
+ *
+ * Built from the same inline SVG as KeyDistributionDiagram, but the top
+ * band (the symmetric-encryption flow) is driven by a beat machine — the
+ * same pattern as AnimatedOpsPrimitives: each beat snaps the named
+ * elements to a pose (transform + opacity) and CSS transitions handle the
+ * in-betweens, so stepping backward animates the action in reverse.
+ *
+ * The story, beat by beat:
+ *   0  a shared key is needed
+ *   1  the key is shared — one copy to Alice, one to Bob
+ *   2  Alice composes her plaintext message
+ *   3  Alice encrypts — her padlock closes, plaintext → ciphertext
+ *   4  the ciphertext crosses the public channel past Eve
+ *   5  Bob decrypts — his padlock opens, ciphertext → plaintext
+ *   6  Bob reads the original message
+ *
+ * The three-routes panels (step 3) are static throughout. Reduced-motion
+ * jumps to the final beat and stays there.
+ */
+interface Props {
+  /** figcaption etc. passed as children */
+}
+---
+
+<figure class="zfig kd-fig" data-kd-figure>
+  <div class="zfig__toolbar">
+    <span class="zfig__phase" data-kd-phase aria-live="polite">Shared key needed</span>
+    <div class="zfig__playback" role="group" aria-label="Animation playback controls">
+      <button class="zfig__btn" type="button" data-kd-back aria-label="Step back" title="Step back">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14h2V5zM20 5L9 12l11 7z" fill="currentColor"/></svg>
+      </button>
+      <button class="zfig__btn" type="button" data-kd-play aria-label="Pause" title="Play / pause">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"/></svg>
+      </button>
+      <button class="zfig__btn" type="button" data-kd-fwd aria-label="Step forward" title="Step forward">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M16 5v14h2V5zM4 5v14l11-7z" fill="currentColor"/></svg>
+      </button>
+      <button class="zfig__btn zfig__btn--speed" type="button" data-kd-speed aria-label="Playback speed" title="Playback speed">1×</button>
+    </div>
+    <button class="zfig__btn" type="button" data-kd-download aria-label="Download this figure as PNG" title="Download PNG (2K)">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="zfig__btn" type="button" data-kd-fullscreen aria-label="View this animation full-screen" title="Full screen">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 10V4h6M20 10V4h-6M4 14v6h6M20 14v6h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <svg class="kd" data-kd-svg viewBox="0 0 960 730" role="img"
+       aria-label="Animated: Alice and Bob share a secret key, Alice encrypts a message into ciphertext, it crosses the public channel past Eve, and Bob decrypts it back to the original message.">
+    <title>Symmetric encryption with a shared key — encrypt, transmit, decrypt</title>
+
+    <!-- ============ 1 · SYMMETRIC ENCRYPTION (animated) ============ -->
+    <circle class="kd-badge" cx="32" cy="26" r="12" />
+    <text class="kd-badge-n" x="32" y="30">1</text>
+    <text class="kd-h-title" x="54" y="31">Symmetric encryption — fast, once Alice and Bob share a key K</text>
+
+    <!-- Alice / Bob / Eve (static) -->
+    <use href="#om-alice" x="42" y="40" width="60" height="60" />
+    <text class="kd-node-l" x="72" y="116">Alice</text>
+    <use href="#om-bob" x="858" y="40" width="60" height="60" />
+    <text class="kd-node-l" x="888" y="116">Bob</text>
+    <use href="#om-eve" x="450" y="40" width="60" height="60" />
+    <g transform="translate(445,76)"><use href="#kd-magnifier" /></g>
+    <text class="kd-node-l" x="480" y="116">Eve</text>
+    <!-- frustration burst — pops when Eve reads the scrambled copy -->
+    <g data-name="evemad" transform="translate(515,49)" opacity="0"><use class="kd-anger" href="#om-anger" x="-13" y="-13" width="26" height="26" /></g>
+
+    <!-- faint guide stubs from each party down to its padlock -->
+    <line class="kd-plain" x1="72" y1="126" x2="72" y2="158" />
+    <line class="kd-plain" x1="888" y1="126" x2="888" y2="158" />
+
+    <!-- public channel between the padlocks -->
+    <line class="kd-pub" x1="84" y1="172" x2="876" y2="172" />
+    <text class="kd-pub-l" x="232" y="160">public channel</text>
+
+    <!-- key-operating glow — flares behind the lock at encrypt / decrypt -->
+    <g data-name="glowA" transform="translate(72,193)" opacity="0"><circle class="kd-glow" cx="0" cy="0" r="44" fill="url(#kd-glow)" /></g>
+    <g data-name="glowB" transform="translate(888,193)" opacity="0"><circle class="kd-glow" cx="0" cy="0" r="44" fill="url(#kd-glow)" /></g>
+
+    <!-- padlocks — crossfade open/closed pairs, one per party -->
+    <g data-name="lockA-open"   transform="translate(72,172)"><use href="#kd-lock-open" /></g>
+    <g data-name="lockA-closed" transform="translate(72,172)" opacity="0"><use href="#kd-lock" /></g>
+    <g data-name="lockB-open"   transform="translate(888,172)"><use href="#kd-lock-open" /></g>
+    <g data-name="lockB-closed" transform="translate(888,172)" opacity="0"><use href="#kd-lock" /></g>
+    <text class="kd-tiny" x="72" y="226">encrypt</text>
+    <text class="kd-tiny" x="888" y="226">decrypt</text>
+
+    <!-- shared key K — central key splits into two halves, one to each lock -->
+    <line class="kd-keyrail" x1="72" y1="186" x2="72" y2="230" />
+    <line class="kd-keyrail" x1="888" y1="186" x2="888" y2="230" />
+    <line class="kd-keyrail" x1="72" y1="230" x2="442" y2="230" />
+    <line class="kd-keyrail" x1="518" y1="230" x2="888" y2="230" />
+    <text class="kd-key-l" x="480" y="254">shared secret key K</text>
+    <g data-name="key"  transform="translate(480,230)"><use href="#kd-key" /></g>
+    <!-- key halves follow the dashed rail out along the channel, then turn up
+         (offset-rotate: auto) so they finish vertical, inserted into the lock -->
+    <g data-name="keyA" style="offset-path:path('M 480 230 L 92 230 Q 72 230 72 210 L 72 200')" opacity="0"><use href="#kd-key" /></g>
+    <g data-name="keyB" style="offset-path:path('M 480 230 L 868 230 Q 888 230 888 210 L 888 200')" opacity="0"><use href="#kd-key" /></g>
+
+    <!-- travelling message / ciphertext tokens (text re-rolled each cycle) -->
+    <g data-name="msg" transform="translate(72,140)">
+      <rect class="kd-msg-doc" x="-29" y="-11" width="58" height="22" rx="3" />
+      <text class="kd-msg-l" data-msg-text x="0" y="4">Hello!</text>
+    </g>
+    <g data-name="cipher" transform="translate(115,172)" opacity="0">
+      <rect class="kd-ct-box" x="-33" y="-11" width="66" height="22" rx="4" />
+      <text class="kd-ct-l" data-cipher-text x="0" y="4">K$9@mZ</text>
+    </g>
+    <!-- Eve lifts a copy off the wire — same scrambled bytes, unreadable -->
+    <g data-name="evecopy" transform="translate(480,172)" opacity="0">
+      <rect class="kd-ct-box kd-copy-box" x="-33" y="-11" width="66" height="22" rx="4" />
+      <text class="kd-ct-l" data-evecopy-text x="0" y="4">K$9@mZ</text>
+    </g>
+    <!-- Bob's delivered plaintext, shown only in the downloaded poster frame -->
+    <g data-name="msgB" transform="translate(888,140)" opacity="0">
+      <rect class="kd-msg-doc" x="-29" y="-11" width="58" height="22" rx="3" />
+      <text class="kd-msg-l" data-msgb-text x="0" y="4">Hello!</text>
+    </g>
+
+    <!-- ============ 2 · KEY DISTRIBUTION ============ -->
+    <circle class="kd-badge" cx="32" cy="286" r="12" />
+    <text class="kd-badge-n" x="32" y="290">2</text>
+    <text class="kd-h-title" x="54" y="291">Key distribution — the hard part</text>
+    <text class="kd-prob-l" x="54" y="315">Get that same key K to both sides over a</text>
+    <text class="kd-prob-l" x="54" y="333">public network — without Eve obtaining a copy.</text>
+
+    <!-- ============ 3 · THREE WAYS (static) ============ -->
+    <circle class="kd-badge" cx="32" cy="362" r="12" />
+    <text class="kd-badge-n" x="32" y="366">3</text>
+    <text class="kd-h-title" x="54" y="367">Three ways to distribute that key</text>
+    <line class="kd-up" x1="480" y1="264" x2="480" y2="396" />
+    <line class="kd-bus" x1="160" y1="380" x2="800" y2="380" />
+    <line class="kd-up" x1="160" y1="380" x2="160" y2="396" />
+    <line class="kd-up" x1="800" y1="380" x2="800" y2="396" />
+
+    <g transform="translate(0,48)">
+    <g class="kd-panel kd-panel--warn">
+      <rect class="kd-panel-bg" x="15" y="348" width="290" height="320" rx="10" />
+      <rect class="kd-panel-bar" x="15" y="348" width="5" height="320" />
+      <text class="kd-p-kicker" x="36" y="378">CLASSICAL PUBLIC-KEY</text>
+      <text class="kd-p-title" x="36" y="404">RSA · ECDH</text>
+      <line class="kd-rule" x1="36" y1="420" x2="284" y2="420" />
+      <text class="kd-p-body" x="36" y="444">Both sides agree a key by</text>
+      <text class="kd-p-body" x="36" y="462">exchanging public values over</text>
+      <text class="kd-p-body" x="36" y="480">the same public channel.</text>
+      <text class="kd-p-tag" x="36" y="514">secures on ▸</text>
+      <text class="kd-p-body" x="36" y="532">computational hardness —</text>
+      <text class="kd-p-body" x="36" y="550">factoring, discrete log</text>
+      <g transform="translate(36,588)"><use href="#kd-chip-x" /></g>
+      <text class="kd-p-status" x="62" y="604">Broken by a cryptographically-</text>
+      <text class="kd-p-status" x="62" y="622">relevant quantum computer (Shor)</text>
+    </g>
+    <g class="kd-panel kd-panel--acc">
+      <rect class="kd-panel-bg" x="335" y="348" width="290" height="320" rx="10" />
+      <rect class="kd-panel-bar" x="335" y="348" width="5" height="320" />
+      <text class="kd-p-kicker" x="356" y="378">POST-QUANTUM CRYPTO</text>
+      <text class="kd-p-title" x="356" y="404">ML-KEM (FIPS 203)</text>
+      <line class="kd-rule" x1="356" y1="420" x2="604" y2="420" />
+      <text class="kd-p-body" x="356" y="444">Same public-channel key</text>
+      <text class="kd-p-body" x="356" y="462">agreement, rebuilt on a</text>
+      <text class="kd-p-body" x="356" y="480">lattice problem.</text>
+      <text class="kd-p-tag" x="356" y="514">secures on ▸</text>
+      <text class="kd-p-body" x="356" y="532">computational hardness —</text>
+      <text class="kd-p-body" x="356" y="550">module lattices (MLWE)</text>
+      <g transform="translate(356,588)"><use href="#kd-chip-v" /></g>
+      <text class="kd-p-status" x="382" y="604">No known quantum</text>
+      <text class="kd-p-status" x="382" y="622">attack; a software upgrade</text>
+    </g>
+    <g class="kd-panel kd-panel--q">
+      <rect class="kd-panel-bg" x="655" y="348" width="290" height="320" rx="10" />
+      <rect class="kd-panel-bar" x="655" y="348" width="5" height="320" />
+      <text class="kd-p-kicker" x="676" y="378">QUANTUM KEY DISTRIBUTION</text>
+      <text class="kd-p-title" x="676" y="404">QKD — BB84</text>
+      <line class="kd-rule" x1="676" y1="420" x2="924" y2="420" />
+      <text class="kd-p-body" x="676" y="444">Key bits carried on single</text>
+      <text class="kd-p-body" x="676" y="462">photons over a quantum</text>
+      <text class="kd-p-body" x="676" y="480">channel; sifted over a public</text>
+      <text class="kd-p-body" x="676" y="498">channel.</text>
+      <text class="kd-p-tag" x="676" y="528">secures on ▸</text>
+      <text class="kd-p-body" x="676" y="546">physics — no-cloning,</text>
+      <text class="kd-p-body" x="676" y="564">measurement disturbs</text>
+      <g transform="translate(676,596)"><use href="#kd-chip-v" /></g>
+      <text class="kd-p-status" x="702" y="612">Eavesdropping raises the</text>
+      <text class="kd-p-status" x="702" y="630">error rate → it is detected</text>
+    </g>
+    </g>
+
+    <!-- ============ defs ============ -->
+    <defs>
+      <symbol id="om-alice" viewBox="0 0 72 72">
+        <path fill="#92D3F5" d="M17,61v-4c0-5,5-9,10-9c6,5,12,5,18,0c5,0,10,4,10,9v4"/>
+        <path fill="#F1B31C" d="M18,47.3c1.1,1,2.4,1.9,3.6,2.7c1.7-1.2,3.6-2,5.4-2.1c6.2,5,12.5,5,18.7,0c1.4,0.1,2.9,0.6,4.2,1.5 c1.1-0.7,2.1-1.5,3-2.3c1.2-0.7,3.1-8.3,0.4-13c-0.4-0.9-0.8-1.7-1.2-2.6c-1.5-3.3-2-4.5-2.3-10.5c0-3.7-3.8-6.8-7.5-7.1 c-0.3,0-0.5-0.1-0.7-0.3c-0.1-0.1-2.4-2.7-7.2-2.7c-6.2,0-11.4,3.4-12.7,8.2c-0.5,2-0.7,4.1-0.6,6.2c0.2,2-0.1,4.1-0.8,6 c-0.2,0.8-0.6,1.5-1.1,2.1C15.4,37.7,18.2,47.6,18,47.3z"/>
+        <path fill="#FCEA2B" d="M25.4,29.4v1C25.4,38,30,44,35.9,44s10.5-6,10.5-13.6c0-4.7-1.8-7.5-5.3-11.1c-2.8,2.2-5.8,4.1-9,5.8 C29.5,26.5,25.8,28.6,25.4,29.4z"/>
+        <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.8,46.6 c-3.7-5.9-0.6-10.1,1.2-14.7c1.6-4.2-0.2-6.5,1.3-12s7.3-9,13.7-9c5.4,0,8,3,8,3c4.2,0.4,7.4,3.9,7.4,8c0.4,7.2,1,7.2,3.4,12.8 c1.7,3.9,1.1,8.3-1.4,11.7"/>
+        <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17,59.9v-3c0-5,5-9,10-9 c6,5,12,5,18,0c5,0,10,4,10,9v3"/>
+        <path d="M42,29.9c0,1.1-0.9,2-2,2s-2-0.9-2-2s0.9-2,2-2S42,28.8,42,29.9"/>
+        <path d="M34,29.9c0,1.1-0.9,2-2,2c-1.1,0-2-0.9-2-2s0.9-2,2-2C33.1,27.9,34,28.8,34,29.9"/>
+        <path fill="none" stroke="#000000" stroke-linejoin="round" stroke-width="2" d="M25,30.9c0,8,5,14,11,14s11-6,11-14c0-5-2-8-6-12 c-4,4-16,9-16,11C25,29.9,25,30.9,25,30.9z"/>
+        <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M33,38.1c1.9,1,4.1,1,6,0"/>
+      </symbol>
+      <symbol id="om-bob" viewBox="0 0 72 72">
+        <path fill="#92D3F5" d="M17,61v-4c0-5,5-9,10-9c6,5,12,5,18,0c5,0,10,4,10,9v4"/>
+        <path fill="#F1B31C" d="M26,38c-3,0-4-7-4-14c0-6,5-12,14-12s14,6,14,12c0,7-1,14-4,14"/>
+        <path fill="#FCEA2B" d="M24.9,31c-0.1,8,4.1,14,11,14C43,45,47,39,47,31c0-5-3-10-3-10c-8,0-10,3-16,1C28,22,25,26,24.9,31z"/>
+        <path d="M41.9,30c0,1.1-0.9,2-2,2s-2-0.9-2-2s0.9-2,2-2S41.9,28.9,41.9,30"/>
+        <path d="M33.9,30c0,1.1-0.9,2-2,2c-1.1,0-2-0.9-2-2s0.9-2,2-2C33,28,33.9,28.9,33.9,30"/>
+        <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M32.9,38.2 c2.1,0.8,4.1,0.8,6,0"/>
+        <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M26,38c-3,0-4-7-4-14 c0-6,5-12,14-12s14,6,14,12c0,7-1,14-4,14"/>
+        <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17,60v-3c0-5,5-9,10-9 c6,5,12,5,18,0c5,0,10,4,10,9v3"/>
+        <path fill="none" stroke="#000000" stroke-linejoin="round" stroke-width="2" d="M24.9,31c-0.1,8,4.9,14,11,14c6,0,11.1-6,11.1-14 c0-5-3-11-3-11c-8,0-10,3-16,1C28,21,25,26,24.9,31z"/>
+      </symbol>
+      <symbol id="om-eve" viewBox="0 0 72 72">
+        <path fill="#3f3f3f" d="M53.7451,45.4219c-1.9346-1.958-4.6582-2.9512-8.0937-2.9512H43.2363a.1406.1406,0,0,1-.1387-.1191l-.1535-.9195c5.456-2.6888,9.2766-8.7594,9.2766-15.8125,0-9.5366-6.9756-17.2949-15.5508-17.2949S21.1191,16.083,21.1191,25.62c0,7.0512,3.8185,13.12,9.2722,15.81l-.154.9228a.14.14,0,0,1-.1387.1182h-2.415c-3.4356,0-6.1592.9932-8.0938,2.9512-2.8437,2.8779-3.2217,7.1406-3.1943,9.4131v5.081a.9994.9994,0,0,0,1,1H55.9394a.9993.9993,0,0,0,1-1V54.8467C56.9668,52.5625,56.5889,48.3,53.7451,45.4219Z"/>
+        <path d="M36.6675,19.0969c7.6593,0,14.1047,1.4272,15.381,9.5449a19.1457,19.1457,0,0,0,.2478-3.0222c0-9.5366-6.9756-17.2949-15.5508-17.2949S21.1947,16.083,21.1947,25.62a19.1325,19.1325,0,0,0,.2478,3.0221C22.7187,20.524,29.0082,19.0969,36.6675,19.0969Z"/>
+        <path d="M53.7336,45.7445a1.6758,1.6758,0,0,0-.1092-.362.979.979,0,0,0-.1248-.1707.9266.9266,0,0,0-.0769-.1053c-.0217-.02-.0464-.0364-.0682-.0561l-.0113-.0092a11.14,11.14,0,0,0-7.6861-2.5705H43.33a.96.96,0,0,0-.2274.0459c-.0276.0069-.056.0075-.0828.0166a.97.97,0,0,0-.2808.1519c-.0163.0121-.034.02-.0494.0333a.9786.9786,0,0,0-.1821.2159.6007.6007,0,0,0-.1326.3135.9392.9392,0,0,0-.04.1272c-.0046.0431-.4961,4.1746-5.6138,9.3931-5.1178-5.2276-5.6157-9.3356-5.6206-9.3872a.9206.9206,0,0,0-.0429-.143.9916.9916,0,0,0-.06-.1983.96.96,0,0,0-.0924-.1371.991.991,0,0,0-.14-.1705,1.0137,1.0137,0,0,0-.1262-.0851.6779.6779,0,0,0-.3785-.1447.9456.9456,0,0,0-.156-.0315H27.69a11.1617,11.1617,0,0,0-7.6866,2.5625.9408.9408,0,0,0-.0913.122.9794.9794,0,0,0-.1132.1513,1.8309,1.8309,0,0,0-.1143.363.9838.9838,0,0,0,.0088.216.9273.9273,0,0,0,.0054.1331A26.3764,26.3764,0,0,0,29.9647,60.7178a.9953.9953,0,0,0,.5967.1982H44.2791a1.0007,1.0007,0,0,0,.9629-.7285.9905.9905,0,0,0-.1219-.7894A25.9952,25.9952,0,0,0,53.7186,46.086a.9588.9588,0,0,0,.0061-.1374A.9768.9768,0,0,0,53.7336,45.7445Z"/>
+        <path fill="#fcea2b" d="M50.286,22.7772c-2.3516-2.8491-6.9366-4.2939-13.628-4.2939-6.3808,0-10.8613,1.41-13.3154,4.1919a7.1445,7.1445,0,0,0-1.87,5.1928,18.4938,18.4938,0,0,0,1.2715,4.99l.0644.1035-.1933.1623v0l.2323-.0958a.7813.7813,0,0,0,.1142.1118l.0528.0479a.76.76,0,0,0,.1533.0761l-.0635.2451.124-.2168a.7743.7743,0,0,0,.1739.0293l.0439-.0009a.7206.7206,0,0,0,.2246-.0362c.0791-.0254,8.1221-2.6235,12.9873-2.6235,5.5928,0,13.086,2.2192,13.1612,2.2412a.7509.7509,0,0,0,.9218-.4722l.0518-.1186a18.709,18.709,0,0,0,1.05-4.44v-.0166A6.68,6.68,0,0,0,50.286,22.7772Z"/>
+        <path d="M42.7455,24.9444a2,2,0,1,1-2-2,2.0007,2.0007,0,0,1,2,2"/>
+        <path d="M34.7455,24.9444a2,2,0,1,1-2-2,2.0007,2.0007,0,0,1,2,2"/>
+        <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.3926,59.9165V54.8349C17.349,51.2,18.3529,43.47,27.6814,43.47h2.4147a1.1408,1.1408,0,0,0,1.1253-.9534l.2768-1.6607"/>
+        <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M55.9373,59.9165V54.8349C55.9809,51.2,54.977,43.47,45.6485,43.47H43.2338a1.1408,1.1408,0,0,1-1.1253-.9534l-.2768-1.6607"/>
+        <ellipse cx="36.6675" cy="25.6198" rx="14.5511" ry="16.2951" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M23.4484,32.4355s8.1953-2.6606,13.2191-2.6606c5.753,0,13.375,2.2727,13.375,2.2727"/>
+        <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22.2285,27.6524s-1.07-8.5555,14.439-8.5555c16.0874,0,14.4364,8.5555,14.4364,8.5555"/>
+        <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M30.0961,43.47s.7425,8.2231,14.1742,16.4462"/>
+        <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.662,45.7805c.78,3.1761,3.091,9.0738,9.8905,14.136"/>
+        <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M43.3209,43.47s-.4327,4.7916-6.6119,10.7171"/>
+        <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M52.7394,45.8433a25.1692,25.1692,0,0,1-9.2432,13.59"/>
+      </symbol>
+      <symbol id="om-anger" viewBox="0 0 72 72">
+        <path fill="#ea5a47" d="m36,16.54c-8.293,0-16.662-4.3137-16.662-4.3137-.9777-.504-1.3268-.1374-.7757.8146,0,0,5.9136,10.2144,17.4377,10.1261,11.5242.0883,17.4377-10.1261,17.4377-10.1261.5512-.952.2021-1.3186-.7757-.8146,0,0-8.3689,4.3137-16.662,4.3137Z"/>
+        <path fill="#ea5a47" d="m36,55.46c8.2931,0,16.662,4.3137,16.662,4.3137.9778.504,1.3269.1374.7757-.8145,0,0-5.9135-10.2145-17.4377-10.1262-11.5241-.0883-17.4377,10.1262-17.4377,10.1262-.5511.9519-.202,1.3185.7757.8145,0,0,8.369-4.3137,16.662-4.3137Z"/>
+        <path fill="#ea5a47" d="m55.46,36c0-8.293,4.3137-16.662,4.3137-16.662.504-.9777.1374-1.3268-.8146-.7756,0,0-10.2144,5.9135-10.1261,17.4376-.0883,11.5242,10.1261,17.4377,10.1261,17.4377.952.5512,1.3186.2021.8146-.7756,0-.0002-4.3137-8.369-4.3137-16.6621Z"/>
+        <path fill="#ea5a47" d="m22.167,35.9999c.0971-12.6769-8.1349-16.2848-10.1261-17.4376-.952-.5512-1.3186-.2021-.8146.7756,0,0,5.0637,8.369,5.0637,16.662s-5.0637,16.6619-5.0637,16.6621c-.504.9777-.1374,1.3268.8146.7756,1.9912-1.1528,10.2232-4.7607,10.1261-17.4377"/>
+        <path fill="none" stroke="#000" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="m36,16.54c-8.293,0-16.662-4.3137-16.662-4.3137-.9777-.504-1.3268-.1374-.7757.8146,0,0,5.9136,10.2144,17.4377,10.1261,11.5242.0883,17.4377-10.1261,17.4377-10.1261.5512-.952.2021-1.3186-.7757-.8146,0,0-8.3689,4.3137-16.662,4.3137Z"/>
+        <path fill="none" stroke="#000" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="m36,55.46c8.2931,0,16.662,4.3137,16.662,4.3137.9778.504,1.3269.1374.7757-.8145,0,0-5.9135-10.2145-17.4377-10.1262-11.5241-.0883-17.4377,10.1262-17.4377,10.1262-.5511.9519-.202,1.3185.7757.8145,0,0,8.369-4.3137,16.662-4.3137Z"/>
+        <path fill="none" stroke="#000" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="m55.46,36c0-8.293,4.3137-16.662,4.3137-16.662.504-.9777.1374-1.3268-.8146-.7756,0,0-10.2144,5.9135-10.1261,17.4376-.0883,11.5242,10.1261,17.4377,10.1261,17.4377.952.5512,1.3186.2021.8146-.7756,0-.0002-4.3137-8.369-4.3137-16.6621Z"/>
+        <path fill="none" stroke="#000" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="m11.2263,52.662c-.504.9777.6126,1.3268,1.5646.7756,0,0,9.9644-5.9135,9.8761-17.4377.0883-11.5241-9.8761-17.4376-9.8761-17.4376-.952-.5512-1.3186-.2021-.8146.7756,0,0,4.3137,8.369,4.3137,16.662s-5.0637,16.6619-5.0637,16.6621Z"/>
+      </symbol>
+
+      <g id="kd-lock">
+        <path class="kd-lock-shackle" d="M-7,-4 v-5 a7,7 0 0 1 14,0 v5" />
+        <rect class="kd-lock-body" x="-10" y="-4" width="20" height="16" rx="2.5" />
+        <circle class="kd-lock-hole" cx="0" cy="3" r="2" />
+      </g>
+      <g id="kd-lock-open">
+        <path class="kd-lock-shackle" d="M-7,-4 v-5 a7,7 0 0 1 14,0" transform="rotate(-22 -7 -4)" />
+        <rect class="kd-lock-body" x="-10" y="-4" width="20" height="16" rx="2.5" />
+        <circle class="kd-lock-hole" cx="0" cy="3" r="2" />
+      </g>
+      <g id="kd-magnifier">
+        <circle class="kd-mag-lens" cx="0" cy="0" r="11" />
+        <line class="kd-mag-handle" x1="7.8" y1="7.8" x2="19" y2="19" />
+      </g>
+      <g id="kd-key">
+        <circle class="kd-key-bow" cx="-12" cy="0" r="6.5" />
+        <line class="kd-key-stem" x1="-5.5" y1="0" x2="14" y2="0" />
+        <line class="kd-key-stem" x1="9" y1="0" x2="9" y2="6" />
+        <line class="kd-key-stem" x1="14" y1="0" x2="14" y2="6" />
+      </g>
+      <g id="kd-chip-x">
+        <circle class="kd-chip kd-chip--x" cx="9" cy="9" r="9" />
+        <path class="kd-chip-mark" d="M5,5 L13,13 M13,5 L5,13" />
+      </g>
+      <g id="kd-chip-v">
+        <circle class="kd-chip kd-chip--v" cx="9" cy="9" r="9" />
+        <path class="kd-chip-mark" d="M4.5,9.5 L8,13 L14,5" />
+      </g>
+      <radialGradient id="kd-glow" cx="0.5" cy="0.5" r="0.5">
+        <stop offset="0%"   stop-color="#eab12f" stop-opacity="0.72" />
+        <stop offset="50%"  stop-color="#e0a92e" stop-opacity="0.42" />
+        <stop offset="100%" stop-color="#e0a92e" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+  </svg>
+
+  <slot />
+</figure>
+
+<script is:inline>
+(function () {
+  function initFigure(fig) {
+    var svg = fig.querySelector("svg[data-kd-svg]");
+    if (!svg) return null;
+    function byName(n) { return svg.querySelector('[data-name="' + n + '"]'); }
+
+    var TOTAL = 9;            // beats 0..8
+    var BEAT_MS = 1440;       // 25% slower than the first cut
+    var PAUSE_END_MS = 2125;
+    // per-beat hold time; the Eve approach (4) and copy (5) linger.
+    var DUR = [BEAT_MS, BEAT_MS, BEAT_MS, BEAT_MS, 1950, 1550, BEAT_MS, BEAT_MS, PAUSE_END_MS];
+    var rm = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    // Alice's plaintext is a real 6-character word; the ciphertext is a
+    // random 6-character printable-ASCII string. Both re-roll each cycle.
+    var WORDS = ["Hello!", "Friday", "Attack", "Coffee", "Secret", "Photon",
+                 "Cipher", "Rocket", "Banana", "Garden", "Submit", "Wallet"];
+    var ASCII = [];
+    for (var a = 33; a <= 126; a++) ASCII.push(String.fromCharCode(a));
+    function pickMessage() {
+      var w = WORDS[Math.floor(Math.random() * WORDS.length)];
+      var c = "";
+      for (var i = 0; i < 6; i++) c += ASCII[Math.floor(Math.random() * ASCII.length)];
+      var mt = svg.querySelector("[data-msg-text]");
+      var ct = svg.querySelector("[data-cipher-text]");
+      var ec = svg.querySelector("[data-evecopy-text]");
+      if (mt) mt.textContent = w;
+      if (ct) ct.textContent = c;
+      if (ec) ec.textContent = c;   // Eve's copy is the same scrambled bytes
+    }
+
+    var PHASE = [
+      "Shared key needed",
+      "Key shared with both",
+      "Compose message",
+      "Encrypt — padlock closes",
+      "Ciphertext reaches Eve",
+      "Eve copies it — but it's scrambled",
+      "Ciphertext continues to Bob",
+      "Decrypt — padlock opens",
+      "Message delivered",
+    ];
+
+    // Per-beat poses: [x, y, opacity] for each travelling element.
+    var P = {
+      key:     [[480,230,1],[480,230,0],[480,230,0],[480,230,0],[480,230,0],[480,230,0],[480,230,0],[480,230,0],[480,230,0]],
+      msg:[[72,140,1],[72,140,1],[72,168,1],[72,168,0],[72,168,0],[72,168,0],[888,168,0],[888,168,1],[888,140,1]],
+      cipher:  [[115,172,0],[115,172,0],[115,172,0],[115,172,1],[480,172,1],[480,172,1],[845,172,1],[845,172,0],[845,172,0]],
+      evecopy: [[480,172,0],[480,172,0],[480,172,0],[480,172,0],[480,172,0],[480,140,1],[480,140,1],[480,140,1],[480,140,1]],
+    };
+
+    function setNode(name, p) {
+      var g = byName(name);
+      if (!g) return;
+      g.style.transform = "translate(" + p[0] + "px," + p[1] + "px)";
+      g.style.opacity = String(p[2]);
+    }
+    function setOpacity(name, o) {
+      var g = byName(name);
+      if (g) g.style.opacity = String(o);
+    }
+
+    function applyBeat(b) {
+      // ciphertext eases differently around Eve: decelerate as it reaches
+      // her (4), speed back up as it leaves (6).
+      var cipher = byName("cipher");
+      if (cipher) {
+        if (b === 4) {
+          cipher.style.transitionDuration = "1600ms, 550ms";
+          cipher.style.transitionTimingFunction = "cubic-bezier(0.1,0.75,0.15,1), ease";
+        } else if (b === 6) {
+          cipher.style.transitionDuration = "1050ms, 550ms";
+          cipher.style.transitionTimingFunction = "cubic-bezier(0.45,0,0.9,0.55), ease";
+        } else {
+          cipher.style.transitionDuration = "";
+          cipher.style.transitionTimingFunction = "";
+        }
+      }
+      Object.keys(P).forEach(function (n) { setNode(n, P[n][b]); });
+      // key halves slide out along the rail (offset-path) from beat 1
+      ["keyA", "keyB"].forEach(function (n) {
+        var g = byName(n);
+        if (!g) return;
+        g.style.offsetDistance = (b >= 1) ? "100%" : "0%";
+        g.style.opacity = (b >= 1) ? "1" : "0";
+        // stay flat at the lock; turn vertical (insert) only when the message
+        // arrives to be locked (Alice, beat 3) / unlocked (Bob, beat 7)
+        var inserted = (n === "keyA") ? (b >= 3) : (b >= 7);
+        g.style.offsetRotate = inserted ? "-90deg" : "0deg";
+      });
+      setOpacity("lockA-open",   b < 3 ? 1 : 0);
+      setOpacity("lockA-closed", b >= 3 ? 1 : 0);
+      setOpacity("lockB-open",   (b <= 5 || b >= 7) ? 1 : 0);
+      setOpacity("lockB-closed", (b === 6) ? 1 : 0);
+      setOpacity("evemad",       (b >= 5) ? 1 : 0);
+      setOpacity("glowA",        (b === 3) ? 1 : 0);   // key locks Alice's box
+      setOpacity("glowB",        (b === 7) ? 1 : 0);   // key opens Bob's box
+      var ph = fig.querySelector("[data-kd-phase]");
+      if (ph) ph.textContent = PHASE[b] || "";
+    }
+
+    var beat = 0;
+    var playing = false;
+    var timer = null;
+    var speed = 1.0;
+    var SPEEDS = [0.5, 0.75, 1.0];
+
+    function apply() { applyBeat(beat); updatePlay(); }
+    function step(d) { beat = Math.max(0, Math.min(TOTAL - 1, beat + d)); apply(); }
+    function pause() { playing = false; if (timer) clearTimeout(timer); timer = null; updatePlay(); }
+    function play() {
+      if (rm.matches) { beat = TOTAL - 1; apply(); return; }
+      playing = true;
+      if (beat >= TOTAL - 1) beat = 0;
+      apply();
+      schedule();
+    }
+    function schedule() {
+      if (!playing) return;
+      var atEnd = beat >= TOTAL - 1;
+      timer = setTimeout(function () {
+        if (atEnd) restartCycle();
+        else { beat += 1; apply(); }
+        schedule();
+      }, DUR[beat] / speed);
+    }
+    // Loop the cycle without animating the delivered message flying back to
+    // Alice — snap the movers home with transitions off, then re-roll the
+    // message so Alice simply starts a fresh one.
+    function restartCycle() {
+      var movers = ["msg", "cipher", "keyA", "keyB", "key", "evecopy", "evemad"].map(byName).filter(Boolean);
+      movers.forEach(function (g) { g.style.transition = "none"; });
+      pickMessage();
+      beat = 0;
+      applyBeat(0);
+      movers.forEach(function (g) { void g.getBoundingClientRect(); });
+      requestAnimationFrame(function () {
+        movers.forEach(function (g) { g.style.transition = ""; });
+      });
+      updatePlay();
+    }
+    function cycleSpeed() {
+      speed = SPEEDS[(SPEEDS.indexOf(speed) + 1) % SPEEDS.length];
+      var b = fig.querySelector("[data-kd-speed]");
+      if (b) b.textContent = (speed === 1.0 ? "1×" : speed + "×");
+      if (playing && timer) { clearTimeout(timer); schedule(); }
+    }
+    function updatePlay() {
+      var b = fig.querySelector("[data-kd-play]");
+      if (!b) return;
+      b.setAttribute("aria-label", playing ? "Pause" : "Play");
+      b.innerHTML = playing
+        ? '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"/></svg>'
+        : '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 4v16l13-8z" fill="currentColor"/></svg>';
+    }
+
+    // The download is a fixed "poster" frame rather than whatever beat is
+    // mid-flight: plaintext at both ends, ciphertext under Eve, key shared.
+    function posePoster(root) {
+      function setN(name, x, y, o) {
+        var g = root.querySelector('[data-name="' + name + '"]');
+        if (g) g.setAttribute("style", (g.getAttribute("style") || "") +
+          ";transform:translate(" + x + "px," + y + "px);opacity:" + o + ";");
+      }
+      function setO(name, o) {
+        var g = root.querySelector('[data-name="' + name + '"]');
+        if (g) g.setAttribute("style", (g.getAttribute("style") || "") + ";opacity:" + o + ";");
+      }
+      var mt = root.querySelector("[data-msg-text]");
+      var mb = root.querySelector("[data-msgb-text]");
+      if (mt && mb) mb.textContent = mt.textContent;   // Bob's plaintext = Alice's
+      setN("msg", 72, 140, 1);
+      setN("msgB", 888, 140, 1);
+      setN("cipher", 480, 172, 1);
+      // keys rest at the locks (override the motion path with a plain transform)
+      var kA = root.querySelector('[data-name="keyA"]');
+      var kB = root.querySelector('[data-name="keyB"]');
+      if (kA) kA.setAttribute("style", (kA.getAttribute("style") || "") + ";offset-path:none;transform:translate(72px,200px) rotate(-90deg);opacity:1;");
+      if (kB) kB.setAttribute("style", (kB.getAttribute("style") || "") + ";offset-path:none;transform:translate(888px,200px) rotate(-90deg);opacity:1;");
+      setN("key", 480, 230, 0);
+      setO("evecopy", 0);
+      setO("evemad", 0);
+      setO("glowA", 0); setO("glowB", 0);
+      setO("lockA-open", 0); setO("lockA-closed", 1);
+      setO("lockB-open", 1); setO("lockB-closed", 0);
+    }
+
+    // ── PNG download (rasterise a poster frame with computed colours) ──────
+    function downloadPNG() {
+      var clone = svg.cloneNode(true);
+      var PROPS = ["fill","stroke","stroke-width","stroke-dasharray","stroke-linecap",
+        "stroke-linejoin","opacity","fill-opacity","stroke-opacity","font-family",
+        "font-size","font-weight","text-anchor","letter-spacing","transform"];
+      var orig = svg.querySelectorAll("*");
+      var cl = clone.querySelectorAll("*");
+      for (var i = 0; i < orig.length; i++) {
+        var cs = window.getComputedStyle(orig[i]);
+        var s = "";
+        for (var j = 0; j < PROPS.length; j++) {
+          var v = cs.getPropertyValue(PROPS[j]);
+          if (v && v !== "none" || PROPS[j] === "fill" || PROPS[j] === "stroke") s += PROPS[j] + ":" + v + ";";
+        }
+        cl[i].setAttribute("style", s);
+      }
+      posePoster(clone);
+      var vb = svg.viewBox.baseVal;
+      var scale = 2200 / vb.width;
+      var W = Math.round(vb.width * scale), H = Math.round(vb.height * scale);
+      clone.setAttribute("width", W);
+      clone.setAttribute("height", H);
+      var xml = new XMLSerializer().serializeToString(clone);
+      var img = new Image();
+      img.onload = function () {
+        var c = document.createElement("canvas");
+        c.width = W; c.height = H;
+        var ctx = c.getContext("2d");
+        var bg = window.getComputedStyle(document.body).getPropertyValue("--card-bg") || "#ffffff";
+        ctx.fillStyle = bg.trim() || "#ffffff";
+        ctx.fillRect(0, 0, W, H);
+        ctx.drawImage(img, 0, 0, W, H);
+        c.toBlob(function (blob) {
+          if (!blob) return;
+          var a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = "qnetinfo-key-distribution.png";
+          document.body.appendChild(a); a.click(); a.remove();
+          setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+        }, "image/png");
+      };
+      img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(xml);
+    }
+
+    // ── wire controls ──────────────────────────────────────────────────────
+    var back = fig.querySelector("[data-kd-back]");
+    var fwd = fig.querySelector("[data-kd-fwd]");
+    var pp = fig.querySelector("[data-kd-play]");
+    var sp = fig.querySelector("[data-kd-speed]");
+    var dl = fig.querySelector("[data-kd-download]");
+    if (back) back.addEventListener("click", function () { pause(); step(-1); });
+    if (fwd) fwd.addEventListener("click", function () { pause(); step(1); });
+    if (pp) pp.addEventListener("click", function () { if (playing) pause(); else play(); });
+    if (sp) sp.addEventListener("click", cycleSpeed);
+    if (dl) dl.addEventListener("click", downloadPNG);
+
+    pickMessage();
+    apply();
+    if (rm.matches) { beat = TOTAL - 1; apply(); }
+    else { setTimeout(play, 120); }
+
+    return { teardown: pause };
+  }
+
+  function openFullScreen(srcFig) {
+    var dialog = document.createElement("dialog");
+    dialog.className = "kd-fullscreen";
+    var clone = srcFig.cloneNode(true);
+    delete clone.dataset.kdInited;
+    var fsBtn = clone.querySelector("[data-kd-fullscreen]");
+    if (fsBtn) {
+      var close = document.createElement("button");
+      close.type = "button";
+      close.className = fsBtn.className;
+      close.setAttribute("aria-label", "Close full-screen view");
+      close.setAttribute("title", "Close");
+      close.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+      close.addEventListener("click", function () { dialog.close(); });
+      fsBtn.parentNode.replaceChild(close, fsBtn);
+    }
+    dialog.appendChild(clone);
+    document.body.appendChild(dialog);
+    var handle = initFigure(clone);
+    function destroy() { if (handle && handle.teardown) handle.teardown(); dialog.remove(); }
+    dialog.addEventListener("close", destroy);
+    dialog.addEventListener("click", function (e) { if (e.target === dialog) dialog.close(); });
+    dialog.showModal();
+  }
+
+  document.querySelectorAll("[data-kd-figure]").forEach(function (fig) {
+    if (fig.dataset.kdInited) return;
+    fig.dataset.kdInited = "1";
+    initFigure(fig);
+  });
+  document.addEventListener("click", function (e) {
+    var btn = e.target && e.target.closest && e.target.closest("[data-kd-fullscreen]");
+    if (!btn) return;
+    var fig = btn.closest("[data-kd-figure]");
+    if (fig) openFullScreen(fig);
+  });
+})();
+</script>
+
+<style>
+  .zfig {
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    display: grid;
+    gap: var(--space-2);
+  }
+  .zfig__toolbar { display: flex; gap: 6px; justify-content: flex-end; align-items: center; flex-wrap: wrap; }
+  .zfig__phase {
+    margin-right: auto;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text);
+  }
+  .zfig__playback { display: flex; gap: 4px; }
+  .zfig__btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 32px; height: 32px; padding: 0 6px;
+    color: var(--color-text); background: var(--color-surface-2);
+    border: 1px solid var(--card-border); border-radius: var(--radius-sm);
+    cursor: pointer; text-decoration: none; font-size: 14px; line-height: 1;
+  }
+  .zfig__btn:hover { background: var(--color-surface); }
+  .zfig__btn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+  .kd { width: 100%; height: auto; display: block; font-family: var(--font-sans, system-ui, sans-serif); }
+
+  /* animated travelling elements — CSS transitions fill in between beats */
+  .kd [data-name] {
+    transition: transform 975ms cubic-bezier(0.4, 0, 0.2, 1), opacity 550ms ease;
+  }
+  /* key halves travel along the rail via a motion path, not a straight line */
+  .kd [data-name="keyA"], .kd [data-name="keyB"] {
+    offset-rotate: 0deg;
+    transition: offset-distance 1150ms cubic-bezier(0.4, 0, 0.2, 1),
+                offset-rotate 620ms cubic-bezier(0.34, 1.3, 0.64, 1), opacity 550ms ease;
+  }
+
+  .kd-badge   { fill: var(--color-text); }
+  .kd-badge-n { fill: var(--color-bg); font-size: 14px; font-weight: 700; text-anchor: middle; }
+  .kd-h-title { fill: var(--color-text); font-size: 15px; font-weight: 700; }
+  .kd-tiny   { fill: var(--color-text-mute); font-size: 10.5px; text-anchor: middle; }
+  .kd-node-l { fill: var(--color-text); font-size: 13px; font-weight: 600; text-anchor: middle; }
+
+  .kd-plain   { stroke: var(--color-rule); stroke-width: 2; }
+  .kd-msg-doc { fill: var(--color-bg); stroke: var(--color-rule); stroke-width: 1.2; }
+  .kd-msg-l   { fill: var(--color-text); font-size: 11.5px; font-weight: 600; text-anchor: middle; }
+
+  /* coloured ciphertext token — random printable-ASCII, monospace */
+  .kd-ct-box { fill: #5b53b0; stroke: #423a93; stroke-width: 1; }
+  .kd-ct-l   { fill: #ffffff; font-size: 11.5px; font-weight: 700; text-anchor: middle; font-family: var(--font-mono, monospace); letter-spacing: 0.5px; }
+  /* Eve's intercepted copy — dashed border marks it as a duplicate */
+  .kd-copy-box { fill: #6f67c4; stroke: #e6e3f7; stroke-width: 1.3; stroke-dasharray: 3 2; }
+
+  /* frustration burst over Eve — a small agitated wiggle. The glyph is
+     centred at its group's origin, so rotate/scale pivot in place. */
+  .kd-anger { transform-origin: 0 0; animation: kd-anger 0.46s ease-in-out infinite alternate; }
+  @keyframes kd-anger {
+    from { transform: scale(0.92) rotate(-7deg); }
+    to   { transform: scale(1.12) rotate(7deg); }
+  }
+  @media (prefers-reduced-motion: reduce) { .kd-anger { animation: none; } }
+
+  /* key-operating glow — breathes while the lock is being worked */
+  .kd-glow { transform-origin: 0 0; animation: kd-glow-pulse 0.85s ease-in-out infinite alternate; }
+  @keyframes kd-glow-pulse { from { transform: scale(0.78); } to { transform: scale(1.12); } }
+  @media (prefers-reduced-motion: reduce) { .kd-glow { animation: none; } }
+
+  .kd-pub    { stroke: var(--color-rule); stroke-width: 2; }
+  .kd-pub-l  { fill: var(--color-text-mute); font-size: 11px; text-anchor: middle; }
+
+  .kd-mag-lens   { fill: #ffffff; fill-opacity: 0.22; stroke: #3f3f3f; stroke-width: 3; }
+  .kd-mag-handle { stroke: #3f3f3f; stroke-width: 4; stroke-linecap: round; }
+
+  .kd-keyrail  { stroke: var(--color-rule); stroke-width: 1.5; stroke-dasharray: 4 3; fill: none; }
+  .kd-key-bow  { fill: none; stroke: #c08a17; stroke-width: 2.2; }
+  .kd-key-stem { stroke: #c08a17; stroke-width: 2.2; }
+  .kd-key-l    { fill: var(--color-text); font-size: 13px; font-weight: 700; text-anchor: middle; }
+  .kd-prob-l   { fill: var(--color-text-mute); font-size: 13px; }
+
+  .kd-up  { stroke: var(--color-rule); stroke-width: 1.6; fill: none; }
+  .kd-bus { stroke: var(--color-rule); stroke-width: 1.6; }
+
+  .kd-panel-bg  { fill: var(--card-bg); stroke: var(--card-border); stroke-width: 1; }
+  .kd-p-kicker  { font-size: 11px; font-weight: 700; letter-spacing: 0.6px; }
+  .kd-p-title   { fill: var(--color-text); font-size: 16px; font-weight: 700; }
+  .kd-rule      { stroke: var(--color-rule); stroke-width: 1; }
+  .kd-p-body    { fill: var(--color-text-mute); font-size: 12px; }
+  .kd-p-tag     { fill: var(--color-text); font-size: 11.5px; font-weight: 700; }
+  .kd-p-status  { fill: var(--color-text); font-size: 12px; font-weight: 600; }
+  .kd-panel--warn .kd-panel-bar, .kd-panel--warn .kd-p-kicker { fill: #c46a2a; }
+  .kd-panel--acc  .kd-panel-bar, .kd-panel--acc  .kd-p-kicker { fill: var(--color-accent); }
+  .kd-panel--q    .kd-panel-bar, .kd-panel--q    .kd-p-kicker { fill: #1a4a99; }
+
+  .kd-lock-body    { fill: var(--color-bg); stroke: var(--color-text); stroke-width: 1.6; }
+  .kd-lock-shackle { fill: none; stroke: var(--color-text); stroke-width: 1.6; }
+  .kd-lock-hole    { fill: var(--color-text); stroke: none; }
+  .kd-chip       { stroke: none; }
+  .kd-chip--x    { fill: #c46a2a; }
+  .kd-chip--v    { fill: #2e8b6b; }
+  .kd-chip-mark  { stroke: #fff; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+  .zfig :global(figcaption) {
+    margin: var(--space-2) 0 0; font-size: var(--text-sm);
+    line-height: var(--leading-snug); color: var(--color-text-mute);
+  }
+  .zfig :global(figcaption) strong { color: var(--color-text); }
+
+  @media (max-width: 34rem) { .kd-h-title { font-size: 13px; } .zfig__phase { font-size: var(--text-xs); } }
+
+  :global(.kd-fullscreen) {
+    position: fixed; inset: 0; margin: auto;
+    width: min(96vw, 1500px); max-width: 96vw; max-height: 94vh;
+    padding: 0; border: 1px solid var(--card-border); border-radius: var(--radius);
+    background: var(--card-bg); color: var(--color-text); overflow: auto;
+  }
+  :global(.kd-fullscreen)::backdrop { background: rgba(0, 0, 0, 0.55); }
+  :global(.kd-fullscreen) .zfig { border: none; background: transparent; }
+</style>

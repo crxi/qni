@@ -1,0 +1,208 @@
+slug: cas-quantum-network
+name: CAS Quantum Network
+categories: [network, qkd]
+hq: Shanghai, China
+founded: 2016
+status: private
+parent: null
+logo:
+  domain: null
+
+positioning: >
+  State-affiliated builder and operator of China's National Wide-Area Quantum
+  Secure Communication Backbone Network. Jointly founded in November 2016 by
+  CAS Holdings (the commercial arm of the Chinese Academy of Sciences) and the
+  University of Science and Technology of China (USTC), it functions as a
+  network operator and systems integrator rather than a QKD-device vendor:
+  it sources decoy-state BB84 hardware from QuantumCTek and Jiuzhou and runs
+  the trusted-node fibre backbone, metro networks, and Micius (墨子号)
+  satellite-to-ground links. Sits inside the Pan Jianwei (潘建伟) USTC
+  ecosystem but is a distinct legal entity from QuantumCTek.
+
+modalities:
+  qkd:
+    protocol: [BB84, decoy-state]
+    rate_distance: "Trusted-node fibre backbone — operator role, not a device vendor; equipment supplied by QuantumCTek and Jiuzhou. Backbone link rates per Chen et al. 2021 averaged tens of kb/s per inter-node hop over the 2,032 km Beijing–Shanghai trunk with 32 trusted nodes."
+    deployed_demos:
+      - note: "京沪干线 (Jing-Hu Trunk Line) — 2,032 km Beijing–Shanghai backbone, 32 trusted nodes, passed final technical acceptance September 2017"
+        source_url: https://english.cas.cn/research/highlight/qp/202101/t20210107_261494.shtml
+      - note: "Integrated space–ground quantum network — Beijing–Shanghai trunk linked to the Micius satellite ground stations at Xinglong, Nanshan, Lijiang to span 4,600 km total (Chen et al., Nature 589, 214, 2021)"
+        source_url: https://www.nature.com/articles/s41586-020-03093-8
+      - note: "National Wide-Area Quantum Secure Communication Backbone Network (国家广域量子保密通信骨干网络) — >10,000 km of fibre completed September 2022, formal state acceptance December 2022; covers Jing-Jin-Ji, Yangtze River Delta, Greater Bay Area, Cheng-Yu, mid-Yangtze, Northeast"
+        source_url: https://english.cas.cn/research/highlight/qp/202101/t20210107_261494.shtml
+      - note: "CN-QCN as of 2025 — 145 fibre backbone nodes, 20 metropolitan networks, 17 provinces, 80 cities (Chen et al., npj QI 11, 137, 2025)"
+        source_url: https://www.nature.com/articles/s41534-025-01089-8
+  network:
+    role: operator
+    products:
+      - "National Wide-Area Quantum Secure Communication Backbone Network (国家广域量子保密通信骨干网络) — construction and operations entity"
+      - "Beijing–Shanghai trunk line (京沪干线) — owner/operator"
+      - "Provincial subsidiaries: Guangdong, Henan, Hubei, Jiangsu, Beijing operating-company SPVs for regional metro-network build-out"
+      - "Integration of Micius (墨子号) satellite ground links with terrestrial fibre backbone"
+
+milestones:
+  - date: 2025-08
+    tag: network
+    headline: "Chen H.Z. et al., npj Quantum Information 11, 137 — first peer-reviewed end-to-end description of CN-QCN as a carrier-grade network (145 backbone nodes, 20 metros, 17 provinces, 80 cities, >10,000 km)"
+    source_url: https://www.nature.com/articles/s41534-025-01089-8
+    source_type: paper
+  - date: 2022-12
+    tag: network
+    headline: "National Wide-Area Quantum Secure Communication Backbone Network passes formal state acceptance after September 2022 completion of the >10,000 km build-out"
+    source_url: https://zhuanlan.zhihu.com/p/677803275
+    source_type: press
+  - date: 2021-01
+    tag: qkd
+    headline: "Chen Y.-A. et al., Nature 589, 214 — integrated 4,600 km space-to-ground quantum network: Beijing–Shanghai trunk fused with Micius satellite ground links"
+    source_url: https://www.nature.com/articles/s41586-020-03093-8
+    source_type: paper
+  - date: 2017-09
+    tag: qkd
+    headline: "京沪干线 Beijing–Shanghai 2,032 km QKD trunk passes total technical acceptance (32 trusted nodes, decoy-state BB84 with QuantumCTek devices)"
+    source_url: https://english.cas.cn/research/highlight/qp/202101/t20210107_261494.shtml
+    source_type: press
+  - date: 2016-11
+    tag: network
+    headline: "国科量子通信网络有限公司 founded in Shanghai (29 Nov 2016) by CAS Holdings + USTC; registered capital ~RMB 103.18M; designated NDRC-supported construction/operations entity for the national QKD backbone"
+    source_url: https://english.cas.cn/research/highlight/qp/202101/t20210107_261494.shtml
+    source_type: press
+
+shareholders:
+  - holder: CAS Holdings (中国科学院控股有限公司)
+    stake_percent: null
+    stake_class: controlling
+    as_of: 2016-11
+    source_url: https://english.cas.cn/research/highlight/qp/202101/t20210107_261494.shtml
+    note: >
+      Co-founding shareholder. Exact stake percentage not disclosed in publicly
+      indexed primary sources. CAS Holdings is the commercial arm of the Chinese
+      Academy of Sciences.
+  - holder: University of Science and Technology of China (USTC, 中国科学技术大学)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2016-11
+    source_url: https://english.cas.cn/research/highlight/qp/202101/t20210107_261494.shtml
+    note: >
+      Co-founding shareholder. Connects the company to the Pan Jianwei
+      (潘建伟) quantum-information research programme at USTC, which supplies
+      most of the technical leadership for the underlying network science.
+
+key_personnel:
+  - role: President (总裁) and Legal Representative (法定代表人)
+    name: Qi Wei (戚巍)
+    since: null
+    source_url: https://www.internationalcapitalconference.com/cn/speakers/qi-wei
+    note: >
+      Concurrently chair of the Quantum Communication and Information
+      Technology standards working group under the China Communications
+      Standards Association (CCSA), MIIT.
+  - role: Affiliated Principal Investigator (USTC), scientific lead of the national QKD programme
+    name: Pan Jianwei (潘建伟)
+    since: null
+    source_url: https://www.nature.com/articles/s41586-020-03093-8
+    note: >
+      Pan is not an officer of CAS Quantum Network. He leads the USTC
+      Division of Quantum Physics and Quantum Information that designs the
+      network science behind the company's deployments and is the senior
+      author on the Nature 2021 Beijing–Shanghai / Micius paper and the npj
+      QI 2025 CN-QCN paper.
+
+roadmap:
+  - target: 2026
+    item: "Continued expansion of metro networks under the National Wide-Area QKD Backbone — coverage targeted to extend beyond the present 17 provinces / 80 cities footprint"
+    source_url: https://www.nature.com/articles/s41534-025-01089-8
+    tag: network
+  - target: 2026
+    item: "Integration with second-generation Chinese QKD satellites (Jinan-1 class + planned 2025+ launches) for routine satellite-augmented trusted-node operation"
+    source_url: https://spacenews.com/china-to-launch-new-quantum-communications-satellites-in-2025/
+    tag: qkd
+
+current_flagship:
+  name: National Wide-Area Quantum Secure Communication Backbone Network (CN-QCN)
+  generation: ">10,000 km trusted-node decoy-state BB84 backbone — 145 backbone nodes, 20 metro networks, 17 provinces, 80 cities (per Chen et al. npj QI 2025); operator/integrator role with QuantumCTek and Jiuzhou supplying QKD devices"
+
+references:
+  - kind: paper
+    citation_key: chen-natphoton-2021-jingu
+    url: https://www.nature.com/articles/s41586-020-03093-8
+    note: >
+      Chen Y.-A. et al., "An integrated space-to-ground quantum communication
+      network over 4,600 kilometres", Nature 589, 214 (2021). Definitive
+      peer-reviewed description of the Beijing–Shanghai trunk + Micius
+      integration that CAS Quantum Network operates.
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41534-025-01089-8
+    note: >
+      Chen H.Z., Li M.H., Wang Y.Z. et al., "Implementation of carrier-grade
+      quantum communication networks over 10000 km", npj Quantum Information
+      11, 137 (2025). First end-to-end peer-reviewed description of CN-QCN as
+      a carrier-grade operator network — 145 backbone nodes, 20 metros, 17
+      provinces, 80 cities. Not yet in project refs.bib.
+  - kind: press
+    citation_key: null
+    url: https://english.cas.cn/research/highlight/qp/202101/t20210107_261494.shtml
+    note: >
+      Chinese Academy of Sciences official page for 国科量子通信网络有限公司 —
+      authoritative source for founding date (29 Nov 2016), shareholders,
+      registered capital, and remit as the national QKD-backbone operator.
+  - kind: press
+    citation_key: null
+    url: https://english.cas.cn/research/highlight/qp/202101/t20210107_261494.shtml
+    note: >
+      CAS / Xinhua announcement of the September 2017 total technical
+      acceptance of the 京沪干线 Beijing–Shanghai trunk.
+  - kind: press
+    citation_key: null
+    url: https://zhuanlan.zhihu.com/p/677803275
+    note: >
+      Republished People's Daily Shanghai feature (Jan 2024) on Guoke Quantum
+      covering the September 2022 completion and December 2022 acceptance of
+      the >10,000 km national backbone, regional coverage list, and patent /
+      standards activity.
+  - kind: blog
+    citation_key: null
+    url: https://www.internationalcapitalconference.com/cn/speakers/qi-wei
+    note: >
+      Public speaker biography for Qi Wei (戚巍) listing him as President of
+      Guoke Quantum and chair of the CCSA Quantum Communication and
+      Information Technology standards working group.
+
+partial:
+  - logo.domain
+  - founded
+  - modalities.qkd.rate_distance
+  - field: shareholders.0.stake_percent
+    as_of: 2026-05-17
+    note: >
+      Exact CAS Holdings ownership percentage of Guoke Quantum is not
+      disclosed in publicly indexed primary sources; CAS Holdings is named
+      as the lead co-founder, USTC as the other co-founder, but the
+      cap-table split is opaque.
+  - field: shareholders.1.stake_percent
+    as_of: 2026-05-17
+    note: >
+      USTC's exact ownership percentage is not disclosed in publicly
+      indexed primary sources.
+  - field: key_personnel.0.since
+    as_of: 2026-05-17
+    note: >
+      Year Qi Wei (戚巍) assumed the President / legal-representative role
+      is not stated on the public CAS company page or the speaker bio. He
+      is the current legal representative of record per qixin / tianyancha
+      filings but the start date was not located in a primary source.
+  - field: key_personnel.1.since
+    as_of: 2026-05-17
+    note: >
+      Pan Jianwei is not a formal officer of CAS Quantum Network; the entry
+      records his scientific-lead relationship to the underlying USTC
+      programme rather than a corporate appointment date.
+  - field: roadmap.1.item
+    as_of: 2026-05-17
+    note: >
+      Operator-level integration plans for next-generation Chinese QKD
+      satellites are not published by Guoke Quantum directly; inferred
+      from CAS / press coverage of the satellite programme.
+
+last_verified: 2026-05-17
+verification_method: web

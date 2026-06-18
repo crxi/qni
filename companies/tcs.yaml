@@ -1,0 +1,117 @@
+slug: tcs
+name: Tata Consultancy Services (Quantum Programme)
+categories: [software, network]
+hq: Mumbai, Maharashtra, India
+founded: 1968
+status: public
+parent: null
+logo:
+  domain: tcs.com
+
+positioning: >
+  TCS's quantum programme sits inside TCS Research and the TCS Cybersecurity
+  practice. As a large IT services firm rather than a hardware vendor, its
+  quantum scope is advisory, integration, and applications software, running
+  three threads: post-quantum cryptography migration advisory and third-party
+  QKD integration (partners include Quantum Bridge and Toshiba); the TCS
+  Quantum Computing Lab on AWS Braket; and the May 2025 IBM / TCS / Andhra
+  Pradesh agreement to deploy an IBM Quantum System Two at the Amaravati
+  Quantum Valley Tech Park. Does not build photonic sources, detectors,
+  memories, or QKD endpoints.
+
+modalities:
+  software:
+    products:
+      - TCS Quantum Security Services (PQC and QKD advisory / integration)
+      - TCS Quantum Computing Lab on AWS Braket
+  network:
+    role: integrator
+    products: []
+
+milestones:
+  - date: 2025-05
+    tag: software
+    headline: IBM, TCS and the Government of Andhra Pradesh agreement to deploy what the announcement described as India's largest quantum computer (IBM Quantum System Two, 156-qubit Heron) at the Amaravati Quantum Valley Tech Park; TCS operates the applications and ecosystem layer
+    source_url: https://newsroom.ibm.com/2025-05-02-ibm,-tata-consultancy-services-and-government-of-andhra-pradesh-unveil-plans-to-deploy-indias-largest-quantum-computer-in-the-countrys-first-quantum-valley-tech-park
+    source_type: press
+  - date: 2024
+    tag: software
+    headline: TCS Quantum Computing Lab on AWS launched, providing enterprises with hosted access to gate-model and annealing backends via Amazon Braket
+    source_url: https://www.tcs.com/who-we-are/newsroom/press-release/tcs-joins-hands-with-aws-help-enterprises-harness-power-quantum-computing
+    source_type: press
+  - date: 2024
+    tag: software
+    headline: TCS Quantum Security Services formalised as a cybersecurity practice line — PQC migration advisory plus integration of partner QKD systems
+    source_url: https://www.tcs.com/what-we-do/services/cybersecurity/solution/tcs-quantum-security-services-cybersecurity-risk-mitigation
+    source_type: web
+
+shareholders:
+  - holder: Tata Sons Private Limited
+    stake_percent: 71.74
+    stake_class: controlling
+    as_of: 2025-03
+    source_url: https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2024-25/ar/annual-report-2024-2025.pdf
+    note: Tata Sons is the holding company of the Tata Group and the controlling shareholder of TCS. Stake taken from the TCS FY2024-25 annual report; exact figure may vary slightly with buyback activity.
+  - holder: Foreign institutional investors (aggregate)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-03
+    source_url: https://www.tcs.com/investor-relations
+    note: TCS is BSE/NSE-listed; aggregate FII / FPI holding is disclosed quarterly. Exact figure not confirmed against the quarterly disclosure.
+
+key_personnel:
+  - role: CEO & Managing Director, TCS
+    name: K Krithivasan
+    since: 2023-06
+    source_url: https://www.tcs.com/who-we-are/leadership/k-krithivasan
+  - role: Chief Technology Officer
+    name: Harrick Vin
+    since: 2021
+    source_url: https://www.tcs.com/who-we-are/leadership/harrick-vin
+    note: Oversees TCS Research, which includes the quantum-computing applied-research group.
+
+roadmap:
+  - target: 2026
+    item: IBM Quantum System Two operational at Amaravati Quantum Valley Tech Park; TCS leads applications onboarding across life sciences, materials, supply chain, energy, cryptography, and sustainable manufacturing
+    source_url: https://newsroom.ibm.com/2025-05-02-ibm,-tata-consultancy-services-and-government-of-andhra-pradesh-unveil-plans-to-deploy-indias-largest-quantum-computer-in-the-countrys-first-quantum-valley-tech-park
+    tag: software
+
+current_flagship:
+  name: TCS Quantum Security Services + TCS Quantum Computing Lab on AWS
+  generation: advisory and integration practice plus hosted-backend application development environment; Amaravati IBM-System-Two deployment partnership announced May 2025
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://newsroom.ibm.com/2025-05-02-ibm,-tata-consultancy-services-and-government-of-andhra-pradesh-unveil-plans-to-deploy-indias-largest-quantum-computer-in-the-countrys-first-quantum-valley-tech-park
+    note: IBM newsroom — Quantum Valley Tech Park (Amaravati) announcement, May 2025
+  - kind: press
+    citation_key: null
+    url: https://www.tcs.com/who-we-are/newsroom/press-release/tcs-joins-hands-with-aws-help-enterprises-harness-power-quantum-computing
+    note: TCS Quantum Computing Lab on AWS announcement
+  - kind: blog
+    citation_key: null
+    url: https://www.tcs.com/what-we-do/services/cybersecurity/solution/tcs-quantum-security-services-cybersecurity-risk-mitigation
+    note: TCS Quantum Security Services product page
+  - kind: blog
+    citation_key: null
+    url: https://www.tcs.com/what-we-do/pace-innovation/white-paper/quantum-communication-securely-transferring-information
+    note: TCS whitepaper on quantum communication and QKD
+  - kind: blog
+    citation_key: null
+    url: https://www.tcs.com/what-we-do/services/cybersecurity/white-paper/quantum-computing-cryptography-cloud-security
+    note: TCS whitepaper on quantum-safe cloud security
+
+partial:
+  - field: modalities.network.role
+    as_of: 2026-05-20
+    note: "\"integrator\" approximates TCS's role best — it integrates partner QKD endpoints into enterprise networks but does not operate a testbed, repeater, or orchestrator of its own."
+  - shareholders.1.stake_percent
+  - field: milestones
+    as_of: 2026-05-20
+    note: A reported TCS / C-DOT joint QKD-secured link in India and a TCS / Quantum Bridge Technologies partnership could not be confirmed; the C-DOT QKD demos on record are with Sterlite Technologies (multi-core fibre) and Synergy Quantum (drone QKD), and Quantum Bridge's public partners are Juniper, Eurofiber, and Toshiba. Both items are omitted pending primary-source confirmation.
+  - revenue
+  - headcount
+
+last_verified: 2026-05-20
+verification_method: web

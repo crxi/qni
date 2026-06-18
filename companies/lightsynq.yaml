@@ -1,0 +1,151 @@
+slug: lightsynq
+name: Lightsynq
+categories: [memory, network]
+hq: Boston, Massachusetts, USA
+founded: 2024
+status: acquired
+parent: ionq
+logo:
+  domain: lightsynq.com
+
+positioning: >
+  Quantum-memory and photonic-interconnect company spun out of Harvard's
+  Lukin group and the AWS Center for Quantum Networking, commercialising
+  silicon-vacancy (SiV) colour-centre memory nodes in diamond nanophotonic
+  cavities — the architecture behind the Knaut et al. 2024 Boston-area
+  quantum-network demonstration. Founded in early 2024; came out of stealth
+  in November 2024 with a USD 18M Series A led by Cerberus Ventures, with
+  Murata Electronics and In-Q-Tel participating. Acquired by IonQ on
+  30 May 2025 for approximately USD 306.8M in IonQ stock; now operates as
+  the SiV-memory / photonic-interconnect business line within IonQ's
+  networking roadmap. CEO Mihir Bhaskar is IonQ SVP of R&D.
+
+modalities:
+  memory:
+    platform: siv  # silicon-vacancy centres in diamond nanophotonic cavities
+    storage_time_ms: null
+    retrieval_efficiency: null
+    fidelity: null
+    wavelength_nm: 737
+    mode_capacity: null
+  network:
+    role: memory-node
+    products: [SiV-cavity quantum-memory module (pre-product)]
+
+milestones:
+  - date: 2025-05-30
+    tag: memory
+    headline: >
+      Acquired by IonQ for ~USD 306.8M in IonQ stock (>12.3M shares);
+      adds 20+ quantum-memory patents to IonQ's portfolio and accelerates
+      IonQ's quantum-networking roadmap
+    source_url: https://www.ionq.com/news/ionq-completes-acquisition-of-lightsynq-accelerating-quantum-computing-and
+    source_type: press
+  - date: 2024-11
+    tag: memory
+    headline: >
+      Emerges from stealth with USD 18M Series A led by Cerberus Ventures;
+      Murata Electronics and In-Q-Tel participate
+    source_url: https://thequantuminsider.com/2024/11/19/lightsynq-comes-out-of-stealth-with-18-million-in-series-a-funding-to-scale-quantum-computing/
+    source_type: press
+  - date: 2024
+    tag: memory
+    headline: >
+      Founded by Mihir Bhaskar (CEO), Bart Machielse (CTO), and David
+      Levonian (CPO) — Harvard / AWS Center for Quantum Networking alumni,
+      commercialising Knaut-et-al.-style SiV memory architecture
+    source_url: https://thequantuminsider.com/2024/11/19/lightsynq-comes-out-of-stealth-with-18-million-in-series-a-funding-to-scale-quantum-computing/
+    source_type: press
+
+shareholders:
+  - holder: IonQ
+    stake_percent: 100
+    stake_class: controlling
+    as_of: 2025-05-30
+    source_url: https://www.ionq.com/news/ionq-completes-acquisition-of-lightsynq-accelerating-quantum-computing-and
+    note: Acquired 30 May 2025 in an all-stock transaction worth ~USD 306.8M.
+  - holder: Cerberus Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-11
+    source_url: https://thequantuminsider.com/2024/11/19/lightsynq-comes-out-of-stealth-with-18-million-in-series-a-funding-to-scale-quantum-computing/
+    note: Lead investor in the Series A (pre-IonQ acquisition); position rolled into IonQ shares.
+  - holder: Murata Electronics (Wonderstone Ventures)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2024-11
+    source_url: https://thequantuminsider.com/2024/11/19/lightsynq-comes-out-of-stealth-with-18-million-in-series-a-funding-to-scale-quantum-computing/
+    note: Series A participant.
+  - holder: In-Q-Tel
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2024-11
+    source_url: https://thequantuminsider.com/2024/11/19/lightsynq-comes-out-of-stealth-with-18-million-in-series-a-funding-to-scale-quantum-computing/
+    note: US intelligence-community strategic VC; Series A participant.
+
+key_personnel:
+  - role: CEO & Co-founder (now IonQ SVP R&D)
+    name: Mihir Bhaskar
+    since: 2024
+    source_url: https://thequantuminsider.com/2024/11/19/lightsynq-comes-out-of-stealth-with-18-million-in-series-a-funding-to-scale-quantum-computing/
+    note: >
+      PhD from Lukin Group, Harvard; lead author on Bhaskar et al. Nature
+      580 (2020) on memory-enhanced quantum communication. Post-IonQ
+      acquisition holds the SVP R&D title.
+  - role: CTO & Co-founder
+    name: Bart Machielse
+    since: 2024
+    source_url: https://thequantuminsider.com/2024/11/19/lightsynq-comes-out-of-stealth-with-18-million-in-series-a-funding-to-scale-quantum-computing/
+    note: Diamond-nanophotonic fabrication; ex-Harvard / AWS CQN.
+  - role: CPO & Co-founder
+    name: David Levonian
+    since: 2024
+    source_url: https://thequantuminsider.com/2024/11/19/lightsynq-comes-out-of-stealth-with-18-million-in-series-a-funding-to-scale-quantum-computing/
+    note: Ex-Harvard / AWS CQN.
+
+roadmap: []
+
+current_flagship:
+  name: SiV nanophotonic quantum memory (within IonQ)
+  generation: pre-product; IonQ networking integration in progress
+
+references:
+  - kind: paper
+    citation_key: knaut-nature-2024
+    url: https://www.nature.com/articles/s41586-024-07252-z
+    note: >
+      Knaut et al., Nature 629 (2024) — entanglement of nanophotonic SiV
+      cavity nodes over a 35-km deployed Boston-area fibre link; the
+      reference architecture Lightsynq commercialises.
+  - kind: press
+    citation_key: null
+    url: https://www.ionq.com/news/ionq-completes-acquisition-of-lightsynq-accelerating-quantum-computing-and
+    note: IonQ acquisition close (30 May 2025)
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2024/11/19/lightsynq-comes-out-of-stealth-with-18-million-in-series-a-funding-to-scale-quantum-computing/
+    note: Stealth exit and USD 18M Series A (Nov 2024)
+  - kind: filing
+    citation_key: null
+    url: https://www.sec.gov/Archives/edgar/data/0001824920/000095017025104066/ionq-20250630.htm
+    note: IonQ 10-Q (Q2 2025) — accounting treatment of the Lightsynq acquisition
+
+partial:
+  - modalities.memory.storage_time_ms
+  - modalities.memory.retrieval_efficiency
+  - modalities.memory.fidelity
+  - modalities.memory.mode_capacity
+  - field: modalities.memory.wavelength_nm
+    as_of: 2026-05-20
+    note: >
+      737 nm is the SiV zero-phonon line; the Lightsynq architecture
+      operates with frequency conversion to telecom for fibre links per
+      Knaut 2024. Vendor product spec not directly available.
+  - revenue
+  - headcount
+  - field: roadmap
+    as_of: 2026-05-20
+    note: Post-acquisition roadmap is folded into IonQ's networking plan; no standalone Lightsynq roadmap published.
+
+last_verified: 2026-05-20
+verification_method: web

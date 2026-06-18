@@ -1,0 +1,928 @@
+---
+/**
+ * /transduction — Transduction and quantum frequency conversion
+ *
+ * Tier B · Components.
+ *
+ * Two distinct problems on the EM spectrum, both about converting a
+ * quantum signal between frequency regimes while preserving its
+ * quantum state:
+ *
+ *   1. Quantum frequency conversion (QFC) — visible / near-IR to the
+ *      telecom C/O-band. Mature χ²/χ³ nonlinear optics.
+ *   2. Microwave-to-optical (M-O) transduction — bridging ~5 GHz
+ *      superconducting qubits to ~200 THz optical, ~4.6 orders of
+ *      magnitude. Hybrid physics; quantum-noise-limited efficiencies
+ *      still well under 1 %.
+ *
+ * Citations:
+ *   - lauk-qst-2020 — Lauk et al., Quantum Sci. Technol. 5 (2020).
+ *     Canonical review of the M-O transducer mechanism families.
+ *   - ezratty-uqt-2025-p4 — UQT Part 4 §1.5.3 Optical interconnect
+ *     and §1.5.7 (transducer literature index).
+ *   - kumar-ijndc-2025 — series-default network survey.
+ *   - knaut-nature-2024 — measured 33 % / 30 % bidirectional QFC
+ *     numbers (737 nm ↔ 1350 nm) used for the QFC efficiency claim.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SourceNote from "../components/SourceNote.astro";
+import Callout from "../components/Callout.astro";
+import Math from "../components/Math.astro";
+import ZoomableFigure from "../components/ZoomableFigure.astro";
+import ZoomModal from "../components/ZoomModal.astro";
+import { url } from "../lib/url";
+
+const sections = [
+  { id: "overview",     label: "Overview" },
+  { id: "interfaces",   label: "Two interconnects (QuICs), not a pipeline" },
+  { id: "pipeline",     label: "The whole pipeline in one figure" },
+  { id: "qfc",          label: "QFC: visible to telecom" },
+  { id: "mo",           label: "Microwave-to-optical" },
+  { id: "bottleneck",   label: "Why M-O is the bottleneck" },
+  { id: "sota",         label: "State-of-the-art performance" },
+  { id: "progress",     label: "Progress on the cross-modality pipeline" },
+  { id: "encodings",    label: "Encoding translation" },
+];
+---
+
+<Infographic
+  title="Transduction and quantum frequency conversion"
+  description="Transduction shifts a single-photon-level quantum signal between frequency regimes without breaking its quantum state. Two regimes: visible-to-telecom quantum frequency conversion (mature, 30–80 % lab efficiencies) and microwave-to-optical transduction (open, sub-percent quantum-noise-limited efficiencies). The second is the device blocking distributed superconducting quantum computing."
+  references={[
+    "ezratty-uqt-2025-p4",
+    "knaut-nature-2024",
+    "kumar-ijndc-2025",
+    "lauk-qst-2020",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="transduction" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>Transduction and quantum frequency conversion</h1>
+        <p>
+          A quantum network has to deliver photons over deployed fibre, and deployed fibre
+          has its loss minimum in the telecom C-band around 1550 nm. Most quantum platforms
+          do not naturally emit there: superconducting qubits live at 4–8 GHz microwaves,
+          neutral-atom and ion platforms emit in the visible or UV, and most solid-state
+          colour centres sit in the near-infrared. Bridging those frequencies to the C-band
+          while preserving the photon's quantum state is the device-level
+          problem <SourceNote id="ezratty-uqt-2025-p4" />.
+        </p>
+        <p>
+          Two regimes share the name "transduction" but have very different difficulty
+          curves. <strong>Quantum frequency conversion</strong> (QFC) shifts visible or
+          near-IR photons to the telecom band using χ²/χ³ nonlinear optics — the same
+          PPLN-and-pump toolkit classical telecom uses for wavelength conversion, operated
+          at single-photon level. Lab efficiencies are 30–80 % with low added noise; this
+          is mostly an engineering problem. <strong>Microwave-to-optical</strong> (M-O)
+          transduction has to span ~4.6 orders of magnitude between a 4–8 GHz
+          superconducting qubit and a 1550 nm optical mode, and there is no single
+          nonlinear material that does it directly. Hybrid mechanisms — optomechanical,
+          electro-optic, magnonic, and atomic-ensemble — bridge the two regimes via an
+          intermediate excitation, and quantum-noise-limited end-to-end efficiencies are
+          still well under 1 % <SourceNote id="lauk-qst-2020" />.
+        </p>
+        <p>
+          The two regimes correspond to the two arrows on the <a href={url("/spectrum")}>spectrum
+          chart</a>: a short, well-understood arrow
+          from the visible band to the C-band, and a long, partially-built arrow from
+          microwaves to the C-band. Until that second arrow lands, every microwave
+          quantum computer is stuck in its dilution refrigerator.
+        </p>
+      </header>
+
+      <section id="interfaces" data-nav-section>
+        <h2>Two interconnects (QuICs), not a pipeline</h2>
+        <p>
+          A useful corrective before going further: QFC and microwave-to-optical
+          transduction are not mandatory stages every quantum network must contain.
+          They are bridges between mismatched layers — they appear precisely and only
+          where two adjacent things in the chain don't natively speak the same physical
+          language. If every link in the chain is matched, neither is needed.
+        </p>
+        <p>
+          Awschalom et&nbsp;al. (PRX Quantum 2021) call the technology that bridges
+          quantum systems a <strong>quantum interconnect</strong> (QuIC), and list its
+          components: a communication channel, a quantum memory with its associated
+          interface to the channel, a quantum transducer for connecting qubits of
+          different kinds or different energies, encoding converters, and entanglement
+          sources <SourceNote id="awschalom-prxquantum-2021" />. A repeater node uses
+          <em>two</em> of these QuIC pieces in series, at two structurally different
+          places:
+        </p>
+        <Callout label="Spin–photon interconnect (matter qubit ↔ flying photon)">
+          <p>
+            The matter qubit at the node emits or absorbs the heralding photon that
+            travels down the fibre to the next node. For that photon to survive
+            deployed fibre it has to live near 1550 nm. If the matter qubit's natural
+            emission isn't telecom — a Yb⁺ ion at 369 nm, an NV centre at 637 nm, an
+            SiV at 737 nm — a QFC stage in this interconnect drags the photon to the
+            C-band. In QuIC terms this is the <em>spin-photon transducer</em> piece;
+            most of this page is about it.
+          </p>
+        </Callout>
+        <Callout label="Compute–network interconnect (matter qubit ↔ computational qubit)">
+          <p>
+            The matter qubit at the node also has to hand its state to (or take state
+            from) the actual quantum computer it serves. Whether this interconnect
+            needs any active component depends on whether the network qubit and the
+            computational qubit are the same physical kind of thing.
+          </p>
+        </Callout>
+        <h3>The same-modality case is free</h3>
+        <p>
+          If the computer at A is a trapped-ion machine and the repeater node at A also
+          uses trapped ions, the network qubit and the computational qubit are both ions
+          in the same trap or in neighbouring traps. The compute–network interconnect
+          is just an ordinary local two-qubit gate, or an ion-shuttle — operations the
+          platform already does. No transducer, no QFC inside the box. The Oxford 2025
+          distributed-gate experiment was exactly this shape: each module carried a
+          <sup>88</sup>Sr⁺ "network ion" coupled to a <sup>43</sup>Ca⁺ "circuit ion"
+          by a local two-qubit gate, and the photon path between modules carried the
+          only optical step in the protocol <SourceNote id="main-nature-2025" />.
+        </p>
+        <p>
+          This is the clean case, and it is the reason the localisation-first pattern in
+          the rest of the series holds together. Building the repeater nodes out of the
+          same modality as the computers they serve makes the compute–network
+          interconnect disappear — no patch needed, just a native operation.
+        </p>
+        <h3>The cross-modality case is where M-O transduction lives</h3>
+        <p>
+          Now suppose the computer at A is a superconducting transmon at 5 GHz, but the
+          repeater memory at A is an SiV centre with optical access at 737 nm. The
+          transmon has no optical transition at all; the SiV has no microwave one. To
+          move a qubit from the transmon into the SiV memory you have to bridge
+          microwave to optical — and that is where the M-O transducer lives. <em>Not at
+          the fibre interconnect</em> — at the internal compute–network interconnect
+          between the computer's qubit and the repeater's memory qubit. The QFC stage
+          on the spin-photon interconnect (737 nm → 1550 nm) is a separate problem with
+          separate hardware.
+        </p>
+        <p>
+          So M-O transduction shows up in two structurally different places. First, as
+          the way a superconducting computer reaches any photonic interconnect at all —
+          transmons have no optical transition, full stop, so a superconducting machine
+          that wants to network <em>must</em> transduce somewhere. Second, as the way a
+          repeater node of one modality couples to a computer of another modality on
+          the compute–network interconnect. QFC, by contrast, shows up only on the
+          spin-photon interconnect, and only when the matter qubit emits optical photons
+          at the wrong colour.
+        </p>
+        <h3>Sometimes one device does both jobs</h3>
+        <p>
+          A subtlety the "two interconnects" picture has to flag: in many repeater
+          designs there is no <em>separate</em> memory device and photon-interface
+          device — a single SiV or NV centre carries both the comm qubit and the
+          memory qubit (see <a href={url("/repeaters#node-architecture")}>repeaters §
+          node architecture</a> for the comm/memory split). The spin-photon and
+          compute–network interconnects collapse onto the same physical defect. The
+          only question left is whether <em>that device</em> matches the computer's
+          modality — if it doesn't, transduction or QFC is the bridge, and if it does,
+          neither is needed.
+        </p>
+      </section>
+
+      <section id="pipeline" data-nav-section>
+        <h2>The whole pipeline in one figure</h2>
+        <p>
+          The figure depicts a <strong>hypothetical 4-hop heterogeneous link</strong>
+          — no one has built one end-to-end yet — stretched out to make the
+          <em>interface chain</em> visible from one end to the other. Reading left
+          to right: transmon → M-O transducer → telecom fibre → [SiV-QFC → SiV
+          repeater → SiV-QFC] × 3 → telecom fibre → Yb-QFC → trapped-ion endpoint.
+          The QFC blocks are paired around each SiV node — one on each side, to
+          drop 737 nm into 1550 nm for the fibre and lift it back at the next
+          repeater. The internal architecture of each repeater is covered on
+          <a href={url("/repeaters#node-architecture")}>repeaters § node
+          architecture</a>.
+        </p>
+        <ZoomableFigure
+          wrapperClass="pipeline-figure"
+          src={url("/images/4hop-topology.svg")}
+          alt="A four-hop topology figure. On the left, Node A is a superconducting quantum computer: a dilution-fridge silhouette with 50 K / 4 K / 15 mK stages, a transmon data qubit (DQ-A), and an M-O transducer (M-O) that converts 5 GHz microwave to telecom optical. Three SiV-diamond repeater nodes QR-1, QR-2, QR-3 sit on the photonic axis between A and B; each carries two comm qubits (electron spins, on the axis) and two memory qubits (nuclear spins, above each comm, with SWAP arrows between them), flanked by a QFC block on either side that converts 737 nm to 1550 nm. On the right, Node B is a trapped-ion quantum computer: a UHV chamber at 300 K housing a small dashed cold zone around the laser-cooled 171-Yb-plus ion cluster, with a 369 nm → 1550 nm QFC on the bench at 300 K. Telecom fibre links each hop."
+        >
+          <figcaption>
+            Left to right: <strong>Node A</strong> — dilution fridge (50 K /
+            4 K / 15 mK stages), transmon QPU (DQ-A), and the M-O transducer
+            (M-O) that lifts a 5 GHz microwave excitation to a telecom-band
+            photon. <strong>Each repeater (QR-1…3)</strong> — two comm qubits
+            (C, electron spin, photon-facing) on the photonic axis with two
+            memory qubits (M, nuclear spin, long-lived storage) above them;
+            the SWAP arrow between each C and its M is the store/retrieve
+            primitive. Per-side QFC blocks convert the SiV's native 737 nm
+            down to 1550 nm for the fibre hops. <strong>Node B</strong> —
+            UHV chamber wall at 300 K, with a small dashed cold zone inside
+            marking the laser-cooled (~mK) <sup>171</sup>Yb⁺ ion cluster; a
+            room-temperature QFC bench converts 369 nm to 1550 nm. The
+            <em>why</em> of the two-comm / two-memory layout inside each
+            repeater is on <a href={url("/repeaters#node-architecture")}>
+            repeaters § node architecture</a>; this section is about the
+            interface chain between heterogeneous endpoints. Reference
+            architecture in <SourceNote id="awschalom-prxquantum-2021" />.
+          </figcaption>
+        </ZoomableFigure>
+
+        <p class="design-prov">
+          <strong>Where each block comes from.</strong> The chain is
+          hypothetical, but every individual block in it follows a published
+          system:
+        </p>
+        <ul class="design-prov-list">
+            <li>
+              <strong>Node A</strong> (transmon QPU + M-O transducer +
+              cavity-coupled memory). Architecture: the QuIC building-block
+              account in <SourceNote id="awschalom-prxquantum-2021" />.
+              State-of-the-art M-O efficiency at quantum-noise levels (~2 %):
+              the Caltech silicon-nanomechanics transducer
+              <SourceNote id="caltech-mo-arxiv-2024" />. The cavity-coupled
+              memory transmon at MQ-A follows the Yale 3D-cavity lineage
+              (referenced in <SourceNote id="awschalom-prxquantum-2021" />,
+              §3.2).
+            </li>
+            <li>
+              <strong>QR-1 / QR-2 / QR-3</strong> (SiV diamond repeater,
+              two-emitter parallel design with ¹³C-nuclear memory).
+              Two-emitter SiV-on-chip nanophotonic node and the 35 km
+              Boston-metro entanglement demo: <SourceNote id="knaut-nature-2024" />.
+              Single-emitter alternative (one comm + one memory) is the
+              Delft NV-diamond architecture in <SourceNote id="pompili-science-2021" />.
+              Seconds-class ¹³C nuclear-spin memory in diamond:
+              <SourceNote id="bradley-prx-2019" />.
+            </li>
+            <li>
+              <strong>Node B</strong> (¹⁷¹Yb⁺ trapped-ion QPU + UV → telecom
+              QFC). The reference for two QCs linked by entanglement across
+              an optical-fibre link between trapped-ion modules is
+              <SourceNote id="main-nature-2025" /> (Oxford Ba⁺, 86 %-fidelity
+              teleported gate; Feb 2025). UV-to-telecom QFC from an ion's
+              native emission: <SourceNote id="krutyanskiy-prl-2023" />.
+            </li>
+          </ul>
+        <Callout label="Where does the '10⁴ retries per pair' number on step 1 come from?">
+          <p>
+            Step 1 of the protocol says Bell-pair generation per hop is a
+            10⁴-class retry loop. That's not a number lifted from a single
+            paper — it's an order-of-magnitude estimate from the per-attempt
+            loss budget. The calculation, for a 50 km MeetInTheMiddle hop
+            (both photons travelling L/2 = 25 km to the midpoint):
+          </p>
+          <p>
+            Each row below is the survival probability for one attempt of
+            the whole hop — both photons travelling, both detectors firing,
+            the BSM resolving. Where a stage acts on each photon
+            independently (fibre, emission, QFC, SNSPD), the row already
+            squares the per-photon number, so the rightmost column is the
+            joint factor for the pair.
+          </p>
+          <table class="loss-budget">
+            <thead>
+              <tr><th>Factor</th><th>Survival per attempt (both photons)</th><th>Reference</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Fibre, 25 km @ 0.18 dB/km, each photon</td><td>0.35 × 0.35 ≈ 12 %</td><td>SMF-28 datasheet</td></tr>
+              <tr><td>SiV photon emission, both sides</td><td>0.30 × 0.30 ≈ 9 %</td><td><SourceNote id="knaut-nature-2024" /></td></tr>
+              <tr><td>QFC (737 nm → 1550 nm), both sides (conservative)</td><td>0.30 × 0.30 ≈ 9 %</td><td><SourceNote id="knaut-nature-2024" /></td></tr>
+              <tr><td>SNSPDs, both fired</td><td>0.90 × 0.90 ≈ 81 %</td><td>commercial</td></tr>
+              <tr><td>Linear-optics BSM identification ceiling</td><td>50 %</td><td>well-known</td></tr>
+              <tr><th>Per-attempt success (product of the column)</th><th>≈ 4 × 10⁻⁴</th><th></th></tr>
+            </tbody>
+          </table>
+          <p>
+            Inverting that gives <strong>~2,500 heralded attempts per
+            delivered pair</strong> at the conservative end — i.e. <strong>
+            ~10³</strong>, not 10⁴. If the QFC and emission efficiencies sit
+            at their optimistic ends instead (50 % per side gives per-
+            attempt ~10⁻², or ~100 attempts), the credible
+            <em>budget-only</em> band is <strong>10² to 10³</strong>. The
+            <SourceNote id="knaut-nature-2024" /> 35 km Boston-metro demo
+            measured ~10⁵ attempts per pair — about 40× worse than the
+            conservative budget here, the gap attributable to real-world
+            overheads the budget doesn't price in: photon-mode mismatch,
+            polarisation drift, detector dead time, optical-alignment drift
+            over a long run.
+          </p>
+          <p>
+            The "10⁴" labelled on the figure splits the difference between
+            the loss-budget theory (~10³) and the measured Knaut number
+            (~10⁵), as a rough middle-of-the-band figure to size rate
+            budgets against. It's not directly derivable from either alone.
+            For planning, take <strong>10³–10⁵ attempts per pair</strong>
+            per 50 km hop, depending on whether the implementation is closer
+            to the loss-budget ideal or to Knaut's measured field demo.
+          </p>
+        </Callout>
+
+        <p>
+          The new <em>quantum-channel</em> hardware is concentrated at the interface
+          blocks — M-O at Node A, QFCs flanking every SiV repeater, QFC at Node B —
+          plus the telecom-band fibre between them. The classical channel along the
+          bottom carries heralds and BSM outcome bits in the usual way. The protocol
+          splits into two phases that run independently of each other.
+          <strong>Entanglement generation</strong> (steps 1–2) runs continuously to
+          maintain a stock of end-to-end Bell pairs the same way a power grid
+          maintains spinning reserve — the M-O transducer, the QFCs, the fibre, and
+          every midpoint BSA fire throughout. <strong>Consumption</strong> (steps
+          3–5) draws one stored pair on demand and runs over
+          <a href={url("/entanglement#locc")}>LOCC</a>: a local matter-matter BSM at
+          DC-A on (DQ-A, MQ-A) using on-chip microwave gates, the two classical
+          bits sent across the classical channel, then a local Pauli correction at
+          DC-B. The M-O transducer is not involved in the consumption phase — it
+          did its job earlier, helping to generate the Bell pair that is now being
+          spent.
+        </p>
+
+        <Callout label="For readers used to classical networking: this is the deep structural difference">
+          <p>
+            Classical networking is one stack. A packet is built at the sender,
+            travels down the stack into a wire (an electrical or optical signal),
+            comes back up the stack at the receiver. Every message uses the wire.
+            Up-and-over, every time.
+          </p>
+          <p>
+            Quantum networking is not one stack. It is <strong>two regimes used in
+            series</strong>. The first regime — entanglement generation — uses the
+            quantum channel (fibre, QFC, midpoint pBSM) to create a resource: a Bell
+            pair shared between two nodes. The second regime — everything that
+            consumes that Bell pair — runs over
+            <a href={url("/entanglement#locc")}>LOCC</a>: local operations at each
+            node plus an ordinary classical channel between them. The fibre is not
+            used again for the same pair. Teleporting a qubit between two computers
+            does not, at the moment of teleportation, send a photon between them; the
+            photon flew earlier, during EG, to establish the pair that is now being
+            consumed.
+          </p>
+          <p>
+            For an infrastructure planner the implication is sharp. The
+            <em>quantum-channel</em> piece of the stack — fibre at the right
+            wavelength, QFC, photonic BSM apparatus, single-photon detectors,
+            timing/phase synchronisation between nodes — is where every new piece
+            of capital and every new piece of standards work is needed. Everything
+            after Bell-pair delivery, in protocol terms, looks like classical
+            distributed computing: local CPU at each node and bits over an ordinary
+            link. That part of the stack is already present in any data centre.
+          </p>
+        </Callout>
+      </section>
+
+      <section id="qfc" data-nav-section>
+        <h2>QFC: visible to telecom</h2>
+        <p>
+          A χ² or χ³ nonlinear crystal pumped by a strong classical laser mixes two optical
+          frequencies into a third. With one input being a single signal photon and the
+          other being the bright pump, sum-frequency generation (SFG) raises the signal's
+          frequency and difference-frequency generation (DFG) lowers it. The mixing is
+          coherent: input phase is preserved, so an arriving qubit's superposition survives
+          to the output mode. Periodically-poled lithium niobate (PPLN) waveguides are the
+          standard substrate; four-wave mixing in highly nonlinear fibre or χ³ photonic
+          crystals is the χ³ alternative <SourceNote id="ezratty-uqt-2025-p4" />.
+        </p>
+        <p>
+          The Knaut et al. 2024 two-node SiV-centre experiment is a useful reference for
+          deployed numbers. It used a fibre-coupled PPLN waveguide pumped at 1623 nm to
+          convert SiV-emission photons between 737 nm and the telecom O-band at 1350 nm,
+          where in-fibre loss drops from 4 dB/km at 737 nm to under 0.3 dB/km at 1350 nm.
+          DFG (737 nm + 1623 nm → 1350 nm) ran at 33 % overall efficiency at saturation;
+          the reverse SFG path ran at 30 %. Conversion in both directions was limited by
+          fibre-to-waveguide mode-matching rather than by the nonlinear process
+          itself <SourceNote id="knaut-nature-2024" />.
+        </p>
+        <p>
+          State-of-the-art lab demonstrations have reported internal efficiencies up to
+          70–80 % for narrow-linewidth single-photon QFC; vendor-grade modules sold today
+          for atomic-ensemble or colour-centre nodes typically deliver 30–50 % end-to-end
+          including fibre coupling. Added noise is low — well under one noise photon per
+          conversion window for properly-detuned pumps — which is what lets the same
+          devices preserve qubit fidelity well above the 50 % classical bound. The work
+          left is engineering: lower-loss waveguides, integrated polarisation handling,
+          better filtering of the residual pump and Raman noise, and packaging that
+          survives outside an optics lab <SourceNote id="ezratty-uqt-2025-p4" />.
+        </p>
+        <Callout label="QFC is not just for the C-band">
+          <p>
+            QFC also bridges <em>between</em> non-telecom platforms. The same Knaut et al.
+            setup additionally used electro-optic frequency shifting to bridge a 13 GHz
+            mismatch between the two SiV centres' optical-transition frequencies — solid-state
+            qubits inhomogeneously detune by tens of gigahertz, and shifting the photon to
+            match the receiving qubit is a routine sub-task inside any heterogeneous link.
+            Welinq's approach for cold-atom memories goes the other way: a parametric
+            converter shifts photons between 795 nm (Rb interaction line) and 1550 nm so
+            that an Rb-based memory can sit on a telecom fibre <SourceNote id="ezratty-uqt-2025-p4" />.
+          </p>
+        </Callout>
+      </section>
+
+      <section id="mo" data-nav-section>
+        <h2>Microwave-to-optical transduction</h2>
+        <p>
+          A 5 GHz microwave photon and a 1550 nm optical photon differ by roughly 4.6
+          orders of magnitude in frequency. No single nonlinear material has a usable χ²
+          or χ³ response that directly couples those two modes at single-photon level.
+          Every working M-O transducer is therefore a hybrid: it introduces an
+          intermediate degree of freedom that couples to both the microwave field and the
+          optical field, and shuttles excitations between them. Lauk et al. 2020 surveys
+          four mechanism families that have produced quantum-regime
+          demonstrations <SourceNote id="lauk-qst-2020" />:
+        </p>
+        <ul>
+          <li>
+            <strong>Optomechanical / piezo-optomechanical.</strong> A high-Q mechanical
+            resonator (a phonon mode in a suspended membrane, beam, or photonic-crystal
+            defect) couples to a microwave LC circuit through a piezoelectric or
+            electrostatic interaction and to an optical cavity through radiation
+            pressure. Excitations move microwave → phonon → optical (or the reverse).
+            Devices are typically aluminium-nitride or lithium-niobate
+            piezo-optomechanical platforms cooled to dilution-refrigerator temperatures.
+          </li>
+          <li>
+            <strong>Electro-optic (cavity-EO).</strong> A χ² electro-optic material
+            (lithium niobate, AlN, or a thin-film integrated variant) is placed inside
+            both a microwave resonator and an optical cavity. Pumping the optical cavity
+            with a strong classical drive parametrically couples the microwave mode and
+            an optical sideband, giving a beam-splitter-like Hamiltonian between the two
+            quantum modes.
+          </li>
+          <li>
+            <strong>Magnonic.</strong> A YIG (yttrium iron garnet) sphere or thin film
+            hosts a magnon mode that couples to the microwave field via the Kittel
+            magnetostatic mode and to the optical field via the magneto-optic (Faraday)
+            effect. Microwave excitations are converted to magnons and then to optical
+            sidebands.
+          </li>
+          <li>
+            <strong>Atomic-ensemble / rare-earth.</strong> An ensemble of atoms or
+            rare-earth ions in a solid host is driven so that a microwave-frequency
+            transition (between two ground-state hyperfine levels) and an optical
+            transition share a common excited state. A pump laser bridges the two,
+            mapping a microwave excitation to an optical photon via a Raman-type process.
+          </li>
+        </ul>
+        <p>
+          Across these families, the figures of merit are end-to-end conversion efficiency
+          <Math tex="\\eta" />, added-noise photon number <Math tex="n_{\\text{add}}" />,
+          conversion bandwidth, and operating temperature. <em>Quantum-regime</em> means
+          <Math tex="n_{\\text{add}} \\lesssim 1" /> so that the input qubit's coherence
+          survives. As of the Lauk et al. perspective and the literature it indexes,
+          internal beam-splitter conversions inside the device approach unity in the best
+          experiments, but end-to-end <Math tex="\\eta" /> with
+          <Math tex="n_{\\text{add}} \\lesssim 1" /> is still in the sub-percent to
+          low-percent range — orders of magnitude below the QFC numbers in the previous
+          section <SourceNote id="lauk-qst-2020" />. The Ezratty Part 4 transducer
+          literature index (refs 707–745) tracks ongoing work, including
+          quantum-memory-assisted on-demand transduction, multi-octave
+          superconducting-network proposals, and SQUID-array piezoelectric couplers
+          <SourceNote id="ezratty-uqt-2025-p4" />.
+        </p>
+        <Callout label="The beam-splitter Hamiltonian view">
+          <p>
+            Most M-O transducers, regardless of mechanism, can be linearised to a
+            beam-splitter Hamiltonian
+            <Math tex="H = g(a^\\dagger b + a b^\\dagger)" /> between a microwave mode
+            <Math tex="a" /> and an optical mode <Math tex="b" />, with effective coupling
+            <Math tex="g" /> set by a strong classical pump. Conversion efficiency is then
+            <Math tex="\\eta = 4 C / (1 + C)^2" />, where the cooperativity
+            <Math tex="C = 4 g^2 / (\\kappa_a \\kappa_b)" /> compares the coupling rate to
+            the loss rates of the two modes. <Math tex="C \\gg 1" /> is the
+            unity-efficiency regime; reaching it without driving so hard that the pump
+            adds thermal photons is the engineering tension at the centre of M-O
+            transducer design.
+          </p>
+        </Callout>
+      </section>
+
+      <section id="bottleneck" data-nav-section>
+        <h2>Why M-O is the bottleneck for distributed superconducting QC</h2>
+        <p>
+          Superconducting qubits are the most-deployed platform for gate-model quantum
+          computers — IBM, Google, Rigetti, IQM, OQC, Alibaba, and most national-lab
+          systems are superconducting. Their qubit transition frequencies sit in the 4–8
+          GHz microwave band, which is why each chip lives in a dilution refrigerator at
+          around 10–20 mK: at higher temperature the qubit's ~0.2 K thermal occupation
+          would scramble it. The same physics that makes the qubit work makes it impossible
+          to send a microwave photon out of the fridge through the room-temperature copper
+          coax that delivers control pulses — single quantum-level microwave signals do
+          not survive the warm-up <SourceNote id="ezratty-uqt-2025-p4" />.
+        </p>
+        <p>
+          Three workarounds are in play, ordered by reach:
+        </p>
+        <ul>
+          <li>
+            <strong>Cold microwave links between adjacent fridges.</strong> A short
+            superconducting coaxial line (or photonic / acoustic interconnect) held at
+            millikelvin from end to end can carry microwave entanglement between two
+            cryostats sitting next to each other. This is what the recent Magnard /
+            Wallraff and Niu / Yu interconnect demonstrations rely on. It scales to a
+            multi-fridge cluster in one room, not to a campus or metro
+            link <SourceNote id="ezratty-uqt-2025-p4" />.
+          </li>
+          <li>
+            <strong>Microwave-to-optical transduction inside the fridge.</strong> A
+            transducer at the cold stage converts an outgoing microwave qubit to an
+            optical photon, which travels out of the fridge over a fibre and across
+            arbitrary distance. This is the path that scales — but it depends on getting
+            <Math tex="\\eta" /> high enough and <Math tex="n_{\\text{add}}" /> low enough
+            to preserve qubit coherence end-to-end. Sub-percent
+            <Math tex="\\eta" /> means most outgoing qubits are simply lost; even with
+            heralded protocols, the entanglement-generation rate scales as
+            <Math tex="\\eta^2" /> for a midpoint-source link and worse for swap chains.
+          </li>
+          <li>
+            <strong>Heterogeneous transfer to a different platform.</strong> Entangle the
+            superconducting qubit with a NV-centre or magnon spin qubit that interfaces
+            naturally to optical photons, then network the spin. This trades the M-O
+            transducer for a microwave-to-spin transducer plus a spin-photon interface,
+            and is the route taken by some hybrid-architecture
+            proposals <SourceNote id="ezratty-uqt-2025-p4" />.
+          </li>
+        </ul>
+        <p>
+          Until M-O <Math tex="\\eta" /> climbs into the percent range with
+          <Math tex="n_{\\text{add}} \\lesssim 1" /> and a usable bandwidth, distributed
+          superconducting quantum computing is bounded by the cold-link reach and remains
+          a one-room phenomenon. This is why the device shows up on every quantum-internet
+          roadmap as a critical path item, and why the Lauk et al. perspective frames
+          transduction as the precondition for connecting microwave processors to a
+          quantum internet <SourceNote id="lauk-qst-2020" />.
+        </p>
+      </section>
+
+      <section id="sota" data-nav-section>
+        <h2>State-of-the-art performance — M-O vs QFC, side by side</h2>
+        <p>
+          Best peer-reviewed single-device numbers as of 2024–2025. Commercial /
+          deployable values are typically 1–2× worse than the lab-best figures
+          quoted here. The split between the two interface families is stark:
+          QFC is mature enough that link-level demonstrations preserve qubit
+          fidelity end-to-end; M-O is still 1–2 orders of magnitude short of
+          fault-tolerant linking thresholds.
+        </p>
+
+        <figure class="perf-table">
+          <figcaption><strong>Microwave-to-optical (M-O) — Node A's diamond.</strong> Photon-conversion efficiency <Math tex="\\eta" />, added noise <Math tex="\\bar{n}_{\\text{add}}" />, conversion bandwidth, and end-to-end state fidelity.</figcaption>
+          <table>
+            <thead>
+              <tr>
+                <th>Mechanism (group)</th>
+                <th><Math tex="\\eta" /></th>
+                <th><Math tex="\\bar{n}_{\\text{add}}" /></th>
+                <th>Bandwidth</th>
+                <th>Fidelity / status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Electro-optic (LN whispering-gallery; Caltech / JILA)</td>
+                <td>~15 % bidir.</td>
+                <td>~0.6 quanta</td>
+                <td>~MHz</td>
+                <td>Sub-teleportation-grade. Sahu <em>Science</em> 370.840 (2020).</td>
+              </tr>
+              <tr>
+                <td>Piezo-optomechanical (UCSB, Stanford)</td>
+                <td>~5 % end-to-end (47 % internal)</td>
+                <td>~0.5–1</td>
+                <td>~10 MHz</td>
+                <td>Transmon entanglement demonstrated at low rate. Mirhosseini <em>Nature</em> 588.599 (2020); Jiang <em>Nature</em> 619.260 (2023).</td>
+              </tr>
+              <tr>
+                <td>Magnon-optical / Rydberg-mediated</td>
+                <td>&lt;1 %</td>
+                <td>~1+</td>
+                <td>kHz–MHz</td>
+                <td>Proof-of-principle only.</td>
+              </tr>
+              <tr>
+                <td><strong>Threshold for fault-tolerant linking</strong></td>
+                <td>≳ 50 %</td>
+                <td>≪ 1</td>
+                <td>≳ MHz</td>
+                <td><Math tex="F \\gtrsim 0.99" /> logical. <SourceNote id="awschalom-prxquantum-2021" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </figure>
+
+        <figure class="perf-table">
+          <figcaption><strong>Quantum frequency conversion (QFC) — flanking each repeater and at Node B.</strong> Visible / near-IR to telecom C-band.</figcaption>
+          <table>
+            <thead>
+              <tr>
+                <th>System (signal → telecom)</th>
+                <th><Math tex="\\eta" /> internal</th>
+                <th><Math tex="\\eta" /> fibre-coupled</th>
+                <th>Noise</th>
+                <th>Coherence preserved? / status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>SiV 737 nm → 1350 nm (Harvard)</td>
+                <td>~57 %</td>
+                <td>~30 % device; ~5 % full link</td>
+                <td>~10 Hz dark</td>
+                <td>Yes — heralded entanglement across two-node link. <SourceNote id="knaut-nature-2024" /></td>
+              </tr>
+              <tr>
+                <td>NV 637 nm → 1588 nm (Delft / Stuttgart)</td>
+                <td>30–40 %</td>
+                <td>~15 %</td>
+                <td>&lt;100 Hz</td>
+                <td>Yes — Tchebotareva <em>PRL</em> 123.063601 (2019); Bersin <em>PRX Quantum</em> 5.010303.</td>
+              </tr>
+              <tr>
+                <td>Rb 780 nm → 1522 nm (PPLN DFG, Saarbrücken)</td>
+                <td>~70 %</td>
+                <td>~30 %</td>
+                <td>sub-Hz</td>
+                <td>Yes — single-atom HOM preserved. <SourceNote id="vanleent-nature-2022" /></td>
+              </tr>
+              <tr>
+                <td>Yb⁺ 369 nm → 1311 nm (two-stage; Innsbruck / MPQ)</td>
+                <td>~25 % / stage</td>
+                <td>~5–10 %</td>
+                <td>~kHz (UV harder)</td>
+                <td>Yes — Bock <em>NatComms</em> 9.1998 (2018); <SourceNote id="krutyanskiy-prl-2023" /></td>
+              </tr>
+              <tr>
+                <td><strong>Threshold for repeater-useful</strong></td>
+                <td>≳ 50 %</td>
+                <td>≳ 20 %</td>
+                <td>&lt; herald rate</td>
+                <td>Yes. <SourceNote id="azuma-rmp-95" /> §IV.C</td>
+              </tr>
+            </tbody>
+          </table>
+        </figure>
+
+        <figure class="perf-table">
+          <figcaption><strong>Where each component sits in the figure.</strong> Why the diagram draws M-O as the heavy chandelier and QFC as small in-line blocks.</figcaption>
+          <table>
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Where in 4-hop figure</th>
+                <th>Best demoed <Math tex="\\eta" /></th>
+                <th>Best demoed fidelity</th>
+                <th>Gap to “useful”</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>M-O</td>
+                <td>Node A diamond</td>
+                <td>~15 % (with <Math tex="\\bar{n} \\gtrsim 0.5" />)</td>
+                <td>Not yet entanglement-grade</td>
+                <td><strong>Large</strong> — 1–2 orders on <Math tex="\\eta \\cdot (1/\\bar{n}_{\\text{add}})" /></td>
+              </tr>
+              <tr>
+                <td>SiV QFC</td>
+                <td>Each repeater (QR-1, QR-2, QR-3)</td>
+                <td>~57 % internal</td>
+                <td>Entanglement preserved (Knaut)</td>
+                <td>Small — fibre coupling losses dominate</td>
+              </tr>
+              <tr>
+                <td>Yb⁺ QFC</td>
+                <td>Node B bench</td>
+                <td>~25 % / stage</td>
+                <td>Single-photon coherence preserved</td>
+                <td>Medium — UV starting wavelength makes it harder</td>
+              </tr>
+            </tbody>
+          </table>
+        </figure>
+      </section>
+
+      <section id="progress" data-nav-section>
+        <h2>Progress on the cross-modality pipeline — what has actually been built</h2>
+        <p>
+          The pipeline figure earlier on this page draws an <em>aspirational</em>
+          cross-modality system, assembled from the QuIC reference architecture in
+          Awschalom et&nbsp;al. (PRX Quantum 2021) <SourceNote
+          id="awschalom-prxquantum-2021" />. The honest position as of 2026: no single
+          published experiment runs the whole thing — transmon compute + M-O
+          transducer + matter memory + QFC + fibre + heralded entanglement +
+          mirrored stack at the far end — end-to-end. The closest experiments close
+          either some of the boxes, or all of the boxes but at lower stakes than
+          full entanglement distribution between two computers.
+        </p>
+
+        <h3>The full memory + entanglement chain — Knaut <em>et&nbsp;al.</em>, Nature 629, 573 (2024)</h3>
+        <p>
+          The cleanest demonstration of the <strong>memory + heralded entanglement
+          + telecom-fibre</strong> half of the picture. Two SiV-in-diamond nodes
+          sit in Cambridge and Boston laboratories, connected by 35&nbsp;km of
+          deployed telecom fibre at 1350&nbsp;nm (PPLN QFC from the SiV's native
+          737&nbsp;nm). Each node uses one SiV centre as both comm qubit and memory
+          (see <a href={url("/repeaters#node-architecture")}>repeaters § node
+          architecture</a>). The protocol runs end-to-end: each node emits a
+          matter-photon entangled pair, the photons fly to a midpoint photonic BSM,
+          the herald fires, the two nodes are left with comm-A ↔ comm-B Bell-paired,
+          and the entanglement is mapped into the nuclear-spin memory for storage.
+          QFC ran at 33% (DFG) / 30% (SFG), the heralded entanglement fidelity stayed
+          above the classical bound after fibre transit, and the nuclear-spin memory
+          held the state for the herald round-trip. The catch is that the link is
+          <strong>same-modality</strong> end-to-end, so there is no transmon and no
+          M-O transducer in the picture — the compute–network QuIC collapses onto
+          operations inside the SiV itself <SourceNote id="knaut-nature-2024" />.
+        </p>
+
+        <h3>Closing the M-O transducer box on a real transmon — Warner <em>et&nbsp;al.</em>, Nature Physics 21, 831 (2025)</h3>
+        <p>
+          The first <strong>compute–network QuIC operating at single-photon level
+          on a superconducting transmon</strong>. The Lončar group at Harvard,
+          with Rigetti supplying the qubit, used a thin-film lithium-niobate
+          electro-optic transducer to drive a transmon coherently with optical
+          pulses — optically-driven Rabi oscillations on a real superconducting
+          qubit without measurable degradation of its coherence time. Conversion
+          efficiency up to 1.18%. Single node, no fibre between two QCs, no
+          entanglement, but this closes the M-O-transducer box on a real
+          transmon and shows that the compute–network QuIC is becoming
+          experimentally viable on the superconducting platform
+          <SourceNote id="warner-natphys-2025" />.
+        </p>
+
+        <h3>Coherent (not yet quantum) link between two fridges — Zhou &amp; Tang <em>et&nbsp;al.</em>, Nature Photonics 20, 579 (2026)</h3>
+        <p>
+          A <strong>1-km photonic link between two superconducting fridges</strong>,
+          but only at coherent-classical level. Two AlN electro-optic transducers
+          ("Felix" and "Albert") sit in two separate dilution refrigerators at
+          Yale, each up- and down-converting between ~5&nbsp;GHz microwave and
+          1573&nbsp;nm telecom optical, joined by a 1&nbsp;km fibre. Reported
+          on-chip transduction efficiency &gt;0.1% per node, end-to-end link
+          transmission &minus;60&nbsp;dB. For comparison, 1&nbsp;km of coaxial
+          cable at 5&nbsp;GHz would lose ~1000&nbsp;dB; commercial electro-optic
+          modulators would lose &minus;140&nbsp;dB. <strong>No memory in the
+          picture, no entanglement</strong>: signals transferred this way are
+          classical coherent waveforms, not heralded Bell pairs. To distribute
+          entanglement, transducer efficiency has to climb from ~0.1% into the
+          percent-to-tens-of-percent range <em>with sub-photon added noise</em>,
+          and a memory has to be added at each node so the herald can be waited
+          out <SourceNote id="zhou-natphoton-2026" />.
+        </p>
+
+        <Callout label="What still hasn't been demonstrated">
+          <p>
+            The experiment that would close the loop has not been published as of
+            early 2026: transmon-A → M-O transducer → matter memory at A → QFC →
+            telecom fibre → midpoint photonic BSM → mirrored stack at B →
+            transmon-B, with the resulting heralded entanglement actually consumed
+            by a remote two-qubit gate between the two superconducting computers.
+            Knaut has the back half (memory + heralded entanglement over fibre);
+            Warner has the front half on a real transmon (M-O transducer at
+            single-photon level); Zhou–Tang has the geometry (two fridges, 1&nbsp;km
+            link) but at classical-coherent power, with no memory and no
+            heralding. Putting them together is the open problem.
+          </p>
+        </Callout>
+      </section>
+
+      <section id="encodings" data-nav-section>
+        <h2>Encoding translation between photonic encodings</h2>
+        <p>
+          A separate flavour of conversion sits inside the optical band: translating
+          between the photonic encodings different parts of the network use. The qubit-page
+          encoding zoo — polarisation, time-bin, dual-rail (path), frequency-bin, Fock,
+          coherent-state — names the choices; networking those choices means converting
+          between them when subsystems disagree <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+        <ul>
+          <li>
+            <strong>Polarisation ↔ time-bin.</strong> A polarising beam splitter plus a
+            delay line maps the two polarisation modes onto two time-bin modes (or the
+            reverse). Used when the source emits polarisation-encoded photons but the link
+            is a deployed fibre that scrambles polarisation, in which case time-bin is the
+            transmission encoding of choice — Caltech's 2024 time-bin teleportation at
+            1536.5 nm is one example of operating directly in the time-bin
+            encoding <SourceNote id="ezratty-uqt-2025-p4" />.
+          </li>
+          <li>
+            <strong>Time-bin ↔ dual-rail (path).</strong> An unbalanced interferometer
+            converts the two time-bin modes into the two output ports of a beam splitter,
+            and vice versa. Used at receiver nodes where a Bell-state measurement or a
+            cavity interaction wants spatial-mode inputs.
+          </li>
+          <li>
+            <strong>Polarisation ↔ dual-rail (path).</strong> A polarising beam splitter
+            does the conversion in one element. Used routinely inside linear-optics Bell
+            measurement assemblies that combine photons from polarisation-encoded sources.
+          </li>
+        </ul>
+        <p>
+          These translations are linear-optics operations on a single photon — they are
+          not quantum frequency conversion and they do not span the microwave-to-optical
+          gap. They sit alongside QFC and M-O transduction as the third axis of
+          "make the photon match the next subsystem" the link layer has to handle.
+        </p>
+      </section>
+
+    </Stack>
+  </Center>
+
+  <ZoomModal />
+</Infographic>
+
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-4);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .hero h1 { margin: 0; }
+  .hero p { margin: 0; }
+
+  section { display: grid; gap: var(--space-3); }
+
+  ul {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+  li { line-height: var(--leading-snug); }
+
+  /* Page-local cap on the pipeline figure's width. The base figure /
+     toolbar / modal styling now lives in ZoomableFigure / ZoomModal. */
+  .pipeline-figure { max-width: 1100px; }
+  .design-prov {
+    margin: var(--space-3) 0 var(--space-2);
+  }
+  .loss-budget {
+    margin: var(--space-2) 0;
+    inline-size: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+  }
+  .loss-budget th,
+  .loss-budget td {
+    padding: var(--space-1) var(--space-2);
+    text-align: start;
+    vertical-align: top;
+    border-block-end: 1px solid var(--color-rule);
+    line-height: var(--leading-snug);
+  }
+  .loss-budget thead th { font-weight: 700; color: var(--color-text); }
+  .loss-budget tbody tr:last-child th,
+  .loss-budget tbody tr:last-child td {
+    font-weight: 700;
+    border-block-end: none;
+    border-block-start: 1px solid var(--color-rule);
+  }
+  .design-prov-list {
+    margin: 0 0 var(--space-3);
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .perf-table {
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    display: grid;
+    gap: var(--space-3);
+    overflow-x: auto;
+  }
+  .perf-table table {
+    inline-size: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+  }
+  .perf-table th,
+  .perf-table td {
+    padding: var(--space-2) var(--space-3);
+    text-align: start;
+    vertical-align: top;
+    border-block-end: 1px solid var(--color-rule);
+  }
+  .perf-table th {
+    font-weight: 700;
+    color: var(--color-text);
+    background: var(--color-surface-2);
+  }
+  .perf-table tbody tr:last-child td {
+    border-block-end: none;
+  }
+  .perf-table td:first-child {
+    font-weight: 600;
+    color: var(--color-text);
+  }
+  .perf-table figcaption {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-mute);
+  }
+</style>
+</content>
+</invoke>

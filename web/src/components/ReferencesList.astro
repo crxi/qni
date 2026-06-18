@@ -1,0 +1,105 @@
+---
+/**
+ * Per-page bibliography. Renders only the source entries the page
+ * actually cites (passed in via the `ids` prop), each prefixed with
+ * the same bracketed marker label that's used by the inline
+ * SourceNote — so a reader scanning from an inline "Kumar et al.
+ * 2025" superscript can find an entry below starting with
+ * "[Kumar et al. 2025]". Inline citations link to `#ref-${id}`,
+ * which anchors here.
+ *
+ * The full URL / DOI lives only on the bibliography entry, not on
+ * the inline link — the inline cite stays compact, and the reader
+ * who wants to follow through clicks twice (inline → bibliography
+ * entry → external resource).
+ */
+import refs from "../data/sources.yaml";
+import type { SourceEntry } from "../lib/citation";
+import { bibliographyLabel } from "../lib/citation";
+
+interface Props { ids?: string[]; }
+const { ids = [] } = Astro.props;
+
+const idSet = new Set(ids);
+const sources = (refs as SourceEntry[])
+  .filter((s) => idSet.has(s.id))
+  .sort((a, b) => bibliographyLabel(a).localeCompare(bibliographyLabel(b)));
+
+/* Don't render the section if the page has no citations (e.g.
+   the landing index). */
+const showSection = sources.length > 0;
+---
+
+{showSection && (
+  <section class="references" aria-labelledby="references-heading">
+    <h2 id="references-heading">References</h2>
+    <ol>
+      {sources.map((s) => (
+        <li id={`ref-${s.id}`}>
+          <span class="ref-marker">[{bibliographyLabel(s)}]</span>{' '}
+          {s.authors?.length ? <span>{s.authors.join(", ")}. </span> : null}
+          <span class="ref-title">{s.title}</span>.
+          {s.publisher && <span> {s.publisher}, </span>}
+          <span>{s.year}</span>.
+          {s.url && <span> <a href={s.url} rel="noopener" target="_blank">{s.url}</a></span>}
+          {s.doi && !s.url && (
+            <span> doi:<a href={`https://doi.org/${s.doi}`} rel="noopener" target="_blank">{s.doi}</a></span>
+          )}
+        </li>
+      ))}
+    </ol>
+  </section>
+)}
+
+<style>
+  .references {
+    margin-block-start: var(--space-7);
+    padding-block-start: var(--space-5);
+    border-block-start: 1px solid var(--color-rule);
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-mute);
+  }
+  .references h2 {
+    font-size: var(--text-lg);
+    color: var(--color-text);
+    margin-block-end: var(--space-3);
+  }
+  .references ol {
+    padding-inline-start: 0;
+    list-style: none;
+  }
+  .references li {
+    margin-block: var(--space-3);
+    /* Hanging indent so the marker label hangs out to the left of the
+       wrapped lines — easier to scan when matching inline cites. */
+    padding-inline-start: 8.5rem;
+    text-indent: -8.5rem;
+  }
+  /* Mobile: collapse the hanging indent so wrapped lines don't push
+     under an 8.5-rem-wide phantom gutter. */
+  @media (max-width: 40rem) {
+    .references li {
+      padding-inline-start: 0;
+      text-indent: 0;
+    }
+    .references .ref-marker {
+      display: inline-block;
+      margin-inline-end: 0.4rem;
+    }
+  }
+  .references li:target {
+    /* When the reader clicks an inline cite, the matching entry
+       briefly highlights so it's obvious which one matched. */
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    border-radius: var(--radius-sm);
+    padding-inline-end: var(--space-2);
+  }
+  .ref-marker {
+    color: var(--color-text);
+    font-weight: 600;
+    font-family: var(--font-mono);
+    font-size: 0.92em;
+  }
+  .ref-title { color: var(--color-text); }
+</style>

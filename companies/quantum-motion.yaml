@@ -1,0 +1,217 @@
+slug: quantum-motion
+name: Quantum Motion
+categories: [qc]
+hq: London, UK
+founded: 2017
+status: private
+parent: null
+logo:
+  domain: quantummotion.com
+
+positioning: >
+  UK silicon-spin quantum-computing scale-up building qubits on standard 300 mm
+  CMOS wafers through commercial foundry partnerships (GlobalFoundries). Spun
+  out of UCL and Oxford in 2017; differentiator is full-stack co-design of the
+  silicon QPU with cryogenic control electronics, targeting "quantum in a box,
+  not a building" — a data-centre-friendly footprint of a few 19-inch server
+  racks rather than warehouse-scale cryogenic plant. Sells research-access
+  systems via the UK National Quantum Computing Centre testbed; commercial
+  deployment is the Series-C ($160M, May 2026) milestone.
+
+modalities:
+  qc:
+    qubit_type: spin-si
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: nearest-neighbour
+    gate_set: []
+
+milestones:
+  - date: 2026-05
+    tag: qc
+    headline: $160M Series C co-led by DCVC and Kembara; total raised passes ~$220M
+    source_url: https://quantummotion.com/quantum-motion-raises-160-million-series-c-to-deliver-quantum-computings-transistor-moment/
+    source_type: press
+  - date: 2025-09
+    tag: qc
+    headline: What the company describes as the first full-stack silicon-CMOS quantum computer, delivered to the UK NQCC under the Quantum Computing Testbed Programme — 300 mm CMOS QPU, integrated cryogenic control stack, three-rack 19" footprint, Qiskit/Cirq front-end
+    source_url: https://quantummotion.com/quantum-motion-delivers-the-industrys-first-full-stack-silicon-cmos-quantum-computer/
+    source_type: press
+  - date: 2025-07
+    tag: qc
+    headline: 384-quantum-dot silicon array with on-chip cryo-electronics demonstrated (arXiv preprint)
+    source_url: https://arxiv.org/abs/2507.21306
+    source_type: preprint
+  - date: 2025
+    tag: qc
+    headline: Radiofrequency electron-cascade dispersive readout of a silicon-MOS spin qubit, 7.6 µs minimum integration time, >35 dB SNR enhancement (Nature Electronics)
+    source_url: https://www.nature.com/articles/s41928-026-01582-8
+    source_type: paper
+  - date: 2025
+    tag: qc
+    headline: Advanced to Stage B of DARPA's Quantum Benchmarking Initiative
+    source_url: https://quantummotion.com/quantum-motion-raises-160-million-series-c-to-deliver-quantum-computings-transistor-moment/
+    source_type: press
+  - date: 2023-02
+    tag: qc
+    headline: £42M Series A led by Bosch Ventures with Porsche SE and British Patient Capital; existing investors Oxford Science Enterprises, Inkef, Parkwalk, Octopus Ventures, IP Group, NSSIF participated
+    source_url: https://quantummotion.com/quantum-motion-raises-42-million-investment-round/
+    source_type: press
+  - date: 2020-05
+    tag: qc
+    headline: £8M / €9M seed round (Inkef Capital, Octopus Ventures, Oxford Sciences Innovation, IP Group, Parkwalk)
+    source_url: https://www.materials.ox.ac.uk/article/quantum-motion-spin-out-raises-8m-funding
+    source_type: press
+  - date: 2017
+    tag: qc
+    headline: Founded as a UCL / Oxford spin-out by John Morton and Simon Benjamin
+    source_url: https://quantummotion.com/quantum-motion-raises-42-million-investment-round/
+    source_type: press
+
+shareholders:
+  - holder: DCVC
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-05
+    source_url: https://quantummotion.com/quantum-motion-raises-160-million-series-c-to-deliver-quantum-computings-transistor-moment/
+    note: Co-lead, Series C (May 2026)
+  - holder: Kembara (Mundi Ventures deep-tech fund)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-05
+    source_url: https://quantumcomputingreport.com/quantum-motion-secures-160m-series-c-to-scale-silicon-spin-qpus/
+    note: Co-lead, Series C (May 2026)
+  - holder: Bosch Ventures
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2023-02
+    source_url: https://quantummotion.com/quantum-motion-raises-42-million-investment-round/
+    note: Series A lead (Feb 2023); follow-on in Series C
+  - holder: Porsche Automobil Holding SE
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2023-02
+    source_url: https://quantummotion.com/quantum-motion-raises-42-million-investment-round/
+    note: Series A participant; follow-on in Series C
+  - holder: Oxford Science Enterprises
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-05
+    source_url: https://quantummotion.com/quantum-motion-raises-160-million-series-c-to-deliver-quantum-computings-transistor-moment/
+    note: Seed-through-Series-C follow-on investor (formerly Oxford Sciences Innovation)
+  - holder: IP Group
+    stake_percent: null
+    stake_class: minority
+    as_of: 2023-02
+    source_url: https://www.ipgroupplc.com/news-and-events/portfolio-news/2023/2023-02-21a
+    note: Seed and Series A investor
+  - holder: Inkef Capital
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-05
+    source_url: https://quantummotion.com/quantum-motion-raises-160-million-series-c-to-deliver-quantum-computings-transistor-moment/
+    note: Seed-through-Series-C follow-on investor
+  - holder: Parkwalk Advisors
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-05
+    source_url: https://quantummotion.com/quantum-motion-raises-160-million-series-c-to-deliver-quantum-computings-transistor-moment/
+    note: Seed-through-Series-C follow-on investor
+  - holder: Octopus Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2023-02
+    source_url: https://quantummotion.com/quantum-motion-raises-42-million-investment-round/
+    note: Seed and Series A investor
+  - holder: NSSIF (NATO-aligned UK National Security Strategic Investment Fund)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2023-02
+    source_url: https://quantummotion.com/quantum-motion-raises-42-million-investment-round/
+    note: Series A participant
+  - holder: British Business Bank
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-05
+    source_url: https://quantummotion.com/quantum-motion-raises-160-million-series-c-to-deliver-quantum-computings-transistor-moment/
+    note: New investor at Series C
+  - holder: Firgun
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-05
+    source_url: https://quantummotion.com/quantum-motion-raises-160-million-series-c-to-deliver-quantum-computings-transistor-moment/
+    note: New investor at Series C
+
+key_personnel:
+  - role: CEO
+    name: James Palles-Dimmock
+    since: 2022
+    source_url: https://quantummotion.com/quantum-motion-raises-160-million-series-c-to-deliver-quantum-computings-transistor-moment/
+  - role: Co-founder & CTO
+    name: John Morton
+    since: 2017
+    source_url: https://quantummotion.com/quantum-motion-raises-160-million-series-c-to-deliver-quantum-computings-transistor-moment/
+    note: Professor of Nanoelectronics at UCL; director of UCL Quantum Science and Technology Institute
+  - role: Co-founder & Chief Science Officer
+    name: Simon Benjamin
+    since: 2017
+    source_url: https://quantummotion.com/quantum-motion-raises-160-million-series-c-to-deliver-quantum-computings-transistor-moment/
+    note: Professor of Quantum Technologies at Oxford
+
+roadmap:
+  - target: 2026-2028
+    item: Scale silicon-spin QPUs on GlobalFoundries 300 mm wafer lines toward utility-scale processors deployable in standard data-centre racks
+    source_url: https://quantummotion.com/quantum-motion-raises-160-million-series-c-to-deliver-quantum-computings-transistor-moment/
+    tag: qc
+  - target: 2026+
+    item: International expansion with new offices in Spain and Australia; continued participation in DARPA QBI Stage B
+    source_url: https://thequantuminsider.com/2026/05/07/quantum-motion-160m-series-c-silicon-quantum-computing/
+    tag: qc
+
+current_flagship:
+  name: NQCC silicon-CMOS testbed system
+  generation: silicon-spin (300 mm CMOS QPU, integrated cryo-control, three-rack footprint)
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41928-026-01582-8
+    note: Radiofrequency cascade readout of coupled silicon-MOS spin qubits (Nature Electronics, 2026)
+  - kind: preprint
+    citation_key: null
+    url: https://arxiv.org/abs/2507.21306
+    note: 384-quantum-dot silicon array with on-chip cryo-electronics (July 2025)
+  - kind: press
+    citation_key: null
+    url: https://quantummotion.com/quantum-motion-delivers-the-industrys-first-full-stack-silicon-cmos-quantum-computer/
+    note: NQCC full-stack delivery announcement (September 2025)
+  - kind: press
+    citation_key: null
+    url: https://quantummotion.com/quantum-motion-raises-160-million-series-c-to-deliver-quantum-computings-transistor-moment/
+    note: $160M Series C announcement (May 2026)
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.ec_code
+  - modalities.qc.gate_set
+  - field: modalities.qc.connectivity
+    as_of: 2026-05-24
+    note: typical of silicon-MOS quantum-dot arrays; not explicitly named in the company's own press materials
+  - field: shareholders
+    as_of: 2026-05-24
+    note: private company; lead-investor roles drawn from round press releases, no Companies House cap-table cross-check performed; stake percentages undisclosed across the board
+  - field: key_personnel.0.since
+    as_of: 2026-05-24
+    note: Palles-Dimmock was promoted to CEO from COO; exact transition date not confirmed in published sources
+
+last_verified: 2026-05-24
+verification_method: web

@@ -1,0 +1,269 @@
+slug: qunnect
+name: Qunnect
+categories: [memory, network]
+hq: Brooklyn, New York, USA
+founded: 2017
+status: private
+parent: null
+logo:
+  domain: qunnect.inc
+
+positioning: >
+  Quantum-networking hardware vendor building room-temperature
+  rubidium-vapour quantum memories, entangled-photon sources, and
+  telecom-band polarization-stabilisation gear as rack-mount appliances.
+  Spun out of Eden Figueroa's group at Stony Brook University in 2017;
+  operates GothamQ, a leased metropolitan dark-fibre testbed under New York
+  City. Flagship Carina turnkey suite launched in 2025; in February 2026
+  demonstrated first metro-scale entanglement swapping over commercial fibre
+  with Cisco at >99% polarization fidelity. Closed a USD 10M Series A
+  extension in June 2025 led by Airbus Ventures with Cisco Investments.
+
+modalities:
+  memory:
+    platform: rb-ensemble
+    storage_time_ms: null
+    retrieval_efficiency: null
+    fidelity: 0.95
+    wavelength_nm: 795
+    mode_capacity: null
+  network:
+    role: testbed
+    products: [QU-SRC, QU-APC, QU-MEM, Carina, GothamQ]
+
+milestones:
+  - date: 2026-04
+    tag: network
+    headline: "Investor Cisco unveils Universal Quantum Switch — a room-temperature photonic switch that translates between polarization / time-bin / frequency / path encodings with <=4% fidelity degradation and ~1 ns electro-optic reconfiguration. Frames Cisco moving up the quantum-networking stack on top of partners like Qunnect."
+    source_url: https://investor.cisco.com/news/news-details/2026/Cisco-Introduces-Universal-Quantum-Switch-Advancing-the-Path-to-a-Quantum-Network/default.aspx
+    source_type: press
+  - date: 2026-02
+    tag: network
+    headline: "Qunnect + Cisco demonstrate first metro-scale entanglement swapping over commercial fibre on GothamQ — 17.6 km Brooklyn-to-Manhattan via QTD's 60 Hudson Street datacentre, ~5,400 swapped pairs/hour over deployed fibre at >99% polarization fidelity (~10,000x prior benchmarks); Carina + Cisco Software Orchestrator stack, validates a spoke-and-hub model"
+    source_url: https://www.qunnect.inc/press-releases/2026-02-18
+    source_type: press
+  - date: 2026-01
+    tag: network
+    headline: Scott Faris appointed to Qunnect Board of Directors
+    source_url: https://thequantuminsider.com/2026/01/22/qunnect-scott-faris-board-appointment/
+    source_type: press
+  - date: 2025-11
+    tag: network
+    headline: "Investor Cisco announces IBM x Cisco x Fermilab/SQMS quantum-networking partnership targeting microwave-to-optical transducers and networked fault-tolerant QCs by early 2030s. Frames Cisco's expanding networking-stack ambitions; Qunnect remains the rubidium-vapour-memory layer of that strategy."
+    source_url: https://newsroom.ibm.com/2025-11-20-ibm-and-cisco-announce-plans-to-build-a-network-of-large-scale,-fault-tolerant-quantum-computers
+    source_type: press
+  - date: 2025-09
+    tag: network
+    headline: Carina turnkey quantum-networking suite deployed at Montana State University — first entanglement-distribution network in the US Northwest
+    source_url: https://www.qunnect.inc/press-releases/2025-09-09
+    source_type: press
+  - date: 2025-07
+    tag: network
+    headline: Carina announced as first commercially available rack-mounted quantum-networking system (entangled-pair source + APC + detection + orchestration in a server rack form factor)
+    source_url: https://www.qunnect.inc/posts/2025-07-31
+    source_type: press
+  - date: 2025-06
+    tag: network
+    headline: Oversubscribed Series A extension closes at $10M, led by Airbus Ventures with Cisco Investments, Medina Ventures, Quantonation
+    source_url: https://www.qunnect.inc/press-release-2025-06-24
+    source_type: press
+  - date: 2025-03
+    tag: memory
+    headline: Telecom-compatible photon-memory entanglement demonstrated with warm-vapour Rb memory at room temperature (86.5% fidelity, >1200 pairs/s)
+    source_url: https://arxiv.org/abs/2503.11564
+    source_type: preprint
+  - date: 2024-08
+    tag: network
+    headline: PRX Quantum 5, 030330 — 15 days continuous polarization-entanglement distribution over 34 km of NYC deployed fibre, 99.84% uptime, 500k pairs/s through 17 dB-loss commercial channels
+    source_url: https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.5.030330
+    source_type: paper
+  - date: 2024-04
+    tag: network
+    headline: arXiv preprint of GothamQ automated polarization-entanglement distribution (later published in PRX Quantum)
+    source_url: https://arxiv.org/abs/2404.08626
+    source_type: preprint
+  - date: 2023-01
+    tag: network
+    headline: GothamQ testbed extended into Manhattan; connects Brooklyn Navy Yard HQ to Manhattan and Queens over ~300 km of leased commercial telecom fibre
+    source_url: https://www.prnewswire.com/news-releases/qunnects-quantum-networking-testbed-gothamq-enters-the-manhattan-borough-301723595.html
+    source_type: press
+  - date: 2022-10
+    tag: memory
+    headline: Series A — $8M led by Airbus Ventures with Quantonation, SandboxAQ, NY Ventures, Impact Science Ventures, Motus Ventures
+    source_url: https://www.prnewswire.com/news-releases/qunnect-raises-8m-in-series-a-funding-led-by-airbus-ventures-301641331.html
+    source_type: press
+  - date: 2022
+    tag: memory
+    headline: Field-deployable warm-vapour Rb quantum memory demonstrated outside the lab (Phys. Rev. Applied 18, 044058)
+    source_url: https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.18.044058
+    source_type: paper
+  - date: 2021-11
+    tag: memory
+    headline: First commercial quantum-memory unit sold (Qu-Mem / "Quark" room-temperature Rb memory)
+    source_url: https://www.prnewswire.com/news-releases/qunnect-announces-sale-of-first-commercial-quantum-memory-301428820.html
+    source_type: press
+  - date: 2017
+    tag: memory
+    headline: Company founded as Stony Brook University spin-out from Eden Figueroa's Quantum Information Technology Lab (co-founders Figueroa, Namazi, Flament, Brill)
+    source_url: https://www.rfsuny.org/rf-news/sbu-qunnect-quantum/sbu-qunnect.html
+    source_type: press
+
+shareholders:
+  - holder: Airbus Ventures
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-06
+    source_url: https://www.qunnect.inc/press-release-2025-06-24
+    note: Led the 2022 $8M Series A and the June 2025 $10M Series A extension
+  - holder: Cisco Investments
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-06
+    source_url: https://www.qunnect.inc/press-release-2025-06-24
+    note: Joined the June 2025 Series A extension
+  - holder: Quantonation
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-06
+    source_url: https://www.qunnect.inc/press-release-2025-06-24
+    note: Participated in both the 2022 Series A and the 2025 extension
+  - holder: Medina Capital
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-06
+    source_url: https://www.qunnect.inc/press-release-2025-06-24
+    note: Joined the June 2025 Series A extension
+  - holder: SandboxAQ
+    stake_percent: null
+    stake_class: minority
+    as_of: 2022-10
+    source_url: https://www.prnewswire.com/news-releases/qunnect-raises-8m-in-series-a-funding-led-by-airbus-ventures-301641331.html
+    note: 2022 Series A participant
+  - holder: NY Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2022-10
+    source_url: https://www.prnewswire.com/news-releases/qunnect-raises-8m-in-series-a-funding-led-by-airbus-ventures-301641331.html
+    note: 2022 Series A participant (Empire State Development venture arm)
+  - holder: Impact Science Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2022-10
+    source_url: https://www.prnewswire.com/news-releases/qunnect-raises-8m-in-series-a-funding-led-by-airbus-ventures-301641331.html
+    note: 2022 Series A participant
+  - holder: Motus Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2022-10
+    source_url: https://www.prnewswire.com/news-releases/qunnect-raises-8m-in-series-a-funding-led-by-airbus-ventures-301641331.html
+    note: 2022 Series A participant
+  - holder: Eden Figueroa
+    stake_percent: null
+    stake_class: founder
+    as_of: 2017
+    source_url: https://www.rfsuny.org/rf-news/sbu-qunnect-quantum/sbu-qunnect.html
+    note: Co-founder; presumed retained equity (private company, undisclosed)
+  - holder: Mehdi Namazi
+    stake_percent: null
+    stake_class: founder
+    as_of: 2017
+    source_url: https://www.rfsuny.org/rf-news/sbu-qunnect-quantum/sbu-qunnect.html
+    note: Co-founder; presumed retained equity (private company, undisclosed)
+  - holder: Mael Flament
+    stake_percent: null
+    stake_class: founder
+    as_of: 2017
+    source_url: https://www.rfsuny.org/rf-news/sbu-qunnect-quantum/sbu-qunnect.html
+    note: Co-founder; presumed retained equity (private company, undisclosed)
+  - holder: Ari Brill
+    stake_percent: null
+    stake_class: founder
+    as_of: 2017
+    source_url: https://www.rfsuny.org/rf-news/sbu-qunnect-quantum/sbu-qunnect.html
+    note: Co-founder; presumed retained equity (private company, undisclosed)
+
+key_personnel:
+  - role: CEO
+    name: Noel Goddard
+    since: 2020
+    source_url: https://www.qunnect.inc/about
+  - role: CTO & Co-founder
+    name: Mehdi Namazi
+    since: 2017
+    source_url: https://www.qunnect.inc/about
+  - role: Chief Scientist & Co-founder
+    name: Eden Figueroa
+    since: 2017
+    source_url: https://www.qunnect.inc/about
+  - role: Co-founder
+    name: Mael Flament
+    since: 2017
+    source_url: https://www.qunnect.inc/about
+  - role: Co-founder
+    name: Ari Brill
+    since: 2017
+    source_url: https://www.qunnect.inc/about
+  - role: Board of Directors
+    name: Scott Faris
+    since: 2026-01
+    source_url: https://thequantuminsider.com/2026/01/22/qunnect-scott-faris-board-appointment/
+
+roadmap:
+  - target: 2026
+    item: "Open Series B round — stated purpose: deeper government funding, product-roadmap advance, scalable manufacturing"
+    source_url: https://pulse2.com/qunnect-profile-noel-goddard-interview/
+    tag: network
+  - target: 2026
+    item: Carina deployments at additional university and national-lab testbeds; integration with DWDM classical channels
+    source_url: https://www.qunnect.inc/posts/2025-07-31
+    tag: network
+  - target: 2026
+    item: Extend entangled-pair telecom-wavelength reach to ~100 km fibre spans via the Carina suite
+    source_url: https://www.qunnect.inc/posts/2025-07-31
+    tag: network
+  - target: 2026
+    item: Expand spoke-and-hub GothamQ topology via 60 Hudson Street carrier-hotel datacentre, scaling Carina + Cisco Software Orchestrator entanglement-swapping demonstrations
+    source_url: https://www.qunnect.inc/press-releases/2026-02-18
+    tag: network
+
+current_flagship:
+  name: Carina
+  generation: rack-mount entanglement-distribution suite (QU-SRC + QU-APC + detection + orchestration)
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.5.030330
+    note: Automated distribution of polarization-entangled photons over deployed NYC fibre (PRX Quantum 5, 030330, 2024) — the GothamQ paper
+  - kind: paper
+    citation_key: null
+    url: https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.18.044058
+    note: Field-deployable quantum memory (Phys. Rev. Applied 18, 044058, 2022)
+  - kind: preprint
+    citation_key: null
+    url: https://arxiv.org/abs/2503.11564
+    note: High-fidelity entanglement between a telecom photon and a room-temperature quantum memory (2025)
+  - kind: press
+    citation_key: null
+    url: https://www.qunnect.inc/posts/2025-07-31
+    note: Carina turnkey rack-mount quantum-networking system launch
+  - kind: press
+    citation_key: null
+    url: https://physics.aps.org/articles/v17/125
+    note: APS Physics commentary on the GothamQ PRX Quantum paper
+  - kind: press
+    citation_key: null
+    url: https://www.qunnect.inc/press-releases/2026-02-18
+    note: First metro-scale entanglement swapping on GothamQ over commercial fibre with Cisco Software Orchestrator (Feb 2026)
+  - kind: press
+    citation_key: null
+    url: https://investor.cisco.com/news/news-details/2026/Cisco-Introduces-Universal-Quantum-Switch-Advancing-the-Path-to-a-Quantum-Network/default.aspx
+    note: Cisco Universal Quantum Switch announcement (April 2026) — context milestone, investor moving up the network stack
+
+partial:
+  - modalities.memory.storage_time_ms
+  - modalities.memory.retrieval_efficiency
+  - modalities.memory.mode_capacity
+
+last_verified: 2026-05-13
+verification_method: mixed

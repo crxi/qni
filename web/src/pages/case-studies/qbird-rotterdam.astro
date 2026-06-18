@@ -1,0 +1,130 @@
+---
+/**
+ * /case-studies/qbird-rotterdam — Q*Bird's MDI-QKD hub-and-spoke pilot
+ * in the Port of Rotterdam, announced 2024 with the QUEST follow-on
+ * deployment running in 2025-26.
+ */
+import Infographic from "../../layouts/Infographic.astro";
+import Center from "../../components/Center.astro";
+import Stack from "../../components/Stack.astro";
+import SiteNav from "../../components/SiteNav.astro";
+import SourceNote from "../../components/SourceNote.astro";
+import { url } from "../../lib/url";
+
+const sections = [
+  { id: "overview", label: "Overview" },
+  { id: "what",     label: "What it is" },
+  { id: "verified", label: "Verified claims" },
+  { id: "caveats",  label: "Things to note" },
+  { id: "related",  label: "Related entries" },
+];
+---
+
+<Infographic
+  title="Q*Bird Port of Rotterdam MDI-QKD pilot"
+  description="The world's first multi-node MDI-QKD pilot in a working industrial port. Q*Bird's Falqon hub installed in a Eurofiber data centre with Port of Rotterdam Authority and Customs as initial end nodes, under the Quantum Delta NL programme."
+  references={[
+    "portrotterdam-press-2024",
+    "qbird-quest-2025",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="case-studies" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>Q*Bird Port of Rotterdam MDI-QKD pilot</h1>
+        <p>
+          A multi-node MDI-QKD pilot in a working industrial port — the
+          first commercial deployment of measurement-device-independent
+          QKD outside the lab. Q*Bird's Falqon hub sits in a Eurofiber
+          data centre and performs Bell-state measurements between
+          photons emitted by end nodes at the Port of Rotterdam
+          Authority and Dutch Customs, with the QUEST follow-on
+          extending the architecture across South Holland from 2025.
+        </p>
+        <dl class="hero-meta">
+          <div><dt>Operator</dt><dd>Q*Bird · Single Quantum · Cisco · Eurofiber · Portbase · Intermax · InnovationQuarter · Port of Rotterdam Authority (under Quantum Delta NL)</dd></div>
+          <div><dt>Location</dt><dd>Port of Rotterdam, Netherlands</dd></div>
+          <div><dt>Year</dt><dd>Pilot announced May 2024; QUEST expansion programme running 2025-2026</dd></div>
+          <div><dt>Technology</dt><dd>Measurement-Device-Independent QKD (MDI-QKD) — Q*Bird Falqon hub-and-spoke; Single Quantum SNSPDs; decoy-state intensities</dd></div>
+          <div><dt>Scale</dt><dd>Metropolitan; central hub plus end nodes at Port Authority and Customs, with QUEST adding interconnected hubs across South Holland</dd></div>
+          <div><dt>Status</dt><dd>Operational pilot; QUEST expansion in progress</dd></div>
+          <div><dt>Commercial model</dt><dd>Public-private pilot under Quantum Delta NL; QUEST funded by Quantum Delta NL, ERDF and Kansen voor West</dd></div>
+        </dl>
+      </header>
+
+      <section id="what" data-nav-section>
+        <h2>What it is</h2>
+        <p>
+          MDI-QKD removes detector side-channel attacks — the dominant
+          family of practical attacks on prepare-and-measure QKD — by
+          moving the photon detectors out of Alice's and Bob's labs
+          and into an <em>untrusted</em> middle station. Each end node
+          emits weak coherent pulses toward the middle; the middle
+          performs a Bell-state measurement and announces the outcome
+          on a public channel. Alice and Bob then sift their key from
+          their preparation records. Because the middle station only
+          performs the BSM (and never sees the bit values), it can be
+          operated by an untrusted third party.<SourceNote id="portrotterdam-press-2024" />
+        </p>
+        <p>
+          Q*Bird productises this as the Falqon hub-and-spoke
+          architecture: one BSM hub serves many end nodes that share
+          the same fibre infrastructure into the hub. In Rotterdam the
+          hub is hosted in a Eurofiber data centre — neutral telco
+          ground rather than any one tenant's premises — and Single
+          Quantum supplies the superconducting-nanowire single-photon
+          detectors. Cisco contributes the classical-control and
+          networking layer that orchestrates the end-node QKD
+          devices.<SourceNote id="portrotterdam-press-2024" />
+        </p>
+      </section>
+
+      <section id="verified" data-nav-section>
+        <h2>Verified claims</h2>
+        <ul class="claim-list">
+          <li><strong>First scalable quantum-network pilot in a working industrial port.</strong> Consortium announced 17 May 2024 with Port of Rotterdam Authority as the host site.<SourceNote id="portrotterdam-press-2024" /></li>
+          <li><strong>MDI-QKD hub-and-spoke architecture</strong> — central Falqon hub in a Eurofiber data centre, with end nodes at the Port Authority and Customs.<SourceNote id="portrotterdam-press-2024" /></li>
+          <li><strong>Consortium roles</strong> — Q*Bird (QKD vendor), Single Quantum (SNSPDs), Cisco (classical networking), Eurofiber (hub-hosting fibre operator), Portbase + Intermax (end-user IT), InnovationQuarter (regional development), under Quantum Delta NL.<SourceNote id="portrotterdam-press-2024" /></li>
+          <li><strong>QUEST follow-on programme</strong> — Q*Bird-led expansion into South Holland with multiple interconnected hubs and additional end nodes; funded by Quantum Delta NL, ERDF and Kansen voor West.<SourceNote id="qbird-quest-2025" /></li>
+        </ul>
+      </section>
+
+      <section id="caveats" data-nav-section>
+        <h2>Things to note</h2>
+        <ul class="caveat-list">
+          <li><strong>MDI-QKD, not entanglement distribution.</strong> The hub performs a Bell-state measurement on photons emitted by end nodes; no entangled pair source is involved. The "MDI" guarantee is that the BSM hub can be untrusted, not that the network distributes entanglement.</li>
+          <li><strong>Same trusted-endpoint assumption as any QKD link.</strong> The QKD output is a symmetric key delivered to Alice's and Bob's classical machines; everything that happens to the key after delivery (storage, use in IPsec / MACsec / app-layer crypto) rests on classical security at the endpoints.</li>
+          <li><strong>Pilot, not a productised carrier service.</strong> The deployment is a co-funded public-private pilot under Quantum Delta NL, not a paid managed service offered through a tier-1 carrier catalogue (contrast <a href={url("/case-studies/bt-london")}>BT–Toshiba London</a>).</li>
+          <li><strong>Key rate vs. distance trade-off is the standard MDI-QKD curve.</strong> No published key-rate-versus-distance figures for the Rotterdam hub yet; Q*Bird's published spec sheet for related Falqon deployments quotes 30-50 km hub-to-node fibre.</li>
+        </ul>
+      </section>
+
+      <section id="related" data-nav-section>
+        <h2>Related entries</h2>
+        <ul class="related-list">
+          <li><a href={url("/companies/qbird")}>Q*Bird vendor dossier</a> — full vendor profile, milestones, and roadmap including Benelux, Madrid and Dublin deployments.</li>
+          <li><a href={url("/secure-comms#qkd")}>QKD application overview</a> — where MDI-QKD sits in the QKD family (alongside BBM92, decoy-state BB84 and TF-QKD).</li>
+          <li><a href={url("/case-studies/bt-london")}>BT–Toshiba London</a> — prepare-and-measure QKD as a paid managed service, for contrast with the MDI architecture.</li>
+          <li><a href={url("/case-studies/madqci")}>MadQCI</a> — multi-vendor QKD research testbed (Madrid), a sibling EuroQCI deployment.</li>
+          <li><a href={url("/standards")}>Standards</a> — ETSI ISG-QKD and ITU-T Y.3800 series under which the deployment is documented.</li>
+        </ul>
+      </section>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<style>
+  .hero { padding-block: var(--space-6) var(--space-4); border-block-end: 1px solid var(--color-rule); display: grid; gap: var(--space-3); }
+  .hero h1 { margin: 0; }
+  .hero-meta { display: grid; gap: var(--space-1); margin: 0; padding: var(--space-3); background: var(--color-surface-2); border-radius: var(--radius); font-size: var(--text-sm); }
+  .hero-meta div { display: grid; grid-template-columns: 11rem 1fr; gap: var(--space-2); }
+  .hero-meta dt { color: var(--color-text-mute); text-transform: uppercase; letter-spacing: var(--tracking-wide); font-size: var(--text-xs); font-weight: 600; align-self: center; }
+  .hero-meta dd { margin: 0; color: var(--color-text); }
+  @media (max-width: 40rem) { .hero-meta div { grid-template-columns: 1fr; gap: 0; } }
+  .claim-list, .caveat-list, .related-list { display: grid; gap: var(--space-2); padding-inline-start: var(--space-4); }
+  .claim-list li, .caveat-list li { line-height: var(--leading-body); }
+</style>

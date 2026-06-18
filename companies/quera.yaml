@@ -1,0 +1,207 @@
+slug: quera
+name: QuEra Computing
+categories: [qc]
+hq: Boston, Massachusetts, USA
+founded: 2018
+status: private
+parent: null
+logo:
+  domain: quera.com
+
+positioning: >
+  Neutral-atom quantum computing built on rubidium-87 Rydberg arrays, spun
+  out of the Lukin, Vuletic, and Greiner groups at Harvard and MIT in 2018.
+  Operates Aquila, the 256-qubit analog processor that has been publicly
+  available on AWS Braket since November 2022 — the first neutral-atom
+  machine on a major cloud. Demonstrated 48 logical qubits on a
+  reconfigurable atom array in 2024 (Bluvstein et al., Nature 626, 58).
+  Announced a roadmap targeting 100 logical qubits by 2026 (the Gemini line);
+  closed a USD 230M convertible-note financing in February 2025 led by Google
+  Quantum AI and SoftBank Vision Fund 2.
+
+modalities:
+  qc:
+    qubit_type: neutral-atom
+    physical_qubits_current: 256
+    logical_qubits_current: 48
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: surface
+    connectivity: reconfigurable
+    gate_set: []
+
+milestones:
+  - date: 2025-02
+    tag: qc
+    headline: >
+      $230M convertible-note financing led by Google Quantum AI with SoftBank
+      Vision Fund 2 — accelerates path to large-scale fault-tolerant systems
+    source_url: https://www.quera.com/press-releases/quera-computing-completes-230m-financing-to-accelerate-development-of-large-scale-fault-tolerant-quantum-computers
+    source_type: press
+  - date: 2024-02
+    tag: qc
+    headline: >
+      48 logical qubits on a reconfigurable atom array — first programmable
+      logical processor (Bluvstein et al., Nature 626, 58)
+    source_url: https://www.nature.com/articles/s41586-023-06927-3
+    source_type: paper
+  - date: 2024-01
+    tag: qc
+    headline: Three-year roadmap announced — 10,000 physical / 100 logical qubits by 2026
+    source_url: https://www.hpcwire.com/2024/01/09/quera-debuts-3-year-roadmap-to-10000-physical-and-100-logical-qubits/
+    source_type: press
+  - date: 2022-11
+    tag: qc
+    headline: Aquila (256-qubit analog Rydberg processor) goes live on AWS Braket — the first neutral-atom machine on a major public cloud, per AWS
+    source_url: https://aws.amazon.com/blogs/quantum-computing/amazon-braket-launches-aquila-the-first-neutral-atom-quantum-processor-from-quera-computing/
+    source_type: press
+
+shareholders:
+  - holder: Google (Google Quantum AI)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-02
+    source_url: https://www.quera.com/press-releases/quera-computing-completes-230m-financing-to-accelerate-development-of-large-scale-fault-tolerant-quantum-computers
+    note: New investor in Feb 2025 $230M convertible-note financing; led the round per TechCrunch reporting
+  - holder: SoftBank Vision Fund 2
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-02
+    source_url: https://www.bloomberg.com/news/articles/2025-02-11/google-softbank-back-quantum-startup-quera-in-230-million-deal
+    note: New investor in Feb 2025 $230M financing alongside Google
+  - holder: Valor Equity Partners
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-02
+    source_url: https://www.quera.com/press-releases/quera-computing-completes-230m-financing-to-accelerate-development-of-large-scale-fault-tolerant-quantum-computers
+    note: New investor in Feb 2025 $230M financing
+  - holder: QVT Family Office
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-02
+    source_url: https://www.quera.com/press-releases/quera-computing-completes-230m-financing-to-accelerate-development-of-large-scale-fault-tolerant-quantum-computers
+    note: Existing investor; participated in Feb 2025 round
+  - holder: Safar Partners
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-02
+    source_url: https://www.quera.com/press-releases/quera-computing-completes-230m-financing-to-accelerate-development-of-large-scale-fault-tolerant-quantum-computers
+    note: Existing investor; participated in Feb 2025 round
+  - holder: Mikhail Lukin
+    stake_percent: null
+    stake_class: founder
+    as_of: 2025-02
+    source_url: https://en.wikipedia.org/wiki/QuEra_Computing
+    note: Co-founder equity; Harvard PI behind the neutral-atom platform
+  - holder: Vladan Vuletić
+    stake_percent: null
+    stake_class: founder
+    as_of: 2025-02
+    source_url: https://en.wikipedia.org/wiki/QuEra_Computing
+    note: Co-founder equity (MIT)
+  - holder: Markus Greiner
+    stake_percent: null
+    stake_class: founder
+    as_of: 2025-02
+    source_url: https://en.wikipedia.org/wiki/QuEra_Computing
+    note: Co-founder equity (Harvard)
+  - holder: Dirk Englund
+    stake_percent: null
+    stake_class: founder
+    as_of: 2025-02
+    source_url: https://en.wikipedia.org/wiki/QuEra_Computing
+    note: Co-founder equity (MIT)
+  - holder: Nathan Gemelke
+    stake_percent: null
+    stake_class: founder
+    as_of: 2025-02
+    source_url: https://en.wikipedia.org/wiki/QuEra_Computing
+    note: Co-founder equity; CTO/Chief Strategy roles
+
+key_personnel:
+  - role: Acting CEO
+    name: Andy Ory
+    since: 2024-07
+    source_url: https://www.quera.com/press-releases/quera-announces-leadership-transition-as-ceo-alex-keesling-to-focus-on-high-volume-production-and-technology-enhancements
+    note: Appointed acting / interim CEO in July 2024 while the board searches for a permanent replacement. Public sources (DCD, Crunchbase) still describe the role as acting as of mid-2026.
+  - role: President
+    name: Takuya Kitagawa
+    since: 2024
+    source_url: https://en.wikipedia.org/wiki/QuEra_Computing
+  - role: CTO
+    name: Vladan Vuletić
+    since: 2018
+    source_url: https://en.wikipedia.org/wiki/QuEra_Computing
+    note: Co-founder (MIT)
+  - role: Founder & Chief Scientist
+    name: Mikhail Lukin
+    since: 2018
+    source_url: https://en.wikipedia.org/wiki/QuEra_Computing
+    note: Harvard; principal investigator behind the Rydberg-array platform
+  - role: Co-founder
+    name: Markus Greiner
+    since: 2018
+    source_url: https://en.wikipedia.org/wiki/QuEra_Computing
+    note: Harvard
+  - role: Co-founder
+    name: Dirk Englund
+    since: 2018
+    source_url: https://en.wikipedia.org/wiki/QuEra_Computing
+    note: MIT
+  - role: Co-founder
+    name: Nathan Gemelke
+    since: 2018
+    source_url: https://en.wikipedia.org/wiki/QuEra_Computing
+  - role: Chief Product Officer (previously CEO)
+    name: Alex Keesling
+    since: 2024-07
+    source_url: https://www.quera.com/press-releases/quera-announces-leadership-transition-as-ceo-alex-keesling-to-focus-on-high-volume-production-and-technology-enhancements
+    note: Stepped down as CEO July 2024 to lead production scale-up
+
+roadmap:
+  - target: 2025
+    item: Gemini — ~30 logical qubits with magic-state distillation, >3,000 physical qubits (digital mode)
+    source_url: https://www.hpcwire.com/2024/01/09/quera-debuts-3-year-roadmap-to-10000-physical-and-100-logical-qubits/
+    tag: qc
+  - target: 2026
+    item: 100 logical qubits / ~10,000 physical qubits, error-corrected operation
+    source_url: https://quantumzeitgeist.com/quera-computing-roadmap-100-logical-qubits/
+    tag: qc
+
+current_flagship:
+  name: Aquila
+  generation: neutral-atom analog (256 qubits)
+
+references:
+  - kind: paper
+    citation_key: Bluvstein.Nature.626.58
+    url: https://www.nature.com/articles/s41586-023-06927-3
+    note: >
+      Bluvstein et al. (2024), "Logical quantum processor based on reconfigurable
+      atom arrays", Nature 626, 58–65. 48 logical qubits, surface-code and
+      colour-code demonstrations.
+  - kind: preprint
+    citation_key: null
+    url: https://arxiv.org/abs/2312.03982
+    note: arXiv preprint of the Bluvstein 2024 Nature paper
+  - kind: press
+    citation_key: null
+    url: https://aws.amazon.com/blogs/quantum-computing/amazon-braket-launches-aquila-the-first-neutral-atom-quantum-processor-from-quera-computing/
+    note: AWS Braket launch of Aquila (Nov 2022)
+  - kind: press
+    citation_key: null
+    url: https://www.hpcwire.com/2024/01/09/quera-debuts-3-year-roadmap-to-10000-physical-and-100-logical-qubits/
+    note: QuEra public roadmap to 100 logical qubits by 2026
+
+partial:
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.gate_set
+
+last_verified: 2026-05-13
+
+verification_method: web

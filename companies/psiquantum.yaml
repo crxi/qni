@@ -1,0 +1,204 @@
+slug: psiquantum
+name: PsiQuantum
+categories: [qc]
+hq: Palo Alto, California, USA
+additional_locations:
+  # Omega utility-scale fab — funded by AUD 940 M federal/QLD package,
+  # construction announced 30 Apr 2024 (Brisbane Airport precinct).
+  - Brisbane, Queensland, Australia
+founded: 2016
+status: private
+parent: null
+logo:
+  domain: psiquantum.com
+
+positioning: >
+  Silicon-photonic fault-tolerant quantum computing. Chips are fabricated on
+  300 mm wafers at GlobalFoundries; the architecture is fusion-based (FBQC)
+  and targets a single utility-scale, million-qubit machine rather than a
+  NISQ product line. Founded in 2016 by Jeremy O'Brien, Terry Rudolph, Pete
+  Shadbolt, and Mark Thompson. Funded in part by the Australian and
+  Queensland governments (A$940M, 2024) to site the first system in
+  Brisbane, with a second US site at the Illinois Quantum and
+  Microelectronics Park in Chicago. The Omega manufacturable chipset
+  launched in February 2025 (Nature). Closed a USD 1B Series E in September
+  2025 led by BlackRock at a ~USD 7B valuation.
+
+modalities:
+  qc:
+    qubit_type: photonic
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: fbqc
+    connectivity: fusion-network
+    gate_set: []
+
+milestones:
+  - date: 2025-09
+    tag: qc
+    headline: Series E closes at US$1 B, valuing PsiQuantum at ~US$7 B
+    source_url: https://www.psiquantum.com/news-import/psiquantum-1b-fundraise
+    source_type: press
+  - date: 2025-09
+    tag: qc
+    headline: Groundbreaking on Chicago Quantum Compute Center at Illinois Quantum and Microelectronics Park (former South Works site)
+    source_url: https://www.psiquantum.com/news-import/psiquantum-breaks-ground-chicago
+    source_type: press
+  - date: 2025-02
+    tag: qc
+    headline: "Omega manufacturable photonic chipset announced; companion Nature paper details single-photon sources, SNSPDs and BTO switches fabricated at GlobalFoundries"
+    source_url: https://www.nature.com/articles/s41586-025-08820-7
+    source_type: paper
+  - date: 2025-02
+    tag: qc
+    headline: Omega chipset launch press release
+    source_url: https://www.psiquantum.com/news-import/omega
+    source_type: press
+  - date: 2024-04
+    tag: qc
+    headline: Australian and Queensland governments commit A$940 M for a utility-scale fault-tolerant quantum computer in Brisbane
+    source_url: https://www.psiquantum.com/news-import/psiquantum-to-build-worlds-first-utility-scale-fault-tolerant-quantum-computer-in-australia
+    source_type: press
+  - date: 2023-02
+    tag: qc
+    headline: "Fusion-based quantum computation (FBQC) architecture published in Nature Communications (Bartolucci et al.)"
+    source_url: https://www.nature.com/articles/s41467-023-36493-1
+    source_type: paper
+
+shareholders:
+  - holder: Commonwealth of Australia & Queensland State Government
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2024-04
+    source_url: https://www.psiquantum.com/news-import/psiquantum-to-build-worlds-first-utility-scale-fault-tolerant-quantum-computer-in-australia
+    note: A$940 M joint commitment (equity + grants + loans) tied to siting the Brisbane utility-scale system; structure includes an equity stake alongside grants and loans
+  - holder: BlackRock (funds and accounts managed by affiliates)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-09
+    source_url: https://www.psiquantum.com/news-import/psiquantum-1b-fundraise
+    note: Lead investor of US$1 B Series E (Sep 2025); also led the US$450 M Series D in July 2021
+  - holder: Temasek
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-09
+    source_url: https://www.psiquantum.com/news-import/psiquantum-1b-fundraise
+    note: Co-lead of Series E (Sep 2025); existing investor since Series D
+  - holder: Baillie Gifford
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-09
+    source_url: https://www.psiquantum.com/news-import/psiquantum-1b-fundraise
+    note: Co-lead of Series E (Sep 2025); existing investor since Series D
+  - holder: NVentures (NVIDIA)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-09
+    source_url: https://www.psiquantum.com/news-import/psiquantum-1b-fundraise
+    note: New Series E investor; strategic given NVIDIA's CUDA-Q hybrid HPC-quantum stack
+  - holder: Qatar Investment Authority
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-09
+    source_url: https://www.psiquantum.com/news-import/psiquantum-1b-fundraise
+    note: New Series E investor (sovereign wealth)
+  - holder: Jeremy O'Brien, Terry Rudolph, Pete Shadbolt, Mark Thompson
+    stake_percent: null
+    stake_class: founder
+    as_of: 2016
+    source_url: https://www.psiquantum.com/about
+    note: Four co-founders; specific founder equity not disclosed
+
+key_personnel:
+  - role: Interim CEO
+    name: Victor Peng
+    since: 2026-02
+    source_url: https://www.psiquantum.com/news-import/psiquantum-appoints-victor-peng
+  - role: Co-Founder & Executive Chairman
+    name: Jeremy O'Brien
+    since: 2016
+    source_url: https://www.psiquantum.com/about
+    note: Co-founder; CEO 2016–Feb 2026, moved to Executive Chairman as the company runs a search for a permanent CEO
+  - role: Co-Founder & Chief Architect
+    name: Terry Rudolph
+    since: 2016
+    source_url: https://www.psiquantum.com/about
+  - role: Co-Founder & Chief Scientific Officer
+    name: Pete Shadbolt
+    since: 2016
+    source_url: https://www.psiquantum.com/about
+  - role: Co-Founder & Chief Technology Officer
+    name: Mark Thompson
+    since: 2016
+    source_url: https://www.psiquantum.com/about
+  - role: Chief Operating Officer
+    name: Fariba Danesh
+    since: 2024
+    source_url: https://www.psiquantum.com/about
+  - role: Chief Financial Officer
+    name: Susan Kim
+    since: 2024
+    source_url: https://www.psiquantum.com/about
+  - role: Chief People Officer
+    name: Dani Kleinman
+    since: 2024
+    source_url: https://www.psiquantum.com/about
+
+roadmap:
+  - target: 2027
+    item: Brisbane utility-scale Quantum Compute Center operational
+    source_url: https://www.psiquantum.com/news-import/psiquantum-to-build-worlds-first-utility-scale-fault-tolerant-quantum-computer-in-australia
+    tag: qc
+  - target: 2029
+    item: Million-qubit, fault-tolerant, error-corrected machine target
+    source_url: https://www.psiquantum.com/news-import/psiquantum-to-build-worlds-first-utility-scale-fault-tolerant-quantum-computer-in-australia
+    tag: qc
+
+current_flagship:
+  name: Omega
+  generation: silicon-photonic chipset (GlobalFoundries Fab 8, 300 mm)
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41586-025-08820-7
+    note: "A manufacturable platform for photonic quantum computing — Omega chipset characterisation, Nature (2025)"
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41467-023-36493-1
+    note: "Bartolucci et al., Fusion-based quantum computation, Nature Communications 14, 912 (2023)"
+  - kind: preprint
+    citation_key: null
+    url: https://arxiv.org/abs/2101.09310
+    note: Original FBQC preprint (2021)
+  - kind: press
+    citation_key: null
+    url: https://www.psiquantum.com/news-import/omega
+    note: Omega chipset announcement (Feb 2025)
+  - kind: press
+    citation_key: null
+    url: https://www.psiquantum.com/news-import/psiquantum-to-build-worlds-first-utility-scale-fault-tolerant-quantum-computer-in-australia
+    note: Australia A$940 M deal (April 2024)
+  - kind: press
+    citation_key: null
+    url: https://www.psiquantum.com/news-import/psiquantum-breaks-ground-chicago
+    note: Chicago site groundbreaking (Sep 2025)
+  - kind: press
+    citation_key: null
+    url: https://www.psiquantum.com/news-import/psiquantum-1b-fundraise
+    note: Series E US$1 B (Sep 2025)
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.gate_set
+
+last_verified: 2026-05-13
+verification_method: web

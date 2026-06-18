@@ -1,0 +1,207 @@
+slug: qolab
+name: Qolab
+categories: [qc, enabling]
+hq: Los Angeles, California, USA
+founded: 2022
+status: private
+parent: null
+logo:
+  domain: qolab.ai
+
+positioning: >
+  Superconducting quantum-computing hardware startup co-founded by 2025
+  Physics Nobel laureate John Martinis (CTO), Alan Ho (CEO, ex-Google Quantum
+  AI Head of Product), and UW–Madison professor Robert McDermott (Head of
+  Hardware). Focus is wafer-scale, semiconductor-compatible transmon
+  fabrication, applying 300 mm CMOS tooling and a subtractive-etch window-
+  junction process to replace traditional lift-off for higher-yield,
+  reproducible qubit chips. Engineering office in Los Angeles with the device
+  lab in Madison, Wisconsin; the first quantum startup incubated at UW–Madison.
+
+additional_locations:
+  - Madison, Wisconsin, USA (device lab)
+
+modalities:
+  qc:
+    qubit_type: transmon
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: null
+    gate_set: []
+  enabling:
+    products:
+      - Wafer-scale cryogenic low-pass filters (in development with NQFF Singapore)
+      - Window-junction transmon fabrication process (300 mm semiconductor-compatible)
+
+milestones:
+  - date: 2026-04
+    tag: qc
+    headline: John Martinis Grants for superconducting-qubit research launched with IQCC
+    source_url: https://thequantuminsider.com/2026/04/10/qolab-iqcc-launch-john-martinis-grants-for-superconducting-qubit-research/
+    source_type: press
+  - date: 2026-03
+    tag: qc
+    headline: John Martinis Prize announced for scalable quantum hardware research
+    source_url: https://www.globenewswire.com/news-release/2026/03/16/3256415/0/en/qolab-announces-john-martinis-prize-as-momentum-builds-for-scalable-quantum-hardware.html
+    source_type: press
+  - date: 2026-02-23
+    tag: enabling
+    headline: Research-collaboration agreement with Singapore's NQFF on wafer-scale cryogenic low-pass filters (announced at EmTech Asia; witnessed by Minister Josephine Teo)
+    source_url: https://www.edb.gov.sg/en/about-edb/media-releases-publications/singapore-researchers-partner-qolab-to-scale-quantum-tech.html
+    source_type: press
+  - date: 2025-12
+    tag: qc
+    headline: First Qolab superconducting-qubit device deployed at the Israeli Quantum Computing Center (IQCC) in Tel Aviv via Quantum Machines partnership
+    source_url: https://thequantuminsider.com/2025/12/03/qolab-deploys-first-superconducting-qubit-devices-at-the-iqcc/
+    source_type: press
+  - date: 2025-10
+    tag: qc
+    headline: Co-founder & CTO John Martinis awarded the 2025 Nobel Prize in Physics
+    source_url: https://www.nobelprize.org/prizes/physics/2025/summary/
+    source_type: press
+  - date: 2024-12
+    tag: qc
+    headline: Series A financing of $16M+ led by Octave Ventures (DBJ, WARF, Phoenix Venture Partners co-investing)
+    source_url: https://www.businesswire.com/news/home/20241226460551/en/Qolab-Secures-over-%2416.0-Million-in-Series-A-Financing
+    source_type: press
+  - date: 2024-10
+    tag: qc
+    headline: Development Bank of Japan invests $3.5M strategic stake
+    source_url: https://thequantuminsider.com/2024/10/27/qolab-secures-3-5-million-investment-from-development-bank-of-japan-to-drive-quantum-computing-innovations/
+    source_type: press
+  - date: 2024-08
+    tag: qc
+    headline: Company publicly launched; UW–Madison-incubated; Applied Materials retrofitted facilities for qubit fabrication partnership
+    source_url: https://thequantuminsider.com/2024/08/09/quantum-computing-luminaries-launch-qolab-to-develop-high-quality-superconducting-qubits/
+    source_type: press
+
+shareholders:
+  - holder: Octave Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-12
+    source_url: https://www.businesswire.com/news/home/20241226460551/en/Qolab-Secures-over-%2416.0-Million-in-Series-A-Financing
+    note: Lead Series A investor (Dec 2024)
+  - holder: Development Bank of Japan (DBJ)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2024-12
+    source_url: https://thequantuminsider.com/2024/10/27/qolab-secures-3-5-million-investment-from-development-bank-of-japan-to-drive-quantum-computing-innovations/
+    note: $3.5M strategic investment Oct 2024, follow-on in Series A
+  - holder: Wisconsin Alumni Research Foundation (WARF)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-12
+    source_url: https://www.businesswire.com/news/home/20241226460551/en/Qolab-Secures-over-%2416.0-Million-in-Series-A-Financing
+    note: UW–Madison technology-transfer arm; Series A co-investor
+  - holder: Phoenix Venture Partners
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-12
+    source_url: https://www.businesswire.com/news/home/20241226460551/en/Qolab-Secures-over-%2416.0-Million-in-Series-A-Financing
+    note: Series A co-investor
+  - holder: John Martinis
+    stake_percent: null
+    stake_class: founder
+    as_of: 2024-08
+    source_url: https://qolab.ai/about
+    note: Co-founder & CTO
+  - holder: Alan Ho
+    stake_percent: null
+    stake_class: founder
+    as_of: 2024-08
+    source_url: https://qolab.ai/about
+    note: Co-founder & CEO
+  - holder: Robert McDermott
+    stake_percent: null
+    stake_class: founder
+    as_of: 2024-08
+    source_url: https://qolab.ai/about
+    note: Co-founder & Head of Hardware
+
+key_personnel:
+  - role: CEO & Co-founder
+    name: Alan Ho
+    since: 2022
+    source_url: https://qolab.ai/about
+    note: Former Head of Product, Google Quantum AI (led product side of the Sycamore supremacy experiment)
+  - role: CTO & Co-founder
+    name: John Martinis
+    since: 2022
+    source_url: https://qolab.ai/about
+    note: 2025 Nobel laureate in Physics; former Google AI Quantum lead (Sycamore); Professor at UC Santa Barbara
+  - role: Head of Hardware & Co-founder
+    name: Robert McDermott
+    since: 2022
+    source_url: https://qolab.ai/team
+    note: Roeske Professor of Physics, UW–Madison
+  - role: Quantum Hardware Engineer
+    name: Britton Plourde
+    since: null
+    source_url: https://qolab.ai/about
+    note: Syracuse University professor; qubit readout and control
+
+roadmap:
+  - target: 2026
+    item: Wafer-scale cryogenic low-pass filter prototypes via NQFF Singapore collaboration
+    source_url: https://thequantuminsider.com/2026/02/24/singapore-qolab-cryogenic-filters-quantum-chips/
+    tag: enabling
+  - target: 2026
+    item: Expanded Qolab Start deployments beyond Madison and IQCC
+    source_url: https://thequantuminsider.com/2025/12/23/qolab-2025-strategic-collaborations/
+    tag: qc
+
+current_flagship:
+  name: Qolab Start
+  generation: superconducting transmon QPU platform (hardware-research and workforce-development tier)
+
+references:
+  - kind: blog
+    citation_key: null
+    url: https://qolab.ai/about
+    note: Company About page — founders, leadership, mission
+  - kind: blog
+    citation_key: null
+    url: https://qolab.ai/product
+    note: Qolab Start product page
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2026/02/24/singapore-qolab-cryogenic-filters-quantum-chips/
+    note: NQFF Singapore cryogenic-filter collaboration (Feb 2026)
+  - kind: press
+    citation_key: null
+    url: https://www.edb.gov.sg/en/about-edb/media-releases-publications/singapore-researchers-partner-qolab-to-scale-quantum-tech.html
+    note: Singapore EDB media release on Qolab-NQFF partnership
+  - kind: preprint
+    citation_key: null
+    url: https://arxiv.org/abs/2411.10406
+    note: "Martinis et al., 'How to Build a Quantum Supercomputer: Scaling from Hundreds to Millions of Qubits' (arXiv 2411.10406, Nov 2024) — Qolab-era scaling roadmap"
+  - kind: press
+    citation_key: null
+    url: https://www.quantum-machines.co/blog/john-martinis-qolab-first-quantum-chip-iqcc-announcement/
+    note: IQCC Tel Aviv first-deployment announcement (Dec 2025)
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.ec_code
+  - modalities.qc.connectivity
+  - modalities.qc.gate_set
+  - field: modalities.qc
+    as_of: 2026-05-21
+    note: Early-stage hardware company; Qolab Start is a research/characterization platform rather than a benchmarked commercial QPU. No public per-device fidelity, qubit count, or coherence numbers as of last verification.
+  - field: shareholders
+    as_of: 2026-05-21
+    note: Private company; no individual stake percentages disclosed. Stake_class assignments are inferred from the announced lead/co-investor structure.
+  - key_personnel.3.since
+
+last_verified: 2026-05-21
+verification_method: web

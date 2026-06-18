@@ -1,0 +1,203 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280" role="img">
+  <title>MidpointSource (MS) — entangled-pair source at the link midpoint emits one photon toward each endpoint, which runs a local BSM with its memory.</title>
+  <defs>
+  <style>
+  .endpoint-card { fill: #f6f8fc; stroke: #aab0ba; stroke-width: 1.1; }
+  .qfc-blk    { fill: #e2eef9; stroke: #5a83b3; stroke-width: 1.3; }
+
+  .comm       { fill: #22c55e; stroke: #15803d; stroke-width: 1; }
+  .memory     { fill: #9b87c4; stroke: #6048a3; stroke-width: 1; }
+  .photon     { fill: #2f6fd6; stroke: #1a4a99; stroke-width: 0.8; }
+
+  .fig-title  { font: 700 14px sans-serif; fill: #1a1f2a; text-anchor: middle; }
+  .node-ttl   { font: 700 12px sans-serif; fill: #1a1f2a; text-anchor: middle; }
+  .node-sub   { font: 9.5px sans-serif; fill: #4a4f57; text-anchor: middle; }
+  .lbl        { font: 600 11px sans-serif; fill: #1a1f2a; text-anchor: middle; }
+  .mini       { font: 8.5px sans-serif; fill: #5a6472; text-anchor: middle; }
+  .qbit-in    { font: 700 9px sans-serif; fill: #ffffff; text-anchor: middle; dominant-baseline: middle; }
+  .qbit-side  { font: 600 9px sans-serif; fill: #1a1f2a; }
+  .hop        { font: 700 10px sans-serif; fill: #1a3458; text-anchor: middle; }
+  .midline    { stroke: #aab0ba; stroke-width: 1; fill: none; stroke-dasharray: 3 2; }
+  .caption    { font: 600 10px sans-serif; fill: #4a4f57; text-anchor: middle; }
+
+  .fiber--quantum  { stroke: #2f6fd6; stroke-width: 1.6; fill: none; stroke-linecap: round; opacity: 0.55; }
+  .fiber--classical{ stroke: #6a7280; stroke-width: 1.2; fill: none; stroke-linecap: round; stroke-dasharray: 4 3; opacity: 0.7; }
+
+  .entanglement    { stroke: #c84a9b; stroke-width: 1.6; fill: none; stroke-linecap: round; }
+  .entanglement-lbl{ font: 600 9px sans-serif; fill: #c84a9b; text-anchor: middle; }
+
+  .epps-box   { fill: #e2eef9; stroke: #2f6fd6; stroke-width: 1.4; }
+  .epps-ttl   { font: 700 10px sans-serif; fill: #1a3458; text-anchor: middle; }
+</style>
+  <symbol id="quisp-bsa-white" viewBox="0 0 100 100" overflow="visible"><rect x="0" y="0" width="100" height="100" fill="#ffffff"/>
+  <g transform="rotate(180 50 50)"><g
+     id="layer1"
+     transform="translate(-31.460882,77.692164)">
+    <g
+       id="g20029"
+       transform="matrix(2.8375292,0,0,2.8375292,-4.7434798,-1217.7596)">
+      <circle
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none"
+         id="circle19883"
+         cx="30.380079"
+         cy="419.40271"
+         r="17.120964" />
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         id="rect19885"
+         width="11.686096"
+         height="11.686096"
+         x="-324.79691"
+         y="-281.83298"
+         ry="0"
+         transform="rotate(-135)" />
+      <path
+         id="path19887"
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 20.283432,411.29099 c -1.339849,1.33985 -1.04876,3.78799 0.652297,5.48904 l 0.614274,0.61427 5.535592,-5.53559 -0.614276,-0.61427 c -1.701048,-1.70106 -4.149184,-1.99215 -5.489033,-0.6523 z" />
+      <path
+         id="path19889"
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 39.687025,410.68297 c -1.339857,-1.33985 -3.787985,-1.04875 -5.489042,0.6523 l -0.614274,0.61427 5.535592,5.5356 0.614274,-0.61427 c 1.701057,-1.70106 1.992154,-4.14919 0.652297,-5.48904 z" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 30.38007,428.95209 V 412.42545"
+         id="path19891" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 24.317803,414.62651 1.951624,1.95163"
+         id="path19893" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 36.3515,414.71734 -1.951624,1.95163"
+         id="path19895" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 34.511736,424.82045 1.951624,1.95163"
+         id="path19897" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 36.201761,426.66422 h 5.848874"
+         id="path19899" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 26.248414,424.82045 -1.951624,1.95163"
+         id="path19903" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 24.558389,426.66422 H 18.709515"
+         id="path19905" />
+    </g>
+  </g></g></symbol>
+  <symbol id="quisp-epps" viewBox="0 0 100 100" overflow="visible"><g
+     id="layer1"
+     transform="translate(-54.471414,65.046161)">
+    <g
+       id="g903">
+      <circle
+         style="fill:none;stroke:#000000;stroke-width:2.83753;stroke-miterlimit:4;stroke-dasharray:none"
+         id="circle18480"
+         cx="104.47141"
+         cy="-15.046162"
+         r="48.581234" />
+      <ellipse
+         style="fill:none;stroke:#000000;stroke-width:2.83753;stroke-miterlimit:4;stroke-dasharray:none"
+         id="circle18482"
+         cx="96.912636"
+         cy="-15.046172"
+         rx="14.572908"
+         ry="14.710373" />
+      <ellipse
+         style="fill:none;stroke:#000000;stroke-width:2.83753;stroke-miterlimit:4;stroke-dasharray:none"
+         id="circle18484"
+         cx="112.03019"
+         cy="-15.046172"
+         rx="14.572908"
+         ry="14.710373" />
+      <g
+         id="g18679"
+         transform="matrix(2.8375292,0,0,2.8375292,-342.93847,-767.21612)">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 172.94226,265.0792 h -6.05767"
+           id="path18667" />
+        <g
+           id="g18673"
+           transform="matrix(-1,0,0,1,308.99549,55.426129)">
+          <path
+             style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+             d="m 136.05323,209.65307 2.17569,2.17569"
+             id="path18669" />
+          <path
+             style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+             d="m 136.05323,209.65307 2.17569,-2.17569"
+             id="path18671" />
+        </g>
+      </g>
+      <g
+         id="g18689"
+         transform="matrix(-2.8375292,0,0,2.8375292,552.25953,-767.21612)">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 172.94226,265.0792 h -6.05767"
+           id="path18681" />
+        <g
+           id="g18687"
+           transform="matrix(-1,0,0,1,308.99549,55.426129)">
+          <path
+             style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+             d="m 136.05323,209.65307 2.17569,2.17569"
+             id="path18683" />
+          <path
+             style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+             d="m 136.05323,209.65307 2.17569,-2.17569"
+             id="path18685" />
+        </g>
+      </g>
+    </g>
+  </g></symbol>
+  </defs>
+  <desc>MidpointSource entanglement-distribution architecture after Jones et al. NJP 18 083015 (2016). An entangled-photon-pair source (EPPS, typically SPDC) sits at the link midpoint. The source emits two entangled photons outward; each travels L/2 to one of the endpoints. At each endpoint, a local Bell-state analyser interferes the arriving photon with a photon entangled with the local comm qubit (C, green). When both endpoint BSMs herald successfully, the two comm qubits are entangled (magenta sinusoid). The source-side herald is independent of link loss; no two-photon interference at distance.</desc>
+  <text x="360.0" y="28" class="fig-title" style="text-anchor:middle">MidpointSource (MS)</text>
+  <rect x="65.0" y="64" width="90" height="106" rx="6" class="endpoint-card"/>
+  <text x="110" y="78" class="node-ttl" style="text-anchor:middle">Alice</text>
+  <circle cx="110" cy="100" r="11" class="memory"/>
+  <text x="110" y="100" class="qbit-in" style="text-anchor:middle">M</text>
+  <circle cx="110" cy="140" r="11" class="comm"/>
+  <text x="110" y="140" class="qbit-in" style="text-anchor:middle">C</text>
+  <rect x="565.0" y="64" width="90" height="106" rx="6" class="endpoint-card"/>
+  <text x="610" y="78" class="node-ttl" style="text-anchor:middle">Bob</text>
+  <circle cx="610" cy="100" r="11" class="memory"/>
+  <text x="610" y="100" class="qbit-in" style="text-anchor:middle">M</text>
+  <circle cx="610" cy="140" r="11" class="comm"/>
+  <text x="610" y="140" class="qbit-in" style="text-anchor:middle">C</text>
+  <rect x="344.0" y="124.0" width="32" height="32" rx="4" class="epps-box"/>
+  <use href="#quisp-epps" x="347.0" y="127.0" width="26" height="26"/>
+  <text x="360.0" y="108.0" class="epps-ttl" style="text-anchor:middle">EPPS</text>
+  <text x="360.0" y="119.0" class="mini" style="text-anchor:middle">midpoint pair source</text>
+  <line x1="344.0" y1="140" x2="189.0" y2="140" class="fiber--quantum"/>
+  <line x1="376.0" y1="140" x2="531.0" y2="140" class="fiber--quantum"/>
+  <circle cx="266.5" cy="140" r="6" class="photon"/>
+  <circle cx="453.5" cy="140" r="6" class="photon"/>
+  <use href="#quisp-bsa-white" x="161.0" y="126.0" width="28" height="28"/>
+  <text x="175.0" y="122.0" class="lbl" style="text-anchor:middle">BSA</text>
+  <use href="#quisp-bsa-white" x="531.0" y="126.0" width="28" height="28"/>
+  <text x="545.0" y="122.0" class="lbl" style="text-anchor:middle">BSA</text>
+  <line x1="161.0" y1="140" x2="121" y2="140" style="stroke:#2f6fd6;stroke-width:1.8;fill:none;stroke-linecap:butt"/>
+  <line x1="559.0" y1="140" x2="599" y2="140" style="stroke:#2f6fd6;stroke-width:1.8;fill:none;stroke-linecap:butt"/>
+  <circle cx="141.0" cy="140" r="6" class="photon"/>
+  <circle cx="579.0" cy="140" r="6" class="photon"/>
+  <line x1="110" y1="242" x2="360.0" y2="242" class="midline"/>
+  <line x1="110" y1="238" x2="110" y2="246" style="stroke:#aab0ba;stroke-width:1"/>
+  <line x1="360.0" y1="238" x2="360.0" y2="246" style="stroke:#aab0ba;stroke-width:1"/>
+  <text x="235.0" y="256" class="hop" style="text-anchor:middle">L/2</text>
+  <line x1="360.0" y1="242" x2="610" y2="242" class="midline"/>
+  <line x1="360.0" y1="238" x2="360.0" y2="246" style="stroke:#aab0ba;stroke-width:1"/>
+  <line x1="610" y1="238" x2="610" y2="246" style="stroke:#aab0ba;stroke-width:1"/>
+  <text x="485.0" y="256" class="hop" style="text-anchor:middle">L/2</text>
+  <line x1="121" y1="210" x2="125.0" y2="210" class="entanglement"/>
+  <path d="M 125.0 210 q 5.0 -4 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0" class="entanglement"/>
+  <line x1="595.0" y1="210" x2="599" y2="210" class="entanglement"/>
+  <text x="360.0" y="202" class="entanglement-lbl" style="text-anchor:middle">heralded Bell pair</text>
+  <text x="360.0" y="268" class="caption" style="text-anchor:middle">Source at the midpoint emits a pair outward; each endpoint runs a local BSA.</text>
+</svg>

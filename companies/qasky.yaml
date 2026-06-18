@@ -1,0 +1,178 @@
+slug: qasky
+name: Qasky
+categories: [qkd, enabling]
+hq: Wuhu, Anhui, China
+founded: 2009
+status: private
+parent: null
+logo:
+  domain: qasky.com
+
+positioning: >
+  Qasky (安徽问天量子科技股份有限公司) is a Wuhu-based QKD and quantum security hardware company founded
+  in 2009 as a joint venture between Wuhu City Construction Investment Co. and USTC, commercialising
+  phase-encoding QKD research from the CAS Key Laboratory of Quantum Information. Products span QKD
+  terminals, security gateways, key-management systems, optoelectronic modules, and QRNG chips, serving
+  government, defence, finance, and power customers in China. Qasky holds State Cryptography
+  Administration commercial-cipher licences and is a designated drafter of China's quantum cryptography
+  national standards.
+
+modalities:
+  qkd:
+    protocol: [BB84, decoy-state, phase-encoding]
+    rate_distance: null
+    deployed_demos:
+      - note: >
+          Wuhu metropolitan quantum access network (point-to-multipoint, 3 nodes) operated as
+          part of the Hefei–Chaohu–Wuhu wide-area QKD network covering >150 km; ran >5,000
+          hours from December 2011 to July 2012. Wang et al., Optics Express 22, 21739 (2014).
+        source_url: https://arxiv.org/abs/1409.1568
+      - note: >
+          Wuhu municipal quantum government network (量子政务网) — world's first quantum-encrypted
+          government communications network, put into trial operation May 2009.
+        source_url: https://www.govtech.com/dc/articles/china-researchers-develop-a-quantum-cryptography.html
+  enabling:
+    products:
+      - QKD terminal equipment (phase-encoding + decoy-state BB84)
+      - Quantum security gateway
+      - Quantum routing and switching equipment
+      - Key-management systems and network operation/maintenance platforms
+      - Core optoelectronic devices and modules
+      - WT-QRNG300 quantum random number chip (quantum tunneling entropy source, LGA8 package 5.8×5 mm, State Cryptography Administration commercial-cipher certified, December 2024)
+      - CCM3310SQ-T quantum security chip (co-developed with Suzhou China-Core, embeds WT-QRNG300 in a 32-bit security processor, QFN32 4×4 mm, GM/T 0008 Level 2, delivered Feb 2025)
+
+milestones:
+  - date: 2025-02
+    tag: enabling
+    headline: CCM3310SQ-T quantum security chip — co-developed with Suzhou China-Core (国芯科技), combining the WT-QRNG300 with a 32-bit security processor; small-batch delivery achieved and applied to a communications project
+    source_url: https://www.china-core.com/News_show-172-88.html
+    source_type: press
+  - date: 2024-12
+    tag: enabling
+    headline: WT-QRNG300 quantum random number chip released — first domestically certified QRNG chip to receive a State Cryptography Administration commercial-cipher report; die size 1.3×1.7 mm, LGA8 packaged
+    source_url: https://finance.sina.com.cn/tech/roll/2024-12-18/doc-inczwpwu1011378.shtml
+    source_type: press
+  - date: 2023-05
+    tag: enabling
+    headline: Quantum Chip Joint Laboratory established with Suzhou China-Core to co-develop quantum-enhanced security processors
+    source_url: https://www.china-core.com/News_show-172-88.html
+    source_type: press
+  - date: 2014
+    tag: qkd
+    headline: Field and long-term demonstration of the Hefei–Chaohu–Wuhu wide-area QKD network (>150 km, >5,000 hours operation) published — Wang et al., Optics Express 22, 21739
+    source_url: https://arxiv.org/abs/1409.1568
+    source_type: paper
+  - date: 2009-07
+    tag: qkd
+    headline: Founded in Wuhu High-tech Zone through joint investment by Wuhu City Construction Investment Co. and USTC; registered capital 55 million RMB
+    source_url: https://www.cybersecurityintelligence.com/qasky-6906.html
+    source_type: press
+  - date: 2009-05
+    tag: qkd
+    headline: Wuhu municipal quantum government network (量子政务网) enters trial operation — reported as the world's first quantum-encrypted government communications network, securing inter-office communications for Wuhu municipal authorities
+    source_url: https://www.govtech.com/dc/articles/china-researchers-develop-a-quantum-cryptography.html
+    source_type: press
+
+shareholders: []
+
+key_personnel:
+  - role: Chairman
+    name: Han Zhengfu (韩正甫)
+    since: 2009
+    source_url: https://jwc.njupt.edu.cn/2023/0421/c1596a239426/page.htm
+    note: >
+      Professor at USTC, doctoral supervisor; executive director of the China Cryptography
+      Society; director of the Quantum Cryptography Professional Committee; member of the
+      National Cryptography Industry Standards Committee. Co-founder and longstanding academic
+      lead for the CAS Key Lab QKD programme commercialised by Qasky.
+  - role: Academic Founder & Scientific Anchor
+    name: Guo Guangcan (郭光灿)
+    since: 2009
+    source_url: https://www.cybersecurityintelligence.com/qasky-6906.html
+    note: >
+      Academician of the Chinese Academy of Sciences; pioneer of quantum information research
+      in China. Co-founded Qasky; chairs the CAS Key Laboratory of Quantum Information at USTC.
+      Not listed as a company executive but serves as academic authority at the academician
+      workstation.
+  - role: Chief Scientist (Academician Workstation)
+    name: Cai Jiren (蔡吉人)
+    since: 2009
+    source_url: https://www.cybersecurityintelligence.com/qasky-6906.html
+    note: >
+      Well-known cryptographer and academician; heads one of the two academician teams
+      (alongside Guo Guangcan's team) in Qasky's academician workstation of 12 members.
+
+roadmap: []
+
+current_flagship:
+  name: WT-QRNG300
+  generation: chip-level QRNG with quantum tunneling entropy source; first Chinese QRNG chip to receive State Cryptography Administration commercial-cipher report certification (December 2024)
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://arxiv.org/abs/1409.1568
+    note: >
+      Wang, S. et al., "Field and long-term demonstration of a wide area quantum key distribution
+      network", Optics Express 22, 21739–21756 (2014). Authors include Guo Guangcan and Han
+      Zhengfu; describes the Wuhu metropolitan access network node as one of the three network
+      sites (alongside Hefei and Chaohu).
+  - kind: paper
+    citation_key: null
+    url: https://arxiv.org/abs/1203.4321
+    note: >
+      Wang, S. et al., "Field test of the wavelength-saving quantum key distribution network",
+      Optics Letters (2012). Authors include Guo Guangcan and Han Zhengfu; early Wuhu-area
+      QKD field demonstration.
+  - kind: press
+    citation_key: null
+    url: https://finance.sina.com.cn/tech/roll/2024-12-18/doc-inczwpwu1011378.shtml
+    note: Sina Tech — WT-QRNG300 launch, December 2024; State Cryptography Administration certification
+  - kind: press
+    citation_key: null
+    url: https://finance.sina.com.cn/tech/roll/2024-12-30/doc-ineceiic2994061.shtml
+    note: Sina Tech — additional WT-QRNG300 coverage confirming founding year 2009 and Han Zhengfu as Chief Scientist
+  - kind: press
+    citation_key: null
+    url: https://www.china-core.com/News_show-172-88.html
+    note: China-Core press release — CCM3310SQ-T co-development with Qasky, Quantum Chip Joint Lab established May 2023, chip delivered February 2025
+  - kind: press
+    citation_key: null
+    url: https://www.cybersecurityintelligence.com/qasky-6906.html
+    note: Cybersecurity Intelligence company profile — founding details, products, certifications, founders (Cai Jiren, Guo Guangcan, Han Zhengfu)
+  - kind: press
+    citation_key: null
+    url: https://jwc.njupt.edu.cn/2023/0421/c1596a239426/page.htm
+    note: Nanjing University of Posts and Telecommunications — Han Zhengfu identified as Qasky Chairman (April 2023)
+  - kind: vendor
+    citation_key: null
+    url: http://www.qasky.com/en/info.asp?base_id=1
+    note: Qasky English company profile — HQ address, certifications, product categories
+
+partial:
+  - modalities.qkd.rate_distance
+  - field: modalities.qkd.deployed_demos
+    as_of: 2026-06-17
+    note: >
+      Network deployments beyond the 2009 Wuhu government network and the 2011–2012 wide-area
+      demonstration are cited in industry reports (government, defence, finance, power sectors)
+      but specific post-2014 network deployments have not been located in peer-reviewed or vendor-press sources.
+  - shareholders
+  - roadmap
+  - field: key_personnel
+    as_of: 2026-06-17
+    note: >
+      Current CEO/President title-holder not identified in English-language sources; Han Zhengfu
+      confirmed as Chairman. Cai Jiren and Guo Guangcan roles confirmed from secondary sources;
+      not cross-verified against an official company filing or About page (qasky.com uses self-
+      signed TLS, blocking direct fetch).
+  - field: founded
+    as_of: 2026-06-17
+    note: >
+      2009 founding confirmed by multiple sources (Sina Tech, cybersecurityintelligence.com,
+      Chinese search results stating July 15 2009 registration). Some secondary trackers
+      (VentureRadar, CBInsights) list 2016 — this appears to reflect the conversion from
+      limited-liability to joint-stock (股份有限公司) form, not the original incorporation.
+
+last_verified: 2026-06-17
+verification_method: web

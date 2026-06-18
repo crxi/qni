@@ -1,0 +1,203 @@
+---
+/**
+ * /secure-comms — Secure communication
+ *
+ * Tier D · Applications. Split out of /applications so the
+ * secure-communication line has room: symmetric encryption, the
+ * key-distribution problem, the three ways to distribute a shared key
+ * (classical public-key, post-quantum ML-KEM, QKD), and how QKD is
+ * realised on the network.
+ *
+ * Citations:
+ *   - bennett-brassard-1984 — BB84, the first QKD protocol.
+ *   - wootters-nature-1982 — no-cloning, the physical basis of QKD security.
+ *   - shor-siamjc-1997 — breaks RSA / ECDH.
+ *   - nist-fips-203-2024 — ML-KEM (post-quantum KEM standard).
+ *   - pirandola-aop-12-1012 — QKD advances / eavesdrop-detection security.
+ *   - liu-prl-2023 — TF-QKD 1002 km fibre record.
+ *   - islam-sciadv-2017 — high-dimensional QKD.
+ *   - kumar-ijndc-2025 — quantum-internet application framing.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SourceNote from "../components/SourceNote.astro";
+import AnimatedKeyDistribution from "../components/AnimatedKeyDistribution.astro";
+import { url } from "../lib/url";
+
+const sections = [
+  { id: "overview", label: "Overview" },
+  { id: "ways",     label: "Three ways to share a key" },
+  { id: "qkd",      label: "Quantum key distribution" },
+];
+---
+
+<Infographic
+  title="Secure communication"
+  description="Why quantum key distribution exists. Symmetric encryption needs a shared key; the three ways to distribute it — classical public-key agreement (RSA/ECDH, broken by Shor's algorithm), post-quantum ML-KEM, and QKD — differ in what their security rests on. Plus how QKD is realised on the network: prepare-and-measure and entanglement-based protocols, MDI-QKD, TF-QKD, and high-dimensional QKD."
+  references={[
+    "bennett-brassard-1984",
+    "grassl-pqcrypto-2016",
+    "islam-sciadv-2017",
+    "jaques-eurocrypt-2020",
+    "kumar-ijndc-2025",
+    "liu-prl-2023",
+    "nist-fips-203-2024",
+    "nist-ir-8105",
+    "pirandola-aop-12-1012",
+    "shor-siamjc-1997",
+    "wootters-nature-1982",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="secure-comms" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>Secure communication</h1>
+        <p>
+          Confidential communication rests on <strong>symmetric encryption</strong>:
+          Alice and Bob hold a shared secret key K and use a fast cipher such as AES
+          to encrypt and decrypt with it. That part is settled; the open problem is
+          <strong>key distribution</strong> — getting the same K to both parties over a
+          public network without an eavesdropper, Eve, obtaining a copy. Quantum key
+          distribution is one answer to that problem; understanding where it fits means
+          first seeing the alternatives.
+        </p>
+        <p>
+          The quantum threat falls on key distribution, not on the cipher itself. Grover's
+          algorithm speeds up brute-force key search only quadratically — about
+          2<sup>64</sup> steps for AES-128 rather than 2<sup>128</sup> — but those steps
+          are essentially serial and the parallel form of Grover barely helps, so under any
+          realistic limit on how deep a quantum computation can run, detailed circuit
+          estimates put the real cost of an AES-128 key search far above
+          2<sup>64</sup>.<SourceNote id="grassl-pqcrypto-2016" /><SourceNote id="jaques-eurocrypt-2020" />
+          NIST's standing assessment is that Grover gives little practical advantage against
+          AES, that AES-128 likely stays secure for decades, and that symmetric encryption
+          needs at most a doubling of key size — with AES-256 the choice for long-lived
+          data.<SourceNote id="nist-ir-8105" />
+        </p>
+      </header>
+
+      <section id="ways" data-nav-section>
+        <h2>Three ways to distribute a shared key</h2>
+
+        <AnimatedKeyDistribution>
+          <figcaption>
+            Symmetric encryption needs a shared key K. Alice encrypts with it, the
+            ciphertext crosses the public channel past Eve, and Bob decrypts with the same
+            key. Classical public-key agreement (RSA, ECDH) is broken by Shor's algorithm
+            on a cryptographically-relevant quantum computer; ML-KEM and QKD are the two
+            responses — one keeps the computational model and changes the mathematics, the
+            other moves the security onto physical law.
+          </figcaption>
+        </AnimatedKeyDistribution>
+
+        <p>
+          Three ways deliver that key, and they differ in what their security rests on:
+        </p>
+        <ul class="ways-list">
+          <li>
+            <strong>Classical public-key agreement (RSA, ECDH).</strong> Both sides derive
+            a shared key from public values exchanged over the open channel. Security rests
+            on the computational hardness of factoring or the discrete logarithm — both of
+            which a cryptographically-relevant quantum computer (CRQC) solves in polynomial
+            time with Shor's algorithm, breaking them.<SourceNote id="shor-siamjc-1997" />
+          </li>
+          <li>
+            <strong>Post-quantum cryptography (ML-KEM, NIST FIPS 203).</strong> The same
+            public-channel key agreement, rebuilt on a lattice problem with no known
+            efficient quantum attack — a software upgrade to the existing
+            model.<SourceNote id="nist-fips-203-2024" />
+          </li>
+          <li>
+            <strong>Quantum key distribution (BB84).</strong> Carries key material on
+            single quantum states,<SourceNote id="bennett-brassard-1984" /> so its security
+            rests on physics — the no-cloning theorem<SourceNote id="wootters-nature-1982" />
+            and the disturbance any measurement imposes on a quantum state — rather than on
+            an assumption about an adversary's computing power. An eavesdropper who
+            intercepts the photons raises the error rate and is
+            detected.<SourceNote id="pirandola-aop-12-1012" />
+          </li>
+        </ul>
+        <p>
+          ML-KEM and QKD are the two responses to the quantum threat against classical
+          public-key cryptography: one changes the mathematics, the other changes the
+          trust basis to physical law. QKD is the response that needs a quantum network —
+          a quantum channel between the endpoints and, over distance, trusted nodes or
+          repeaters.
+        </p>
+      </section>
+
+      <section id="qkd" data-nav-section>
+        <h2>Quantum key distribution (QKD)</h2>
+        <p>
+          QKD is the only application of quantum networking with commercial deployment
+          today. Two paradigm families: <strong>prepare-and-measure</strong> protocols
+          (BB84 and its variants, with decoy states for security against
+          photon-number-splitting attacks) where Alice prepares states and Bob measures;
+          and <strong>entanglement-based</strong> protocols (BBM92, Ekert91) where a
+          shared Bell pair is the resource. Variants address specific operational
+          constraints: <strong>Measurement-Device-Independent QKD</strong> (MDI-QKD) puts
+          the trust in the source and removes detector side-channel attacks;
+          <strong>Twin-Field QKD</strong> (TF-QKD) scales the key rate as √η rather than
+          η, doubling effective reach, and now holds the fibre-distance record
+          at 1002 km <SourceNote id="liu-prl-2023" />. A separate research thread,
+          <strong>High-Dimensional QKD</strong> (HD-QKD), encodes each photon in a
+          qudit (d &gt; 2, via time-bin or orbital-angular-momentum modes) to raise
+          bits-per-photon and noise tolerance <SourceNote id="islam-sciadv-2017" /> — still
+          academic; no commercial deployments.
+        </p>
+        <p>
+          QKD requires the lowest fidelity threshold of any quantum-network application —
+          ~0.85 raw is workable after error correction and privacy amplification, and
+          field-deployed systems run reliably between metropolitan-scale endpoints. The
+          bulk of vendor activity in quantum networking is QKD <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+        <p>
+          For the broader set of network-consuming applications — distributed and blind
+          quantum computing, networked sensing, position verification, multiparty
+          consensus — see the <a href={url("/applications")}>applications</a> subject.
+        </p>
+      </section>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-4);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .hero h1 { margin: 0; }
+  .hero p { margin: 0; }
+
+  section { display: grid; gap: var(--space-3); }
+
+  /* Static-diagram figure — same card rhythm as the animated demo cards. */
+  .diagram-card {
+    margin: var(--space-2) 0;
+    padding: var(--space-3) var(--space-4);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .diagram-card svg { width: 100%; height: auto; display: block; margin: 0 auto; }
+  .diagram-card figcaption {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-mute);
+  }
+  .diagram-card figcaption strong { color: var(--color-text); }
+
+  .ways-list { display: grid; gap: var(--space-3); margin: 0; padding-inline-start: var(--space-4); }
+  .ways-list li { line-height: var(--leading-body); }
+  .ways-list li strong { color: var(--color-text); }
+</style>

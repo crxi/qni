@@ -1,0 +1,167 @@
+slug: google
+name: Google Quantum AI
+categories: [qc]
+hq: Santa Barbara, California, USA
+founded: 2012
+status: public
+parent: alphabet
+logo:
+  domain: quantumai.google
+
+positioning: >
+  Superconducting-transmon quantum computing programme inside Alphabet, run as
+  Google Quantum AI under founder and lead Hartmut Neven. The dossier scopes
+  Google Quantum AI (the QC research division headquartered at the Goleta /
+  Santa Barbara campus, with collaborators in Mountain View); it excludes
+  Alphabet's broader cloud, search, and AI businesses. Google publishes a
+  six-milestone hardware roadmap targeting a large-scale error-corrected
+  machine (~10^6 physical qubits) by the end of the decade; the December 2024
+  Willow chip placed the programme at Milestone 2 (below-threshold quantum
+  error correction on a distance-7 surface-code logical qubit).
+
+business_units:
+  - name: Google Quantum AI
+    scope: Superconducting transmon QC hardware, surface-code error correction, Cirq / qsim stack
+    hq: Goleta / Santa Barbara, California (campus); Mountain View, California
+    lead: Hartmut Neven (Founder & Lead, VP Engineering)
+
+modalities:
+  qc:
+    qubit_type: transmon
+    physical_qubits_current: 105
+    logical_qubits_current: 1
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: surface
+    connectivity: square-lattice
+    gate_set: []
+
+milestones:
+  - date: 2024-12
+    tag: qc
+    headline: Willow (105-qubit transmon) demonstrates below-threshold quantum error correction — distance-3, -5, -7 surface-code logical qubits with exponential error suppression (Λ ≈ 2.14 per code-distance step)
+    source_url: https://www.nature.com/articles/s41586-024-08449-y
+    source_type: paper
+  - date: 2023-02
+    tag: qc
+    headline: Suppressing quantum errors by scaling a surface-code logical qubit — first demonstration that a distance-5 logical qubit narrowly outperforms distance-3 (Sycamore-class device, Nature 614)
+    source_url: https://www.nature.com/articles/s41586-022-05434-1
+    source_type: paper
+  - date: 2019-10
+    tag: qc
+    headline: Sycamore (53-qubit transmon) — "quantum supremacy" via random-circuit sampling (Arute et al., Nature 574, 505)
+    source_url: https://www.nature.com/articles/s41586-019-1666-5
+    source_type: paper
+  - date: 2018-03
+    tag: qc
+    headline: Bristlecone (72-qubit transmon) announced at APS March Meeting — predecessor to Sycamore
+    source_url: https://research.google/blog/a-preview-of-bristlecone-googles-new-quantum-processor/
+    source_type: blog
+  - date: 2012
+    tag: qc
+    headline: Quantum Artificial Intelligence Lab founded by Hartmut Neven at Google (with NASA Ames, USRA); pivot to in-house superconducting hardware programme follows the 2014 recruitment of John Martinis' UCSB group
+    source_url: https://research.google/blog/launching-the-quantum-artificial-intelligence-lab/
+    source_type: blog
+
+shareholders:
+  - holder: Alphabet Inc.
+    stake_percent: 100
+    stake_class: controlling
+    as_of: 2026-05
+    source_url: https://abc.xyz/investor/
+    note: Google Quantum AI is a research division of Google LLC, a wholly-owned subsidiary of Alphabet Inc. (NASDAQ GOOGL/GOOG). No separately-traded equity; ownership of Alphabet is dispersed across institutional holders (Vanguard, BlackRock, State Street) and founder voting shares.
+
+key_personnel:
+  - role: Founder & Lead, Google Quantum AI (VP Engineering, Google)
+    name: Hartmut Neven
+    since: 2012
+    source_url: https://research.google/people/hartmutneven/
+  - role: Director of Hardware, Google Quantum AI
+    name: Julian Kelly
+    since: 2014
+    source_url: https://research.google/people/105027/
+    note: Joined from the Martinis UCSB group; hardware lead across Sycamore and Willow generations
+  - role: Chief Architect, Willow chip program
+    name: Anthony Megrant
+    since: 2014
+    source_url: https://www.linkedin.com/in/anthony-megrant-5b33a71b6/
+
+roadmap:
+  - target: "milestone-1"
+    item: Beyond-classical computation (achieved 2019, Sycamore RCS)
+    source_url: https://quantumai.google/roadmap
+    tag: qc
+  - target: "milestone-2"
+    item: Quantum error-correction prototype — logical-qubit error rate ~10^-2 on ~100 physical qubits (achieved 2024, Willow)
+    source_url: https://quantumai.google/roadmap
+    tag: qc
+  - target: "milestone-3"
+    item: Long-lived logical qubit — 10^6 operations with < 1 error (logical error ~10^-6); next near-term target
+    source_url: https://quantumai.google/roadmap
+    tag: qc
+  - target: "milestone-4"
+    item: Logical gate — demonstrate a fault-tolerant gate between two long-lived logical qubits
+    source_url: https://quantumai.google/roadmap
+    tag: qc
+  - target: "milestone-5"
+    item: Engineering scale-up — tile logical qubits into a fault-tolerant module (~10^4 physical qubits)
+    source_url: https://quantumai.google/roadmap
+    tag: qc
+  - target: "~2029"
+    item: Milestone 6 — large-scale error-corrected quantum computer (~10^6 physical qubits, ~10^3 logical qubits) for useful applications
+    source_url: https://quantumai.google/roadmap
+    tag: qc
+
+current_flagship:
+  name: Willow
+  generation: 105-qubit superconducting transmon (square-lattice surface-code device, distance-7 demonstrated)
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41586-024-08449-y
+    note: Acharya et al., "Quantum error correction below the surface code threshold" (Nature, 2024) — DOI 10.1038/s41586-024-08449-y; the Willow result
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41586-022-05434-1
+    note: Acharya et al., "Suppressing quantum errors by scaling a surface code logical qubit" (Nature 614, 676, 2023) — distance-5 vs distance-3 logical-qubit demonstration
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41586-019-1666-5
+    note: Arute et al., "Quantum supremacy using a programmable superconducting processor" (Nature 574, 505, 2019) — the Sycamore result
+  - kind: blog
+    citation_key: null
+    url: https://blog.google/innovation-and-ai/technology/research/google-willow-quantum-chip/
+    note: Willow announcement blog (Sundar Pichai / Hartmut Neven, 9 Dec 2024)
+  - kind: blog
+    citation_key: null
+    url: https://quantumai.google/roadmap
+    note: Google Quantum AI six-milestone hardware roadmap
+  - kind: blog
+    citation_key: null
+    url: https://quantumai.google/lab
+    note: Santa Barbara / Goleta Quantum AI campus — fab, dilution refrigerators, and data centre
+
+partial:
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.gate_set
+  - field: modalities.qc.logical_qubits_current
+    as_of: 2026-05-24
+    note: Willow demonstrates a single below-threshold surface-code logical qubit (distances 3, 5, 7); not yet two interacting logical qubits or a logical gate
+  - field: key_personnel.1.since
+    as_of: 2026-05-24
+    note: Julian Kelly joined Google with the Martinis UCSB team transition (~2014); exact start month not given on team page
+  - field: key_personnel.2.since
+    as_of: 2026-05-24
+    note: Anthony Megrant joined Google with the Martinis UCSB team transition (~2014); exact start month not given on team page
+  - field: roadmap.5.target
+    as_of: 2026-05-24
+    note: "~2029 reflects Sundar Pichai's 2021 statement of an error-corrected quantum computer within the decade and 2025 commentary from Neven; Google's roadmap page itself does not stamp Milestone 6 with a year"
+
+last_verified: 2026-05-24
+verification_method: web

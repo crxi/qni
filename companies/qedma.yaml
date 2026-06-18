@@ -1,0 +1,153 @@
+slug: qedma
+name: Qedma
+categories: [software]
+hq: Tel Aviv, Israel
+founded: 2020
+status: private
+parent: null
+logo:
+  domain: qedma.com
+
+positioning: >
+  Noise-learning quantum-error-mitigation software for noisy gate-model
+  quantum processors. Flagship product QESEM (Quantum Error Suppression and
+  Error Mitigation) characterises a device's noise, suppresses some error
+  classes during execution, and corrects the residual bias in
+  post-processing; delivered as an IBM Qiskit Function and demonstrated on
+  IBM Eagle and Heron devices. Founded in Tel Aviv in 2020 by Asif Sinay
+  (CEO), Dorit Aharonov (Hebrew University), and Netanel Lindner (Technion).
+  Closed a USD 26M Series A in July 2025 led by Glilot+ with IBM, TPY
+  Capital, and Korea Investment Partners participating.
+
+modalities:
+  software:
+    products:
+      - QESEM (Quantum Error Suppression and Error Mitigation) — characterisation-based error-mitigation stack delivered as an IBM Qiskit Function and via Qedma cloud; targets utility-scale circuits on IBM Eagle (127-qubit) and Heron (133-qubit) devices
+      - Noise-characterisation toolkit — standalone offering for fast device fingerprinting independent of the full mitigation pipeline
+
+milestones:
+  - date: 2025-08
+    tag: software
+    headline: "Aharonov et al. arXiv 2508.10997 — \"Reliable high-accuracy error mitigation for utility-scale quantum circuits\" formalises the QESEM framework"
+    source_url: https://arxiv.org/abs/2508.10997
+    source_type: preprint
+  - date: 2025-07
+    tag: software
+    headline: "$26M Series A led by Glilot+ with participation from IBM, TPY Capital, and Korea Investment Partners"
+    source_url: https://www.prnewswire.com/news-releases/qedma-raises-26m-with-participation-from-ibm-to-tackle-quantum-computing-errors-and-accelerate-pace-to-quantum-advantage-302497701.html
+    source_type: press
+  - date: 2024-09
+    tag: software
+    headline: QESEM released as an IBM Qiskit Function (premium tier of IBM Quantum Platform)
+    source_url: https://thequantuminsider.com/2024/09/16/qedma-next-generation-quantum-error-mitigation-software-available-as-an-ibm-qiskit-function/
+    source_type: press
+  - date: 2024
+    tag: software
+    headline: Commercial agreement with IBM to provide error-mitigation software to IBM Quantum users
+    source_url: https://www.qedma.com/qedma-signs-agreement-with-ibm-to-provide-error-mitigation-software/
+    source_type: press
+  - date: 2020
+    tag: software
+    headline: "$4.7M seed round led by TPY Capital; company incorporated by Aharonov, Lindner, and Sinay"
+    source_url: https://techcrunch.com/2025/07/03/israeli-quantum-startup-qedma-just-raised-26-million-with-ibm-joining-in/
+    source_type: press
+
+shareholders:
+  - holder: Glilot Capital Partners (Glilot+)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-07
+    source_url: https://www.prnewswire.com/news-releases/qedma-raises-26m-with-participation-from-ibm-to-tackle-quantum-computing-errors-and-accelerate-pace-to-quantum-advantage-302497701.html
+    note: Lead investor of the July 2025 $26M Series A via the Glilot+ early-growth fund
+  - holder: IBM
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-07
+    source_url: https://techcrunch.com/2025/07/03/israeli-quantum-startup-qedma-just-raised-26-million-with-ibm-joining-in/
+    note: New investor in the July 2025 Series A; also Qedma's primary commercial distribution partner via Qiskit Functions
+  - holder: TPY Capital
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-07
+    source_url: https://techcrunch.com/2025/07/03/israeli-quantum-startup-qedma-just-raised-26-million-with-ibm-joining-in/
+    note: Seed-round lead (2020); follow-on participant in 2025 Series A
+  - holder: Korea Investment Partners
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-07
+    source_url: https://www.prnewswire.com/news-releases/qedma-raises-26m-with-participation-from-ibm-to-tackle-quantum-computing-errors-and-accelerate-pace-to-quantum-advantage-302497701.html
+    note: New investor in the July 2025 Series A
+  - holder: Founders (Aharonov, Lindner, Sinay)
+    stake_percent: null
+    stake_class: founder
+    as_of: 2025-07
+    source_url: https://www.qedma.com/
+    note: Combined founder stake; individual percentages not disclosed
+
+key_personnel:
+  - role: CEO & Co-founder
+    name: Asif Sinay
+    since: 2020
+    source_url: https://www.qedma.com/
+  - role: Chief Scientific Officer & Co-founder
+    name: Dorit Aharonov
+    since: 2020
+    source_url: https://www.qedma.com/
+    note: Professor of Computer Science, Hebrew University of Jerusalem; co-author on foundational adiabatic-computation and error-mitigation work
+  - role: CTO & Co-founder
+    name: Netanel Lindner
+    since: 2020
+    source_url: https://www.qedma.com/
+    note: Professor of Physics, Technion — Israel Institute of Technology
+
+roadmap:
+  - target: 2026
+    item: Demonstrate verified quantum advantage on a real-world workload using QESEM on IBM hardware (CEO statement, July 2025)
+    source_url: https://techcrunch.com/2025/07/03/israeli-quantum-startup-qedma-just-raised-26-million-with-ibm-joining-in/
+    tag: software
+  - target: 2026
+    item: Extend QESEM to hybrid HPC-QPU execution and integration with emerging error-correcting codes
+    source_url: https://thequantuminsider.com/2024/09/16/qedma-next-generation-quantum-error-mitigation-software-available-as-an-ibm-qiskit-function/
+    tag: software
+
+current_flagship:
+  name: QESEM
+  generation: characterisation-based error-mitigation stack delivered as an IBM Qiskit Function; demonstrated on IBM Eagle (127-qubit) and Heron (133-qubit)
+
+references:
+  - kind: preprint
+    citation_key: null
+    url: https://arxiv.org/abs/2508.10997
+    note: Aharonov et al. 2025 — "Reliable high-accuracy error mitigation for utility-scale quantum circuits"; the QESEM methodology paper
+  - kind: preprint
+    citation_key: null
+    url: https://arxiv.org/abs/2503.17243
+    note: "Aharonov et al. 2025 — \"On the Importance of Error Mitigation for Quantum Computation\"; position paper on EM as a near-term enabler"
+  - kind: blog
+    citation_key: null
+    url: https://quantum.cloud.ibm.com/docs/en/guides/qedma-qesem
+    note: IBM Quantum documentation for the QESEM Qiskit Function
+  - kind: conf-talk
+    citation_key: null
+    url: https://www.cda.cit.tum.de/images/mqsf2025/talks/11_Netanel_Lindner_Qedma.pdf
+    note: Lindner, MQSF 2025 — "QESEM Reliable, Accurate Error Mitigation for Large-Scale Quantum Circuits"
+  - kind: press
+    citation_key: null
+    url: https://www.prnewswire.com/news-releases/qedma-raises-26m-with-participation-from-ibm-to-tackle-quantum-computing-errors-and-accelerate-pace-to-quantum-advantage-302497701.html
+    note: Series A announcement (July 2025)
+
+partial:
+  - field: milestones.0.headline
+    as_of: 2026-05-21
+    note: The "1000x larger circuit volume" figure appears in vendor press and the arXiv 2508.10997 abstract; it is workload- and device-dependent and the paper has not yet undergone peer review.
+  - shareholders.0.stake_percent
+  - shareholders.1.stake_percent
+  - shareholders.2.stake_percent
+  - shareholders.3.stake_percent
+  - shareholders.4.stake_percent
+  - field: founded
+    as_of: 2026-05-21
+    note: 2020 widely reported in press coverage of the 2025 Series A; not cross-checked against Israeli companies-registry filing
+
+last_verified: 2026-05-21
+verification_method: web

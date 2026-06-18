@@ -1,0 +1,2110 @@
+---
+/**
+ * /swapping — Entanglement swapping
+ *
+ * Tier A · Foundations.
+ *
+ * Citations:
+ *   - zukowski-prl-1993 — Żukowski et al., PRL 71, 4287 (1993).
+ *     The original entanglement-swapping proposal.
+ *   - bennett-prl-1993 — teleportation; swapping is structurally
+ *     "teleporting half of a Bell pair".
+ *   - kumar-ijndc-2025 — current network survey.
+ *   - jones-njp-2016 — repeater protocol architectures (MM/SR/MS),
+ *     all built on swapping.
+ *   - pompili-science-2021 — three-node experimental demo.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SourceNote from "../components/SourceNote.astro";
+import Callout from "../components/Callout.astro";
+import Math from "../components/Math.astro";
+import { url } from "../lib/url";
+
+const sections = [
+  { id: "overview",   label: "Overview" },
+  { id: "protocol",   label: "The setup and protocol" },
+  { id: "chains",     label: "Chained swapping for reach" },
+  { id: "role",       label: "Network role" },
+];
+---
+
+<Infographic
+  title="Entanglement swapping"
+  description="Entanglement swapping joins two Bell pairs into one across a longer distance via a Bell-state measurement at a Bell-state analyser (BSA) node. The endpoints' qubits are entangled afterward despite never having interacted. Chained swaps are the primitive every memory-based quantum repeater is built on. This page covers the protocol, why it works, and how it extends across multiple hops."
+  references={[
+    "jones-njp-2016",
+    "kumar-ijndc-2025",
+    "pompili-science-2021",
+    "zukowski-prl-1993",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="swapping" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>Entanglement swapping</h1>
+        <p>
+          Two Bell pairs sharing one node can be <strong>swapped</strong> into a single Bell pair
+          spanning the two outer endpoints — without those endpoints ever interacting and
+          without measuring the qubits being networked. The trick is a Bell-state
+          measurement at the shared node: the BSM consumes the two qubits at the BSA,
+          and what's left is a Bell pair between the two distant qubits, up to a
+          Pauli correction that's announced via a classical
+          channel <SourceNote id="zukowski-prl-1993" />.
+        </p>
+        <p>
+          Swapping is the primitive that <strong>extends the reach</strong> of a quantum
+          network. A direct Bell pair between Alice and Bob in standard fibre runs out
+          of usable rate after a few tens of kilometres. At 0.20 dB/km, photon survival
+          halves every 15 km — so only ~1 % make it through 100 km. Current heralded
+          entanglement demonstrations sit in the 10–50 km range over deployed
+          fibre <SourceNote id="knaut-nature-2024" />. Chains of swaps stitch shorter
+          pairs together so the end-to-end pair can span much further. Every memory-based
+          quantum repeater — and every link architecture in
+          <a href={url("/distribution")}>distribution</a> — is built on this
+          primitive <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+      </header>
+
+      <section id="protocol" data-nav-section>
+        <h2>The setup and protocol</h2>
+        <p>
+          Three parties: Alice, a Bell-state analyser (BSA), and Bob. Two Bell pairs already exist:
+          <strong>A</strong> at Alice paired with <strong>A′</strong> at R, and
+          <strong>B′</strong> at the BSA paired with <strong>B</strong> at Bob. The BSA
+          holds <strong>A′</strong> and <strong>B′</strong>, one qubit from each
+          pre-shared pair; the qubits at Alice and Bob are never touched until the
+          final Pauli correction.
+        </p>
+        <p>
+          Three steps follow, structurally identical to teleportation — except that
+          what's being "teleported" is Alice's half of the first pair onto Bob's
+          qubit, with the BSA performing the BSM in the middle.
+        </p>
+
+        <ol class="sw-steps">
+          <li>
+            <strong>BSM at the BSA.</strong> The BSA performs a Bell-state measurement
+            on its two qubits <Math tex="R_1" /> and <Math tex="R_2" />. Both pre-shared
+            pairs (<Math tex="A \\leftrightarrow R_1" /> and
+            <Math tex="R_2 \\leftrightarrow B" />) are consumed by the measurement. The
+            outcome is two classical bits identifying which of the four Bell states the
+            BSM landed on, which in turn determines which Bell state
+            <Math tex="A" /> and <Math tex="B" /> are now in.
+          </li>
+          <li>
+            <strong>Classical communication.</strong> The BSA sends the 2 bits to Bob
+            (or Alice — either endpoint will do).
+          </li>
+          <li>
+            <strong>Pauli correction.</strong> Bob applies one of <Math tex="I" />,
+            <Math tex="X" />, <Math tex="Z" />, <Math tex="ZX" /> to his qubit
+            <Math tex="B" /> based on the bits. After the correction,
+            <Math tex="A" /> and <Math tex="B" /> are in the Bell state
+            <Math tex="|\\Phi^+\\rangle_{AB}" /> — a freshly minted Bell pair across the
+            full distance.
+          </li>
+        </ol>
+
+        <figure class="sw" id="sw-fig" data-sw>
+          <svg viewBox="0 0 800 260" role="img"
+               aria-label="Entanglement-swapping animation. Top row: two short Bell pairs A↔A′ and B′↔B. The BSA performs a BSM on A′ and B′; two classical bits travel to Bob; Bob applies a Pauli correction. Bottom row: the resulting long Bell pair A↔B."
+               data-sw-svg>
+            <defs>
+              <radialGradient id="sw-cloud-teal" cx="0.5" cy="0.5" r="0.5">
+                <stop offset="0%"   stop-color="var(--tp-teal, #4cc8c0)" stop-opacity="0.95"/>
+                <stop offset="40%"  stop-color="var(--tp-teal, #4cc8c0)" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="var(--tp-teal, #4cc8c0)" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="sw-cloud-spent" cx="0.5" cy="0.5" r="0.5">
+                <stop offset="0%"   stop-color="#7a8390" stop-opacity="0.9"/>
+                <stop offset="40%"  stop-color="#7a8390" stop-opacity="0.45"/>
+                <stop offset="100%" stop-color="#7a8390" stop-opacity="0"/>
+              </radialGradient>
+              <marker id="sw-arr" viewBox="0 0 10 10" refX="9" refY="5"
+                      markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0,0 L10,5 L0,10 Z" fill="var(--color-text-soft)"/>
+              </marker>
+            </defs>
+
+            {/* Endpoint labels */}
+            <text x="50"  y="20" text-anchor="middle" class="sw-label">Alice</text>
+            <text x="400" y="20" text-anchor="middle" class="sw-label">BSA</text>
+            <text x="750" y="20" text-anchor="middle" class="sw-label">Bob</text>
+
+            {/* Dashed relay box around A′ and B′ — same physical location. */}
+            <rect data-sw-relay-box x="325" y="32" width="150" height="56" rx="4"
+                  fill="none" stroke="var(--color-rule)" stroke-width="1"
+                  stroke-dasharray="4,3" opacity="0.55"/>
+
+            {/* ---- Top row: Alice (A), relay (A′, B′), Bob (B) ---- */}
+            <circle cx="50"  cy="60" r="18" fill="var(--color-bg)"
+                    stroke="var(--color-text)" stroke-width="1.5"/>
+            <text x="50"  y="65" text-anchor="middle" class="sw-node-lbl">A</text>
+            <circle cx="750" cy="60" r="18" fill="var(--color-bg)"
+                    stroke="var(--color-text)" stroke-width="1.5"/>
+            <text x="750" y="65" text-anchor="middle" class="sw-node-lbl">B</text>
+
+            {/* A′ and B′ photonic clouds — the relay's two qubits that
+                get consumed by the BSM. */}
+            <g data-sw-aprime transform="translate(359 60)">
+              <circle data-sw-aprime-cloud r="18" fill="url(#sw-cloud-teal)"/>
+              <text y="5" text-anchor="middle" class="sw-node-lbl">A′</text>
+            </g>
+            <g data-sw-bprime transform="translate(441 60)">
+              <circle data-sw-bprime-cloud r="18" fill="url(#sw-cloud-teal)"/>
+              <text y="5" text-anchor="middle" class="sw-node-lbl">B′</text>
+            </g>
+
+            {/* Bell-pair wavy lines (A↔A′ and B′↔B). Magenta, same
+                wavelength/amp as the bottom result line. */}
+            <path data-sw-pair-aa class="sw-ent"
+                  d="M 68,60 q 17,-9 34,0 t 34,0 t 34,0 t 34,0 t 34,0 t 34,0 t 34,0 t 34,0"/>
+            <path data-sw-pair-bb class="sw-ent"
+                  d="M 459,60 q 17,-9 34,0 t 34,0 t 34,0 t 34,0 t 34,0 t 34,0 t 34,0 t 34,0"/>
+
+            {/* ---- BSM apparatus (same geometry as images/BSM.svg).
+                Greyed out until the BSM phase fires. ---- */}
+            <svg data-sw-bsm x="300" y="62" width="200" height="169"
+                 viewBox="0 0 640 540" overflow="visible"
+                 color="var(--color-text)" opacity="0.22">
+              <defs>
+                <symbol id="sw-bsm-detector" overflow="visible">
+                  <path d="M -14,0 A 14,14 0 0 1 14,0 Z" fill="currentColor"/>
+                </symbol>
+              </defs>
+              <line x1="190" y1="50"  x2="450" y2="310" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="14,10"/>
+              <line x1="450" y1="310" x2="510" y2="370" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="14,10"/>
+              <line x1="450" y1="310" x2="390" y2="370" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="14,10"/>
+              <line x1="450" y1="50"  x2="190" y2="310" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="14,10"/>
+              <line x1="190" y1="310" x2="130" y2="370" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="14,10"/>
+              <line x1="190" y1="310" x2="250" y2="370" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="14,10"/>
+              <rect x="312" y="140" width="16" height="80" rx="4" fill="currentColor"/>
+              <polygon points="190,270 230,310 190,350 150,310" fill="#d9eef9" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+              <line x1="190" y1="270" x2="190" y2="350" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              <polygon points="450,270 490,310 450,350 410,310" fill="#d9eef9" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+              <line x1="450" y1="270" x2="450" y2="350" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              <use href="#sw-bsm-detector" transform="translate(130,370) rotate(-135)"/>
+              <use href="#sw-bsm-detector" transform="translate(250,370) rotate(135)"/>
+              <use href="#sw-bsm-detector" transform="translate(390,370) rotate(-135)"/>
+              <use href="#sw-bsm-detector" transform="translate(510,370) rotate(135)"/>
+            </svg>
+
+            {/* ---- Classical channel (dashed line + bit pair).
+                 The (0, 1) pulse sits ON the line; the "2 classical bits"
+                 label sits BELOW the line so it doesn't clash with the pulse. ---- */}
+            <line x1="455" y1="240" x2="720" y2="240"
+                  stroke="var(--color-text-soft)" stroke-width="1"
+                  stroke-dasharray="4,3" opacity="0.6"
+                  marker-end="url(#sw-arr)"/>
+            <text x="590" y="268" text-anchor="middle" class="sw-channel">2 classical bits</text>
+
+            <g data-sw-bits opacity="0">
+              <text data-sw-bits-text x="475" y="244" text-anchor="middle" class="sw-bit">(0, 1)</text>
+            </g>
+
+            {/* Pauli badge that lands on B during the correction phase. */}
+            <g data-sw-lock opacity="0" transform="translate(750 100)">
+              <rect x="-20" y="-14" width="40" height="28" rx="4"
+                    fill="var(--color-bg)" stroke="var(--tp-purple, #a866c8)" stroke-width="1.5"/>
+              <text data-sw-lock-letter x="0" y="6" text-anchor="middle" class="sw-pauli-badge">X</text>
+            </g>
+
+            {/* ---- Final A↔B Bell pair, traced in on the SAME ROW as
+                A and B. After phase 2 the A′/B′ clouds have faded and
+                the relay-R box dissolves (data-sw-relay-box), so the
+                long wavy line spans the row cleanly. ---- */}
+            <path data-sw-pair-ab class="sw-ent" pathLength="1"
+                  stroke-dasharray="1 1" stroke-dashoffset="1" opacity="0"
+                  d="M 68,60 q 17.5,-10 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0 t 35,0"/>
+
+          </svg>
+
+          <ol class="sw-step-list" data-sw-steps>
+            <li data-sw-step="1"><strong>1.</strong> Two pre-shared Bell pairs: A↔A′ at Alice and B′↔B at Bob, meeting at the BSA</li>
+            <li data-sw-step="2"><strong>2.</strong> R performs a Bell-state measurement on A′ and B′</li>
+            <li data-sw-step="3"><strong>3.</strong> The 2-bit BSM outcome travels to Bob over a classical channel</li>
+            <li data-sw-step="4"><strong>4.</strong> Bob applies the matching Pauli correction (<em>I</em>, <em>X</em>, <em>Z</em>, or <em>XZ</em>)</li>
+            <li data-sw-step="5"><strong>5.</strong> A and B share a fresh Bell pair — they never interacted</li>
+          </ol>
+
+          <figcaption>
+            Top row: two short Bell pairs (magenta wavy lines) sit on either side of
+            the BSA. Its BSM consumes <strong>A′</strong> and
+            <strong>B′</strong> — their clouds turn grey the moment they enter the
+            apparatus. Two classical bits emerge on the channel and travel to Bob,
+            who reads them and applies the matching Pauli. Bottom row: the resulting
+            long <strong>A</strong>↔<strong>B</strong> Bell pair traces in as the
+            correction lands. The cycle iterates through the four Bell outcomes.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="chains" data-nav-section>
+        <h2>Chained swapping for reach</h2>
+        <p>
+          One swap doubles the reach of an unaided link. A chain of <Math tex="n" />
+          swaps links <Math tex="n+1" /> short pairs into a single Bell pair spanning the
+          full distance. Each BSA in the chain performs its own BSM and broadcasts its
+          2-bit result; the corrections compose at one of the endpoints. Memory-based
+          repeaters use this pattern as their core operation, with quantum memories at
+          each node holding the qubits while pairs are generated and swaps are
+          coordinated <SourceNote id="jones-njp-2016" />.
+        </p>
+
+        <h3 id="canonical-1g">The canonical 1G repeater</h3>
+        <p>
+          The four primitives so far — heralded entanglement generation (EG), Bell-state
+          measurement, swapping, and quantum memory — compose into one workflow. This is
+          the <strong>first-generation</strong> repeater design proposed by Briegel, Dür,
+          Cirac and Zoller <SourceNote id="bdcz-prl-1998" /> and surveyed
+          in <SourceNote id="sangouard-rmp-83" />, <SourceNote id="azuma-rmp-95" />. The
+          diagram below traces a 4-hop chain from <strong>Alice</strong> through three
+          quantum repeaters (R₁, R₂, R₃) to <strong>Bob</strong> from start to
+          finish: <strong>green</strong> dots are live matter qubits in memory,
+          <strong>blue</strong> dots are flying photons used only inside the EG round,
+          <strong>grey</strong> dots are matter qubits already spent by a Bell measurement,
+          and <strong>blue</strong> wavy lines are entanglement.
+        </p>
+
+        <figure class="onegen" data-1g>
+          <div class="onegen-controls" data-1g-controls>
+            <span class="onegen-phase" data-1g-phase>EG</span>
+            <div class="onegen-playback" role="group" aria-label="Animation playback controls">
+              {/* Inline SVG icons — monochrome on every platform. The
+                  Unicode playback glyphs render as emoji on phones
+                  regardless of the U+FE0E text-variation selector. */}
+              <button class="onegen-btn" type="button" data-1g-ctl="back" aria-label="Step back" title="Step back">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14h2V5zM20 5L9 12l11 7z" fill="currentColor"/></svg>
+              </button>
+              <button class="onegen-btn" type="button" data-1g-ctl="play" aria-label="Pause" title="Play / pause">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"/></svg>
+              </button>
+              <button class="onegen-btn" type="button" data-1g-ctl="fwd" aria-label="Step forward" title="Step forward">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M16 5v14h2V5zM4 5v14l11-7z" fill="currentColor"/></svg>
+              </button>
+              <button class="onegen-btn" type="button" data-1g-ctl="loop" aria-label="Loop this phase" title="Loop this phase only" aria-pressed="false">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M17.65 6.35A8 8 0 1 0 19.5 14.5h-2.05a6 6 0 1 1-1.41-6.95L13 11h7V4z" fill="currentColor"/></svg>
+              </button>
+              <button class="onegen-btn onegen-btn--speed" type="button" data-1g-ctl="speed" aria-label="Playback speed" title="Playback speed">1×</button>
+            </div>
+            <button class="onegen-btn" type="button" data-1g-download aria-label="Download this animation as SVG snapshot" title="Download SVG">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="onegen-btn" type="button" data-1g-fullscreen aria-label="View this animation full-screen" title="Full screen">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path d="M4 10V4h6M20 10V4h-6M4 14v6h6M20 14v6h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <svg viewBox="0 -30 1100 600" role="img"
+               aria-label="Canonical 1G repeater across A — R₁ — R₂ — R₃ — B. EG: each adjacent pair emits matter–photon Bell pairs whose photons meet at a midpoint photonic Bell-state analyser; a successful herald collapses the two distant matter qubits into a Bell pair. 1st ES: parallel local Bell measurements at R₁ and R₃ extend the entanglement to A↔R₂ and R₂↔B. 2nd ES: a final Bell measurement at R₂ delivers one long A↔B Bell pair. Each row is a 'repeat until success' loop."
+               data-1g-svg>
+            <defs>
+              <style>{`
+                .g1-matter      { fill: #22c55e; stroke: #1a1f2a; stroke-width: 1.2; }
+                .g1-matter-used { fill: #c9ced6; stroke: #aab0ba; stroke-width: 1.0; }
+                .g1-photon      { fill: #2f6fd6; stroke: #1a1f2a; stroke-width: 1.0; }
+                .g1-ent         { stroke: #1a4a99; stroke-width: 1.7; fill: none; stroke-linecap: round; }
+                .g1-mp-wave     { stroke: #1a4a99; stroke-width: 1.4; fill: none; opacity: 0.85; }
+                .g1-photon-path { stroke: #6a7180; stroke-width: 0.9; fill: none; stroke-dasharray: 3 3; }
+                .g1-bm-box      { fill: none; stroke: #5a6472; stroke-width: 1.2; }
+                .g1-dev-box     { fill: none; stroke: #5a6472; stroke-width: 1.2; stroke-dasharray: 4 3; }
+                .g1-node-box    { fill: none; stroke: #5a6472; stroke-width: 1.2; }
+                .g1-lbl-end     { font-family: var(--font-sans, "Inter", system-ui, sans-serif); font-size: 13px; fill: var(--color-text); font-weight: 700; text-anchor: middle; }
+                .g1-lbl         { font-family: var(--font-sans, "Inter", system-ui, sans-serif); font-size: 13px; fill: var(--color-text); font-weight: 600; }
+                .g1-lbl-relay   { font-family: var(--font-sans, "Inter", system-ui, sans-serif); font-size: 14px; fill: var(--color-text); font-weight: 700; }
+                .g1-lbl-mu      { font-family: var(--font-sans, "Inter", system-ui, sans-serif); font-size: 10.5px; fill: var(--color-text-mute); }
+                .g1-lbl-stage   { font-family: var(--font-sans, "Inter", system-ui, sans-serif); font-size: 12px; fill: var(--color-text); font-weight: 700; letter-spacing: 0.04em; }
+                .g1-lbl-ann     { font-family: var(--font-sans, "Inter", system-ui, sans-serif); font-size: 14px; fill: var(--color-text); font-weight: 600; text-anchor: middle; }
+                .g1-lbl-ann-sm  { font-family: var(--font-sans, "Inter", system-ui, sans-serif); font-size: 9.5px; fill: var(--color-text-mute); }
+                .g1-bsm-glass   { fill: #d9eef9; stroke: #1a1f2a; stroke-width: 4; stroke-linejoin: round; }
+                .g1-bsm-coat    { stroke: #1a1f2a; stroke-width: 3; stroke-linecap: round; }
+                .g1-bsm-bs      { fill: #1a1f2a; stroke: none; }
+                .g1-bsm-beam    { stroke: #5a6472; stroke-width: 6; fill: none; stroke-linecap: round; }
+                .g1-bsm-det     { fill: #1a1f2a; stroke: #1a1f2a; stroke-width: 0.5; }
+                .g1-cb-pulse    { fill: #f97316; }
+                .g1-cb-line     { stroke: #9aa3af; stroke-width: 1; fill: none; }
+                .g1-herald      { fill: #f97316; stroke: #9a3412; stroke-width: 0.8; }
+                .g1-pulse-box   { fill: none; stroke: #f97316; stroke-width: 2.5; rx: 4; }
+                /* Horizontal quantum channel — same photon-blue as
+                   .epr / .fibre across the workspace. Distinct from
+                   the grey classical lines. */
+                .g1-qchan       { stroke: #2f6fd6; stroke-width: 1.6; fill: none; opacity: 0.6; }
+                .g1-bsa, .g1-meter, .g1-matter { transition: filter 280ms ease; }
+              `}</style>
+              <marker id="g1-arr" viewBox="0 0 10 10" refX="8" refY="5"
+                      markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#5a6472"/>
+              </marker>
+              <symbol id="g1-bsm-detector" overflow="visible">
+                <path class="g1-bsm-det" d="M -14,0 A 14,14 0 0 1 14,0 Z"/>
+              </symbol>
+              {/* Real QuISP BSA glyph — same vector content as
+                  icon-bsa-white.svg, identical to the one used in the
+                  ops-primitives.svg on the home page. */}
+              <symbol id="g1-bsa" viewBox="0 0 100 100" overflow="visible">
+                <circle cx="50" cy="50" r="48.6" fill="#ffffff"/>
+                <g transform="rotate(180 50 50)">
+                  <g transform="translate(-31.460882,77.692164)">
+                    <g transform="matrix(2.8375292,0,0,2.8375292,-4.7434798,-1217.7596)">
+                      <circle fill="none" stroke="#1a1f2a" stroke-width="1" cx="30.380079" cy="419.40271" r="17.120964"/>
+                      <rect fill="none" stroke="#1a1f2a" stroke-width="1" stroke-linejoin="round" width="11.686096" height="11.686096" x="-324.79691" y="-281.83298" transform="rotate(-135)"/>
+                      <path fill="none" stroke="#1a1f2a" stroke-width="1" stroke-linejoin="round" d="m 20.283432,411.29099 c -1.339849,1.33985 -1.04876,3.78799 0.652297,5.48904 l 0.614274,0.61427 5.535592,-5.53559 -0.614276,-0.61427 c -1.701048,-1.70106 -4.149184,-1.99215 -5.489033,-0.6523 z"/>
+                      <path fill="none" stroke="#1a1f2a" stroke-width="1" stroke-linejoin="round" d="m 39.687025,410.68297 c -1.339857,-1.33985 -3.787985,-1.04875 -5.489042,0.6523 l -0.614274,0.61427 5.535592,5.5356 0.614274,-0.61427 c 1.701057,-1.70106 1.992154,-4.14919 0.652297,-5.48904 z"/>
+                      <path fill="none" stroke="#1a1f2a" stroke-width="1" d="M 30.38007,428.95209 V 412.42545"/>
+                      <path fill="none" stroke="#1a1f2a" stroke-width="1" d="m 24.317803,414.62651 1.951624,1.95163"/>
+                      <path fill="none" stroke="#1a1f2a" stroke-width="1" d="m 36.3515,414.71734 -1.951624,1.95163"/>
+                      <path fill="none" stroke="#1a1f2a" stroke-width="1" d="m 34.511736,424.82045 1.951624,1.95163"/>
+                      <path fill="none" stroke="#1a1f2a" stroke-width="1" stroke-linecap="round" d="m 36.201761,426.66422 h 5.848874"/>
+                      <path fill="none" stroke="#1a1f2a" stroke-width="1" d="m 26.248414,424.82045 -1.951624,1.95163"/>
+                      <path fill="none" stroke="#1a1f2a" stroke-width="1" stroke-linecap="round" d="M 24.558389,426.66422 H 18.709515"/>
+                    </g>
+                  </g>
+                </g>
+              </symbol>
+              {/* Matter-side BSM meter glyph: rectangular box + semicircular
+                  dial + needle. Same as icon-bsm-meter.svg. */}
+              <symbol id="g1-bsm-meter" viewBox="0 0 36 36" overflow="visible">
+                <rect x="2" y="6" width="32" height="24" rx="2" fill="#ffffff" stroke="#1a1f2a" stroke-width="1.6"/>
+                <path d="M 6 26 A 12 12 0 0 1 30 26 Z" fill="none" stroke="#1a1f2a" stroke-width="1.4"/>
+                <line x1="10" y1="17" x2="8"  y2="15" stroke="#1a1f2a" stroke-width="1.1"/>
+                <line x1="18" y1="14" x2="18" y2="12" stroke="#1a1f2a" stroke-width="1.1"/>
+                <line x1="26" y1="17" x2="28" y2="15" stroke="#1a1f2a" stroke-width="1.1"/>
+                <line x1="18" y1="26" x2="27" y2="16" stroke="#d97706" stroke-width="2.0" stroke-linecap="round"/>
+                <circle cx="18" cy="26" r="1.6" fill="#1a1f2a"/>
+              </symbol>
+            </defs>
+
+            {/* Row 1: E Gen — BSAs sit inline with matter qubits on the
+                same horizontal channel; classical herald channel runs
+                below, with one bit per herald flowing outward from each
+                BSA to its two flanking matter qubits. */}
+            <g data-1g-row="1" opacity="1">
+              <text class="g1-lbl-stage" x="20" y="70" text-anchor="start">E Gen</text>
+              {/* Solid enclosure boxes for each node — A, R₁, R₂, R₃, B.
+                  A and B are squarish (34×34) since they are full
+                  end-nodes; the relay R₁/R₂/R₃ boxes are shorter
+                  (48×26). Same dimensions repeat in every row. */}
+              <rect class="g1-node-box" x="113" y="53" width="34" height="34" rx="4"/>
+              <rect class="g1-node-box" x="304" y="57" width="48" height="26" rx="4"/>
+              <rect class="g1-node-box" x="510" y="57" width="48" height="26" rx="4"/>
+              <rect class="g1-node-box" x="716" y="57" width="48" height="26" rx="4"/>
+              <rect class="g1-node-box" x="921" y="53" width="34" height="34" rx="4"/>
+              {/* Eight matter→BSA segments. Per segment:
+                  - a wavy matter-photon bond that GROWS from the matter
+                    qubit edge to the photon's current position
+                  - a straight blue fibre from the photon's current
+                    position to the BSA edge that SHRINKS as the photon
+                    approaches the BSA.
+                  Same visual recipe as the HEG row on the home page:
+                  blue qubit ~ photon — fibre — BSA. */}
+              <path class="g1-mp-wave" data-1g-mp-wave="0" d="M 141,70"/>
+              <path class="g1-mp-wave" data-1g-mp-wave="1" d="M 309,70"/>
+              <path class="g1-mp-wave" data-1g-mp-wave="2" d="M 347,70"/>
+              <path class="g1-mp-wave" data-1g-mp-wave="3" d="M 515,70"/>
+              <path class="g1-mp-wave" data-1g-mp-wave="4" d="M 553,70"/>
+              <path class="g1-mp-wave" data-1g-mp-wave="5" d="M 721,70"/>
+              <path class="g1-mp-wave" data-1g-mp-wave="6" d="M 759,70"/>
+              <path class="g1-mp-wave" data-1g-mp-wave="7" d="M 927,70"/>
+              <line class="g1-qchan" data-1g-fibre="0" x1="141" y1="70" x2="209" y2="70"/>
+              <line class="g1-qchan" data-1g-fibre="1" x1="309" y1="70" x2="237" y2="70"/>
+              <line class="g1-qchan" data-1g-fibre="2" x1="347" y1="70" x2="417" y2="70"/>
+              <line class="g1-qchan" data-1g-fibre="3" x1="515" y1="70" x2="445" y2="70"/>
+              <line class="g1-qchan" data-1g-fibre="4" x1="553" y1="70" x2="623" y2="70"/>
+              <line class="g1-qchan" data-1g-fibre="5" x1="721" y1="70" x2="651" y2="70"/>
+              <line class="g1-qchan" data-1g-fibre="6" x1="759" y1="70" x2="831" y2="70"/>
+              <line class="g1-qchan" data-1g-fibre="7" x1="927" y1="70" x2="859" y2="70"/>
+              {/* Classical herald channel — solid grey. The horizontal
+                  line spans A↔B at y=105; vertical stubs go UP into
+                  every device (BSAs that source the signal, and node
+                  boxes that receive it). */}
+              <line class="g1-cb-line" x1="130" y1="105" x2="938" y2="105"/>
+              <line class="g1-cb-line" x1="223" y1="86" x2="223" y2="105"/>
+              <line class="g1-cb-line" x1="431" y1="86" x2="431" y2="105"/>
+              <line class="g1-cb-line" x1="637" y1="86" x2="637" y2="105"/>
+              <line class="g1-cb-line" x1="845" y1="86" x2="845" y2="105"/>
+              <line class="g1-cb-line" x1="130" y1="87" x2="130" y2="105"/>
+              <line class="g1-cb-line" x1="328" y1="83" x2="328" y2="105"/>
+              <line class="g1-cb-line" x1="534" y1="83" x2="534" y2="105"/>
+              <line class="g1-cb-line" x1="740" y1="83" x2="740" y2="105"/>
+              <line class="g1-cb-line" x1="938" y1="87" x2="938" y2="105"/>
+              {/* Four midpoint BSAs (inline with the channel, y=70). */}
+              <use href="#g1-bsa" data-1g-bsa="0" class="g1-bsa" x="209" y="56" width="28" height="28"/>
+              <use href="#g1-bsa" data-1g-bsa="1" class="g1-bsa" x="417" y="56" width="28" height="28"/>
+              <use href="#g1-bsa" data-1g-bsa="2" class="g1-bsa" x="623" y="56" width="28" height="28"/>
+              <use href="#g1-bsa" data-1g-bsa="3" class="g1-bsa" x="831" y="56" width="28" height="28"/>
+              {/* Matter qubits — drawn after the channel so they sit on top.
+                  Endpoint names sit above the boxes (Alice / Bob); the
+                  intermediate repeater names sit above their boxes too. */}
+              <text class="g1-lbl-end"   x="130" y="45" text-anchor="middle">Alice</text>
+              <circle class="g1-matter" data-1g-mq="A"  cx="130" cy="70" r="11"/>
+              <circle class="g1-matter" data-1g-mq="R1L" cx="316" cy="70" r="7"/>
+              <circle class="g1-matter" data-1g-mq="R1R" cx="340" cy="70" r="7"/>
+              <text class="g1-lbl-relay" x="328" y="45" text-anchor="middle">R₁</text>
+              <circle class="g1-matter" data-1g-mq="R2L" cx="522" cy="70" r="7"/>
+              <circle class="g1-matter" data-1g-mq="R2R" cx="546" cy="70" r="7"/>
+              <text class="g1-lbl-relay" x="534" y="45" text-anchor="middle">R₂</text>
+              <circle class="g1-matter" data-1g-mq="R3L" cx="728" cy="70" r="7"/>
+              <circle class="g1-matter" data-1g-mq="R3R" cx="752" cy="70" r="7"/>
+              <text class="g1-lbl-relay" x="740" y="45" text-anchor="middle">R₃</text>
+              <circle class="g1-matter" data-1g-mq="B"  cx="938" cy="70" r="11"/>
+              <text class="g1-lbl-end"   x="938" y="45" text-anchor="middle">Bob</text>
+              {/* Photons start ON the channel at each matter qubit's
+                  facing edge, fly toward the adjacent BSA. Eight in
+                  all: A(0), R₁L(1)/R₁R(2), R₂L(3)/R₂R(4), R₃L(5)/R₃R(6), B(7). */}
+              <circle class="g1-photon" data-1g-photon="0" cx="141" cy="70" r="4.5"/>
+              <circle class="g1-photon" data-1g-photon="1" cx="309" cy="70" r="4.5"/>
+              <circle class="g1-photon" data-1g-photon="2" cx="347" cy="70" r="4.5"/>
+              <circle class="g1-photon" data-1g-photon="3" cx="515" cy="70" r="4.5"/>
+              <circle class="g1-photon" data-1g-photon="4" cx="553" cy="70" r="4.5"/>
+              <circle class="g1-photon" data-1g-photon="5" cx="721" cy="70" r="4.5"/>
+              <circle class="g1-photon" data-1g-photon="6" cx="759" cy="70" r="4.5"/>
+              <circle class="g1-photon" data-1g-photon="7" cx="927" cy="70" r="4.5"/>
+              {/* Eight EG classical-herald bits — one per matter qubit;
+                  drawn at SVG-root level via data-1g-cb="eg0".."eg7" so
+                  they sit above row dims. */}
+              <text class="g1-lbl-ann" x="1040" y="62">Repeat</text>
+              <text class="g1-lbl-ann" x="1040" y="79">until</text>
+              <text class="g1-lbl-ann" x="1040" y="96">success</text>
+              <line x1="1040" y1="104" x2="1040" y2="122"
+                    stroke="#5a6472" stroke-width="1.4" marker-end="url(#g1-arr)"/>
+            </g>
+
+            {/* Row 2: 1st E Swap */}
+            <g data-1g-row="2" opacity="0.22" transform="translate(0 -130)">
+              <text class="g1-lbl-stage" x="20" y="305" text-anchor="start">1st E Swap</text>
+              {/* Node enclosure boxes — same dimensions as the EG row. */}
+              <rect class="g1-node-box" x="113" y="308" width="34" height="34" rx="4"/>
+              <rect class="g1-node-box" x="510" y="312" width="48" height="26" rx="4"/>
+              <rect class="g1-node-box" x="921" y="308" width="34" height="34" rx="4"/>
+              <path data-1g-ent-2a class="g1-ent" opacity="0"
+                    d="M 141,325 q 7,-8 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0"/>
+              <path data-1g-ent-2b class="g1-ent" opacity="0"
+                    d="M 347,325 q 7,-8 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0"/>
+              <path data-1g-ent-2c class="g1-ent" opacity="0"
+                    d="M 553,325 q 7,-8 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0"/>
+              <path data-1g-ent-2d class="g1-ent" opacity="0"
+                    d="M 759,325 q 7,-8 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0"/>
+              <circle class="g1-matter" cx="130" cy="325" r="11"/>
+              <text class="g1-lbl" x="130" y="329" text-anchor="middle">A</text>
+              <rect data-1g-bm-r1 class="g1-bm-box" x="304" y="312" width="48" height="26" rx="4"/>
+              <rect data-1g-bm-r1-pulse class="g1-pulse-box" x="301" y="309" width="54" height="32" rx="4" opacity="0"/>
+              <use data-1g-bm-r1-herald class="g1-meter" href="#g1-bsm-meter" x="310" y="277" width="36" height="36"/>
+              <circle class="g1-matter" data-1g-bsm-q="r1L" cx="316" cy="325" r="7"/>
+              <circle class="g1-matter" data-1g-bsm-q="r1R" cx="340" cy="325" r="7"/>
+              <circle class="g1-matter" cx="522" cy="325" r="7"/>
+              <circle class="g1-matter" cx="546" cy="325" r="7"/>
+              <rect data-1g-bm-r3 class="g1-bm-box" x="716" y="312" width="48" height="26" rx="4"/>
+              <rect data-1g-bm-r3-pulse class="g1-pulse-box" x="713" y="309" width="54" height="32" rx="4" opacity="0"/>
+              <use data-1g-bm-r3-herald class="g1-meter" href="#g1-bsm-meter" x="722" y="277" width="36" height="36"/>
+              <circle class="g1-matter" data-1g-bsm-q="r3L" cx="728" cy="325" r="7"/>
+              <circle class="g1-matter" data-1g-bsm-q="r3R" cx="752" cy="325" r="7"/>
+              <circle class="g1-matter" cx="938" cy="325" r="11"/>
+              <text class="g1-lbl" x="938" y="329" text-anchor="middle">B</text>
+              {/* Classical channel — solid grey, end-to-end A↔B, with a
+                  vertical stub UP into every node (A, R₁, R₂, R₃, B).
+                  R₁ and R₃ stubs extend higher to reach the BSM meters
+                  that source the bit. Bits slide rightward along the line. */}
+              <line class="g1-cb-line" x1="130" y1="355" x2="938" y2="355"/>
+              <line class="g1-cb-line" x1="130" y1="342" x2="130" y2="355"/>
+              <line class="g1-cb-line" x1="328" y1="314" x2="328" y2="355"/>
+              <line class="g1-cb-line" x1="534" y1="338" x2="534" y2="355"/>
+              <line class="g1-cb-line" x1="740" y1="314" x2="740" y2="355"/>
+              <line class="g1-cb-line" x1="938" y1="342" x2="938" y2="355"/>
+              <text class="g1-lbl-ann" x="1040" y="363">Repeat</text>
+              <text class="g1-lbl-ann" x="1040" y="380">until</text>
+              <text class="g1-lbl-ann" x="1040" y="397">success</text>
+              <line x1="1040" y1="405" x2="1040" y2="423"
+                    stroke="#5a6472" stroke-width="1.4" marker-end="url(#g1-arr)"/>
+            </g>
+
+            {/* Row 3: 2nd E Swap */}
+            <g data-1g-row="3" opacity="0.22" transform="translate(0 -130)">
+              <text class="g1-lbl-stage" x="20" y="435" text-anchor="start">2nd E Swap</text>
+              {/* Node enclosure boxes — same dimensions as the EG row. */}
+              <rect class="g1-node-box" x="113" y="438" width="34" height="34" rx="4"/>
+              <rect class="g1-node-box" x="304" y="442" width="48" height="26" rx="4"/>
+              <rect class="g1-node-box" x="716" y="442" width="48" height="26" rx="4"/>
+              <rect class="g1-node-box" x="921" y="438" width="34" height="34" rx="4"/>
+              <circle class="g1-matter-used" cx="316" cy="455" r="7"/>
+              <circle class="g1-matter-used" cx="340" cy="455" r="7"/>
+              <circle class="g1-matter-used" cx="728" cy="455" r="7"/>
+              <circle class="g1-matter-used" cx="752" cy="455" r="7"/>
+              <path data-1g-ent-3a class="g1-ent" opacity="0"
+                    d="M 141.0,455 Q 148.1,445.8 155.2,452.6 Q 162.3,459.4 169.5,450.2 Q 176.6,441.1 183.7,447.9 Q 190.8,454.8 197.9,445.7 Q 205.0,436.7 212.2,443.6 Q 219.3,450.7 226.4,441.7 Q 233.5,432.9 240.6,440 Q 247.7,447.3 254.8,438.5 Q 262.0,429.9 269.1,437.3 Q 276.2,444.8 283.3,436.3 Q 290.4,427.9 297.5,435.6 Q 304.7,443.4 311.8,435.1 Q 318.9,427.1 326.0,435 Q 333.1,443.1 340.2,435.1 Q 347.3,427.4 354.5,435.6 Q 361.6,443.9 368.7,436.3 Q 375.8,428.8 382.9,437.3 Q 390.0,445.9 397.2,438.5 Q 404.3,431.3 411.4,440 Q 418.5,448.9 425.6,441.7 Q 432.7,434.7 439.8,443.6 Q 447.0,452.7 454.1,445.7 Q 461.2,438.8 468.3,447.9 Q 475.4,457.1 482.5,450.2 Q 489.7,443.4 496.8,452.6 Q 503.9,461.8 511.0,455"/>
+              <path data-1g-ent-3b class="g1-ent" opacity="0"
+                    d="M 553.0,455 Q 560.2,445.8 567.4,452.6 Q 574.6,459.4 581.8,450.2 Q 589.0,441.1 596.2,447.9 Q 603.3,454.8 610.5,445.7 Q 617.7,436.7 624.9,443.6 Q 632.1,450.7 639.3,441.7 Q 646.5,432.9 653.7,440 Q 660.9,447.3 668.1,438.5 Q 675.3,429.9 682.5,437.3 Q 689.7,444.8 696.8,436.3 Q 704.0,427.9 711.2,435.6 Q 718.4,443.4 725.6,435.1 Q 732.8,427.1 740.0,435 Q 747.2,443.1 754.4,435.1 Q 761.6,427.4 768.8,435.6 Q 776.0,443.9 783.2,436.3 Q 790.3,428.8 797.5,437.3 Q 804.7,445.9 811.9,438.5 Q 819.1,431.3 826.3,440 Q 833.5,448.9 840.7,441.7 Q 847.9,434.7 855.1,443.6 Q 862.3,452.7 869.5,445.7 Q 876.7,438.8 883.8,447.9 Q 891.0,457.1 898.2,450.2 Q 905.4,443.4 912.6,452.6 Q 919.8,461.8 927.0,455"/>
+              <circle class="g1-matter" cx="130" cy="455" r="11"/>
+              <text class="g1-lbl" x="130" y="459" text-anchor="middle">A</text>
+              <rect data-1g-bm-r2 class="g1-bm-box" x="510" y="442" width="48" height="26" rx="4"/>
+              <rect data-1g-bm-r2-pulse class="g1-pulse-box" x="507" y="439" width="54" height="32" rx="4" opacity="0"/>
+              <use data-1g-bm-r2-herald class="g1-meter" href="#g1-bsm-meter" x="516" y="407" width="36" height="36"/>
+              <circle class="g1-matter" data-1g-bsm-q="r2L" cx="522" cy="455" r="7"/>
+              <circle class="g1-matter" data-1g-bsm-q="r2R" cx="546" cy="455" r="7"/>
+              <circle class="g1-matter" cx="938" cy="455" r="11"/>
+              <text class="g1-lbl" x="938" y="459" text-anchor="middle">B</text>
+              {/* Classical channel — solid grey, end-to-end A↔B, with a
+                  vertical stub UP into every node (A, R₁ used, R₂, R₃ used, B).
+                  R₂ stub extends higher to reach the BSM meter that
+                  sources the bit. */}
+              <line class="g1-cb-line" x1="130" y1="485" x2="938" y2="485"/>
+              <line class="g1-cb-line" x1="130" y1="472" x2="130" y2="485"/>
+              <line class="g1-cb-line" x1="328" y1="468" x2="328" y2="485"/>
+              <line class="g1-cb-line" x1="534" y1="444" x2="534" y2="485"/>
+              <line class="g1-cb-line" x1="740" y1="468" x2="740" y2="485"/>
+              <line class="g1-cb-line" x1="938" y1="472" x2="938" y2="485"/>
+              <text class="g1-lbl-ann" x="1040" y="493">Repeat</text>
+              <text class="g1-lbl-ann" x="1040" y="510">until</text>
+              <text class="g1-lbl-ann" x="1040" y="527">success</text>
+              <line x1="1040" y1="535" x2="1040" y2="553"
+                    stroke="#5a6472" stroke-width="1.4" marker-end="url(#g1-arr)"/>
+            </g>
+
+            {/* Row 4: Result */}
+            <g data-1g-row="4" opacity="0.22" transform="translate(0 -130)">
+              <text class="g1-lbl-stage" x="20" y="565" text-anchor="start">Result</text>
+              {/* Node enclosure boxes — same dimensions as the EG row. */}
+              <rect class="g1-node-box" x="113" y="568" width="34" height="34" rx="4"/>
+              <rect class="g1-node-box" x="304" y="572" width="48" height="26" rx="4"/>
+              <rect class="g1-node-box" x="510" y="572" width="48" height="26" rx="4"/>
+              <rect class="g1-node-box" x="716" y="572" width="48" height="26" rx="4"/>
+              <rect class="g1-node-box" x="921" y="568" width="34" height="34" rx="4"/>
+              <circle class="g1-matter-used" cx="316" cy="585" r="6"/>
+              <circle class="g1-matter-used" cx="340" cy="585" r="6"/>
+              <circle class="g1-matter-used" cx="522" cy="585" r="6"/>
+              <circle class="g1-matter-used" cx="546" cy="585" r="6"/>
+              <circle class="g1-matter-used" cx="728" cy="585" r="6"/>
+              <circle class="g1-matter-used" cx="752" cy="585" r="6"/>
+              <path data-1g-ent-final class="g1-ent" opacity="0"
+                    d="M 141.00,585.00 Q 146.04,579.44 151.08,583.87 Q 156.12,588.31 161.15,582.75 Q 166.19,577.19 171.23,581.62 Q 176.27,586.07 181.31,580.51 Q 186.35,574.95 191.38,579.40 Q 196.42,583.85 201.46,578.30 Q 206.50,572.75 211.54,577.21 Q 216.58,581.67 221.62,576.13 Q 226.65,570.60 231.69,575.07 Q 236.73,579.55 241.77,574.02 Q 246.81,568.51 251.85,573.00 Q 256.88,577.49 261.92,571.99 Q 266.96,566.49 272.00,571.00 Q 277.04,575.52 282.08,570.03 Q 287.12,564.56 292.15,569.09 Q 297.19,573.64 302.23,568.18 Q 307.27,562.74 312.31,567.29 Q 317.35,571.86 322.38,566.43 Q 327.42,561.02 332.46,565.60 Q 337.50,570.21 342.54,564.81 Q 347.58,559.42 352.62,564.04 Q 357.65,568.68 362.69,563.31 Q 367.73,557.96 372.77,562.62 Q 377.81,567.29 382.85,561.96 Q 387.88,556.65 392.92,561.33 Q 397.96,566.04 403.00,560.75 Q 408.04,555.48 413.08,560.21 Q 418.12,564.96 423.15,559.70 Q 428.19,554.47 433.23,559.24 Q 438.27,564.03 443.31,558.82 Q 448.35,553.63 453.38,558.44 Q 458.42,563.27 463.46,558.11 Q 468.50,552.96 473.54,557.81 Q 478.58,562.69 483.62,557.57 Q 488.65,552.46 493.69,557.36 Q 498.73,562.28 503.77,557.20 Q 508.81,552.15 513.85,557.09 Q 518.88,562.06 523.92,557.02 Q 528.96,552.01 534.00,557.00 Q 539.04,562.01 544.08,557.02 Q 549.12,552.06 554.15,557.09 Q 559.19,562.15 564.23,557.20 Q 569.27,552.28 574.31,557.36 Q 579.35,562.46 584.38,557.57 Q 589.42,552.69 594.46,557.81 Q 599.50,562.96 604.54,558.11 Q 609.58,553.27 614.62,558.44 Q 619.65,563.63 624.69,558.82 Q 629.73,554.03 634.77,559.24 Q 639.81,564.47 644.85,559.70 Q 649.88,554.96 654.92,560.21 Q 659.96,565.48 665.00,560.75 Q 670.04,556.04 675.08,561.33 Q 680.12,566.65 685.15,561.96 Q 690.19,557.29 695.23,562.62 Q 700.27,567.96 705.31,563.31 Q 710.35,558.68 715.38,564.04 Q 720.42,569.42 725.46,564.81 Q 730.50,560.21 735.54,565.60 Q 740.58,571.02 745.62,566.43 Q 750.65,561.86 755.69,567.29 Q 760.73,572.74 765.77,568.18 Q 770.81,563.64 775.85,569.09 Q 780.88,574.56 785.92,570.03 Q 790.96,565.52 796.00,571.00 Q 801.04,576.49 806.08,571.99 Q 811.12,567.49 816.15,573.00 Q 821.19,578.51 826.23,574.02 Q 831.27,569.55 836.31,575.07 Q 841.35,580.60 846.38,576.13 Q 851.42,571.67 856.46,577.21 Q 861.50,582.75 866.54,578.30 Q 871.58,573.85 876.62,579.40 Q 881.65,584.95 886.69,580.51 Q 891.73,576.07 896.77,581.62 Q 901.81,587.19 906.85,582.75 Q 911.88,578.31 916.92,583.87 Q 921.96,589.44 927.00,585.00"/>
+              <circle class="g1-matter" cx="130" cy="585" r="11"/>
+              <text class="g1-lbl" x="130" y="589" text-anchor="middle">A</text>
+              <circle class="g1-matter" cx="938" cy="585" r="11"/>
+              <text class="g1-lbl" x="938" y="589" text-anchor="middle">B</text>
+              <text class="g1-lbl-stage" x="534" y="638" text-anchor="middle">One long A↔B Bell pair — ready for teleportation or QKD</text>
+            </g>
+
+            {/* Source attribution — sits outside all row groups so it
+                never picks up row dimming. Top-left, italic, leaves a
+                ~25 px gap before the EG row starts at y=50. */}
+            <text class="g1-lbl-ann-sm" x="20" y="-12" font-style="italic">As illustrated in Azuma et al., Rev. Mod. Phys. 95, 045006 (2023)</text>
+
+            {/* Classical-bit travelling pulses (drawn at SVG root so they sit
+                above their row backgrounds during the active phase). */}
+            {/* EG-row classical bits: 4 total, one per BSA, all sliding
+                rightward to the next matter qubit. */}
+            <circle data-1g-cb="eg0" class="g1-cb-pulse" r="3" cx="0" cy="0" opacity="0"/>
+            <circle data-1g-cb="eg1" class="g1-cb-pulse" r="3" cx="0" cy="0" opacity="0"/>
+            <circle data-1g-cb="eg2" class="g1-cb-pulse" r="3" cx="0" cy="0" opacity="0"/>
+            <circle data-1g-cb="eg3" class="g1-cb-pulse" r="3" cx="0" cy="0" opacity="0"/>
+            <circle data-1g-cb="r1"  class="g1-cb-pulse" r="3" cx="0" cy="0" opacity="0"/>
+            <circle data-1g-cb="r3"  class="g1-cb-pulse" r="3" cx="0" cy="0" opacity="0"/>
+            <circle data-1g-cb="r2"  class="g1-cb-pulse" r="3" cx="0" cy="0" opacity="0"/>
+          </svg>
+
+          <ol class="sw-step-list" data-1g-steps>
+            <li data-1g-step="1"><strong>1. EG.</strong> Adjacent matter qubits emit photons along the quantum channel; the midpoint BSA performs the Bell-state measurement and heralds a Bell pair across the link.</li>
+            <li data-1g-step="2"><strong>2. 1st ES.</strong> R₁ and R₃ run their swaps in parallel; outcomes go forward to R₂ and B.</li>
+            <li data-1g-step="3"><strong>3. 2nd ES.</strong> R₂ swaps and ships its outcome to B for the final Pauli correction.</li>
+            <li data-1g-step="4"><strong>4. Result.</strong> One long A↔B Bell pair — ready for teleportation or QKD.</li>
+          </ol>
+
+          <figcaption>
+            Classical bits flow <strong>forward</strong>, one hop at a time. All
+            pulses travel at the same horizontal speed, so the long R₂→B leg takes
+            visibly longer than the short ones — the latency the memories wait
+            through. Each row is a <em>repeat-until-success</em> loop (currently
+            shown deterministic; loss retries can be toggled on).
+          </figcaption>
+        </figure>
+
+        <Callout label="Pauli frame tracking — one correction at the end, not one per swap">
+          <p>
+            Each BSM along the chain produces two classical bits that determine which
+            of the four Bell states the swap landed on. The naive thing to do is
+            apply the corresponding Pauli correction (one of <Math tex="\\{I, X, Z, XZ\\}" />)
+            physically at each step. The better thing is to <strong>not apply any
+            correction during the chain</strong> and instead XOR each new bit pair
+            into a 2-bit <em>Pauli frame</em> held classically at one endpoint —
+            metadata that travels alongside the Bell pair but never touches
+            the qubits.
+          </p>
+          <p>
+            For a 4-hop chain that means four heralding-BSM outcomes plus six swap-BSM
+            bits (two per BSA across three BSAs) all accumulate into a single
+            2-bit frame at B. When the pair is finally consumed — at teleportation,
+            QKD, or a remote gate — the frame is XOR'd with the consuming
+            measurement's outcome bits and one Pauli correction is applied.
+            <strong>One physical gate at the end, not seven along the chain.</strong>
+            Each avoided physical correction is one less infidelity contribution.
+          </p>
+        </Callout>
+
+        <Callout label="Why fidelity drops with chain length">
+          <p>
+            Each Bell pair starts at some fidelity below 1 — heralded entanglement is
+            never perfect. Each BSM at a BSA is also imperfect, and each Pauli
+            correction sees noise from the classical-message latency relative to the
+            memory's coherence time. The end-to-end Bell pair's fidelity is roughly the
+            product of the per-link fidelities, multiplied by the BSM and memory
+            contributions, so chains of swaps degrade fidelity multiplicatively. This
+            is why purification matters at scale — it counters the multiplicative loss
+            by spending throughput on cleaner pairs.
+          </p>
+          <p>
+            The first multi-node demo with this pattern is Pompili et al. 2021: a
+            three-node NV-centre network — Alice, Bob, and Charlie — all sitting in
+            the same lab at QuTech (Delft), with a maximum inter-node distance of
+            <strong>7 metres</strong>. Charlie sits between Alice and Bob and acts as
+            the swapping BSA, demonstrating on-demand entanglement distribution
+            between the non-neighbouring endpoints. The point isn't reach — it's that
+            the protocol stack (entanglement generation, swap, fidelity reporting,
+            classical signalling) ran end-to-end on a real
+            platform <SourceNote id="pompili-science-2021" />.
+          </p>
+          <p>
+            Successive milestones from the same era:
+          </p>
+          <ul>
+            <li>
+              <strong>Hermans et al. 2022</strong> — same Delft 3-node hardware, now
+              running <strong>qubit teleportation</strong> through the middle node, not
+              just entanglement distribution <SourceNote id="hermans-nature-2022" />.
+            </li>
+            <li>
+              <strong>Krutyanskiy et al. 2023</strong> — trapped-ion entanglement
+              between two nodes over <strong>230 m</strong> of deployed urban fibre in
+              Innsbruck, the first outdoor-fibre heralded
+              demo <SourceNote id="krutyanskiy-prl-2023" />.
+            </li>
+            <li>
+              <strong>Knaut et al. 2024</strong> — two SiV-centre nodes at Harvard with
+              telecom-O QFC, generating entanglement through a <strong>35 km</strong>
+              loop of deployed Boston-area fibre at 17 dB total
+              loss <SourceNote id="knaut-nature-2024" />.
+            </li>
+          </ul>
+          <p>
+            None of these are >3 nodes or km-scale across more than two; multi-node
+            swapping chains over real fibre are still the open engineering frontier.
+          </p>
+        </Callout>
+      </section>
+
+      <section id="role" data-nav-section>
+        <h2>Network role</h2>
+        <p>
+          Swapping is the primitive that turns a two-node Bell-pair distribution into a
+          full network. The link-layer service ("deliver Bell pair (A, B) on demand")
+          inside a single link is a generation problem; getting that pair across more
+          than one link is a swapping problem. A repeater is, mechanically, a station
+          that holds memories long enough to align swaps — the network engineering is
+          all about which pairs to generate when, who fires first, and how to recover
+          if any single link's heralding fails.
+        </p>
+        <p>
+          Three follow-on subjects expand on this:
+        </p>
+        <ul>
+          <li>
+            <strong>Distribution</strong> covers the link architectures (MM, SR, MS)
+            that get a Bell pair onto a single link in the first place. See the
+            <strong>distribution</strong> subject.
+          </li>
+          <li>
+            <strong>Purification</strong> trades two noisy Bell pairs for one cleaner
+            pair, restoring fidelity that chained swapping erodes. See the
+            <strong>purification</strong> subject.
+          </li>
+          <li>
+            <strong>Repeaters</strong> integrate generation, swapping, and purification
+            into the 1G / 2G / 3G architectural families. See the
+            <strong>repeaters</strong> subject.
+          </li>
+        </ul>
+      </section>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<script type="module" is:inline>
+  // Entanglement-swapping animation. Five phases:
+  //   1. SETUP    — two Bell pairs (A↔A′, B′↔B) bright; BSM,
+  //                 classical channel, bottom result dimmed.
+  //   2. BSM      — A′ and B′ photons drop into the apparatus
+  //                 along its two diagonals; clouds turn grey;
+  //                 top entanglement lines fade; BSM brightens.
+  //   3. SEND     — bits (a, b) slide right along the classical
+  //                 channel to Bob.
+  //   4. CORRECT  — Pauli badge drops onto B; bottom result row
+  //                 brightens and the long A↔B wave traces in.
+  //   5. HOLD     — everything visible, narrative lines stacked,
+  //                 then a short fade-out before the cycle resets.
+  const fig = document.querySelector("[data-sw]");
+  if (fig) {
+    const svg     = fig.querySelector("[data-sw-svg]");
+    const aPrime  = svg.querySelector("[data-sw-aprime]");
+    const bPrime  = svg.querySelector("[data-sw-bprime]");
+    const aCloud  = svg.querySelector("[data-sw-aprime-cloud]");
+    const bCloud  = svg.querySelector("[data-sw-bprime-cloud]");
+    const pairAA  = svg.querySelector("[data-sw-pair-aa]");
+    const pairBB  = svg.querySelector("[data-sw-pair-bb]");
+    const pairAB  = svg.querySelector("[data-sw-pair-ab]");
+    const bsm     = svg.querySelector("[data-sw-bsm]");
+    const bits    = svg.querySelector("[data-sw-bits]");
+    const bitsTx  = svg.querySelector("[data-sw-bits-text]");
+    const lock    = svg.querySelector("[data-sw-lock]");
+    const lockTx  = svg.querySelector("[data-sw-lock-letter]");
+    const relayBox = svg.querySelector("[data-sw-relay-box]");
+    const stepEls = Array.from(fig.querySelectorAll("[data-sw-step]"));
+
+    const AP_HOME = { x: 359, y: 60 };
+    const BP_HOME = { x: 441, y: 60 };
+    // BSM apparatus has its own viewBox 640×540 mapped to outer
+    // rect (300, 62) → (500, 231). Inner→outer scaling factor:
+    // x: 200/640 = 0.3125, y: 169/540 ≈ 0.3130.
+    const SX = 200 / 640, SY = 169 / 540;
+    const DET = {
+      H1: { x: 300 + 130 * SX, y: 62 + 370 * SY },
+      V1: { x: 300 + 250 * SX, y: 62 + 370 * SY },
+      V2: { x: 300 + 390 * SX, y: 62 + 370 * SY },
+      H2: { x: 300 + 510 * SX, y: 62 + 370 * SY },
+    };
+    const BS_POS = { x: 300 + 320 * SX, y: 62 + 180 * SY };
+    const BIT_X_START = 475;
+    const BIT_X_END   = 700;
+    const LOCK_HOME   = { x: 750, y: 100 };
+
+    // The four Bell-outcome variants. Click-pair labels match the
+    // two photon paths through the apparatus; (a, b) is the 2-bit
+    // code R sends to Bob; inv is the Pauli Bob applies. Cycled
+    // through deterministically.
+    const OUTCOMES = [
+      { a: 0, b: 0, inv: "I",  clicks: ["H1", "H2"] },
+      { a: 1, b: 0, inv: "Z",  clicks: ["V1", "V2"] },
+      { a: 0, b: 1, inv: "X",  clicks: ["H1", "V1"] },
+      { a: 1, b: 1, inv: "XZ", clicks: ["H1", "V2"] },
+    ];
+    let outcomeIndex = -1;
+    let outcome = OUTCOMES[0];
+
+    function setOpacity(el, op) { el.setAttribute("opacity", String(op)); }
+    function setPos(g, x, y) { g.setAttribute("transform", `translate(${x} ${y})`); }
+    function setBitsX(x) { bitsTx.setAttribute("x", String(x)); }
+    function highlightStep(n) {
+      for (const el of stepEls) {
+        el.classList.toggle("sw-step--active", Number(el.dataset.swStep) === n);
+      }
+    }
+    function ease(t) {
+      return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+    }
+    function twoLeg(start, mid, end, t) {
+      if (t < 0.4) {
+        const k = t / 0.4;
+        return { x: start.x + (mid.x - start.x) * k, y: start.y + (mid.y - start.y) * k };
+      }
+      const k = (t - 0.4) / 0.6;
+      return { x: mid.x + (end.x - mid.x) * k, y: mid.y + (end.y - mid.y) * k };
+    }
+
+    function pickCycleParams() {
+      outcomeIndex = (outcomeIndex + 1) % OUTCOMES.length;
+      outcome = OUTCOMES[outcomeIndex];
+      bitsTx.textContent = `(${outcome.a}, ${outcome.b})`;
+      lockTx.textContent = outcome.inv;
+      aCloud.setAttribute("fill", "url(#sw-cloud-teal)");
+      bCloud.setAttribute("fill", "url(#sw-cloud-teal)");
+      setPos(aPrime, AP_HOME.x, AP_HOME.y);
+      setPos(bPrime, BP_HOME.x, BP_HOME.y);
+    }
+
+    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reducedMotion) {
+      pickCycleParams();
+      setOpacity(aPrime, 0); setOpacity(bPrime, 0);
+      setOpacity(pairAA, 0); setOpacity(pairBB, 0);
+      setOpacity(bsm, 0.22);
+      setOpacity(bits, 0); setOpacity(lock, 0);
+      setOpacity(relayBox, 0);
+      setOpacity(pairAB, 1);
+      pairAB.setAttribute("stroke-dashoffset", "0");
+      highlightStep(5);
+    } else {
+      const T_SETUP   = 1400;
+      const T_DROP    = 1300;
+      const T_MEASURE =  900;
+      const T_SEND    = 1700;
+      const T_UNLOCK  = 2400;   // Pauli badge dropping onto B (step 4
+                                // in the list) — was 1100 ms, too fast.
+      const T_TRACE   = 1100;
+      const T_HOLD    = 2600;
+      const T_PAUSE   =  400;
+      const T_TOTAL = T_SETUP + T_DROP + T_MEASURE + T_SEND + T_UNLOCK + T_TRACE + T_HOLD + T_PAUSE;
+
+      let running = false;
+      let cycleStart = 0;
+
+      function frame(now) {
+        if (!running) return;
+        const elapsed = now - cycleStart;
+        let t0 = T_SETUP;
+
+        if (elapsed < t0) {
+          // Phase 1 — setup
+          highlightStep(1);
+          setOpacity(aPrime, 1); setOpacity(bPrime, 1);
+          setPos(aPrime, AP_HOME.x, AP_HOME.y);
+          setPos(bPrime, BP_HOME.x, BP_HOME.y);
+          aCloud.setAttribute("fill", "url(#sw-cloud-teal)");
+          bCloud.setAttribute("fill", "url(#sw-cloud-teal)");
+          setOpacity(pairAA, 0.95);
+          setOpacity(pairBB, 0.95);
+          setOpacity(bsm, 0.22);
+          setOpacity(bits, 0);
+          setOpacity(lock, 0);
+          setOpacity(relayBox, 0.55);
+          setOpacity(pairAB, 0);
+          pairAB.setAttribute("stroke-dashoffset", "1");
+          const t = elapsed / T_SETUP;
+        } else if (elapsed < (t0 += T_DROP)) {
+          // Phase 2a — A′ and B′ drop into BSM apparatus
+          highlightStep(2);
+          const t = (elapsed - (t0 - T_DROP)) / T_DROP;
+          const e = ease(t);
+          const cClick = outcome.clicks[0];
+          const bClick = outcome.clicks[1];
+          const aEnd = DET[cClick];
+          const bEnd = DET[bClick];
+          const aPos = twoLeg(AP_HOME, BS_POS, aEnd, e);
+          const bPos = twoLeg(BP_HOME, BS_POS, bEnd, e);
+          setPos(aPrime, aPos.x, aPos.y);
+          setPos(bPrime, bPos.x, bPos.y);
+          setOpacity(bsm, 0.22 + 0.78 * Math.min(1, e * 1.5));
+          setOpacity(pairAA, 0.95 * Math.max(0, 1 - e * 1.6));
+          setOpacity(pairBB, 0.95 * Math.max(0, 1 - e * 1.6));
+          if (e > 0.15) {
+            aCloud.setAttribute("fill", "url(#sw-cloud-spent)");
+            bCloud.setAttribute("fill", "url(#sw-cloud-spent)");
+          }
+        } else if (elapsed < (t0 += T_MEASURE)) {
+          // Phase 2b — measurement clicks
+          highlightStep(2);
+          const t = (elapsed - (t0 - T_MEASURE)) / T_MEASURE;
+          const e = ease(t);
+          setOpacity(aPrime, Math.max(0, 1 - e * 2));
+          setOpacity(bPrime, Math.max(0, 1 - e * 2));
+          setOpacity(pairAA, 0); setOpacity(pairBB, 0);
+          setOpacity(bsm, 1);
+          setOpacity(bits, Math.min(1, (e - 0.2) * 2));
+          setBitsX(BIT_X_START);
+        } else if (elapsed < (t0 += T_SEND)) {
+          // Phase 3 — bits slide along classical channel
+          highlightStep(3);
+          const t = (elapsed - (t0 - T_SEND)) / T_SEND;
+          setOpacity(aPrime, 0); setOpacity(bPrime, 0);
+          setOpacity(bsm, 0.5);
+          setOpacity(bits, 1);
+          setBitsX(BIT_X_START + (BIT_X_END - BIT_X_START) * t);
+        } else if (elapsed < (t0 += T_UNLOCK)) {
+          // Phase 4a — Pauli badge drops onto B
+          highlightStep(4);
+          const t = (elapsed - (t0 - T_UNLOCK)) / T_UNLOCK;
+          const e = ease(t);
+          setBitsX(BIT_X_END);
+          setOpacity(bits, Math.max(0, 1 - e * 1.4));
+          const ix_start = BIT_X_END, iy_start = 235;
+          const ix_end = LOCK_HOME.x, iy_end = LOCK_HOME.y;
+          const ix = ix_start + (ix_end - ix_start) * e;
+          const iy = iy_start + (iy_end - iy_start) * e;
+          setPos(lock, ix, iy);
+          setOpacity(lock, Math.min(1, e * 2));
+        } else if (elapsed < (t0 += T_TRACE)) {
+          // Phase 4b — long A↔B Bell pair traces in on the SAME row
+          // as A and B. The dashed relay-R box dissolves at the same
+          // time so the line spans the row cleanly; the BSM apparatus
+          // dims back down too.
+          highlightStep(5);
+          const t = (elapsed - (t0 - T_TRACE)) / T_TRACE;
+          const e = ease(t);
+          setOpacity(pairAB, 1);
+          pairAB.setAttribute("stroke-dashoffset", String(1 - e));
+          setOpacity(lock, Math.max(0, 1 - e * 1.6));
+          setOpacity(bsm, 0.5 - 0.28 * e);
+          setOpacity(relayBox, 0.55 * (1 - e));
+        } else if (elapsed < T_TOTAL - T_PAUSE) {
+          // Phase 5 — hold final state
+          highlightStep(5);
+          setOpacity(pairAB, 1);
+          pairAB.setAttribute("stroke-dashoffset", "0");
+          setOpacity(lock, 0);
+          setOpacity(bsm, 0.22);
+          setOpacity(relayBox, 0);
+        } else if (elapsed < T_TOTAL) {
+          const t = (elapsed - (T_TOTAL - T_PAUSE)) / T_PAUSE;
+          const a = Math.max(0, 1 - t);
+        } else {
+          cycleStart = now;
+          pickCycleParams();
+        }
+        requestAnimationFrame(frame);
+      }
+
+      pickCycleParams();
+      const observer = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && !running) {
+            running = true;
+            cycleStart = performance.now();
+            pickCycleParams();
+            requestAnimationFrame(frame);
+          } else if (!entry.isIntersecting) {
+            running = false;
+          }
+        }
+      });
+      observer.observe(fig);
+    }
+  }
+</script>
+
+<script type="module" is:inline>
+  // Canonical 1G repeater animation. Four phases, walking down the four
+  // rows of the stacked diagram so the reader sees time progression.
+  // Each row remains visible (history) and dims to 0.45 once its phase
+  // ends — the currently-active row stays at 1.0.
+  //
+  // Per-segment state machines are scaffolded so loss retries can be
+  // toggled on by flipping CONFIG.lossEnabled (and dialling the success
+  // probabilities below 1.0). With successP = 1.0 the cycle is
+  // deterministic: every EG link heralds first try, every swap BSM
+  // succeeds first try, and the animation plays linearly.
+  function initOnegen(fig) {
+    const svg     = fig.querySelector("[data-1g-svg]");
+    const rows    = [1, 2, 3, 4].map((n) => svg.querySelector(`[data-1g-row="${n}"]`));
+    const photons = Array.from({ length: 8 }, (_, i) =>
+      svg.querySelector(`[data-1g-photon="${i}"]`));
+    const bsas    = Array.from({ length: 4 }, (_, i) =>
+      svg.querySelector(`[data-1g-bsa="${i}"]`));
+    const bmR1    = svg.querySelector("[data-1g-bm-r1]");
+    const bmR3    = svg.querySelector("[data-1g-bm-r3]");
+    const bmR2    = svg.querySelector("[data-1g-bm-r2]");
+    const bmR1Pulse = svg.querySelector("[data-1g-bm-r1-pulse]");
+    const bmR3Pulse = svg.querySelector("[data-1g-bm-r3-pulse]");
+    const bmR2Pulse = svg.querySelector("[data-1g-bm-r2-pulse]");
+    const bmR1Herald = svg.querySelector("[data-1g-bm-r1-herald]");
+    const bmR3Herald = svg.querySelector("[data-1g-bm-r3-herald]");
+    const bmR2Herald = svg.querySelector("[data-1g-bm-r2-herald]");
+    // The two matter qubits that flank each BSM meter — they light up
+    // together with the meter when the BSM fires.
+    const bsmQ = {
+      r1: [svg.querySelector('[data-1g-bsm-q="r1L"]'), svg.querySelector('[data-1g-bsm-q="r1R"]')],
+      r3: [svg.querySelector('[data-1g-bsm-q="r3L"]'), svg.querySelector('[data-1g-bsm-q="r3R"]')],
+      r2: [svg.querySelector('[data-1g-bsm-q="r2L"]'), svg.querySelector('[data-1g-bsm-q="r2R"]')],
+    };
+    const ent2    = ["2a", "2b", "2c", "2d"].map((k) =>
+      svg.querySelector(`[data-1g-ent-${k}]`));
+    const ent3    = ["3a", "3b"].map((k) =>
+      svg.querySelector(`[data-1g-ent-${k}]`));
+    const entFinal = svg.querySelector("[data-1g-ent-final]");
+    const cbR1    = svg.querySelector('[data-1g-cb="r1"]');
+    const cbR3    = svg.querySelector('[data-1g-cb="r3"]');
+    const cbR2    = svg.querySelector('[data-1g-cb="r2"]');
+    const stepEls = Array.from(fig.querySelectorAll("[data-1g-step]"));
+
+    // ---------------- Loss-toggle scaffolding ----------------
+    // Currently disabled — successP = 1.0 means every attempt heralds
+    // first try, so the cycle is deterministic and plays linearly.
+    // When ready to show loss: flip lossEnabled to true and drop the
+    // success probabilities; the animation loop will spend extra cycles
+    // showing photons disappear without herald, etc.
+    const CONFIG = {
+      lossEnabled: false,
+      egSuccessP:  1.0,   // P(herald) per EG attempt; ~0.5 realistic
+      esSuccessP:  1.0,   // P(success) per matter-qubit BSM; ~0.95 realistic
+    };
+    function attempt(p) {
+      return CONFIG.lossEnabled ? (Math.random() < p) : true;
+    }
+
+    // Per-segment state. Each segment owns its own attempt counter and
+    // last-outcome flag. With successP = 1.0 attempts always succeed
+    // and the phase advances immediately; with lower successP, the
+    // animation can spin in the current phase until allSettled() is
+    // true. (Retry rendering is scaffolded but not yet active.)
+    const egSegs = [0,1,2,3].map(() => ({ heralded: false, attempts: 0 }));
+    const es1Segs = ["R1", "R3"].map(() => ({ done: false, attempts: 0 }));
+    const es2Segs = ["R2"].map(() => ({ done: false, attempts: 0 }));
+    function resetSegs() {
+      egSegs.forEach((s) => { s.heralded = false; s.attempts = 0; });
+      es1Segs.forEach((s) => { s.done = false; s.attempts = 0; });
+      es2Segs.forEach((s) => { s.done = false; s.attempts = 0; });
+    }
+    function rollPhase1() { egSegs.forEach((s) => { s.attempts++; s.heralded = attempt(CONFIG.egSuccessP); }); }
+    function rollPhase2() { es1Segs.forEach((s) => { s.attempts++; s.done = attempt(CONFIG.esSuccessP); }); }
+    function rollPhase3() { es2Segs.forEach((s) => { s.attempts++; s.done = attempt(CONFIG.esSuccessP); }); }
+
+    function setOpacity(el, op) { el && el.setAttribute("opacity", String(op)); }
+    function setPos(el, x, y) { el && el.setAttribute("cx", String(x)); el && el.setAttribute("cy", String(y)); }
+    function setFilter(el, f) { if (el) el.style.filter = f || "none"; }
+    // Shared amber glow recipe — same colours as the meterFilter() used
+    // in AnimatedOpsPrimitives. t ∈ [0,1] modulates the strength so the
+    // glow can pulse with the BSM firing.
+    function glow(t) {
+      const a = Math.max(0, Math.min(1, t));
+      const r1 = (4 + 4 * a).toFixed(1);
+      const r2 = (4 + 4 * a).toFixed(1);
+      return `drop-shadow(0 0 ${r1}px #f59e0b) drop-shadow(0 0 ${r2}px #fbbf24)`;
+    }
+    function residualGlow() { return "drop-shadow(0 0 3px rgba(251, 191, 36, 0.4))"; }
+    function highlightStep(n) {
+      for (const el of stepEls) {
+        el.classList.toggle("sw-step--active", Number(el.dataset["1gStep"]) === n);
+      }
+    }
+
+    // Per-photon segment geometry: from matter qubit edge (x0) to BSA
+    // facing edge (x1). All at y=70 on the horizontal channel.
+    const SEG = [
+      { x0: 141, x1: 209 },  // A → BSA0 (right)
+      { x0: 309, x1: 237 },  // R₁L → BSA0 (left)
+      { x0: 347, x1: 417 },  // R₁R → BSA1 (right)
+      { x0: 515, x1: 445 },  // R₂L → BSA1 (left)
+      { x0: 553, x1: 623 },  // R₂R → BSA2 (right)
+      { x0: 721, x1: 651 },  // R₃L → BSA2 (left)
+      { x0: 759, x1: 831 },  // R₃R → BSA3 (right)
+      { x0: 927, x1: 859 },  // B   → BSA3 (left)
+    ];
+    const PHOTON_HOME = SEG.map((s) => ({ x: s.x0, y: 70 }));
+    const PHOTON_END  = SEG.map((s) => ({ x: s.x1, y: 70 }));
+    const fibres = Array.from({ length: 8 }, (_, i) =>
+      svg.querySelector(`[data-1g-fibre="${i}"]`));
+    const mpWaves = Array.from({ length: 8 }, (_, i) =>
+      svg.querySelector(`[data-1g-mp-wave="${i}"]`));
+    // Generate a wavy SVG path d-string from (x0,y) to (x1,y). Amplitude
+    // and half-wavelength match the matter-photon bond used on the home
+    // page's ops-primitives.svg.
+    function genWavyD(x0, x1, y, halfWl, amp) {
+      halfWl = halfWl || 8;
+      amp = amp || 3.5;
+      const dist = Math.abs(x1 - x0);
+      if (dist < 0.5) return "M " + x0.toFixed(2) + "," + y;
+      const dir = x1 > x0 ? 1 : -1;
+      const n = Math.max(1, Math.round(dist / halfWl));
+      const step = dir * (dist / n);
+      const s2 = (step / 2).toFixed(2);
+      const sw = step.toFixed(2);
+      let d = "M " + x0.toFixed(2) + "," + y + " q " + s2 + "," + (-amp) + " " + sw + ",0";
+      for (let i = 1; i < n; i++) d += " t " + sw + ",0";
+      return d;
+    }
+    function setFibreToPhoton(i, photonX) {
+      const f = fibres[i];
+      if (!f) return;
+      f.setAttribute("x1", String(photonX));
+    }
+    function setWavyToPhoton(i, photonX) {
+      const w = mpWaves[i];
+      if (!w) return;
+      w.setAttribute("d", genWavyD(SEG[i].x0, photonX, 70));
+    }
+    function resetFibresFull() {
+      // Photon at matter edge → fibre spans the full matter→BSA gap.
+      fibres.forEach((f, i) => f && f.setAttribute("x1", String(SEG[i].x0)));
+    }
+    function resetWavyEmpty() {
+      // No matter-photon bond drawn yet (photon hasn't been emitted).
+      mpWaves.forEach((w, i) => w && w.setAttribute("d", "M " + SEG[i].x0 + ",70"));
+    }
+    // EG classical-bit polylines: drop from BSA (y=86) down to the
+    // classical line (y=105), slide rightward to the next matter qubit,
+    // then rise UP into that box's bottom edge. One bit per BSA.
+    const EG_BIT_PATHS = [
+      [{x:223,y:86},{x:223,y:105},{x:328,y:105},{x:328,y:83}],  // BSA0 → R₁ box
+      [{x:431,y:86},{x:431,y:105},{x:534,y:105},{x:534,y:83}],  // BSA1 → R₂ box
+      [{x:637,y:86},{x:637,y:105},{x:740,y:105},{x:740,y:83}],  // BSA2 → R₃ box
+      [{x:845,y:86},{x:845,y:105},{x:938,y:105},{x:938,y:87}],  // BSA3 → B box
+    ];
+    const cbEG = Array.from({ length: 4 }, (_, i) =>
+      svg.querySelector(`[data-1g-cb="eg${i}"]`));
+    // Polyline helpers — used by both EG and swap bits.
+    function polyLen(pts) {
+      let L = 0;
+      for (let i = 1; i < pts.length; i++) {
+        L += Math.hypot(pts[i].x - pts[i-1].x, pts[i].y - pts[i-1].y);
+      }
+      return L;
+    }
+    function polyAt(pts, d) {
+      for (let i = 1; i < pts.length; i++) {
+        const sl = Math.hypot(pts[i].x - pts[i-1].x, pts[i].y - pts[i-1].y);
+        if (d <= sl) {
+          const k = d / sl;
+          return {
+            x: pts[i-1].x + (pts[i].x - pts[i-1].x) * k,
+            y: pts[i-1].y + (pts[i].y - pts[i-1].y) * k,
+          };
+        }
+        d -= sl;
+      }
+      const last = pts[pts.length - 1];
+      return { x: last.x, y: last.y };
+    }
+    function setBitAt(el, p) {
+      el.setAttribute("cx", String(p.x));
+      el.setAttribute("cy", String(p.y));
+    }
+
+    // Classical-bit pulse geometry. All swap-row pulses flow
+    // forward (rightward, toward B) at the same speed — so a long
+    // R₂→B leg visibly takes more time than a short R₁→R₂ leg.
+    // That's the latency story: classical-message time scales with
+    // distance, and the matter qubits hold while it's in flight.
+    //
+    // EG row: short vertical hops from each pBSM up to the matter
+    // row. ES1 and ES2: horizontal hops starting at the right edge
+    // of each "Bell measurement" label, ending at the next-forward
+    // node (R₂ for R₁; B for R₃; B for R₂).
+    // Swap-row bit polylines (visual coords after translate(0,-130) on
+    // rows 2/3/4). Each path: meter bottom → drop to classical line →
+    // slide rightward to destination box's x-centre → rise UP into the
+    // destination box bottom.
+    const CB_PATHS = {
+      r1: { points: [{x:328,y:184},{x:328,y:225},{x:534,y:225},{x:534,y:208}] },
+      r3: { points: [{x:740,y:184},{x:740,y:225},{x:938,y:225},{x:938,y:212}] },
+      r2: { points: [{x:534,y:313},{x:534,y:355},{x:938,y:355},{x:938,y:342}] },
+    };
+    for (const k of Object.keys(CB_PATHS)) CB_PATHS[k].len = polyLen(CB_PATHS[k].points);
+    const CB_SPEED = 0.20;  // px/ms — picked so R₂→B takes ~2.3 s
+    const CB_DUR = {
+      r1: CB_PATHS.r1.len / CB_SPEED,
+      r3: CB_PATHS.r3.len / CB_SPEED,
+      r2: CB_PATHS.r2.len / CB_SPEED,
+    };
+    const CB_DUR_MAX_ES1 = Math.max(CB_DUR.r1, CB_DUR.r3);
+    function moveCbBySpeed(key, elapsedMs) {
+      const p = CB_PATHS[key];
+      const el = key === "r1" ? cbR1 : key === "r3" ? cbR3 : cbR2;
+      setBitAt(el, polyAt(p.points, elapsedMs * CB_SPEED));
+    }
+
+    function ease(t) {
+      return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+    }
+
+    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reducedMotion) {
+      // Static end state: all rows fully visible.
+      rows.forEach((r) => setOpacity(r, 1));
+      ent2.forEach((e) => e && e.setAttribute("opacity", "1"));
+      ent3.forEach((e) => e && e.setAttribute("opacity", "1"));
+      entFinal && entFinal.setAttribute("opacity", "1");
+      highlightStep(4);
+    } else {
+      const T_EG_EMIT   = 1400;   // photons emit + travel toward pBSMs
+      const T_EG_MEAS   =  900;   // pBSMs pulse, herald bulbs flash
+      const T_EG_CLASS  = 1200;   // classical herald travels back up
+      const T_ES1_FADE  =  600;   // entanglement curves fade in (row 2)
+      const T_ES1_SETTLE =  800;  // freshly-distributed bonds pulsate
+      const T_ES1_PREP  = T_ES1_FADE + T_ES1_SETTLE;
+      const T_ES1_BSM   =  900;   // BM boxes at R₁, R₃ pulse
+      // Classical-bit budgets are derived from CB_SPEED + path length
+      // so all pulses move at the same px/ms. R₁→R₂ and R₃→B are
+      // similar length (~150 px); R₂→B is much longer (~350 px). The
+      // budget = max-path-time + 200 ms tail so the longest pulse can
+      // finish and linger briefly before the phase advances.
+      const T_ES1_CLASS = Math.ceil(CB_DUR_MAX_ES1) + 200;
+      const T_ES2_FADE  =  600;   // entanglement curves fade in (row 3)
+      const T_ES2_SETTLE =  800;  // freshly-distributed bonds pulsate
+      const T_ES2_PREP  = T_ES2_FADE + T_ES2_SETTLE;
+      const T_ES2_BSM   =  900;   // BM box at R₂ pulses
+      const T_ES2_CLASS = Math.ceil(CB_DUR.r2) + 200;
+      const T_RESULT_FADE   =  800;   // long A↔B Bell pair fades in
+      const T_RESULT_SETTLE =  800;   // and then pulsates once
+      const T_RESULT    = T_RESULT_FADE + T_RESULT_SETTLE;
+      const T_HOLD      = 3600;
+      const T_PAUSE     =  400;
+      const PHASE1 = T_EG_EMIT + T_EG_MEAS + T_EG_CLASS;
+      const PHASE2 = T_ES1_PREP + T_ES1_BSM + T_ES1_CLASS;
+      const PHASE3 = T_ES2_PREP + T_ES2_BSM + T_ES2_CLASS;
+      const PHASE4 = T_RESULT;
+      const T_TOTAL = PHASE1 + PHASE2 + PHASE3 + PHASE4 + T_HOLD + T_PAUSE;
+
+      let running = false;
+      let paused = false;
+      let cycleStart = 0;
+      let pausedAt = 0;
+      // Playback speed multiplier. virtual_elapsed = (now - cycleStart) * speed.
+      // The user toolbar cycles through 0.5×, 0.75×, 1×.
+      let speed = 1.0;
+
+      // Phase boundaries used by the step controls. Stepping snaps the
+      // virtual clock to one of these; the user gets four discrete
+      // "frames" of the protocol — start of EG, start of 1st ES,
+      // start of 2nd ES, start of Result — plus the hold state.
+      const PHASE_STARTS = [
+        0,
+        PHASE1,
+        PHASE1 + PHASE2,
+        PHASE1 + PHASE2 + PHASE3,
+        PHASE1 + PHASE2 + PHASE3 + PHASE4,
+      ];
+
+      function pickCycleParams() {
+        resetSegs();
+        rollPhase1();
+        rollPhase2();
+        rollPhase3();
+      }
+
+      function phaseAt(elapsed) {
+        if (elapsed < PHASE1) return "EG";
+        if (elapsed < PHASE1 + PHASE2) return "1st ES";
+        if (elapsed < PHASE1 + PHASE2 + PHASE3) return "2nd ES";
+        if (elapsed < PHASE1 + PHASE2 + PHASE3 + PHASE4) return "Result";
+        return "Hold";
+      }
+
+      // Pure render — sets element states based on a virtual elapsed
+      // time in [0, T_TOTAL]. No requestAnimationFrame, no time math
+      // beyond what's needed for sub-phase interpolation. The transport
+      // controls call this with arbitrary clock positions.
+      function renderAt(elapsed) {
+        let t0 = 0;
+        // -------- Phase 1 — EG --------
+        if (elapsed < (t0 += PHASE1)) {
+          highlightStep(1);
+          setOpacity(rows[0], 1);
+          setOpacity(rows[1], 0.22);
+          setOpacity(rows[2], 0.22);
+          setOpacity(rows[3], 0.22);
+          ent2.forEach((e) => e && e.setAttribute("opacity", "0"));
+          ent3.forEach((e) => e && e.setAttribute("opacity", "0"));
+          entFinal && entFinal.setAttribute("opacity", "0");
+
+          const local = elapsed - (t0 - PHASE1);
+          if (local < T_EG_EMIT) {
+            // 1a: photons emit from each matter qubit and fly along the
+            // channel toward the BSA. The matter-photon wavy bond grows
+            // from the qubit edge to the photon's current position; the
+            // blue fibre line from photon to BSA shrinks correspondingly.
+            const t = local / T_EG_EMIT;
+            const e = ease(t);
+            photons.forEach((ph, i) => {
+              if (!ph) return;
+              const s = SEG[i];
+              const curX = s.x0 + (s.x1 - s.x0) * e;
+              setPos(ph, curX, 70);
+              setOpacity(ph, 1);
+              setWavyToPhoton(i, curX);
+              setOpacity(mpWaves[i], 1);
+            });
+            bsas.forEach((b) => setFilter(b, "none"));
+            cbEG.forEach((c) => setOpacity(c, 0));
+          } else if (local < T_EG_EMIT + T_EG_MEAS) {
+            // 1b: photons arrive at the BSA. BSA fuzzy-glows. The wavy
+            // matter-photon bond fades (entanglement transferred to the
+            // BSA's measurement); the fibre is already at zero length.
+            const t = (local - T_EG_EMIT) / T_EG_MEAS;
+            photons.forEach((ph, i) => {
+              setOpacity(ph, Math.max(0, 1 - t * 2));
+              setPos(ph, SEG[i].x1, 70);
+            });
+            mpWaves.forEach((w) => setOpacity(w, Math.max(0, 1 - t * 2)));
+            const pulse = Math.sin(t * Math.PI);
+            bsas.forEach((b, i) => {
+              if (!egSegs[i].heralded) { setFilter(b, "none"); return; }
+              setFilter(b, glow(pulse));
+            });
+          } else {
+            // 1c: BSA glow settles to residual; wavy bonds are gone, the
+            // classical bit slides rightward from each BSA to the next
+            // matter qubit along the classical channel.
+            const t = (local - T_EG_EMIT - T_EG_MEAS) / T_EG_CLASS;
+            photons.forEach((ph) => setOpacity(ph, 0));
+            mpWaves.forEach((w) => setOpacity(w, 0));
+            bsas.forEach((b, i) => setFilter(b, egSegs[i].heralded ? residualGlow() : "none"));
+            // One bit per BSA. Polyline: drop down stub from BSA, slide
+            // rightward along the classical line, rise UP into the next
+            // matter qubit's box. Bit reaches the destination at 80% of
+            // the phase then lingers there for the remaining 20%.
+            cbEG.forEach((c, i) => {
+              if (!c) return;
+              if (!egSegs[i].heralded) { setOpacity(c, 0); return; }
+              setOpacity(c, 1);
+              const path = EG_BIT_PATHS[i];
+              const reach = Math.min(1, t / 0.80);
+              setBitAt(c, polyAt(path, reach * polyLen(path)));
+            });
+          }
+        }
+        // -------- Phase 2 — 1st ES --------
+        else if (elapsed < (t0 += PHASE2)) {
+          highlightStep(2);
+          setOpacity(rows[0], 0.45);
+          setOpacity(rows[1], 1);
+          setOpacity(rows[2], 0.22);
+          setOpacity(rows[3], 0.22);
+          mpWaves.forEach((w) => setOpacity(w, 0));
+          cbEG.forEach((c) => setOpacity(c, 0));
+          // Restore fibres to full length so the dimmed EG row reads as
+          // "channels still in place, ready for the next round".
+          resetFibresFull();
+          resetWavyEmpty();
+          // EG-row glows persist (those qubits are still entangled — the
+          // row simply dims globally) so don't clear bsa/mq filters here.
+
+          const local = elapsed - (t0 - PHASE2);
+          if (local < T_ES1_PREP) {
+            // 2a: bonds fade in, then pulsate briefly so the reader
+            // registers the distributed entanglement before the BSM
+            // fires. Stroke-width sine bump at full opacity.
+            setOpacity(cbR1, 0); setOpacity(cbR3, 0);
+            setOpacity(bmR1Pulse, 0); setOpacity(bmR3Pulse, 0);
+            setFilter(bmR1Herald, "none"); setFilter(bmR3Herald, "none");
+            if (local < T_ES1_FADE) {
+              const t = local / T_ES1_FADE;
+              ent2.forEach((p) => p && p.setAttribute("opacity", String(t)));
+              ent2.forEach((p) => p && p.setAttribute("stroke-width", "1.7"));
+            } else {
+              const t = (local - T_ES1_FADE) / T_ES1_SETTLE;
+              const w = 1.7 + 1.6 * Math.sin(t * Math.PI);  // 0 → peak → 0 sine bump
+              ent2.forEach((p) => {
+                if (!p) return;
+                p.setAttribute("opacity", "1");
+                p.setAttribute("stroke-width", String(w));
+              });
+            }
+          } else if (local < T_ES1_PREP + T_ES1_BSM) {
+            // BSM firing: meter + the two measured qubits fuzzy-glow.
+            // BM-box stroke pulses as a secondary cue.
+            ent2.forEach((p) => p && p.setAttribute("opacity", "1"));
+            const t = (local - T_ES1_PREP) / T_ES1_BSM;
+            const pulse = Math.sin(t * Math.PI);
+            const w = 1.2 + 1.6 * pulse;
+            if (bmR1) bmR1.setAttribute("stroke-width", String(w));
+            if (bmR3) bmR3.setAttribute("stroke-width", String(w));
+            // Reset entanglement bond stroke after the pulsate beat.
+            ent2.forEach((p) => p && p.setAttribute("stroke-width", "1.7"));
+            setOpacity(bmR1Pulse, pulse);
+            setOpacity(bmR3Pulse, pulse);
+            const g = glow(pulse);
+            setFilter(bmR1Herald, g);
+            setFilter(bmR3Herald, g);
+            bsmQ.r1.forEach((q) => setFilter(q, g));
+            bsmQ.r3.forEach((q) => setFilter(q, g));
+          } else {
+            // Classical bits travel onward; meter glow settles to residual.
+            if (bmR1) bmR1.setAttribute("stroke-width", "1.2");
+            if (bmR3) bmR3.setAttribute("stroke-width", "1.2");
+            setOpacity(bmR1Pulse, 0);
+            setOpacity(bmR3Pulse, 0);
+            setFilter(bmR1Herald, residualGlow());
+            setFilter(bmR3Herald, residualGlow());
+            bsmQ.r1.forEach((q) => setFilter(q, residualGlow()));
+            bsmQ.r3.forEach((q) => setFilter(q, residualGlow()));
+            const elapsedMs = local - T_ES1_PREP - T_ES1_BSM;
+            setOpacity(cbR1, 1); setOpacity(cbR3, 1);
+            moveCbBySpeed("r1", elapsedMs);
+            moveCbBySpeed("r3", elapsedMs);
+          }
+        }
+        // -------- Phase 3 — 2nd ES --------
+        else if (elapsed < (t0 += PHASE3)) {
+          highlightStep(3);
+          setOpacity(rows[0], 0.45);
+          setOpacity(rows[1], 0.45);
+          setOpacity(rows[2], 1);
+          setOpacity(rows[3], 0.22);
+          setOpacity(cbR1, 0); setOpacity(cbR3, 0);
+
+          const local = elapsed - (t0 - PHASE3);
+          if (local < T_ES2_PREP) {
+            setOpacity(cbR2, 0);
+            setOpacity(bmR2Pulse, 0); setFilter(bmR2Herald, "none");
+            if (local < T_ES2_FADE) {
+              const t = local / T_ES2_FADE;
+              ent3.forEach((p) => p && p.setAttribute("opacity", String(t)));
+              ent3.forEach((p) => p && p.setAttribute("stroke-width", "1.7"));
+            } else {
+              const t = (local - T_ES2_FADE) / T_ES2_SETTLE;
+              const w = 1.7 + 1.6 * Math.sin(t * Math.PI);
+              ent3.forEach((p) => {
+                if (!p) return;
+                p.setAttribute("opacity", "1");
+                p.setAttribute("stroke-width", String(w));
+              });
+            }
+          } else if (local < T_ES2_PREP + T_ES2_BSM) {
+            ent3.forEach((p) => {
+              if (!p) return;
+              p.setAttribute("opacity", "1");
+              p.setAttribute("stroke-width", "1.7");
+            });
+            const t = (local - T_ES2_PREP) / T_ES2_BSM;
+            const pulse = Math.sin(t * Math.PI);
+            const w = 1.2 + 1.6 * pulse;
+            if (bmR2) bmR2.setAttribute("stroke-width", String(w));
+            setOpacity(bmR2Pulse, pulse);
+            const g2 = glow(pulse);
+            setFilter(bmR2Herald, g2);
+            bsmQ.r2.forEach((q) => setFilter(q, g2));
+          } else {
+            if (bmR2) bmR2.setAttribute("stroke-width", "1.2");
+            setOpacity(bmR2Pulse, 0);
+            setFilter(bmR2Herald, residualGlow());
+            bsmQ.r2.forEach((q) => setFilter(q, residualGlow()));
+            const elapsedMs = local - T_ES2_PREP - T_ES2_BSM;
+            setOpacity(cbR2, 1);
+            moveCbBySpeed("r2", elapsedMs);
+          }
+        }
+        // -------- Phase 4 — Result --------
+        // Ramp the upper rows from 0.45 (history dim) back up to 1.0
+        // across this phase so the transition into the "everything lit"
+        // Hold scene is seamless.
+        else if (elapsed < (t0 += PHASE4)) {
+          highlightStep(4);
+          const t = (elapsed - (t0 - PHASE4)) / PHASE4;
+          const e = ease(Math.min(1, t));
+          const upDim = 0.45 + 0.55 * e;
+          setOpacity(rows[0], upDim);
+          setOpacity(rows[1], upDim);
+          setOpacity(rows[2], upDim);
+          setOpacity(rows[3], 1);
+          setOpacity(cbR2, 0);
+          const localR = elapsed - (t0 - PHASE4);
+          if (localR < T_RESULT_FADE) {
+            const k = localR / T_RESULT_FADE;
+            entFinal && entFinal.setAttribute("opacity", String(k));
+            entFinal && entFinal.setAttribute("stroke-width", "1.7");
+          } else {
+            const k = (localR - T_RESULT_FADE) / T_RESULT_SETTLE;
+            const w = 1.7 + 1.6 * Math.sin(k * Math.PI);
+            if (entFinal) {
+              entFinal.setAttribute("opacity", "1");
+              entFinal.setAttribute("stroke-width", String(w));
+            }
+          }
+        }
+        // -------- Hold --------
+        // "Everything lit" final scene: all four rows at full opacity
+        // with their end-state bonds drawn. This is the still-frame the
+        // reader (or a playwright screenshot) lands on between cycles.
+        else if (elapsed < T_TOTAL - T_PAUSE) {
+          highlightStep(4);
+          setOpacity(rows[0], 1);
+          setOpacity(rows[1], 1);
+          setOpacity(rows[2], 1);
+          setOpacity(rows[3], 1);
+          ent2.forEach((p) => p && p.setAttribute("opacity", "1"));
+          ent3.forEach((p) => p && p.setAttribute("opacity", "1"));
+          entFinal && entFinal.setAttribute("opacity", "1");
+          // EG row: photons consumed, channels restored to full so the
+          // row reads "ready for the next round" with the BSAs still
+          // carrying a residual glow.
+          resetFibresFull();
+          resetWavyEmpty();
+          photons.forEach((ph) => setOpacity(ph, 0));
+          mpWaves.forEach((w) => setOpacity(w, 0));
+          // Residual glow on every device (BSAs + BSM meters) and the
+          // matter qubits that each meter measured.
+          bsas.forEach((b, i) => setFilter(b, egSegs[i].heralded ? residualGlow() : "none"));
+          setFilter(bmR1Herald, residualGlow());
+          setFilter(bmR3Herald, residualGlow());
+          setFilter(bmR2Herald, residualGlow());
+          bsmQ.r1.forEach((q) => setFilter(q, residualGlow()));
+          bsmQ.r3.forEach((q) => setFilter(q, residualGlow()));
+          bsmQ.r2.forEach((q) => setFilter(q, residualGlow()));
+        } else if (elapsed < T_TOTAL) {
+          // Brief fade-out before the cycle resets so the transition into
+          // the next round isn't a hard cut.
+          const t = (elapsed - (T_TOTAL - T_PAUSE)) / T_PAUSE;
+          const dim = 1 - t * 0.6;
+          setOpacity(rows[0], dim);
+          setOpacity(rows[1], dim);
+          setOpacity(rows[2], dim);
+          setOpacity(rows[3], dim);
+        }
+        updatePhaseLabel(elapsed);
+      }
+
+      // -------- Transport controls --------
+      const btnPlay = fig.querySelector('[data-1g-ctl="play"]');
+      const btnBack = fig.querySelector('[data-1g-ctl="back"]');
+      const btnFwd  = fig.querySelector('[data-1g-ctl="fwd"]');
+      const btnLoop = fig.querySelector('[data-1g-ctl="loop"]');
+      const phaseLbl = fig.querySelector('[data-1g-phase]');
+
+      // Loop-this-phase state. When ON, frame() wraps elapsed back to the
+      // start of the phase whose index is loopPhaseIdx instead of advancing
+      // to the next phase. Captured on toggle and updated by step buttons.
+      let loopPhase = false;
+      let loopPhaseIdx = 0;
+
+      function updatePhaseLabel(elapsed) {
+        if (phaseLbl) phaseLbl.textContent = phaseAt(elapsed);
+      }
+      function setPlayIcon() {
+        if (btnPlay) {
+          // Inline SVG icons — guaranteed monochrome on every platform.
+          btnPlay.innerHTML = paused
+            ? '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">'
+              + '<path d="M7 4v16l13-8z" fill="currentColor"/></svg>'
+            : '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">'
+              + '<path d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"/></svg>';
+          btnPlay.setAttribute("aria-label", paused ? "Play" : "Pause");
+        }
+      }
+      function setLoopIcon() {
+        if (btnLoop) {
+          btnLoop.setAttribute("aria-pressed", loopPhase ? "true" : "false");
+        }
+      }
+      function currentElapsed(now) {
+        if (paused) return pausedAt;
+        let e = (now - cycleStart) * speed;
+        if (e >= T_TOTAL) {
+          // wrap inside frame() — but if asked here, normalise.
+          e = e % T_TOTAL;
+        }
+        return e;
+      }
+      // PHASE_STARTS = [0, P1, P1+P2, P1+P2+P3, P1+P2+P3+P4].
+      // Valid loop indices are 0..3 (the four protocol phases).
+      // Index 4 marks the start of the post-Result Hold window — not a
+      // protocol phase, so the loop should never capture it.
+      const LAST_PHASE_IDX = PHASE_STARTS.length - 2;  // 3
+      function currentPhaseIndex(elapsed) {
+        for (let i = LAST_PHASE_IDX; i >= 0; i--) {
+          if (elapsed >= PHASE_STARTS[i]) return i;
+        }
+        return 0;
+      }
+      function phaseEnd(idx) {
+        // For the last protocol phase (Result), extend the loop window to
+        // include the Hold time. Otherwise the wavy A↔B Bell pair would
+        // retrace from invisible the instant it finishes drawing — the
+        // user never sees the finished result before the next iteration
+        // starts. Wrapping at T_TOTAL - T_PAUSE keeps the Hold-state view
+        // visible for a beat before retrace.
+        if (idx === LAST_PHASE_IDX) return T_TOTAL - T_PAUSE;
+        return idx + 1 < PHASE_STARTS.length ? PHASE_STARTS[idx + 1] : T_TOTAL;
+      }
+      function togglePlay() {
+        if (paused) {
+          // Resume: shift cycleStart so elapsed reads pausedAt now.
+          paused = false;
+          cycleStart = performance.now() - pausedAt / speed;
+        } else {
+          // Pause: freeze the current virtual elapsed value.
+          paused = true;
+          pausedAt = (performance.now() - cycleStart) * speed;
+          if (pausedAt < 0) pausedAt = 0;
+          if (pausedAt >= T_TOTAL) pausedAt = T_TOTAL - 1;
+        }
+        setPlayIcon();
+      }
+      // Cycle playback speed: 0.5 → 0.75 → 1 → 0.5. Adjusts cycleStart
+      // when running so the virtual clock stays continuous across the change.
+      const SPEEDS = [0.5, 0.75, 1.0];
+      function setSpeed(s) {
+        if (!paused) {
+          const cur = (performance.now() - cycleStart) * speed;
+          speed = s;
+          cycleStart = performance.now() - cur / speed;
+        } else {
+          speed = s;
+        }
+        setSpeedIcon();
+      }
+      function cycleSpeed() {
+        const i = SPEEDS.indexOf(speed);
+        setSpeed(SPEEDS[(i + 1) % SPEEDS.length]);
+      }
+      function setSpeedIcon() {
+        const btn = fig.querySelector('[data-1g-ctl="speed"]');
+        if (btn) btn.textContent = (speed === 1.0 ? "1×" : speed + "×");
+      }
+      function toggleLoop() {
+        loopPhase = !loopPhase;
+        if (loopPhase) {
+          loopPhaseIdx = currentPhaseIndex(currentElapsed(performance.now()));
+        }
+        setLoopIcon();
+      }
+      function seekTo(t) {
+        paused = true;
+        pausedAt = Math.max(0, Math.min(T_TOTAL - 1, t));
+        // Stepping while looping moves the loop to the new phase, so the
+        // user can step then play and watch that phase on repeat.
+        if (loopPhase) loopPhaseIdx = currentPhaseIndex(pausedAt);
+        renderAt(pausedAt);
+        setPlayIcon();
+      }
+      function stepForward() {
+        const cur = currentElapsed(performance.now());
+        const eps = 50;  // skip past the current boundary if we're right on one
+        for (const b of PHASE_STARTS) {
+          if (b > cur + eps) return seekTo(b);
+        }
+        // already past last phase start — wrap to start.
+        seekTo(0);
+      }
+      function stepBackward() {
+        const cur = currentElapsed(performance.now());
+        const eps = 50;
+        for (let i = PHASE_STARTS.length - 1; i >= 0; i--) {
+          if (PHASE_STARTS[i] < cur - eps) return seekTo(PHASE_STARTS[i]);
+        }
+        seekTo(PHASE_STARTS[PHASE_STARTS.length - 1]);
+      }
+      const btnSpeed = fig.querySelector('[data-1g-ctl="speed"]');
+      if (btnPlay) btnPlay.addEventListener("click", togglePlay);
+      if (btnFwd)  btnFwd.addEventListener("click", stepForward);
+      if (btnBack) btnBack.addEventListener("click", stepBackward);
+      if (btnLoop) btnLoop.addEventListener("click", toggleLoop);
+      if (btnSpeed) btnSpeed.addEventListener("click", cycleSpeed);
+      setPlayIcon();
+      setLoopIcon();
+      setSpeedIcon();
+
+      function frame(now) {
+        if (paused) {
+          // Hold the paused frame; keep ticking so unpausing resumes
+          // cleanly without a stale render.
+          renderAt(pausedAt);
+        } else if (running) {
+          let elapsed = (now - cycleStart) * speed;
+          if (loopPhase) {
+            const pStart = PHASE_STARTS[loopPhaseIdx];
+            const pEnd   = phaseEnd(loopPhaseIdx);
+            if (elapsed >= pEnd) {
+              cycleStart = now - pStart / speed;
+              elapsed = pStart;
+            } else if (elapsed < pStart) {
+              cycleStart = now - pStart / speed;
+              elapsed = pStart;
+            }
+          } else if (elapsed >= T_TOTAL) {
+            cycleStart = now;
+            pickCycleParams();
+            elapsed = 0;
+          }
+          renderAt(elapsed);
+        }
+        requestAnimationFrame(frame);
+      }
+
+      pickCycleParams();
+      const observer = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && !running) {
+            running = true;
+            cycleStart = performance.now();
+            pickCycleParams();
+            requestAnimationFrame(frame);
+          } else if (!entry.isIntersecting) {
+            // Don't fully stop — user may have paused intentionally.
+            // Only halt the auto-advance when the user hasn't paused.
+            if (!paused) running = false;
+          }
+        }
+      });
+      observer.observe(fig);
+      const handle = {
+        teardown() {
+          running = false;
+          observer.disconnect();
+        },
+        // Render the "everything lit" Hold frame and freeze the engine
+        // there. Used by the PNG download so the snapshot always lands
+        // on the lit-up final scene rather than mid-animation.
+        renderHold() {
+          paused = true;
+          pausedAt = T_TOTAL - T_PAUSE - 200;  // mid-Hold
+          renderAt(pausedAt);
+          setPlayIcon();
+        },
+      };
+      fig.__onegenHandle = handle;
+      return handle;
+    }
+    return { teardown() {} };
+  }
+
+  // Init every 1G figure on the page, then wire fullscreen + download.
+  document.querySelectorAll("[data-1g]").forEach((fig) => {
+    if (fig.dataset.onegenInited) return;
+    fig.dataset.onegenInited = "1";
+    initOnegen(fig);
+  });
+
+  // Snapshot the live SVG to a PNG at 2× the viewBox size, with a white
+  // background. Inlines the computed style of every element from the live
+  // SVG onto the clone so canvas-side rendering matches what the user
+  // sees on the page (CSS variables, scoped Astro styles, etc. all
+  // resolve to their final values).
+  function downloadOnegenSvg(fig) {
+    const svg = fig.querySelector("[data-1g-svg]");
+    if (!svg) return;
+    // Seek to the "everything lit" Hold frame so the snapshot is the
+    // final scene rather than wherever the live animation happens to be.
+    if (fig.__onegenHandle && fig.__onegenHandle.renderHold) {
+      fig.__onegenHandle.renderHold();
+    }
+    const vb = svg.viewBox.baseVal;
+    const w = vb.width || svg.clientWidth || 1100;
+    const h = vb.height || svg.clientHeight || 600;
+    const scale = 2;
+
+    const clone = svg.cloneNode(true);
+    clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    clone.setAttribute("width", String(w));
+    clone.setAttribute("height", String(h));
+
+    // Properties that affect SVG visual rendering. Inlining these onto
+    // every element makes the dataurl-rendered SVG self-contained.
+    const visualProps = [
+      "fill", "fill-opacity", "stroke", "stroke-opacity", "stroke-width",
+      "stroke-linecap", "stroke-linejoin", "stroke-dasharray",
+      "stroke-dashoffset", "opacity", "filter",
+      "font-family", "font-size", "font-weight", "font-style",
+      "text-anchor", "letter-spacing", "dominant-baseline",
+    ];
+    const srcEls = svg.querySelectorAll("*");
+    const cloneEls = clone.querySelectorAll("*");
+    for (let i = 0; i < srcEls.length; i++) {
+      const cs = window.getComputedStyle(srcEls[i]);
+      const inline = visualProps
+        .map((p) => p + ":" + cs.getPropertyValue(p))
+        .filter((s) => !s.endsWith(":") && !s.endsWith(":normal"))
+        .join(";");
+      const existing = cloneEls[i].getAttribute("style") || "";
+      cloneEls[i].setAttribute("style", existing + ";" + inline);
+    }
+
+    const xml = new XMLSerializer().serializeToString(clone);
+    const svg64 = btoa(unescape(encodeURIComponent(xml)));
+    const dataUrl = "data:image/svg+xml;base64," + svg64;
+
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.round(w * scale);
+      canvas.height = Math.round(h * scale);
+      const ctx = canvas.getContext("2d");
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      canvas.toBlob((blob) => {
+        if (!blob) return;
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "canonical-1g-repeater.png";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      }, "image/png");
+    };
+    img.onerror = () => {
+      // Fallback: save the styled SVG so the user still gets something.
+      const blob = new Blob([xml], { type: "image/svg+xml;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "canonical-1g-repeater.svg";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    };
+    img.src = dataUrl;
+  }
+
+  function openOnegenFullscreen(srcFig) {
+    const dialog = document.createElement("dialog");
+    dialog.className = "onegen-fullscreen";
+    const clone = srcFig.cloneNode(true);
+    delete clone.dataset.onegenInited;
+    const fsBtn = clone.querySelector("[data-1g-fullscreen]");
+    if (fsBtn) {
+      const close = document.createElement("button");
+      close.type = "button";
+      close.className = fsBtn.className;
+      close.setAttribute("aria-label", "Close full-screen view");
+      close.setAttribute("title", "Close");
+      close.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+      close.addEventListener("click", () => dialog.close());
+      fsBtn.parentNode.replaceChild(close, fsBtn);
+    }
+    dialog.appendChild(clone);
+    document.body.appendChild(dialog);
+    const handle = initOnegen(clone);
+    dialog.addEventListener("close", () => {
+      if (handle && handle.teardown) handle.teardown();
+      dialog.remove();
+    });
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+    dialog.showModal();
+  }
+
+  document.addEventListener("click", (e) => {
+    const t = e.target;
+    if (!t || !t.closest) return;
+    const fsBtn = t.closest("[data-1g-fullscreen]");
+    if (fsBtn) {
+      const f = fsBtn.closest("[data-1g]");
+      if (f) openOnegenFullscreen(f);
+      return;
+    }
+    const dlBtn = t.closest("[data-1g-download]");
+    if (dlBtn) {
+      const f = dlBtn.closest("[data-1g]");
+      if (f) downloadOnegenSvg(f);
+    }
+  });
+</script>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-4);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .hero h1 { margin: 0; }
+  .hero p { margin: 0; }
+
+  section { display: grid; gap: var(--space-3); }
+
+  ol.sw-steps {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+  ol.sw-steps li { line-height: var(--leading-snug); }
+  ul {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+  li { line-height: var(--leading-snug); }
+
+  .sw {
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .sw svg {
+    inline-size: 100%;
+    block-size: auto;
+    display: block;
+  }
+  .sw figcaption {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-mute);
+  }
+
+  /* Canonical 1G repeater — stacked-row animated figure. Same wrapper
+     visuals as .sw; the SVG itself is wider (1100 viewBox) so it sits
+     full-width inside the card. */
+  .onegen {
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    display: grid;
+    gap: var(--space-2);
+  }
+  /* Toolbar mirrors AnimatedOpsPrimitives's .zfig__toolbar shape:
+     phase indicator on the left, playback group + download +
+     fullscreen on the right. Same button look. */
+  .onegen-controls {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .onegen-playback { display: flex; gap: 4px; }
+  .onegen-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 6px;
+    color: var(--color-text);
+    background: var(--color-surface-2);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+  }
+  .onegen-btn:hover { background: var(--color-surface); }
+  .onegen-btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  .onegen-btn[aria-pressed="true"] {
+    background: color-mix(in srgb, var(--color-accent) 22%, transparent);
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+  .onegen-phase {
+    margin-inline-end: auto;
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 11px;
+    color: var(--color-text-mute);
+    padding: 0 6px;
+    min-width: 4ch;
+    text-align: start;
+    align-self: center;
+  }
+
+  /* Full-screen dialog — same recipe as AnimatedOpsPrimitives. */
+  :global(.onegen-fullscreen) {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: min(96vw, 1500px);
+    max-width: 96vw;
+    max-height: 94vh;
+    padding: 0;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+    color: var(--color-text);
+    overflow: auto;
+  }
+  :global(.onegen-fullscreen)::backdrop { background: rgba(0, 0, 0, 0.55); }
+  :global(.onegen-fullscreen) .onegen {
+    border: none;
+    background: transparent;
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+  }
+  :global(.onegen-fullscreen) .onegen :global(svg) { max-height: 82vh; }
+  .onegen svg {
+    inline-size: 100%;
+    block-size: auto;
+    display: block;
+  }
+  .onegen figcaption {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-mute);
+  }
+
+  /* Classes used inside the inline 1G repeater SVG. Must stay in sync
+     with the same definitions inside the SVG's <style> defs block — the
+     :global() rules below win over the inline ones via cascade order. */
+  :global(.g1-matter)      { fill: #22c55e; stroke: #1a1f2a; stroke-width: 1.2; }
+  :global(.g1-matter-used) { fill: #c9ced6; stroke: #aab0ba; stroke-width: 1.0; }
+  :global(.g1-photon)      { fill: #2f6fd6; stroke: #1a1f2a; stroke-width: 1.0; }
+  :global(.g1-ent)         { stroke: #1a4a99; stroke-width: 1.7; fill: none; stroke-linecap: round; }
+  :global(.g1-mp-wave)     { stroke: #1a4a99; stroke-width: 1.4; fill: none; opacity: 0.85; }
+  :global(.g1-qchan)       { stroke: #2f6fd6; stroke-width: 1.6; fill: none; opacity: 0.6; }
+  :global(.g1-bm-box)      { fill: none; stroke: #5a6472; stroke-width: 1.2; }
+  :global(.g1-node-box)    { fill: none; stroke: #5a6472; stroke-width: 1.2; }
+  :global(.g1-bsa)         { transition: filter 280ms ease; }
+  :global(.g1-meter)       { transition: filter 280ms ease; }
+  :global(.g1-lbl)         { font-size: 13px; fill: var(--color-text); font-weight: 600; }
+  :global(.g1-lbl-relay)   { font-size: 14px; fill: var(--color-text); font-weight: 700; }
+  :global(.g1-lbl-end)     { font-size: 13px; fill: var(--color-text); font-weight: 700; text-anchor: middle; }
+  :global(.g1-lbl-mu)      { font-size: 10.5px; fill: var(--color-text-mute); }
+  :global(.g1-lbl-stage)   { font-size: 12px; fill: var(--color-text); font-weight: 700; letter-spacing: 0.04em; }
+  :global(.g1-lbl-ann)     { font-size: 14px; fill: var(--color-text); font-weight: 600; text-anchor: middle; }
+  :global(.g1-lbl-ann-sm)  { font-size: 9.5px; fill: var(--color-text-mute); }
+  :global(.g1-cb-pulse)    { fill: #f97316; }
+  :global(.g1-cb-line)     { stroke: #9aa3af; stroke-width: 1; fill: none; }
+  :global(.g1-herald)      { fill: #f97316; stroke: #9a3412; stroke-width: 0.8; }
+  :global(.g1-pulse-box)   { fill: none; stroke: #f97316; stroke-width: 2.5; }
+
+
+  ol.sw-step-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 4px;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+  }
+  ol.sw-step-list li {
+    padding: var(--space-1) var(--space-2);
+    border-inline-start: 3px solid transparent;
+    color: var(--color-text-mute);
+    transition: color 200ms ease, border-color 200ms ease, background 200ms ease;
+  }
+  ol.sw-step-list li.sw-step--active {
+    color: var(--color-text);
+    border-inline-start-color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+  }
+
+  :global(.sw-label) {
+    font-size: 13px;
+    font-weight: 700;
+    fill: var(--color-text);
+  }
+  :global(.sw-node-lbl) {
+    font-size: 13px;
+    font-weight: 600;
+    fill: var(--color-text);
+  }
+  :global(.sw-channel) {
+    font-size: 11px;
+    fill: var(--color-text-mute);
+  }
+  :global(.sw-bit) {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    fill: var(--color-text);
+  }
+  :global(.sw-pauli-badge) {
+    font-size: 14px;
+    font-weight: 700;
+    fill: var(--tp-purple, #a866c8);
+  }
+  :global(.sw-statement) {
+    font-size: 13px;
+    fill: var(--color-text);
+  }
+  :global(.sw-result) {
+    font-size: 14px;
+    font-style: italic;
+    fill: var(--color-text);
+  }
+  :global(.sw-ent) {
+    stroke: #c84a9b;
+    stroke-width: 2.4;
+    fill: none;
+  }
+</style>

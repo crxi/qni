@@ -1,0 +1,130 @@
+slug: lg-uplus
+name: LG U+
+categories: [network, qkd, enabling]
+hq: Seoul, South Korea
+founded: 1996
+status: public
+parent: null
+logo:
+  domain: lguplus.com
+
+positioning: >
+  South Korea's third mobile carrier and a subsidiary of LG Corporation
+  (KOSPI:032640). LG U+'s quantum-safe networking has centred on post-quantum
+  cryptography (PQC) more than QKD: in April 2022 the company launched
+  what it described as the world's first commercial PQC-protected dedicated-line
+  service for enterprise customers, building on a 2020 PQC pilot connecting
+  LG Innotek's Pyeongtaek plant to a Busan data centre and Eulji Medical
+  Center. QKD activity exists alongside the PQC line but is smaller-scale
+  than SK Telecom's or KT's; LG U+'s broader quantum work also includes
+  D-Wave quantum-annealing trials for 6G non-terrestrial network planning.
+
+business_units:
+  - name: LG U+ Quantum Computing TF
+    scope: Internal task force coordinating PQC product development, QKD trials, and applied-quantum (D-Wave annealing) work on KT's behalf
+    hq: Seoul, South Korea
+    lead: ""
+    source_url: https://www.dwavequantum.com/company/newsroom/press-release/lg-u-enhances-next-generation-network-competitiveness-with-quantum-computing/
+
+modalities:
+  qkd:
+    protocol: [BB84]
+    rate_distance: ""
+    deployed_demos: []
+  network:
+    role: operator
+    products:
+      - PQC-protected dedicated-line service (commercial, since April 2022)
+      - 300G-capacity private-line equipment with embedded PQC; integrated with LG U+'s Q-ROADM optical transmission for end-to-end multi-layered quantum-safe service
+  enabling:
+    products:
+      - PQC-protected enterprise lines for finance, manufacturing, and healthcare customers (LG Innotek, Eulji Medical Center as named early adopters)
+
+milestones:
+  - date: 2023
+    tag: network
+    headline: LG U+ partners with KAIST and Qunova Computing on a D-Wave-powered 6G low-earth-orbit satellite network study
+    source_url: https://www.dwavequantum.com/company/newsroom/press-release/lg-u-enhances-next-generation-network-competitiveness-with-quantum-computing/
+    source_type: press
+  - date: 2022-04
+    tag: enabling
+    headline: LG U+ launches commercial PQC-protected dedicated-line service — described as the world's first commercial PQC line; built with Seoul National University's CryptoLab
+    source_url: https://www.upi.com/Top_News/World-News/2022/04/22/Korea-quantum-resistant-crypto-LG-UPlus/7761650635762/
+    source_type: press
+  - date: 2020-12
+    tag: enabling
+    headline: LG U+ pilot applies PQC to a 640 km dedicated line connecting LG Innotek's Pyeongtaek plant to a Busan data centre, plus a dedicated line to Eulji Medical Center
+    source_url: https://web.archive.org/web/2021/https://www.ajudaily.com/view/20201201105143491
+    source_type: press
+
+shareholders:
+  - holder: LG Corp.
+    stake_percent: null
+    stake_class: controlling
+    as_of: 2026-05-20
+    source_url: https://web.archive.org/web/2024/https://www.lguplus.com/about/en/ceo-letter
+    note: LG U+ is a controlled subsidiary of LG Corp.; LG Corp. has historically held approximately 37 percent of LG U+ shares, though the exact current stake has not been confirmed against a public filing.
+  - holder: National Pension Service (Korea)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-05-20
+    source_url: https://web.archive.org/web/2024/https://www.lguplus.com/about/en/ceo-letter
+    note: NPS is consistently among the largest institutional holders of major KOSPI issuers; exact stake unverified.
+  - holder: Public float (KOSPI:032640)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-05-20
+    source_url: https://web.archive.org/web/2024/https://www.lguplus.com/about/en/ceo-letter
+    note: Widely-held domestic and foreign float outside LG Corp.'s controlling block.
+
+key_personnel:
+  - role: President & CEO
+    name: Hong Bum-shik
+    since: 2025
+    source_url: https://www.koreatimes.co.kr/business/companies/20241121/lg-uplus-replaces-ceo-lg-cns-ceo-promoted?utm_source=legacy_url&utm_medium=redirect&utm_campaign=news_manager_id
+    note: Appointed CEO of LG U+ in early 2025 following Hwang Hyeon-sik's tenure (2022-2024).
+
+roadmap: []
+
+current_flagship:
+  name: PQC-protected dedicated-line service
+  generation: Commercial PQC line for enterprise customers; 300G private-line equipment with embedded PQC and Q-ROADM optical transmission
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://www.upi.com/Top_News/World-News/2022/04/22/Korea-quantum-resistant-crypto-LG-UPlus/7761650635762/
+    note: LG U+ April 2022 commercial PQC line launch — Aju Daily coverage
+  - kind: press
+    citation_key: null
+    url: https://www.upi.com/Top_News/World-News/2022/04/22/Korea-quantum-resistant-crypto-LG-UPlus/7761650635762/
+    note: UPI coverage of the LG U+ PQC commercial launch
+  - kind: press
+    citation_key: null
+    url: https://web.archive.org/web/2021/https://www.ajudaily.com/view/20201201105143491
+    note: LG U+ 2020 PQC pilot — LG Innotek Pyeongtaek to Busan, Eulji Medical Center
+  - kind: press
+    citation_key: null
+    url: https://www.dwavequantum.com/company/newsroom/press-release/lg-u-enhances-next-generation-network-competitiveness-with-quantum-computing/
+    note: LG U+ + KAIST + Qunova + D-Wave 6G LEO satellite-network study
+  - kind: press
+    citation_key: null
+    url: https://www.koreatimes.co.kr/business/companies/20241121/lg-uplus-replaces-ceo-lg-cns-ceo-promoted?utm_source=legacy_url&utm_medium=redirect&utm_campaign=news_manager_id
+    note: Korea Times — LG U+ CEO transition (Hwang Hyeon-sik to Hong Bum-shik), Feb 2025
+
+partial:
+  - field: modalities.qkd.deployed_demos
+    as_of: 2026-05-20
+    note: LG U+'s public quantum-safe footprint is dominated by PQC rather than QKD; QKD trials with IDQ devices are referenced in Korean trade press but specific link distances and key rates are not consistently disclosed in English-language sources.
+  - modalities.qkd.rate_distance
+  - field: shareholders
+    as_of: 2026-05-20
+    note: Per-holder percentages not confirmed against LG U+'s latest annual report; LG Corp.'s controlling stake is the only structurally significant block.
+  - revenue
+  - headcount
+  - field: business_units."LG U+ Quantum Computing TF".lead
+    as_of: 2026-05-20
+    note: Lead of LG U+'s quantum task force is not separately named on the company's public English-language pages.
+
+last_verified: 2026-05-20
+verification_method: web

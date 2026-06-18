@@ -1,0 +1,139 @@
+slug: sparrow-quantum
+name: Sparrow Quantum
+categories: [source-detect]
+hq: Copenhagen, Denmark
+founded: 2016
+status: private
+parent: null
+logo:
+  domain: sparrowquantum.com
+
+positioning: >
+  Sparrow Quantum makes deterministic single-photon sources based on
+  self-assembled InAs/GaAs quantum dots embedded in photonic-crystal
+  waveguides. The flagship device emits long strings of indistinguishable
+  single photons into a single optical-fibre mode and is sold to photonic
+  quantum-computing builders and research groups in photonic interconnects
+  and quantum communications. Spin-out from Peter Lodahl's quantum-photonics
+  group at the Niels Bohr Institute, University of Copenhagen, building on
+  two decades of group R&D on light-matter coupling efficiency. Positioned
+  as the on-demand alternative to probabilistic SPDC heralded sources.
+
+modalities:
+  sources:
+    role: source
+    products:
+      - Sparrow Single-Photon Source (InAs/GaAs quantum-dot chip in a photonic-crystal waveguide, fibre-coupled output)
+
+milestones:
+  - date: 2025-12
+    tag: sources
+    headline: €27.5M (~$32M) Series A extension led by Novo Holdings — Novo's first direct quantum investment
+    source_url: https://sparrowquantum.com/post/sparrow-quantum-raises-eu27-5-million-in-record-breaking-investment-strengthening-denmarks-role-in-the-global-quantum-race
+    source_type: press
+  - date: 2025-04
+    tag: sources
+    headline: €21.5M Series A round closed to scale photonic-chip supply for quantum-computing customers
+    source_url: https://sparrowquantum.com/post/sparrow-quantum-secures-21-5-million-euro-to-accelerate-photonic-quantum-innovation-in-europe
+    source_type: press
+  - date: 2023-05
+    tag: sources
+    headline: €4.1M seed round closed to commercialise the on-chip deterministic single-photon source
+    source_url: https://www.semiconductor-today.com/news_items/2023/may/sparrow-180523.shtml
+    source_type: press
+  - date: 2016
+    tag: sources
+    headline: Sparrow Quantum incorporated as a spin-out from Peter Lodahl's quantum-photonics group at the Niels Bohr Institute, University of Copenhagen
+    source_url: https://nbi.ku.dk/english/news/news16/quantum-photonic-researchers-start-new-company-sparrow-quantum/
+    source_type: press
+
+shareholders:
+  - holder: Novo Holdings
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-12
+    source_url: https://novoholdings.dk/news/novo-holdings-makes-first-direct-quantum-investment-with-sparrow-quantum
+    note: Lead investor in the December 2025 €27.5M extension; Novo Holdings' first direct quantum investment.
+  - holder: 2xN
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-04
+    source_url: https://thequantuminsider.com/2025/04/10/sparrow-quantum-secures-e21-5-million-in-series-a-round/
+    note: Lead investor in the April 2025 €21.5M Series A.
+  - holder: Founders (Peter Lodahl and associates)
+    stake_percent: null
+    stake_class: founder
+    as_of: 2025-12
+    source_url: https://sparrowquantum.com/about
+    note: Lodahl serves as Chief Quantum Officer and remains on the company's leadership; founder equity split not disclosed.
+
+key_personnel:
+  - role: Chief Executive Officer
+    name: Kurt Stokbro
+    since: 2022
+    source_url: https://sparrowquantum.com/team-categories/management-team
+    note: Previously CEO of QuantumWise (acquired by Synopsys).
+  - role: Founder & Chief Quantum Officer
+    name: Peter Lodahl
+    since: 2016
+    source_url: https://sparrowquantum.com/about
+    note: Professor of quantum photonics at the Niels Bohr Institute, University of Copenhagen; leads the academic group from which Sparrow span out.
+  - role: Chief Technology Officer
+    name: Claus Friis Pedersen
+    since: ""
+    source_url: https://sparrowquantum.com/team-categories/management-team
+  - role: Chief Marketing Officer
+    name: Maria Genckel
+    since: ""
+    source_url: https://sparrowquantum.com/team-categories/management-team
+
+roadmap:
+  - target: 2026
+    item: Scale chip supply and integrate Sparrow sources into photonic quantum-computing customer systems following the 2025 Series A funding
+    source_url: https://sparrowquantum.com/post/sparrow-quantum-raises-eu27-5-million-in-record-breaking-investment-strengthening-denmarks-role-in-the-global-quantum-race
+    tag: sources
+
+current_flagship:
+  name: Sparrow Single-Photon Source
+  generation: InAs/GaAs quantum-dot chip in photonic-crystal waveguide; fibre-coupled deterministic on-demand single-photon emission
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://sparrowquantum.com/post/sparrow-quantum-raises-eu27-5-million-in-record-breaking-investment-strengthening-denmarks-role-in-the-global-quantum-race
+    note: December 2025 €27.5M extension led by Novo Holdings
+  - kind: press
+    citation_key: null
+    url: https://sparrowquantum.com/post/sparrow-quantum-secures-21-5-million-euro-to-accelerate-photonic-quantum-innovation-in-europe
+    note: April 2025 €21.5M Series A
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2023/05/11/sparrow-quantum-takes-flight-to-commercialize-light-matter-interface-technology/
+    note: 2023 seed-round coverage and product positioning
+  - kind: blog
+    citation_key: null
+    url: https://nbi.ku.dk/english/news/news16/quantum-photonic-researchers-start-new-company-sparrow-quantum/
+    note: Niels Bohr Institute announcement of the 2016 spin-out
+  - kind: blog
+    citation_key: null
+    url: https://sparrowquantum.com/about
+    note: Sparrow Quantum "About" page
+
+partial:
+  - modalities.sources.detection_efficiency
+  - modalities.sources.dark_count_hz
+  - modalities.sources.jitter_ps
+  - field: modalities.sources.products
+    as_of: 2026-05-20
+    note: Public datasheet rate (>20M photons/s into single-mode fibre, >100-photon strings) is from vendor press materials; peer-reviewed numbers from the Lodahl group are higher in some configurations but device-specific.
+  - field: key_personnel
+    as_of: 2026-05-20
+    note: "\"since\" dates for CTO and CMO not listed on the vendor team page."
+  - shareholders.0.stake_percent
+  - shareholders.1.stake_percent
+  - field: milestones
+    as_of: 2026-05-20
+    note: Customer names (PsiQuantum, ORCA) appear in industry-tracker write-ups but are not confirmed on a vendor or customer primary-source page; omitted pending direct confirmation.
+
+last_verified: 2026-05-20
+verification_method: web

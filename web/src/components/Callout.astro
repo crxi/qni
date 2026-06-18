@@ -1,0 +1,133 @@
+---
+/**
+ * Callout — collapsible aside box for content the main reading line
+ * doesn't depend on. Notation primers, derivation asides, "why this
+ * matters" boxes, caveats. Renders as a labelled <details>/<summary>
+ * with a chevron affordance — readers expand only the asides they
+ * want to read.
+ *
+ * Usage:
+ *
+ *   <Callout label="Notation primer">
+ *     <p>...</p>
+ *   </Callout>
+ *
+ *   <Callout label="Why two parameters" tone="note" defaultOpen={true}>
+ *     <p>...</p>
+ *   </Callout>
+ *
+ * Defaults to collapsed. Pass `defaultOpen` when the callout carries
+ * context the reader genuinely needs without opting in.
+ *
+ * `tone` selects the leading edge colour:
+ *   - "note" (default) — accent-coloured rail; informational asides.
+ *   - "warn"           — warm-amber rail; caveats / pitfalls.
+ *   - "muted"          — rule-coloured rail; off-path commentary.
+ *
+ * A single "Expand all / Collapse all asides" toolbar is mounted by
+ * the Infographic layout — every <Callout> on the page binds to it
+ * automatically via the `data-callout` attribute on its <details>.
+ */
+
+interface Props {
+  label: string;
+  tone?: "note" | "warn" | "muted";
+  defaultOpen?: boolean;
+  id?: string;
+}
+
+const { label, tone = "note", defaultOpen = false, id } = Astro.props;
+---
+
+<aside class:list={["callout", `callout--${tone}`]} aria-label={label} id={id}>
+  <details class="callout__details" data-callout open={defaultOpen}>
+    <summary class="callout__label">
+      <span class="callout__chevron" aria-hidden="true">▸</span>
+      <span class="callout__label-text">{label}</span>
+    </summary>
+    <div class="callout__body">
+      <slot />
+    </div>
+  </details>
+</aside>
+
+<style>
+  .callout {
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-surface-2);
+    border-inline-start: 3px solid var(--color-rule);
+    border-radius: var(--radius-sm);
+  }
+  .callout--note  { border-inline-start-color: var(--color-accent); }
+  .callout--warn  { border-inline-start-color: #c46a2a; }
+  .callout--muted { border-inline-start-color: var(--color-rule); }
+
+  .callout__details { margin: 0; padding: 0; }
+
+  .callout__label {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin: 0;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    font-weight: 700;
+    color: var(--color-accent);
+    user-select: none;
+  }
+  /* Hide the default disclosure marker (Chrome/Safari/Firefox). */
+  .callout__label::-webkit-details-marker { display: none; }
+  .callout__label::marker { content: ""; }
+
+  .callout__chevron {
+    display: inline-block;
+    color: var(--color-text-mute);
+    font-size: 0.85em;
+    transition: transform 150ms ease;
+  }
+  .callout__details[open] > .callout__label > .callout__chevron {
+    transform: rotate(90deg);
+  }
+  .callout--warn  .callout__label { color: #c46a2a; }
+  .callout--muted .callout__label { color: var(--color-text-mute); }
+
+  .callout__body {
+    margin-block-start: var(--space-2);
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .callout :global(p) {
+    margin: 0;
+    line-height: var(--leading-snug);
+  }
+  .callout :global(ol),
+  .callout :global(ul) {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+  .callout :global(li) {
+    line-height: var(--leading-snug);
+  }
+  .callout :global(h4) {
+    margin: 0;
+    font-size: var(--text-base);
+    line-height: var(--leading-snug);
+    color: var(--color-text);
+  }
+
+  /* Print: always expand asides so the printed PDF carries the
+     full content. The browser's print engine renders `<details>`
+     as the open state when the `open` attribute is set; we force
+     the content block visible regardless of the runtime state. */
+  @media print {
+    .callout__details > .callout__body { display: grid !important; }
+    .callout__chevron { display: none; }
+  }
+</style>

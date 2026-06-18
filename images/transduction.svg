@@ -1,0 +1,227 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 760" role="img" aria-labelledby="td-title td-desc">
+  <title id="td-title">End-to-end pipeline for moving a qubit between two quantum computers</title>
+  <desc id="td-desc">Two nodes A and B, each with compute qubits (transmons), an M-O transducer, a communication qubit (SiV at 737 nm), and a quantum frequency converter (QFC, 737 to 1550 nm). The figure shows one hop in detail: Node A's outgoing fibre meets a photonic Bell-state measurement (pBSM) immediately after A. An ellipsis represents the further hops, pBSMs, and swap relays that complete the chain before reaching Node B. Phase 1 generates entanglement via photons that converge at the pBSMs; Phase 2 teleports a transmon state via local operations at A, classical bits across the chain, and a correction at B. The quantum channel is used only in Phase 1.</desc>
+
+  <defs>
+    <style>
+      .frame      { fill: #fafbfc; stroke: #c5c8d0; stroke-width: 1.4; stroke-dasharray: 5,4; }
+      .node-lbl   { font: 600 19px sans-serif; fill: #1a1f2a; text-anchor: middle; }
+      .lbl        { font: 14px sans-serif; fill: #1a1f2a; text-anchor: middle; }
+      .sub        { font: 12.5px sans-serif; fill: #4a4f57; text-anchor: middle; }
+      .iface      { font: italic 12.5px sans-serif; fill: #7e5cb4; }
+      .blk-lbl    { font: 600 14px sans-serif; fill: #1a1f2a; text-anchor: middle; }
+      .blk-sub    { font: 12.5px sans-serif; fill: #4a4f57; text-anchor: middle; }
+      .leg        { font: 13px sans-serif; fill: #1a1f2a; }
+      .leg-h      { font: 600 13.5px sans-serif; fill: #1a1f2a; }
+      .zone-lbl   { font: italic 13px sans-serif; fill: #7e5cb4; text-anchor: middle; }
+      .transmon   { fill: #f29453; stroke: #8a3f0e; stroke-width: 1.4; }
+      .comm       { fill: #4cc080; stroke: #1d6638; stroke-width: 1.8; }
+      .photon     { fill: #2272dd; stroke: #0f3e8a; stroke-width: 1.2; }
+      .mo-blk     { fill: #fdeacf; stroke: #b8783c; stroke-width: 1.4; }
+      .qfc-blk    { fill: #e2eef9; stroke: #5a83b3; stroke-width: 1.4; }
+      .bsm-blk    { fill: #ece4f5; stroke: #7e5cb4; stroke-width: 1.6; }
+      .conn       { stroke: #888; stroke-width: 1.4; fill: none; }
+      .q-arrow    { stroke: #2272dd; stroke-width: 3; fill: none; }
+      .c-arrow    { stroke: #e88135; stroke-width: 2.2; stroke-dasharray: 6,4; fill: none; }
+      .bell       { stroke: #c14a8f; stroke-width: 2.4; fill: none; stroke-linecap: round; }
+      .bell-lbl   { font: 600 13.5px sans-serif; fill: #c14a8f; text-anchor: middle; }
+      .phase-tag  { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+      .zone-div   { stroke: #7e5cb4; stroke-width: 1.6; stroke-dasharray: 6,4; opacity: 0.75; }
+    </style>
+    <marker id="qhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#2272dd"/>
+    </marker>
+    <marker id="chead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#e88135"/>
+    </marker>
+  </defs>
+
+  <!-- Figure title -->
+  <text x="550" y="28" class="lbl" font-size="17" font-weight="600">Two quantum computers, one fibre — what actually crosses between them</text>
+
+  <!-- Legend (top-center, between the two nodes) -->
+  <g transform="translate(360,42)">
+    <rect x="0" y="0" width="380" height="76" rx="4" fill="#ffffff" stroke="#dadde3" stroke-width="1"/>
+    <line x1="14" y1="20" x2="50" y2="20" class="q-arrow" marker-end="url(#qhead)"/>
+    <text x="58" y="24" class="leg">Phase 1 — photon in fibre (quantum channel)</text>
+    <line x1="14" y1="42" x2="50" y2="42" class="c-arrow" marker-end="url(#chead)"/>
+    <text x="58" y="46" class="leg">Phase 2 — classical bits over classical channel</text>
+    <!-- Bell-pair sample: small wavy line, matching the workspace convention. -->
+    <path class="bell" d="M 14,64 q 4.5,-3 9,0 t 9,0 t 9,0 t 9,0"/>
+    <text x="58" y="68" class="leg">Bell pair (result of Phase 1)</text>
+  </g>
+
+  <!-- ════════════════════════════════ NODE A ════════════════════════════════ -->
+  <rect class="frame" x="60" y="60" width="280" height="500" rx="6"/>
+  <text class="node-lbl" x="200" y="85">Node A — quantum computer</text>
+
+  <!-- Transmon stack. Label placed to the right of the stack so the photon's
+       future animation along the central x=200 column is clear of text. -->
+  <circle class="transmon" cx="150" cy="120" r="14"/>
+  <circle class="transmon" cx="200" cy="120" r="14"/>
+  <circle class="transmon" cx="250" cy="120" r="14"/>
+  <text class="sub" x="275" y="124" text-anchor="start">transmons · 5 GHz</text>
+
+  <!-- Down to M-O transducer -->
+  <line class="conn" x1="200" y1="172" x2="200" y2="192"/>
+
+  <!-- M-O transducer block -->
+  <rect class="mo-blk" x="115" y="192" width="170" height="48" rx="6"/>
+  <text class="blk-lbl" x="200" y="214">M-O transducer</text>
+  <text class="blk-sub" x="200" y="231">microwave ↔ optical</text>
+  <text class="iface" x="293" y="220" text-anchor="start">compute–network QuIC</text>
+
+  <!-- Down to comm qubit -->
+  <line class="conn" x1="200" y1="240" x2="200" y2="270"/>
+
+  <!-- Communication qubit + emitted photon. The photon sits adjacent to the
+       comm qubit because the two are matter-photon entangled at the moment
+       of emission — a tiny magenta wavy line shows that link. The Phase-1
+       arrow further down then carries the photon through QFC + fibre. -->
+  <circle class="comm" cx="200" cy="293" r="20"/>
+  <text x="200" y="299" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="700" fill="#ffffff">A</text>
+  <!-- Photon emitted from comm-A, drawn just below the comm so the
+       matter-photon-entangled-at-emission relationship is visible.
+       Sits on the connector to the QFC — the photon is what travels
+       down through QFC and into the fibre. The 'A' inside the green
+       dot identifies comm-A; the SiV / electron / nuclear-spin detail
+       lives in the figure caption so the animation column stays clear. -->
+  <circle class="photon" cx="200" cy="322" r="6.5"/>
+  <text class="blk-sub" x="217" y="326" text-anchor="start" font-style="italic">photon</text>
+  <text class="blk-sub" x="60" y="293" text-anchor="start" font-style="italic">comm-A</text>
+  <text class="blk-sub" x="60" y="308" text-anchor="start" font-style="italic">(SiV)</text>
+
+  <!-- Down to QFC -->
+  <line class="conn" x1="200" y1="328" x2="200" y2="388"/>
+
+  <!-- QFC block -->
+  <rect class="qfc-blk" x="115" y="388" width="170" height="48" rx="6"/>
+  <text class="blk-lbl" x="200" y="410">QFC (PPLN)</text>
+  <text class="blk-sub" x="200" y="427">737 nm → 1550 nm</text>
+  <text class="iface" x="293" y="416" text-anchor="start">spin–photon QuIC</text>
+
+  <!-- Photon exit path (out of QFC, exits the node frame to the right).
+       No photon dot here — the photon dot is shown at emission next to
+       the comm qubit; the Phase-1 arrow further down indicates flow. -->
+  <line class="conn" x1="200" y1="436" x2="200" y2="470"/>
+  <line class="conn" x1="200" y1="470" x2="345" y2="470"/>
+
+  <!-- ════════════════════════════════ NODE B (mirror) ════════════════════════════════ -->
+  <rect class="frame" x="760" y="60" width="280" height="500" rx="6"/>
+  <text class="node-lbl" x="900" y="85">Node B — quantum computer</text>
+
+  <circle class="transmon" cx="850" cy="120" r="14"/>
+  <circle class="transmon" cx="900" cy="120" r="14"/>
+  <circle class="transmon" cx="950" cy="120" r="14"/>
+  <text class="sub" x="825" y="124" text-anchor="end">transmons · 5 GHz</text>
+
+  <line class="conn" x1="900" y1="172" x2="900" y2="192"/>
+  <rect class="mo-blk" x="815" y="192" width="170" height="48" rx="6"/>
+  <text class="blk-lbl" x="900" y="214">M-O transducer</text>
+  <text class="blk-sub" x="900" y="231">microwave ↔ optical</text>
+  <text class="iface" x="807" y="220" text-anchor="end">compute–network QuIC</text>
+
+  <line class="conn" x1="900" y1="240" x2="900" y2="270"/>
+  <circle class="comm" cx="900" cy="293" r="20"/>
+  <text x="900" y="299" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="700" fill="#ffffff">B</text>
+  <!-- Photon emitted from comm-B (mirror). -->
+  <circle class="photon" cx="900" cy="322" r="6.5"/>
+  <text class="blk-sub" x="883" y="326" text-anchor="end" font-style="italic">photon</text>
+  <text class="blk-sub" x="1040" y="293" text-anchor="end" font-style="italic">comm-B</text>
+  <text class="blk-sub" x="1040" y="308" text-anchor="end" font-style="italic">(SiV)</text>
+
+  <line class="conn" x1="900" y1="328" x2="900" y2="388"/>
+  <rect class="qfc-blk" x="815" y="388" width="170" height="48" rx="6"/>
+  <text class="blk-lbl" x="900" y="410">QFC (PPLN)</text>
+  <text class="blk-sub" x="900" y="427">737 nm → 1550 nm</text>
+  <text class="iface" x="807" y="416" text-anchor="end">spin–photon QuIC</text>
+
+  <line class="conn" x1="900" y1="436" x2="900" y2="470"/>
+  <line class="conn" x1="900" y1="470" x2="755" y2="470"/>
+
+  <!-- ════════════════════════════════ pBSM (Node A's local, immediately after A's fibre) ════════════════════════════════ -->
+  <rect class="bsm-blk" x="370" y="440" width="120" height="60" rx="6"/>
+  <text class="blk-lbl" x="430" y="465">pBSM</text>
+  <text class="blk-sub" x="430" y="483">50:50 BS + 2 SNSPDs</text>
+  <text class="sub" x="430" y="514" font-style="italic">A's local pBSM</text>
+
+  <!-- ════════════════════════════════ PHASE 1 FLOW ════════════════════════════════ -->
+  <!-- Photon from A flows right into A's local pBSM -->
+  <line class="q-arrow" x1="345" y1="470" x2="370" y2="470" marker-end="url(#qhead)"/>
+  <!-- Second photon converges at A's local pBSM from the next hop (which is in the ellipsis) -->
+  <line class="q-arrow" x1="620" y1="470" x2="490" y2="470" marker-end="url(#qhead)"/>
+  <!-- B's outgoing photon flows left into B's local pBSM (hidden in the ellipsis) -->
+  <line class="q-arrow" x1="755" y1="470" x2="720" y2="470" marker-end="url(#qhead)"/>
+
+  <!-- Fibre labels -->
+  <text class="sub" x="357" y="535">telecom fibre</text>
+  <text class="sub" x="737" y="535">telecom fibre</text>
+
+  <!-- ════════════════════════════════ ELLIPSIS — chain continues ════════════════════════════════ -->
+  <text x="630" y="478" text-anchor="middle" font-size="38" font-weight="700" fill="#7a808b">…</text>
+  <text class="sub" x="630" y="510" font-style="italic">further hops, swap relays,</text>
+  <text class="sub" x="630" y="525" font-style="italic">and their own pBSMs</text>
+
+  <!-- Phase-1 tag chip on A's emission arrow -->
+  <g>
+    <circle cx="357" cy="470" r="9" fill="#2272dd"/>
+    <text class="phase-tag" x="357" y="474">1</text>
+  </g>
+  <g>
+    <circle cx="737" cy="470" r="9" fill="#2272dd"/>
+    <text class="phase-tag" x="737" y="474">1</text>
+  </g>
+
+  <!-- ════════════════════════════════ BELL PAIR (wavy line — workspace convention) ════════════════════════════════ -->
+  <!-- 20 quadratic segments × 33 px = 660 px span, from right edge of comm-A (220,293) to left edge of comm-B (880,293) -->
+  <path class="bell" d="M 220,293 q 16.5,-9 33,0 t 33,0 t 33,0 t 33,0 t 33,0 t 33,0 t 33,0 t 33,0 t 33,0 t 33,0 t 33,0 t 33,0 t 33,0 t 33,0 t 33,0 t 33,0 t 33,0 t 33,0 t 33,0 t 33,0"/>
+  <text class="bell-lbl" x="550" y="270">end-to-end Bell pair, comm-A ↔ comm-B (after the swap chain)</text>
+
+  <!-- ════════════════════════════════ CLASSICAL CHANNEL BUS ════════════════════════════════ -->
+  <!-- Horizontal classical bus at the bottom; branches up to each node and up to the pBSM -->
+  <path class="c-arrow" d="M 200 560 L 200 615 L 900 615 L 900 560" marker-end="url(#chead)"/>
+  <line class="c-arrow" x1="430" y1="500" x2="430" y2="615"/>
+  <text class="sub" x="550" y="640" font-weight="600">classical channel — herald (Phase 1) + BSM outcome bits (Phase 2)</text>
+
+  <!-- Phase-2 chips on the classical channel (one at A going down, one at the bus going right, one at B going up) -->
+  <g>
+    <circle cx="200" cy="588" r="9" fill="#e88135"/>
+    <text class="phase-tag" x="200" y="592">2</text>
+  </g>
+  <g>
+    <circle cx="550" cy="615" r="9" fill="#e88135"/>
+    <text class="phase-tag" x="550" y="619">2</text>
+  </g>
+  <g>
+    <circle cx="900" cy="588" r="9" fill="#e88135"/>
+    <text class="phase-tag" x="900" y="592">2</text>
+  </g>
+
+  <!-- Phase-2 internal arrows (orange) inside each node: transmon ↔ transducer ↔ comm qubit.
+       Equal length (22 px each), positioned just below the compute-qubit
+       text so they don't cross 'compute qubits — transmons (~5 GHz microwave)'. -->
+  <!-- Node A: down arrows -->
+  <line class="c-arrow" x1="170" y1="170" x2="170" y2="192" marker-end="url(#chead)"/>
+  <line class="c-arrow" x1="170" y1="248" x2="170" y2="270" marker-end="url(#chead)"/>
+  <!-- Node B: up arrows (state arrives at comm, transduces up to transmon) -->
+  <line class="c-arrow" x1="930" y1="270" x2="930" y2="248" marker-end="url(#chead)"/>
+  <line class="c-arrow" x1="930" y1="192" x2="930" y2="170" marker-end="url(#chead)"/>
+
+  <!-- ════════════════════════════════ ZONE DIVIDER ════════════════════════════════
+       Horizontal dashed line separates the two regimes. Anything ABOVE the
+       line is local to the node (LOCC, no quantum channel needed); anything
+       BELOW the line is the quantum-channel pipeline (QFC + fibre + pBSM,
+       used only in Phase 1). Labels live in the central gap between the
+       two nodes so they don't compete with in-node text. -->
+  <line class="zone-div" x1="20" y1="378" x2="1080" y2="378"/>
+  <text class="zone-lbl" x="550" y="372">↑ LOCC zone — Phase 2 runs above this line (no fibre)</text>
+  <text class="zone-lbl" x="550" y="394">↓ Quantum-channel zone — QFC, fibre, pBSM. Phase 1 only.</text>
+
+  <!-- Phase descriptions at the very bottom -->
+  <text class="lbl" x="550" y="710" font-size="13">
+    <tspan font-weight="600" fill="#2272dd">Phase 1:</tspan> photons fly inward, meet at the pBSM, the herald says comm-A ↔ comm-B is a Bell pair.
+  </text>
+  <text class="lbl" x="550" y="734" font-size="13">
+    <tspan font-weight="600" fill="#e88135">Phase 2:</tspan> local BSM at A consumes the pair, two bits cross the classical channel, B applies the correction. Fibre is silent.
+  </text>
+</svg>

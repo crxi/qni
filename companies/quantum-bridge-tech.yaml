@@ -1,0 +1,121 @@
+slug: quantum-bridge-tech
+name: Quantum Bridge Technologies
+categories: [network, qkd, software]
+hq: Toronto, Ontario, Canada
+founded: 2019
+status: private
+parent: null
+logo:
+  domain: qubridge.io
+
+positioning: >
+  University-of-Toronto spin-out commercialising Distributed Symmetric Key
+  Exchange (DSKE) — a quantum-safe key-distribution scheme aimed at telecom
+  and enterprise networks. Founded by Hoi-Kwong Lo (UofT, twin-field QKD)
+  and Mattia Montagna; product positioning is networking-software for
+  quantum-safe key delivery rather than dedicated QKD endpoint hardware.
+  Partnered with Juniper Networks (Beyond Labs) under a strategic investment
+  in August 2024 and has received non-dilutive Canadian federal funding
+  (NRC, ISED).
+
+modalities:
+  qkd:
+    protocol: [DSKE]
+    rate_distance: ""
+    deployed_demos: []
+  network:
+    role: orchestrator
+    products: [Distributed Symmetric Key Exchange (DSKE) platform]
+  software:
+    products:
+      - DSKE key-distribution software for quantum-safe networking
+
+milestones:
+  - date: 2026-05
+    tag: network
+    headline: US$8M Series A led by Primo Capital SGR; partnership with Italian network integrator Italtel
+    source_url: https://thequantuminsider.com/2026/05/20/quantum-bridge-secures-8-million-to-fortify-global-networks-against-quantum-threats/
+    source_type: press
+  - date: 2024-08
+    tag: network
+    headline: Juniper Networks (Juniper Ventures) takes strategic equity stake and announces partnership through Juniper Beyond Labs to advance quantum-safe networking
+    source_url: https://newsroom.juniper.net/news/news-details/2024/Juniper-Networks-Partners-with-Quantum-Bridge-Technologies-to-Advance-Industry-First-Quantum-Safe-Networking-Solutions/default.aspx
+    source_type: press
+  - date: 2023-09
+    tag: network
+    headline: National Research Council of Canada awards CAD 890K (~USD 700K) to develop quantum repeater technology
+    source_url: https://optics.org/press/5745
+    source_type: press
+  - date: 2023
+    tag: network
+    headline: CAD 1M contract from Innovation, Science and Economic Development Canada (ISED) for quantum-resistant key-distribution trials
+    source_url: https://www.physics.utoronto.ca/news-and-events/news/physics-news/prof-hoi-kwong-los-start-up-company-qbt-receives-1m-in-federal-funding/
+    source_type: press
+  - date: 2019
+    tag: network
+    headline: Quantum Bridge Technologies founded in Toronto by Hoi-Kwong Lo (University of Toronto) and Mattia Montagna
+    source_url: https://tracxn.com/d/companies/quantumbridgetechnologies/__6BZ2XY5PrkZWPG9DPC-GSD3oYhGa6XJQr-U-5MOBMOU
+    source_type: web
+
+shareholders:
+  - holder: Juniper Networks (Juniper Ventures)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2024-08
+    source_url: https://thequantuminsider.com/2024/08/28/juniper-ventures-makes-security-investment-in-quantum-bridge-technologies-as-quantum-computing-threats-loom/
+    note: Strategic investment announced August 2024; round size not disclosed.
+  - holder: Founders (Hoi-Kwong Lo, Mattia Montagna)
+    stake_percent: null
+    stake_class: founder
+    as_of: 2024-08
+    source_url: https://tracxn.com/d/companies/quantum-bridge-technologies/__6BZ2XY5PrkZWPG9DPC-GSD3oYhGa6XJQr-U-5MOBMOU/founders-and-board-of-directors
+    note: Founder equity retained; split not disclosed.
+
+key_personnel:
+  - role: Co-founder & CEO
+    name: Mattia Montagna
+    since: 2019
+    source_url: https://www.crunchbase.com/organization/quantum-bridge-technologies
+  - role: Co-founder & Chief Scientist
+    name: Hoi-Kwong Lo
+    since: 2019
+    source_url: https://www.physics.utoronto.ca/news-and-events/news/physics-news/prof-hoi-kwong-los-start-up-company-qbt-receives-1m-in-federal-funding/
+    note: Professor of Physics at the University of Toronto; co-inventor of decoy-state QKD and twin-field QKD.
+
+roadmap: []
+
+current_flagship:
+  name: Distributed Symmetric Key Exchange (DSKE)
+  generation: Quantum-safe symmetric-key distribution platform for telecom and enterprise networks
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://newsroom.juniper.net/news/news-details/2024/Juniper-Networks-Partners-with-Quantum-Bridge-Technologies-to-Advance-Industry-First-Quantum-Safe-Networking-Solutions/default.aspx
+    note: Juniper Networks partnership and strategic investment (Aug 2024)
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2024/08/28/juniper-ventures-makes-security-investment-in-quantum-bridge-technologies-as-quantum-computing-threats-loom/
+    note: The Quantum Insider — Juniper Ventures coverage
+  - kind: press
+    citation_key: null
+    url: https://optics.org/press/5745
+    note: NRC CAD 890K funding for quantum repeaters
+  - kind: web
+    citation_key: null
+    url: https://qubridge.io/
+    note: Quantum Bridge Technologies corporate site
+
+partial:
+  - modalities.qkd.rate_distance
+  - field: modalities.qkd.deployed_demos
+    as_of: 2026-05-20
+    note: DSKE is the company's near-term commercial product; quantum-repeater work is at the R&D stage and no production deployments are disclosed.
+  - revenue
+  - headcount
+  - field: shareholders
+    as_of: 2026-05-20
+    note: Private company; full cap table not disclosed. Juniper Ventures and founder equity confirmed; other angel / seed participants not separately enumerated here.
+
+last_verified: 2026-05-20
+verification_method: web

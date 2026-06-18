@@ -1,0 +1,154 @@
+/* ============================================================
+   tokens.css — single source of visual truth.
+   Three tiers: primitive → semantic → component.
+   Re-skinning the entire infographic = editing this file.
+
+   Platform colors (--platform-*) mirror data.yaml exactly so
+   the SVG and the web page stay in lockstep. If you change
+   one, change the other.
+   ============================================================ */
+
+/* ─── Tier 1: Primitives ──────────────────────────────────── */
+
+:root {
+  /* Neutrals — OKLCH for perceptual uniformity */
+  --gray-50:   oklch(0.98 0.005 250);
+  --gray-100:  oklch(0.95 0.010 250);
+  --gray-200:  oklch(0.90 0.010 250);
+  --gray-300:  oklch(0.82 0.015 250);
+  --gray-400:  oklch(0.65 0.020 250);
+  --gray-500:  oklch(0.55 0.020 250);
+  --gray-600:  oklch(0.45 0.020 250);
+  --gray-700:  oklch(0.35 0.015 250);
+  --gray-800:  oklch(0.25 0.010 250);
+  --gray-900:  oklch(0.20 0.010 250);
+
+  /* Brand — pulled from spectrum SVG palette */
+  --teal-600:    #3a7d7d;
+  --teal-500:    #4f9494;
+  --indigo-600:  #5b8def;
+  --magenta-600: #a8408d;
+
+  /* Tier accent colours — one per reading-order tier (A–E). Used as
+     subtle hints (thin left border on cards, small dot beside SiteNav
+     tier labels, thin underline on the subject page H1). Chosen to be
+     muted enough to sit comfortably alongside the existing teal accent
+     on the light theme — not full surface washes. */
+  --tier-a: #5fb3b3;  /* Foundations          — soft teal       */
+  --tier-b: #d4a259;  /* Components           — warm amber      */
+  --tier-c: #9b87c4;  /* Mechanisms           — soft violet     */
+  --tier-d: #7fa987;  /* Infrastructure       — sage green      */
+  --tier-e: #c98370;  /* Applications/Market  — muted coral     */
+  --tier-f: #6b8eb3;  /* Case studies         — slate blue      */
+
+  /* Platform colors (verbatim from data.yaml) */
+  --platform-superconducting: #5b8def;
+  --platform-topological:     #3a7d7d;
+  --platform-si-spin:         #7d5fa8;
+  --platform-photonic:        #7fb8c4;
+  --platform-neutral-atoms:   #e8b65a;
+  --platform-quantum-dots:    #d8a86b;
+  --platform-siv-memory:      #b07070;
+  --platform-nv-centre:       #9a7fb8;
+  --platform-re-memory:       #c98a8a;
+  --platform-trapped-ions:    #7c5fa8;
+  --platform-cold-atom:       #e8b65a;
+
+  /* Spacing */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:  16px;
+  --space-4:  24px;
+  --space-5:  32px;
+  --space-6:  48px;
+  --space-7:  64px;
+  --space-8:  96px;
+  --space-9: 128px;
+
+  /* Typography */
+  --font-sans:  "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", ui-serif, Georgia, serif;
+  --font-mono:  "JetBrains Mono", ui-monospace, monospace;
+
+  --text-xs:   clamp(0.75rem,  0.70rem + 0.25vw, 0.85rem);
+  --text-sm:   clamp(0.875rem, 0.83rem + 0.25vw, 0.95rem);
+  --text-base: clamp(1.00rem,  0.95rem + 0.25vw, 1.10rem);
+  --text-lg:   clamp(1.15rem,  1.10rem + 0.5vw,  1.35rem);
+  --text-xl:   clamp(1.50rem,  1.40rem + 0.7vw,  1.85rem);
+  --text-2xl:  clamp(2.00rem,  1.80rem + 1.0vw,  2.50rem);
+  --text-3xl:  clamp(2.50rem,  2.20rem + 1.5vw,  3.50rem);
+  --text-stat: clamp(3.00rem,  2.50rem + 2.5vw,  5.00rem);
+
+  --leading-tight: 1.15;
+  --leading-snug:  1.35;
+  --leading-body:  1.55;
+  --leading-loose: 1.75;
+
+  --tracking-tight:  -0.02em;
+  --tracking-normal:  0em;
+  --tracking-wide:    0.04em;
+
+  /* Shape + motion */
+  --radius-sm:    4px;
+  --radius:       8px;
+  --radius-lg:   12px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.06);
+  --shadow:    0 4px 12px oklch(0 0 0 / 0.08);
+  --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.10);
+
+  /* Layout */
+  --content-width: 70ch;
+  --wide-width:    72rem;
+}
+
+/* ─── Tier 2: Semantic ────────────────────────────────────── */
+
+:root {
+  --color-bg:        var(--gray-50);
+  --color-surface:   #ffffff;
+  --color-surface-2: var(--gray-100);
+  --color-text:      var(--gray-900);
+  --color-text-mute: var(--gray-600);
+  --color-text-soft: var(--gray-500);
+  --color-border:    var(--gray-200);
+  --color-rule:      var(--gray-200);
+
+  --color-accent:    var(--teal-600);
+  --color-accent-2:  var(--magenta-600);
+
+  /* Category accents */
+  --color-computer:  var(--indigo-600);
+  --color-memory:    var(--magenta-600);
+  --color-source:    var(--teal-500);
+}
+
+/* ─── Tier 3: Component ───────────────────────────────────── */
+
+:root {
+  --stat-value-color:  var(--color-text);
+  --stat-label-color:  var(--color-text-mute);
+
+  --quote-color:       var(--color-accent);
+  --quote-rule-color:  var(--color-accent);
+
+  --source-color:      var(--color-text-mute);
+  --source-rule-color: var(--color-border);
+  --source-marker:     var(--color-accent);
+
+  --card-bg:           var(--color-surface);
+  --card-border:       var(--color-border);
+  --card-rule-width:   3px;
+}
+
+/* ─── Print theme ─────────────────────────────────────────── */
+
+@media print {
+  :root {
+    --color-bg:      white;
+    --color-surface: white;
+    --color-text:    black;
+    --color-text-mute: #333;
+    --color-border:  #999;
+  }
+}

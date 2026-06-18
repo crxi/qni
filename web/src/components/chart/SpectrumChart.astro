@@ -1,0 +1,246 @@
+---
+/**
+ * SpectrumChart — root SVG. Builds platform layouts, runs greedy stacking
+ * (server-side) so the chart is correct without JS, then composes:
+ *   defs (rainbow gradient + arrow markers)
+ *   region shading
+ *   fibre-band legend (in the empty microwave region)
+ *   ITU fibre band strip (top)
+ *   platform glyphs (one per visible platform)
+ *   x-axis with ticks + region labels
+ *   annotation arrows (M-O, QFC)
+ *   timestamp
+ *
+ * Each platform glyph is a real first-class element: hover, focus, click,
+ * and deep-link via #platform-<id> all work without JS, and a small client
+ * script in chart-interactions.ts adds:
+ *   - re-measurement with canvas for pixel-perfect widths
+ *   - hover-highlight that dims siblings
+ *   - smooth scroll to detail card on click
+ */
+import { Geom } from "../../lib/geom";
+import { data, visiblePlatforms } from "../../lib/data";
+import { buildLayout } from "../../lib/chart-helpers";
+import { computeStacking, warnOverlaps } from "../../lib/stacking";
+
+import RegionShading from "./RegionShading.astro";
+import FibreBandStrip from "./FibreBandStrip.astro";
+import FibreBandLegend from "./FibreBandLegend.astro";
+import FreqAxis from "./FreqAxis.astro";
+import PlatformGlyph from "./PlatformGlyph.astro";
+import AnnotationArrow from "./AnnotationArrow.astro";
+
+const PAGE_BG = "#fdfdfb";
+
+const g = new Geom(data);
+const layouts = visiblePlatforms.map((p) => buildLayout(p, g));
+computeStacking(layouts, g);
+
+// After stacking, trackTop tracks the topmost box top.
+if (layouts.length > 0) {
+  g.trackTop = Math.min(...layouts.map((L) => L.boxTop));
+}
+
+const overlapWarnings = warnOverlaps(layouts);
+if (overlapWarnings.length > 0) {
+  for (const w of overlapWarnings) {
+    console.warn(`[SpectrumChart] overlap: ${w}`);
+  }
+}
+
+const regionTop = g.trackTop - 10;
+const regionBot = g.trackBottom + 60;
+const stripTop = 70;
+const axisY = g.trackBottom + 6;
+const axisDotY = axisY;
+
+const annY = axisY + 76 + 44;
+const lastAnnY = data.annotations.length > 0 ? annY + 16 : axisY + 76 + 44;
+
+const pad = data.canvas.margin;
+
+// The Python render packs a flagship-machines table at the bottom of
+// the SVG; the web build renders those as HTML cards below the chart
+// instead, so we trim the SVG to actual content + a small footer pad.
+// Without this trim the figure carries ~340 px of empty space at the
+// bottom (data.yaml's canvas.height is sized for the print layout).
+const svgH = lastAnnY + 24;
+
+// Serialise data.yaml into a small JSON blob for the client script.
+const clientData = JSON.stringify({
+  layouts: layouts.map((L) => ({
+    id: L.p.id,
+    xl: L.xl,
+    xr: L.xr,
+    boxTop: L.boxTop,
+    boxBot: L.boxBot,
+    boxH: L.boxH,
+    bodyLines: L.bodyLines,
+    color: L.color,
+    region: L.region,
+    level: L.level,
+  })),
+  trackTop: g.trackTop,
+  trackBottom: g.trackBottom,
+});
+
+// Build timestamp.
+const ts = new Date().toISOString().replace(/[T:]/g, "-").slice(0, 19);
+---
+
+<figure class="spectrum-chart">
+  <svg
+    role="img"
+    aria-labelledby="spectrum-title spectrum-desc"
+    viewBox={`0 0 ${g.W} ${svgH}`}
+    preserveAspectRatio="xMidYMid meet"
+    class="chart-svg"
+    data-chart-meta={clientData}
+  >
+    <title id="spectrum-title">{data.title}</title>
+    <desc id="spectrum-desc">
+      Eleven qubit, memory, and photon-source platforms grouped by transition frequency,
+      from superconducting microwave qubits at 5–10 GHz to trapped-ion ultraviolet lines at 813 THz,
+      with ITU-T fibre bands and the visible-spectrum rainbow shown for context.
+    </desc>
+
+    <RegionShading
+      geom={g}
+      regions={data.regions}
+      rainbowStops={data.rainbow_stops}
+      annotations={data.annotations}
+      regionTop={regionTop}
+      regionBot={regionBot}
+    />
+
+    <rect x="0" y="0" width={g.W} height={g.H} fill={PAGE_BG} opacity="0" />
+
+    <text x={g.x0} y="28" class="chart-title">{data.title}</text>
+
+    <FibreBandStrip
+      geom={g}
+      bands={data.fiber_bands}
+      stripTop={stripTop}
+      regionBot={regionBot}
+    />
+
+    <FibreBandLegend
+      bands={data.fiber_bands}
+      x={g.segXs[0][0] + 8}
+      y={g.trackTop + 12}
+    />
+
+    {/* Leader lines (vertical drops to axis dots) live in their own
+        BACK layer so they're always rendered behind every platform box
+        and never obscure text. On hover, chart-interactions.ts moves
+        the active platform's leader(s) into the FRONT layer below the
+        platforms group, so it floats on top of all boxes. This makes
+        the hover behaviour consistent regardless of platform source
+        order — the source-order-driven inconsistency was the reason
+        Superconducting's leader stayed behind on hover while later
+        platforms' leaders correctly popped forward. */}
+    <g class="leaders-back">
+      {layouts.flatMap((L) =>
+        L.anchors.map((ax) => (
+          <line
+            class="leader"
+            data-platform-id={L.p.id}
+            x1={ax} y1={L.boxBot} x2={ax} y2={axisDotY}
+            stroke={L.color}
+          />
+        ))
+      )}
+    </g>
+
+    {/* Platform glyphs — first-class interactive elements */}
+    <g class="platforms">
+      {layouts.map((L) => (
+        <PlatformGlyph layout={L} axisDotY={axisDotY} />
+      ))}
+    </g>
+
+    {/* Empty by default; chart-interactions.ts moves the active
+        platform's leader here on hover so it paints over every box. */}
+    <g class="leaders-front"></g>
+
+    <FreqAxis
+      geom={g}
+      ticks={data.axis_ticks}
+      regions={data.regions}
+      pageBg={PAGE_BG}
+    />
+
+    {/* Annotation arrows — M-O transducer + QFC */}
+    {data.annotations.map((ann, i) => (
+      <AnnotationArrow geom={g} annotation={ann} index={i} y={annY} />
+    ))}
+
+    {/* Build timestamp, top-right */}
+    <text
+      x={g.W - pad.right - 2}
+      y={pad.top + 4}
+      class="timestamp"
+      text-anchor="end"
+    >{ts}</text>
+  </svg>
+</figure>
+
+<script>
+  import { initSpectrumChart } from "../../scripts/chart-interactions";
+  initSpectrumChart();
+</script>
+
+<style>
+  .spectrum-chart {
+    margin-block: var(--space-6);
+    background: #fdfdfb;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: var(--space-2);
+    overflow: hidden;
+  }
+  .chart-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  /* On phones the 1300px viewBox renders too small for the platform
+     labels and axis ticks to stay legible (~25% scale). Below 60rem
+     we let the chart overflow horizontally and the user pans. The
+     min-width keeps the chart at its natural readable scale. */
+  @media (max-width: 60rem) {
+    .spectrum-chart {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .chart-svg {
+      min-inline-size: 900px;
+    }
+  }
+  .chart-title {
+    font-size: 22px;
+    font-weight: 700;
+    fill: #111;
+  }
+  .timestamp { font-size: 9px; fill: #999; font-family: var(--font-mono, monospace); }
+
+  /* Leader styling lives at chart level so the leaders-back and
+     leaders-front layers share one source of truth. Default state is
+     dotted; the active state (set by chart-interactions.ts on hover)
+     overrides dasharray so the highlighted leader reads as a clean
+     solid stroke in front of every box. */
+  .leader {
+    stroke-width: 1.6;
+    stroke-opacity: 0.95;
+    stroke-dasharray: 3 3;
+    pointer-events: none;
+    transition: stroke-width 140ms ease;
+  }
+  .spectrum-chart.has-active .leaders-back .leader { opacity: 0.35; }
+  .leader[data-active="yes"] {
+    stroke-dasharray: none;
+    stroke-width: 2.2;
+    opacity: 1;
+  }
+  @media print { .leader { opacity: 1 !important; } }
+</style>

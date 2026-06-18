@@ -1,0 +1,189 @@
+slug: speqtral
+name: SpeQtral
+categories: [qkd, network]
+hq: Singapore
+founded: 2017
+status: private
+parent: null
+logo:
+  domain: speqtralquantum.com
+
+positioning: >
+  Singapore-based satellite-QKD vendor commercialising entangled-photon QKD
+  payloads spun out of the Centre for Quantum Technologies (CQT) at the
+  National University of Singapore. Operated the SpooQy-1 3U CubeSat
+  (deployed from the ISS in 2019) as the technology pathfinder; flying the
+  SpeQtre 6U-class entangled-photon-source demonstrator (deployed November
+  2025); building SpeQtral-1, a commercial QKD-pathfinder LEO satellite on a
+  Kongsberg NanoAvionics bus with an Mbryonics 10 cm optical terminal,
+  targeting BB84 and BBM92 protocols.
+
+modalities:
+  qkd:
+    protocol: [BB84, BBM92]
+    rate_distance: "Entanglement-based (BBM92) and prepare-and-measure (BB84) downlinks from LEO; SpeQtre carries a space-qualified entangled-photon-pair source; SpeQtral-1 increases optical aperture to 10 cm vs SpeQtre"
+    deployed_demos:
+      - "SpooQy-1 — 3U CubeSat, polarization-entangled-pair source demonstrated in orbit (CQT-built, operations handed to SpeQtral)"
+      - "SpeQtre — entanglement-based QKD demonstrator satellite carrying SpeQtral's source + detector modules (deployed Nov 2025, sun-synchronous orbit)"
+  network:
+    role: testbed
+    products:
+      - "SpeQtral-1 (in development) — commercial QKD pathfinder LEO satellite"
+      - "Ground-based QKD systems for terrestrial deployments (Asia-Pacific partnerships)"
+
+milestones:
+  - date: 2025-11
+    tag: qkd
+    headline: "SpeQtre spacecraft deployed into sun-synchronous orbit carrying SpeQtral's space-qualified entangled-photon-pair source and detector modules — in collaboration with RAL Space"
+    source_url: https://speqtralquantum.com/newsroom/speqtre-the-entanglement-based-quantum-comms-demonstrator-satellite-is-now-on-orbit
+    source_type: press
+  - date: 2024
+    tag: qkd
+    headline: "SpeQtral + Addvalue sign MoU to advance quantum-secure satellite services via Inter-satellite Data Relay System (IDRS)"
+    source_url: https://speqtralquantum.com/newsroom/speqtral-and-addvalue-sign-mou-to-advance-quantum-secure-satellite-services-with-alwayson-idrs-connectivity
+    source_type: press
+  - date: 2022-02
+    tag: qkd
+    headline: "SpeQtral-1 mission announced — commercial QKD pathfinder LEO satellite, Kongsberg NanoAvionics bus, Mbryonics 10 cm optical terminal, BB84 + BBM92, supported by Singapore's OSTIn under STDP"
+    source_url: https://speqtralquantum.com/newsroom/speqtral-announces-speqtral-1-quantum-satellite-mission-for-ultra-secure-communications
+    source_type: press
+  - date: 2021-12
+    tag: qkd
+    headline: "Series A — US$8.3M led by Xora Innovation (Temasek deep-tech platform) with TIS"
+    source_url: https://speqtralquantum.com/newsroom/speqtral-closes-us-8-3m-funding-round
+    source_type: press
+  - date: 2020-06
+    tag: qkd
+    headline: "SpooQy-1 publishes in-orbit polarization-entanglement results — demonstrates that a CubeSat-class platform can host an entangled-photon source for satellite QKD"
+    source_url: https://www.cqt.sg/highlight/2020-06-spooqy-quantum-satellite/
+    source_type: paper
+  - date: 2019-06
+    tag: qkd
+    headline: "SpooQy-1 3U CubeSat deployed from the ISS; CQT transfers satellite operations to SpeQtral"
+    source_url: https://speqtralquantum.com/newsroom/centre-for-quantum-technologies-cqt-hands-over-satellite-operations-of-spooqy-1-cubesat-to-speqtral
+    source_type: press
+  - date: 2019
+    tag: qkd
+    headline: "Seed round — US$1.9M from Space Capital, Golden Gate Ventures, SGInnovate"
+    source_url: https://www.sginnovate.com/investments/speqtral
+    source_type: press
+  - date: 2017
+    tag: qkd
+    headline: "SpeQtral founded in Singapore by Chune Yang Lum and Robert Bedington to commercialise CQT's satellite-QKD work"
+    source_url: https://speqtralquantum.com/about
+    source_type: blog
+
+shareholders:
+  - holder: Xora Innovation (Temasek)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2021-12
+    source_url: https://speqtralquantum.com/newsroom/speqtral-closes-us-8-3m-funding-round
+    note: Lead investor for the 2021 US$8.3M Series A; Temasek's deep-science early-stage platform
+  - holder: TIS Inc
+    stake_percent: null
+    stake_class: minority
+    as_of: 2021-12
+    source_url: https://speqtralquantum.com/newsroom/speqtral-closes-us-8-3m-funding-round
+    note: Co-investor in 2021 Series A
+  - holder: SGInnovate
+    stake_percent: null
+    stake_class: minority
+    as_of: 2019
+    source_url: https://www.sginnovate.com/investments/speqtral
+    note: Seed-round participant (Singapore government-linked deep-tech investor)
+  - holder: Space Capital
+    stake_percent: null
+    stake_class: minority
+    as_of: 2019
+    source_url: https://technode.global/2021/11/30/singapore-space-tech-startup-speqtral-closes-8-3m-funding-round-led-by-temaseks-xora-innovation/
+    note: Seed-round participant
+  - holder: Golden Gate Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2019
+    source_url: https://technode.global/2021/11/30/singapore-space-tech-startup-speqtral-closes-8-3m-funding-round-led-by-temaseks-xora-innovation/
+    note: Seed-round participant
+  - holder: Chune Yang Lum
+    stake_percent: null
+    stake_class: founder
+    as_of: 2017
+    source_url: https://speqtralquantum.com/about
+    note: Co-founder and CEO
+  - holder: Robert Bedington
+    stake_percent: null
+    stake_class: founder
+    as_of: 2017
+    source_url: https://speqtralquantum.com/about
+    note: Co-founder and CTO
+
+key_personnel:
+  - role: CEO & Co-founder
+    name: Chune Yang Lum
+    since: 2017
+    source_url: https://speqtralquantum.com/about
+  - role: CTO & Co-founder
+    name: Robert Bedington
+    since: 2017
+    source_url: https://speqtralquantum.com/about
+  - role: Quantum Director
+    name: Alex Lohrmann
+    since: null
+    source_url: https://speqtralquantum.com/about
+  - role: Lead Systems Engineer
+    name: Tom Vergoossen
+    since: null
+    source_url: https://speqtralquantum.com/about
+
+roadmap:
+  - target: 2026
+    item: "SpeQtre in-orbit BBM92 entanglement-based QKD demonstration with ground station(s) — primary mission objective"
+    source_url: https://speqtralquantum.com/newsroom/speqtre-the-entanglement-based-quantum-comms-demonstrator-satellite-is-now-on-orbit
+    tag: qkd
+  - target: 2026
+    item: "SpeQtral-1 final integration; launch window 2025-2026 per SpaceNews and Nanosats DB"
+    source_url: https://www.nanosats.eu/sat/speqtral-1
+    tag: qkd
+  - target: 2027
+    item: "Commercial QKD service trials with regional telco / financial partners using SpeQtral-1 as trusted-node space segment"
+    source_url: https://spacenews.com/speqtral-1-will-serve-as-a-pathfinder-commercial-demonstrator-for-future-quantum-key-distribution-services/
+    tag: qkd
+
+current_flagship:
+  name: SpeQtre (in orbit) / SpeQtral-1 (in build)
+  generation: LEO entanglement-based QKD demonstrator (SpeQtre, 2025 deploy) and commercial QKD pathfinder (SpeQtral-1, 2025-2026 launch window)
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41586-020-2441-3
+    note: "Villar et al., Optica / Nature, 2020 — entanglement demonstration on SpooQy-1 (CQT / SpeQtral pathfinder)"
+  - kind: press
+    citation_key: null
+    url: https://speqtralquantum.com/newsroom/speqtre-the-entanglement-based-quantum-comms-demonstrator-satellite-is-now-on-orbit
+    note: SpeQtre on-orbit announcement (Nov 2025)
+  - kind: press
+    citation_key: null
+    url: https://speqtralquantum.com/newsroom/speqtral-announces-speqtral-1-quantum-satellite-mission-for-ultra-secure-communications
+    note: SpeQtral-1 mission announcement (Feb 2022)
+  - kind: press
+    citation_key: null
+    url: https://speqtralquantum.com/newsroom/speqtral-closes-us-8-3m-funding-round
+    note: Series A funding announcement (Dec 2021)
+  - kind: blog
+    citation_key: null
+    url: https://www.nanosats.eu/sat/speqtral-1
+    note: SpeQtral-1 satellite specs (Nanosats Database)
+
+partial:
+  - key_personnel.2.since
+  - key_personnel.3.since
+  - field: modalities.qkd.rate_distance
+    as_of: 2026-05-15
+    note: in-orbit key-rate / fidelity numbers for SpeQtre not yet published; pre-launch lab figures only
+  - field: references.0.citation_key
+    as_of: 2026-05-15
+    note: SpooQy-1 entanglement result is in the literature but not yet imported into project refs.bib
+
+last_verified: 2026-05-15
+verification_method: web

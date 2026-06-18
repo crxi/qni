@@ -1,0 +1,17 @@
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; tab-size: 4; }
+body { min-height: 100dvh; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+img, picture, svg, video { display: block; max-inline-size: 100%; }
+/* The UA rule `[hidden] { display: none }` has the same specificity as
+   any `.classname { display: ... }`, so author CSS wins by source order
+   and `el.hidden = true` becomes a silent no-op. Filter UIs that toggle
+   `.hidden` on cards depend on hidden actually hiding; force it with
+   `!important` here so every page inherits the right behaviour without
+   per-class overrides. The hidden-cascade lint (scripts/check_hidden_cascade.py)
+   treats this rule as "covered" and skips the per-page check. */
+[hidden] { display: none !important; }
+input, button, textarea, select { font: inherit; color: inherit; }
+button { background: none; border: none; cursor: pointer; padding: 0; }
+ul, ol { padding: 0; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }

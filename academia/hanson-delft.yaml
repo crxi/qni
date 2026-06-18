@@ -1,0 +1,151 @@
+slug: hanson-delft
+name: Hanson group (TU Delft / QuTech)
+categories: [memory, network, qkd]
+hq: Delft, Netherlands
+founded: 2007
+status: active
+parent: null
+
+institution:
+  name: Delft University of Technology (TU Delft)
+  lab: QuTech (joint TU Delft + TNO) · Kavli Institute of Nanoscience · Quantum Internet Division
+
+group_website: https://qutech.nl/lab/hanson-lab/
+
+positioning: >
+  Ronald Hanson's group at QuTech is a reference experimental laboratory
+  for nitrogen-vacancy (NV) centre quantum networking, with a track record
+  of "firsts" in heralded solid-state entanglement, loophole-free Bell
+  tests, three-node NV networks, and most recently a 25 km Delft–The Hague
+  link over deployed telecom fibre. Current work extends NV memory
+  coherence, telecom-band frequency conversion, and multi-node protocol
+  stacks, and pursues group-IV colour centres (SiV, tin-vacancy) as
+  longer-coherence successors to NV. Specific demonstrations are listed in
+  milestones.
+
+modalities:
+  memory:
+    platform: nv
+    storage_time_ms: null
+    retrieval_efficiency: null
+    fidelity: null
+    wavelength_nm: 637
+    mode_capacity: null
+  network:
+    role: testbed
+    products: ["multi-node NV quantum-network testbed", "metropolitan 25 km heralded-entanglement link (Delft-The Hague)"]
+  qkd:
+    protocol: []
+    rate_distance: ""
+    deployed_demos: []
+
+milestones:
+  - date: 2025-04
+    tag: memory
+    headline: "Beukers, Waas, Pasini et al. — NV-centre experimental work in PRX"
+    source_url: https://journals.aps.org/prx/
+    source_type: paper
+  - date: 2024-10
+    tag: network
+    headline: "Metropolitan-scale heralded entanglement of solid-state qubits over 25 km of deployed fibre between Delft and The Hague (Stolk et al. Science Advances)"
+    source_url: https://www.science.org/doi/10.1126/sciadv.adp6442
+    source_type: paper
+  - date: 2022-05
+    tag: network
+    headline: "Qubit teleportation between non-neighbouring nodes in a multi-node quantum network (Hermans et al. Nature)"
+    source_url: https://www.nature.com/articles/s41586-022-04697-y
+    source_type: paper
+  - date: 2021-04
+    tag: network
+    headline: "Realization of a multi-node quantum network of remote solid-state qubits (Pompili et al. Science 372:259)"
+    source_url: https://www.science.org/doi/10.1126/science.abg1919
+    source_type: paper
+  - date: 2015-10
+    tag: network
+    headline: "Loophole-free Bell-inequality violation using NV electron spins separated by 1.3 km (Hensen et al. Nature 526:682)"
+    source_url: https://www.nature.com/articles/nature15759
+    source_type: paper
+  - date: 2013-04
+    tag: network
+    headline: "Heralded entanglement between solid-state qubits separated by three metres (Bernien et al. Nature 497:86)"
+    source_url: https://www.nature.com/articles/nature12016
+    source_type: paper
+
+shareholders: []
+
+key_personnel:
+  - role: Principal Investigator · Distinguished Professor
+    name: Ronald Hanson
+    since: 2007
+    source_url: https://qutech.nl/person/ronald-hanson/
+  - role: Co-PI (Quantum Internet Division, networked theory + experiment)
+    name: Johannes Borregaard
+    since: 2019
+    source_url: https://qutech.nl/
+  - role: Senior collaborator (network protocol stack, link layer)
+    name: Stephanie Wehner
+    since: 2014
+    source_url: https://qutech.nl/person/stephanie-wehner/
+
+funding_sources:
+  - name: Dutch Research Council (NWO) — including the Spinoza Prize (Hanson, 2019)
+    source_url: https://www.nwo.nl/en/prof-dr-r-ronald-hanson
+  - name: European Research Council (ERC) — multiple Hanson grants including ERC Consolidator and ERC Advanced
+    source_url: https://erc.europa.eu/homepage
+  - name: Quantum Delta NL (national programme, National Growth Fund)
+    source_url: https://quantumdelta.nl/
+  - name: EU Horizon / Quantum Flagship (Quantum Internet Alliance)
+    source_url: https://quantuminternetalliance.org/
+  - name: TNO (co-funder of QuTech as joint institute)
+    source_url: https://www.tno.nl/en/
+  - name: Microsoft Station Q Delft (historical partnership)
+    source_url: https://qutech.nl/
+
+current_focus:
+  name: Diamond-spin quantum systems for a quantum internet
+  description: >
+    Per the lab's own framing (qutech.nl/lab/hanson-lab): exploiting the
+    properties of spins in diamond to study and engineer interactions
+    between individual quantum systems, with the long-term goal of building
+    a quantum computer and realising a quantum internet.
+  source_url: https://qutech.nl/lab/hanson-lab/
+
+references:
+  - kind: paper
+    citation_key: pompili-science-2021
+    url: https://www.science.org/doi/10.1126/science.abg1919
+    note: Three-node NV quantum network with entanglement swapping
+  - kind: paper
+    citation_key: null
+    url: https://www.science.org/doi/10.1126/sciadv.adp6442
+    note: Stolk et al. 2024 — 25 km metropolitan NV heralded entanglement (Delft-The Hague)
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41586-022-04697-y
+    note: Hermans et al. 2022 — teleportation between non-neighbouring nodes in a multi-node network
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/nature15759
+    note: Hensen et al. 2015 — loophole-free Bell test over 1.3 km
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/nature12016
+    note: Bernien et al. 2013 — heralded NV entanglement over 3 m
+
+partial:
+  - modalities.memory.storage_time_ms
+  - modalities.memory.retrieval_efficiency
+  - modalities.memory.fidelity
+  - modalities.memory.mode_capacity
+  - modalities.qkd.protocol
+  - modalities.qkd.rate_distance
+  - modalities.qkd.deployed_demos
+  - field: founded
+    as_of: 2026-05-24
+    note: Hanson started as assistant professor at TU Delft in 2007 after returning from UC Santa Barbara; "group founding" treated as that year. Full professor 2012; Distinguished Professor 2020.
+  - field: key_personnel
+    as_of: 2026-05-24
+    note: Senior co-PIs Borregaard and Wehner sit in the broader QuTech Quantum Internet Division rather than strictly inside the Hanson Lab; included as principal scientific collaborators on the multi-node-network programme.
+
+last_verified: 2026-05-24
+verification_method: web

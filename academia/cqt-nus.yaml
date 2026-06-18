@@ -1,0 +1,169 @@
+slug: cqt-nus
+name: Centre for Quantum Technologies (NUS)
+categories: [qkd, qc, sensing]
+hq: Singapore
+founded: 2007
+status: active
+parent: null
+
+institution:
+  name: National University of Singapore
+  lab: Centre for Quantum Technologies (CQT) · Research Centre of Excellence funded by NRF and MoE Singapore
+
+group_website: https://www.cqt.sg/
+
+positioning: >
+  CQT is Singapore's National Research Foundation Research Centre of
+  Excellence for quantum information, hosted at NUS and founded in 2007
+  under Artur Ekert. It is a multi-PI centre rather than a single-PI group:
+  experimental QKD and entangled-photon sources (Christian Kurtsiefer),
+  satellite quantum communications (Alexander Ling, who led the SpooQy-1
+  CubeSat and co-founded the SpeQtral spinout), foundations and
+  device-independent cryptography (Valerio Scarani), and trapped-ion
+  qubits and atomic clocks (Manas Mukherjee). Current thrust is the
+  National Quantum-Safe Network and space-based QKD payloads.
+
+modalities:
+  qkd:
+    protocol: [BB84, decoy-state, entanglement-based, device-independent]
+    rate_distance: "Entangled-photon source flown on SpooQy-1 CubeSat (LEO, 2019); ground-side entanglement-based QKD demonstrations on the National Quantum-Safe Network testbed"
+    deployed_demos:
+      - "SpooQy-1 3U CubeSat — first entangled-photon source qualified for and operated in LEO (deployed from ISS, 17 June 2019; Villar OptExpress 2020)"
+      - "National Quantum-Safe Network (NQSN) Singapore — multi-node fibre QKD testbed launched 2022, CQT as research partner"
+  qc:
+    qubit_type: trapped-ion
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: ""
+    gate_set: []
+  sensing:
+    target_quantity: optical atomic clock
+    sensitivity: ""
+
+milestones:
+  - date: 2022-03
+    tag: qkd
+    headline: National Quantum-Safe Network (NQSN) launched in Singapore; CQT joins as a research partner
+    source_url: https://www.science.nus.edu.sg/blog/2022/03/cqt-researchers-join-new-project-to-build-national-quantum-safe-network-in-singapore/
+    source_type: press
+  - date: 2020-06
+    tag: qkd
+    headline: SpooQy-1 demonstrates polarisation-entangled photon pairs generated in low Earth orbit
+    source_url: https://www.cqt.sg/highlight/2020-06-spooqy-quantum-satellite/
+    source_type: press
+  - date: 2019-06
+    tag: qkd
+    headline: SpooQy-1 deployed from ISS — first CubeSat-class entangled-photon source in orbit
+    source_url: https://www.eoportal.org/satellite-missions/spooqy-1
+    source_type: press
+  - date: 2017
+    tag: qkd
+    headline: SpeQtral spinout incorporated to commercialise CQT satellite-QKD technology
+    source_url: https://speqtralquantum.com/newsroom/centre-for-quantum-technologies-cqt-hands-over-satellite-operations-of-spooqy-1-cubesat-to-speqtral
+    source_type: press
+  - date: 2007-12
+    tag: qkd
+    headline: CQT designated Singapore's first Research Centre of Excellence by the National Research Foundation
+    source_url: https://en.wikipedia.org/wiki/Centre_for_Quantum_Technologies
+    source_type: press
+
+funding_sources:
+  - name: National Research Foundation Singapore (NRF) — Research Centre of Excellence
+    role: Core funding since 2007 RCE designation
+    source_url: https://www.nrf.gov.sg/
+  - name: Ministry of Education Singapore (MoE)
+    role: Co-funder of the RCE programme
+    source_url: https://www.moe.gov.sg/
+  - name: National University of Singapore (NUS)
+    role: Host institution
+    source_url: https://www.nus.edu.sg/
+  - name: NRF Quantum Engineering Programme (QEP)
+    role: Funds the National Quantum-Safe Network and adjacent national platforms
+    source_url: https://qepsg.org/
+
+key_personnel:
+  - role: Director
+    name: José Ignacio Latorre
+    since: 2020-07
+    source_url: https://news.nus.edu.sg/cqt-director-prof-jose-ignacio-latorre-named-st-engineering-distinguished-professor/
+  - role: Founding Director (emeritus)
+    name: Artur Ekert
+    since: 2007
+    source_url: https://en.wikipedia.org/wiki/Centre_for_Quantum_Technologies
+  - role: Principal Investigator — foundations and device-independent cryptography
+    name: Valerio Scarani
+    since: 2007
+    source_url: https://www.cqt.sg/
+  - role: Principal Investigator — experimental QKD and entangled-photon sources
+    name: Christian Kurtsiefer
+    since: 2007
+    source_url: https://www.cqt.sg/
+  - role: Principal Investigator — satellite quantum communications (SpooQy-1 PI, SpeQtral co-founder)
+    name: Alexander Ling
+    since: 2011
+    source_url: https://www.cqt.sg/people/alexander-ling/
+  - role: Principal Investigator — trapped-ion qubits and atomic clocks
+    name: Manas Mukherjee
+    since: 2011
+    source_url: https://www.cqt.sg/
+  - role: Principal Investigator — QKD theory (MDI-QKD, TF-QKD, decoy-state security proofs); also Provost's Chair Professor, NUS Physics (2025-2028)
+    name: Hoi-Kwong Lo
+    since: 2025-10
+    source_url: https://www.cqt.sg/people/hoi-kwong-lo/
+
+roadmap:
+  - target: 2025-2027
+    item: Continued build-out of the National Quantum-Safe Network and follow-on satellite-QKD payloads under the NRF Quantum Engineering Programme
+    source_url: https://qepsg.org/
+    tag: qkd
+
+current_focus:
+  name: Five research thrusts aligned with Singapore's National Quantum Strategy
+  description: >
+    Per CQT's own framing (cqt.sg): (1) Quantum Communication & Security,
+    (2) Quantum Processors, Computation & Simulation, (3) Quantum Sensing
+    & Metrology, (4) Advanced Instruments, (5) Basic Science.
+  source_url: https://www.cqt.sg/
+
+spinout_company: speqtral
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://www.eoportal.org/satellite-missions/spooqy-1
+    note: SpooQy-1 CubeSat mission overview (eoPortal)
+  - kind: press
+    citation_key: null
+    url: https://www.cqt.sg/highlight/2020-06-spooqy-quantum-satellite/
+    note: SpooQy-1 in-orbit entangled-pair demonstration
+  - kind: press
+    citation_key: null
+    url: https://www.science.nus.edu.sg/blog/2022/03/cqt-researchers-join-new-project-to-build-national-quantum-safe-network-in-singapore/
+    note: CQT researchers in the National Quantum-Safe Network launch
+  - kind: press
+    citation_key: null
+    url: https://news.nus.edu.sg/cqt-director-prof-jose-ignacio-latorre-named-st-engineering-distinguished-professor/
+    note: Latorre director appointment and ST Engineering Distinguished Professor
+  - kind: press
+    citation_key: null
+    url: https://en.wikipedia.org/wiki/Centre_for_Quantum_Technologies
+    note: CQT founding-as-RCE history (2007)
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.sensing.sensitivity
+  - field: key_personnel.*.since
+    as_of: 2026-05-24
+    note: Appointment years for individual PIs inferred from publication record and CQT annual reports; CQT people pages do not consistently state appointment date.
+
+last_verified: 2026-05-24
+verification_method: web

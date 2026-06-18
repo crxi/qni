@@ -1,0 +1,351 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" role="img">
+  <title>4-hop heterogeneous quantum network — transmon QPU + M-O at Node A (in a dilution fridge), 171-Yb+ trap + QFC bench at Node B, three SiV repeaters with internal QFCs along the photonic chain, midpoint BSM at M1-M4 using the QuISP BSA glyph.</title>
+  <defs>
+  <style>
+  .vessel-A   { fill: #fff8ef; stroke: #b8783c; stroke-width: 1.4; }
+  .vessel-B   { fill: #f3f8fd; stroke: #5a83b3; stroke-width: 1.4; }
+  .nodeB-bdy  { fill: none; stroke: #5a83b3; stroke-width: 1.1; stroke-dasharray: 5 3; opacity: 0.7; }
+  .repeater   { fill: #ecfaf2; stroke: #2f8a55; stroke-width: 1.4; }
+  .m2o-blk    { fill: #fdeacf; stroke: #b8783c; stroke-width: 1.3; }
+  .qfc-blk    { fill: #e2eef9; stroke: #5a83b3; stroke-width: 1.3; }
+  .viewport   { fill: #f3f8fd; stroke: #5a83b3; stroke-width: 1.2; }
+  .cold-zone  { fill: #d6e8f6; fill-opacity: 0.55; stroke: #2c5d8f; stroke-width: 1.0; stroke-dasharray: 4 2; }
+  .cold-tag   { font: 700 7.5px sans-serif; fill: #2c5d8f; text-anchor: middle; }
+  .t2-tag     { font: italic 7.5px sans-serif; fill: #5a6472; }
+  .plate      { stroke: #b8783c; stroke-width: 0.7; opacity: 0.55; }
+
+  .data       { fill: #f29453; stroke: #8a3f0e; stroke-width: 1; }
+  .comm       { fill: #22c55e; stroke: #15803d; stroke-width: 1; }
+  .memory     { fill: #9b87c4; stroke: #6048a3; stroke-width: 1; }
+  .photon     { fill: #2f6fd6; stroke: #1a4a99; stroke-width: 0.8; }
+
+  .node-ttl   { font: 700 13px sans-serif; fill: #1a1f2a; text-anchor: middle; }
+  .node-sub   { font: 9.5px sans-serif; fill: #4a4f57; text-anchor: middle; }
+  .lbl        { font: 600 11px sans-serif; fill: #1a1f2a; text-anchor: middle; }
+  .blk-ttl    { font: 700 10px sans-serif; fill: #1a1f2a; text-anchor: middle; }
+  .blk-line   { font: 8px sans-serif; fill: #3a4150; text-anchor: middle; }
+  .plate-tag  { font: 7.5px sans-serif; fill: #8a5a30; text-anchor: start; opacity: 0.9; }
+  .mini       { font: 8.5px sans-serif; fill: #5a6472; text-anchor: middle; }
+  .qbit-in    { font: 700 9px sans-serif; fill: #ffffff; text-anchor: middle; dominant-baseline: middle; }
+  .qbit-side  { font: 600 9px sans-serif; fill: #1a1f2a; }
+  .km         { font: 600 9px sans-serif; fill: #5a6472; text-anchor: middle; }
+  .hop        { font: 700 10.5px sans-serif; fill: #1a3458; text-anchor: middle; }
+  .midline    { stroke: #aab0ba; stroke-width: 1; fill: none; stroke-dasharray: 3 2; }
+  .swap-link  { stroke: #9b87c4; stroke-width: 1.2; fill: none; stroke-dasharray: 3 2; }
+
+  .plane-matter    { fill: #f7f4fb; }
+  .plane-photonic  { fill: #eff5fc; }
+  .interface-line  { stroke: #6a7280; stroke-width: 0.9; fill: none; stroke-dasharray: 4 3; opacity: 0.55; }
+  .plane-tag       { font: 700 9px sans-serif; fill: #6a7280; opacity: 0.75; }
+
+  .fiber           { stroke: #5a6472; stroke-width: 1.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .fiber--quantum  { stroke: #2f6fd6; stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; opacity: 0.55; }
+  .fiber--stub     { stroke: #2f6fd6; stroke-width: 1.8; fill: none; stroke-linecap: butt; }
+  .fiber--uv       { stroke: #8c6ad6; stroke-width: 1.3; fill: none; stroke-linecap: round; stroke-dasharray: 4 2; opacity: 0.7; }
+
+  /* End-to-end entanglement wavy line between MQ-A and MQ-B (workspace
+     convention — magenta sinusoid; see /entanglement, /swapping). */
+  .entanglement    { stroke: #c84a9b; stroke-width: 1.6; fill: none; stroke-linecap: round; }
+  .entanglement-lbl{ font: 600 9px sans-serif; fill: #c84a9b; text-anchor: middle; }
+
+  /* Numbered teleportation-protocol steps overlaid on the figure.
+     dominant-baseline: central on BOTH the badge number and the caption
+     text — otherwise the caption defaults to baseline-aligned (visual
+     centre above y) while the badge number is geometrically centred at y,
+     leaving the digits sitting visibly lower than the words. */
+  .step-num   { font: 700 11px sans-serif; fill: #ffffff; text-anchor: middle; dominant-baseline: central; }
+  .step-num-bg{ fill: #1a3458; stroke: none; }
+  .step-txt   { font: 600 10px sans-serif; fill: #1a3458; text-anchor: start; dominant-baseline: central; }
+</style>
+  <symbol id="quisp-bsa-white" viewBox="0 0 100 100" overflow="visible"><rect x="0" y="0" width="100" height="100" fill="#ffffff"/>
+  <g transform="rotate(180 50 50)"><g
+     id="layer1"
+     transform="translate(-31.460882,77.692164)">
+    <g
+       id="g20029"
+       transform="matrix(2.8375292,0,0,2.8375292,-4.7434798,-1217.7596)">
+      <circle
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none"
+         id="circle19883"
+         cx="30.380079"
+         cy="419.40271"
+         r="17.120964" />
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         id="rect19885"
+         width="11.686096"
+         height="11.686096"
+         x="-324.79691"
+         y="-281.83298"
+         ry="0"
+         transform="rotate(-135)" />
+      <path
+         id="path19887"
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 20.283432,411.29099 c -1.339849,1.33985 -1.04876,3.78799 0.652297,5.48904 l 0.614274,0.61427 5.535592,-5.53559 -0.614276,-0.61427 c -1.701048,-1.70106 -4.149184,-1.99215 -5.489033,-0.6523 z" />
+      <path
+         id="path19889"
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 39.687025,410.68297 c -1.339857,-1.33985 -3.787985,-1.04875 -5.489042,0.6523 l -0.614274,0.61427 5.535592,5.5356 0.614274,-0.61427 c 1.701057,-1.70106 1.992154,-4.14919 0.652297,-5.48904 z" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 30.38007,428.95209 V 412.42545"
+         id="path19891" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 24.317803,414.62651 1.951624,1.95163"
+         id="path19893" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 36.3515,414.71734 -1.951624,1.95163"
+         id="path19895" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 34.511736,424.82045 1.951624,1.95163"
+         id="path19897" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 36.201761,426.66422 h 5.848874"
+         id="path19899" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 26.248414,424.82045 -1.951624,1.95163"
+         id="path19903" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 24.558389,426.66422 H 18.709515"
+         id="path19905" />
+    </g>
+  </g></g></symbol>
+  <symbol id="bsm-meter" viewBox="0 0 36 28" overflow="visible"><rect x="2" y="2" width="32" height="24" rx="2" fill="#ffffff" stroke="#1a1f2a" stroke-width="1.6"/><path d="M 6 22 A 12 12 0 0 1 30 22 Z" fill="none" stroke="#1a1f2a" stroke-width="1.4"/><line x1="10" y1="13" x2="8"  y2="11" stroke="#1a1f2a" stroke-width="1.1"/><line x1="18" y1="10" x2="18" y2="8"  stroke="#1a1f2a" stroke-width="1.1"/><line x1="26" y1="13" x2="28" y2="11" stroke="#1a1f2a" stroke-width="1.1"/><line x1="18" y1="22" x2="27" y2="12" stroke="#d97706" stroke-width="2.0" stroke-linecap="round"/><circle cx="18" cy="22" r="1.6" fill="#1a1f2a"/></symbol>
+  </defs>
+  <rect x="0" y="0" width="1000" height="142" class="plane-matter"/>
+  <rect x="0" y="142" width="1000" height="344" class="plane-photonic"/>
+  <line x1="0" y1="142" x2="1000" y2="142" class="interface-line"/>
+  <text x="500.0" y="156" class="plane-tag" style="text-anchor:middle">above: qubits hold the entanglement at the nodes.   below: photons fly between nodes to establish it.</text>
+  <path d="M 10.0,20 L 150.0,20 L 150.0,84.5 L 145.0,87.5 L 145.0,152.0 L 140.0,155.0 L 140.0,219.5 L 135.0,222.5 L 135.0,290 L 25.0,290 L 25.0,225.5 L 20.0,222.5 L 20.0,158.0 L 15.0,155.0 L 15.0,90.5 L 10.0,87.5 L 10.0,20 Z" class="vessel-A"/>
+  <line x1="14.222222222222229" y1="60" x2="145.77777777777777" y2="60" class="plate"/>
+  <text x="17.22222222222223" y="68" class="plate-tag" style="text-anchor:start">50 K</text>
+  <line x1="18.666666666666664" y1="140" x2="141.33333333333334" y2="140" class="plate"/>
+  <text x="21.666666666666664" y="148" class="plate-tag" style="text-anchor:start">4 K</text>
+  <line x1="22.555555555555557" y1="210" x2="137.44444444444446" y2="210" class="plate"/>
+  <text x="25.555555555555557" y="218" class="plate-tag" style="text-anchor:start">15 mK</text>
+  <text x="80" y="38" class="node-ttl" style="text-anchor:middle">Node A</text>
+  <text x="80" y="52" class="node-sub" style="text-anchor:middle">transmon QPU + M-O</text>
+  <circle cx="80" cy="78" r="11" class="data"/>
+  <text x="80" y="78" class="qbit-in" style="text-anchor:middle">ψ</text>
+  <text x="60" y="81" class="qbit-side" style="text-anchor:end">DQ-A</text>
+  <circle cx="80" cy="118" r="11" class="memory"/>
+  <text x="80" y="118" class="qbit-in" style="text-anchor:middle">M</text>
+  <text x="60" y="121" class="qbit-side" style="text-anchor:end">MQ-A</text>
+  <circle cx="80" cy="165" r="11" class="comm"/>
+  <text x="80" y="165" class="qbit-in" style="text-anchor:middle">C</text>
+  <text x="60" y="168" class="qbit-side" style="text-anchor:end">CQ-A</text>
+  <use href="#bsm-meter" x="70.0" y="90.22222222222223" width="20" height="15.555555555555555"/>
+  <line x1="80" y1="133" x2="80" y2="150" class="swap-link"/>
+  <path d="M 76 133 L 84 133 L 80 127 Z" style="fill:#9b87c4"/>
+  <path d="M 76 150 L 84 150 L 80 156 Z" style="fill:#9b87c4"/>
+  <text x="60" y="92" class="t2-tag" style="text-anchor:end">100 µs</text>
+  <text x="60" y="132" class="t2-tag" style="text-anchor:end">10 ms</text>
+  <text x="60" y="179" class="t2-tag" style="text-anchor:end">100 µs</text>
+  <line x1="80" y1="176" x2="80" y2="229" class="fiber"/>
+  <circle cx="80" cy="184" r="7" class="photon"/>
+  <rect x="40.0" y="229" width="80" height="55" rx="3" class="m2o-blk"/>
+  <text x="80" y="241" class="blk-ttl" style="text-anchor:middle">M-O</text>
+  <text x="80" y="253" class="blk-line" style="text-anchor:middle">60 mm · 5 GHz</text>
+  <path d="M 80 257 L 82.5 264 L 80 271 L 77.5 264 Z" style="fill:#6a7280"/>
+  <text x="80" y="278" class="blk-line" style="text-anchor:middle">1550 nm · 193 THz</text>
+  <path d="M 80 284 V 395 Q 80 430 115 430 H 139" class="fiber--quantum"/>
+  <rect x="858.0" y="12" width="124" height="282" rx="8" class="nodeB-bdy"/>
+  <text x="920" y="28" class="node-ttl" style="text-anchor:middle">Node B</text>
+  <text x="920" y="40" class="node-sub" style="text-anchor:middle">¹⁷¹Yb⁺ trap + QFC bench</text>
+  <rect x="870.0" y="58" width="100" height="138" rx="12" class="vessel-B"/>
+  <circle cx="870.0" cy="78" r="4" class="viewport"/>
+  <circle cx="970.0" cy="78" r="4" class="viewport"/>
+  <circle cx="870.0" cy="186" r="4" class="viewport"/>
+  <circle cx="970.0" cy="186" r="4" class="viewport"/>
+  <rect x="906" y="64" width="28" height="115" rx="8" class="cold-zone"/>
+  <text x="902" y="165" class="cold-tag" style="text-anchor:end"><tspan x="902" dy="-0.5em">Yb⁺ ions</tspan><tspan x="902" dy="1.1em">~mK</tspan></text>
+  <text x="862" y="215.5" class="plate-tag" style="text-anchor:start;fill:#2a5288;font-size:7.5px"><tspan x="862" dy="-1.1em">Ultra-High</tspan><tspan x="862" dy="1.1em">Vacuum</tspan><tspan x="862" dy="1.1em">300 K</tspan></text>
+  <circle cx="920" cy="78" r="11" class="data"/>
+  <text x="920" y="78" class="qbit-in" style="text-anchor:middle"></text>
+  <text x="940" y="81" class="qbit-side" style="text-anchor:start">DQ-B</text>
+  <circle cx="920" cy="118" r="11" class="memory"/>
+  <text x="920" y="118" class="qbit-in" style="text-anchor:middle">M</text>
+  <text x="940" y="121" class="qbit-side" style="text-anchor:start">MQ-B</text>
+  <circle cx="920" cy="165" r="11" class="comm"/>
+  <text x="920" y="165" class="qbit-in" style="text-anchor:middle">C</text>
+  <text x="940" y="168" class="qbit-side" style="text-anchor:start">CQ-B</text>
+  <line x1="920" y1="133" x2="920" y2="150" class="swap-link"/>
+  <path d="M 916 133 L 924 133 L 920 127 Z" style="fill:#9b87c4"/>
+  <path d="M 916 150 L 924 150 L 920 156 Z" style="fill:#9b87c4"/>
+  <text x="940" y="92" class="t2-tag" style="text-anchor:start">10 s</text>
+  <text x="940" y="132" class="t2-tag" style="text-anchor:start">10 s</text>
+  <text x="940" y="179" class="t2-tag" style="text-anchor:start">10 s</text>
+  <line x1="920" y1="176" x2="920" y2="229" class="fiber--uv"/>
+  <circle cx="920" cy="179" r="3" class="photon"/>
+  <rect x="880.0" y="229" width="80" height="55" rx="3" class="qfc-blk"/>
+  <text x="920" y="241" class="blk-ttl" style="text-anchor:middle">QFC</text>
+  <text x="920" y="253" class="blk-line" style="text-anchor:middle">369 nm · 812 THz</text>
+  <path d="M 920 257 L 922.5 264 L 920 271 L 917.5 264 Z" style="fill:#6a7280"/>
+  <text x="920" y="278" class="blk-line" style="text-anchor:middle">1550 nm · 193 THz</text>
+  <path d="M 920 284 V 395 Q 920 430 885 430 H 861" class="fiber--quantum"/>
+  <line x1="261" y1="430" x2="439" y2="430" class="fiber--quantum"/>
+  <line x1="561" y1="430" x2="739" y2="430" class="fiber--quantum"/>
+  <rect x="130.0" y="369.33333333333337" width="140" height="74.66666666666663" rx="4" class="repeater"/>
+  <rect x="177.0" y="371.33333333333337" width="46.0" height="70.66666666666663" rx="4" class="cold-zone"/>
+  <use href="#bsm-meter" x="188.0" y="374.33333333333337" width="24" height="18.666666666666668"/>
+  <text x="200" y="365.33333333333337" class="lbl" style="text-anchor:middle">QR-1</text>
+  <text x="226.0" y="373.33333333333337" class="cold-tag" style="text-anchor:start;font-size:6.5px"><tspan x="226.0" dy="0.6em">SiV⁻</tspan><tspan x="226.0" dy="1.1em">~100 mK</tspan></text>
+  <rect x="139" y="421" width="18" height="18" rx="2" class="qfc-blk"/>
+  <text x="148" y="434" class="mini" style="text-anchor:middle">QFC</text>
+  <circle cx="176.0" cy="430" r="4" class="photon"/>
+  <circle cx="189.0" cy="430" r="9" class="comm"/>
+  <text x="189.0" y="430" class="qbit-in" style="text-anchor:middle">C</text>
+  <circle cx="211.0" cy="430" r="9" class="comm"/>
+  <text x="211.0" y="430" class="qbit-in" style="text-anchor:middle">C</text>
+  <circle cx="224.0" cy="430" r="4" class="photon"/>
+  <rect x="243" y="421" width="18" height="18" rx="2" class="qfc-blk"/>
+  <text x="252" y="434" class="mini" style="text-anchor:middle">QFC</text>
+  <circle cx="189.0" cy="406" r="9" class="memory"/>
+  <text x="189.0" y="406" class="qbit-in" style="text-anchor:middle">M</text>
+  <circle cx="211.0" cy="406" r="9" class="memory"/>
+  <text x="211.0" y="406" class="qbit-in" style="text-anchor:middle">M</text>
+  <line x1="189.0" y1="419" x2="189.0" y2="417" class="swap-link"/>
+  <path d="M 185.0 419 L 193.0 419 L 189.0 413 Z" style="fill:#9b87c4"/>
+  <path d="M 185.0 417 L 193.0 417 L 189.0 423 Z" style="fill:#9b87c4"/>
+  <line x1="211.0" y1="419" x2="211.0" y2="417" class="swap-link"/>
+  <path d="M 207.0 419 L 215.0 419 L 211.0 413 Z" style="fill:#9b87c4"/>
+  <path d="M 207.0 417 L 215.0 417 L 211.0 423 Z" style="fill:#9b87c4"/>
+  <line x1="157" y1="430" x2="180.0" y2="430" class="fiber--stub"/>
+  <line x1="220.0" y1="430" x2="243" y2="430" class="fiber--stub"/>
+  <line x1="198.0" y1="430" x2="202.0" y2="430" class="fiber--stub"/>
+  <rect x="430.0" y="369.33333333333337" width="140" height="74.66666666666663" rx="4" class="repeater"/>
+  <rect x="477.0" y="371.33333333333337" width="46.0" height="70.66666666666663" rx="4" class="cold-zone"/>
+  <use href="#bsm-meter" x="488.0" y="374.33333333333337" width="24" height="18.666666666666668"/>
+  <text x="500" y="365.33333333333337" class="lbl" style="text-anchor:middle">QR-2</text>
+  <text x="526.0" y="373.33333333333337" class="cold-tag" style="text-anchor:start;font-size:6.5px"><tspan x="526.0" dy="0.6em">SiV⁻</tspan><tspan x="526.0" dy="1.1em">~100 mK</tspan></text>
+  <rect x="439" y="421" width="18" height="18" rx="2" class="qfc-blk"/>
+  <text x="448" y="434" class="mini" style="text-anchor:middle">QFC</text>
+  <circle cx="476.0" cy="430" r="4" class="photon"/>
+  <circle cx="489.0" cy="430" r="9" class="comm"/>
+  <text x="489.0" y="430" class="qbit-in" style="text-anchor:middle">C</text>
+  <circle cx="511.0" cy="430" r="9" class="comm"/>
+  <text x="511.0" y="430" class="qbit-in" style="text-anchor:middle">C</text>
+  <circle cx="524.0" cy="430" r="4" class="photon"/>
+  <rect x="543" y="421" width="18" height="18" rx="2" class="qfc-blk"/>
+  <text x="552" y="434" class="mini" style="text-anchor:middle">QFC</text>
+  <circle cx="489.0" cy="406" r="9" class="memory"/>
+  <text x="489.0" y="406" class="qbit-in" style="text-anchor:middle">M</text>
+  <circle cx="511.0" cy="406" r="9" class="memory"/>
+  <text x="511.0" y="406" class="qbit-in" style="text-anchor:middle">M</text>
+  <line x1="489.0" y1="419" x2="489.0" y2="417" class="swap-link"/>
+  <path d="M 485.0 419 L 493.0 419 L 489.0 413 Z" style="fill:#9b87c4"/>
+  <path d="M 485.0 417 L 493.0 417 L 489.0 423 Z" style="fill:#9b87c4"/>
+  <line x1="511.0" y1="419" x2="511.0" y2="417" class="swap-link"/>
+  <path d="M 507.0 419 L 515.0 419 L 511.0 413 Z" style="fill:#9b87c4"/>
+  <path d="M 507.0 417 L 515.0 417 L 511.0 423 Z" style="fill:#9b87c4"/>
+  <line x1="457" y1="430" x2="480.0" y2="430" class="fiber--stub"/>
+  <line x1="520.0" y1="430" x2="543" y2="430" class="fiber--stub"/>
+  <line x1="498.0" y1="430" x2="502.0" y2="430" class="fiber--stub"/>
+  <rect x="730.0" y="369.33333333333337" width="140" height="74.66666666666663" rx="4" class="repeater"/>
+  <rect x="777.0" y="371.33333333333337" width="46.0" height="70.66666666666663" rx="4" class="cold-zone"/>
+  <use href="#bsm-meter" x="788.0" y="374.33333333333337" width="24" height="18.666666666666668"/>
+  <text x="800" y="365.33333333333337" class="lbl" style="text-anchor:middle">QR-3</text>
+  <text x="826.0" y="373.33333333333337" class="cold-tag" style="text-anchor:start;font-size:6.5px"><tspan x="826.0" dy="0.6em">SiV⁻</tspan><tspan x="826.0" dy="1.1em">~100 mK</tspan></text>
+  <rect x="739" y="421" width="18" height="18" rx="2" class="qfc-blk"/>
+  <text x="748" y="434" class="mini" style="text-anchor:middle">QFC</text>
+  <circle cx="776.0" cy="430" r="4" class="photon"/>
+  <circle cx="789.0" cy="430" r="9" class="comm"/>
+  <text x="789.0" y="430" class="qbit-in" style="text-anchor:middle">C</text>
+  <circle cx="811.0" cy="430" r="9" class="comm"/>
+  <text x="811.0" y="430" class="qbit-in" style="text-anchor:middle">C</text>
+  <circle cx="824.0" cy="430" r="4" class="photon"/>
+  <rect x="843" y="421" width="18" height="18" rx="2" class="qfc-blk"/>
+  <text x="852" y="434" class="mini" style="text-anchor:middle">QFC</text>
+  <circle cx="789.0" cy="406" r="9" class="memory"/>
+  <text x="789.0" y="406" class="qbit-in" style="text-anchor:middle">M</text>
+  <circle cx="811.0" cy="406" r="9" class="memory"/>
+  <text x="811.0" y="406" class="qbit-in" style="text-anchor:middle">M</text>
+  <line x1="789.0" y1="419" x2="789.0" y2="417" class="swap-link"/>
+  <path d="M 785.0 419 L 793.0 419 L 789.0 413 Z" style="fill:#9b87c4"/>
+  <path d="M 785.0 417 L 793.0 417 L 789.0 423 Z" style="fill:#9b87c4"/>
+  <line x1="811.0" y1="419" x2="811.0" y2="417" class="swap-link"/>
+  <path d="M 807.0 419 L 815.0 419 L 811.0 413 Z" style="fill:#9b87c4"/>
+  <path d="M 807.0 417 L 815.0 417 L 811.0 423 Z" style="fill:#9b87c4"/>
+  <line x1="757" y1="430" x2="780.0" y2="430" class="fiber--stub"/>
+  <line x1="820.0" y1="430" x2="843" y2="430" class="fiber--stub"/>
+  <line x1="798.0" y1="430" x2="802.0" y2="430" class="fiber--stub"/>
+  <use href="#quisp-bsa-white" x="68.0" y="348.0" width="24" height="24"/>
+  <text x="60.0" y="363" class="lbl" style="text-anchor:end">M1</text>
+  <use href="#quisp-bsa-white" x="908.0" y="348.0" width="24" height="24"/>
+  <text x="940.0" y="363" class="lbl" style="text-anchor:start">M4</text>
+  <use href="#quisp-bsa-white" x="338.0" y="418.0" width="24" height="24"/>
+  <text x="350.0" y="414.0" class="lbl" style="text-anchor:middle">M2</text>
+  <use href="#quisp-bsa-white" x="638.0" y="418.0" width="24" height="24"/>
+  <text x="650.0" y="414.0" class="lbl" style="text-anchor:middle">M3</text>
+  <text x="96" y="360" class="cold-tag" style="text-anchor:start;font-size:6.5px"><tspan x="96" dy="-0.15em">SNSPDs</tspan><tspan x="96" dy="1.1em">~2 K</tspan></text>
+  <text x="904" y="360" class="cold-tag" style="text-anchor:end;font-size:6.5px"><tspan x="904" dy="-0.15em">SNSPDs</tspan><tspan x="904" dy="1.1em">~2 K</tspan></text>
+  <text x="350.0" y="454" class="cold-tag" style="text-anchor:middle;font-size:6.5px"><tspan x="350.0" dy="-0.15em">SNSPDs</tspan><tspan x="350.0" dy="1.1em">~2 K</tspan></text>
+  <text x="650.0" y="454" class="cold-tag" style="text-anchor:middle;font-size:6.5px"><tspan x="650.0" dy="-0.15em">SNSPDs</tspan><tspan x="650.0" dy="1.1em">~2 K</tspan></text>
+  <line x1="80" y1="498" x2="200" y2="498" class="midline"/>
+  <text x="140.0" y="514" class="hop" style="text-anchor:middle">Hop 1 — 100 km</text>
+  <line x1="200" y1="498" x2="500" y2="498" class="midline"/>
+  <text x="350.0" y="514" class="hop" style="text-anchor:middle">Hop 2 — 100 km</text>
+  <line x1="500" y1="498" x2="800" y2="498" class="midline"/>
+  <text x="650.0" y="514" class="hop" style="text-anchor:middle">Hop 3 — 100 km</text>
+  <line x1="800" y1="498" x2="920" y2="498" class="midline"/>
+  <text x="860.0" y="514" class="hop" style="text-anchor:middle">Hop 4 — 100 km</text>
+  <line x1="80" y1="494" x2="80" y2="502" style="stroke:#aab0ba;stroke-width:1"/>
+  <line x1="200" y1="494" x2="200" y2="502" style="stroke:#aab0ba;stroke-width:1"/>
+  <line x1="500" y1="494" x2="500" y2="502" style="stroke:#aab0ba;stroke-width:1"/>
+  <line x1="800" y1="494" x2="800" y2="502" style="stroke:#aab0ba;stroke-width:1"/>
+  <line x1="920" y1="494" x2="920" y2="502" style="stroke:#aab0ba;stroke-width:1"/>
+  <line x1="89" y1="118" x2="90.0" y2="118" class="entanglement"/>
+  <path d="M 90.0 118 q 5.0 -4 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0 t 10 0" class="entanglement"/>
+  <line x1="910.0" y1="118" x2="911" y2="118" class="entanglement"/>
+  <circle cx="394.64" cy="290.0" r="7" class="step-num-bg"/>
+  <text x="394.64" y="290.0" class="step-num" style="text-anchor:middle">1</text>
+  <text x="407.64" y="290.0" class="step-txt" style="text-anchor:start">Generate Bell pairs per hop — 10³–10⁵ heralded retries per pair (fibre loss + 50% photonic BSM).</text>
+  <circle cx="394.64" cy="270.0" r="7" class="step-num-bg"/>
+  <text x="394.64" y="270.0" class="step-num" style="text-anchor:middle">2</text>
+  <text x="407.64" y="270.0" class="step-txt" style="text-anchor:start">Distil per hop, then matter-matter swap end-to-end — gated by memory T₂ in the wait.</text>
+  <circle cx="394.64" cy="250.0" r="7" class="step-num-bg"/>
+  <text x="394.64" y="250.0" class="step-num" style="text-anchor:middle">3</text>
+  <text x="407.64" y="250.0" class="step-txt" style="text-anchor:start">Load |ψ⟩ onto DQ-A — must beat MQ-A's coherence budget or the chain restarts.</text>
+  <circle cx="394.64" cy="230.0" r="7" class="step-num-bg"/>
+  <text x="394.64" y="230.0" class="step-num" style="text-anchor:middle">4</text>
+  <text x="407.64" y="230.0" class="step-txt" style="text-anchor:start">Local matter-matter BSM on (DQ-A, MQ-A) destroys |ψ⟩, yields 2 classical bits.</text>
+  <circle cx="394.64" cy="210.0" r="7" class="step-num-bg"/>
+  <text x="394.64" y="210.0" class="step-num" style="text-anchor:middle">5</text>
+  <text x="407.64" y="210.0" class="step-txt" style="text-anchor:start">Bits travel to DC-B; apply Pauli to MQ-B — |ψ⟩ at B (classical-channel latency only).</text>
+  <rect x="160" y="182" width="200" height="118" rx="6" style="fill: #fafbfc; stroke: #c4cad3; stroke-width: 1; stroke-dasharray: 4 3"/>
+  <text x="260.0" y="196" class="step-txt" style="text-anchor:middle;font-weight: 700">T₂ coherence budget</text>
+  <circle cx="174" cy="210" r="5" class="data"/>
+  <text x="186" y="210" class="step-txt" style="text-anchor:start">transmon (DQ-A, CQ-A)</text>
+  <text x="350" y="210" class="step-txt" style="text-anchor:end;font-style: italic">100 µs</text>
+  <circle cx="174" cy="230" r="5" class="memory"/>
+  <text x="186" y="230" class="step-txt" style="text-anchor:start">cavity memory (MQ-A)</text>
+  <text x="350" y="230" class="step-txt" style="text-anchor:end;font-style: italic">10 ms</text>
+  <circle cx="174" cy="250" r="5" class="comm"/>
+  <text x="186" y="250" class="step-txt" style="text-anchor:start">SiV electron (C)</text>
+  <text x="350" y="250" class="step-txt" style="text-anchor:end;font-style: italic">1 ms</text>
+  <circle cx="174" cy="270" r="5" class="memory"/>
+  <text x="186" y="270" class="step-txt" style="text-anchor:start">¹³C nuclear (M)</text>
+  <text x="350" y="270" class="step-txt" style="text-anchor:end;font-style: italic">1 s</text>
+  <circle cx="174" cy="290" r="5" class="data"/>
+  <text x="186" y="290" class="step-txt" style="text-anchor:start">¹⁷¹Yb⁺ (Node B)</text>
+  <text x="350" y="290" class="step-txt" style="text-anchor:end;font-style: italic">10 s</text>
+  <rect x="208.325" y="544" width="18" height="11" rx="2" class="repeater"/>
+  <text x="232.325" y="553" class="mini" style="text-anchor:start">SiV⁻ Repeater (QR)</text>
+  <circle cx="344.475" cy="550" r="6" class="data"/>
+  <text x="356.475" y="553" class="mini" style="text-anchor:start">Data Qubit (DQ)</text>
+  <circle cx="454.6" cy="550" r="6" class="comm"/>
+  <text x="466.6" y="553" class="mini" style="text-anchor:start">Comm Qubit (CQ)</text>
+  <circle cx="564.725" cy="550" r="6" class="memory"/>
+  <text x="576.725" y="553" class="mini" style="text-anchor:start">Memory Qubit (MQ)</text>
+  <circle cx="685.2" cy="550" r="7" class="photon"/>
+  <circle cx="697.2" cy="550" r="4" class="photon"/>
+  <circle cx="704.2" cy="550" r="2" class="photon"/>
+  <text x="712.2" y="553" class="mini" style="text-anchor:start">Photon (size = λ)</text>
+</svg>

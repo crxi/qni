@@ -1,0 +1,198 @@
+slug: quantum-optics-jena
+name: Quantum Optics Jena
+categories: [source-detect, qkd]
+hq: Jena, Germany
+founded: 2020
+status: private
+parent: null
+logo:
+  domain: qo-jena.com
+
+positioning: >
+  Jena-based spin-off of Fraunhofer IOF, founded in 2020 by Kevin Füchsel and
+  Oliver de Vries to commercialise entangled-photon-pair sources and
+  entanglement-based QKD systems for fibre networks, critical infrastructure,
+  and future satellite payloads. The product line covers the full chain: EPS
+  1550 photon-pair source, polarisation-analysis modules, and the ELVIS
+  multi-user QKD system. ELVIS distributes keys to three or more parties
+  simultaneously from a single entangled source, removing the trusted-node
+  requirement within the covered network segment. The company participates in
+  EuroQCI and the Horizon Europe Qu-Test certification programme.
+
+modalities:
+  source-detect:
+    role: source
+    detection_efficiency: null
+    dark_count_hz: null
+    jitter_ps: null
+  qkd:
+    protocol: [entanglement-based, BBM92]
+    rate_distance: "11.84 Mbit secure key / day over 60 km SMF (June 2023 field trial with ADVA)"
+    deployed_demos:
+      - "June 2023: ELVIS + ADVA ConnectGuard, 60 km between Thüringer Landesrechenzentrum
+        data centres; >20 billion entangled photons/day, 46,000+ 256-bit keys/day
+        (source: ADTRAN press release)"
+      - "May 2024: ELVIS integrated into IDQ Clarion KX multi-vendor QKD ecosystem
+        (source: IDQ press release)"
+
+milestones:
+  - date: 2025-09-25
+    tag: qkd
+    headline: Entangled-photon-pair source independently certified by Italy's INRIM
+      under the Horizon Europe Qu-Test project; evaluation confirmed source meets
+      network-integration requirements for QKD
+    source_url: https://thequantuminsider.com/2025/09/25/quantum-optics-jena-secures-independent-certification-milestone-for-quantum-communications/
+    source_type: press
+  - date: 2025-05-22
+    tag: source-detect
+    headline: DPG Technology Transfer Prize awarded jointly to Fraunhofer IOF,
+      Digital Innovation Hub Photonics, and Quantum Optics Jena for transfer of
+      quantum-optics research into high-security commercial applications
+    source_url: https://www.iof.fraunhofer.de/en/pressrelease/2025/Award-winning-technology-transfer-from-Jena.html
+    source_type: press
+  - date: 2024-09-11
+    tag: qkd
+    headline: "Series A: €8.5 million raised, led by Join Capital with ELAS Technologies,
+      Fraunhofer Technologie-Transfer Fonds, bm|t, and angel Malte Pollmann"
+    source_url: https://www.bm-t.de/en/2024-en/quantum-optics-jena-secures-e8-5-million-in-series-a-funding-to-revolutionize-secure-communications/
+    source_type: press
+  - date: 2024-05-14
+    tag: qkd
+    headline: ELVIS integrated into IDQ Clarion KX quantum-safe ecosystem alongside
+      LuxQuanta, HEQA Security, and ThinkQuantum, enabling hybrid CV/DV/entanglement-based
+      multi-vendor interoperability
+    source_url: https://www.idquantique.com/idq-launches-quantum-safe-communication-ecosystem/
+    source_type: press
+  - date: 2023-06-05
+    tag: qkd
+    headline: Field trial with ADVA Network Security — ELVIS + ConnectGuard Layer 1
+      encryption over 60 km Thuringian state-network fibre; >20 billion entangled
+      photons/day, 11.84 Mbit secure key, 46,000+ 256-bit keys/day
+    source_url: https://www.adtran.com/en/newsroom/press-releases/20230605-adva-network-security-and-quantum-optics-jena-showcase-german-made-qkd-solution
+    source_type: press
+  - date: 2021-02
+    tag: qkd
+    headline: "Seed funding completed: seven-figure euro investment from ELAS Technologies,
+      Fraunhofer Technologie-Transfer Fonds, and bm|t"
+    source_url: https://optics.org/news/12/2/26
+    source_type: press
+  - date: 2020
+    tag: qkd
+    headline: Company founded as Fraunhofer IOF spin-off by Kevin Füchsel and Oliver
+      de Vries to commercialise entangled-photon-source and QKD technology developed
+      at the institute
+    source_url: https://www.iof.fraunhofer.de/en/pressrelease/2021/quantum-optics-jena.html
+    source_type: press
+
+shareholders:
+  - holder: Join Capital
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-09
+    source_url: https://www.bm-t.de/en/2024-en/quantum-optics-jena-secures-e8-5-million-in-series-a-funding-to-revolutionize-secure-communications/
+    note: Lead investor in September 2024 Series A (€8.5 M); exact stake not disclosed
+  - holder: ELAS Technologies GmbH
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2024-09
+    source_url: https://www.bm-t.de/en/2024-en/quantum-optics-jena-secures-e8-5-million-in-series-a-funding-to-revolutionize-secure-communications/
+    note: Participated in both seed (2021) and Series A (2024)
+  - holder: Fraunhofer Technologie-Transfer Fonds GmbH
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2024-09
+    source_url: https://www.bm-t.de/en/2024-en/quantum-optics-jena-secures-e8-5-million-in-series-a-funding-to-revolutionize-secure-communications/
+    note: Participated in both seed (2021) and Series A (2024)
+  - holder: beteiligungsmanagement Thüringen (bm|t)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2024-09
+    source_url: https://www.bm-t.de/en/2024-en/quantum-optics-jena-secures-e8-5-million-in-series-a-funding-to-revolutionize-secure-communications/
+    note: Participated in both seed (2021) and Series A (2024); Thuringian public development investor
+  - holder: Malte Pollmann
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-09
+    source_url: https://www.bm-t.de/en/2024-en/quantum-optics-jena-secures-e8-5-million-in-series-a-funding-to-revolutionize-secure-communications/
+    note: Business angel participant in Series A
+
+key_personnel:
+  - role: CEO & Co-founder
+    name: Kevin Füchsel
+    since: 2020
+    source_url: https://www.iof.fraunhofer.de/en/pressrelease/2021/quantum-optics-jena.html
+  - role: CTO & Co-founder
+    name: Oliver de Vries
+    since: 2020
+    source_url: https://www.iof.fraunhofer.de/en/pressrelease/2021/quantum-optics-jena.html
+
+roadmap:
+  - target: 2027
+    item: Contribution to EuroQCI operational deployment across Europe
+    source_url: https://www.bm-t.de/en/2024-en/quantum-optics-jena-secures-e8-5-million-in-series-a-funding-to-revolutionize-secure-communications/
+    tag: qkd
+  - target: null
+    item: Payloads and subsystems for satellite QKD constellations
+    source_url: https://www.itsa365.de/en/exhibitors/quantum-optics-jena-gmbh-2418854
+    tag: qkd
+
+current_flagship:
+  name: ELVIS
+  generation: entanglement-based multi-party QKD system (fibre; 60 km field-trialled)
+
+references:
+  - kind: preprint
+    citation_key: null
+    url: https://arxiv.org/abs/2512.11630
+    note: >
+      Dosan et al. (2025) — "Highly Nondegenerate Entangled Photon Source for
+      Fiber-Based Quantum Key Distribution"; type-0 SPDC at 680/1550 nm;
+      Bell-state fidelity ≥96.1±1.3%; co-authored by Oliver de Vries (CTO)
+  - kind: press
+    citation_key: null
+    url: https://www.iof.fraunhofer.de/en/pressrelease/2021/quantum-optics-jena.html
+    note: Fraunhofer IOF spin-off announcement (Feb 2021) — founders, seed investors, product focus
+  - kind: press
+    citation_key: null
+    url: https://www.adtran.com/en/newsroom/press-releases/20230605-adva-network-security-and-quantum-optics-jena-showcase-german-made-qkd-solution
+    note: ADVA/QOJ joint press release (Jun 2023) — ELVIS 60 km field trial metrics
+  - kind: press
+    citation_key: null
+    url: https://www.bm-t.de/en/2024-en/quantum-optics-jena-secures-e8-5-million-in-series-a-funding-to-revolutionize-secure-communications/
+    note: bm|t Series A announcement (Sep 2024) — €8.5 M, investors, EuroQCI roadmap
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2025/09/25/quantum-optics-jena-secures-independent-certification-milestone-for-quantum-communications/
+    note: TQI (Sep 2025) — INRIM certification under Horizon Europe Qu-Test
+  - kind: press
+    citation_key: null
+    url: https://www.iof.fraunhofer.de/en/pressrelease/2025/Award-winning-technology-transfer-from-Jena.html
+    note: Fraunhofer IOF (May 2025) — DPG Technology Transfer Prize
+  - kind: press
+    citation_key: null
+    url: https://www.idquantique.com/idq-launches-quantum-safe-communication-ecosystem/
+    note: IDQ (May 2024) — ELVIS in Clarion KX multi-vendor QKD ecosystem
+
+partial:
+  - modalities.source-detect.detection_efficiency
+  - modalities.source-detect.dark_count_hz
+  - modalities.source-detect.jitter_ps
+  - field: modalities.qkd.rate_distance
+    as_of: 2026-06-17
+    note: >
+      60 km field-trial metrics sourced from ADVA/QOJ joint press release (Jun 2023);
+      peer-reviewed citation pending
+  - field: modalities.qkd.protocol
+    as_of: 2026-06-17
+    note: >
+      Protocol described as entanglement-based in vendor and press materials; BBM92
+      inferred from architecture but not explicitly named in available public sources
+  - field: shareholders
+    as_of: 2026-06-17
+    note: Private company; no cap table disclosed; stake percentages not published for any round
+  - field: roadmap.1.target
+    as_of: 2026-06-17
+    note: Satellite payload timeline not publicly disclosed; described as forward roadmap item on vendor exhibitor profile
+
+last_verified: 2026-06-17
+verification_method: web

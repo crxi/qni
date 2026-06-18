@@ -1,0 +1,163 @@
+slug: quandela
+name: Quandela
+categories: [qc, source-detect]
+hq: Massy, Île-de-France, France
+founded: 2017
+status: private
+parent: null
+logo:
+  domain: quandela.com
+
+positioning: >
+  French full-stack photonic quantum-computing company founded in 2017 as a
+  CNRS / Université Paris-Saclay (C2N) spin-out by Pascale Senellart,
+  Niccolò Somaschi, and Valérian Giesz. Builds discrete-variable photonic
+  processors driven by deterministic semiconductor-quantum-dot single-photon
+  sources in micropillar cavities — technology developed in Senellart's
+  group at C2N. Sells the MosaiQ photonic QC line (6 to 24 qubits) and the
+  Prometheus single-photon source. Delivered what the company described as
+  Europe's first customer-installed photonic QC to OVHcloud in 2023; the 12-qubit Lucy was
+  inaugurated at CEA's TGCC in April 2026 under EuroHPC / GENCI.
+
+modalities:
+  qc:
+    qubit_type: photonic
+    physical_qubits_current: 12
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: photonic-link
+    gate_set: []
+  source-detect:
+    role: source
+    detection_efficiency: null
+    dark_count_hz: null
+    jitter_ps: null
+
+milestones:
+  - date: 2026-04
+    tag: qc
+    headline: "Lucy inaugurated at CEA's TGCC — 12-qubit universal digital photonic QC delivered to EuroHPC / GENCI; opens to European researchers via EuroQCS-France remote-access"
+    source_url: https://www.quandela.com/about-us/newsroom/quandela-delivers-lucy-the-most-advanced-photonic-quantum-computer-worldwide-to-eurohpc-and-genci-at-ceas-tgcc/
+    source_type: press
+  - date: 2025-10
+    tag: qc
+    headline: "Lucy delivered to EuroHPC / GENCI at CEA's TGCC — ~€8.5M procurement (50% EuroHPC + 50% France), assembled in 12 months"
+    source_url: https://www.quandela.com/about-us/newsroom/quandela-delivers-lucy-the-most-advanced-photonic-quantum-computer-worldwide-to-eurohpc-and-genci-at-ceas-tgcc/
+    source_type: press
+  - date: 2024-09
+    tag: qc
+    headline: EuroHPC procurement contract for Lucy signed with Quandela (lead) and attocube systems AG, following Jan 2024 call for tender
+    source_url: https://www.eurohpc-ju.europa.eu/signature-procurement-contract-lucy-new-eurohpc-quantum-computer-located-france-2024-09-26_en
+    source_type: filing
+  - date: 2024
+    tag: qc
+    headline: Photonic QC deployed at Exaion datacentres in Canada — international commercial reach
+    source_url: https://www.quandela.com/about-us/newsroom/quandela-delivers-lucy-the-most-advanced-photonic-quantum-computer-worldwide-to-eurohpc-and-genci-at-ceas-tgcc/
+    source_type: press
+  - date: 2023-11
+    tag: qc
+    headline: "€50M+ Series B raised; first MosaiQ photonic QC delivered to OVHcloud — announced by Quandela as the first commercial photonic-QC sale in Europe"
+    source_url: https://tech.eu/2023/11/10/quandela-secures-eur50m-funding-and-delivers-first-quantum-computer/
+    source_type: press
+  - date: 2023
+    tag: source-detect
+    headline: Quandela opens what the company described as Europe's first quantum-computer production plant (Massy, France) — manufacturing capacity for quantum-dot single-photon sources at scale
+    source_url: https://tech.eu/2023/11/10/quandela-secures-eur50m-funding-and-delivers-first-quantum-computer/
+    source_type: press
+  - date: 2017
+    tag: source-detect
+    headline: Company founded as CNRS / Université Paris-Saclay (C2N) spinout by Pascale Senellart, Niccolò Somaschi, Valérian Giesz
+    source_url: https://www.universite-paris-saclay.fr/en/news/quandela-journey-single-photons-sources-quantum-computers
+    source_type: press
+
+shareholders:
+  - holder: Pascale Senellart
+    stake_percent: null
+    stake_class: founder
+    as_of: 2017
+    source_url: https://www.quandela.com/resources/blog/pascale-senellart-photonic-quantum-computing-quandela/
+    note: Co-founder; CNRS research director (single-photon-source physics); presumed retained equity (private company, undisclosed)
+  - holder: Niccolò Somaschi
+    stake_percent: null
+    stake_class: founder
+    as_of: 2017
+    source_url: https://www.universite-paris-saclay.fr/en/news/quandela-journey-single-photons-sources-quantum-computers
+    note: Co-founder & CEO; presumed retained equity (private company, undisclosed)
+  - holder: Valérian Giesz
+    stake_percent: null
+    stake_class: founder
+    as_of: 2017
+    source_url: https://www.universite-paris-saclay.fr/en/news/quandela-journey-single-photons-sources-quantum-computers
+    note: Co-founder & COO; presumed retained equity (private company, undisclosed)
+
+key_personnel:
+  - role: Co-founder & CEO
+    name: Niccolò Somaschi
+    since: 2017
+    source_url: https://www.quandela.com/about-us/
+  - role: Co-founder & COO
+    name: Valérian Giesz
+    since: 2017
+    source_url: https://www.quandela.com/about-us/
+  - role: Co-founder & Chief Scientist
+    name: Pascale Senellart
+    since: 2017
+    source_url: https://www.quandela.com/resources/blog/pascale-senellart-photonic-quantum-computing-quandela/
+    note: CNRS research director at C2N; underlying quantum-dot single-photon-source technology comes from her group
+
+roadmap:
+  - target: 2026
+    item: Lucy opens to European researchers via EuroQCS-France remote-access programme
+    source_url: https://thequantuminsider.com/2024/11/20/euroqcs-france-to-provide-remote-access-to-quandelas-photonic-quantum-computer-for-european-researchers/
+    tag: qc
+  - target: 2026
+    item: MosaiQ line scaling from 6 to 24 qubits across delivered systems
+    source_url: https://www.quandela.com/products-and-services/mosaiq/
+    tag: qc
+
+current_flagship:
+  name: MosaiQ / Lucy
+  generation: discrete-variable photonic QC, quantum-dot single-photon sources, 6–24 qubits (Lucy = 12 qubits at CEA TGCC)
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://www.quandela.com/products-and-services/mosaiq/
+    note: MosaiQ product page (6–24-qubit photonic QC)
+  - kind: press
+    citation_key: null
+    url: https://www.quandela.com/about-us/newsroom/quandela-delivers-lucy-the-most-advanced-photonic-quantum-computer-worldwide-to-eurohpc-and-genci-at-ceas-tgcc/
+    note: Lucy delivery to CEA / EuroHPC (Oct 2025)
+  - kind: press
+    citation_key: null
+    url: https://tech.eu/2023/11/10/quandela-secures-eur50m-funding-and-delivers-first-quantum-computer/
+    note: €50M Series B and OVHcloud delivery (Nov 2023)
+  - kind: filing
+    citation_key: null
+    url: https://www.eurohpc-ju.europa.eu/signature-procurement-contract-lucy-new-eurohpc-quantum-computer-located-france-2024-09-26_en
+    note: EuroHPC procurement contract signature (Sept 2024)
+  - kind: blog
+    citation_key: null
+    url: https://www.universite-paris-saclay.fr/en/news/quandela-journey-single-photons-sources-quantum-computers
+    note: Université Paris-Saclay backgrounder on the Quandela founding team
+
+partial:
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.ec_code
+  - modalities.qc.gate_set
+  - modalities.source-detect.detection_efficiency
+  - modalities.source-detect.dark_count_hz
+  - modalities.source-detect.jitter_ps
+  - field: shareholders
+    as_of: 2026-05-15
+    note: "Total raised exceeds $71M across multiple rounds (Series A 2021 + Series B 2023 + grants); detailed investor list and per-round lead investors not consolidated in primary sources surfaced this pass"
+
+last_verified: 2026-05-15
+verification_method: web

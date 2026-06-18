@@ -1,0 +1,194 @@
+---
+/**
+ * /all-photonic — All-photonic quantum repeaters
+ *
+ * Tier C · Mechanisms.
+ *
+ * Citations:
+ *   - azuma-natcomm-2015 — Azuma, Tamaki, Lo. The original
+ *     all-photonic repeater protocol with tree states.
+ *   - azuma-rmp-95 — Azuma RMP 2023 §IV; comparison with
+ *     memory-based 1G/2G/3G repeaters.
+ *   - bayerbach-sciadv-2023 — boosted linear-optics BSM beating
+ *     the 50% ceiling.
+ *   - kumar-ijndc-2025 — current network survey.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SourceNote from "../components/SourceNote.astro";
+import Math from "../components/Math.astro";
+
+const sections = [
+  { id: "overview", label: "Overview" },
+  { id: "azuma",    label: "The Azuma–Tamaki–Lo protocol" },
+  { id: "demands",  label: "Resource demands" },
+  { id: "compare",  label: "vs memory-based repeaters" },
+  { id: "role",     label: "Network role" },
+];
+---
+
+<Infographic
+  title="All-photonic quantum repeaters"
+  description="All-photonic quantum repeaters use locally generated photonic graph states (tree states) and heralded linear-optics measurements to distribute entanglement without quantum memories. This page covers the Azuma–Tamaki–Lo 2015 protocol, the resource demands it imposes, and how it compares with memory-based 1G/2G/3G repeater architectures."
+  references={[
+    "azuma-natcomm-2015",
+    "azuma-rmp-95",
+    "bayerbach-sciadv-2023",
+    "kumar-ijndc-2025",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="all-photonic" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>All-photonic quantum repeaters</h1>
+        <p>
+          Memory-based quantum repeaters require matter qubits whose coherence time
+          exceeds the classical-message round-trip across the link they serve — a
+          demanding constraint that limits memory-based architectures to platforms with
+          long-lived storage. <strong>All-photonic quantum repeaters</strong> remove the
+          memory entirely: each repeater node generates a multi-photon entangled
+          <em>graph state</em> on the fly, processes it with linear optics and heralded
+          measurements, and forwards the resulting entanglement
+          downstream <SourceNote id="azuma-natcomm-2015" />.
+        </p>
+        <p>
+          The protocol's appeal is that there is nothing to wait on: all operations are
+          local at each node and the classical messages only confirm which heralded
+          attempts succeeded. Its cost is a much higher per-node photonic-resource budget
+          — many single photons of high indistinguishability, many high-efficiency
+          detectors, and the photonic gates to entangle them into the required tree-state
+          structure.
+        </p>
+      </header>
+
+      <section id="azuma" data-nav-section>
+        <h2>The Azuma–Tamaki–Lo protocol</h2>
+        <p>
+          At each repeater node, a <strong>tree state</strong> is produced — a many-photon
+          graph state with a tree topology. The leaves are dual-rail photonic qubits;
+          interior vertices encode the redundancy that lets the protocol tolerate photon
+          loss. Photons at the appropriate leaves are sent forward toward the next
+          repeater node, where they meet photons arriving from the upstream node at a
+          Bell-state analyser. Successful BSM outcomes herald entanglement across the
+          link; failed outcomes are absorbed by the tree's redundancy and don't kill the
+          run <SourceNote id="azuma-natcomm-2015" />.
+        </p>
+        <p>
+          The end-to-end Bell pair is established without any node holding a qubit while
+          waiting on a classical message. The protocol is structurally one-way: each node
+          generates its tree state, performs its local operations, and forwards the
+          relevant photons before any classical signal from downstream returns.
+        </p>
+      </section>
+
+      <section id="demands" data-nav-section>
+        <h2>Resource demands</h2>
+        <p>
+          The memory-coherence budget is replaced by a photon-source-and-detector budget.
+          Per repeater node, the protocol requires:
+        </p>
+        <ul>
+          <li>
+            <strong>Many high-purity single photons</strong> per attempt — tree states of
+            useful depth need tens to hundreds of indistinguishable photons.
+          </li>
+          <li>
+            <strong>Photonic entangling gates</strong> to assemble the tree state. In a
+            linear-optics implementation, these are probabilistic and consume ancilla
+            photons.
+          </li>
+          <li>
+            <strong>High-efficiency, low-dark-count detectors</strong> at every BSA.
+            Detector inefficiency compounds across the network.
+          </li>
+        </ul>
+        <p>
+          The <strong>50 % linear-optics BSM ceiling</strong> applies: a Bell-state
+          measurement built from passive linear optics and photon counting succeeds at
+          most 50 % of the time in the ideal case. Ancilla-assisted schemes can beat the
+          ceiling — Bayerbach et al. recently demonstrated a BSM at ~57.9 % success
+          probability using two ancilla photons <SourceNote id="bayerbach-sciadv-2023" />.
+          Either way, photon-source brightness and detector efficiency are the dominant
+          engineering numbers for all-photonic.
+        </p>
+      </section>
+
+      <section id="compare" data-nav-section>
+        <h2>vs memory-based repeaters</h2>
+        <p>
+          Memory-based (1G/2G) repeaters store qubits in matter while round-trip classical
+          signalling coordinates swaps and purification. Their performance is set by
+          memory T₂ and the link length. All-photonic repeaters eliminate the memory
+          dwell-time entirely but replace it with a heavier per-attempt resource cost.
+          Azuma's 2023 RMP review covers the comparison at length, mapping the trade-off
+          surface across loss regimes and per-node hardware
+          assumptions <SourceNote id="azuma-rmp-95" />.
+        </p>
+        <p>
+          Practical status: memory-based platforms (NV/SiV centres, ions, atomic
+          ensembles) have multi-node experimental demonstrations today. All-photonic
+          remains predominantly theoretical with table-top building-block demos rather
+          than full-chain repeater experiments. The gap reflects the hardware demand
+          asymmetry — single-photon sources at the indistinguishability and brightness
+          all-photonic needs are still maturing.
+        </p>
+      </section>
+
+      <section id="role" data-nav-section>
+        <h2>Network role</h2>
+        <p>
+          All-photonic occupies an alternative-architecture slot to the 1G/2G memory-based
+          repeaters and the 3G QEC-encoded transport. Where memory T₂ caps the link
+          length of memory-based repeaters, all-photonic's reach is limited by the
+          per-node photonic resource overhead. If high-rate deterministic photon sources
+          become widely available, all-photonic gets practical; until then memory-based
+          dominates the experimental
+          frontier <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+        <p>
+          Forward references:
+        </p>
+        <ul>
+          <li>
+            <strong>Repeaters</strong> — the 1G/2G/3G memory-based and QEC-based families
+            this subject sits beside.
+          </li>
+          <li>
+            <strong>Distribution</strong> — single-link architectures (MM/SR/MS) that any
+            repeater family chains.
+          </li>
+          <li>
+            <strong>Metrics</strong> — photon-loss and indistinguishability numbers that
+            set the per-node budget here.
+          </li>
+        </ul>
+      </section>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-4);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .hero h1 { margin: 0; }
+  .hero p { margin: 0; }
+
+  section { display: grid; gap: var(--space-3); }
+
+  ul {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+  li { line-height: var(--leading-snug); }
+</style>

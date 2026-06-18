@@ -1,0 +1,129 @@
+slug: ntu-quantum-sg
+name: Nanyang Technological University — Quantum groups
+categories: [qc, sensing]
+hq: Singapore
+status: active
+parent: null
+
+institution:
+  name: Nanyang Technological University (NTU)
+  lab: School of Physical & Mathematical Sciences · Nanyang Quantum Hub (NQH) · Quantum Science and Engineering Centre (QSec)
+  also: Joint programmes with CQT (NUS) and A*STAR via the National Quantum Office
+
+group_website: https://www.ntu.edu.sg/nqh
+
+positioning: >
+  NTU's quantum-information research is consolidated under the Nanyang
+  Quantum Hub at the School of Physical & Mathematical Sciences and the
+  newer Quantum Science and Engineering Centre, complementing the larger
+  CQT programme at NUS down the road. The hub spans nine faculty across
+  quantum computing theory, ultracold-atom platforms, superconducting
+  devices, and quantum sensing, with notable activity in
+  quantum-thermodynamic foundations (Gu), Rydberg / ultracold-gas
+  simulators (Wilkowski, Dumke), and atom-nanophotonics. The hub has a
+  focused programme in quantum foundations and sensing.
+
+modalities:
+  qc:
+    qubit_type: neutral-atom
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: ""
+    gate_set: []
+  sensing:
+    target_quantity: ultracold-atom interferometry; atom-nanophotonics sensors
+    sensitivity: ""
+
+milestones:
+  - date: 2022-05
+    tag: qc
+    headline: NTU launches Quantum Science and Engineering Centre (QSec) for chip-scale quantum technologies
+    source_url: https://www.eurekalert.org/news-releases/937252
+    source_type: press
+  - date: 2024-12
+    tag: qc
+    headline: NTU programme on light-based quantum technologies announced
+    source_url: https://archive.opengovasia.com/2024/12/21/ntu-singapore-advances-light-based-quantum-technologies/?c=sg
+    source_type: press
+
+funding_sources:
+  - name: National Research Foundation Singapore (NRF) — Quantum Engineering Programme / National Quantum Office
+    role: Primary national funder for quantum research in Singapore
+    source_url: https://www.nrf.gov.sg/
+  - name: Ministry of Education Singapore (MoE) — Tier 2 / Tier 3 academic research grants
+    role: Standard university research funding
+    source_url: https://www.moe.gov.sg/
+  - name: Nanyang Technological University
+    role: Institutional support for NQH and QSec
+    source_url: https://www.ntu.edu.sg/nqh
+
+key_personnel:
+  - role: Professor — quantum computing, quantum thermodynamics, complexity (NQH)
+    name: Mile Gu
+    since: 2016
+    source_url: https://www.ntu.edu.sg/nqh/our-people
+  - role: Associate Professor — superconducting and ultracold-atom quantum devices
+    name: Rainer Dumke
+    since: 2011
+    source_url: https://www.ntu.edu.sg/nqh/our-people
+  - role: Associate Professor — quantum simulators, ultracold gas, atom-nanophotonics
+    name: David Wilkowski
+    since: 2009
+    source_url: https://www.ntu.edu.sg/nqh/our-people
+  - role: Associate Professor — quantum chaos, many-body entanglement, quantum thermodynamics
+    name: Lock Yue Chew
+    since: 2005
+    source_url: https://www.ntu.edu.sg/nqh/our-people
+  - role: Senior Lecturer — quantum computing, quantum devices, nanoscale physics
+    name: Teck Seng Koh
+    since: 2015
+    source_url: https://www.ntu.edu.sg/nqh/our-people
+
+current_focus:
+  name: Applied quantum technologies and engineered quantum systems
+  description: >
+    Per NQH's own framing (ntu.edu.sg/nqh): a collaborative research
+    platform focusing on quantum technologies, organised across two areas —
+    applied quantum technologies (quantum computing, sensors, communication,
+    algorithms) and engineered quantum systems (quantum photonics, many-body
+    systems, solid-state materials, cold atoms, superconducting resonators).
+  source_url: https://www.ntu.edu.sg/nqh
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://www.eurekalert.org/news-releases/937252
+    note: NTU launches Quantum Science and Engineering Centre (2022)
+  - kind: press
+    citation_key: null
+    url: https://archive.opengovasia.com/2024/12/21/ntu-singapore-advances-light-based-quantum-technologies/?c=sg
+    note: NTU advances light-based quantum technologies (2024)
+  - kind: blog
+    citation_key: null
+    url: https://www.ntu.edu.sg/nqh/our-people
+    note: Nanyang Quantum Hub faculty roster
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.sensing.sensitivity
+  - field: categories
+    as_of: 2026-05-24
+    note: "Primary axes are QC theory + ultracold-atom platforms + sensing; categories list approximates this. The hub also has activity in quantum networking foundations but no fielded network demos."
+  - field: key_personnel
+    as_of: 2026-05-24
+    note: "Tomasz Paterek (primary affiliation now University of Gdansk / Xiamen University Malaysia; full-time at NTU 2015–~2020) and Murray Barrett (CQT / NUS Department of Physics, not NTU) are not included; the roster follows the NQH listing on the NTU site."
+  - field: modalities.qc.qubit_type
+    as_of: 2026-05-24
+    note: "Hub spans neutral-atom (Wilkowski, Dumke), superconducting (Dumke), and photonic platforms; neutral-atom listed as the most prominent experimental thrust but the category is mixed."
+
+last_verified: 2026-05-24
+verification_method: web

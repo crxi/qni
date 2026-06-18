@@ -1,0 +1,26 @@
+{
+  "name": "info-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && pagefind --site dist && rm -rf public/pagefind && cp -R dist/pagefind public/pagefind && node scripts/minify-dist.mjs",
+    "preview": "astro preview",
+    "build:pdf": "astro build && pagedjs-cli dist/spectrum/index.html -o dist/spectrum.pdf",
+    "check": "python3 scripts/check_dossiers.py"
+  },
+  "dependencies": {
+    "@rollup/plugin-yaml": "^4.1.2",
+    "astro": "^6.3.7",
+    "js-yaml": "^4.1.0",
+    "katex": "^0.16.45"
+  },
+  "devDependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "@types/js-yaml": "^4.0.9",
+    "html-minifier-terser": "^7.2.0",
+    "pagedjs-cli": "^0.4.3",
+    "pagefind": "^1.5.2",
+    "typescript": "^5.6.0"
+  }
+}

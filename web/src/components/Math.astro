@@ -1,0 +1,59 @@
+---
+/**
+ * Math — KaTeX-rendered TeX, build-time only.
+ *
+ * Inline by default; pass `display` for block-level (centred) math.
+ * KaTeX is invoked in the Astro frontmatter so the page emits plain
+ * HTML + KaTeX's stylesheet — no runtime JS, no MathJax warm-up.
+ *
+ * The KaTeX stylesheet is imported once globally in
+ * `layouts/Infographic.astro` so every page that uses <Math /> gets
+ * the typography for free.
+ */
+import katex from "katex";
+
+interface Props {
+  /** TeX source; e.g. "|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle". */
+  tex: string;
+  /** Render block-level (centred, larger). Default false (inline). */
+  display?: boolean;
+}
+
+const { tex, display = false } = Astro.props;
+
+const html = katex.renderToString(tex, {
+  displayMode: display,
+  throwOnError: false,
+  output: "html",
+  // strict: false silences benign warnings for unicode chars we use
+  // (e.g. spacing in physics-style ket notation).
+  strict: false,
+});
+---
+
+{display ? (
+  <div class="math math--display" set:html={html} />
+) : (
+  <span class="math math--inline" set:html={html} />
+)}
+
+<style>
+  .math--display {
+    margin-block: var(--space-3);
+    text-align: center;
+  }
+  /* KaTeX ships its own typography; override only where it needs to
+     fit our token system. Inline math sits at slightly larger than
+     the surrounding prose so the bra/ket bars are visible; display
+     math is bumped further so a centred equation reads as a focal
+     point on the page. */
+  .math--inline :global(.katex) {
+    font-size: 1.05em;
+  }
+  .math--display :global(.katex) {
+    font-size: 1.4em;
+  }
+  .math--display :global(.katex-display) {
+    margin: 0;
+  }
+</style>

@@ -1,0 +1,861 @@
+---
+/**
+ * /metrics — Loss, decoherence, fidelity
+ *
+ * Tier A · Foundations bridge.
+ *
+ * Citations:
+ *   - itu-g-652-d — single-mode fibre 0.20 dB/km @ 1550 nm.
+ *   - jasion-ofc-2022 — hollow-core academic best (DNANF).
+ *   - lumenisity-microsoft-2024 — hollow-core commercial deployment.
+ *   - schmitt-manderbach-prl-2007 — free-space 144 km decoy-state QKD.
+ *   - yin-science-2017 — Micius satellite entanglement distribution.
+ *   - meddeb-comnet-2025 — per-platform memory storage times (Table 5).
+ *   - cacciapuoti-ieeetc-2020 — quantum-vs-classical metric framing.
+ *   - kumar-ijndc-2025 — current network survey.
+ *   - kozlowski-rfc9340 — link-layer service framing.
+ *   - wehner-science-2018 — quantum-internet stages.
+ *   - horodecki-pra-1999 — singlet fraction and teleportation fidelity.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SourceNote from "../components/SourceNote.astro";
+import Callout from "../components/Callout.astro";
+import Math from "../components/Math.astro";
+
+const sections = [
+  { id: "overview",   label: "Overview" },
+  { id: "loss",       label: "Loss" },
+  { id: "fidelity",   label: "Fidelity" },
+  { id: "decoherence",label: "Decoherence" },
+  { id: "details",    label: "Further details" },
+  { id: "qvc",        label: "Quantum vs classical metrics" },
+  { id: "budget",     label: "Link-budget example" },
+  { id: "forward",    label: "Forward references" },
+];
+---
+
+<Infographic
+  title="Loss & Errors — what bounds a quantum link"
+  description="A quantum link is bounded by two impairments: channel loss (which HEG fights with heralding + retries) and qubit errors as fidelity + decoherence (which HEP fights with purification). Grounded in fibre 0.20 dB/km, hollow-core 0.091 dB/km, free-space and satellite numbers, memory T₂ across platforms, and Bell-pair fidelity thresholds. Worked through one 200 km link budget end-to-end."
+  references={[
+    "cacciapuoti-ieeetc-2020",
+    "fowler-pra-86-032324",
+    "hong-ou-mandel-prl-59-2044",
+    "horodecki-pra-1999",
+    "itu-g-652-d",
+    "jasion-ofc-2022",
+    "kozlowski-rfc9340",
+    "kumar-ijndc-2025",
+    "lumenisity-microsoft-2024",
+    "meddeb-comnet-2025",
+    "pirandola-aop-12-1012",
+    "pirandola-natcomm-8-15043",
+    "schmitt-manderbach-prl-2007",
+    "wehner-science-2018",
+    "yin-science-2017",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="metrics" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>Loss & Errors</h1>
+        <p>
+          A quantum link is bounded by two impairments. <strong>Loss</strong> — how many
+          photons survive the medium — is what heralded entanglement generation (HEG)
+          fights with its retry-until-success pattern. <strong>Errors</strong> — how
+          accurately the surviving qubits encode the intended state — is what heralded
+          entanglement purification (HEP) trims by trading pairs for higher fidelity.
+          Every other engineering choice (repeater spacing, swap depth, fibre vs
+          satellite, purification cost) falls out of how these two impairments compose
+          along a link <SourceNote id="cacciapuoti-ieeetc-2020" />.
+        </p>
+        <p>
+          Errors decompose further into <strong>fidelity</strong> (how close the
+          delivered Bell pair is to the ideal target) and <strong>decoherence</strong>
+          (how fast a stationary qubit loses its state in memory while it's waiting).
+          We cover them in that order because HEP addresses fidelity directly; longer
+          memory just extends the window in which fidelity is still high enough to
+          purify.
+        </p>
+        <p>
+          The numbers below come from current standards and the most-cited experiments.
+          Treat them as the back-of-envelope figures every later section in the series
+          leans on, not as the last word — vendor- and platform-specific numbers move
+          year over year.
+        </p>
+      </header>
+
+      <section id="loss" data-nav-section>
+        <h2>Loss — the photon-survival metric</h2>
+        <p>
+          Optical channels attenuate exponentially: a length <Math tex="L" /> of medium
+          with attenuation <Math tex="\\alpha" /> dB/km transmits a fraction
+          <Math tex="\\eta = 10^{-\\alpha L / 10}" /> of the input photons. Loss is the
+          single most punishing metric for long links; an entanglement-distribution rate
+          that scales as <Math tex="\\eta" /> per attempt drops by a factor of ten every
+          time you add 10 dB to the link.
+        </p>
+
+        <div class="metric-table-wrap">
+        <table class="metric-table">
+          <thead>
+            <tr>
+              <th scope="col">Medium</th>
+              <th scope="col">Attenuation</th>
+              <th scope="col">Reach @ 20 dB total loss</th>
+              <th scope="col">Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Standard single-mode fibre (SMF, ITU-T G.652.D)</th>
+              <td data-label="Attenuation">0.20 dB/km @ 1550 nm (C-band)</td>
+              <td data-label="Reach">100 km</td>
+              <td data-label="Source"><SourceNote id="itu-g-652-d" /></td>
+            </tr>
+            <tr>
+              <th scope="row">Hollow-core fibre — commercial</th>
+              <td data-label="Attenuation">0.091 dB/km (Lumenisity / Microsoft, 2024)</td>
+              <td data-label="Reach">~220 km</td>
+              <td data-label="Source"><SourceNote id="lumenisity-microsoft-2024" /></td>
+            </tr>
+            <tr>
+              <th scope="row">Hollow-core fibre — academic best (DNANF)</th>
+              <td data-label="Attenuation">0.124 dB/km (Jasion et al., OFC 2022)</td>
+              <td data-label="Reach">~160 km</td>
+              <td data-label="Source"><SourceNote id="jasion-ofc-2022" /></td>
+            </tr>
+            <tr>
+              <th scope="row">Free-space optical (FSO), clear sky horizontal link</th>
+              <td data-label="Attenuation">~0.5 dB/km (Schmitt-Manderbach et al., 144 km QKD)</td>
+              <td data-label="Reach">~40 km</td>
+              <td data-label="Source"><SourceNote id="schmitt-manderbach-prl-2007" /></td>
+            </tr>
+            <tr>
+              <th scope="row">Satellite to ground (LEO downlink)</th>
+              <td data-label="Attenuation">~50 dB single-pass to LEO, atmosphere-dominated (Micius)</td>
+              <td data-label="Reach">1200 km demonstrated</td>
+              <td data-label="Source"><SourceNote id="yin-science-2017" /></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+
+        <p>
+          Two patterns to take from the table. First, hollow-core fibre roughly halves
+          standard-fibre attenuation, which doubles the reach at any given loss budget;
+          this is why hollow-core is treated as the leading medium-term roadmap item for
+          long-haul quantum links. Second, satellite links route around the per-km
+          attenuation problem entirely — the bulk of the loss is concentrated in the few
+          tens of kilometres of atmosphere, after which vacuum is essentially lossless.
+          Micius distributed Bell pairs over 1200 km of ground separation by
+          paying a one-time ~50 dB atmospheric tax rather than a continuous 0.20 dB/km
+          fibre tax <SourceNote id="yin-science-2017" />.
+        </p>
+
+        <Callout label="Why no-cloning makes loss harder than in classical optics">
+          <p>
+            Classical fibre uses amplify-and-forward — an optical amplifier (EDFA) every
+            ~80 km regenerates the signal so end-to-end attenuation stays bounded. The
+            no-cloning theorem rules this out for an unknown quantum state: no unitary
+            duplicates <Math tex="|\\psi\\rangle" />, so no optical amplifier preserves
+            it. Lost photons cannot be recovered, only re-attempted from the source.
+            Quantum repeaters work around this with entanglement swapping plus
+            purification, not amplification — covered in the
+            <strong>repeaters</strong> subject.
+          </p>
+        </Callout>
+      </section>
+
+      <section id="fidelity" data-nav-section>
+        <h2>Fidelity — quality of the delivered Bell pair</h2>
+        <p>
+          For an output state <Math tex="\\rho" /> that should be the ideal Bell state
+          <Math tex="|\\Phi^+\\rangle" />, fidelity is
+          <Math tex="F = \\langle \\Phi^+ | \\rho | \\Phi^+ \\rangle" /> — the overlap of
+          the actual state with the target. <Math tex="F = 1" /> is perfect;
+          <Math tex="F = 1/4" /> is the maximally mixed state and corresponds to no
+          entanglement. The closely-related <em>singlet fraction</em> is the maximum
+          overlap with any of the four Bell states under local
+          Cliffords <SourceNote id="horodecki-pra-1999" />.
+        </p>
+
+        <h3>Application thresholds</h3>
+        <p>
+          What counts as "high enough" fidelity depends entirely on what the application
+          is going to do with the pair:
+        </p>
+        <ul>
+          <li>
+            <strong>Teleportation of an arbitrary qubit</strong> through a Bell pair has
+            average output fidelity <Math tex="(2F + 1)/3" />. At
+            <Math tex="F = 1/2" />, the output drops to <Math tex="2/3" /> — what a
+            classical measure-and-prepare strategy already achieves with no entanglement.
+            Practical teleportation needs <Math tex="F" /> well above
+            <Math tex="1/2" /> <SourceNote id="horodecki-pra-1999" />.
+          </li>
+          <li>
+            <strong>Entanglement-based QKD (E91 / BBM92)</strong> needs the pair clean
+            enough that the QBER (quantum bit-error rate) sits below the
+            secret-key-rate threshold. The Shor–Preskill / CSS analysis keeps the
+            asymptotic key rate positive while QBER &lt; <Math tex="\\sim 11\\%" /> in
+            either basis; for a Werner-state Bell pair with fidelity <Math tex="F" />
+            the QBER in either basis is <Math tex="2(1-F)/3" />, which puts the cut-off
+            at <Math tex="F \\approx 0.835" /> — hence the
+            <Math tex="F \\gtrsim 0.85" /> rule of thumb
+            <SourceNote id="pirandola-aop-12-1012" />.
+          </li>
+          <li>
+            <strong>Distributed quantum computing</strong> is the most demanding. A
+            two-qubit gate between processors mediated by a teleported Bell pair
+            inherits <Math tex="1-F" /> directly into the gate's error budget, so the
+            Bell-pair fidelity has to sit below the surface-code fault-tolerance
+            threshold (around 1 % per gate in standard analyses). That puts the
+            post-purification target at <Math tex="F &gt; 0.99" />
+            <SourceNote id="fowler-pra-86-032324" />.
+          </li>
+        </ul>
+
+        <h3>Composition under chaining</h3>
+        <p>
+          Fidelity composes multiplicatively as a Bell pair is extended across hops by
+          entanglement swapping. Two pairs at <Math tex="F = 0.95" /> joined by a swap
+          give an end-to-end pair whose Bell-state overlap drops below either input's;
+          the rough rule (depolarising noise model) is <Math tex="F_{1\\!+\\!2} \\approx (4F_1 F_2 - F_1 - F_2 + 1)/3" />,
+          which collapses to
+          <Math tex="F_1 F_2" /> in the high-fidelity limit. Ten hops at
+          <Math tex="F = 0.95" /> reach the end-to-end pair at <Math tex="F \\sim 0.6" />
+          — well below threshold for most applications. This is the multiplicative-decay
+          mechanism that forces purification into long chains, covered in the
+          <strong>purification</strong> subject.
+        </p>
+      </section>
+
+
+      <section id="decoherence" data-nav-section>
+        <h2>Decoherence — <Math tex="T_1" /> and <Math tex="T_2" /></h2>
+        <p>
+          A qubit in memory does not stay in its prepared state indefinitely. Two
+          characteristic times bound how long it lasts:
+        </p>
+        <ul>
+          <li>
+            <strong><Math tex="T_1" /> — energy relaxation.</strong> The time over which
+            the excited-state population decays towards the ground state. Sets a hard
+            ceiling on how long any state involving <Math tex="|1\\rangle" /> survives.
+          </li>
+          <li>
+            <strong><Math tex="T_2" /> — phase coherence.</strong> The time over which a
+            superposition <Math tex="\\alpha|0\\rangle + \\beta|1\\rangle" /> retains the
+            relative phase between its components. Always
+            <Math tex="T_2 \\le 2 T_1" />, and typically much shorter — coupling to the
+            environment scrambles phase faster than it depletes population.
+            <Math tex="T_2" /> is the relevant number for entanglement-based protocols.
+          </li>
+        </ul>
+        <p>
+          Storage times vary by ten orders of magnitude across platforms. Meddeb's 2025
+          survey tracks the per-platform best-published storage times year over year;
+          the table below pulls from his Table 5 <SourceNote id="meddeb-comnet-2025" />.
+        </p>
+
+        <div class="metric-table-wrap">
+        <table class="metric-table">
+          <thead>
+            <tr>
+              <th scope="col">Memory platform</th>
+              <th scope="col">Best storage time (current)</th>
+              <th scope="col">A decade ago</th>
+              <th scope="col">TRL band</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Atomic ensembles</th>
+              <td data-label="Current">~1 hour (atomic frequency comb)</td>
+              <td data-label="Decade">0.6 ms</td>
+              <td data-label="TRL">7–8</td>
+            </tr>
+            <tr>
+              <th scope="row">Trapped ions</th>
+              <td data-label="Current">~10 s (ion-photon entanglement transfer)</td>
+              <td data-label="Decade">~50 s in long-lived isolated experiments</td>
+              <td data-label="TRL">6–7</td>
+            </tr>
+            <tr>
+              <th scope="row">Quantum dots</th>
+              <td data-label="Current">~4 days (charge memory at room temperature)</td>
+              <td data-label="Decade">~20 ms</td>
+              <td data-label="TRL">5–6</td>
+            </tr>
+            <tr>
+              <th scope="row">Solid-state defects (NV / SiV)</th>
+              <td data-label="Current">~100 μs spin coherence; ms range with isotopic engineering</td>
+              <td data-label="Decade">~50 ns</td>
+              <td data-label="TRL">5–6</td>
+            </tr>
+            <tr>
+              <th scope="row">Superconducting (RAQM)</th>
+              <td data-label="Current">~34 ms in resonator-coupled designs</td>
+              <td data-label="Decade">~35 μs</td>
+              <td data-label="TRL">5–6</td>
+            </tr>
+            <tr>
+              <th scope="row">Photonic (telecom-band cavity)</th>
+              <td data-label="Current">~2 μs on-demand retrieval</td>
+              <td data-label="Decade">~0.85 ms (atomic-vapour-coupled)</td>
+              <td data-label="TRL">5–6</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+
+        <p>
+          Storage time matters in proportion to two other latencies in the network. A
+          memory needs to outlast the
+          <strong>classical-correction round-trip</strong> (entanglement swapping and
+          teleportation both wait on a 2-bit classical message at light-speed: about
+          1 ms per 200 km of fibre), and it needs to outlast the
+          <strong>entanglement-generation attempt time</strong> the network is willing
+          to spend per delivered pair. Sub-millisecond memories rule out anything beyond
+          metro-scale repeater chains; second-scale and longer memories open the door to
+          continental-scale chains where multiple swaps wait on each other across hundreds
+          of kilometres <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+      </section>
+
+      {/* Further details on the loss + error budget. Collapsed by default
+          — readers who want the back-of-envelope numbers in the three
+          sections above don't need these; readers parsing vendor spec
+          sheets do. */}
+      <section id="details" data-nav-section aria-label="Further details">
+        <p class="details-intro">
+          A real link budget multiplies and adds more terms than the three above. The
+          callouts below cover the line items that hide inside vendor spec sheets but
+          show up in any honest measurement — expand the ones you need.
+        </p>
+
+                        <Callout label="Further details on the loss + error budget — detector η, heralding, HOM, gates, PLOB">
+<h4>Detector efficiency, dark counts, and coupling — the silent loss budget</h4>
+          <p>
+            Channel attenuation is only part of the loss budget. Detector and
+            interface efficiencies multiply with it:
+          </p>
+          <ul>
+            <li>
+              <strong>Detector efficiency <Math tex="\\eta_{\\text{det}}" />.</strong>
+              Superconducting nanowire single-photon detectors (SNSPDs) reach 80–98 %
+              at telecom wavelengths; silicon APDs sit around 30–60 %; the gap is
+              1–3 dB of additional link loss depending on the choice.
+            </li>
+            <li>
+              <strong>Dark counts.</strong> Detector clicks with no photon present
+              — typically 1–1000 Hz depending on cryostat temperature and bias.
+              Erode signal-to-noise; effectively a noise floor inside the loss
+              budget, especially limiting at high attenuation.
+            </li>
+            <li>
+              <strong>Coupling and mode-matching losses.</strong> Fibre-to-chip
+              interfaces typically cost 1–3 dB per junction; free-space-to-fibre
+              coupling can be 1–6 dB depending on collimation. These usually do
+              not appear in headline channel-loss numbers but compose into the
+              end-to-end η that <em>every</em> repeaterless rate scales by.
+            </li>
+          </ul>
+          <p>
+            Effective transmittance is the product:
+            <Math tex="\\eta_{\\text{eff}} = \\eta_{\\text{chan}} \\cdot \\eta_{\\text{couple}} \\cdot \\eta_{\\text{det}}" />.
+            A 100 km fibre at 0.20 dB/km is 1 % channel transmittance; with a 50 %
+            detector and two 2 dB coupling interfaces, end-to-end η drops to
+            ~0.2 %.
+          </p>
+        
+
+                <h4>Heralding efficiency — how often a click is a real Bell pair</h4>
+          <p>
+            <strong>Heralding efficiency <Math tex="\\eta_h" /></strong> is the
+            probability that the heralding pattern at a midpoint (or the matter
+            qubit's photonic interface at an end node) correctly indicates a real
+            Bell pair, as opposed to a dark-count coincidence or a single-photon
+            ambiguous click. Distinct from raw detector efficiency: a high-η
+            detector can still herald poorly if the optical setup admits noise
+            paths.
+          </p>
+          <p>
+            <Math tex="\\eta_h" /> sets the HEG retry rate. Pompili et al. (2021),
+            the three-node NV-centre repeater demonstration, reported per-link
+            heralding efficiencies in the few-percent range; pair-generation rates
+            and link budgets are quoted against
+            <Math tex="\\eta_h" />, not against the channel η alone
+            <SourceNote id="kumar-ijndc-2025" />.
+          </p>
+        
+
+                <h4>Memory write/read efficiency — loss inside the memory</h4>
+          <p>
+            A quantum memory can have a long <Math tex="T_2" /> and still lose
+            most photons. <strong>Write efficiency</strong> is the probability
+            that an incident photon successfully maps onto the matter qubit;
+            <strong>read efficiency</strong> is the probability that retrieval
+            produces a photon back into the network mode. Both are orthogonal to
+            storage time and to fidelity.
+          </p>
+          <p>
+            Numbers vary widely by platform. Atomic-frequency-comb memories in
+            rare-earth doped crystals reach ~50–80 % read efficiency at short
+            storage times but drop with delay. SiV-centre photonic-bus memories
+            report ~20 % read efficiency. Trapped-ion ion-photon interfaces sit
+            in the 1–10 % range. These multiply with channel and detector
+            efficiencies on every hop a Bell pair takes through a memory-based
+            repeater <SourceNote id="meddeb-comnet-2025" />.
+          </p>
+        
+
+                <h4>HOM visibility — the photonic-BSM fidelity knob</h4>
+          <p>
+            Two photons arriving at a 50:50 beam splitter from opposite ports
+            interfere if and only if they are <em>indistinguishable</em> in every
+            degree of freedom — spectral envelope, polarisation, arrival time,
+            spatial mode. Perfect indistinguishability gives the Hong–Ou–Mandel
+            (HOM) dip with visibility <Math tex="V = 1" />; spectral mismatch,
+            timing jitter, or polarisation drift drops <Math tex="V" /> below 1
+            and degrades both the success rate and the output fidelity of every
+            photonic Bell-state measurement that uses it
+            <SourceNote id="hong-ou-mandel-prl-59-2044" />.
+          </p>
+          <p>
+            For a swap or entanglement-generation BSM, the output fidelity is
+            roughly <Math tex="F_\\text{out} \\approx \\frac{1}{2}(1 + V)" /> in
+            the dominant noise model — a <Math tex="V = 0.9" /> dip ceilings the
+            BSM output fidelity at <Math tex="\\sim 0.95" />, before any further
+            channel or memory contributions. Indistinguishability between two
+            independent sources (different vendors, different platforms, even
+            different temperatures) is a much harder engineering problem than
+            high <Math tex="V" /> from a single source.
+          </p>
+        
+
+                <h4>Gate and SPAM errors — distinct from Bell-pair fidelity</h4>
+          <p>
+            The Bell-pair fidelity <Math tex="F" /> on the entanglement page
+            measures the state of the delivered pair, but not the operations
+            that consume it. A two-qubit gate mediated by a teleported Bell
+            pair sees three error contributions stacked:
+          </p>
+          <ul>
+            <li>
+              <strong>Bell-pair fidelity</strong> — the resource — directly
+              hits the gate's accuracy.
+            </li>
+            <li>
+              <strong>Local-operation error</strong> — the CNOT + Hadamard +
+              measurement that perform the BSM at the matter side. Best-in-class
+              two-qubit gates are 0.999 fidelity; single-qubit gates
+              <Math tex="\\gtrsim 0.9999" />.
+            </li>
+            <li>
+              <strong>State-prep and measurement (SPAM) errors</strong> — the
+              endpoints' qubit-initialisation and read-out steps. Typically
+              0.001–0.01 per shot.
+            </li>
+          </ul>
+          <p>
+            These compose: the surface-code threshold sits at ~1 % <em>per
+            gate</em>, so a Bell pair at <Math tex="F = 0.99" /> joined with a
+            0.999 BSM and 0.99 SPAM aggregates to a total error around 2 %, above
+            threshold. Procurement-grade specifications quote
+            <em>per-operation</em> fidelities precisely because the headline
+            Bell-pair number does not capture this stack
+            <SourceNote id="fowler-pra-86-032324" />.
+          </p>
+        
+
+                <h4>PLOB bound — the repeaterless capacity ceiling</h4>
+          <p>
+            For a pure-loss channel with transmittance <Math tex="\\eta" />, the
+            secret-key (and entanglement-distribution) capacity of any
+            point-to-point quantum protocol is bounded by
+            <Math tex="\\mathcal{C}(\\eta) \\le -\\log_2(1 - \\eta)" /> bits per
+            channel use — the PLOB bound
+            <SourceNote id="pirandola-natcomm-8-15043" />.
+          </p>
+          <p>
+            At 0.20 dB/km fibre, 200 km gives <Math tex="\\eta \\approx 10^{-4}" />,
+            and the PLOB ceiling sits at ~1.4 × 10⁻⁴ bits per channel use; at
+            300 km it drops to ~10⁻⁶. No amount of clever encoding raises this
+            without inserting a quantum node between the endpoints. <em>This is
+            the theorem that forces repeaters into the long-haul roadmap.</em> A
+            repeater chain breaks the bound by adding intermediate states that
+            extend entanglement across each hop independently — every working
+            quantum-network architecture in the rest of the series is a way of
+            engineering past this ceiling.
+          </p>
+        </Callout>
+      </section>
+
+      <section id="qvc" data-nav-section>
+        <h2>Quantum vs classical metrics</h2>
+        <p>
+          A quantum network is measured against a different vocabulary from a classical
+          one, and the differences are forced by physics rather than by engineering
+          choice <SourceNote id="cacciapuoti-ieeetc-2020" /><SourceNote id="wehner-science-2018" />:
+        </p>
+        <div class="metric-table-wrap">
+        <table class="qvc">
+          <colgroup>
+            <col class="qvc-col-concern" />
+            <col class="qvc-col-value" />
+            <col class="qvc-col-value" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col">Concern</th>
+              <th scope="col">Classical network</th>
+              <th scope="col">Quantum network</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Unit of service</th>
+              <td data-label="Classical"><strong>Bit</strong> (or <strong>packet</strong>) delivered from sender to receiver</td>
+              <td data-label="Quantum"><strong>Bell pair</strong> delivered between two named endpoints; the application then
+                teleports, distils, or measures it</td>
+            </tr>
+            <tr>
+              <th scope="row">Throughput</th>
+              <td data-label="Classical"><strong>Bits per second</strong> on the link</td>
+              <td data-label="Quantum"><strong>Entanglement-generation rate</strong> — Bell pairs per second</td>
+            </tr>
+            <tr>
+              <th scope="row">Quality</th>
+              <td data-label="Classical"><strong>Bit-error rate</strong> / <strong>signal-to-noise ratio</strong></td>
+              <td data-label="Quantum"><strong>Fidelity</strong> — closeness of the delivered pair to the ideal Bell
+                state; below a protocol-specific threshold, downstream uses stop working</td>
+            </tr>
+            <tr>
+              <th scope="row">Information source</th>
+              <td data-label="Classical">Can be read without altering it; can be copied and re-transmitted on
+                corruption</td>
+              <td data-label="Quantum">Cannot be read without altering it (<strong>measurement collapse</strong>) and cannot be
+                copied (<strong>no-cloning</strong>) — so it cannot be re-transmitted</td>
+            </tr>
+            <tr>
+              <th scope="row">Loss recovery</th>
+              <td data-label="Classical"><strong>Amplify-and-forward repeaters</strong>; <strong>retransmit</strong> on packet loss</td>
+              <td data-label="Quantum">No optical amplification possible (no-cloning forbids it); lost photons
+                cannot be recovered, only re-attempted from the source. <strong>Quantum repeaters</strong>
+                use <strong>entanglement swapping</strong> + <strong>purification</strong>, not amplification</td>
+            </tr>
+            <tr>
+              <th scope="row">Reach without intermediaries</th>
+              <td data-label="Classical">Thousands of km via amplify-and-forward chains</td>
+              <td data-label="Quantum">~100–200 km in standard fibre, set by <strong>0.20 dB/km attenuation</strong>
+                <SourceNote id="itu-g-652-d" />; longer reach requires repeaters or
+                satellite links</td>
+            </tr>
+            <tr>
+              <th scope="row">Latency budget</th>
+              <td data-label="Classical">Soft preference; long latency degrades user experience</td>
+              <td data-label="Quantum">Hard budget — Bell pairs decohere in memory, so generation-to-use time
+                competes with <strong>memory coherence (<Math tex="T_2" />)</strong> and the
+                <strong>classical-correction round-trip</strong></td>
+            </tr>
+            <tr>
+              <th scope="row">Auxiliary classical channel</th>
+              <td data-label="Classical">None required</td>
+              <td data-label="Quantum">Always required — teleportation and entanglement swapping both consume
+                <strong>2 bits of classical communication</strong> per Bell pair to complete the protocol</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <p>
+          The framing comes from Cacciapuoti et al.'s communication-system view of the
+          quantum internet, which models classical and quantum networks against the same
+          block diagram and lets the differences fall out where the physics demands them
+          (no-cloning forces a classical side-channel; measurement collapse forces a
+          fidelity metric instead of an SNR; loss cannot be recovered the classical way and
+          forces repeaters of a different kind) <SourceNote id="cacciapuoti-ieeetc-2020" />.
+        </p>
+      </section>
+
+      <section id="budget" data-nav-section>
+        <h2>Worked example — a 200 km hop, three media</h2>
+        <p>
+          Single-photon survival on one shot, no repeaters, no memories — just the
+          channel loss. Probabilities below are for a heralded photon delivered intact
+          end-to-end; photon-pair generation at the source and detector quantum
+          efficiency are set aside for clarity.
+        </p>
+
+        <div class="metric-table-wrap">
+        <table class="metric-table metric-table--budget">
+          <thead>
+            <tr>
+              <th scope="col">Medium</th>
+              <th scope="col"><Math tex="\\alpha" /> (dB/km)</th>
+              <th scope="col">Total loss @ 200 km</th>
+              <th scope="col">Photon-survival fraction <Math tex="\\eta" /></th>
+              <th scope="col">Per-Hz attempt rate to deliver 1 pair/s</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">SMF (G.652.D)</th>
+              <td data-label="α">0.20</td>
+              <td data-label="Loss">40 dB</td>
+              <td data-label="η">10⁻⁴ (1 in 10 000)</td>
+              <td data-label="Rate">10 kHz at the source</td>
+            </tr>
+            <tr>
+              <th scope="row">Hollow-core (Lumenisity 0.091)</th>
+              <td data-label="α">0.091</td>
+              <td data-label="Loss">18.2 dB</td>
+              <td data-label="η">1.5 × 10⁻² (~1 in 65)</td>
+              <td data-label="Rate">~65 Hz</td>
+            </tr>
+            <tr>
+              <th scope="row">LEO satellite, ~200 km slant range</th>
+              <td data-label="α">— (atmosphere-dominated, not per-km)</td>
+              <td data-label="Loss">~30–50 dB total link budget</td>
+              <td data-label="η">10⁻³ to 10⁻⁵ depending on aperture</td>
+              <td data-label="Rate">10³–10⁵ Hz</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+
+        <p>
+          The numbers explain why nobody runs naked single-photon links beyond ~150 km
+          of standard fibre: the source clock would have to push tens of kilohertz of
+          attempts to the link to surface a single Bell pair per second at the far end,
+          and any added pair-generation or detector inefficiency (each typically a
+          factor of 10) compounds that further. Hollow-core lifts the budget by roughly
+          two orders of magnitude per 200 km hop. Satellite links beat both for
+          intercontinental reach but pay a one-time pointing-and-acquisition cost the
+          per-km media don't.
+        </p>
+
+        <p>
+          For longer reach, the engineering response is to break the link into shorter
+          hops and chain entanglement swaps — each hop sees a manageable
+          <Math tex="\\eta" />, but the end-to-end success rate now multiplies hop
+          rates and consumes memory at every node. The composition of loss, decoherence,
+          and fidelity along that chain is the calculation the
+          <strong>repeaters</strong> and <strong>distribution</strong> subjects work
+          through in detail.
+        </p>
+      </section>
+
+      <section id="forward" data-nav-section>
+        <h2>Where these numbers go next</h2>
+        <p>
+          Three subjects pick up the threads:
+        </p>
+        <ul>
+          <li>
+            <strong>Memories</strong> grounds the per-platform decoherence numbers in
+            the actual storage technologies — atomic ensembles, trapped ions, NV
+            centres, quantum dots, photonic, superconducting — with TRL bands and
+            integration trade-offs <SourceNote id="meddeb-comnet-2025" />.
+          </li>
+          <li>
+            <strong>Links</strong> drills further into each medium: ITU fibre bands,
+            hollow-core architectures, free-space turbulence, and Micius-style
+            satellite links, with the operational caveats this page abstracts over.
+          </li>
+          <li>
+            <strong>Repeaters</strong> and <strong>purification</strong> show how the
+            three metrics compose along a chain, why exponential fidelity decay forces
+            purification, and where the 1G / 2G / 3G architectural families fall on the
+            loss / decoherence / fidelity plane.
+          </li>
+        </ul>
+        <p>
+          The link-layer service — what the network promises to deliver in terms of
+          (rate, fidelity, latency) — is formalised in RFC 9340 and re-stated in
+          Kumar 2025; both treat these three numbers as the parameter vector against
+          which any quantum-internet service contract is
+          written <SourceNote id="kozlowski-rfc9340" /><SourceNote id="kumar-ijndc-2025" />.
+        </p>
+      </section>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-4);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .hero h1 { margin: 0; }
+  .hero p { margin: 0; }
+
+  section { display: grid; gap: var(--space-3); }
+  section h3 { margin-block-start: var(--space-3); margin-block-end: 0; }
+  /* "Further details" section — a stack of collapsed callouts. The
+     intro paragraph sits above; callouts stack with a slightly tighter
+     gap so they read as a single group. */
+  #details .details-intro {
+    margin: 0;
+    color: var(--color-text-mute);
+    font-size: var(--text-sm);
+    font-style: italic;
+  }
+
+  ul {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+  li { line-height: var(--leading-snug); }
+
+  /* Generic metric tables — used for the loss table, decoherence
+     table, and link-budget table. Same row/cell rhythm as the
+     comparison table below but with a larger first column for the
+     platform/medium name. */
+  .metric-table-wrap {
+    inline-size: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+    margin-block-end: var(--space-3);
+  }
+  .metric-table {
+    inline-size: 100%;
+    min-inline-size: 48rem;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+  }
+  .metric-table thead th {
+    text-align: start;
+    padding: var(--space-2) var(--space-3);
+    border-block-end: 2px solid var(--color-rule);
+    color: var(--color-text);
+    font-weight: 600;
+  }
+  .metric-table tbody th,
+  .metric-table tbody td {
+    padding: var(--space-2) var(--space-3);
+    vertical-align: top;
+    border-block-end: 1px solid var(--color-rule);
+  }
+  .metric-table tbody th {
+    text-align: start;
+    font-weight: 600;
+    color: var(--color-text);
+    inline-size: 24ch;
+  }
+  .metric-table tbody td { color: var(--color-text-mute); }
+  .metric-table tbody tr:last-child th,
+  .metric-table tbody tr:last-child td { border-block-end: 0; }
+
+  .metric-table--budget tbody th { inline-size: 22ch; }
+
+  /* Stack metric tables on narrow screens. */
+  @media (max-width: 50rem) {
+    .metric-table, .metric-table thead, .metric-table tbody,
+    .metric-table tr, .metric-table th, .metric-table td {
+      display: block;
+      inline-size: auto;
+    }
+    .metric-table thead { display: none; }
+    .metric-table tbody tr {
+      padding-block: var(--space-2);
+      border-block-end: 1px solid var(--color-rule);
+    }
+    .metric-table tbody tr:last-child { border-block-end: 0; }
+    .metric-table tbody th,
+    .metric-table tbody td { border-block-end: 0; padding-inline: 0; }
+    .metric-table tbody td::before {
+      content: attr(data-label);
+      display: block;
+      font-size: var(--text-xs, 0.7rem);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-mute);
+      margin-block-end: 2px;
+    }
+  }
+
+  /* Quantum-vs-classical comparison table.
+     Three columns: concern (row header) | classical | quantum. Row
+     headers are bold and aligned top so the eye reads down the
+     column of concerns; cell text is aligned top so multi-line
+     entries don't drift mid-row. */
+  .qvc {
+    inline-size: 100%;
+    min-inline-size: 44rem;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    /* Fixed layout so the two value columns split the remaining width
+       evenly regardless of cell text length — without this, the column
+       with more text expands and the quantum side ends up wider. */
+    table-layout: fixed;
+  }
+  .qvc-col-concern { inline-size: 14ch; }
+  .qvc-col-value   { inline-size: calc((100% - 14ch) / 2); }
+  .qvc thead th {
+    text-align: start;
+    padding: var(--space-2) var(--space-3);
+    border-block-end: 2px solid var(--color-rule);
+    color: var(--color-text);
+    font-weight: 600;
+  }
+  .qvc tbody th,
+  .qvc tbody td {
+    padding: var(--space-2) var(--space-3);
+    vertical-align: top;
+    border-block-end: 1px solid var(--color-rule);
+  }
+  .qvc tbody th {
+    text-align: start;
+    font-weight: 600;
+    color: var(--color-text);
+    inline-size: 14ch;
+  }
+  .qvc tbody td { color: var(--color-text-mute); }
+  .qvc tbody tr:last-child th,
+  .qvc tbody tr:last-child td { border-block-end: 0; }
+
+  /* Stack the table on narrow screens so the three columns don't
+     squeeze unreadably. Each row becomes a card-like block with
+     the row header on top and two stacked value rows. */
+  @media (max-width: 50rem) {
+    .qvc, .qvc thead, .qvc tbody, .qvc tr, .qvc th, .qvc td {
+      display: block;
+      inline-size: auto;
+    }
+    .qvc thead { display: none; }
+    .qvc tbody tr {
+      padding-block: var(--space-2);
+      border-block-end: 1px solid var(--color-rule);
+    }
+    .qvc tbody tr:last-child { border-block-end: 0; }
+    .qvc tbody th,
+    .qvc tbody td { border-block-end: 0; padding-inline: 0; }
+    .qvc tbody td::before {
+      content: attr(data-label);
+      display: block;
+      font-size: var(--text-xs, 0.7rem);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-mute);
+      margin-block-end: 2px;
+    }
+  }
+</style>
+</content>
+</invoke>

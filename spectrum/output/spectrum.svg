@@ -1,0 +1,341 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 1140" width="1300" height="1140" font-family="Helvetica, Arial, sans-serif">
+<style>
+text { fill: #222; }
+.title       { font-size: 22px; font-weight: 700; fill: #111; }
+.region      { font-size: 11px; letter-spacing: 2px; fill: #888; font-weight: 600; }
+.tick        { font-size: 11px; fill: #333; }
+.tick-sub    { font-size: 10px; fill: #777; }
+.p-name      { font-weight: 700; font-size: 13px; fill: #111; }
+.p-sub       { font-weight: 700; font-size: 10.5px; fill: #222; }
+.vendor      { font-weight: 700; font-size: 10.5px; fill: #555; }
+.legend-h    { font-size: 11px; fill: #444; font-weight: 600; }
+.legend      { font-size: 10px; fill: #444; }
+.itu-letter  { font-size: 11px; fill: #555; font-weight: 600; }
+.ann-label   { font-size: 12px; font-weight: 700; }
+.ann-sub     { font-size: 10px; fill: #555; }
+.machines-h  { font-size: 12px; font-weight: 700; fill: #222; }
+.machines-p  { font-size: 10.5px; font-weight: 700; fill: #222; }
+.machines-v  { font-size: 10.5px; fill: #444; }
+.timestamp   { font-size: 9px; fill: #999; }
+.cap-chip    { font-size: 9px; font-weight: 700; }
+</style>
+<defs>
+<linearGradient id="rainbow" x1="899.6" y1="0" x2="1124.2" y2="0" gradientUnits="userSpaceOnUse">
+<stop offset="0.0%" stop-color="#e02020"/>
+<stop offset="21.7%" stop-color="#ff7f00"/>
+<stop offset="33.6%" stop-color="#ffe000"/>
+<stop offset="46.4%" stop-color="#3fcf3f"/>
+<stop offset="67.4%" stop-color="#1d8fff"/>
+<stop offset="87.1%" stop-color="#7a1dd0"/>
+<stop offset="100.0%" stop-color="#5b0e9a"/>
+</linearGradient>
+<marker id="arrow-0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#c0392b"/></marker>
+<marker id="arrow-1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#1f7a3a"/></marker>
+</defs>
+<rect x="0" y="0" width="1300" height="1140" fill="#fdfdfb"/>
+<rect x="60.0" y="90" width="184.9" height="544" fill="#eef2f7" opacity="0.6"/>
+<rect x="244.9" y="90" width="11.3" height="544" fill="#eef2f7" opacity="0.6"/>
+<rect x="256.1" y="90" width="59.5" height="544" fill="#fef6ec" opacity="0.6"/>
+<rect x="315.7" y="90" width="583.7" height="544" fill="#fef6ec" opacity="0.6"/>
+<rect x="899.3" y="90" width="224.6" height="544" fill="url(#rainbow)" opacity="0.4"/>
+<rect x="1124.0" y="90" width="116.0" height="544" fill="#e3dcf2" opacity="0.6"/>
+<text class="title" x="60" y="28">Spectrum — quantum platforms across the EM range</text>
+<rect x="633.0" y="84" width="30.7" height="550" fill="#a4c4f0" opacity="0.1"/>
+<rect x="633.0" y="70" width="30.7" height="14" fill="#a4c4f0" stroke="#666" stroke-width="0.6" rx="2" ry="2"/>
+<text class="itu-letter" x="648.3" y="62" text-anchor="middle" font-weight="600">O</text>
+<rect x="604.5" y="84" width="28.5" height="550" fill="#90d4d4" opacity="0.1"/>
+<rect x="604.5" y="70" width="28.5" height="14" fill="#90d4d4" stroke="#666" stroke-width="0.6" rx="2" ry="2"/>
+<text class="itu-letter" x="618.7" y="62" text-anchor="middle" font-weight="600">E</text>
+<rect x="585.7" y="84" width="18.8" height="550" fill="#9ad6a8" opacity="0.1"/>
+<rect x="585.7" y="70" width="18.8" height="14" fill="#9ad6a8" stroke="#666" stroke-width="0.6" rx="2" ry="2"/>
+<text class="itu-letter" x="595.1" y="62" text-anchor="middle" font-weight="600">S</text>
+<rect x="576.6" y="84" width="9.1" height="550" fill="#f2d35a" opacity="0.2"/>
+<rect x="576.6" y="66" width="9.1" height="18" fill="#f2d35a" stroke="#222" stroke-width="1.4" rx="2" ry="2"/>
+<text class="itu-letter" x="581.2" y="62" text-anchor="middle" font-weight="800">C</text>
+<rect x="561.5" y="84" width="15.1" height="550" fill="#f0a070" opacity="0.1"/>
+<rect x="561.5" y="70" width="15.1" height="14" fill="#f0a070" stroke="#666" stroke-width="0.6" rx="2" ry="2"/>
+<text class="itu-letter" x="569.1" y="62" text-anchor="middle" font-weight="600">L</text>
+<rect x="549.3" y="84" width="12.2" height="550" fill="#dc7a7a" opacity="0.1"/>
+<rect x="549.3" y="70" width="12.2" height="14" fill="#dc7a7a" stroke="#666" stroke-width="0.6" rx="2" ry="2"/>
+<text class="itu-letter" x="555.4" y="62" text-anchor="middle" font-weight="600">U</text>
+<text class="legend-h" x="68" y="112">ITU-T fibre bands</text>
+<rect x="68" y="120" width="10" height="10" fill="#a4c4f0" stroke="#666" stroke-width="0.5"/>
+<text class="legend" x="84" y="128" font-weight="400"><tspan font-weight="700">O</tspan>  1260–1360 nm  · "Original"</text>
+<rect x="68" y="134" width="10" height="10" fill="#90d4d4" stroke="#666" stroke-width="0.5"/>
+<text class="legend" x="84" y="142" font-weight="400"><tspan font-weight="700">E</tspan>  1360–1460 nm  · "Extended"</text>
+<rect x="68" y="148" width="10" height="10" fill="#9ad6a8" stroke="#666" stroke-width="0.5"/>
+<text class="legend" x="84" y="156" font-weight="400"><tspan font-weight="700">S</tspan>  1460–1530 nm  · "Short"</text>
+<rect x="68" y="162" width="10" height="10" fill="#f2d35a" stroke="#666" stroke-width="0.5"/>
+<text class="legend" x="84" y="170" font-weight="700"><tspan font-weight="700">C</tspan>  1530–1565 nm  · "Conventional"</text>
+<rect x="68" y="176" width="10" height="10" fill="#f0a070" stroke="#666" stroke-width="0.5"/>
+<text class="legend" x="84" y="184" font-weight="400"><tspan font-weight="700">L</tspan>  1565–1625 nm  · "Long"</text>
+<rect x="68" y="190" width="10" height="10" fill="#dc7a7a" stroke="#666" stroke-width="0.5"/>
+<text class="legend" x="84" y="198" font-weight="400"><tspan font-weight="700">U</tspan>  1625–1675 nm  · "Ultra-long"</text>
+<line x1="124.6" y1="506" x2="124.6" y2="580" stroke="#5b8def" stroke-opacity="0.9" stroke-width="1.6" stroke-dasharray="3,3"/>
+<line x1="152.4" y1="506" x2="152.4" y2="580" stroke="#5b8def" stroke-opacity="0.9" stroke-width="1.6" stroke-dasharray="3,3"/>
+<line x1="104.1" y1="574" x2="104.1" y2="580" stroke="#3a7d7d" stroke-opacity="0.9" stroke-width="1.6" stroke-dasharray="3,3"/>
+<line x1="138.1" y1="574" x2="138.1" y2="580" stroke="#3a7d7d" stroke-opacity="0.9" stroke-width="1.6" stroke-dasharray="3,3"/>
+<line x1="152.4" y1="438" x2="152.4" y2="580" stroke="#7d5fa8" stroke-opacity="0.9" stroke-width="1.6" stroke-dasharray="3,3"/>
+<line x1="217.0" y1="438" x2="217.0" y2="580" stroke="#7d5fa8" stroke-opacity="0.9" stroke-width="1.6" stroke-dasharray="3,3"/>
+<line x1="580.5" y1="574" x2="580.5" y2="580" stroke="#7fb8c4" stroke-opacity="0.9" stroke-width="1.6" stroke-dasharray="3,3"/>
+<line x1="731.5" y1="574" x2="731.5" y2="580" stroke="#e8b65a" stroke-opacity="0.9" stroke-width="1.6" stroke-dasharray="3,3"/>
+<line x1="856.1" y1="574" x2="856.1" y2="580" stroke="#e8b65a" stroke-opacity="0.9" stroke-width="1.6" stroke-dasharray="3,3"/>
+<line x1="777.0" y1="492" x2="777.0" y2="580" stroke="#d8a86b" stroke-opacity="0.9" stroke-width="1.6" stroke-dasharray="3,3"/>
+<line x1="961.5" y1="492" x2="961.5" y2="580" stroke="#d8a86b" stroke-opacity="0.9" stroke-width="1.6" stroke-dasharray="3,3"/>
+<line x1="878.9" y1="424" x2="878.9" y2="580" stroke="#b07070" stroke-opacity="0.9" stroke-width="1.6" stroke-dasharray="3,3"/>
+<line x1="937.4" y1="288" x2="937.4" y2="580" stroke="#9a7fb8" stroke-opacity="0.9" stroke-width="1.6" stroke-dasharray="3,3"/>
+<line x1="957.5" y1="356" x2="957.5" y2="580" stroke="#c98a8a" stroke-opacity="0.9" stroke-width="1.6" stroke-dasharray="3,3"/>
+<line x1="975.1" y1="356" x2="975.1" y2="580" stroke="#c98a8a" stroke-opacity="0.9" stroke-width="1.6" stroke-dasharray="3,3"/>
+<line x1="585.2" y1="356" x2="585.2" y2="580" stroke="#4a8b8b" stroke-opacity="0.9" stroke-width="1.6" stroke-dasharray="3,3"/>
+<line x1="1156.6" y1="152" x2="1156.6" y2="580" stroke="#7c5fa8" stroke-opacity="0.9" stroke-width="1.6" stroke-dasharray="3,3"/>
+<line x1="1040.3" y1="220" x2="1040.3" y2="580" stroke="#5f8da8" stroke-opacity="0.9" stroke-width="1.6" stroke-dasharray="3,3"/>
+<rect x="64" y="454" width="214.5" height="52" rx="6" ry="6" fill="#dbe6fb" stroke="#5b8def" stroke-width="1.5"/>
+<text class="p-name" x="74" y="471">Superconducting qubits</text>
+<text class="p-sub" x="74" y="485">transmon · 5–10 GHz · 30–60 mm</text>
+<text class="vendor" x="74" y="499">Google · IBM · IQM · Rigetti · USTC</text>
+<rect x="229.5" y="458" width="13" height="13" rx="2" ry="2" fill="#5b8def" stroke="#5b8def" stroke-width="1"/>
+<text class="cap-chip" x="236.0" y="468" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">C</text>
+<rect x="244.5" y="458" width="13" height="13" rx="2" ry="2" fill="#ffffff" stroke="#bbbbbb" stroke-width="1"/>
+<text class="cap-chip" x="251.0" y="468" text-anchor="middle" style="fill:#999999" font-size="9" font-weight="700">M</text>
+<rect x="259.5" y="458" width="13" height="13" rx="2" ry="2" fill="#ffffff" stroke="#bbbbbb" stroke-width="1"/>
+<text class="cap-chip" x="266.0" y="468" text-anchor="middle" style="fill:#999999" font-size="9" font-weight="700">S</text>
+<line x1="124.6" y1="502" x2="124.6" y2="506" stroke="#5b8def" stroke-width="2"/>
+<circle cx="124.6" cy="580" r="3" fill="#5b8def"/>
+<line x1="152.4" y1="502" x2="152.4" y2="506" stroke="#5b8def" stroke-width="2"/>
+<circle cx="152.4" cy="580" r="3" fill="#5b8def"/>
+<line x1="124.6" y1="506" x2="152.4" y2="506" stroke="#5b8def" stroke-width="1.5"/>
+<rect x="64" y="522" width="206.3" height="52" rx="6" ry="6" fill="#d4e2e2" stroke="#3a7d7d" stroke-width="1.5"/>
+<text class="p-name" x="74" y="539">Topological (Majorana)</text>
+<text class="p-sub" x="74" y="553">InAs/Al · ~5 GHz · 60 mm</text>
+<text class="vendor" x="74" y="567">Microsoft</text>
+<rect x="221.3" y="526" width="13" height="13" rx="2" ry="2" fill="#3a7d7d" stroke="#3a7d7d" stroke-width="1"/>
+<text class="cap-chip" x="227.8" y="536" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">C</text>
+<rect x="236.3" y="526" width="13" height="13" rx="2" ry="2" fill="#ffffff" stroke="#bbbbbb" stroke-width="1"/>
+<text class="cap-chip" x="242.8" y="536" text-anchor="middle" style="fill:#999999" font-size="9" font-weight="700">M</text>
+<rect x="251.3" y="526" width="13" height="13" rx="2" ry="2" fill="#ffffff" stroke="#bbbbbb" stroke-width="1"/>
+<text class="cap-chip" x="257.8" y="536" text-anchor="middle" style="fill:#999999" font-size="9" font-weight="700">S</text>
+<line x1="104.1" y1="570" x2="104.1" y2="574" stroke="#3a7d7d" stroke-width="2"/>
+<circle cx="104.1" cy="580" r="3" fill="#3a7d7d"/>
+<line x1="138.1" y1="570" x2="138.1" y2="574" stroke="#3a7d7d" stroke-width="2"/>
+<circle cx="138.1" cy="580" r="3" fill="#3a7d7d"/>
+<line x1="104.1" y1="574" x2="138.1" y2="574" stroke="#3a7d7d" stroke-width="1.5"/>
+<rect x="76.9" y="372" width="215.6" height="66" rx="6" ry="6" fill="#e2dcec" stroke="#7d5fa8" stroke-width="1.5"/>
+<text class="p-name" x="86.9" y="389">Quantum dot (Si spin)</text>
+<text class="p-sub" x="86.9" y="403">electron Larmor · 10–50 GHz · 6–30 mm</text>
+<text class="vendor" x="86.9" y="417">Diraq · Equal1 · Intel</text>
+<text class="vendor" x="86.9" y="431">Quantum Motion · SQC</text>
+<rect x="243.5" y="376" width="13" height="13" rx="2" ry="2" fill="#7d5fa8" stroke="#7d5fa8" stroke-width="1"/>
+<text class="cap-chip" x="250.0" y="386" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">C</text>
+<rect x="258.5" y="376" width="13" height="13" rx="2" ry="2" fill="#ffffff" stroke="#bbbbbb" stroke-width="1"/>
+<text class="cap-chip" x="265.0" y="386" text-anchor="middle" style="fill:#999999" font-size="9" font-weight="700">M</text>
+<rect x="273.5" y="376" width="13" height="13" rx="2" ry="2" fill="#ffffff" stroke="#bbbbbb" stroke-width="1"/>
+<text class="cap-chip" x="280.0" y="386" text-anchor="middle" style="fill:#999999" font-size="9" font-weight="700">S</text>
+<line x1="152.4" y1="434" x2="152.4" y2="438" stroke="#7d5fa8" stroke-width="2"/>
+<circle cx="152.4" cy="580" r="3" fill="#7d5fa8"/>
+<line x1="217.0" y1="434" x2="217.0" y2="438" stroke="#7d5fa8" stroke-width="2"/>
+<circle cx="217.0" cy="580" r="3" fill="#7d5fa8"/>
+<line x1="152.4" y1="438" x2="217.0" y2="438" stroke="#7d5fa8" stroke-width="1.5"/>
+<rect x="491.6" y="508" width="177.7" height="66" rx="6" ry="6" fill="#e3eff2" stroke="#7fb8c4" stroke-width="1.5"/>
+<text class="p-name" x="501.6" y="525">Photonics</text>
+<text class="p-sub" x="501.6" y="539">1550 nm · 193 THz</text>
+<text class="vendor" x="501.6" y="553">ORCA · PsiQuantum · Quandela</text>
+<text class="vendor" x="501.6" y="567">USTC · Xanadu</text>
+<rect x="620.3" y="512" width="13" height="13" rx="2" ry="2" fill="#7fb8c4" stroke="#7fb8c4" stroke-width="1"/>
+<text class="cap-chip" x="626.8" y="522" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">C</text>
+<rect x="635.3" y="512" width="13" height="13" rx="2" ry="2" fill="#ffffff" stroke="#bbbbbb" stroke-width="1"/>
+<text class="cap-chip" x="641.8" y="522" text-anchor="middle" style="fill:#999999" font-size="9" font-weight="700">M</text>
+<rect x="650.3" y="512" width="13" height="13" rx="2" ry="2" fill="#7fb8c4" stroke="#7fb8c4" stroke-width="1"/>
+<text class="cap-chip" x="656.8" y="522" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">S</text>
+<line x1="580.5" y1="570" x2="580.5" y2="574" stroke="#7fb8c4" stroke-width="2"/>
+<circle cx="580.5" cy="580" r="3" fill="#7fb8c4"/>
+<rect x="683.0" y="508" width="221.8" height="66" rx="6" ry="6" fill="#faefdb" stroke="#e8b65a" stroke-width="1.5"/>
+<text class="p-name" x="693.0" y="525">Neutral atoms (Rb·Cs·Yb)</text>
+<text class="p-sub" x="693.0" y="539">780–1064 nm · 282–384 THz</text>
+<text class="vendor" x="693.0" y="553">Atom Comp. · Infleqtion · Pasqal · QuEra</text>
+<text class="vendor" x="693.0" y="567">Welinq (memory)</text>
+<rect x="855.7" y="512" width="13" height="13" rx="2" ry="2" fill="#e8b65a" stroke="#e8b65a" stroke-width="1"/>
+<text class="cap-chip" x="862.2" y="522" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">C</text>
+<rect x="870.7" y="512" width="13" height="13" rx="2" ry="2" fill="#e8b65a" stroke="#e8b65a" stroke-width="1"/>
+<text class="cap-chip" x="877.2" y="522" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">M</text>
+<rect x="885.7" y="512" width="13" height="13" rx="2" ry="2" fill="#e8b65a" stroke="#e8b65a" stroke-width="1"/>
+<text class="cap-chip" x="892.2" y="522" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">S</text>
+<line x1="731.5" y1="570" x2="731.5" y2="574" stroke="#e8b65a" stroke-width="2"/>
+<circle cx="731.5" cy="580" r="3" fill="#e8b65a"/>
+<line x1="856.1" y1="570" x2="856.1" y2="574" stroke="#e8b65a" stroke-width="2"/>
+<circle cx="856.1" cy="580" r="3" fill="#e8b65a"/>
+<line x1="731.5" y1="574" x2="856.1" y2="574" stroke="#e8b65a" stroke-width="1.5"/>
+<rect x="745.0" y="440" width="248.4" height="52" rx="6" ry="6" fill="#f6ecde" stroke="#d8a86b" stroke-width="1.5"/>
+<text class="p-name" x="755.0" y="457">Quantum dot (photon source)</text>
+<text class="p-sub" x="755.0" y="471">600–950 nm · 316–500 THz</text>
+<text class="vendor" x="755.0" y="485">Aegiq · Sparrow Q.</text>
+<rect x="944.4" y="444" width="13" height="13" rx="2" ry="2" fill="#ffffff" stroke="#bbbbbb" stroke-width="1"/>
+<text class="cap-chip" x="950.9" y="454" text-anchor="middle" style="fill:#999999" font-size="9" font-weight="700">C</text>
+<rect x="959.4" y="444" width="13" height="13" rx="2" ry="2" fill="#ffffff" stroke="#bbbbbb" stroke-width="1"/>
+<text class="cap-chip" x="965.9" y="454" text-anchor="middle" style="fill:#999999" font-size="9" font-weight="700">M</text>
+<rect x="974.4" y="444" width="13" height="13" rx="2" ry="2" fill="#d8a86b" stroke="#d8a86b" stroke-width="1"/>
+<text class="cap-chip" x="980.9" y="454" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">S</text>
+<line x1="777.0" y1="488" x2="777.0" y2="492" stroke="#d8a86b" stroke-width="2"/>
+<circle cx="777.0" cy="580" r="3" fill="#d8a86b"/>
+<line x1="961.5" y1="488" x2="961.5" y2="492" stroke="#d8a86b" stroke-width="2"/>
+<circle cx="961.5" cy="580" r="3" fill="#d8a86b"/>
+<line x1="777.0" y1="492" x2="961.5" y2="492" stroke="#d8a86b" stroke-width="1.5"/>
+<rect x="781.4" y="372" width="195.0" height="52" rx="6" ry="6" fill="#eee0e0" stroke="#b07070" stroke-width="1.5"/>
+<text class="p-name" x="791.4" y="389">SiV centre (diamond)</text>
+<text class="p-sub" x="791.4" y="403">ZPL 737 nm · 407 THz</text>
+<text class="vendor" x="791.4" y="417">Element Six · Lightsynq</text>
+<rect x="927.4" y="376" width="13" height="13" rx="2" ry="2" fill="#ffffff" stroke="#bbbbbb" stroke-width="1"/>
+<text class="cap-chip" x="933.9" y="386" text-anchor="middle" style="fill:#999999" font-size="9" font-weight="700">C</text>
+<rect x="942.4" y="376" width="13" height="13" rx="2" ry="2" fill="#b07070" stroke="#b07070" stroke-width="1"/>
+<text class="cap-chip" x="948.9" y="386" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">M</text>
+<rect x="957.4" y="376" width="13" height="13" rx="2" ry="2" fill="#b07070" stroke="#b07070" stroke-width="1"/>
+<text class="cap-chip" x="963.9" y="386" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">S</text>
+<line x1="878.9" y1="420" x2="878.9" y2="424" stroke="#b07070" stroke-width="2"/>
+<circle cx="878.9" cy="580" r="3" fill="#b07070"/>
+<rect x="841.4" y="236" width="192.1" height="52" rx="6" ry="6" fill="#e9e3ef" stroke="#9a7fb8" stroke-width="1.5"/>
+<text class="p-name" x="851.4" y="253">NV centre (diamond)</text>
+<text class="p-sub" x="851.4" y="267">ZPL 637 nm · 471 THz</text>
+<text class="vendor" x="851.4" y="281">Element Six · Q. Brilliance</text>
+<rect x="984.5" y="240" width="13" height="13" rx="2" ry="2" fill="#9a7fb8" stroke="#9a7fb8" stroke-width="1"/>
+<text class="cap-chip" x="991.0" y="250" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">C</text>
+<rect x="999.5" y="240" width="13" height="13" rx="2" ry="2" fill="#9a7fb8" stroke="#9a7fb8" stroke-width="1"/>
+<text class="cap-chip" x="1006.0" y="250" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">M</text>
+<rect x="1014.5" y="240" width="13" height="13" rx="2" ry="2" fill="#9a7fb8" stroke="#9a7fb8" stroke-width="1"/>
+<text class="cap-chip" x="1021.0" y="250" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">S</text>
+<line x1="937.4" y1="284" x2="937.4" y2="288" stroke="#9a7fb8" stroke-width="2"/>
+<circle cx="937.4" cy="580" r="3" fill="#9a7fb8"/>
+<rect x="848.7" y="304" width="235.2" height="52" rx="6" ry="6" fill="#f3e5e5" stroke="#c98a8a" stroke-width="1.5"/>
+<text class="p-name" x="858.7" y="321">Rare-earth memory</text>
+<text class="p-sub" x="858.7" y="335">Eu³⁺/Pr³⁺:Y₂SiO₅ · 580–606 nm · 495–517 THz</text>
+<text class="vendor" x="858.7" y="349">ANU · Caltech · Geneva</text>
+<rect x="1034.9" y="308" width="13" height="13" rx="2" ry="2" fill="#ffffff" stroke="#bbbbbb" stroke-width="1"/>
+<text class="cap-chip" x="1041.4" y="318" text-anchor="middle" style="fill:#999999" font-size="9" font-weight="700">C</text>
+<rect x="1049.9" y="308" width="13" height="13" rx="2" ry="2" fill="#c98a8a" stroke="#c98a8a" stroke-width="1"/>
+<text class="cap-chip" x="1056.4" y="318" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">M</text>
+<rect x="1064.9" y="308" width="13" height="13" rx="2" ry="2" fill="#ffffff" stroke="#bbbbbb" stroke-width="1"/>
+<text class="cap-chip" x="1071.4" y="318" text-anchor="middle" style="fill:#999999" font-size="9" font-weight="700">S</text>
+<line x1="957.5" y1="352" x2="957.5" y2="356" stroke="#c98a8a" stroke-width="2"/>
+<circle cx="957.5" cy="580" r="3" fill="#c98a8a"/>
+<line x1="975.1" y1="352" x2="975.1" y2="356" stroke="#c98a8a" stroke-width="2"/>
+<circle cx="975.1" cy="580" r="3" fill="#c98a8a"/>
+<line x1="957.5" y1="356" x2="975.1" y2="356" stroke="#c98a8a" stroke-width="1.5"/>
+<rect x="506.9" y="304" width="156.6" height="52" rx="6" ry="6" fill="#d7e5e5" stroke="#4a8b8b" stroke-width="1.5"/>
+<text class="p-name" x="516.9" y="321">Er³⁺ memory</text>
+<text class="p-sub" x="516.9" y="335">1532 nm · 196 THz</text>
+<text class="vendor" x="516.9" y="349">Caltech · memQ · Princeton</text>
+<rect x="614.5" y="308" width="13" height="13" rx="2" ry="2" fill="#ffffff" stroke="#bbbbbb" stroke-width="1"/>
+<text class="cap-chip" x="621.0" y="318" text-anchor="middle" style="fill:#999999" font-size="9" font-weight="700">C</text>
+<rect x="629.5" y="308" width="13" height="13" rx="2" ry="2" fill="#4a8b8b" stroke="#4a8b8b" stroke-width="1"/>
+<text class="cap-chip" x="636.0" y="318" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">M</text>
+<rect x="644.5" y="308" width="13" height="13" rx="2" ry="2" fill="#ffffff" stroke="#bbbbbb" stroke-width="1"/>
+<text class="cap-chip" x="651.0" y="318" text-anchor="middle" style="fill:#999999" font-size="9" font-weight="700">S</text>
+<line x1="585.2" y1="352" x2="585.2" y2="356" stroke="#4a8b8b" stroke-width="2"/>
+<circle cx="585.2" cy="580" r="3" fill="#4a8b8b"/>
+<rect x="1057.4" y="100" width="178.6" height="52" rx="6" ry="6" fill="#e2dcec" stroke="#7c5fa8" stroke-width="1.5"/>
+<text class="p-name" x="1067.4" y="117">Trapped ions (Yb⁺)</text>
+<text class="p-sub" x="1067.4" y="131">369 nm · 813 THz</text>
+<text class="vendor" x="1067.4" y="145">AQT · IonQ · Oxford Ionics</text>
+<rect x="1187" y="104" width="13" height="13" rx="2" ry="2" fill="#7c5fa8" stroke="#7c5fa8" stroke-width="1"/>
+<text class="cap-chip" x="1193.5" y="114" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">C</text>
+<rect x="1202" y="104" width="13" height="13" rx="2" ry="2" fill="#7c5fa8" stroke="#7c5fa8" stroke-width="1"/>
+<text class="cap-chip" x="1208.5" y="114" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">M</text>
+<rect x="1217" y="104" width="13" height="13" rx="2" ry="2" fill="#7c5fa8" stroke="#7c5fa8" stroke-width="1"/>
+<text class="cap-chip" x="1223.5" y="114" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">S</text>
+<line x1="1156.6" y1="148" x2="1156.6" y2="152" stroke="#7c5fa8" stroke-width="2"/>
+<circle cx="1156.6" cy="580" r="3" fill="#7c5fa8"/>
+<rect x="951.0" y="168" width="178.6" height="52" rx="6" ry="6" fill="#dce6ec" stroke="#5f8da8" stroke-width="1.5"/>
+<text class="p-name" x="961.0" y="185">Trapped ions (Ba⁺)</text>
+<text class="p-sub" x="961.0" y="199">493 nm · 608 THz</text>
+<text class="vendor" x="961.0" y="213">Quantinuum</text>
+<rect x="1080.6" y="172" width="13" height="13" rx="2" ry="2" fill="#5f8da8" stroke="#5f8da8" stroke-width="1"/>
+<text class="cap-chip" x="1087.1" y="182" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">C</text>
+<rect x="1095.6" y="172" width="13" height="13" rx="2" ry="2" fill="#5f8da8" stroke="#5f8da8" stroke-width="1"/>
+<text class="cap-chip" x="1102.1" y="182" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">M</text>
+<rect x="1110.6" y="172" width="13" height="13" rx="2" ry="2" fill="#5f8da8" stroke="#5f8da8" stroke-width="1"/>
+<text class="cap-chip" x="1117.1" y="182" text-anchor="middle" style="fill:#ffffff" font-size="9" font-weight="700">S</text>
+<line x1="1040.3" y1="216" x2="1040.3" y2="220" stroke="#5f8da8" stroke-width="2"/>
+<circle cx="1040.3" cy="580" r="3" fill="#5f8da8"/>
+<line x1="60" y1="580" x2="244.9" y2="580" stroke="#333" stroke-width="1.2"/>
+<line x1="315.7" y1="580" x2="1240.0" y2="580" stroke="#333" stroke-width="1.2"/>
+<rect x="243.9" y="576" width="72.8" height="9" fill="#fdfdfb"/>
+<line x1="271.3" y1="585" x2="277.3" y2="575" stroke="#333" stroke-width="1.2"/>
+<line x1="283.3" y1="585" x2="289.3" y2="575" stroke="#333" stroke-width="1.2"/>
+<line x1="60.0" y1="580" x2="60.0" y2="586" stroke="#333" stroke-width="1"/>
+<text class="tick" x="60.0" y="600" text-anchor="middle">1 GHz</text>
+<text class="tick-sub" x="60.0" y="613" text-anchor="middle">30 cm</text>
+<line x1="152.4" y1="580" x2="152.4" y2="586" stroke="#333" stroke-width="1"/>
+<text class="tick" x="152.4" y="600" text-anchor="middle">10 GHz</text>
+<text class="tick-sub" x="152.4" y="613" text-anchor="middle">3 cm</text>
+<line x1="244.9" y1="580" x2="244.9" y2="586" stroke="#333" stroke-width="1"/>
+<text class="tick" x="244.9" y="600" text-anchor="middle">100 GHz</text>
+<text class="tick-sub" x="244.9" y="613" text-anchor="middle">3 mm</text>
+<line x1="315.7" y1="580" x2="315.7" y2="586" stroke="#333" stroke-width="1"/>
+<text class="tick" x="315.7" y="600" text-anchor="middle">100 THz</text>
+<text class="tick-sub" x="315.7" y="613" text-anchor="middle">3 µm</text>
+<line x1="593.9" y1="580" x2="593.9" y2="586" stroke="#333" stroke-width="1"/>
+<text class="tick" x="593.9" y="600" text-anchor="middle">200 THz</text>
+<text class="tick-sub" x="593.9" y="613" text-anchor="middle">1.5 µm</text>
+<line x1="756.7" y1="580" x2="756.7" y2="586" stroke="#333" stroke-width="1"/>
+<text class="tick" x="756.7" y="600" text-anchor="middle">300 THz</text>
+<text class="tick-sub" x="756.7" y="613" text-anchor="middle">1 µm</text>
+<line x1="961.7" y1="580" x2="961.7" y2="586" stroke="#333" stroke-width="1"/>
+<text class="tick" x="961.7" y="600" text-anchor="middle">500 THz</text>
+<text class="tick-sub" x="961.7" y="613" text-anchor="middle">600 nm</text>
+<line x1="1096.8" y1="580" x2="1096.8" y2="586" stroke="#333" stroke-width="1"/>
+<text class="tick" x="1096.8" y="600" text-anchor="middle">700 THz</text>
+<text class="tick-sub" x="1096.8" y="613" text-anchor="middle">430 nm</text>
+<line x1="1240.0" y1="580" x2="1240.0" y2="586" stroke="#333" stroke-width="1"/>
+<text class="tick" x="1240.0" y="600" text-anchor="middle">1 PHz</text>
+<text class="tick-sub" x="1240.0" y="613" text-anchor="middle">300 nm</text>
+<text class="region" x="173.7" y="656" text-anchor="middle">MICROWAVE</text>
+<text class="region" x="478.4" y="656" text-anchor="middle">NEAR-IR</text>
+<text class="region" x="1027.2" y="656" text-anchor="middle">VISIBLE</text>
+<text class="region" x="1186.2" y="656" text-anchor="middle">UV</text>
+<line x1="124.6" y1="700" x2="580.4" y2="700" stroke="#c0392b" stroke-width="1.8" marker-end="url(#arrow-0)"/>
+<text class="ann-label" x="352.5" y="694" text-anchor="middle" fill="#c0392b">Microwave-to-optical transducer</text>
+<text class="ann-sub" x="352.5" y="716" text-anchor="middle">5 GHz → 1550 nm · ~4.6 orders of magnitude · the hard problem</text>
+<line x1="1124.5" y1="700" x2="580.4" y2="700" stroke="#1f7a3a" stroke-width="1.8" marker-end="url(#arrow-1)"/>
+<text class="ann-label" x="852.5" y="694" text-anchor="middle" fill="#1f7a3a">Quantum frequency conversion (QFC)</text>
+<text class="ann-sub" x="852.5" y="716" text-anchor="middle">PPLN · χ⁽²⁾/χ⁽³⁾ nonlinear optics · ~50–80% lab efficiency</text>
+<text class="machines-p" x="60" y="752">Quantum Computers  — <tspan font-weight="700">bold</tspan> = future / planned</text>
+<text class="machines-p" x="820" y="752">Quantum Memories &amp; Sources</text>
+<circle cx="64" cy="766" r="4.5" fill="#adc6f7" stroke="#5b8def" stroke-width="1.2"/>
+<text class="machines-p" x="76" y="770">Superconducting qubits</text>
+<text class="machines-v" x="210.6" y="770">Google (Willow) · IBM (Heron, <tspan font-weight="700">Nighthawk</tspan>, <tspan font-weight="700">Starling</tspan>, <tspan font-weight="700">Blue Jay</tspan>) · IQM (Radiance) · Rigetti (Ankaa-3) · USTC (Zuchongzhi 3)</text>
+<circle cx="64" cy="782" r="4.5" fill="#9cbebe" stroke="#3a7d7d" stroke-width="1.2"/>
+<text class="machines-p" x="76" y="786">Topological (Majorana)</text>
+<text class="machines-v" x="210.6" y="786">Microsoft (Majorana 1)</text>
+<circle cx="64" cy="798" r="4.5" fill="#beafd4" stroke="#7d5fa8" stroke-width="1.2"/>
+<text class="machines-p" x="76" y="802">Quantum dot (Si spin)</text>
+<text class="machines-v" x="210.6" y="802">Diraq · Equal1 · Intel (Tunnel Falls) · Quantum Motion · SQC</text>
+<circle cx="64" cy="814" r="4.5" fill="#bfdce2" stroke="#7fb8c4" stroke-width="1.2"/>
+<text class="machines-p" x="76" y="818">Photonics</text>
+<text class="machines-v" x="210.6" y="818">ORCA (PT-2, <tspan font-weight="700">PA-series</tspan>) · PsiQuantum (Omega) · Quandela (Belenos) · USTC (Jiuzhang 4.0) · Xanadu (Aurora)</text>
+<circle cx="64" cy="830" r="4.5" fill="#f4daac" stroke="#e8b65a" stroke-width="1.2"/>
+<text class="machines-p" x="76" y="834">Neutral atoms (Rb·Cs·Yb)</text>
+<text class="machines-v" x="210.6" y="834">Atom Computing (Phoenix) · Infleqtion (Sqale) · Pasqal (Orion Beta, <tspan font-weight="700">Orion Gamma</tspan>) · QuEra (Gemini)</text>
+<circle cx="64" cy="846" r="4.5" fill="#ccbfdc" stroke="#9a7fb8" stroke-width="1.2"/>
+<text class="machines-p" x="76" y="850">NV centre (diamond)</text>
+<text class="machines-v" x="210.6" y="850">Element Six (substrates) · Quantum Brilliance (Quoll)</text>
+<circle cx="64" cy="862" r="4.5" fill="#beafd4" stroke="#7c5fa8" stroke-width="1.2"/>
+<text class="machines-p" x="76" y="866">Trapped ions (Yb⁺)</text>
+<text class="machines-v" x="210.6" y="866">AQT (MARMOT, IBEX Q1) · IonQ (Tempo) · Oxford Ionics</text>
+<circle cx="64" cy="878" r="4.5" fill="#afc6d4" stroke="#5f8da8" stroke-width="1.2"/>
+<text class="machines-p" x="76" y="882">Trapped ions (Ba⁺)</text>
+<text class="machines-v" x="210.6" y="882">Quantinuum (Helios, <tspan font-weight="700">Sol</tspan>, <tspan font-weight="700">Apollo</tspan>)</text>
+<circle cx="824" cy="766" r="4.5" fill="#ecd4b5" stroke="#d8a86b" stroke-width="1.2" stroke-dasharray="2,1.5"/>
+<text class="machines-p" x="836" y="770">Quantum dot (photon source)</text>
+<text class="machines-v" x="992.1" y="770">Aegiq (iSPS) · Sparrow Q. (Sparrow Nest)</text>
+<circle cx="824" cy="782" r="4.5" fill="#d8b8b8" stroke="#b07070" stroke-width="1.2" stroke-dasharray="2,1.5"/>
+<text class="machines-p" x="836" y="786">SiV centre (diamond)</text>
+<text class="machines-v" x="992.1" y="786">Element Six (substrates) · Lightsynq (modules)</text>
+<circle cx="824" cy="798" r="4.5" fill="#e4c4c4" stroke="#c98a8a" stroke-width="1.2" stroke-dasharray="2,1.5"/>
+<text class="machines-p" x="836" y="802">Rare-earth memory</text>
+<text class="machines-v" x="992.1" y="802">ANU · Caltech · Geneva  — research only, no commercial machines</text>
+<circle cx="824" cy="814" r="4.5" fill="#f4daac" stroke="#e8b65a" stroke-width="1.2" stroke-dasharray="2,1.5"/>
+<text class="machines-p" x="836" y="818">Cold-atom memory</text>
+<text class="machines-v" x="992.1" y="818">Welinq (QDrive)</text>
+<circle cx="824" cy="830" r="4.5" fill="#a4c5c5" stroke="#4a8b8b" stroke-width="1.2" stroke-dasharray="2,1.5"/>
+<text class="machines-p" x="836" y="834">Er³⁺ memory</text>
+<text class="machines-v" x="992.1" y="834">memQ (Er:TiO₂ on SiN) · Princeton (Er:CaWO₄ single-ion) · Caltech (Er:Y₂SiO₅)</text>
+<text class="timestamp" x="1238" y="20" text-anchor="end">20260524-00:24:22</text>
+</svg>

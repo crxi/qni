@@ -1,0 +1,224 @@
+slug: ibm
+name: IBM Quantum
+categories: [qc, network]
+hq: Yorktown Heights, New York, USA
+founded: 1911
+status: public
+parent: null
+logo:
+  domain: ibm.com
+
+positioning: >
+  Superconducting-transmon quantum computing programme inside IBM Research,
+  with a published 2029 fault-tolerance target — Quantum Starling at 200
+  logical qubits and 100 million gate operations — and a parallel
+  modular-quantum-networking effort announced with Cisco and Fermilab/SQMS
+  in November 2025. Flagship Nighthawk (120 qubits, square lattice, 218
+  tunable couplers, 350 us median T1) and the qLDPC-prototype Loon chip were
+  unveiled at the November 2025 Developer Conference. The Bravyi 2024 Nature
+  qLDPC result (Bivariate Bicycle codes) underpins the path through
+  Kookaburra and Cockatoo to Starling and a post-2033 Blue Jay system.
+
+business_units:
+  - name: IBM Quantum
+    scope: Superconducting QC hardware, Qiskit stack, IBM Quantum Network cloud
+    hq: Yorktown Heights, New York / Poughkeepsie quantum data centre
+    lead: Jay Gambetta (Director, IBM Research; previously VP IBM Quantum)
+  - name: IBM Quantum Networking (with Fermilab/SQMS, Cisco)
+    scope: Microwave-optical transducers, Quantum Networking Units (QNUs), modular interconnect
+    hq: Yorktown Heights / Fermilab (Batavia, IL)
+    lead: Jerry Chow (IBM Fellow; quantum infrastructure)
+
+modalities:
+  qc:
+    qubit_type: transmon
+    physical_qubits_current: 120
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: 0.350
+    coherence_t2_ms: null
+    ec_code: qLDPC
+    connectivity: heavy-hex / square-lattice (Nighthawk)
+    gate_set: []
+  network:
+    role: modular interconnect / transducer R&D
+    products:
+      - IBM Quantum System Two — modular cryogenic interconnect for co-located QPUs
+      - Quantum Networking Unit (QNU) — microwave-optical transducer + entanglement-distribution stack (with Cisco, Fermilab/SQMS)
+
+milestones:
+  - date: "2025-11-20"
+    tag: network
+    headline: IBM and Cisco announce plan to build networked fault-tolerant quantum computers; Quantum Networking Units (QNUs) co-developed with Fermilab/SQMS
+    source_url: https://newsroom.ibm.com/2025-11-20-ibm-and-cisco-announce-plans-to-build-a-network-of-large-scale,-fault-tolerant-quantum-computers
+    source_type: press
+  - date: "2025-11-12"
+    tag: qc
+    headline: Nighthawk (120 qubits, square lattice, 218 tunable couplers, median T1 350 µs) and Loon (qLDPC-prototype chip with c-couplers) unveiled at IBM Quantum Developer Conference
+    source_url: https://newsroom.ibm.com/2025-11-12-ibm-delivers-new-quantum-processors,-software,-and-algorithm-breakthroughs-on-path-to-advantage-and-fault-tolerance
+    source_type: press
+  - date: 2025-10
+    tag: qc
+    headline: IBM Research leadership transition
+    source_url: https://newsroom.ibm.com/blog-ibm-names-new-director-of-ibm-research
+    source_type: press
+  - date: "2025-06-10"
+    tag: qc
+    headline: IBM publishes roadmap to Quantum Starling (200 logical qubits, 100 M gate operations by 2029) at new Poughkeepsie quantum data centre; intermediate processors Loon, Kookaburra, Cockatoo named
+    source_url: https://newsroom.ibm.com/2025-06-10-IBM-Sets-the-Course-to-Build-Worlds-First-Large-Scale,-Fault-Tolerant-Quantum-Computer-at-New-IBM-Quantum-Data-Center
+    source_type: press
+  - date: 2024-03
+    tag: qc
+    headline: Bravyi et al. demonstrate high-threshold, low-overhead fault-tolerant quantum memory using Bivariate Bicycle qLDPC codes (Nature cover)
+    source_url: https://www.nature.com/articles/s41586-024-07107-7
+    source_type: paper
+  - date: 2023-12
+    tag: qc
+    headline: IBM Quantum Heron (133 qubits, tunable couplers) and IBM Quantum System Two launched at Yorktown Heights
+    source_url: https://newsroom.ibm.com/2023-12-04-IBM-Debuts-Next-Generation-Quantum-Processor-IBM-Quantum-System-Two,-Extends-Roadmap-to-Advance-Era-of-Quantum-Utility
+    source_type: press
+  - date: 2022-11
+    tag: qc
+    headline: Osprey (433 qubits) unveiled at IBM Summit
+    source_url: https://newsroom.ibm.com/2022-11-09-IBM-Unveils-400-Qubit-Plus-Quantum-Processor-and-Next-Generation-IBM-Quantum-System-Two
+    source_type: press
+  - date: 2021-11
+    tag: qc
+    headline: Eagle (127 qubits) — first IBM processor beyond brute-force classical simulability
+    source_url: https://newsroom.ibm.com/2021-11-16-IBM-Unveils-Breakthrough-127-Qubit-Quantum-Processor
+    source_type: press
+  - date: 2019-09
+    tag: qc
+    headline: IBM Quantum System One unveiled — described by IBM as the first integrated commercial superconducting quantum system
+    source_url: https://www.prnewswire.com/news-releases/ibm-unveils-worlds-first-integrated-quantum-computing-system-for-commercial-use-300774332.html
+    source_type: press
+
+shareholders:
+  - holder: Vanguard Group
+    stake_percent: 10.2
+    stake_class: minority
+    as_of: 2025-06
+    source_url: https://www.wallstreetzen.com/stocks/us/nyse/ibm/ownership
+    note: Largest institutional holder per mid-2025 13F aggregation; cross-check against 2026 DEF 14A proxy when filed
+  - holder: BlackRock
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-06
+    source_url: https://fintel.io/so/us/ibm
+    note: Top-3 institutional holder; exact percent depends on filing date
+  - holder: State Street
+    stake_percent: 5.85
+    stake_class: minority
+    as_of: 2025-06
+    source_url: https://www.wallstreetzen.com/stocks/us/nyse/ibm/ownership
+    note: 54.54 M shares per mid-2025 13F
+
+key_personnel:
+  - role: Chairman & CEO, IBM
+    name: Arvind Krishna
+    since: 2020-04
+    source_url: https://newsroom.ibm.com/2026-05-04-media-alert-ibm-ceo-arvind-krishna-to-open-ibm-think-2026,-outlining-how-ai-and-quantum-will-define-the-enterprise
+  - role: Director, IBM Research (and IBM Fellow)
+    name: Jay Gambetta
+    since: 2025-10
+    source_url: https://newsroom.ibm.com/blog-ibm-names-new-director-of-ibm-research
+    note: Previously VP, IBM Quantum (2021–2025); leads the quantum roadmap
+  - role: IBM Fellow, Vice President — Quantum Infrastructure
+    name: Jerry Chow
+    since: 2014
+    source_url: https://research.ibm.com/people
+    note: Long-time IBM Quantum hardware lead; involved in System Two and modular interconnect
+  - role: IBM Fellow & Distinguished Scientist (qLDPC codes)
+    name: Sergey Bravyi
+    since: 2012
+    source_url: https://research.ibm.com/people
+    note: First author on the 2024 Nature qLDPC paper underpinning the Starling roadmap
+
+roadmap:
+  - target: 2026
+    item: Nighthawk-class processors delivering ~7,500 two-qubit gates, demonstrating practical quantum advantage
+    source_url: https://www.ibm.com/quantum/blog/qdc-2025
+    tag: qc
+  - target: 2026
+    item: Kookaburra — first modular processor combining quantum memory and logic operations
+    source_url: https://newsroom.ibm.com/2025-06-10-IBM-Sets-the-Course-to-Build-Worlds-First-Large-Scale,-Fault-Tolerant-Quantum-Computer-at-New-IBM-Quantum-Data-Center
+    tag: qc
+  - target: 2027
+    item: Cockatoo — two Kookaburra modules entangled via L-couplers (chip-to-chip)
+    source_url: https://newsroom.ibm.com/2025-06-10-IBM-Sets-the-Course-to-Build-Worlds-First-Large-Scale,-Fault-Tolerant-Quantum-Computer-at-New-IBM-Quantum-Data-Center
+    tag: qc
+  - target: 2028
+    item: Nighthawk-based systems supporting ~15,000 two-qubit gates over 1,000+ connected qubits via long-range couplers
+    source_url: https://www.ibm.com/quantum/blog/qdc-2025
+    tag: qc
+  - target: 2029
+    item: Quantum Starling — 200 logical qubits, 100 million quantum gate operations; large-scale fault-tolerant system at Poughkeepsie quantum data centre
+    source_url: https://www.ibm.com/roadmaps/quantum/2029/
+    tag: qc
+  - target: 2030
+    item: Initial proof-of-concept demonstration of multiple networked quantum computers (with Cisco, Fermilab/SQMS)
+    source_url: https://newsroom.ibm.com/2025-11-20-ibm-and-cisco-announce-plans-to-build-a-network-of-large-scale,-fault-tolerant-quantum-computers
+    tag: network
+  - target: "early-2030s"
+    item: Networked large-scale fault-tolerant quantum computers via Quantum Networking Units (QNUs) with microwave-optical transducers
+    source_url: https://newsroom.ibm.com/2025-11-20-ibm-and-cisco-announce-plans-to-build-a-network-of-large-scale,-fault-tolerant-quantum-computers
+    tag: network
+  - target: "late-2030s"
+    item: Quantum computing internet — distributed quantum computers, sensors and communications
+    source_url: https://newsroom.ibm.com/2025-11-20-ibm-and-cisco-announce-plans-to-build-a-network-of-large-scale,-fault-tolerant-quantum-computers
+    tag: network
+  - target: "post-2033"
+    item: Blue Jay — 2,000 logical qubits, 1 billion gate operations
+    source_url: https://newsroom.ibm.com/2025-06-10-IBM-Sets-the-Course-to-Build-Worlds-First-Large-Scale,-Fault-Tolerant-Quantum-Computer-at-New-IBM-Quantum-Data-Center
+    tag: qc
+
+current_flagship:
+  name: IBM Quantum Nighthawk
+  generation: 120-qubit transmon (square lattice, 218 tunable couplers)
+
+references:
+  - kind: paper
+    citation_key: Bravyi.Nature.627.778
+    url: https://www.nature.com/articles/s41586-024-07107-7
+    note: Bravyi et al., "High-threshold and low-overhead fault-tolerant quantum memory" (Nature 627, 778-782, 2024) — the Bivariate Bicycle qLDPC result underpinning the Starling roadmap
+  - kind: press
+    citation_key: null
+    url: https://newsroom.ibm.com/2025-11-20-ibm-and-cisco-announce-plans-to-build-a-network-of-large-scale,-fault-tolerant-quantum-computers
+    note: IBM × Cisco × Fermilab/SQMS quantum networking partnership announcement
+  - kind: press
+    citation_key: null
+    url: https://newsroom.ibm.com/2025-11-12-ibm-delivers-new-quantum-processors,-software,-and-algorithm-breakthroughs-on-path-to-advantage-and-fault-tolerance
+    note: Nighthawk and Loon unveiling
+  - kind: press
+    citation_key: null
+    url: https://newsroom.ibm.com/2025-06-10-IBM-Sets-the-Course-to-Build-Worlds-First-Large-Scale,-Fault-Tolerant-Quantum-Computer-at-New-IBM-Quantum-Data-Center
+    note: Starling 2029 roadmap and Poughkeepsie quantum data centre
+  - kind: blog
+    citation_key: null
+    url: https://www.ibm.com/quantum/blog/qdc-2025
+    note: IBM Quantum Developer Conference 2025 — annual roadmap update
+  - kind: blog
+    citation_key: null
+    url: https://www.ibm.com/quantum/blog/nature-qldpc-error-correction
+    note: IBM Research blog walk-through of the 2024 qLDPC Nature paper
+
+partial:
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.gate_set
+  - field: modalities.qc.ec_code
+    as_of: 2026-05-13
+    note: qLDPC (Bivariate Bicycle codes) is the announced FT target per Bravyi 2024 Nature paper; only memory protocol demonstrated, not yet full computation
+  - field: shareholders.1.stake_percent
+    as_of: 2026-05-13
+    note: BlackRock confirmed top-3 by aggregator but exact stake% awaits 2026 DEF 14A
+  - field: shareholders
+    as_of: 2026-05-13
+    note: institutional stakes sourced from 13F aggregators (mid-2025); cross-check against next IBM DEF 14A proxy
+  - key_personnel.2.since
+  - key_personnel.3.since
+
+last_verified: 2026-05-13
+verification_method: web

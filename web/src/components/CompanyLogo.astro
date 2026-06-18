@@ -1,0 +1,142 @@
+---
+/**
+ * Company logo — uniform "badge" presentation.
+ *
+ * Two visual modes, both at the SAME pixel height for consistent grid rhythm:
+ *
+ *   A. Real logo file present (`/logos/<slug>.<ext>`):
+ *      → a wide white tile with subtle border + soft shadow; the SVG/PNG
+ *        is contained inside via object-fit:contain. Wordmarks fill the
+ *        width; square marks centre cleanly. Width = height × 3.
+ *
+ *   B. No logo file:
+ *      → a SQUARE coloured tile (height × height) with a large white
+ *        initial centred inside. The tile colour is picked
+ *        deterministically from the vendor slug, drawn from the
+ *        site's accent palette. Reads as a confident "avatar" rather
+ *        than an apologetic placeholder.
+ *
+ * Both shapes work at any height — 24 px on dossier cards, 48 px on the
+ * per-vendor hero — and any new vendor automatically renders correctly
+ * whether or not artwork is in `/logos/`.
+ */
+import fs from "node:fs";
+import path from "node:path";
+import type { CompanyLogoSpec } from "../lib/companies.ts";
+
+// Build-time logo file lookup.
+const LOGO_DIR = path.resolve(import.meta.dirname, "../../public/logos");
+const LOGO_BY_SLUG: Record<string, string> = {};
+const BASE = (import.meta.env.BASE_URL ?? "/").replace(/\/$/, "");
+try {
+  for (const file of fs.readdirSync(LOGO_DIR)) {
+    const m = file.match(/^(.+)\.(svg|png|webp|jpg|jpeg|gif)$/i);
+    if (m) LOGO_BY_SLUG[m[1]] = `${BASE}/logos/${file}`;
+  }
+} catch {
+  // /public/logos missing — every render falls through to the monogram.
+}
+
+interface Props {
+  name: string;
+  slug?: string;
+  /** Kept for backward compatibility with existing YAML. */
+  logo?: CompanyLogoSpec;
+  /** Tile inner-height in px. Tile total height = `height + 2 × padding`. */
+  height: number;
+  /** If true, force the monogram tile even when a logo file exists. */
+  forceMonogram?: boolean;
+}
+
+const { name, slug, height, forceMonogram = false } = Astro.props;
+const initial = name.trim().charAt(0).toUpperCase();
+const local = !forceMonogram && slug ? LOGO_BY_SLUG[slug] : null;
+
+// Palette for monogram tiles. Hash slug → pick deterministically.
+const MONOGRAM_PALETTE = [
+  "#2f6fd6",  // photon blue
+  "#22c55e",  // comms green
+  "#9b87c4",  // memory purple
+  "#f29453",  // data orange
+  "#c84a9b",  // pink
+  "#14b8a6",  // teal
+  "#f59e0b",  // amber
+  "#6366f1",  // indigo
+  "#dc2626",  // red
+  "#475569",  // slate
+];
+function hashSlug(s: string): number {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = ((h << 5) - h + s.charCodeAt(i)) | 0;
+  return Math.abs(h);
+}
+const monoBg = MONOGRAM_PALETTE[hashSlug(slug ?? name) % MONOGRAM_PALETTE.length];
+
+// Padding scales with height; tile total = height + 2*PAD.
+const PAD = Math.max(3, Math.round(height * 0.18));
+
+// Logo tile is wide; monogram tile is square (no wordmark to display).
+const logoTileW   = Math.round(height * 3);
+const logoTileH   = height + 2 * PAD;
+const monoTileSz  = height + 2 * PAD;
+const monoFontPx  = Math.round(height * 0.7);
+
+const logoStyle = `width:${logoTileW}px;height:${logoTileH}px;padding:${PAD}px;`;
+const monoStyle =
+  `width:${monoTileSz}px;height:${monoTileSz}px;` +
+  `background:${monoBg};font-size:${monoFontPx}px;`;
+---
+
+{local ? (
+  <span class="cl-tile cl-tile--logo" style={logoStyle}>
+    <img class="cl-logo" src={local} alt={`${name} logo`} loading="lazy" />
+  </span>
+) : (
+  <span class="cl-tile cl-tile--mono" style={monoStyle} aria-label={`${name} (no logo)`}>
+    <span class="cl-mono-letter">{initial}</span>
+  </span>
+)}
+
+<style>
+  /* Both tile variants share the same outer-frame rules so they line
+     up on the grid regardless of which one is rendered. */
+  .cl-tile {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  /* Logo variant: white background with a visible border + soft shadow
+     so the tile reads as a "card chip" even when the dossier card
+     behind it is also near-white. Image is centred + contained. */
+  .cl-tile--logo {
+    background: #ffffff;
+    border: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
+  .cl-logo {
+    display: block;
+    max-inline-size: 100%;
+    max-block-size: 100%;
+    inline-size: auto;
+    block-size: auto;
+    object-fit: contain;
+  }
+
+  /* Monogram variant: confident filled avatar. Background colour comes
+     from the inline style (deterministic per slug); the letter sits
+     centred in white. Color is set explicitly on the letter (not just
+     inherited from the tile) so surrounding text-colour rules can't
+     bleed through. */
+  .cl-mono-letter {
+    color: #ffffff;
+    font-weight: 700;
+    font-family: var(--font-sans, "Inter", system-ui, sans-serif);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+</style>

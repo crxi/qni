@@ -1,0 +1,661 @@
+---
+/**
+ * Horizontal timeline. A single time axis runs across the figure with
+ * year ticks and a "today" marker; each event sits on the axis as a
+ * dot, and a connector arrow points to a card off the axis with the
+ * date and headline. Cards stagger above/below (two levels each side)
+ * so adjacent events don't collide, and they hold a real line-and-a-
+ * half of text instead of the old SVG-text 22-character truncation.
+ *
+ * Past events = filled accent dot + tinted card.
+ * Future (roadmap) events = outlined dot + dashed-border card.
+ *
+ * Pure SVG, no JS. HTML rendering inside the SVG uses foreignObject
+ * so the card text wraps naturally.
+ */
+import type { Milestone, RoadmapItem } from "../lib/companies.ts";
+import { formatDateLabel } from "../lib/companies.ts";
+
+interface Props {
+  milestones: Milestone[];
+  roadmap: RoadmapItem[];
+  foundedYear: number;
+}
+
+const { milestones, roadmap, foundedYear } = Astro.props;
+
+// --- Date parsing ----------------------------------------------------------
+// Must never return NaN — a single NaN poisons Math.min/max and collapses
+// the whole axis. Unparseable strings fall through to NaN here and get
+// filtered out of the placements list below.
+function parseFracYear(input: string | number | Date): number {
+  if (input instanceof Date) {
+    return input.getUTCFullYear() + input.getUTCMonth() / 12;
+  }
+  if (typeof input === "number" && Number.isFinite(input)) {
+    return input + 0.5; // bare year → mid-year
+  }
+  const s = String(input).trim();
+  if (!s) return NaN;
+
+  // "Q1 2025" / "Q1-2025"
+  const qLate = s.match(/^Q([1-4])[\s-](\d{4})$/i);
+  if (qLate) return parseInt(qLate[2], 10) + (parseInt(qLate[1], 10) - 1) * 0.25;
+
+  // "2025-Q1" / "2025 Q1"
+  const qEarly = s.match(/^(\d{4})[\s-]Q([1-4])$/i);
+  if (qEarly) return parseInt(qEarly[1], 10) + (parseInt(qEarly[2], 10) - 1) * 0.25;
+
+  // "YYYY-MM" or "YYYY-MM-DD"
+  const iso = s.match(/^(\d{4})-(\d{2})(?:-(\d{2}))?$/);
+  if (iso) return parseInt(iso[1], 10) + (parseInt(iso[2], 10) - 1) / 12;
+
+  // Bare "YYYY"
+  const yr = s.match(/^(\d{4})$/);
+  if (yr) return parseInt(yr[1], 10) + 0.5;
+
+  // Decade-qualified: "early-2030s", "mid 2030s", "late 2030s"
+  const decade = s.match(/(\d{4})s/);
+  if (decade) {
+    const base = parseInt(decade[1], 10);
+    if (/early/i.test(s)) return base + 2;
+    if (/late/i.test(s)) return base + 8;
+    return base + 5; // mid- or unqualified
+  }
+
+  // "post-2033" / "pre-2030"
+  const yearAnywhere = s.match(/(\d{4})/);
+  if (yearAnywhere) {
+    const base = parseInt(yearAnywhere[1], 10);
+    if (/^post/i.test(s)) return base + 1;
+    if (/^pre/i.test(s)) return base - 1;
+    return base + 0.5;
+  }
+
+  return NaN;
+}
+
+const nowFrac = (() => {
+  const d = new Date();
+  return d.getUTCFullYear() + d.getUTCMonth() / 12;
+})();
+
+type Point = {
+  fracYear: number;
+  dateLabel: string;
+  label: string;
+  kind: "milestone" | "roadmap";
+};
+
+const points: Point[] = [
+  ...milestones.map((m) => ({
+    fracYear: parseFracYear(m.date),
+    dateLabel: formatDateLabel(m.date),
+    label: m.headline,
+    kind: "milestone" as const,
+  })),
+  ...roadmap.map((r) => ({
+    fracYear: parseFracYear(r.target),
+    dateLabel: formatDateLabel(r.target),
+    label: r.item,
+    kind: "roadmap" as const,
+  })),
+]
+  .filter((p) => Number.isFinite(p.fracYear))
+  .sort((a, b) => a.fracYear - b.fracYear);
+
+const hasContent = points.length > 0;
+
+// --- Canvas geometry -------------------------------------------------------
+// Anchor to events, not founding year, so vendors with deep histories
+// (IBM 1911, Cisco 1984) don't stretch the axis over a century.
+const itemFracs = points.map((p) => p.fracYear);
+const earliest = itemFracs.length ? Math.min(...itemFracs) : nowFrac - 3;
+const latest = itemFracs.length ? Math.max(...itemFracs) : nowFrac + 2;
+const yearStart = Math.floor(Math.min(earliest, nowFrac - 2));
+const yearEnd = Math.ceil(Math.max(latest, nowFrac + 2));
+
+const W = 980;
+const PAD_L = 40;
+const PAD_R = 40;
+const AXIS_Y = 260;
+const AXIS_W = W - PAD_L - PAD_R;
+
+const BOX_W = 170;
+const BOX_H = 78;                  // visible card height in default state
+const BOX_H_OUTER = 150;           // foreignObject height — gives the card
+                                   // room to grow on hover without clipping
+const HOVER_SLACK = BOX_H_OUTER - BOX_H;
+const STACK_GAP = 8;
+// Base vertical placement of card *top edge* (depth 0) for each level.
+// The far slots are exactly one depth-step (BOX_H + STACK_GAP) beyond the
+// near slots, so when the algorithm falls through to deeper stacks the
+// rhythm stays uniform. Without this, sparse vendors sit at ±60 px and
+// dense clusters jump to ±180 px, leaving an unsightly gap (visible on
+// IBM, whose late-2025 cluster forces far slots while 2019–2024 stays
+// near).
+const FAR_STEP = BOX_H + STACK_GAP;       // 86
+const LEVEL_Y = [
+  AXIS_Y - 60 - BOX_H,                    // above-near
+  AXIS_Y + 60,                            // below-near
+  AXIS_Y - 60 - BOX_H - FAR_STEP,         // above-far (one step beyond near)
+  AXIS_Y + 60 + FAR_STEP,                 // below-far
+];
+
+// foreignObject Y per card. Above-axis cards anchor to the foreignObject
+// bottom edge so the connector-facing edge stays put; below-axis cards
+// anchor to the top edge for the same reason.
+function foreignObjectY(boxTop: number, above: boolean): number {
+  return above ? boxTop + BOX_H - BOX_H_OUTER : boxTop;
+}
+
+function xForYear(y: number): number {
+  return PAD_L + ((y - yearStart) / (yearEnd - yearStart)) * AXIS_W;
+}
+
+const yearTicks: number[] = [];
+for (let y = yearStart; y <= yearEnd; y++) yearTicks.push(y);
+
+// Clamp card x so the box never spills off the SVG horizontally.
+function clampBoxLeft(centerX: number): number {
+  const halfW = BOX_W / 2;
+  return Math.max(PAD_L - 4, Math.min(W - PAD_R + 4 - BOX_W, centerX - halfW));
+}
+
+// Stagger pattern: above-near, below-near, above-near, below-near, ...
+// For runs longer than 2 in a row at the same level, push to the far slot.
+type Placed = Point & {
+  x: number;
+  boxLeft: number;
+  boxTop: number;
+  above: boolean;
+};
+/**
+ * Pack the events into the 4 stagger levels. If all 4 conflict at the
+ * given x (a dense cluster — IBM 2025 has six events within ~40 px),
+ * stack the card *away from the axis* along the same level (depth=1, 2,
+ * …). The connector line still runs from the axis dot to the card edge,
+ * just longer. Final SVG height is recomputed from the actual y-extent.
+ */
+const placements: Placed[] = [];
+for (const p of points) {
+  const x = xForYear(p.fracYear);
+  const order = [0, 1, 2, 3];
+  const startIdx = placements.length % 2;
+  const tryOrder = [...order.slice(startIdx), ...order.slice(0, startIdx)];
+
+  let chosenTop = LEVEL_Y[tryOrder[0]];
+  let chosenAbove = chosenTop < AXIS_Y;
+  let placed = false;
+
+  for (let depth = 0; depth < 8 && !placed; depth++) {
+    for (const lvl of tryOrder) {
+      const baseTop = LEVEL_Y[lvl];
+      const above = baseTop < AXIS_Y;
+      const candidateTop = above
+        ? baseTop - depth * (BOX_H + STACK_GAP)
+        : baseTop + depth * (BOX_H + STACK_GAP);
+      const conflict = placements.some((q) => {
+        const xOverlap = Math.abs(q.x - x) < BOX_W + 4;
+        if (!xOverlap) return false;
+        return !(
+          candidateTop + BOX_H + 4 < q.boxTop ||
+          candidateTop > q.boxTop + BOX_H + 4
+        );
+      });
+      if (!conflict) {
+        chosenTop = candidateTop;
+        chosenAbove = above;
+        placed = true;
+        break;
+      }
+    }
+  }
+
+  placements.push({
+    ...p,
+    x,
+    boxLeft: clampBoxLeft(x),
+    boxTop: chosenTop,
+    above: chosenAbove,
+  });
+}
+
+// Compute SVG bounds from where the placements actually landed, including
+// hover-slack room on the connector-far side.
+const minTopActual = placements.length
+  ? Math.min(...placements.map((p) => p.boxTop))
+  : LEVEL_Y[0];
+const maxBotActual = placements.length
+  ? Math.max(...placements.map((p) => p.boxTop + BOX_H))
+  : LEVEL_Y[1] + BOX_H;
+const SVG_TOP = minTopActual - HOVER_SLACK - 8;
+const SVG_BOTTOM = maxBotActual + HOVER_SLACK + 28;
+const H = SVG_BOTTOM - SVG_TOP;
+---
+
+{hasContent ? (
+  <figure class="ct">
+    <div class="ct-scroll">
+      <svg
+        viewBox={`0 ${SVG_TOP} ${W} ${H}`}
+        role="img"
+        aria-label="Vendor timeline of past milestones and public roadmap"
+      >
+        {/* Past portion of axis */}
+        <line
+          x1={PAD_L}
+          y1={AXIS_Y}
+          x2={xForYear(nowFrac)}
+          y2={AXIS_Y}
+          class="ct-axis ct-axis--past"
+        />
+        {/* Future portion */}
+        <line
+          x1={xForYear(nowFrac)}
+          y1={AXIS_Y}
+          x2={W - PAD_R}
+          y2={AXIS_Y}
+          class="ct-axis ct-axis--future"
+        />
+
+        {/* Year ticks */}
+        {yearTicks.map((y) => (
+          <g>
+            <line
+              x1={xForYear(y)}
+              y1={AXIS_Y - 4}
+              x2={xForYear(y)}
+              y2={AXIS_Y + 4}
+              class="ct-tick"
+            />
+            <text x={xForYear(y)} y={AXIS_Y + 20} class="ct-year">{y}</text>
+          </g>
+        ))}
+
+        {/* 'Today' marker */}
+        <line
+          x1={xForYear(nowFrac)}
+          y1={SVG_TOP + 4}
+          x2={xForYear(nowFrac)}
+          y2={SVG_BOTTOM - 22}
+          class="ct-today"
+        />
+        <text
+          x={xForYear(nowFrac)}
+          y={SVG_BOTTOM - 6}
+          class="ct-today-label"
+        >today</text>
+
+        {/*
+          Render in four z-ordered passes so a connector never crosses an
+          unrelated card's text:
+            (1) all back connectors  — behind everything
+            (2) all axis dots
+            (3) all cards            — text always on top by default
+            (4) all front connectors — hidden; one fades in on hover/focus
+                                       of its matching card, lifting that
+                                       event's line above the other cards
+        */}
+
+        {/* Pass 1: back connectors */}
+        <g class="ct-connectors-back" aria-hidden="true">
+          {placements.map((p, i) => (
+            <line
+              x1={p.x}
+              y1={p.above ? p.boxTop + BOX_H : AXIS_Y}
+              x2={p.x}
+              y2={p.above ? AXIS_Y : p.boxTop}
+              class={`ct-connector ct-connector--${p.kind}`}
+              data-event-idx={i}
+            />
+          ))}
+        </g>
+
+        {/* Pass 2: axis dots */}
+        <g class="ct-dots">
+          {placements.map((p, i) => (
+            <circle
+              cx={p.x}
+              cy={AXIS_Y}
+              r="5.5"
+              class={`ct-dot ct-dot--${p.kind === "milestone" ? "past" : "future"}`}
+              data-event-idx={i}
+            />
+          ))}
+        </g>
+
+        {/* Pass 3: cards */}
+        <g class="ct-cards">
+          {placements.map((p, i) => (
+            <foreignObject
+              x={p.boxLeft}
+              y={foreignObjectY(p.boxTop, p.above)}
+              width={BOX_W}
+              height={BOX_H_OUTER}
+              overflow="visible"
+            >
+              <div
+                xmlns="http://www.w3.org/1999/xhtml"
+                class={`ct-card-frame ct-card-frame--${p.above ? "above" : "below"}`}
+                data-event-idx={i}
+              >
+                <div
+                  class={`ct-card ct-card--${p.kind} ct-card--${p.above ? "above" : "below"}`}
+                  tabindex="0"
+                  title={`${p.dateLabel} — ${p.label}`}
+                  data-event-idx={i}
+                >
+                  <div class="ct-card-date">{p.dateLabel}</div>
+                  <div class="ct-card-headline">{p.label}</div>
+                </div>
+              </div>
+            </foreignObject>
+          ))}
+        </g>
+
+        {/* Pass 4: on-hover front connectors */}
+        <g class="ct-connectors-front" aria-hidden="true">
+          {placements.map((p, i) => (
+            <line
+              x1={p.x}
+              y1={p.above ? p.boxTop + BOX_H : AXIS_Y}
+              x2={p.x}
+              y2={p.above ? AXIS_Y : p.boxTop}
+              class={`ct-connector ct-connector-front ct-connector--${p.kind}`}
+              data-event-idx={i}
+            />
+          ))}
+        </g>
+      </svg>
+    </div>
+    <figcaption>
+      {foundedYear < yearStart && (
+        <span class="ct-legend ct-legend--founded">
+          Founded {foundedYear}
+        </span>
+      )}
+      <span class="ct-legend">
+        <span class="ct-legend-dot ct-legend-dot--past" aria-hidden="true"></span>
+        shipped milestone
+      </span>
+      <span class="ct-legend">
+        <span class="ct-legend-dot ct-legend-dot--future" aria-hidden="true"></span>
+        public roadmap
+      </span>
+    </figcaption>
+  </figure>
+) : (
+  <p class="empty">No timeline data — add milestones or roadmap entries.</p>
+)}
+
+<style>
+  .ct {
+    margin: 0;
+    display: grid;
+    gap: var(--space-2);
+    /* Grid items default to min-inline-size: auto, which here is the
+       SVG's intrinsic 900 px and would push the page wider than the
+       viewport on phones. Reset so the figure can shrink to its
+       parent's width and the scroll wrapper inside it actually clips. */
+    min-inline-size: 0;
+  }
+  .ct-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    min-inline-size: 0;
+  }
+  .ct svg {
+    inline-size: 100%;
+    block-size: auto;
+    display: block;
+  }
+  @media (max-width: 64rem) {
+    .ct svg { min-inline-size: 900px; }
+  }
+
+  /* Axis */
+  :global(.ct-axis) { stroke-width: 2; fill: none; }
+  :global(.ct-axis--past) { stroke: var(--color-accent); }
+  :global(.ct-axis--future) {
+    stroke: var(--color-text-soft);
+    stroke-dasharray: 4 3;
+    opacity: 0.7;
+  }
+  :global(.ct-tick) {
+    stroke: var(--color-text-soft);
+    stroke-width: 1;
+  }
+  :global(.ct-year) {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    fill: var(--color-text-mute);
+    text-anchor: middle;
+  }
+  :global(.ct-today) {
+    stroke: var(--color-accent-2);
+    stroke-width: 1.4;
+    stroke-dasharray: 3 3;
+  }
+  :global(.ct-today-label) {
+    fill: var(--color-accent-2);
+    font-size: 10.5px;
+    font-style: italic;
+    text-anchor: middle;
+  }
+
+  /* Dots on the axis */
+  :global(.ct-dot) {
+    stroke: var(--color-bg);
+    stroke-width: 1.5;
+  }
+  :global(.ct-dot--past) { fill: var(--color-accent); }
+  :global(.ct-dot--future) {
+    fill: var(--color-bg);
+    stroke: var(--color-accent);
+    stroke-width: 2;
+  }
+
+  /* Connectors */
+  :global(.ct-connector) {
+    stroke: var(--color-text-soft);
+    stroke-width: 1;
+  }
+  :global(.ct-connector--milestone) {
+    stroke: color-mix(in srgb, var(--color-accent) 60%, var(--color-text-soft));
+  }
+  :global(.ct-connector--roadmap) {
+    stroke: color-mix(in srgb, var(--color-accent) 50%, var(--color-text-soft));
+    stroke-dasharray: 3 2;
+  }
+  /* Front-pass connectors sit on top of the cards group. Hidden by
+     default; a small script below adds .is-active to the one whose
+     card is currently hovered or focused. */
+  :global(.ct-connector-front) {
+    opacity: 0;
+    transition: opacity 120ms ease, stroke-width 120ms ease;
+    pointer-events: none;
+    stroke-width: 1.4;
+  }
+  :global(.ct-connector-front.is-active) {
+    opacity: 1;
+    stroke: var(--color-accent);
+    stroke-width: 1.8;
+  }
+
+  /* Cards (foreignObject content) */
+  /* foreignObject is sized to BOX_H_OUTER so an expanded hover card has
+     room to grow inside it without clipping. */
+  :global(.ct-event foreignObject) { overflow: visible; }
+
+  /* Frame fills the foreignObject. Card is absolutely positioned and
+     anchored to the connector-side edge, so when it grows on hover
+     it expands away from the axis instead of pushing the connector
+     point. */
+  :global(.ct-card-frame) {
+    position: relative;
+    block-size: 100%;
+    inline-size: 100%;
+  }
+  :global(.ct-card-frame--above .ct-card) {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 0;
+  }
+  :global(.ct-card-frame--below .ct-card) {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-start: 0;
+  }
+
+  :global(.ct-card) {
+    box-sizing: border-box;
+    block-size: 78px;
+    padding: 6px 8px 7px;
+    border: 1px solid var(--card-border);
+    border-radius: 5px;
+    background: var(--card-bg);
+    display: grid;
+    gap: 3px;
+    align-content: start;
+    font-family: var(--font-sans, system-ui);
+    cursor: default;
+    transition:
+      block-size 160ms ease,
+      padding 160ms ease,
+      border-color 140ms ease,
+      box-shadow 140ms ease,
+      background 140ms ease;
+  }
+  :global(.ct-card--milestone) {
+    background: color-mix(in srgb, var(--color-accent) 9%, var(--card-bg));
+    border-color: color-mix(in srgb, var(--color-accent) 45%, var(--card-border));
+  }
+  :global(.ct-card--roadmap) {
+    background: var(--card-bg);
+    border-style: dashed;
+    border-color: var(--color-accent);
+  }
+  :global(.ct-card:hover),
+  :global(.ct-card.is-active),
+  :global(.ct-card:focus-visible) {
+    /* Grow to fit the full text + the bumped font. The card's
+       connector-side edge is anchored, so the growth direction is
+       always away from the axis. */
+    block-size: auto;
+    min-block-size: 78px;
+    padding: 8px 10px 9px;
+    border-color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 16%, var(--card-bg));
+    box-shadow:
+      0 6px 18px rgba(0, 0, 0, 0.16),
+      0 0 0 1px var(--color-accent);
+    z-index: 10;
+    outline: none;
+  }
+  :global(.ct-card-date) {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--color-text-mute);
+    letter-spacing: 0.04em;
+    transition: font-size 160ms ease;
+  }
+  :global(.ct-card-headline) {
+    font-size: 11px;
+    line-height: 1.32;
+    color: var(--color-text);
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: font-size 160ms ease, line-height 160ms ease;
+  }
+  /* Hover: bump font + reveal full headline. The card grows in height
+     to accommodate, anchored on the connector side. */
+  :global(.ct-card:hover .ct-card-date),
+  :global(.ct-card.is-active .ct-card-date),
+  :global(.ct-card:focus-visible .ct-card-date) {
+    font-size: 11.5px;
+  }
+  :global(.ct-card:hover .ct-card-headline),
+  :global(.ct-card.is-active .ct-card-headline),
+  :global(.ct-card:focus-visible .ct-card-headline) {
+    font-size: 13.5px;
+    line-height: 1.42;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+    display: block;
+  }
+
+  /* Legend */
+  .ct figcaption {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    font-size: var(--text-xs);
+    color: var(--color-text-mute);
+  }
+  .ct-legend { display: inline-flex; align-items: center; gap: 6px; }
+  .ct-legend--founded {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text);
+  }
+  .ct-legend-dot {
+    inline-size: 10px;
+    block-size: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .ct-legend-dot--past { background: var(--color-accent); }
+  .ct-legend-dot--future {
+    background: transparent;
+    border: 2px solid var(--color-accent);
+    box-sizing: border-box;
+  }
+  .empty { color: var(--color-text-mute); }
+</style>
+
+<script>
+  // Two hover-time behaviours per event:
+  //   1. Lift the matching front-connector above the cards layer
+  //      (toggle .is-active on a separate <g> pass at z-top).
+  //   2. Raise the hovered card's <foreignObject> to the end of its
+  //      parent group so it paints after every other card. SVG paints
+  //      children in document order; CSS z-index on inner HTML can't
+  //      reorder the foreignObjects themselves.
+  //
+  // `appendChild` momentarily detaches the foreignObject, which clears
+  // the browser-managed `:hover` pseudoclass on the inner card and snaps
+  // its size transition back to default. To survive that, we duplicate
+  // the expanded state via a JS class (.ct-card.is-active) — the CSS
+  // rules read `:hover, .is-active, :focus-visible` so either gate keeps
+  // the card open.
+  for (const frame of document.querySelectorAll<HTMLElement>(".ct-card-frame")) {
+    const idx = frame.dataset.eventIdx;
+    if (!idx) continue;
+    const svg = frame.closest("svg");
+    if (!svg) continue;
+    const fo = frame.closest("foreignObject");
+    const front = svg.querySelector(`.ct-connector-front[data-event-idx="${idx}"]`);
+    const card = frame.querySelector<HTMLElement>(".ct-card");
+    const on = () => {
+      front?.classList.add("is-active");
+      card?.classList.add("is-active");
+      if (fo && fo.parentNode && fo.parentNode.lastElementChild !== fo) {
+        fo.parentNode.appendChild(fo);
+      }
+    };
+    const off = () => {
+      front?.classList.remove("is-active");
+      card?.classList.remove("is-active");
+    };
+    frame.addEventListener("pointerenter", on);
+    frame.addEventListener("pointerleave", off);
+    if (card) {
+      card.addEventListener("focus", on);
+      card.addEventListener("blur", off);
+    }
+  }
+</script>

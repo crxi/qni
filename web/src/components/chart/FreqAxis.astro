@@ -1,0 +1,99 @@
+---
+/**
+ * FreqAxis — segmented log frequency axis with zigzag break marker(s),
+ * ticks (with dual labels: frequency + wavelength), and region labels at
+ * the bottom (MICROWAVE / NEAR-IR / VISIBLE / UV).
+ */
+import type { Geom } from "../../lib/geom";
+import type { AxisTick, RegionDef } from "../../lib/data";
+
+interface Props {
+  geom: Geom;
+  ticks: AxisTick[];
+  regions: RegionDef[];
+  pageBg: string;
+}
+
+const { geom: g, ticks, regions, pageBg } = Astro.props;
+const axisY = g.trackBottom + 6;
+
+/** Stagger overlapping tick labels onto a second row so they don't collide. */
+function staggerRows(xs: number[], minGap: number, nRows = 2): number[] {
+  const lastByRow = Array(nRows).fill(-Infinity);
+  const rows: number[] = [];
+  for (const x of xs) {
+    let r = 0;
+    for (; r < nRows; r++) if (x - lastByRow[r] >= minGap) break;
+    if (r === nRows) r = nRows - 1;
+    rows.push(r);
+    lastByRow[r] = x;
+  }
+  return rows;
+}
+
+const visibleTicks = ticks
+  .filter((t) => g.hzVisible(t.hz))
+  .sort((a, b) => a.hz - b.hz);
+const tickXs = visibleTicks.map((t) => g.xOfHz(t.hz));
+const tickRows = staggerRows(tickXs, 50, 2);
+
+const regionLabelY0 = axisY + 76;
+---
+
+<g class="freq-axis">
+  {/* Solid line per visible segment */}
+  {g.segXs.map(([xa, xb]) => (
+    <line x1={xa} y1={axisY} x2={xb} y2={axisY} stroke="#333" stroke-width="1.2" />
+  ))}
+
+  {/* Zigzag break marker per gap */}
+  {g.gapXs.map(([ga, gb]) => {
+    const cx = (ga + gb) / 2;
+    return (
+      <g class="axis-break">
+        <rect x={ga - 1} y={axisY - 4} width={gb - ga + 2} height="9" fill={pageBg} />
+        {[-6, 6].map((off) => (
+          <line
+            x1={cx + off - 3} y1={axisY + 5}
+            x2={cx + off + 3} y2={axisY - 5}
+            stroke="#333" stroke-width="1.2"
+          />
+        ))}
+      </g>
+    );
+  })}
+
+  {/* Tick marks + dual labels (frequency / wavelength) */}
+  {visibleTicks.map((tk, i) => {
+    const x = tickXs[i];
+    const row = tickRows[i];
+    const yMain = axisY + 20 + row * 24;
+    return (
+      <g class="tick-group">
+        <line x1={x} y1={axisY} x2={x} y2={axisY + 6} stroke="#333" stroke-width="1" />
+        <text x={x} y={yMain} class="tick" text-anchor="middle">{tk.label}</text>
+        <text x={x} y={yMain + 13} class="tick-sub" text-anchor="middle">{tk.wavelength}</text>
+      </g>
+    );
+  })}
+
+  {/* Region labels along the bottom */}
+  {regions.map((r) => {
+    const cx = g.xOfHz(r.label_at_hz ?? (r.from_hz + r.to_hz) / 2);
+    const y = regionLabelY0 + (r.label_row ?? 0) * 16;
+    return (
+      <text x={cx} y={y} class="region-label" text-anchor="middle">{r.label}</text>
+    );
+  })}
+</g>
+
+<style>
+  .tick      { font-size: 11px; fill: #333; }
+  .tick-sub  { font-size: 10px; fill: #777; }
+  .region-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    fill: #888;
+    font-weight: 600;
+  }
+</style>

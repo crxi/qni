@@ -1,0 +1,121 @@
+slug: furusawa-tokyo
+name: Furusawa group (U. Tokyo / RIKEN)
+categories: [qc, source-detect]
+hq: Tokyo, Japan
+status: active
+parent: null
+
+institution:
+  name: University of Tokyo
+  lab: Department of Applied Physics · School of Engineering
+  also: RIKEN Center for Quantum Computing — Furusawa is also Deputy Director (verify)
+
+group_website: null
+
+positioning: >
+  Akira Furusawa's group is an experimental continuous-variable (CV)
+  photonic quantum-information laboratory at the University of Tokyo.
+  The team demonstrated the first unconditional CV quantum teleportation
+  in 1998 (Furusawa et al., Science 282, 706, with the Caltech Kimble
+  group) and has since developed squeezed-light sources, large-scale
+  time-domain-multiplexed cluster states, and Gottesman–Kitaev–Preskill
+  (GKP) encoded qubits for fault-tolerant photonic computing. The group
+  anchors the Japanese CV-photonic-QC programme and runs a parallel
+  commercialisation track through RIKEN.
+
+modalities:
+  qc:
+    qubit_type: photonic
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: gkp
+    connectivity: ""
+    gate_set: []
+  source-detect:
+    role: source
+    detection_efficiency: null
+    dark_count_hz: null
+    jitter_ps: null
+
+milestones:
+  - date: 2023
+    tag: qc
+    headline: Generation of optical Gottesman–Kitaev–Preskill (GKP) qubit states
+    source_url: https://www.science.org/doi/10.1126/science.adk7560
+    source_type: paper
+  - date: 2019
+    tag: qc
+    headline: Deterministic generation of a two-dimensional cluster state in the time domain
+    source_url: https://www.science.org/doi/10.1126/science.aay2645
+    source_type: paper
+  - date: 2013
+    tag: qc
+    headline: Ultra-large-scale continuous-variable cluster states multiplexed in the time domain (>10,000 modes)
+    source_url: https://www.nature.com/articles/nphoton.2013.287
+    source_type: paper
+  - date: 1998-10
+    tag: qc
+    headline: First unconditional continuous-variable quantum teleportation
+    source_url: https://www.science.org/doi/10.1126/science.282.5389.706
+    source_type: paper
+
+funding_sources:
+  - name: JSPS KAKENHI (Grants-in-Aid for Scientific Research)
+    role: Long-running individual and group grants
+    source_url: https://www.jsps.go.jp/english/e-grants/
+  - name: JST Moonshot R&D Program — Goal 6 (Fault-Tolerant Universal Quantum Computer)
+    role: Furusawa leads the optical-CV project line
+    source_url: https://www.jst.go.jp/moonshot/en/program/goal6/
+  - name: MEXT Q-LEAP (Quantum Leap Flagship Program)
+    role: Photonic-quantum-information flagship funding
+    source_url: https://www8.cao.go.jp/cstp/english/
+
+key_personnel:
+  - role: Principal Investigator
+    name: Akira Furusawa
+    since: 2000
+    source_url: https://www.alice.t.u-tokyo.ac.jp/
+
+roadmap: []
+
+current_focus:
+  name: Optical continuous-variable quantum information
+  description: ""
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://www.science.org/doi/10.1126/science.282.5389.706
+    note: "Furusawa et al., Science 282, 706 (1998) — first unconditional CV quantum teleportation"
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/nphoton.2013.287
+    note: "Yokoyama et al., Nat. Photon. 7, 982 (2013) — ultra-large-scale CV time-domain cluster state"
+  - kind: paper
+    citation_key: null
+    url: https://www.science.org/doi/10.1126/science.aay2645
+    note: "Asavanant et al., Science 366, 373 (2019) — 2D CV cluster state in the time domain"
+  - kind: paper
+    citation_key: null
+    url: https://www.science.org/doi/10.1126/science.adk7560
+    note: "Konno et al., Science 383, 289 (2024) — optical GKP qubit state generation"
+
+partial:
+  - field: institution.also
+    as_of: 2026-05-24
+    note: RIKEN RQC Deputy Director role asserted from prior context; confirm against current RIKEN RQC leadership page.
+  - group_website
+  - field: current_focus.description
+    as_of: 2026-05-24
+    note: Group website (alice.t.u-tokyo.ac.jp) returns a TLS certificate error and no other accessible institutional page carries a focus self-statement; rather than synthesise, left blank pending the group publishing one.
+  - modalities.qc.physical_qubits_current
+  - modalities.source-detect.detection_efficiency
+  - modalities.source-detect.dark_count_hz
+  - modalities.source-detect.jitter_ps
+
+last_verified: 2026-05-24
+verification_method: web

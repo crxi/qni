@@ -1,0 +1,890 @@
+---
+import "../styles/reset.css";
+import "../styles/tokens.css";
+import "../styles/figure-toolbar.css";
+import "../styles/print.css";
+import "katex/dist/katex.min.css";
+
+import ReferencesList from "../components/ReferencesList.astro";
+import { SHIPPED_SUBJECTS } from "../lib/subjects";
+import { url } from "../lib/url";
+
+interface Props {
+  title: string;
+  description?: string;
+  /** IDs of `sources.yaml` entries cited on this page. Drives the
+   *  bottom-of-page bibliography — pages without citations pass an
+   *  empty array (or omit) and the bibliography section is hidden. */
+  references?: string[];
+}
+const { title, description, references = [] } = Astro.props;
+
+// Build stamp — committer date of HEAD (YYMMDD.HHMM, the human "when")
+// plus the short git tree hash (the content "what"). The tree hash is
+// what makes the stamp a reliable identity check: two builds from
+// identical source share a tree hash regardless of commit date or
+// squash history, so matching hashes on two deployments (e.g. wip vs
+// main) prove the same content. The committer date alone does NOT — a
+// squash-merge re-dates the commit. Read at build time; falls back
+// gracefully when git is unavailable (e.g. a tarball deploy). No repo
+// identity is exposed.
+import { execSync } from "node:child_process";
+let buildDate = "";
+let buildTree = "";
+try {
+  // Local committer time, formatted directly by git: YYMMDD.HHMM
+  buildDate = execSync('git log -1 --format=%cd --date=format-local:%y%m%d.%H%M HEAD', {
+    encoding: "utf8",
+  }).trim();
+  // Short hash of HEAD's tree — content identity, stable across squashes.
+  buildTree = execSync("git rev-parse --short HEAD^{tree}", {
+    encoding: "utf8",
+  }).trim();
+} catch { /* leave blank */ }
+
+// Google Search Console / Bing ownership-verification token (HTML-tag
+// method). Paste the content value here once the console gives it to you;
+// an empty string emits no tag. Verification persists after the tag ships,
+// so this can stay in place.
+const GOOGLE_SITE_VERIFICATION = "pSH0MZ7-yLmBVM1cV6wJj9P4f_eCjl26xm0IdM34PVA";
+
+// Derive current subject slug from the URL path (first segment after
+// the base). Drives the prev / next pagination at the page foot so
+// readers can walk the subject sequence without returning to the rail.
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const stripped = Astro.url.pathname.replace(new RegExp(`^${base}`), "");
+const currentSlug = stripped.replace(/^\/|\/$/g, "").split("/")[0] || "";
+
+// Site-name / canonical metadata. SITE_NAME is the label Google shows above
+// the result title; emitting it (via og:site_name + WebSite JSON-LD) is what
+// replaces the domain-owner fallback ("Cloudflare") in search results.
+const SITE_NAME = "Quantum Network Infographics";
+const siteOrigin = (Astro.site?.origin ?? "https://qni.pages.dev").replace(/\/$/, "");
+const canonicalUrl = siteOrigin + Astro.url.pathname;
+const isHome = currentSlug === "";
+const currentIdx = currentSlug
+  ? SHIPPED_SUBJECTS.findIndex((s) => s.slug === currentSlug)
+  : -1;
+const prevSubject = currentIdx > 0 ? SHIPPED_SUBJECTS[currentIdx - 1] : null;
+const nextSubject =
+  currentIdx >= 0 && currentIdx < SHIPPED_SUBJECTS.length - 1
+    ? SHIPPED_SUBJECTS[currentIdx + 1]
+    : null;
+
+// Tier of the current subject — drives the subtle tier accent on the
+// page (a thin underline beneath the hero <h1>). Undefined on the
+// landing page; left blank so the rule below renders the default.
+const currentTier = currentIdx >= 0 ? SHIPPED_SUBJECTS[currentIdx].tier : null;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {/* Favicon — an explicit icon link stops Google falling back to a
+       generic globe (and stops it labelling the result by the registrable
+       domain, i.e. "Cloudflare", in search). SVG with a .ico-less setup is
+       fine for modern crawlers/browsers. */}
+    <link rel="icon" type="image/svg+xml" href={url("/favicon.svg")} />
+    <link rel="apple-touch-icon" href={url("/favicon.svg")} />
+    {/* Site-name + canonical signals. og:site_name and the WebSite
+       structured data below are what Google uses to show the site name
+       in a result; without them it falls back to the domain owner. */}
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:url" content={canonicalUrl} />
+    {isHome && (
+      <script
+        type="application/ld+json"
+        is:inline
+        set:html={JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: SITE_NAME,
+          url: siteOrigin + "/",
+        })}
+      />
+    )}
+    {/* Search-engine ownership verification. Paste the token Google Search
+       Console / Bing Webmaster Tools gives you (HTML-tag method) — leave
+       blank to emit nothing. */}
+    {GOOGLE_SITE_VERIFICATION && (
+      <meta name="google-site-verification" content={GOOGLE_SITE_VERIFICATION} />
+    )}
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    {/* Pagefind: build-time search index. The CSS / JS files are
+       generated by `pagefind --site dist` after `astro build` and
+       served as static assets, so search works on GitHub Pages with
+       no runtime backend. The standard PagefindUI is mounted inside
+       a <dialog> opened by the floating search trigger. */}
+    <link rel="stylesheet" href={url("/pagefind/pagefind-ui.css")} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    {Astro.slots.has("nav") && (
+      <header class="mobile-topbar" aria-label="Mobile site header" data-pagefind-ignore="all">
+        <button
+          class="mobile-topbar__burger"
+          type="button"
+          aria-label="Open navigation"
+          aria-expanded="false"
+          aria-controls="page-nav-rail"
+        >
+          <span class="burger-icon" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
+        <span class="mobile-topbar__title">{title}</span>
+      </header>
+    )}
+    <button class="search-button" id="search-button" type="button" aria-label="Search this site (press /)" data-pagefind-ignore="all">
+      {/* Magnifying glass — same path as the Pagefind modal's input icon,
+          so the trigger and the popup read as the same control. */}
+      <svg class="search-icon" viewBox="0 0 18 18" width="20" height="20" aria-hidden="true">
+        <path d="M12.7549 11.255H11.9649L11.6849 10.985C12.6649 9.845 13.2549 8.365 13.2549 6.755C13.2549 3.165 10.3449 0.255005 6.75488 0.255005C3.16488 0.255005 0.254883 3.165 0.254883 6.755C0.254883 10.345 3.16488 13.255 6.75488 13.255C8.36488 13.255 9.84488 12.665 10.9849 11.685L11.2549 11.965V12.755L16.2549 17.745L17.7449 16.255L12.7549 11.255ZM6.75488 11.255C4.26488 11.255 2.25488 9.245 2.25488 6.755C2.25488 4.26501 4.26488 2.255 6.75488 2.255C9.24488 2.255 11.2549 4.26501 11.2549 6.755C11.2549 9.245 9.24488 11.255 6.75488 11.255Z" fill="currentColor"/>
+      </svg>
+    </button>
+    <main id="main" class:list={["page-main", { "page-main--with-nav": Astro.slots.has("nav") }]} data-tier={currentTier}>
+      {Astro.slots.has("nav") && (
+        <>
+          <button
+            class="rail-toggle"
+            type="button"
+            aria-label="Collapse navigation rail"
+            aria-expanded="true"
+            title="Collapse rail"
+          >
+            <span class="rail-toggle-icon" aria-hidden="true">‹</span>
+          </button>
+          <div class="nav-backdrop" hidden></div>
+          <aside id="page-nav-rail" class="page-nav-rail" aria-label="Section navigation" data-pagefind-ignore="all">
+            <slot name="nav" />
+            <div class="rail-foot">
+              <a class="rail-foot__link" href={url("/feedback")}>Feedback</a>
+              {buildDate && (
+                <span class="build-version" title="Build date (YYMMDD.HHMM) · source-tree hash (identical content = identical hash)">
+                  v{buildDate}{buildTree && <> · {buildTree}</>}
+                </span>
+              )}
+            </div>
+          </aside>
+        </>
+      )}
+      <div class="page-content" data-pagefind-body>
+        <slot />
+      </div>
+    </main>
+    <footer>
+      {(prevSubject || nextSubject) && (
+        <nav class="page-pagination" aria-label="Adjacent subjects">
+          {prevSubject ? (
+            <a class="page-pagination__link page-pagination__prev"
+               href={url(`/${prevSubject.slug}`)}>
+              <span class="page-pagination__dir">← Previous</span>
+              <span class="page-pagination__title">{prevSubject.title}</span>
+            </a>
+          ) : <span />}
+          {nextSubject && (
+            <a class="page-pagination__link page-pagination__next"
+               href={url(`/${nextSubject.slug}`)}>
+              <span class="page-pagination__dir">Next →</span>
+              <span class="page-pagination__title">{nextSubject.title}</span>
+            </a>
+          )}
+        </nav>
+      )}
+      <div data-pagefind-ignore="all">
+        <ReferencesList ids={references} />
+      </div>
+    </footer>
+
+    {/* Callout persistence — remember each <details data-callout>'s open
+        state across reloads, keyed by page path + callout label. The
+        server-rendered default applies on first visit (no stored value);
+        subsequent visits restore whatever the reader last left it at. */}
+    <script is:inline>
+      window.addEventListener("DOMContentLoaded", function () {
+        var path = location.pathname.replace(/\/+$/, "") || "/";
+        var callouts = document.querySelectorAll("details[data-callout]");
+        callouts.forEach(function (d) {
+          var labelEl = d.querySelector(".callout__label-text");
+          var label = labelEl ? (labelEl.textContent || "").trim() : "";
+          if (!label) return;
+          var key = "qni:cb:" + path + ":" + label;
+          var stored = null;
+          try { stored = localStorage.getItem(key); } catch (e) { /* private mode */ }
+          if (stored === "1") d.open = true;
+          else if (stored === "0") d.open = false;
+          // else: leave the server-rendered default in place.
+          d.addEventListener("toggle", function () {
+            try { localStorage.setItem(key, d.open ? "1" : "0"); } catch (e) {}
+          });
+        });
+      });
+    </script>
+
+    {/* Pagefind modal. The standard PagefindUI is mounted inside a
+       <dialog>; the runtime + index chunks load lazily on first
+       activation so search code doesn't tax pages the reader never
+       searches. */}
+    <dialog id="search-dialog" class="search-dialog" aria-label="Site search" data-pagefind-ignore="all">
+      <div id="search-ui"></div>
+      <form method="dialog" class="search-dialog__close-row">
+        <button type="submit" class="search-dialog__close" aria-label="Close search">Close</button>
+      </form>
+    </dialog>
+    <script
+      define:vars={{ bundlePath: url("/pagefind/") }}
+      is:inline
+    >
+      var dialog = document.getElementById("search-dialog");
+      var uiHost = document.getElementById("search-ui");
+      var btn = document.getElementById("search-button");
+      var ui = null;
+      var loading = false;
+
+      function open() {
+        if (!dialog) return;
+        if (!dialog.open) dialog.showModal();
+        loadUi();
+      }
+
+      function loadUi() {
+        if (ui || loading) {
+          focusInput();
+          return;
+        }
+        loading = true;
+        var script = document.createElement("script");
+        script.src = bundlePath + "pagefind-ui.js";
+        script.onload = function () {
+          loading = false;
+          var Ctor = window.PagefindUI;
+          if (!Ctor) { console.warn("PagefindUI not found on window"); return; }
+          ui = new Ctor({
+            element: "#search-ui",
+            bundlePath: bundlePath,
+            showImages: false,
+            showSubResults: true,
+            resetStyles: false,
+            autofocus: true,
+          });
+          // Close dialog on result click so the page navigates cleanly.
+          uiHost.addEventListener("click", function (e) {
+            var link = e.target.closest && e.target.closest(".pagefind-ui__result-link");
+            if (link && dialog.open) dialog.close();
+          });
+          setTimeout(focusInput, 50);
+        };
+        script.onerror = function () {
+          loading = false;
+          uiHost.innerHTML = '<p style="padding:1rem;color:var(--color-text-mute)">Search index not available. Run <code>npm run build</code> to generate it.</p>';
+        };
+        document.head.appendChild(script);
+      }
+
+      function focusInput() {
+        var input = uiHost.querySelector(".pagefind-ui__search-input");
+        if (input) input.focus();
+      }
+
+      if (btn) btn.addEventListener("click", open);
+      window.addEventListener("keydown", function (e) {
+        if (e.key === "/" && !e.target.matches("input, textarea, [contenteditable]")) {
+          e.preventDefault();
+          open();
+        } else if (e.key === "Escape" && dialog && dialog.open) {
+          dialog.close();
+        }
+      });
+      // Click outside the inner panel closes the dialog.
+      if (dialog) {
+        dialog.addEventListener("click", function (e) {
+          if (e.target === dialog) dialog.close();
+        });
+      }
+    </script>
+
+    <style is:global>
+      /* Viewport-overflow safety net. Without these, a wide SVG /
+         table / long-URL anywhere on the page lets <body> scroll
+         horizontally on mobile, which in turn forces every element
+         (including paragraphs) to be laid out against the wider
+         scroll-width rather than the visible viewport. `clip` is
+         like `hidden` but doesn't establish a scroll container,
+         so position:sticky still works inside. */
+      html, body { overflow-x: clip; }
+      /* Disable Android Chrome's pull-to-refresh + iOS Safari's overscroll
+         bounce. Without this, dragging at the page top rubber-bands the
+         viewport down before snapping back, which on this site reads as a
+         "jump" since there's nothing to refresh. */
+      html { overscroll-behavior-y: none; }
+      body {
+        background: var(--color-bg);
+        color: var(--color-text);
+        font-family: var(--font-sans);
+        font-size: var(--text-base);
+        line-height: var(--leading-body);
+      }
+      /* Replaced media on narrow viewports never exceed their column. */
+      img, svg, video, canvas { max-inline-size: 100%; block-size: auto; }
+      /* Tables, <pre>, <code> blocks: cap at column width and scroll
+         internally rather than pushing the viewport wider. Pages that
+         already wrap their tables/SVGs in a scroll container still
+         work; this is just the safety floor. */
+      table { max-inline-size: 100%; }
+      pre, code { max-inline-size: 100%; overflow-x: auto; }
+      pre { word-wrap: normal; }
+      /* On narrow viewports any unwrapped table flips to a block
+         scroll container so its columns can keep their natural widths
+         without overflowing the page. */
+      @media (max-width: 50rem) {
+        table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      }
+      main {
+        max-inline-size: var(--wide-width);
+        margin-inline: auto;
+        padding: var(--space-6) var(--space-4);
+      }
+      /* Pages that fill the `nav` slot get a left-rail TOC. The grid
+         widens to keep the content column at its readable size while
+         the rail sits in the gutter. On narrow viewports the rail
+         collapses to a sticky horizontal strip (handled inside
+         SiteNav itself) and the grid becomes single-column. */
+      .page-main--with-nav {
+        display: grid;
+        grid-template-columns: 13rem minmax(0, 1fr);
+        gap: var(--space-5);
+        align-items: start;
+        max-inline-size: calc(var(--wide-width) + 13rem + var(--space-5));
+      }
+      .page-main--with-nav.rail-collapsed {
+        grid-template-columns: minmax(0, 1fr);
+        max-inline-size: var(--wide-width);
+      }
+      .page-main--with-nav .page-nav-rail {
+        /* Reserve space for the scrollbar at all times so the inner
+           width stays constant whether or not it's currently scrolling.
+           Without this, collapsing tier groups removes the scrollbar
+           and widens the rail, jolting the labels inside. */
+        scrollbar-gutter: stable;
+        position: sticky;
+        inset-block-start: var(--space-4);
+        align-self: start;
+        max-block-size: calc(100vh - var(--space-7));
+        overflow-y: auto;
+        /* Stop scroll-chaining: once the rail hits its top/bottom,
+           extra wheel/touch energy stays here rather than bubbling
+           up to scroll the page. */
+        overscroll-behavior: contain;
+        /* Auto-hide the scrollbar when the rail isn't being used. Without
+           this the rail keeps a permanent scrollbar whenever its content
+           overflows the viewport (e.g. once the Case Studies tier was
+           added), regardless of the OS scrollbar-style setting. */
+        scrollbar-width: thin;
+        scrollbar-color: transparent transparent;
+        transition: scrollbar-color 120ms ease;
+      }
+      .page-main--with-nav .page-nav-rail:hover,
+      .page-main--with-nav .page-nav-rail:focus-within {
+        scrollbar-color: color-mix(in srgb, var(--color-text-soft) 55%, transparent) transparent;
+      }
+      /* WebKit / Blink — the scrollbar-color property is Firefox-only. */
+      .page-main--with-nav .page-nav-rail::-webkit-scrollbar {
+        inline-size: 6px;
+      }
+      .page-main--with-nav .page-nav-rail::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .page-main--with-nav .page-nav-rail::-webkit-scrollbar-thumb {
+        background: transparent;
+        border-radius: 3px;
+        transition: background 120ms ease;
+      }
+      .page-main--with-nav .page-nav-rail:hover::-webkit-scrollbar-thumb,
+      .page-main--with-nav .page-nav-rail:focus-within::-webkit-scrollbar-thumb {
+        background: color-mix(in srgb, var(--color-text-soft) 55%, transparent);
+      }
+      .page-main--with-nav .page-nav-rail::-webkit-scrollbar-thumb:hover {
+        background: color-mix(in srgb, var(--color-text-soft) 80%, transparent);
+      }
+      /* Mobile topbar — only visible below 60rem. Holds the
+         hamburger that opens the nav drawer, plus the current page
+         title for orientation. Sits fixed across the top so it
+         stays visible on scroll. */
+      .mobile-topbar { display: none; }
+      @media (max-width: 60rem) {
+        .mobile-topbar {
+          display: flex;
+          align-items: center;
+          gap: var(--space-3);
+          /* `sticky` rather than `fixed` so the topbar is anchored to the
+             layout viewport like the page content. On Android Chrome,
+             fixed elements track the *visual* viewport — which slides
+             as the URL bar shows/hides — while in-flow content doesn't,
+             producing a visible jump at the page top when the user drags
+             to scroll. Sticky avoids that mismatch entirely. */
+          position: sticky;
+          inset-block-start: 0;
+          inset-inline: 0;
+          z-index: 40;
+          block-size: 48px;
+          padding-inline: var(--space-3);
+          background: var(--color-bg);
+          border-block-end: 1px solid var(--color-rule);
+          box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .mobile-topbar__burger {
+          inline-size: 40px;
+          block-size: 40px;
+          padding: 0;
+          border: 1px solid var(--color-rule);
+          border-radius: 6px;
+          background: var(--color-surface);
+          cursor: pointer;
+          display: grid;
+          place-items: center;
+          flex-shrink: 0;
+        }
+        .mobile-topbar__burger:hover,
+        .mobile-topbar__burger:focus-visible {
+          border-color: var(--color-accent);
+          outline: none;
+        }
+        .burger-icon {
+          inline-size: 18px;
+          block-size: 14px;
+          position: relative;
+          display: block;
+        }
+        .burger-icon span {
+          position: absolute;
+          inset-inline: 0;
+          block-size: 2px;
+          background: var(--color-text);
+          border-radius: 1px;
+        }
+        .burger-icon span:nth-child(1) { inset-block-start: 0; }
+        .burger-icon span:nth-child(2) { inset-block-start: 6px; }
+        .burger-icon span:nth-child(3) { inset-block-start: 12px; }
+
+        .mobile-topbar__title {
+          font-size: var(--text-sm);
+          font-weight: 600;
+          color: var(--color-text);
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          min-inline-size: 0;
+        }
+
+        .page-main--with-nav {
+          grid-template-columns: minmax(0, 1fr);
+          max-inline-size: var(--wide-width);
+          /* Topbar is now sticky and in-flow (see .mobile-topbar above),
+             so it takes its own 48px of layout space. Only the small
+             gap needs to be reserved here. */
+          padding-block-start: var(--space-3);
+        }
+
+        /* Nav rail becomes a slide-in drawer on mobile. Hidden by
+           default off-canvas to the left; sliding into view when
+           the .drawer-open class is set on <body>. The drawer is
+           position:fixed so it can be taller than the topbar and
+           scroll its own contents. */
+        .page-main--with-nav .page-nav-rail {
+          position: fixed;
+          inset-block-start: 0;
+          inset-block-end: 0;
+          inset-inline-start: 0;
+          inline-size: min(85vw, 320px);
+          z-index: 50;
+          background: var(--color-bg);
+          border-inline-end: 1px solid var(--color-rule);
+          box-shadow: 2px 0 12px rgba(0,0,0,0.08);
+          max-block-size: 100vh;
+          overflow-y: auto;
+          overflow-x: hidden;
+          padding: calc(48px + var(--space-3)) var(--space-3) var(--space-4);
+          transform: translateX(-100%);
+          transition: transform 200ms ease;
+        }
+        body.drawer-open .page-main--with-nav .page-nav-rail {
+          transform: translateX(0);
+        }
+
+        .nav-backdrop {
+          position: fixed;
+          inset: 0;
+          z-index: 45;
+          background: rgba(0, 0, 0, 0.4);
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 200ms ease;
+        }
+        body.drawer-open .nav-backdrop {
+          opacity: 1;
+          pointer-events: auto;
+        }
+        body.drawer-open { overflow: hidden; }
+      }
+      @media print {
+        .page-main--with-nav { grid-template-columns: minmax(0, 1fr); }
+        .page-nav-rail { display: none; }
+      }
+      footer {
+        max-inline-size: var(--wide-width);
+        margin-inline: auto;
+        padding: 0 var(--space-4) var(--space-7);
+      }
+
+      /* Rail foot — feedback link + build version, sitting under the
+         nav so they fall at the bottom of the rail. */
+      .rail-foot {
+        display: grid;
+        gap: var(--space-2);
+        margin-block-start: var(--space-4);
+        padding: var(--space-3) var(--space-3) var(--space-2);
+        border-block-start: 1px solid var(--color-rule);
+      }
+      .rail-foot__link {
+        font-size: var(--text-sm);
+        color: var(--color-text-mute);
+        text-decoration: none;
+        transition: color 140ms ease;
+      }
+      .rail-foot__link:hover,
+      .rail-foot__link:focus-visible {
+        color: var(--color-accent);
+        outline: none;
+      }
+      /* Build version — a bare YYMMDD.HHMM timestamp; plain text, no
+         link, no repo identity. */
+      .build-version {
+        font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+        font-size: 11px;
+        line-height: 1;
+        color: var(--color-text-soft, var(--color-text-mute));
+        opacity: 0.7;
+      }
+      @media print { .rail-foot { display: none; } }
+
+      /* Search trigger — small pill fixed at the top-right, mirrors
+         the build-stamp's visual register. Click or press "/" to open
+         the Pagefind modal. Subtle by default; more legible on hover. */
+      .search-button {
+        position: fixed;
+        top: var(--space-3);
+        right: var(--space-3);
+        z-index: 80;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 7px;
+        line-height: 1;
+        color: var(--color-text-mute);
+        background: color-mix(in srgb, var(--color-bg) 88%, transparent);
+        border: 1px solid var(--color-rule);
+        border-radius: 999px;
+        cursor: pointer;
+        backdrop-filter: blur(4px);
+        opacity: 0.75;
+        transition: opacity 140ms ease, color 140ms ease, border-color 140ms ease;
+      }
+      .search-button:hover,
+      .search-button:focus-visible {
+        opacity: 1;
+        color: var(--color-text);
+        border-color: var(--color-accent);
+        outline: none;
+      }
+      .search-icon { display: block; }
+      @media print { .search-button { display: none; } }
+      /* When the mobile topbar is showing (≤ 60 rem), vertically centre
+         the search button inside the 48 px topbar band: button is
+         20 (icon) + 14 (padding) + 2 (border) = 36 px, so top = 6 px. */
+      @media (max-width: 60rem) {
+        .search-button { top: 6px; }
+      }
+
+      /* Search dialog. Native <dialog> handles backdrop + focus trap;
+         we style the inner panel to match the site's visual register. */
+      .search-dialog {
+        max-inline-size: min(640px, 92vw);
+        inline-size: 100%;
+        margin: 8vh auto auto auto;
+        padding: 0;
+        border: 1px solid var(--color-rule);
+        border-radius: var(--radius);
+        background: var(--color-bg);
+        color: var(--color-text);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+      }
+      .search-dialog::backdrop {
+        background: rgba(15, 18, 23, 0.55);
+        backdrop-filter: blur(2px);
+      }
+      .search-dialog #search-ui { padding: var(--space-3) var(--space-3) 0; }
+      .search-dialog__close-row {
+        display: flex;
+        justify-content: flex-end;
+        padding: var(--space-2) var(--space-3) var(--space-3);
+      }
+      .search-dialog__close {
+        font-size: var(--text-sm);
+        padding: 4px 10px;
+        background: transparent;
+        color: var(--color-text-mute);
+        border: 1px solid var(--color-rule);
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .search-dialog__close:hover { color: var(--color-text); border-color: var(--color-accent); }
+      @media print { .search-dialog { display: none; } }
+      /* Prev / next pagination at the foot of every subject page.
+         Two-column grid; if only one side exists (first/last subject),
+         the empty slot keeps the layout balanced via the bare <span>
+         emitted as a placeholder. */
+      .page-pagination {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-3);
+        margin-block-start: var(--space-7);
+        padding-block-start: var(--space-5);
+        border-block-start: 1px solid var(--color-rule);
+      }
+      .page-pagination__link {
+        display: grid;
+        gap: var(--space-1);
+        padding: var(--space-3) var(--space-4);
+        border: 1px solid var(--card-border);
+        border-radius: var(--radius);
+        background: var(--card-bg);
+        color: var(--color-text);
+        text-decoration: none;
+        transition: border-color 140ms ease, background 140ms ease, transform 140ms ease;
+      }
+      .page-pagination__link:hover,
+      .page-pagination__link:focus-visible {
+        border-color: var(--color-accent);
+        background: var(--color-surface-2);
+        outline: none;
+      }
+      .page-pagination__next { text-align: end; }
+      .page-pagination__dir {
+        font-size: var(--text-xs);
+        text-transform: uppercase;
+        letter-spacing: var(--tracking-wide);
+        color: var(--color-text-mute);
+        font-weight: 600;
+      }
+      .page-pagination__title {
+        font-size: var(--text-base);
+        font-weight: 600;
+        line-height: var(--leading-snug);
+      }
+      @media (max-width: 40rem) {
+        .page-pagination { grid-template-columns: 1fr; }
+        .page-pagination__next { text-align: start; }
+      }
+      h1 { font-size: var(--text-3xl); line-height: var(--leading-tight); letter-spacing: var(--tracking-tight); }
+
+      /* Tier accent — surfaces the reading-order tier of the current
+         subject as a thin coloured underline beneath the hero <h1>.
+         Subtle by design: the colour is only ~3px tall and sits in
+         the gap below the title, so the reader registers tier after
+         a beat rather than being hit by it. Tier value is set on
+         <main data-tier="…"> by this layout from SHIPPED_SUBJECTS. */
+      .page-main[data-tier="A"] { --tier-color: var(--tier-a); }
+      .page-main[data-tier="B"] { --tier-color: var(--tier-b); }
+      .page-main[data-tier="C"] { --tier-color: var(--tier-c); }
+      .page-main[data-tier="D"] { --tier-color: var(--tier-d); }
+      .page-main[data-tier="E"] { --tier-color: var(--tier-e); }
+      .page-main[data-tier="F"] { --tier-color: var(--tier-f); }
+      .page-main[data-tier] .hero h1 {
+        padding-block-end: var(--space-2);
+        border-block-end: 6px solid var(--tier-color);
+        display: inline-block;
+        max-inline-size: 100%;
+      }
+      h2 { font-size: var(--text-2xl); margin-block-start: var(--space-7); }
+      h3 { font-size: var(--text-xl); margin-block-start: var(--space-5); }
+      p + p { margin-block-start: var(--space-3); }
+      /* No prose-width cap on paragraphs: the container (`main`) already
+         caps the line length via --wide-width, and capping <p> at 65ch
+         while leaving <ul>/<ol> uncapped produced a visible asymmetry
+         (paragraphs at ~75% width, bullets at full container width).
+         Re-add a per-prose cap only if we add a "long-form" page that
+         needs the classic 60–75-char reading column. */
+      a  { color: var(--color-accent); text-underline-offset: 0.15em; }
+
+      /* Skip-link: keyboard-accessibility primitive. Invisible until
+         keyboard focus lands on it (Tab key), then appears at the top-left
+         as a button. Uses the modern visually-hidden pattern (clip-path +
+         1px box) rather than negative offsets, which leak on some browsers. */
+      .skip-link {
+        position: absolute;
+        clip: rect(0 0 0 0);
+        clip-path: inset(100%);
+        inline-size: 1px;
+        block-size: 1px;
+        overflow: hidden;
+        white-space: nowrap;
+        padding: 0;
+        margin: -1px;
+        border: 0;
+      }
+      .skip-link:focus {
+        clip: auto;
+        clip-path: none;
+        inline-size: auto;
+        block-size: auto;
+        overflow: visible;
+        margin: 0;
+        inset-block-start: var(--space-3);
+        inset-inline-start: var(--space-3);
+        padding: var(--space-2) var(--space-3);
+        background: var(--color-accent);
+        color: white;
+        border-radius: var(--radius);
+        z-index: 100;
+      }
+
+      /* Rail-collapse toggle. Lives outside the grid (position: fixed at the
+         top-left of the viewport) so collapsing the rail lets the content
+         column re-centre instead of leaving a gutter. The button is large
+         enough to be a comfortable click target (32×32) and visible enough
+         to be discoverable (solid surface, clear border). The icon flips
+         direction based on collapsed state. */
+      .rail-toggle {
+        position: fixed;
+        inset-block-start: var(--space-2);
+        inset-inline-start: var(--space-2);
+        inline-size: 28px;
+        block-size: 28px;
+        padding: 0;
+        border: 1px solid var(--color-rule);
+        border-radius: 6px;
+        background: var(--color-bg);
+        color: var(--color-text);
+        cursor: pointer;
+        font-size: 18px;
+        line-height: 1;
+        display: grid;
+        place-items: center;
+        z-index: 50;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.02);
+        transition: background 0.15s, color 0.15s, border-color 0.15s;
+      }
+      .rail-toggle:hover {
+        background: color-mix(in srgb, var(--color-accent) 8%, var(--color-bg));
+        border-color: var(--color-accent);
+        color: var(--color-accent);
+      }
+      .rail-toggle:focus-visible {
+        outline: 2px solid var(--color-accent);
+        outline-offset: 2px;
+      }
+      .rail-toggle .rail-toggle-icon {
+        display: block;
+        transition: transform 0.15s;
+      }
+      .page-main--with-nav.rail-collapsed .rail-toggle .rail-toggle-icon {
+        transform: rotate(180deg);
+      }
+      .page-main--with-nav.rail-collapsed .page-nav-rail { display: none; }
+
+      /* Make sure the nav rail's first item doesn't run under the fixed
+         toggle button (which sits at top-left of the viewport). */
+      .page-main--with-nav .page-nav-rail { padding-block-start: calc(var(--space-2) + 30px); }
+
+      @media (max-width: 60rem) {
+        /* Desktop rail-toggle is meaningless on mobile (we have the
+           hamburger). The mobile rail padding is handled by the
+           drawer rule above. */
+        .rail-toggle { display: none; }
+      }
+    </style>
+    <script is:inline>
+      // Mobile drawer: hamburger opens the off-canvas nav rail.
+      // Closes on backdrop tap, Esc, or any nav link click.
+      (function () {
+        var body = document.body;
+        var burger = document.querySelector(".mobile-topbar__burger");
+        var rail = document.getElementById("page-nav-rail");
+        var backdrop = document.querySelector(".nav-backdrop");
+        if (!burger || !rail) return;
+
+        function open() {
+          body.classList.add("drawer-open");
+          burger.setAttribute("aria-expanded", "true");
+          if (backdrop) backdrop.hidden = false;
+        }
+        function close() {
+          body.classList.remove("drawer-open");
+          burger.setAttribute("aria-expanded", "false");
+        }
+        function toggle() {
+          if (body.classList.contains("drawer-open")) close(); else open();
+        }
+
+        burger.addEventListener("click", toggle);
+        if (backdrop) backdrop.addEventListener("click", close);
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && body.classList.contains("drawer-open")) close();
+        });
+        // Tapping any link inside the drawer closes it (the link
+        // navigation handles the rest).
+        rail.addEventListener("click", function (e) {
+          var target = e.target;
+          while (target && target !== rail) {
+            if (target.tagName === "A") { close(); break; }
+            target = target.parentNode;
+          }
+        });
+      })();
+    </script>
+    <script is:inline>
+      // Rail-collapse toggle + localStorage persistence.
+      (function () {
+        var KEY = "qni.railCollapsed";
+        var main = document.getElementById("main");
+        if (!main) return;
+        var toggle = main.querySelector(".rail-toggle");
+        if (!toggle) return;
+
+        function apply(collapsed) {
+          if (collapsed) {
+            main.classList.add("rail-collapsed");
+            toggle.setAttribute("aria-expanded", "false");
+            toggle.setAttribute("aria-label", "Show navigation rail");
+            toggle.setAttribute("title", "Show rail");
+          } else {
+            main.classList.remove("rail-collapsed");
+            toggle.setAttribute("aria-expanded", "true");
+            toggle.setAttribute("aria-label", "Collapse navigation rail");
+            toggle.setAttribute("title", "Collapse rail");
+          }
+        }
+
+        // Initial state from localStorage (default: open).
+        var stored = null;
+        try { stored = localStorage.getItem(KEY); } catch (e) {}
+        apply(stored === "1");
+
+        toggle.addEventListener("click", function () {
+          var nowCollapsed = !main.classList.contains("rail-collapsed");
+          apply(nowCollapsed);
+          try { localStorage.setItem(KEY, nowCollapsed ? "1" : "0"); } catch (e) {}
+        });
+      })();
+    </script>
+  </body>
+</html>

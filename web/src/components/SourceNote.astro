@@ -1,0 +1,37 @@
+---
+import refs from "../data/sources.yaml";
+import type { SourceEntry } from "../lib/citation";
+import { markerFor } from "../lib/citation";
+
+interface Props { id: string; }
+const { id } = Astro.props;
+const entry = (refs as SourceEntry[]).find((r) => r.id === id);
+if (!entry) throw new Error(`SourceNote: no source found for id "${id}". Add it to src/data/sources.yaml.`);
+
+const tooltip = [entry.title, entry.publisher, entry.year].filter(Boolean).join(", ");
+const marker = markerFor(entry);
+
+/* Standards already self-identify via their canonical number, so
+   appending a year inline would be noise. For everything else, the
+   year is part of the academic-style marker. */
+const showYear = !entry.marker;
+---
+
+<sup class="source-note">
+  <a href={`#ref-${id}`} title={tooltip}>
+    {marker}
+    {showYear && <span class="source-note__year"> {entry.year}</span>}
+  </a>
+</sup>
+
+<style>
+  .source-note { font-size: 0.75em; line-height: 1; color: var(--source-color); white-space: nowrap; }
+  .source-note a {
+    color: var(--source-marker);
+    text-decoration: none;
+    border-block-end: 1px dotted var(--source-rule-color);
+    padding-inline: 2px;
+  }
+  .source-note a:hover { border-block-end-style: solid; }
+  .source-note__year { color: var(--source-color); }
+</style>

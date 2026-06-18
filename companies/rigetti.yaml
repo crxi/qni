@@ -1,0 +1,175 @@
+slug: rigetti
+name: Rigetti Computing
+categories: [qc]
+hq: Berkeley, California, USA
+founded: 2013
+status: public
+parent: null
+logo:
+  domain: rigetti.com
+
+positioning: >
+  Full-stack superconducting quantum-computing vendor. Designs and
+  fabricates transmon-style superconducting qubit processors at its in-house
+  Fab-1 facility in Fremont, California, with a modular multi-chip
+  ("chiplet") architecture that tiles small chips into larger systems to
+  side-step monolithic-yield limits. Founded in 2013 by Chad Rigetti;
+  NASDAQ-listed since March 2022 (RGTI, SPAC merger with Supernova Partners
+  II). The 108-qubit Cepheus-1-108Q general availability launched in April
+  2026 at 99.1% median two-qubit fidelity, succeeding the 84-qubit Ankaa-3
+  and a 36-qubit 4x9 multi-chip system that hit 99.5% in 2025.
+
+modalities:
+  qc:
+    qubit_type: transmon
+    physical_qubits_current: 108
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: 0.991
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: square-lattice (nearest-neighbour)
+    gate_set: [fSim, iSWAP, CZ]
+
+milestones:
+  - date: 2026-04
+    tag: qc
+    headline: "108-qubit Cepheus-1-108Q chiplet-based processor general availability — 99.1% median 2Q fidelity at launch (99.5% targeted by end-2026)"
+    source_url: https://www.globenewswire.com/news-release/2026/04/07/3269628/0/en/Rigetti-Announces-General-Availability-of-108-Qubit-System.html
+    source_type: press
+  - date: 2025-07
+    tag: qc
+    headline: "36-qubit modular multi-chip system (4 × 9-qubit chiplets) hits 99.5% median two-qubit gate fidelity — 2× error-rate reduction vs Ankaa-3 monolithic baseline; described as industry's largest multi-chip QC at the time"
+    source_url: https://www.globenewswire.com/news-release/2025/07/16/3116290/0/en/Rigetti-Demonstrates-Industry-s-Largest-Multi-Chip-Quantum-Computer-Halves-Two-Qubit-Gate-Error-Rate.html
+    source_type: press
+  - date: 2025-04
+    tag: qc
+    headline: "Quanta Computer closes US$35M strategic equity investment at ~$11.59/share; joint commitment of $100M+ over 5 years on superconducting QC development"
+    source_url: https://investors.rigetti.com/news-releases/news-release-details/rigetti-computing-closes-investment-quanta-computer
+    source_type: filing
+  - date: 2024-12
+    tag: qc
+    headline: "84-qubit Ankaa-3 system launched — 99.5% median two-qubit gate fidelity on a monolithic chip"
+    source_url: https://investors.rigetti.com/news-releases/news-release-details/rigetti-computing-launches-84-qubit-ankaatm-3-system-achieves
+    source_type: press
+  - date: 2022-12
+    tag: qc
+    headline: "Leadership transition — new President & CEO succeeds founder"
+    source_url: https://investors.rigetti.com/news-releases/news-release-details/rigetti-computing-appoints-dr-subodh-kulkarni-president-and
+    source_type: press
+  - date: 2022-03
+    tag: qc
+    headline: "NASDAQ listing via SPAC merger with Supernova Partners Acquisition Company II — trades as RGTI"
+    source_url: https://en.wikipedia.org/wiki/Rigetti_Computing
+    source_type: filing
+  - date: 2022-02
+    tag: qc
+    headline: "80-qubit Aspen-M — the first commercial multi-chip superconducting QPU (two 40-qubit chiplets tiled)"
+    source_url: https://investors.rigetti.com/news-releases/news-release-details/rigetti-computing-announces-commercial-availability-80-qubit
+    source_type: press
+  - date: 2017-06
+    tag: qc
+    headline: "Forest 1.0 quantum-computing platform released; Rigetti opens Fab-1, the first dedicated quantum-chip fabrication facility"
+    source_url: https://medium.com/rigetti/celebrating-a-decade-of-rigetti-an-evolution-of-technology-and-a-quantum-ecosystem-57b89fff893a
+    source_type: blog
+  - date: 2013-07
+    tag: qc
+    headline: "Rigetti Computing founded by Chad Rigetti in Berkeley, California (Y Combinator S14 alum)"
+    source_url: https://www.ycombinator.com/companies/rigetti-computing
+    source_type: blog
+
+shareholders:
+  - holder: Quanta Computer
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-04
+    source_url: https://investors.rigetti.com/news-releases/news-release-details/rigetti-computing-closes-investment-quanta-computer
+    note: $35M strategic equity at ~$11.59/share (April 2025); partner on $100M+ joint 5-year superconducting QC programme
+  - holder: Vanguard Group
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-05
+    source_url: https://simplywall.st/stocks/mx/semiconductors/bmv-rgti/rigetti-computing-shares/management
+    note: Among the largest institutional holders per recent 13F aggregator data; exact percent pending DEF 14A cross-check
+  - holder: BlackRock
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-05
+    source_url: https://simplywall.st/stocks/mx/semiconductors/bmv-rgti/rigetti-computing-shares/management
+    note: Institutional holder per recent 13F aggregator data
+  - holder: Chad Rigetti
+    stake_percent: null
+    stake_class: founder
+    as_of: 2022-12
+    source_url: https://quantumzeitgeist.com/what-happens-to-rigetti-now-that-its-founder-chad-rigetti-has-left-the-quantum-company-with-his-name/
+    note: Founder; departed CEO role December 2022; equity position not publicly disclosed post-departure
+
+key_personnel:
+  - role: President & CEO
+    name: Subodh Kulkarni
+    since: 2022-12
+    source_url: https://www.rigetti.com/leadership-team/dr-subodh-kulkarni
+  - role: Founder
+    name: Chad Rigetti
+    since: 2013
+    source_url: https://www.ycombinator.com/companies/rigetti-computing
+    note: Founded Rigetti Computing in 2013; departed CEO role December 2022
+
+roadmap:
+  - target: 2025
+    item: "Release 100+ qubit chiplet-based system at 99.5% median two-qubit fidelity (delivered as Cepheus-1-108Q)"
+    source_url: https://www.globenewswire.com/news-release/2025/07/16/3116290/0/en/Rigetti-Demonstrates-Industry-s-Largest-Multi-Chip-Quantum-Computer-Halves-Two-Qubit-Gate-Error-Rate.html
+    tag: qc
+  - target: 2026
+    item: "Ship 150+ qubit system at 99.7% median two-qubit fidelity"
+    source_url: https://investors.rigetti.com/static-files/fbac3801-223f-4f0f-a207-47d25084a1d7
+    tag: qc
+  - target: 2027
+    item: "Lyra processor — 336-qubit chiplet system targeting narrow quantum advantage"
+    source_url: https://investors.rigetti.com/static-files/fbac3801-223f-4f0f-a207-47d25084a1d7
+    tag: qc
+
+current_flagship:
+  name: Cepheus-1-108Q
+  generation: 108-qubit chiplet-based superconducting QPU (successor to 84-qubit Ankaa-3 and 36-qubit 4×9 modular system)
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://investors.rigetti.com/news-releases/news-release-details/rigetti-demonstrates-industrys-largest-multi-chip-quantum
+    note: 36-qubit multi-chip 99.5% two-qubit fidelity milestone (July 2025)
+  - kind: press
+    citation_key: null
+    url: https://investors.rigetti.com/news-releases/news-release-details/rigetti-computing-launches-84-qubit-ankaatm-3-system-achieves
+    note: Ankaa-3 84-qubit launch (Dec 2024)
+  - kind: press
+    citation_key: null
+    url: https://investors.rigetti.com/news-releases/news-release-details/rigetti-computing-closes-investment-quanta-computer
+    note: Quanta Computer $35M strategic investment close (April 2025)
+  - kind: blog
+    citation_key: null
+    url: https://qcs.rigetti.com/qpus
+    note: Rigetti QCS QPU catalogue (Cepheus-1-108Q listing)
+  - kind: blog
+    citation_key: null
+    url: https://medium.com/rigetti/celebrating-a-decade-of-rigetti-an-evolution-of-technology-and-a-quantum-ecosystem-57b89fff893a
+    note: Rigetti 10-year retrospective (technology evolution from Aspen through Ankaa)
+
+partial:
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.ec_code
+  - field: shareholders.1.stake_percent
+    as_of: 2026-05-15
+    note: institutional stakes sourced from third-party aggregator; not yet cross-checked against the 2026 DEF 14A proxy
+  - field: shareholders.2.stake_percent
+    as_of: 2026-05-15
+    note: same as above
+  - field: shareholders.3.stake_percent
+    as_of: 2026-05-15
+    note: founder equity post-2022 departure not publicly disclosed
+
+last_verified: 2026-05-15
+verification_method: web

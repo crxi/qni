@@ -1,0 +1,115 @@
+slug: magiq-technologies
+name: MagiQ Technologies
+categories: [qkd, sensing, enabling]
+hq: Somerville, Massachusetts, USA
+founded: 1999
+status: private
+parent: null
+logo:
+  domain: magiqtech.com
+
+positioning: >
+  One of the earliest commercial QKD vendors. Founded 1999 by Bob Gelfond; in
+  2003 announced Navajo, marketed as the first commercial QKD product, followed
+  by the QPN series (QPN 5505 / 7505 / 8505) in 2004-2006. Commercial QKD
+  visibility has declined since the mid-2010s; the company has diversified
+  into RF spectrum-recovery hardware for the US Department of Defense (AIMS)
+  and, more recently, fibre-optic seismic sensing (GeoLite). Customer base
+  centres on US defence and research agencies — Air Force, Navy, Army, DARPA,
+  DOE, NASA — alongside energy and critical-infrastructure operators.
+
+modalities:
+  qkd:
+    protocol: [BB84]
+    rate_distance: ""
+    deployed_demos:
+      - note: DARPA Quantum Network (Boston metro, 2003-2007) — early MagiQ QKD nodes connected BBN, Harvard, and Boston University; described in the DARPA programme literature as the first continuously-operating QKD network
+        source_url: https://en.wikipedia.org/wiki/MagiQ_Technologies,_Inc.
+  sensing:
+    target_quantity: seismic
+    sensitivity: "MagiQ GeoLite optical 3C seismic sensor array; field-tested with TotalEnergies (2025)"
+  enabling:
+    products:
+      - MagiQ QPN Security Gateway (QKD-derived key distribution for IPsec/VPN)
+      - MagiQ AIMS — Agile Interference Mitigation System (RF spectrum recovery for DoD)
+      - MagiQ GeoLite — fibre-optic seismic sensor array
+
+milestones:
+  - date: 2025
+    tag: sensing
+    headline: MagiQ GeoLite launched; optical 3C seismic sensor array field-tested with TotalEnergies
+    source_url: https://www.magiqtech.com/
+    source_type: web
+  - date: 2006
+    tag: qkd
+    headline: QPN 8505 released — third-generation MagiQ QKD endpoint
+    source_url: https://en.wikipedia.org/wiki/MagiQ_Technologies,_Inc.
+    source_type: web
+  - date: 2003
+    tag: qkd
+    headline: Navajo Security Gateway announced — marketed as the world's first commercial QKD product
+    source_url: https://en.wikipedia.org/wiki/MagiQ_Technologies,_Inc.
+    source_type: web
+  - date: 1999
+    tag: qkd
+    headline: MagiQ Technologies founded in New York by Bob Gelfond; later relocated to Somerville, Massachusetts
+    source_url: https://thequantuminsider.com/2021/01/25/young-industry-old-roots-the-9-veteran-startups-of-quantum-tech/
+    source_type: press
+
+shareholders:
+  - holder: Bob Gelfond (founder)
+    stake_percent: null
+    stake_class: founder
+    as_of: 2026-05-20
+    source_url: https://theorg.com/org/magiq-technologies/org-chart/bob-gelfond
+    note: Founder, Chairman, and CEO; the company is privately held and has not disclosed external equity holders.
+
+key_personnel:
+  - role: CEO
+    name: Audrius Berzanskis
+    since: null
+    source_url: https://www.magiqtech.com/company/leadership-team/
+    note: Joined MagiQ in 2000; later promoted to CEO. Date of CEO appointment not publicly stated.
+  - role: Founder & Chairman
+    name: Bob Gelfond
+    since: 1999
+    source_url: https://www.magiqtech.com/company/leadership-team/
+    note: Founding CEO; now Chairman & Founder.
+
+roadmap: []
+
+current_flagship:
+  name: MagiQ AIMS / MagiQ GeoLite
+  generation: Defence RF spectrum-recovery hardware (AIMS) and fibre-optic seismic sensing (GeoLite); QPN QKD line remains catalogued but is no longer the visible commercial focus
+
+references:
+  - kind: web
+    citation_key: null
+    url: https://www.magiqtech.com/solutions/network-security/
+    note: MagiQ QPN product page
+  - kind: web
+    citation_key: null
+    url: https://www.magiqtech.com/company/
+    note: MagiQ company overview — founding, US defence customer list
+  - kind: web
+    citation_key: null
+    url: https://en.wikipedia.org/wiki/MagiQ_Technologies,_Inc.
+    note: Wikipedia entry — founding date, Navajo / QPN release history, DARPA Quantum Network participation
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2021/01/25/young-industry-old-roots-the-9-veteran-startups-of-quantum-tech/
+    note: The Quantum Insider — MagiQ as one of nine veteran quantum-tech startups
+
+partial:
+  - modalities.qkd.rate_distance
+  - field: modalities.qkd.deployed_demos
+    as_of: 2026-05-20
+    note: Active QKD deployments are not separately disclosed on the current vendor site; QPN product pages remain but commercial visibility has declined since the mid-2010s.
+  - revenue
+  - headcount
+  - field: shareholders
+    as_of: 2026-05-20
+    note: MagiQ is privately held; external equity holders (if any) are not publicly disclosed.
+
+last_verified: 2026-05-20
+verification_method: web

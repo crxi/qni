@@ -1,0 +1,132 @@
+slug: englund-mit
+name: Englund group (MIT)
+categories: [qc, memory, network, source-detect]
+hq: Cambridge, Massachusetts, USA
+status: active
+parent: null
+
+institution:
+  name: Massachusetts Institute of Technology (MIT)
+  lab: Quantum Photonics Laboratory · Research Laboratory of Electronics (RLE) · Department of Electrical Engineering and Computer Science (EECS)
+
+group_website: https://qp.mit.edu/
+
+positioning: >
+  Dirk Englund's MIT group works at the intersection of integrated
+  quantum photonics and quantum networking. The programme covers
+  colour-centre qubits (SiV, NV, SnV) heterogeneously integrated onto
+  photonic chips, scalable photonic quantum-network nodes, on-chip
+  microwave-to-optical transduction, and superconducting-nanowire
+  single-photon detectors. The group is a collaborator on the
+  Boston-loop repeater demonstrations led from Harvard, and builds much
+  of the photonic-integration plumbing that the wider Boston quantum-
+  networking ecosystem runs on.
+
+modalities:
+  qc:
+    qubit_type: siv
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: ""
+    gate_set: []
+  memory:
+    platform: siv / nv / snv colour centres in diamond
+    storage_time_ms: null
+    retrieval_efficiency: null
+    fidelity: null
+    wavelength_nm: null
+    mode_capacity: null
+  network:
+    role: testbed / node hardware
+    products:
+      - "On-chip colour-centre quantum-network node modules"
+      - "Boston-area metropolitan quantum network collaboration (with Harvard / Lukin)"
+  source-detect:
+    role: both
+    detection_efficiency: null
+    dark_count_hz: null
+    jitter_ps: null
+
+milestones:
+  - date: 2024-05
+    tag: network
+    headline: Two-node entanglement over 35 km Boston-loop telecom fibre using SiV memory nodes (Knaut et al. Nature)
+    source_url: https://www.nature.com/articles/s41586-024-07252-z
+    source_type: paper
+  - date: 2023
+    tag: qc
+    headline: Tin-vacancy (SnV) colour-centre integration with photonic devices
+    source_url: https://qp.mit.edu/
+    source_type: blog
+  - date: 2020
+    tag: memory
+    headline: SiV memory-enhanced quantum communication demonstration (with Harvard)
+    source_url: https://www.nature.com/articles/s41586-020-2103-5
+    source_type: paper
+
+funding_sources:
+  - name: DARPA
+    role: Quantum-network and photonic-integration programmes
+    source_url: https://www.darpa.mil/
+  - name: Army Research Office (ARO)
+    role: Multidisciplinary University Research Initiatives on quantum networking
+    source_url: https://arl.devcom.army.mil/who-we-are/aro/
+  - name: National Science Foundation (NSF)
+    role: Center for Quantum Networks (CQN) and Engineering Research Center grants
+    source_url: https://www.nsf.gov/
+  - name: MIT Lincoln Laboratory
+    role: Joint photonic-integration and detector programmes
+    source_url: https://www.ll.mit.edu/
+  - name: U.S. Department of Energy (DOE)
+    role: Quantum Internet and quantum-network testbed programmes
+    source_url: https://www.energy.gov/science/office-science
+
+key_personnel:
+  - role: Principal Investigator — Director, Quantum Photonics Laboratory
+    name: Dirk Englund
+    since: 2013
+    source_url: https://qp.mit.edu/
+
+current_focus:
+  name: Quantum photonics
+  description: ""
+
+references:
+  - kind: paper
+    citation_key: knaut-nature-2024
+    url: https://www.nature.com/articles/s41586-024-07252-z
+    note: Knaut et al. — Boston-loop entanglement over 35 km telecom fibre
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41586-020-2103-5
+    note: Bhaskar et al. Nature 580, 60 (2020) — memory-enhanced quantum communication with SiV
+
+partial:
+  - group_website
+  - field: current_focus.description
+    as_of: 2026-05-24
+    note: qp.mit.edu landing page renders research content dynamically and exposes no static institutional self-statement of focus; rather than synthesise, left blank pending the group publishing one.
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.memory.storage_time_ms
+  - modalities.memory.retrieval_efficiency
+  - modalities.memory.fidelity
+  - modalities.memory.wavelength_nm
+  - modalities.memory.mode_capacity
+  - modalities.source-detect.detection_efficiency
+  - modalities.source-detect.dark_count_hz
+  - modalities.source-detect.jitter_ps
+  - field: key_personnel.0.since
+    as_of: 2026-05-24
+    note: Englund joined MIT EECS faculty around 2013; exact appointment date not stated on group website.
+
+last_verified: 2026-05-24
+verification_method: web

@@ -1,0 +1,240 @@
+---
+/**
+ * ZoomModal — fullscreen image viewer with zoom slider, click-and-drag pan,
+ * wheel-zoom-centred-on-cursor, and keyboard (Esc / +/-) controls.
+ *
+ * Mount **once per page** that uses one or more <ZoomableFigure /> components.
+ * Each toolbar button (`[data-zoom-open]`) on the page binds to the single
+ * modal here: clicking finds the nearest `<figure>` ancestor, reads its
+ * `img[data-zoomable-src]`, and opens the modal with that source.
+ *
+ * Lifted verbatim from the debugged inline implementation on
+ * `web/src/pages/transduction.astro` so behaviour stays identical.
+ */
+---
+<div class="zoom-modal" data-zoom-modal aria-hidden="true" role="dialog" aria-label="Figure — zoom view">
+  <div class="zoom-modal-bar">
+    <label class="zoom-slider-label">
+      <span aria-hidden="true">−</span>
+      <input type="range" min="50" max="200" step="5" value="100"
+             data-zoom-slider aria-label="Zoom level (percent)" />
+      <span aria-hidden="true">+</span>
+      <span class="zoom-readout" data-zoom-readout>100%</span>
+    </label>
+    <button class="zoom-close-btn" type="button" data-zoom-close aria-label="Close zoom view">×</button>
+  </div>
+  <div class="zoom-modal-scroll" data-zoom-scroll>
+    <div class="zoom-modal-stage" data-zoom-stage>
+      <img class="zoom-modal-img" data-zoom-img alt="" />
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const modal = document.querySelector("[data-zoom-modal]");
+    if (!modal) return;
+    const img = modal.querySelector("[data-zoom-img]");
+    const stage = modal.querySelector("[data-zoom-stage]");
+    const scroll = modal.querySelector("[data-zoom-scroll]");
+    const slider = modal.querySelector("[data-zoom-slider]");
+    const readout = modal.querySelector("[data-zoom-readout]");
+    const closeBtn = modal.querySelector("[data-zoom-close]");
+
+    let baseW = 0, baseH = 0;  // baseline image size at 100% (fit-to-viewport)
+
+    function setZoom(pct) {
+      const s = pct / 100;
+      const w = baseW * s, h = baseH * s;
+      img.style.width = w + "px";
+      img.style.height = h + "px";
+      stage.style.width = w + "px";
+      stage.style.height = h + "px";
+      readout.textContent = Math.round(pct) + "%";
+    }
+
+    function fitBaseline() {
+      // 100% = image fills the scroll viewport along its LARGER ratio,
+      // so neither axis has whitespace. The non-filling axis overflows
+      // and the user can scroll/drag. This matches the natural reading
+      // of "1× zoom = full screen" for wide diagrams like the spectrum
+      // chart, which were previously letter-boxed at ~75% width because
+      // we picked Math.min (fit-entirely-with-whitespace) instead.
+      const natW = img.naturalWidth || 1100;
+      const natH = img.naturalHeight || (natW * 0.5);
+      const vw = scroll.clientWidth;
+      const vh = scroll.clientHeight;
+      const k = Math.max(vw / natW, vh / natH);
+      baseW = natW * k;
+      baseH = natH * k;
+      setZoom(parseFloat(slider.value));
+    }
+
+    function open(src, alt) {
+      img.onload = fitBaseline;
+      img.src = src;
+      img.alt = alt || "";
+      slider.value = "100";
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      // If image is cached, onload may not fire — kick it once layout is up.
+      requestAnimationFrame(() => { if (img.complete) fitBaseline(); });
+      closeBtn.focus();
+    }
+    function close() {
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      img.removeAttribute("src");
+      img.style.width = img.style.height = "";
+      stage.style.width = stage.style.height = "";
+    }
+
+    document.querySelectorAll("[data-zoom-open]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const wrap = btn.closest("figure");
+        if (!wrap) return;
+        // Prefer the figure's own data-zoomable-src (used when the figure
+        // wraps an interactive component — no real <img> to attach to).
+        // Fall back to an <img data-zoomable-src> inside the figure (used
+        // by the ZoomableFigure component, which renders a real <img>).
+        const figSrc = wrap.getAttribute("data-zoomable-src");
+        if (figSrc) {
+          open(figSrc, wrap.getAttribute("data-zoomable-alt") || "");
+          return;
+        }
+        const sourceImg = wrap.querySelector("img[data-zoomable-src]");
+        if (!sourceImg) return;
+        open(sourceImg.getAttribute("data-zoomable-src"), sourceImg.getAttribute("alt"));
+      });
+    });
+    slider.addEventListener("input", () => setZoom(parseFloat(slider.value)));
+    closeBtn.addEventListener("click", close);
+    modal.addEventListener("click", (e) => { if (e.target === modal) close(); });
+    window.addEventListener("resize", () => {
+      if (modal.getAttribute("aria-hidden") === "false") fitBaseline();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (modal.getAttribute("aria-hidden") === "true") return;
+      if (e.key === "Escape") close();
+      else if (e.key === "+" || e.key === "=") { slider.value = Math.min(200, parseFloat(slider.value) + 10); setZoom(parseFloat(slider.value)); }
+      else if (e.key === "-") { slider.value = Math.max(50, parseFloat(slider.value) - 10); setZoom(parseFloat(slider.value)); }
+    });
+
+    // Wheel-to-zoom centred on the cursor. Keep the pixel under the mouse
+    // pointer fixed as the image scales — that's what makes "zoom into what
+    // I'm looking at" feel right. preventDefault suppresses the browser's
+    // default scroll behaviour on the overflow:auto container.
+    scroll.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      const oldPct = parseFloat(slider.value);
+      const step = e.deltaY < 0 ? +5 : -5;
+      const newPct = Math.min(200, Math.max(50, oldPct + step));
+      if (newPct === oldPct) return;
+      const rect = scroll.getBoundingClientRect();
+      // Position of the cursor relative to the image's top-left, in image px.
+      const ix = scroll.scrollLeft + (e.clientX - rect.left);
+      const iy = scroll.scrollTop  + (e.clientY - rect.top);
+      const ratio = newPct / oldPct;
+      slider.value = String(newPct);
+      setZoom(newPct);
+      // After resize, put the same image-px back under the cursor.
+      scroll.scrollLeft = ix * ratio - (e.clientX - rect.left);
+      scroll.scrollTop  = iy * ratio - (e.clientY - rect.top);
+    }, { passive: false });
+
+    // Click-and-drag pan inside the scroll area.
+    let dragging = false, startX = 0, startY = 0, startSL = 0, startST = 0;
+    scroll.addEventListener("pointerdown", (e) => {
+      if (e.button !== 0) return;
+      dragging = true;
+      startX = e.clientX; startY = e.clientY;
+      startSL = scroll.scrollLeft; startST = scroll.scrollTop;
+      scroll.classList.add("dragging");
+      scroll.setPointerCapture(e.pointerId);
+    });
+    scroll.addEventListener("pointermove", (e) => {
+      if (!dragging) return;
+      scroll.scrollLeft = startSL - (e.clientX - startX);
+      scroll.scrollTop  = startST - (e.clientY - startY);
+    });
+    function endDrag(e) {
+      if (!dragging) return;
+      dragging = false;
+      scroll.classList.remove("dragging");
+      try { scroll.releasePointerCapture(e.pointerId); } catch {}
+    }
+    scroll.addEventListener("pointerup", endDrag);
+    scroll.addEventListener("pointercancel", endDrag);
+    scroll.addEventListener("pointerleave", endDrag);
+    // Prevent native image drag from hijacking the pan gesture.
+    img.addEventListener("dragstart", (e) => e.preventDefault());
+  })();
+</script>
+
+<style is:global>
+  .zoom-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(15, 18, 26, 0.92);
+    display: none;
+    flex-direction: column;
+  }
+  .zoom-modal[aria-hidden="false"] { display: flex; }
+  .zoom-modal-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-3);
+    background: rgba(255, 255, 255, 0.97);
+    border-block-end: 1px solid var(--card-border);
+  }
+  .zoom-slider-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font: 600 13px sans-serif;
+    color: var(--color-text);
+  }
+  .zoom-slider-label input[type="range"] { width: 240px; }
+  .zoom-readout {
+    min-width: 4ch;
+    text-align: end;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-mute);
+  }
+  .zoom-close-btn {
+    background: transparent;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm);
+    width: 32px;
+    height: 32px;
+    font: 700 18px/1 sans-serif;
+    cursor: pointer;
+    color: var(--color-text);
+  }
+  .zoom-close-btn:hover { background: var(--color-surface-2); }
+  .zoom-modal-scroll {
+    flex: 1;
+    overflow: auto;
+    background: #ffffff;
+    cursor: grab;
+    touch-action: none;
+    overscroll-behavior: contain;
+  }
+  .zoom-modal-scroll.dragging { cursor: grabbing; }
+  .zoom-modal-stage {
+    margin: auto;
+    min-width: 100%;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .zoom-modal-img {
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+</style>

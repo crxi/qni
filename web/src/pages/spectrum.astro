@@ -1,0 +1,349 @@
+---
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import Grid from "../components/Grid.astro";
+import StatCallout from "../components/StatCallout.astro";
+import SourceNote from "../components/SourceNote.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SpectrumChart from "../components/chart/SpectrumChart.astro";
+import PlatformCard from "../components/PlatformCard.astro";
+import AnnotationCallout from "../components/AnnotationCallout.astro";
+import ZoomModal from "../components/ZoomModal.astro";
+import { url } from "../lib/url";
+import {
+  data,
+  visiblePlatforms,
+  computers,
+  memories,
+  sources,
+  uniqueVendorCount,
+} from "../lib/data";
+
+const vendorCount = uniqueVendorCount();
+const platformCount = visiblePlatforms.length;
+const memSrcCount = memories.length + sources.length;
+
+const sections = [
+  { id: "overview", label: "Overview" },
+  { id: "chart", label: "Spectrum chart" },
+  { id: "problem", label: "One problem, two regimes" },
+  { id: "computers", label: "The computers" },
+  { id: "memories", label: "Memories & sources" },
+  { id: "fibre", label: "The fibre window" },
+  { id: "reading", label: "Reading the chart" },
+];
+---
+
+<Infographic
+  title={data.title}
+  description="Field guide to the qubit, memory, and photon-source platforms across the electromagnetic spectrum, with vendor flagship machines as of May 2026."
+  references={[
+    "ezratty-uqt-2025-p2",
+    "ezratty-uqt-2025-p4",
+    "itu-g-694-2",
+    "kumar-ijndc-2025",
+    "meddeb-comnet-2025",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="spectrum" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>{data.title}</h1>
+        <p>
+          Eleven platforms span more than five orders of magnitude in transition frequency
+          — from gigahertz superconducting qubits to ultraviolet trapped-ion lines.
+          Wiring them together is the core engineering problem of the quantum internet.
+        </p>
+
+        <Grid min="14rem" gap="var(--space-3)">
+          <StatCallout value={platformCount} label="quantum platforms profiled" />
+          <StatCallout value={memSrcCount} label="dedicated memory or source platforms" />
+          <StatCallout value={`${vendorCount}+`} label="distinct vendors and institutions" />
+        </Grid>
+      </header>
+
+      <section id="chart" data-nav-section aria-labelledby="chart-heading">
+        <h2 id="chart-heading" class="visually-hidden">Spectrum chart</h2>
+        {/* Same .zfig wrapper used by ZoomableFigure across the site, so
+            the spectrum chart picks up the standard download + expand
+            toolbar. The chart itself is the inline interactive
+            <SpectrumChart /> (click-to-scroll into platform cards stays
+            working). The hidden <img data-zoomable-src> gives ZoomModal
+            a source to open — the static SVG render of the same chart. */}
+        <figure
+          class="zfig spectrum-zfig"
+          data-zoomable-src={url("/images/spectrum.svg")}
+          data-zoomable-alt="Quantum-technology platforms across the electromagnetic spectrum"
+        >
+          <div class="zfig__toolbar">
+            <a class="zfig__btn"
+               href={url("/images/spectrum_2k.png")}
+               download="qni-spectrum.png"
+               aria-label="Download this chart as PNG"
+               title="Download PNG (2K)">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"
+                      fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <button class="zfig__btn" type="button"
+                    data-zoom-open
+                    aria-label="Open zoom view of the spectrum chart"
+                    title="Expand">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path d="M4 10V4h6M20 10V4h-6M4 14v6h6M20 14v6h-6"
+                      fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <SpectrumChart />
+        </figure>
+      </section>
+
+      <section id="problem" data-nav-section>
+        <h2>One problem, two regimes</h2>
+        <p>
+          A quantum network has to move a qubit from wherever a platform happens to produce
+          it to the wavelength deployed fibre carries — the telecom C-band around 1550 nm.
+          That is one problem family: shifting a photon's frequency without breaking its
+          quantum state. The two arrows on the chart show it at very different difficulty
+          levels <SourceNote id="ezratty-uqt-2025-p4" />.
+        </p>
+        <p>
+          The right-hand arrow — <em>quantum frequency conversion</em> (QFC) — converts
+          visible or near-IR photons to telecom using the same χ²/χ³ nonlinear-optics
+          toolkit (PPLN crystals, four-wave mixing) that classical telecom uses for
+          wavelength conversion, operated at single-photon level. Lab efficiencies of
+          50–80% with low added noise are now routine; this is mostly an engineering
+          problem.
+        </p>
+        <p>
+          The left-hand arrow — the <em>microwave-to-optical transducer</em> — is the open
+          one. Spanning ~4.6 orders of magnitude forces hybrid physics: optomechanical,
+          electro-optic, magnonic, or atomic-ensemble bridges between superconducting
+          microwave qubits and an optical mode. Coherent, quantum-noise-limited
+          efficiencies are still well under 1%. Until that number climbs, every microwave
+          quantum computer effectively cannot leave its cryostat.
+        </p>
+        <Grid min="22rem" gap="var(--space-3)">
+          {data.annotations.map((a) => <AnnotationCallout annotation={a} />)}
+        </Grid>
+      </section>
+
+      <section id="computers" data-nav-section>
+        <h2>The computers</h2>
+        <p>
+          A gate-model quantum computer runs algorithms by applying one- and two-qubit gates to
+          an array of qubits — the architecture Shor's factoring, quantum chemistry, and most
+          near-term applications target. Each platform below is a different physical recipe for
+          making a qubit, and each operates its qubit at a transition frequency set by the
+          underlying physics: Josephson-junction energy for superconducting qubits, an electron
+          spin precession for silicon, an atomic hyperfine split for trapped ions
+          <SourceNote id="ezratty-uqt-2025-p2" />.
+        </p>
+        <p>
+          When scanning the cards, the questions worth asking are: how many qubits has the
+          vendor demonstrated, how mature is the fidelity, and is there a credible roadmap
+          beyond the current flagship? Vendors with multiple named generations on a public
+          schedule (IBM's Heron → Nighthawk → Starling → Blue Jay; Pasqal's Orion line) are
+          the strongest signal that a platform will keep scaling.
+        </p>
+        <Grid min="20rem" gap="var(--space-3)">
+          {computers.map((p) => <PlatformCard platform={p} />)}
+        </Grid>
+      </section>
+
+      <section id="memories" data-nav-section>
+        <h2>The memories and sources</h2>
+        <p>
+          Quantum memories store an arriving photon's qubit state long enough — milliseconds to
+          seconds — to wait for a partner photon from another node, so two distant computers can
+          share entanglement and execute distributed protocols. Photon sources emit single
+          photons or entangled photon pairs on demand. Without these components, qubits never
+          leave the chip they were created on; with them, the quantum internet is buildable
+          <SourceNote id="meddeb-comnet-2025" />.
+        </p>
+        <p>
+          Three details worth noticing as you scan the cards:
+        </p>
+        <ul>
+          <li>
+            Every memory and source emits at a different wavelength — and only Er³⁺ (1532 nm)
+            sits naturally in the telecom C-band. Everything else needs frequency conversion
+            before it can travel deployed fibre, which is the second of the two arrows on the
+            chart above.
+          </li>
+          <li>
+            NV centre and SiV centre are siblings, both colour centres in diamond. NV is sold
+            as a small-scale computer (Quantum Brilliance's Quoll) because it works at room
+            temperature; SiV has the cleaner optical interface and is the memory variant
+            (Lightsynq, Lukin/Harvard).
+          </li>
+          <li>
+            Welinq's QDrive memory runs on Rb cold atoms — the same physics as the neutral-atom
+            <em>computers</em> from Atom Computing, Pasqal, QuEra — so it appears inside the
+            Neutral atoms box on the chart, not as a standalone memory swatch.
+          </li>
+        </ul>
+        <Grid min="20rem" gap="var(--space-3)">
+          {[...memories, ...sources].map((p) => <PlatformCard platform={p} />)}
+        </Grid>
+      </section>
+
+      <section id="fibre" data-nav-section>
+        <h2>The fibre window</h2>
+        <p>
+          Telecom fibre carries quantum signals best between 1260 nm (O-band) and 1675 nm (U-band),
+          with the C-band (1530–1565 nm) at the loss minimum
+          <SourceNote id="itu-g-694-2" />.
+          Anything not already at telecom — superconducting microwaves, NV-centre red, trapped-ion
+          UV — has to cross to the C-band before it can travel.
+        </p>
+        <table class="fiber-table">
+          <thead>
+            <tr><th>Band</th><th>Range</th><th>Name</th></tr>
+          </thead>
+          <tbody>
+            {data.fiber_bands.map((b) => (
+              <tr data-emphasis={b.emphasis ? "yes" : "no"}>
+                <td><span class="fiber-chip" style={`background: ${b.color};`}>{b.id}</span></td>
+                <td>{b.range_nm[0]}–{b.range_nm[1]} nm</td>
+                <td>{b.name}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      <section id="reading" data-nav-section>
+        <h2>Reading the chart</h2>
+        <p>
+          A few visual conventions carry most of the meaning:
+        </p>
+        <ul>
+          <li>
+            <strong>Three letter chips at the top-right of each box</strong> mark which
+            roles the platform fills: <code>C</code> compute, <code>M</code> memory,
+            <code>S</code> source. Filled chips are roles the platform supports today;
+            outlined chips are roles it doesn't. Multiple filled chips signal a dual- or
+            triple-use platform — common for trapped ions, neutral atoms, NV centre.
+          </li>
+          <li>
+            <strong>Horizontal position</strong> is the platform's signature transition
+            frequency, on a log axis broken between the gigahertz and terahertz regimes (most
+            platforms cluster in the optical band, so the microwave segment is compressed to
+            keep the chart legible).
+          </li>
+          <li>
+            <strong>Coloured strip across the top</strong> shows the ITU-T fibre bands. The
+            highlighted C-band (1530–1565 nm) is where deployed telecom fibre has its loss
+            minimum — every platform that wants to travel between nodes has to reach this
+            wavelength.
+          </li>
+          <li>
+            <strong>Two arrows converging on the C-band</strong> are the chart's main story.
+            They are the same problem — frequency conversion preserving quantum coherence —
+            at very different difficulty levels: the right-hand QFC arrow (visible→telecom)
+            is well-developed nonlinear optics; the left-hand microwave→optical transducer
+            spans ~4.6 orders of magnitude and is still the field's hardest open device.
+          </li>
+          <li>
+            <strong>Hovering a box</strong> highlights it and brings its dotted leader line
+            forward; clicking jumps to the matching detail card.
+          </li>
+        </ul>
+        <p>
+          This page is a companion to the QNTaxo report, chapters 2–3 (foundations and
+          network building blocks) and chapter 7 (vendor landscape)
+          <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+      </section>
+
+    </Stack>
+  </Center>
+  <ZoomModal />
+</Infographic>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-4);
+    border-block-end: 1px solid var(--color-rule);
+  }
+  .hero__eyebrow {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-accent);
+    margin-block-end: var(--space-3);
+  }
+  section { display: grid; gap: var(--space-4); }
+
+  /* When wrapping <SpectrumChart /> inside .zfig (for the toolbar),
+     neutralise its built-in card styling — otherwise we get a card
+     inside a card with double padding, double rounding, and the
+     inner margin-block: space-6 punching a hole in the layout.
+     Any interactive component wrapped in .zfig should have its own
+     card chrome cancelled. */
+  .spectrum-zfig :global(.spectrum-chart) {
+    margin: 0;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.92em;
+    background: var(--color-surface-2);
+    padding: 0.1em 0.35em;
+    border-radius: var(--radius-sm);
+  }
+
+  .fiber-table {
+    border-collapse: collapse;
+    inline-size: 100%;
+    font-size: var(--text-sm);
+  }
+  .fiber-table th, .fiber-table td {
+    text-align: start;
+    padding: var(--space-2) var(--space-3);
+    border-block-end: 1px solid var(--color-rule);
+  }
+  .fiber-table tr[data-emphasis="yes"] td { background: var(--color-surface-2); font-weight: 600; }
+  .fiber-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 1.6rem;
+    block-size: 1.6rem;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    font-size: var(--text-xs);
+    color: var(--gray-900);
+  }
+  ul { padding-inline-start: var(--space-4); }
+  ul li { margin-block: var(--space-1); }
+
+  /* Hide visually but keep available to screen readers and the
+     SiteNav IntersectionObserver (which keys off the section id,
+     not the visible heading). Used on the chart's wrapper section so
+     the chart appears unboxed while still being navigable. */
+  .visually-hidden {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>

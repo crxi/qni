@@ -1,0 +1,200 @@
+slug: alice-and-bob
+name: Alice & Bob
+categories: [qc]
+hq: Paris, France
+founded: 2020
+status: private
+parent: null
+logo:
+  domain: alice-bob.com
+
+positioning: >
+  Superconducting quantum-computing hardware built on cat qubits — bosonic qubits
+  encoded in a microwave cavity that autonomously suppress bit-flip errors, leaving
+  mainly phase-flips for an outer error-correction code to handle. Founded in 2020 by
+  two QUANTIC-trained physicists and headquartered in Paris with a Boston office, the
+  company spun out of work with Mines Paris–PSL, ENS, and Inria. It targets fault-tolerant
+  machines with fewer physical qubits per logical qubit than uncorrected-transmon
+  approaches, and offers cat-qubit chips through Google Cloud to early-access researchers
+  and enterprises tracking the fault-tolerant roadmap.
+
+modalities:
+  qc:
+    qubit_type: cat
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: repetition
+    connectivity: ""
+    gate_set: []
+
+milestones:
+  - date: 2026-05
+    tag: qc
+    headline: NVentures (NVIDIA) joins Series B as an extension investor
+    source_url: https://alice-bob.com/newsroom/
+    source_type: press
+  - date: 2025-09
+    tag: qc
+    headline: Preliminary cat-qubit bit-flip lifetime measured beyond one hour, surpassing the prior ~430 s record
+    source_url: https://alice-bob.com/newsroom/alice-bob-surpasses-bit-flip-stability-record/
+    source_type: press
+  - date: 2025-01
+    tag: qc
+    headline: €100M Series B closed
+    source_url: https://alice-bob.com/newsroom/alice-bob-100m-series-b-fundraising-press-release/
+    source_type: press
+  - date: 2024-12
+    tag: qc
+    headline: Roadmap published — five chip generations (Boson, Helium, Lithium, Beryllium, Graphene) to 100 logical qubits by 2030
+    source_url: https://alice-bob.com/newsroom/alice-bob-quantum-computing-roadmap/
+    source_type: press
+  - date: 2024-05
+    tag: qc
+    headline: "Cat qubit with bit-flip times exceeding ten seconds published in Nature (Boson 3 / TomCat design)"
+    source_url: https://www.nature.com/articles/s41586-024-07294-3
+    source_type: paper
+
+shareholders:
+  - holder: Future French Champions (FFC)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-01
+    source_url: https://alice-bob.com/newsroom/alice-bob-100m-series-b-fundraising-press-release/
+    note: >
+      Series B lead. FFC is a co-investment vehicle of the Qatar Investment Authority
+      and Bpifrance; press coverage describes QIA as effectively leading the round through it.
+  - holder: AVP (AXA Venture Partners)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-01
+    source_url: https://alice-bob.com/newsroom/alice-bob-100m-series-b-fundraising-press-release/
+    note: Co-lead of the January 2025 Series B.
+  - holder: Bpifrance
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-01
+    source_url: https://alice-bob.com/newsroom/alice-bob-100m-series-b-fundraising-press-release/
+    note: Co-lead and Series A returning investor; also participates via FFC.
+  - holder: NVentures (NVIDIA)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-05
+    source_url: https://thequantuminsider.com/2026/05/22/alice-bob-announces-investment-from-nvidias-vc-arm-in-series-b-extension/
+    note: Strategic investor added in a May 2026 Series B extension; amount not disclosed.
+  - holder: Elaia Partners
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-01
+    source_url: https://alice-bob.com/newsroom/alice-bob-100m-series-b-fundraising-press-release/
+    note: Series A returning investor.
+  - holder: Breega
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-01
+    source_url: https://alice-bob.com/newsroom/alice-bob-100m-series-b-fundraising-press-release/
+    note: Series A returning investor.
+  - holder: Supernova Invest
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-01
+    source_url: https://alice-bob.com/newsroom/alice-bob-100m-series-b-fundraising-press-release/
+    note: Series A returning investor.
+  - holder: European Innovation Council (EIC) Fund
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-01
+    source_url: https://alice-bob.com/newsroom/alice-bob-100m-series-b-fundraising-press-release/
+    note: New institutional investor in the Series B.
+
+key_personnel:
+  - role: CEO & Co-founder
+    name: Théau Peronnin
+    since: 2020
+    source_url: https://alice-bob.com/thats-us/
+  - role: CTO & Co-founder
+    name: Raphaël Lescanne
+    since: 2020
+    source_url: https://alice-bob.com/thats-us/
+
+roadmap:
+  - target: 2030
+    item: >
+      100 high-fidelity logical qubits (Graphene chip series) targeting quantum advantage
+      in early industrial use cases
+    source_url: https://alice-bob.com/newsroom/alice-bob-quantum-computing-roadmap/
+    tag: qc
+  - target: 2030
+    item: "Logical-qubit fidelity target of 99.9999% (\"six nines\") per the published roadmap"
+    source_url: https://alice-bob.com/newsroom/alice-bob-quantum-computing-roadmap/
+    tag: qc
+  - target: 2024
+    item: >
+      Milestone 1 — Master the Cat Qubit (Boson series); reported achieved per the 2024 roadmap
+    source_url: https://alice-bob.com/newsroom/alice-bob-quantum-computing-roadmap/
+    tag: qc
+  - target: 2025
+    item: >
+      Milestone 2 — first below-threshold error-corrected logical qubit (Helium chip series)
+    source_url: https://alice-bob.com/newsroom/alice-bob-quantum-computing-roadmap/
+    tag: qc
+
+current_flagship:
+  name: Boson cat-qubit chips
+  generation: superconducting cat qubit (Boson series; accessible via Google Cloud)
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41586-024-07294-3
+    note: >
+      "Quantum control of a cat-qubit with bit-flip times exceeding ten seconds," Nature,
+      May 2024 — peer-reviewed bit-flip-lifetime result on the Boson 3 chip (TomCat design),
+      with the QUANTIC team (Mines Paris–PSL, ENS, Inria).
+  - kind: press
+    citation_key: null
+    url: https://alice-bob.com/newsroom/alice-bob-surpasses-bit-flip-stability-record/
+    note: >
+      September 2025 announcement of preliminary bit-flip lifetime beyond one hour;
+      peer-reviewed publication of this result pending.
+  - kind: press
+    citation_key: null
+    url: https://alice-bob.com/wp-content/uploads/2024/12/Alice-Bob-Roadmap-Long-Version.pdf
+    note: Long-form 2030 roadmap white paper (five chip generations, 100 logical qubits).
+  - kind: press
+    citation_key: null
+    url: https://alice-bob.com/newsroom/alice-bob-100m-series-b-fundraising-press-release/
+    note: Series B closing press release (investor list, use of funds).
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.connectivity
+  - modalities.qc.gate_set
+  - field: milestones.1.headline
+    as_of: 2026-05-31
+    note: >
+      The "beyond one hour" bit-flip lifetime is from a September 2025 vendor announcement
+      of preliminary results; peer-reviewed citation pending. The peer-reviewed lifetime
+      figure of record remains the Nature 2024 ten-seconds result.
+  - field: roadmap
+    as_of: 2026-05-31
+    note: >
+      Logical-qubit counts, the six-nines fidelity target, and the 2030 date are forward
+      targets stated in the December 2024 roadmap white paper; peer-reviewed validation of
+      the logical-qubit milestones pending as each chip generation ships.
+  - field: shareholders
+    as_of: 2026-05-31
+    note: >
+      Private company; no equity percentages disclosed. Holders and lead/strategic roles
+      are taken from Series B and Series B-extension press releases. FFC is the round lead;
+      no single controlling holder is disclosed.
+
+last_verified: 2026-05-31
+verification_method: web

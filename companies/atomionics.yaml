@@ -1,0 +1,186 @@
+slug: atomionics
+name: Atomionics
+categories: [sensing]
+hq: Singapore
+founded: 2018
+status: private
+parent: null
+logo:
+  domain: atomionics.com
+
+positioning: >
+  Cold-atom quantum gravimeter for mineral, hydrocarbon, geothermal and groundwater
+  exploration. Flagship product Gravio is a portable cold-atom interferometer
+  designed to be operated from a moving vehicle (SUV today, drone roadmap), paired
+  with an in-house AI interpretation layer (ORE-O) that turns gravity data into
+  3D subsurface models. Customers are mining majors and energy explorers; a
+  separate defence-oriented strand develops cold-atom inertial sensors for
+  GPS-denied navigation with DSO National Laboratories.
+
+modalities:
+  sensing:
+    target_quantity: gravimetry
+    sensitivity: ""
+
+milestones:
+  - date: 2025-09
+    tag: sensing
+    headline: US$12.7M Pre-Series A led by Paspalis with BHP Ventures, In-Q-Tel, Wavemaker, VU Venture Partners, SG Growth Capital and Alex Turnbull
+    source_url: https://www.atomionics.com/news-detail/atomionics-urban-quantum-gravimetry-singapore
+    source_type: press
+  - date: 2025-09
+    tag: sensing
+    headline: BHP Ventures strategic investment announced alongside Pre-Series A; positioned to support BHP's critical-minerals discovery pipeline
+    source_url: https://www.bhp.com/news/articles/2025/09/bhp-ventures-invests-in-quantum-sensor-startup-atomionics
+    source_type: press
+  - date: 2025
+    tag: sensing
+    headline: Urban quantum-gravimetry proof of concept along Marina East Drive, Singapore, with the Quantum Sensor Centre and Cap Vista — Gravio operated from inside a moving vehicle in a dense urban setting
+    source_url: https://www.atomionics.com/news
+    source_type: press
+  - date: 2024-02
+    tag: sensing
+    headline: Rio Tinto Exploration field trial of Gravio for mineral exploration; further surveys scheduled with BHP across Tier-1 copper belts
+    source_url: https://www.mining.com/web/singapores-atomionics-taps-gravity-ai-in-hunt-for-critical-minerals/
+    source_type: press
+  - date: 2023-12
+    tag: sensing
+    headline: Partnership with Bridgeport Energy (Australia) to deploy Gravio as a "virtual drill" for commercial resource exploration
+    source_url: https://technode.global/2023/12/19/atomionics-partners-bridgeport-energy-to-deploy-first-ever-virtual-drill-for-commercial-resource-exploration/
+    source_type: press
+  - date: 2019
+    tag: sensing
+    headline: US$2.5M seed round led by Wavemaker Partners with SGInnovate and Cap Vista
+    source_url: https://www.cqt.sg/highlight/2021-06-atomionics-funding/
+    source_type: press
+
+shareholders:
+  - holder: Paspalis
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-09
+    source_url: https://www.atomionics.com/news-detail/atomionics-urban-quantum-gravimetry-singapore
+    note: Lead investor of the September 2025 Pre-Series A; backing Australian nationwide expansion
+  - holder: BHP Ventures
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-09
+    source_url: https://www.bhp.com/news/articles/2025/09/bhp-ventures-invests-in-quantum-sensor-startup-atomionics
+    note: Strategic investor (BHP's in-house VC arm) participating in the Pre-Series A
+  - holder: In-Q-Tel (IQT)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-09
+    source_url: https://technode.global/2025/09/17/singapores-atomionics-secures-12-7m-pre-series-a-funding-to-fast-track-resource-exploration-with-quantum-tech-in-australia-north-america/
+    note: US national-security-aligned VC; participated in Pre-Series A
+  - holder: Wavemaker Partners
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-09
+    source_url: https://technode.global/2025/09/17/singapores-atomionics-secures-12-7m-pre-series-a-funding-to-fast-track-resource-exploration-with-quantum-tech-in-australia-north-america/
+    note: Seed lead (2019) and Pre-Series A follow-on
+  - holder: VU Venture Partners
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-09
+    source_url: https://technode.global/2025/09/17/singapores-atomionics-secures-12-7m-pre-series-a-funding-to-fast-track-resource-exploration-with-quantum-tech-in-australia-north-america/
+  - holder: SG Growth Capital
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-09
+    source_url: https://technode.global/2025/09/17/singapores-atomionics-secures-12-7m-pre-series-a-funding-to-fast-track-resource-exploration-with-quantum-tech-in-australia-north-america/
+  - holder: SGInnovate
+    stake_percent: null
+    stake_class: minority
+    as_of: 2019
+    source_url: https://www.sginnovate.com/investments/atomionics
+    note: Singapore deep-tech investment arm; seed-round co-investor
+  - holder: Cap Vista
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2019
+    source_url: https://www.cqt.sg/highlight/2021-06-atomionics-funding/
+    note: Strategic investment arm of Singapore's DSTA (defence); seed co-investor and ongoing defence-aligned partner
+  - holder: 500 Global (500 Durians)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2019
+    source_url: https://www.cqt.sg/highlight/2021-06-atomionics-funding/
+  - holder: Entrepreneur First
+    stake_percent: null
+    stake_class: minority
+    as_of: 2019
+    source_url: https://www.cqt.sg/highlight/2021-06-atomionics-funding/
+    note: Founder programme that originally paired the two co-founders
+  - holder: Sahil Tapiawala & Ravi Kumar (co-founders)
+    stake_percent: null
+    stake_class: founder
+    as_of: 2018
+    source_url: https://www.atomionics.com/
+    note: Co-founders; equity split not disclosed
+
+key_personnel:
+  - role: Co-founder & CEO
+    name: Sahil Tapiawala
+    since: 2018
+    source_url: https://www.linkedin.com/in/sahil-tapiawala/
+    note: Prior research roles at SUTD and NTU on biomimetic robotics and multi-material 3D printing; BITS Pilani EE / Chemistry background
+  - role: Co-founder & CTO
+    name: Ravi Kumar
+    since: 2018
+    source_url: https://sg.linkedin.com/in/ravissb
+    note: PhD in cold-atom physics at OIST (Japan); post-doc at the Centre for Quantum Technologies (CQT), NUS on cavity QED with cold atoms
+
+roadmap:
+  - target: 2026
+    item: Drone-mountable Gravio configuration (currently vehicle-mounted; "drones next")
+    source_url: https://www.atomionics.com/technology
+    tag: sensing
+  - target: 2026
+    item: Nationwide Australian operations and North American expansion funded by the September 2025 Pre-Series A
+    source_url: https://www.atomionics.com/news-detail/atomionics-urban-quantum-gravimetry-singapore
+    tag: sensing
+
+current_flagship:
+  name: Gravio
+  generation: portable cold-atom interferometric gravimeter (vehicle-mounted)
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://www.atomionics.com/news-detail/atomionics-urban-quantum-gravimetry-singapore
+    note: Pre-Series A funding announcement (September 2025)
+  - kind: press
+    citation_key: null
+    url: https://www.bhp.com/news/articles/2025/09/bhp-ventures-invests-in-quantum-sensor-startup-atomionics
+    note: BHP Ventures strategic investment announcement
+  - kind: press
+    citation_key: null
+    url: https://www.mining.com/web/singapores-atomionics-taps-gravity-ai-in-hunt-for-critical-minerals/
+    note: Mining.com profile — Rio Tinto trial, planned BHP surveys, Gravio "basketball-sized" form factor
+  - kind: blog
+    citation_key: null
+    url: https://www.atomionics.com/technology
+    note: Vendor technology page — "100x higher data fidelity", vehicle-mount today, drone roadmap
+  - kind: press
+    citation_key: null
+    url: https://www.gov.uk/government/publications/quantum-in-singapore-opportunities-for-collaboration/quantum-in-singapore-opportunities-for-collaboration-to-drive-mutual-growth
+    note: UK government report citing the DSO National Laboratories collaboration on portable cold-atom inertial sensors
+
+partial:
+  - modalities.sensing.sensitivity
+  - field: milestones.3.date
+    as_of: 2026-05-21
+    note: Rio Tinto trial cited as "February" by Mining.com without an explicit year; placed at 2024-02 based on context, not directly confirmed
+  - field: milestones.2.date
+    as_of: 2026-05-21
+    note: Marina East Drive urban PoC dated 2025 from vendor news index; exact month not specified on the news-detail page
+  - field: shareholders
+    as_of: 2026-05-21
+    note: Private company — no individual stake percentages disclosed; ordering reflects round leadership and strategic weight, not cap-table position
+  - field: roadmap.0.target
+    as_of: 2026-05-21
+    note: Drone-mounted Gravio described as "next" on the vendor technology page without a dated commitment; 2026 is an editorial estimate
+
+last_verified: 2026-05-21
+verification_method: web

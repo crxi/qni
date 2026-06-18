@@ -1,0 +1,582 @@
+---
+/**
+ * /memories — Quantum memories
+ *
+ * Tier B · Components.
+ *
+ * Citations:
+ *   - meddeb-comnet-2025 — per-platform memory KPI/TRL benchmark
+ *     (Table 5: storage time + TRL across atomic ensembles,
+ *     solid-state, trapped ions, quantum dots, photonic,
+ *     superconducting).
+ *   - sangouard-rmp-83 — atomic-ensemble memories and the DLCZ
+ *     family of protocols.
+ *   - knaut-nature-2024 — SiV-centre nanophotonic memory operating
+ *     in a deployed telecom fibre network.
+ *   - pompili-science-2021 — three-node NV-centre repeater demo
+ *     using on-chip memories.
+ *   - ezratty-uqt-2025-p2 — section-level survey reference for
+ *     per-platform background.
+ *   - kumar-ijndc-2025 — current network-architecture survey,
+ *     network-role framing.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SourceNote from "../components/SourceNote.astro";
+import Math from "../components/Math.astro";
+import { url } from "../lib/url";
+
+const sections = [
+  { id: "overview",  label: "Overview" },
+  { id: "metrics",   label: "What gets measured" },
+  { id: "platforms", label: "Per-platform landscape" },
+  { id: "spectrum",  label: "Where they sit on the spectrum" },
+  { id: "trl",       label: "TRL benchmark" },
+  { id: "role",      label: "Network role" },
+];
+
+/**
+ * Per-platform comparison rows. Numbers are the best published
+ * single-quantity demonstrations the cited surveys highlight, not
+ * Pareto-optimal joint operating points: a memory that holds for an
+ * hour is not the same memory that retrieves at 80 % efficiency.
+ *
+ * Sources for the storage-time and TRL columns:
+ *   - meddeb-comnet-2025 Table 5 (six rows: atomic ensembles,
+ *     solid-state, trapped ions, quantum dots, photonic,
+ *     superconducting).
+ *   - sangouard-rmp-83 for the DLCZ + RE-doped-crystal context that
+ *     sits inside the "atomic ensembles" / "solid-state" rows.
+ *   - knaut-nature-2024 for the nanophotonic SiV demonstration that
+ *     anchors the solid-state defect row to a network deployment.
+ *
+ * Wavelength column is the optical interface most commonly used to
+ * read/write the memory in current network-relevant experiments;
+ * cross-referenced with the spectrum subject. Operating temperature
+ * is the regime each platform currently runs in for memory work
+ * (cold-atom MOTs at µK, RE-doped crystals in dilution / ³He
+ * cryostats, NV/SiV at <100 mK for the cavity-coupled experiments,
+ * quantum dots at ~4 K, photonic delay lines at room temperature).
+ */
+const platforms = [
+  {
+    id: "atomic-ensembles",
+    label: "Atomic ensembles",
+    sub: "Cold-atom DLCZ, EIT, AFC",
+    storageTime: "≤ 1 hour (RE-doped, AFC)",
+    storageNote: "Few ms in DLCZ-type demos; up to 1 h in atomic-frequency-comb storage.",
+    multimode: "10s–100s of modes",
+    temperature: "µK (cold atoms) · 2–4 K (RE-doped crystals)",
+    interface: "Near-IR · 606 nm Pr:YSO · 580 nm Eu:YSO · 795/780 nm Rb/Cs",
+    trl: "7–8",
+    color: "var(--platform-atomic-ensemble, #4a8fbf)",
+  },
+  {
+    id: "solid-state-defects",
+    label: "Solid-state defects",
+    sub: "NV centre, SiV centre in diamond",
+    storageTime: "~100 µs (electron); seconds (nuclear)",
+    storageNote: "Communication electron spin holds for ~100 µs; nearby ¹³C nuclear-spin register has been demonstrated past 1 s.",
+    multimode: "1 (single emitter)",
+    temperature: "< 100 mK (cavity-coupled SiV) · 4 K (NV)",
+    interface: "637 nm (NV) · 737 nm (SiV); telecom via QFC",
+    trl: "5–6",
+    color: "var(--platform-defect, #b8675a)",
+  },
+  {
+    id: "trapped-ions",
+    label: "Trapped ions",
+    sub: "Yb⁺, Ca⁺, Ba⁺, Sr⁺",
+    storageTime: "~10 s (single-ion qubit memory)",
+    storageNote: "Hyperfine-encoded qubits in a clock state. Hour-scale single-ion coherence has been reported at the qubit level; network-relevant memory experiments sit nearer the 10-s mark.",
+    multimode: "1 per ion (per-ion register)",
+    temperature: "Room-T trap, laser-cooled to mK",
+    interface: "UV–visible (369 nm Yb⁺, 397 nm Ca⁺, 493 nm Ba⁺); telecom via QFC",
+    trl: "6–7",
+    color: "var(--platform-ion, #5a8a5a)",
+  },
+  {
+    id: "neutral-atoms",
+    label: "Neutral atoms",
+    sub: "Optical-tweezer arrays, Rydberg",
+    storageTime: "Seconds (clock-state nuclear-spin qubits)",
+    storageNote: "Network-memory experiments in this platform are newer than the survey cycle; covered alongside atomic ensembles where the DLCZ-style read/write applies.",
+    multimode: "Per-atom register; arrays of 100s of atoms",
+    temperature: "µK (laser-cooled in optical tweezers)",
+    interface: "Near-IR · 780 nm Rb · 852 nm Cs",
+    trl: "—",
+    color: "var(--platform-atom, #d4a44a)",
+  },
+  {
+    id: "quantum-dots",
+    label: "Semiconductor quantum dots",
+    sub: "InAs/GaAs, hole-spin, charge-tunable",
+    storageTime: "≤ 4 days (room-T charge memory demo)",
+    storageNote: "The 4-day figure is a write-and-erase charge memory; network-relevant spin-photon memories in dots sit at ms–s.",
+    multimode: "1 (single emitter)",
+    temperature: "~4 K (network-grade); RT for charge-storage demo",
+    interface: "900–1100 nm (InAs/GaAs); telecom via wavelength-tuned dots or QFC",
+    trl: "5–6",
+    color: "var(--platform-dot, #9e6ab8)",
+  },
+  {
+    id: "photonic",
+    label: "Photonic delay-line",
+    sub: "Fibre loop, cavity, hollow-core",
+    storageTime: "~2 µs (fibre-cavity telecom memory)",
+    storageNote: "Storage at telecom wavelengths in single-mode fibre, no transduction needed. The cited number is short, and the platform inherits the link's own loss-per-km — every µs of storage is ~200 m of fibre.",
+    multimode: "Time-bin · frequency · spatial multiplexing",
+    temperature: "Room temperature (operates at the link's own temperature)",
+    interface: "Telecom C-band (1530–1565 nm)",
+    trl: "5–6",
+    color: "var(--platform-photonic, #4f8a8a)",
+  },
+  {
+    id: "superconducting",
+    label: "Superconducting",
+    sub: "Resonator-coupled qubit memory (RAQM)",
+    storageTime: "~34 ms (single-photon resonator memory)",
+    storageNote: "Random-Access Quantum Memory: a superconducting qubit is parked in a long-lived microwave resonator. Couples natively to superconducting processors but needs a microwave→optical transducer to sit on a fibre network.",
+    multimode: "Few resonator modes",
+    temperature: "10–20 mK (dilution refrigerator)",
+    interface: "Microwave (5–10 GHz); telecom only via transduction",
+    trl: "5–6",
+    color: "var(--platform-sc, #c87a7a)",
+  },
+];
+---
+
+<Infographic
+  title="Quantum memories"
+  description="A quantum memory holds a qubit's state long enough for the surrounding network to do something useful with it — schedule a swap, run a purification step, wait on a partner photon. This page covers what storage time means, the per-platform landscape from atomic ensembles to photonic delay lines, the wavelength each memory speaks, and where each platform sits on the technology readiness scale."
+  references={[
+    "ezratty-uqt-2025-p2",
+    "knaut-nature-2024",
+    "kumar-ijndc-2025",
+    "meddeb-comnet-2025",
+    "pompili-science-2021",
+    "sangouard-rmp-83",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="memories" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>Quantum memories</h1>
+        <p>
+          A <strong>quantum memory</strong> stores a qubit's state — the full
+          <Math tex="\\alpha|0\\rangle + \\beta|1\\rangle" /> superposition with its
+          relative phase intact — and gives it back later, ideally on demand. Storage
+          times in the laboratory range from microseconds in fibre-cavity photonic memories
+          up to about an hour in rare-earth-doped crystals; everyday network experiments
+          live in the millisecond-to-second band. Without a memory the network can only
+          forward photons that are already in flight, which rules out the wait-on-a-partner
+          step at the heart of every memory-based repeater
+          <SourceNote id="sangouard-rmp-83" />.
+        </p>
+        <p>
+          Memories sit between the link and the application. A link delivers a Bell pair
+          probabilistically: the network may try a thousand times before one heralds, and
+          the matching attempt at the next hop along the chain heralds independently. The
+          memory is what holds the first half of the Bell pair while the next half is
+          generated. Once the second half lands, a swap can extend the entanglement; once
+          enough Bell pairs have accumulated, purification can clean them up. None of this
+          works without storage long enough to bridge the latency between heralding events
+          <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+      </header>
+
+      <section id="metrics" data-nav-section>
+        <h2>What gets measured</h2>
+        <p>
+          A memory's quality is not a single number. Four metrics matter for network use,
+          and a platform that wins on one usually loses on another. The platform table
+          below quotes a representative storage time and a TRL for each row; the rest of
+          this section is the vocabulary needed to read it
+          <SourceNote id="ezratty-uqt-2025-p2" />.
+        </p>
+        <ul>
+          <li>
+            <strong>Storage time</strong> — how long the stored state retains its quantum
+            character. Two underlying constants drive it. <Math tex="T_1" /> is the
+            energy-relaxation time (how long the excited state stays excited);
+            <Math tex="T_2" /> is the dephasing time (how long the relative phase between
+            <Math tex="|0\\rangle" /> and <Math tex="|1\\rangle" /> survives). Coherent
+            storage of a qubit — not just a classical bit — is bounded by
+            <Math tex="T_2" />, the smaller of the two, and in practice
+            <Math tex="T_2 \\le 2 T_1" />. The published "storage time" is typically the
+            time at which retrieved-state fidelity has dropped to a quoted threshold.
+          </li>
+          <li>
+            <strong>Retrieval efficiency</strong> — the probability that a stored
+            excitation comes back out as a photon when the readout pulse fires. A
+            memory that holds for a long time but only retrieves 5 % of the time is a
+            different engineering proposition from one that holds briefly but retrieves
+            with 80 % efficiency. The Sangouard <em>RMP</em> review treats efficiency
+            and time together because they trade off through the storage protocol's
+            optical depth and bandwidth <SourceNote id="sangouard-rmp-83" />.
+          </li>
+          <li>
+            <strong>Retrieval fidelity</strong> — how close the retrieved state is to
+            the one that was written in. Storage that returns a maximally mixed state
+            on cue is useless; the memory has to preserve the qubit's relative phase, not
+            just the populations.
+          </li>
+          <li>
+            <strong>Multimode capacity</strong> — how many qubits the memory can hold in
+            parallel. Multimode storage is what makes the entanglement-distribution rate
+            of a long chain workable: a single-mode memory has to sit idle between
+            attempts, while an N-mode memory can absorb N parallel attempts and let the
+            classical heralding signal pick out which one succeeded
+            <SourceNote id="sangouard-rmp-83" />.
+          </li>
+        </ul>
+      </section>
+
+      <section id="platforms" data-nav-section>
+        <h2>Per-platform landscape</h2>
+        <p>
+          Seven platforms cover essentially all current memory work. Numbers in the table
+          are the best published demonstrations cited in the surveys below, not Pareto-
+          optimal joint operating points: the same memory does not simultaneously hold for
+          an hour, retrieve at 80 % efficiency, store thousands of modes, and operate at
+          telecom wavelengths. Reading the table requires holding all four metrics from
+          the previous section in mind together. Storage-time and TRL figures track Meddeb
+          2025 Table 5 <SourceNote id="meddeb-comnet-2025" />; per-platform context follows
+          Sangouard <em>RMP</em> 2011 for atomic ensembles and Ezratty <em>UQT</em> Part 2
+          for the surrounding hardware survey
+          <SourceNote id="ezratty-uqt-2025-p2" />.
+        </p>
+
+        <div class="mem-table-wrap">
+          <table class="mem-table">
+            <thead>
+              <tr>
+                <th scope="col">Platform</th>
+                <th scope="col">Storage time</th>
+                <th scope="col">Multimode capacity</th>
+                <th scope="col">Operating temperature</th>
+                <th scope="col">Optical interface</th>
+                <th scope="col">TRL</th>
+              </tr>
+            </thead>
+            <tbody>
+              {platforms.map((p) => (
+                <tr id={`platform-${p.id}`} style={`--row-color: ${p.color};`}>
+                  <th scope="row">
+                    <span class="mem-table__rule"></span>
+                    <span class="mem-table__platform">
+                      <strong>{p.label}</strong>
+                      <span class="mem-table__sub">{p.sub}</span>
+                    </span>
+                  </th>
+                  <td>{p.storageTime}</td>
+                  <td>{p.multimode}</td>
+                  <td>{p.temperature}</td>
+                  <td>{p.interface}</td>
+                  <td class="mem-table__trl">{p.trl}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <ul class="mem-notes">
+          {platforms.map((p) => (
+            <li>
+              <strong>{p.label}.</strong> {p.storageNote}
+            </li>
+          ))}
+        </ul>
+
+        <p>
+          Two demonstrations anchor the solid-state-defect row to network deployment.
+          Pompili et al. (2021) ran a three-node NV-centre network using on-chip nuclear-
+          spin memories to hold the first link's Bell pair while the second link was
+          generated <SourceNote id="pompili-science-2021" />. Knaut et al. (2024) ran a
+          two-node SiV-centre memory experiment over 35 km of deployed Boston-area telecom
+          fibre, with a quantum-frequency-conversion stage carrying the SiV's 737 nm
+          photons to telecom and back <SourceNote id="knaut-nature-2024" />. Both
+          experiments treat the memory as the network's scheduling primitive — what makes
+          asynchronous heralding actually compose.
+        </p>
+      </section>
+
+      <section id="spectrum" data-nav-section>
+        <h2>Where memories sit on the spectrum</h2>
+        <p>
+          Each memory speaks a fixed wavelength of light — set by the atomic transition or
+          defect level it stores into. Most memories speak something other than the
+          telecom C-band: rare-earth-doped crystals at 580–795 nm, NV at 637 nm, SiV at
+          737 nm, ion-trap UV–visible lines, quantum dots in the 900–1100 nm range. To
+          travel along deployed fibre, the photon those memories absorb or emit has to
+          first be converted to the C-band by a quantum frequency converter (QFC); for
+          superconducting memories the conversion is microwave-to-optical and is the
+          field's hardest open transducer. The <a href={url("/spectrum")}>spectrum</a> page
+          places all of these on a common log-frequency axis with the C-band marked as
+          the convergence target; the <a href={url("/transduction")}>transduction</a> page covers
+          the conversion devices themselves.
+        </p>
+      </section>
+
+      <section id="trl" data-nav-section>
+        <h2>TRL benchmark</h2>
+        <p>
+          Meddeb's 2025 <em>Computer Networks</em> survey rates each memory technology on
+          the standard TRL 1–9 scale, alongside its current and decade-ago storage time.
+          The summary, condensed from Table 5
+          <SourceNote id="meddeb-comnet-2025" />:
+        </p>
+
+        <div class="mem-trl">
+          <table class="mem-trl__table">
+            <thead>
+              <tr>
+                <th scope="col">Technology</th>
+                <th scope="col">Storage time, today</th>
+                <th scope="col">A decade ago</th>
+                <th scope="col">TRL today</th>
+                <th scope="col">TRL a decade ago</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Atomic ensembles</th>
+                <td>1 hour</td>
+                <td>0.6 ms</td>
+                <td>7–8</td>
+                <td>5–6</td>
+              </tr>
+              <tr>
+                <th scope="row">Solid-state defects</th>
+                <td>100 µs</td>
+                <td>50 ns</td>
+                <td>5–6</td>
+                <td>3–4</td>
+              </tr>
+              <tr>
+                <th scope="row">Trapped ions</th>
+                <td>10 s</td>
+                <td>50 ms (network-grade)</td>
+                <td>6–7</td>
+                <td>5–6</td>
+              </tr>
+              <tr>
+                <th scope="row">Quantum dots</th>
+                <td>4 days (charge memory)</td>
+                <td>20 ms</td>
+                <td>5–6</td>
+                <td>4–5</td>
+              </tr>
+              <tr>
+                <th scope="row">Photonic</th>
+                <td>2 µs</td>
+                <td>0.85 ms</td>
+                <td>5–6</td>
+                <td>4–5</td>
+              </tr>
+              <tr>
+                <th scope="row">Superconducting</th>
+                <td>34 ms</td>
+                <td>35 µs</td>
+                <td>5–6</td>
+                <td>3–4</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          Two patterns stand out. Atomic ensembles and trapped ions are the most mature
+          memory platforms on the survey, with TRLs in the 6–8 range and storage times
+          long enough to absorb realistic link latency. Solid-state, quantum-dot, and
+          photonic memories sit in the 5–6 range — viable but pre-deployment. The
+          superconducting row is a special case: 34 ms is enough to hold a microwave qubit
+          for a long-distance fibre link's worth of latency in principle, but the missing
+          microwave-to-optical transducer means it cannot today be the memory in a fibre
+          quantum network.
+        </p>
+        <p>
+          The <a href={url("/maturity")}>maturity</a> page sets these per-memory TRLs against the
+          per-capability QTRL framework Purohit et al. propose, so a single platform's
+          TRL for "memory" can differ from its TRL for "compute" or "source".
+        </p>
+      </section>
+
+      <section id="role" data-nav-section>
+        <h2>Network role</h2>
+        <p>
+          The memory is what makes asynchronous protocols composable. Three patterns from
+          the surrounding subjects use it directly:
+        </p>
+        <ul>
+          <li>
+            <strong>Memory-based repeaters</strong> chain Bell-pair generation with
+            entanglement swapping. Each segment heralds independently; the memory at each
+            node holds the segment-A half of a Bell pair while the segment-B attempt
+            cycles. Without memory, both segments would have to herald in the same
+            optical-flight window — a vanishingly small probability over realistic
+            distances. <em>Covered in the</em> <strong>repeaters</strong> <em>subject.</em>
+          </li>
+          <li>
+            <strong>Purification</strong> needs at least two Bell pairs co-located at
+            each end. The first pair sits in memory while the second is being delivered;
+            local CNOTs and measurement then trade the two pairs for one of higher
+            fidelity. <em>Covered in the</em> <strong>purification</strong> <em>subject.</em>
+          </li>
+          <li>
+            <strong>Quantum-frequency conversion</strong> ties memory wavelength to the
+            telecom C-band. A memory at 737 nm cannot itself sit on a deployed fibre link;
+            a QFC stage between the memory and the link translates incoming and outgoing
+            photons to and from the C-band. <em>Covered in the</em>
+            <strong>transduction</strong> <em>subject.</em>
+          </li>
+        </ul>
+        <p>
+          The all-photonic-repeater family is the exception that proves the rule: by
+          encoding the entanglement into a graph state of photons up front, it removes
+          the memory requirement at the price of an order-of-magnitude harder photon
+          source <SourceNote id="kumar-ijndc-2025" />. <em>Covered in the</em>
+          <strong>all-photonic QR</strong> <em>subject.</em>
+        </p>
+      </section>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-4);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .hero h1 { margin: 0; }
+  .hero p  { margin: 0; }
+
+  section { display: grid; gap: var(--space-3); }
+
+  ul {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+  li { line-height: var(--leading-snug); }
+
+  /* ─── Per-platform comparison table ─────────────────────────── */
+  /* Wide table with a left rule per row tinted with a per-platform
+     colour. The wrapper is horizontally scrollable on narrow
+     viewports so the table never breaks the page-grid. */
+  .mem-table-wrap {
+    inline-size: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+  }
+  .mem-table {
+    inline-size: 100%;
+    min-inline-size: 56rem;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+  }
+  .mem-table thead th {
+    text-align: start;
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-mute);
+    border-block-end: 1px solid var(--color-rule);
+    background: var(--color-surface-2);
+  }
+  .mem-table tbody th,
+  .mem-table tbody td {
+    padding: var(--space-2) var(--space-3);
+    border-block-end: 1px solid var(--color-rule);
+    vertical-align: top;
+    text-align: start;
+  }
+  .mem-table tbody tr:last-child th,
+  .mem-table tbody tr:last-child td {
+    border-block-end: none;
+  }
+  .mem-table tbody th {
+    position: relative;
+    inline-size: 14rem;
+    font-weight: 400;
+    color: var(--color-text);
+  }
+  .mem-table__rule {
+    position: absolute;
+    inset-block: 0.4rem;
+    inset-inline-start: 0;
+    inline-size: 3px;
+    border-radius: 2px;
+    background: var(--row-color, var(--color-accent));
+  }
+  .mem-table__platform {
+    display: grid;
+    gap: 2px;
+    padding-inline-start: var(--space-3);
+  }
+  .mem-table__sub {
+    font-size: var(--text-xs);
+    color: var(--color-text-mute);
+  }
+  .mem-table__trl {
+    font-family: var(--font-mono);
+    font-weight: 600;
+  }
+
+  /* ─── Per-row notes (mobile-friendly companion to the table) ── */
+  ul.mem-notes {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-mute);
+  }
+  ul.mem-notes strong { color: var(--color-text); }
+
+  /* ─── TRL benchmark table (Meddeb Table 5 condensed) ────────── */
+  .mem-trl {
+    inline-size: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+  }
+  .mem-trl__table {
+    inline-size: 100%;
+    min-inline-size: 38rem;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+  }
+  .mem-trl__table th,
+  .mem-trl__table td {
+    text-align: start;
+    padding: var(--space-2) var(--space-3);
+    border-block-end: 1px solid var(--color-rule);
+  }
+  .mem-trl__table thead th {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-mute);
+    background: var(--color-surface-2);
+  }
+  .mem-trl__table tbody tr:last-child th,
+  .mem-trl__table tbody tr:last-child td {
+    border-block-end: none;
+  }
+  .mem-trl__table tbody th { font-weight: 600; }
+</style>

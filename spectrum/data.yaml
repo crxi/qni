@@ -1,0 +1,307 @@
+title: "Spectrum — quantum platforms across the EM range"
+
+canvas:
+  width: 1300
+  height: 1140
+  margin: {left: 60, right: 60, top: 16, bottom: 16}
+
+# Broken (segmented) x-axis: most quantum platforms sit between 100 THz and
+# 1 PHz, while only superconducting qubits sit at GHz frequencies. A single
+# log axis from 1 GHz to 1 PHz wastes the left half of the chart, so we
+# split into two segments with a visual break in between.
+freq_axis:
+  segments:
+    - {min_hz: 1.0e9,  max_hz: 1.0e11, width_pct: 14}   # left: 1 GHz – 100 GHz
+    - {min_hz: 1.0e14, max_hz: 1.0e15, width_pct: 70}   # right: 100 THz – 1 PHz
+  gap_pct: 6
+
+# Platform stacking: render.py groups platforms into per-region stacks
+# (one per freq-axis segment) and greedily packs each region — boxes whose
+# x-ranges don't overlap share a level, otherwise the next box goes one
+# level up. There's no per-platform `track:` field; everything is computed
+# from the box content widths and frequency positions.
+tracks:
+  # y-coordinate of the top edge of the *topmost* platform box on the
+  # chart. The bottom of the platform area is computed dynamically from
+  # the tallest region's total stack height, so adding/removing levels
+  # automatically reflows everything below (axis, table, etc.).
+  top_y: 100
+
+# Subtitles always carry wavelength · frequency (both rendered bold) so the
+# spectrum-position metadata is consistent across platforms.
+platforms:
+  # `roles`: which capabilities each platform supports — `compute`, `memory`,
+  # `source` (single-photon / entangled-pair). Multiple are common (NV,
+  # neutral atoms, trapped ions are dual- or triple-use). The chart renders
+  # this as three small chips at the top-right of each box: filled = the
+  # platform supports that role, outlined = it doesn't. This replaces the
+  # old binary "kind = memory|source|computer" classification, which
+  # forced single-role pigeonholing of dual-use platforms (NV stayed
+  # "computer" because of Quoll, hiding its memory role).
+  #
+  # `kind` is kept only because the chart's bottom flagship-machines
+  # table routes platforms into a "Quantum Computers" left column or a
+  # "Quantum Memories & Sources" right column; that single primary-role
+  # selector lives in `kind`.
+  - id: superconducting
+    label: "Superconducting qubits"
+    subtitle: "transmon · 5–10 GHz · 30–60 mm"
+    freq_range_hz: [5.0e9, 1.0e10]
+    vendors: [Google, IBM, IQM, Rigetti, USTC]
+    color: "#5b8def"
+    roles: [compute]
+
+  - id: topological
+    label: "Topological (Majorana)"
+    subtitle: "InAs/Al · ~5 GHz · 60 mm"
+    freq_range_hz: [3.0e9, 7.0e9]
+    vendors: [Microsoft]
+    color: "#3a7d7d"
+    roles: [compute]
+
+  - id: si_spin
+    # The "Silicon spin" qubit is the dominant modern quantum-dot
+    # incarnation: an electron spin trapped in a Si CMOS quantum dot.
+    # Labelled to make the quantum-dot family explicit, matching the
+    # qubits page card title.
+    label: "Quantum dot (Si spin)"
+    subtitle: "electron Larmor · 10–50 GHz · 6–30 mm"
+    freq_range_hz: [1.0e10, 5.0e10]
+    vendor_lines:
+      - "Diraq · Equal1 · Intel"
+      - "Quantum Motion · SQC"
+    color: "#7d5fa8"
+    roles: [compute]
+
+  - id: photonic
+    # Label is just "Photonics" rather than "Photonic QC" / "Photonic
+    # quantum computer": every other platform on the chart is named
+    # without a generic "QC" / "Computer" suffix, and the card view
+    # already adds a kind chip ("Computer", "Memory", "Source") so a
+    # suffix here would read as "Photonic QC · Computer".
+    label: "Photonics"
+    # Subtitle stays spec-only (wavelength + frequency). The chart's
+    # position-under-C-band-strip and the QFC arrow already convey
+    # "this is at telecom wavelength" — repeating the word in the box
+    # was redundant editorial.
+    subtitle: "1550 nm · 193 THz"
+    wavelength_nm: 1550
+    # Vendors sorted alphabetically; USTC listed as the institution itself
+    # (no "Academic" wrapper) since they ship the Jiuzhang series.
+    vendor_lines:
+      - "ORCA · PsiQuantum · Quandela"
+      - "USTC · Xanadu"
+    color: "#7fb8c4"
+    roles: [compute, source]
+
+  - id: neutral_atoms
+    # Atom Computing migrated from Sr-87 to Yb-171 for their 1,180-qubit
+    # system, so Sr is no longer represented. Welinq is a cold-atom (Rb-87)
+    # quantum memory vendor — not a neutral-atom *computer* maker — but
+    # sits at the same Rb D2 wavelength so it goes in this box, with
+    # "(memory)" annotation on its row.
+    label: "Neutral atoms (Rb·Cs·Yb)"
+    subtitle: "780–1064 nm · 282–384 THz"
+    wavelength_range_nm: [780, 1064]
+    vendor_lines:
+      - "Atom Comp. · Infleqtion · Pasqal · QuEra"
+      - "Welinq (memory)"
+    color: "#e8b65a"
+    roles: [compute, memory, source]
+
+  - id: quantum_dots
+    # Quantum dots also host stationary qubits (see si_spin above) —
+    # this entry is specifically the photon-source role, at visible
+    # optical wavelengths. Labelled to keep the two roles distinct.
+    label: "Quantum dot (photon source)"
+    subtitle: "600–950 nm · 316–500 THz"
+    wavelength_range_nm: [600, 950]
+    # Quandela removed: their QD is the photon source inside their photonic
+    # computer; their public-facing classification is Photonic QC, not a
+    # standalone QD vendor. Sparrow Quantum and Aegiq sell QD components.
+    vendors: [Aegiq, "Sparrow Q."]
+    color: "#d8a86b"
+    kind: source
+    roles: [source]
+
+  - id: siv_memory
+    label: "SiV centre (diamond)"
+    subtitle: "ZPL 737 nm · 407 THz"
+    wavelength_nm: 737
+    vendors: ["Element Six", Lightsynq]
+    color: "#b07070"
+    kind: memory
+    roles: [memory, source]
+
+  - id: nv_centre
+    # align_above: NV's x-range is fully inside re_memory's, but its
+    # left edge sits to the right of re_memory's left edge — so a
+    # "step up" arrangement (NV stacked on the level above re_memory
+    # rather than below it) reads more naturally than the default
+    # frequency-ascending order would produce.
+    label: "NV centre (diamond)"
+    subtitle: "ZPL 637 nm · 471 THz"
+    wavelength_nm: 637
+    vendors: ["Element Six", "Q. Brilliance"]
+    color: "#9a7fb8"
+    align_above: re_memory
+    # Genuinely tri-role: Quantum Brilliance ships small NV computers
+    # (Quoll), the same defect species is a textbook spin memory, and
+    # NV centres can produce entangled photon-spin pairs for repeater
+    # demos. The chart's old "kind: computer" hid the latter two.
+    roles: [compute, memory, source]
+
+  - id: re_memory
+    label: "Rare-earth memory"
+    subtitle: "Eu³⁺/Pr³⁺:Y₂SiO₅ · 580–606 nm · 495–517 THz"
+    wavelength_range_nm: [580, 606]
+    # Welinq removed: their QDrive uses Rb-87 cold atoms, not rare-earth
+    # ions. ETH replaced with Geneva (Gisin's group is the canonical
+    # Swiss RE memory team; Faraon at Caltech, Sellars/Longdell at ANU).
+    vendors: ["ANU", "Caltech", "Geneva"]
+    color: "#c98a8a"
+    kind: memory
+    roles: [memory]
+
+  # Hidden platform: only appears in the bottom-right memories table, not
+  # as a box on the chart. Welinq is already listed inside the Neutral
+  # atoms box; this gives it its own row in the memory column too.
+  - id: cold_atom_memory
+    label: "Cold-atom memory"
+    color: "#e8b65a"
+    kind: memory
+    hidden: true
+    roles: [memory]
+
+  - id: er_memory_telecom
+    # The only memory platform that emits natively in C-band, so the QFC
+    # arrow does NOT need to apply to it — Er³⁺ photons can hit deployed
+    # telecom fibre directly. memQ (Argonne / Awschalom spin-out) is the
+    # leading commercial Er:TiO₂-on-SiN integrated-photonic effort;
+    # Princeton (de Leon, Er:CaWO₄ Purcell-enhanced single ions) and
+    # Caltech (Faraon, Er:Y₂SiO₅ nanocavities) are the academic anchors.
+    # align_with: Er³⁺ is a rare-earth ion just like Eu³⁺/Pr³⁺ in
+    # re_memory; the hint promotes its box to the same vertical level
+    # so the family relationship is visually obvious despite the wide
+    # frequency separation (telecom vs visible).
+    # Label and subtitle both stripped of "telecom" / "C-band" — the
+    # box position under the C-band strip on the chart already says it.
+    # The internal id `er_memory_telecom` is unchanged because it's
+    # only used for cross-references in flagship_machines and refs.
+    label: "Er³⁺ memory"
+    subtitle: "1532 nm · 196 THz"
+    wavelength_nm: 1532
+    vendors: ["Caltech", "memQ", "Princeton"]
+    color: "#4a8b8b"
+    kind: memory
+    align_with: re_memory
+    roles: [memory]
+
+  - id: trapped_ions_yb
+    # Yb⁺-171 hyperfine clock qubit, cooling at 369.5 nm. AQT (Innsbruck),
+    # IonQ, and Oxford Ionics (acquired by IonQ Sep 2025; kept as
+    # originating brand) all run on Yb. Quantinuum used to be in this list
+    # but Helios (Nov 2025) ships with Ba — see trapped_ions_ba.
+    label: "Trapped ions (Yb⁺)"
+    subtitle: "369 nm · 813 THz"
+    wavelength_nm: 369
+    vendors: [AQT, IonQ, "Oxford Ionics"]
+    color: "#7c5fa8"
+    # Trapped ions are textbook dual/triple-use: Quantinuum/IonQ ship
+    # them as computers; long T₂ coherence makes them memory candidates
+    # (Meddeb 2025 Table 5: TRL 6–7 for trapped-ion memory); ion-photon
+    # entanglement is a standard heralded-source primitive.
+    roles: [compute, memory, source]
+
+  - id: trapped_ions_ba
+    # Quantinuum Helios (Nov 2025) is the first commercial system to use
+    # ¹³⁷Ba⁺ as the qubit ion. Visible-band cooling at 493 nm and 650 nm
+    # repumper, vs. Yb's 369 nm UV — much friendlier laser engineering.
+    label: "Trapped ions (Ba⁺)"
+    subtitle: "493 nm · 608 THz"
+    wavelength_nm: 493
+    vendors: [Quantinuum]
+    color: "#5f8da8"
+    roles: [compute, memory, source]
+
+# ITU-T G.694.2 fibre bands (wavelengths in nm). Colors are a soft spectrum
+# from longer-wavelength (warm) to shorter-wavelength (cool) for visual
+# distinctness in the band strip.
+fiber_bands:
+  - {id: O, range_nm: [1260, 1360], name: "Original",     color: "#a4c4f0"}
+  - {id: E, range_nm: [1360, 1460], name: "Extended",     color: "#90d4d4"}
+  - {id: S, range_nm: [1460, 1530], name: "Short",        color: "#9ad6a8"}
+  - {id: C, range_nm: [1530, 1565], name: "Conventional", color: "#f2d35a", emphasis: true}
+  - {id: L, range_nm: [1565, 1625], name: "Long",         color: "#f0a070"}
+  - {id: U, range_nm: [1625, 1675], name: "Ultra-long",   color: "#dc7a7a"}
+
+# Both arrows converge ON the C-band (1550 nm telecom) — the bridging
+# wavelength for fibre-based quantum networks. M-O transducer comes from
+# microwave; QFC comes from visible.
+annotations:
+  - kind: arrow
+    label: "Microwave-to-optical transducer"
+    sublabel: "5 GHz → 1550 nm · ~4.6 orders of magnitude · the hard problem"
+    from_hz: 5.0e9
+    to_hz: 1.934e14    # 1550 nm telecom C-band
+    color: "#c0392b"
+
+  - kind: arrow
+    label: "Quantum frequency conversion (QFC)"
+    sublabel: "PPLN · χ⁽²⁾/χ⁽³⁾ nonlinear optics · ~50–80% lab efficiency"
+    from_hz: 7.5e14    # ~400 nm (visible/UV edge) — leftward into telecom;
+                       # length matches the M-O transducer arrow's span
+    to_hz: 1.934e14    # 1550 nm telecom C-band
+    color: "#1f7a3a"
+
+# Flagship-machine table at the bottom of the chart. Keys match platform
+# `id` values; each value is rendered as a single row "Platform — vendors".
+# Verified Nov 2025 against vendor press + Ezratty UQT 2025.
+# Flagship-machine table. Vendors alphabetical; *asterisks* mark future
+# planned machines (rendered bold). Verified Nov 2025 against vendor press.
+flagship_machines:
+  superconducting: "Google (Willow) · IBM (Heron, *Nighthawk*, *Starling*, *Blue Jay*) · IQM (Radiance) · Rigetti (Ankaa-3) · USTC (Zuchongzhi 3)"
+  topological:     "Microsoft (Majorana 1)"
+  si_spin:         "Diraq · Equal1 · Intel (Tunnel Falls) · Quantum Motion · SQC"
+  photonic:        "ORCA (PT-2, *PA-series*) · PsiQuantum (Omega) · Quandela (Belenos) · USTC (Jiuzhang 4.0) · Xanadu (Aurora)"
+  neutral_atoms:   "Atom Computing (Phoenix) · Infleqtion (Sqale) · Pasqal (Orion Beta, *Orion Gamma*) · QuEra (Gemini)"
+  quantum_dots:    "Aegiq (iSPS) · Sparrow Q. (Sparrow Nest)"
+  siv_memory:      "Element Six (substrates) · Lightsynq (modules)"
+  nv_centre:       "Element Six (substrates) · Quantum Brilliance (Quoll)"
+  re_memory:       "ANU · Caltech · Geneva  — research only, no commercial machines"
+  cold_atom_memory:   "Welinq (QDrive)"
+  er_memory_telecom:  "memQ (Er:TiO₂ on SiN) · Princeton (Er:CaWO₄ single-ion) · Caltech (Er:Y₂SiO₅)"
+  trapped_ions_yb:    "AQT (MARMOT, IBEX Q1) · IonQ (Tempo) · Oxford Ionics"
+  trapped_ions_ba:    "Quantinuum (Helios, *Sol*, *Apollo*)"
+
+axis_ticks:
+  - {hz: 1.0e9,  label: "1 GHz",   wavelength: "30 cm"}
+  - {hz: 1.0e10, label: "10 GHz",  wavelength: "3 cm"}
+  - {hz: 1.0e11, label: "100 GHz", wavelength: "3 mm"}
+  - {hz: 1.0e14, label: "100 THz", wavelength: "3 µm"}
+  - {hz: 2.0e14, label: "200 THz", wavelength: "1.5 µm"}
+  - {hz: 3.0e14, label: "300 THz", wavelength: "1 µm"}
+  - {hz: 5.0e14, label: "500 THz", wavelength: "600 nm"}
+  - {hz: 7.0e14, label: "700 THz", wavelength: "430 nm"}
+  - {hz: 1.0e15, label: "1 PHz",   wavelength: "300 nm"}
+
+# Region shading + bottom labels. label_at_hz pins the label inside the
+# visible segment (region midpoints can fall into the broken-axis gap).
+# label_row (default 0) staggers crowded labels onto a lower row.
+# gradient="rainbow" picks the rainbow_stops fill.
+regions:
+  - {label: "MICROWAVE", from_hz: 1.0e9,  to_hz: 3.0e11,  color: "#eef2f7", label_at_hz: 1.7e10}
+  - {label: "NEAR-IR",   from_hz: 3.0e11, to_hz: 4.28e14, color: "#fef6ec", label_at_hz: 1.5e14}
+  - {label: "VISIBLE",   from_hz: 4.28e14, to_hz: 7.49e14, gradient: rainbow}
+  - {label: "UV",        from_hz: 7.49e14, to_hz: 1.0e15, color: "#e3dcf2"}
+
+# Visible-spectrum rainbow stops (~400–700 nm). Each stop maps to an x
+# position via the freq axis. Used when a region sets gradient: rainbow.
+rainbow_stops:
+  - {nm: 700, color: "#e02020"}    # red,    ~428 THz
+  - {nm: 620, color: "#ff7f00"}    # orange, ~484 THz
+  - {nm: 580, color: "#ffe000"}    # yellow, ~517 THz
+  - {nm: 540, color: "#3fcf3f"}    # green,  ~555 THz
+  - {nm: 480, color: "#1d8fff"}    # blue,   ~625 THz
+  - {nm: 430, color: "#7a1dd0"}    # violet, ~697 THz
+  - {nm: 400, color: "#5b0e9a"}    # deep violet, ~750 THz

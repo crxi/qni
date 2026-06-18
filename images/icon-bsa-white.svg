@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Derived from icon-bsa.svg (QuISP Bell-State Analyser glyph):
+     - solid white background fill
+     - content rotated 180° about (50, 50) so the detector flaps point upward -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <circle cx="50" cy="50" r="48.6" fill="#ffffff"/>
+  <g transform="rotate(180 50 50)"><g
+     id="layer1"
+     transform="translate(-31.460882,77.692164)">
+    <g
+       id="g20029"
+       transform="matrix(2.8375292,0,0,2.8375292,-4.7434798,-1217.7596)">
+      <circle
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none"
+         id="circle19883"
+         cx="30.380079"
+         cy="419.40271"
+         r="17.120964" />
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         id="rect19885"
+         width="11.686096"
+         height="11.686096"
+         x="-324.79691"
+         y="-281.83298"
+         ry="0"
+         transform="rotate(-135)" />
+      <path
+         id="path19887"
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 20.283432,411.29099 c -1.339849,1.33985 -1.04876,3.78799 0.652297,5.48904 l 0.614274,0.61427 5.535592,-5.53559 -0.614276,-0.61427 c -1.701048,-1.70106 -4.149184,-1.99215 -5.489033,-0.6523 z" />
+      <path
+         id="path19889"
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 39.687025,410.68297 c -1.339857,-1.33985 -3.787985,-1.04875 -5.489042,0.6523 l -0.614274,0.61427 5.535592,5.5356 0.614274,-0.61427 c 1.701057,-1.70106 1.992154,-4.14919 0.652297,-5.48904 z" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 30.38007,428.95209 V 412.42545"
+         id="path19891" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 24.317803,414.62651 1.951624,1.95163"
+         id="path19893" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 36.3515,414.71734 -1.951624,1.95163"
+         id="path19895" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 34.511736,424.82045 1.951624,1.95163"
+         id="path19897" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 36.201761,426.66422 h 5.848874"
+         id="path19899" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 26.248414,424.82045 -1.951624,1.95163"
+         id="path19903" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 24.558389,426.66422 H 18.709515"
+         id="path19905" />
+    </g>
+  </g></g>
+</svg>

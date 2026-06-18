@@ -1,0 +1,411 @@
+---
+/**
+ * /distribution — Entanglement distribution
+ *
+ * Tier C · Mechanisms.
+ *
+ * Distribution is the operation of placing one half of a Bell pair
+ * at each of two distant nodes across a single link. Three architectures
+ * (MeetInTheMiddle, SenderReceiver, MidpointSource) span essentially every
+ * quantum-network experiment to date — Jones et al. NJP 18 083015 (2016).
+ *
+ * Citations:
+ *   - jones-njp-2016 — canonical 3-architecture taxonomy.
+ *   - pompili-science-2021 — three-node NV demo (MeetInTheMiddle), QuTech 7m intra-lab.
+ *   - kumar-ijndc-2025 — current network survey, default reference.
+ *   - kozlowski-rfc9340 — link-layer service contract.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SourceNote from "../components/SourceNote.astro";
+import Grid from "../components/Grid.astro";
+import Callout from "../components/Callout.astro";
+import { url } from "../lib/url";
+
+const sections = [
+  { id: "overview",     label: "Overview" },
+  { id: "architectures", label: "Three architectures" },
+  { id: "tradeoff",     label: "Rate-vs-loss trade-off" },
+  { id: "timing",       label: "Heralding and timing" },
+  { id: "multiplexing", label: "Multiplexing" },
+  { id: "role",         label: "Network role" },
+];
+---
+
+<Infographic
+  title="Entanglement distribution"
+  description="Distribution is how one half of a generated Bell pair ends up at each of two distant nodes across a single link. Three architectures dominate (Jones et al. NJP 18 083015, 2016): MeetInTheMiddle, SenderReceiver, MidpointSource. They differ in where the entangled-photon source sits and who runs the Bell-state analyser, and they trade rate against photon loss differently. Chained with entanglement swapping, distribution gives multi-hop reach."
+  references={[
+    "jones-njp-2016",
+    "kozlowski-rfc9340",
+    "kumar-ijndc-2025",
+    "pompili-science-2021",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="distribution" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>Entanglement distribution</h1>
+        <p>
+          Generating a Bell pair is a local physics question. Distributing one —
+          placing one half at each of two distant nodes — is a network-design question
+          with several distinct architectural answers. Three architectures span
+          essentially every quantum-network experiment to date, distinguished by where
+          the entangled-photon source sits and who runs the Bell-state
+          analyser <SourceNote id="jones-njp-2016" />.
+        </p>
+        <p>
+          Distribution is the single-link half of the link-layer service: the network's
+          contract is to deliver a Bell pair on demand between two adjacent nodes, with
+          a stated fidelity and rate <SourceNote id="kozlowski-rfc9340" />. Above one
+          link, distribution composes with entanglement swapping at intermediate BSA nodes
+          to give multi-hop reach (covered in the swapping and repeaters subjects).
+          Below distribution sit the device-level questions of how the pair is generated
+          in the first place — orthogonal to the architectural axis covered here.
+        </p>
+      </header>
+
+      <section id="architectures" data-nav-section>
+        <h2>Three architectures</h2>
+        <p>
+          The taxonomy is due to Jones et al. (2016), who set out three single-link
+          architectures and analysed their rates as a function of loss and memory
+          parameters. The architectures differ along two related axes — where the
+          entangled-photon source sits, and which node holds the Bell-state analyser —
+          and that choice fixes nearly every other engineering trade-off on the
+          link <SourceNote id="jones-njp-2016" />.
+        </p>
+
+        <p class="arch-prelude">
+          The three architectures, after Jones et al. <em>New J. Phys.</em> 18 083015
+          (2016) <SourceNote id="jones-njp-2016" />. Each card pairs the description
+          on the left with a schematic on the right, using a shared visual
+          key — green C comm qubits, purple M memories, blue photons, light-blue
+          QFC / EPPS blocks, dashed BSM glyph, magenta entanglement wavy line.
+        </p>
+
+        <article class="arch-card">
+          <div class="arch-card__text">
+            <h3>MeetInTheMiddle (MM)</h3>
+            <p>
+              Each of the two repeater nodes generates a matter-photon entangled pair
+              locally and sends its photon toward the link midpoint. The two photons
+              interfere on a beam splitter at a midpoint Bell-state analyser; a
+              successful coincidence detection erases which-node-emitted-which
+              information and heralds a Bell pair between the two matter qubits.
+              The arrangement behind most current solid-state and ion-trap
+              remote-entanglement experiments <SourceNote id="pompili-science-2021" />.
+              Heralding requires two-photon interference; rate scales with full-link
+              transmission.
+            </p>
+          </div>
+          <div class="arch-card__fig">
+            <img src={url("/images/distribution-mm.svg")}
+                 alt="MeetInTheMiddle: Alice and Bob each hold a comm qubit (green C) and a memory qubit (purple M). Each endpoint emits a photon entangled with its own C; both photons travel L/2 along telecom fibre to meet at a midpoint Bell-state analyser. A coincidence click heralds an entangled Bell pair between A.C and B.C, shown as a magenta sinusoid; the classical herald is returned to both endpoints over a dashed grey channel." />
+          </div>
+        </article>
+
+        <article class="arch-card">
+          <div class="arch-card__text">
+            <h3>SenderReceiver (SR)</h3>
+            <p>
+              The sender (Alice) generates a matter-photon pair and sends its photon
+              all the way to the receiver (Bob), who interferes it with a photon
+              entangled with his own memory and runs the Bell-state analyser at his
+              end. Memory qubits are needed only at the receiver; the sender re-tries
+              if a photon is lost. Simpler hardware than MM, but more sensitive to
+              round-trip loss because the photon traverses the full link rather than
+              half <SourceNote id="jones-njp-2016" />.
+            </p>
+          </div>
+          <div class="arch-card__fig">
+            <img src={url("/images/distribution-sr.svg")}
+                 alt="SenderReceiver: Alice (sender) emits a photon entangled with her comm qubit C and sends it across the full link. Bob (receiver) holds his own comm qubit and a local Bell-state analyser; he interferes Alice's arriving photon with his local C. A successful BSM heralds a Bell pair between A.C and B.C, shown as a magenta sinusoid." />
+          </div>
+        </article>
+
+        <article class="arch-card">
+          <div class="arch-card__text">
+            <h3>MidpointSource (MS)</h3>
+            <p>
+              An entangled-pair source sits at the midpoint and emits one photon
+              outward toward each of the two endpoints, where each is captured by a
+              memory. Heralding here is on the source-side detection of the partner
+              photon, which is more robust to photon loss than two-photon interference
+              at distance — MS achieves higher rates than MM or SR when loss is high.
+              SPDC is the natural device choice for the midpoint
+              source <SourceNote id="jones-njp-2016" />.
+            </p>
+          </div>
+          <div class="arch-card__fig">
+            <img src={url("/images/distribution-ms.svg")}
+                 alt="MidpointSource: an entangled-photon-pair source (EPPS, typically SPDC) at the link midpoint emits two entangled photons outward. Each photon travels L/2 to one of the endpoints, where it is interfered with a photon from the local comm qubit C by a local Bell-state analyser. When both endpoint BSMs herald, A.C and B.C are entangled, shown as a magenta sinusoid." />
+          </div>
+        </article>
+      </section>
+
+      <section id="tradeoff" data-nav-section>
+        <h2>Rate-vs-loss trade-off</h2>
+        <p>
+          The three architectures put their photons through different amounts of fibre,
+          and they condition success on different events. That fixes the loss scaling.
+          Per attempted heralding event, the success probability scales roughly as
+        </p>
+        <ul>
+          <li>
+            <strong>MM</strong> — both photons must survive a half-link and interfere,
+            so the rate scales with the square of the half-link transmission, i.e.
+            with full-link transmission.
+          </li>
+          <li>
+            <strong>SR</strong> — the sender's photon must survive the full link;
+            single-photon transmission, but the photon travels the entire distance.
+          </li>
+          <li>
+            <strong>MS</strong> — heralding fires when the source-side partner photon
+            is detected locally, so the heralding rate is independent of the link loss
+            on the photon that actually reaches the memory. Loss still kills the
+            <em>useful</em> rate (the photon has to arrive at the memory to be
+            captured), but the architecture sidesteps the two-photon-interference
+            requirement.
+          </li>
+        </ul>
+        <p>
+          At low loss MM and SR are competitive and MM's symmetry tends to win on
+          fidelity; at high loss MS dominates because heralding doesn't require
+          two-photon interference at distance. Jones et al. work the simulations out
+          in detail and identify the regime crossovers as a function of fibre length,
+          memory coherence, and source-clock rate <SourceNote id="jones-njp-2016" />.
+        </p>
+      </section>
+
+      <section id="timing" data-nav-section>
+        <h2>Heralding and timing</h2>
+        <p>
+          Heralding — a classical signal back to each memory-holding node announcing
+          "your photon was successfully detected at the analyser" — is what turns a
+          probabilistic distribution attempt into a deterministic resource. Two timing
+          constraints apply.
+        </p>
+        <ul>
+          <li>
+            <strong>Coherence budget.</strong> The heralding signal must travel back
+            to the memory-holding node before the memory's coherence runs out. For MM
+            and MS this round-trip is one full link time — the memory must hold its
+            qubit through generation, photon emission, propagation to the midpoint,
+            detection, and the classical herald back. For SR the BSA sits at the
+            receiver, so the receiver's memory only needs to span its local
+            generation-plus-detection; the sender does not need a memory at all and
+            simply re-tries. This is what makes SR attractive when memory coherence
+            is the binding constraint.
+          </li>
+          <li>
+            <strong>Source-clock rate.</strong> The source has to fire fast enough that
+            within one coherence time the link gets enough heralding attempts for at
+            least one to succeed. For MM and MS this sets a clock-rate target as a
+            function of loss; for MS specifically, fast SPDC clocks plus single-photon
+            detection give the architecture its high-loss advantage.
+          </li>
+        </ul>
+      </section>
+
+      <section id="multiplexing" data-nav-section>
+        <h2>Multiplexing</h2>
+        <p>
+          All three architectures are independently composable with multiplexing —
+          running multiple heralding attempts in parallel along axes the link can
+          separate. Three modalities are standard:
+        </p>
+        <ul>
+          <li>
+            <strong>Time-bin multiplexing.</strong> The source fires in many
+            distinguishable time slots within one coherence window; the BSA sees them
+            as independent attempts.
+          </li>
+          <li>
+            <strong>Frequency-bin multiplexing.</strong> The source emits across
+            several separable frequency channels, each running an independent
+            heralding pipeline, often via WDM components borrowed from classical
+            optics.
+          </li>
+          <li>
+            <strong>Memory-qubit multiplexing.</strong> Each node holds an array of
+            memory qubits; multiple distribution attempts are kept in flight in
+            parallel, and whichever one succeeds first is promoted to the active pair.
+          </li>
+        </ul>
+        <p>
+          Multiplexing is the lever that makes long-link distribution tractable. The
+          single-attempt success probability shrinks with loss; multiplexing recovers
+          rate by running many attempts per coherence window. The architectural axis
+          (MM / SR / MS) and the multiplexing axis (time / frequency / memory) are
+          orthogonal — a real link picks one of each <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+        <Callout label="Architecture vs device — separate axes">
+          <p>
+            "Where the source sits and who measures" (the architecture taxonomy on
+            this page) is independent of "what hardware emits the photon" (SPDC, NV
+            centre, trapped ion, quantum dot, etc.). The same MS architecture can run
+            with an SPDC source at the midpoint or with a quantum-dot source; the same
+            quantum-dot device can serve as the local source in MM or as the midpoint
+            source in MS. Conflating the two axes — e.g. equating "MidpointSource"
+            with "SPDC" — produces silently-wrong rate and fidelity claims.
+          </p>
+        </Callout>
+
+        <Callout label="Mode matching: the shared-master-laser tether (and how to escape it)">
+          <p>
+            The two photons that meet at the midpoint beam splitter have to be
+            <strong>indistinguishable</strong> — same polarisation, same temporal
+            mode, and crucially same frequency to sub-MHz precision — or the
+            Hong–Ou–Mandel interference that makes the BSM possible just fails.
+            Independent sources at two nodes drift by tens to hundreds of MHz on
+            seconds-to-minutes, far more than the photon linewidth.
+          </p>
+          <p>
+            The industry default workaround is a <strong>shared master laser</strong>:
+            both endpoints derive their source frequency from a single reference
+            distributed over a phase-stabilised optical link. It works, but it tethers
+            the network — the reference channel has to run alongside the quantum
+            channel on every link, degrades over ~100 km of SMF, and any disturbance
+            (thermal, mechanical, splice) kills the BSM rate until the loop re-acquires.
+            Topologically the network is limited to a star or hierarchy of master
+            lasers — neither scales gracefully past tens of nodes.
+          </p>
+          <p>
+            Sources whose <strong>own atomic transition is the frequency reference</strong>
+            sidestep the tether entirely — rubidium atoms in Brooklyn and rubidium atoms
+            in Manhattan are physically the same atoms. Qunnect's warm-Rb Carina sources
+            on GothamQ demonstrate this in deployed metro fibre <SourceNote id="qunnect-cisco-brooklyn-press-2026" />:
+            two boxes 17.6 km apart interfere their photons cleanly without a
+            phase-stabilised reference fibre between them. The cost is being restricted
+            to species that give you a usable absolute reference — narrow-line trapped-ion
+            and colour-centre experiments are still typically tethered today.
+          </p>
+        </Callout>
+      </section>
+
+      <section id="role" data-nav-section>
+        <h2>Network role</h2>
+        <p>
+          Distribution is the operation that makes the link-layer service contract
+          true <SourceNote id="kozlowski-rfc9340" />: given a request for a Bell pair
+          between two adjacent nodes, the link runs whatever architecture it is built
+          around (MM, SR, or MS) and delivers a heralded pair at the contracted
+          fidelity and rate. Distribution is the implementation that satisfies the
+          contract on a single link.
+        </p>
+        <p>
+          Three follow-on subjects build on distribution:
+        </p>
+        <ul>
+          <li>
+            <strong>Repeaters</strong> integrate distribution and swapping into the
+            1G / 2G / 3G architectural families and analyse end-to-end rate-vs-loss
+            scaling. <em>Covered in the</em> <strong>repeaters</strong> <em>subject.</em>
+          </li>
+          <li>
+            <strong>Links</strong> looks at the physical-layer side: fibre,
+            hollow-core fibre, free-space, and satellite media, and what each costs in
+            attenuation and latency. <em>Covered in the</em> <strong>links</strong>
+            <em>subject.</em>
+          </li>
+          <li>
+            <strong>Metrics</strong> defines loss, decoherence, and fidelity
+            quantitatively — the inputs the rate-vs-loss curves on this page consume.
+            <em>Covered in the</em> <strong>metrics</strong> <em>subject.</em>
+          </li>
+        </ul>
+      </section>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-4);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .hero h1 { margin: 0; }
+  .hero p { margin: 0; }
+
+  section { display: grid; gap: var(--space-3); }
+
+  ul {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+  li { line-height: var(--leading-snug); }
+
+  /* Architecture cards inside the Grid component. align-content: start
+     pins each card's content to the top so a longer sibling doesn't
+     stretch its neighbours' h3 to a different baseline. */
+  .arch-card {
+    display: grid;
+    align-content: start;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+  }
+  .arch-card h3 {
+    margin: 0;
+    font-size: var(--text-base);
+    color: var(--color-text);
+  }
+  .arch-card p {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-mute);
+  }
+
+  /* One card per architecture: text on the left (~1/3), schematic on
+     the right (~2/3). Falls back to a single column when the viewport
+     can't fit both side by side. */
+  .arch-prelude {
+    margin: 0 0 var(--space-3);
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-mute);
+  }
+  .arch-card {
+    margin: 0 0 var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--space-4);
+    align-items: center;
+  }
+  .arch-card__text { display: grid; gap: var(--space-2); }
+  .arch-card__text h3 { margin: 0; }
+  .arch-card__text p {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+  }
+  .arch-card__fig {
+    display: block;
+  }
+  .arch-card__fig img {
+    inline-size: 100%;
+    block-size: auto;
+    display: block;
+  }
+  @media (max-width: 50rem) {
+    .arch-card { grid-template-columns: 1fr; }
+  }
+</style>

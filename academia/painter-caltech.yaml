@@ -1,0 +1,137 @@
+slug: painter-caltech
+name: Painter group (Caltech / AWS)
+categories: [qc, memory, network]
+hq: Pasadena, California, USA
+status: active
+parent: null
+
+institution:
+  name: California Institute of Technology
+  lab: Quantum Optomechanics group · Institute for Quantum Information and Matter (IQIM)
+  also: AWS Center for Quantum Computing (Oskar Painter is Director, Caltech-adjacent)
+
+group_website: https://painterlab.caltech.edu
+
+positioning: >
+  Oskar Painter's group at Caltech combines optomechanical
+  microwave-to-optical transduction with superconducting cavity QED, and
+  the same leadership extends to the AWS Center for Quantum Computing
+  on the Caltech campus where Painter is Director. The programme
+  bridges Caltech academic and AWS commercial quantum-computing R&D.
+  The group's piezo-optomechanical transducers are a candidate approach
+  for closing the cryogenic-microwave-to-telecom gap that any
+  superconducting-qubit network must cross.
+
+modalities:
+  qc:
+    qubit_type: transmon
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: cat
+    connectivity: ""
+    gate_set: []
+  memory:
+    platform: superconducting-cavity
+    storage_time_ms: null
+    retrieval_efficiency: null
+    fidelity: null
+    wavelength_nm: null
+    mode_capacity: null
+  network:
+    role: transducer
+    products:
+      - "Piezo-optomechanical microwave-to-optical transducers (Caltech)"
+      - "Cat-qubit hardware programme (AWS CQC)"
+
+milestones:
+  - date: 2020-12
+    tag: network
+    headline: Superconducting-qubit-to-optical-photon transduction via piezo-optomechanics (Mirhosseini et al.)
+    source_url: https://www.nature.com/articles/s41586-020-3038-6
+    source_type: paper
+  - date: 2019-12
+    tag: qc
+    headline: AWS Center for Quantum Computing opens on Caltech campus
+    source_url: https://aws.amazon.com/blogs/aws/amazon-braket-go-hands-on-with-quantum-computing/
+    source_type: press
+  - date: 2014-04
+    tag: network
+    headline: Bidirectional and efficient conversion between microwave and optical light (Andrews, Painter et al.)
+    source_url: https://www.nature.com/articles/nphys2911
+    source_type: paper
+
+funding_sources:
+  - name: National Science Foundation (NSF)
+    role: Programme grants supporting optomechanics and quantum-transduction research
+    source_url: https://www.nsf.gov/
+  - name: DARPA
+    role: Programme funding for microwave-to-optical transduction and quantum networking
+    source_url: https://www.darpa.mil/
+  - name: Institute for Quantum Information and Matter (IQIM), Caltech
+    role: Host institute; NSF Physics Frontiers Center
+    source_url: https://iqim.caltech.edu/
+  - name: AWS (internal R&D)
+    role: Funds the AWS Center for Quantum Computing on Caltech campus
+    source_url: https://aws.amazon.com/blogs/quantum-computing/
+
+key_personnel:
+  - role: Principal Investigator (Caltech) & Director, AWS Center for Quantum Computing
+    name: Oskar Painter
+    since: 2019
+    source_url: https://painterlab.caltech.edu
+
+roadmap:
+  - target: ongoing
+    item: Scalable optomechanical microwave-to-optical transduction for superconducting-qubit networking
+    source_url: https://painterlab.caltech.edu
+    tag: network
+  - target: ongoing
+    item: Cat-qubit hardware and bosonic error correction at AWS CQC
+    source_url: https://aws.amazon.com/blogs/quantum-computing/
+    tag: qc
+
+current_focus:
+  name: Quantum photonics, superconducting circuits and optomechanics
+  description: >
+    Per the group's own framing (painterlab.caltech.edu): the Quantum
+    Photonics Group focuses on superconducting quantum circuits for quantum
+    information processing and quantum simulation, the quantum physics of
+    mesoscopic mechanical objects, hybrid superconducting and acoustic
+    quantum circuits, and precision optomechanical sensors.
+  source_url: https://painterlab.caltech.edu
+
+references:
+  - kind: paper
+    citation_key: mirhosseini-nature-2020
+    url: https://www.nature.com/articles/s41586-020-3038-6
+    note: "Mirhosseini et al. Nature 588, 599 (2020) — superconducting-qubit-to-optical-photon transduction"
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/nphys2911
+    note: "Andrews et al. Nat. Phys. 10, 321 (2014) — bidirectional microwave-to-optical conversion"
+  - kind: press
+    citation_key: null
+    url: https://aws.amazon.com/blogs/aws/amazon-braket-go-hands-on-with-quantum-computing/
+    note: AWS Center for Quantum Computing announcement (2019)
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.memory.storage_time_ms
+  - modalities.memory.retrieval_efficiency
+  - modalities.memory.fidelity
+  - modalities.memory.wavelength_nm
+  - modalities.memory.mode_capacity
+  - field: group_website
+    as_of: 2026-05-24
+    note: Painter's Caltech group page URL not independently verified in this pass; placeholder pending confirmation.
+
+last_verified: 2026-05-24
+verification_method: web

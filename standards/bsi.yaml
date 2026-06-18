@@ -1,0 +1,60 @@
+body:
+  id: bsi
+  name: Bundesamt fuer Sicherheit in der Informationstechnik (Federal Office for Information Security, Germany)
+  short_name: BSI
+  url: https://www.bsi.bund.de/DE/Home/home_node.html
+  scope: >
+    Germany's federal IT-security agency. Sets the national
+    cryptographic baselines (TR-02102 series) used by federal
+    procurement and operates as a national Common Criteria certifier
+    (CC scheme). BSI's quantum-relevant work covers QKD Protection
+    Profiles and post-quantum guidance.
+  notes: >
+    BSI is unusually influential because (i) TR-02102 is the
+    cryptographic procurement spec for German federal IT, and (ii) BSI
+    operates one of the major Common Criteria schemes, making
+    BSI-certified QKD a meaningful procurement signal in EU national
+    QCI deployments.
+
+standards:
+  - id: BSI-CC-PP-0120
+    title: Common Criteria Protection Profile - Pair of Prepare and Measure Quantum Key Distribution Modules (registration)
+    type: recommendation
+    date: 2024
+    group: BSI CC scheme
+    tags: [qkd-protocol, security]
+    status: in-force
+    url: https://www.bsi.bund.de/DE/Home/home_node.html/SharedDocs/Zertifikate_CC/PP/aktuell/PP_0120.html
+    pdf: reference/standards/BSI/BSI-CC-PP-0120-cert.pdf
+    summary: >
+      BSI's CC registration of ETSI GS QKD 016 V2.1.1 as Protection
+      Profile BSI-CC-PP-0120-2024. Lets QKD vendors target a
+      certifiable PP for the EU CC scheme.
+
+  - id: BSI-CC-PP-0120-pp
+    title: Pair of Prepare and Measure Quantum Key Distribution Modules (Protection Profile text)
+    type: recommendation
+    date: 2024
+    group: BSI CC scheme
+    tags: [qkd-protocol, security]
+    status: in-force
+    url: https://www.bsi.bund.de/DE/Home/home_node.html/SharedDocs/Zertifikate_CC/PP/aktuell/PP_0120.html
+    pdf: reference/standards/BSI/BSI-CC-PP-0120-pp.pdf
+    summary: >
+      The Protection Profile document itself - identical to ETSI GS QKD
+      016 V2.1.1, registered into the BSI CC scheme.
+
+  - id: BSI-TR-02102-1
+    title: Cryptographic Mechanisms - Recommendations and Key Lengths
+    type: recommendation
+    date: 2025
+    group: BSI
+    tags: [crypto-meta, policy]
+    status: in-force
+    url: https://www.bsi.bund.de/DE/Home/home_node.html/EN/Themen/Unternehmen-und-Organisationen/Standards-und-Zertifizierung/Technische-Richtlinien/TR-nach-Thema-sortiert/tr02102/tr02102_node.html
+    pdf: reference/standards/BSI/BSI-TR-02102-1.pdf
+    summary: >
+      BSI's headline cryptographic-mechanisms TR. Sets approved algorithms
+      and key lengths for German federal IT. Quantum-relevant because
+      Part 1 includes BSI's positions on post-quantum migration and
+      hybrid PQC use.

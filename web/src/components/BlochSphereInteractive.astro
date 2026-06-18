@@ -1,0 +1,783 @@
+---
+/**
+ * BlochSphereInteractive — Three.js Bloch sphere with θ/φ sliders.
+ *
+ * Mouse-drag rotates the camera (orbit). The two sliders set the
+ * polar angle θ ∈ [0, π] and azimuthal angle φ ∈ [0, 2π); the state
+ * vector and tip dot follow the standard Bloch parameterisation
+ *   x = sin θ cos φ
+ *   y = sin θ sin φ
+ *   z = cos θ
+ *
+ * Three.js is loaded from jsDelivr via an importmap; no local
+ * dependency added to package.json. The whole script is inline
+ * (`is:inline`) so Vite doesn't try to bundle it. Pole labels are
+ * canvas-texture sprites that always face the camera.
+ *
+ * Light-mode styling only — colours come from the design tokens via
+ * CSS custom properties on the host element, which the script reads
+ * with getComputedStyle so a future dark-mode swap doesn't require
+ * touching the JS.
+ */
+---
+
+<figure class="bloch3d">
+  <div class="bloch3d__stage" data-bloch-stage>
+    <canvas data-bloch-canvas></canvas>
+    {/* Live state expression at top-left of the canvas. The
+        symbolic line is static; the numerical line updates from
+        the sliders via update() in the script below. */}
+    <div class="bloch3d__state" aria-live="polite">
+      <div class="bloch3d__state-symbolic">
+        |ψ⟩ = cos(θ/2)|0⟩ + e<sup>iφ</sup> sin(θ/2)|1⟩
+      </div>
+      <div class="bloch3d__state-numeric">
+        |ψ⟩ = <span data-bloch-alpha>1.00</span>|0⟩ + <span data-bloch-beta>0</span>|1⟩
+      </div>
+    </div>
+  </div>
+
+  <div class="bloch3d__controls">
+    <button type="button" class="bloch3d__btn bloch3d__btn--view" data-bloch-reset-view>
+      Reset view
+    </button>
+
+    <div class="bloch3d__presets" role="group" aria-label="Bloch-sphere basis states">
+      <button type="button" class="bloch3d__btn" data-bloch-preset="0">|0⟩</button>
+      <button type="button" class="bloch3d__btn" data-bloch-preset="1">|1⟩</button>
+      <button type="button" class="bloch3d__btn" data-bloch-preset="+">|+⟩</button>
+      <button type="button" class="bloch3d__btn" data-bloch-preset="-">|−⟩</button>
+      <button type="button" class="bloch3d__btn" data-bloch-preset="+i">|+i⟩</button>
+      <button type="button" class="bloch3d__btn" data-bloch-preset="-i">|−i⟩</button>
+    </div>
+
+    <div class="bloch3d__sliders">
+      <label class="bloch3d__slider">
+        <span class="bloch3d__slider-name">θ</span>
+        <input
+          type="range" min="0" max="3.14159265" step="0.01" value="0"
+          data-bloch-theta
+          aria-label="Polar angle theta in radians"
+        />
+        <span class="bloch3d__slider-readout" data-bloch-theta-readout>0</span>
+      </label>
+      <label class="bloch3d__slider">
+        <span class="bloch3d__slider-name">φ</span>
+        <input
+          type="range" min="0" max="6.28318530" step="0.01" value="0"
+          data-bloch-phi
+          aria-label="Azimuthal angle phi in radians"
+        />
+        <span class="bloch3d__slider-readout" data-bloch-phi-readout>0</span>
+      </label>
+      <label class="bloch3d__slider">
+        <span class="bloch3d__slider-name">F</span>
+        <input
+          type="range" min="0" max="1" step="0.01" value="1"
+          data-bloch-fidelity
+          aria-label="Fidelity cap"
+        />
+        <span class="bloch3d__slider-readout" data-bloch-fidelity-readout>1.00</span>
+      </label>
+    </div>
+
+    <p class="bloch3d__hint">
+      Drag the sphere to rotate the view. Use the sliders to move the state vector,
+      or jump to a basis state with the buttons.
+    </p>
+  </div>
+</figure>
+
+<script type="importmap" is:inline>
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module" is:inline>
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+// Line2 / LineMaterial give us actually-thick lines. The plain
+// THREE.Line + LineBasicMaterial.linewidth is silently ignored on
+// most platforms (clamped to 1 px) so it's not usable for an
+// indicator that needs to read as bold against the wireframe sphere.
+import { Line2 } from "three/addons/lines/Line2.js";
+import { LineGeometry } from "three/addons/lines/LineGeometry.js";
+import { LineMaterial } from "three/addons/lines/LineMaterial.js";
+
+const figure = document.querySelector(".bloch3d");
+if (figure) {
+  const stage  = figure.querySelector("[data-bloch-stage]");
+  const canvas = figure.querySelector("[data-bloch-canvas]");
+  const thetaIn  = figure.querySelector("[data-bloch-theta]");
+  const phiIn    = figure.querySelector("[data-bloch-phi]");
+  const fidIn    = figure.querySelector("[data-bloch-fidelity]");
+  const thetaOut = figure.querySelector("[data-bloch-theta-readout]");
+  const phiOut   = figure.querySelector("[data-bloch-phi-readout]");
+  const fidOut   = figure.querySelector("[data-bloch-fidelity-readout]");
+  const alphaOut = figure.querySelector("[data-bloch-alpha]");
+  const betaOut  = figure.querySelector("[data-bloch-beta]");
+
+  // Read tokenised colours off the figure so light/dark theming
+  // doesn't need a JS swap.
+  const styles = getComputedStyle(figure);
+  const colorAccent    = styles.getPropertyValue("--bloch3d-accent").trim()    || "#0e8db5";
+  const colorWire      = styles.getPropertyValue("--bloch3d-wire").trim()      || "#cfd3d9";
+  const colorAxis      = styles.getPropertyValue("--bloch3d-axis").trim()      || "#9aa3af";
+  const colorLabel     = styles.getPropertyValue("--bloch3d-label").trim()     || "#1a1f2a";
+  const colorEqua      = styles.getPropertyValue("--bloch3d-equator").trim()   || "#b8bec8";
+  const colorIndicator = styles.getPropertyValue("--bloch3d-indicator").trim() || "#e8731e";
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+  // World +z is the Bloch-sphere polar axis (|0⟩ at +z, |1⟩ at −z).
+  // Set camera "up" to +z so z is vertical on screen.
+  camera.up.set(0, 0, 1);
+  // Camera at (+x, +y, +z): with up = +z, this places +x on screen
+  // LEFT and +y on screen RIGHT (camera-right vector ≈ (-x, +y),
+  // so world +x projects opposite the screen-right axis).
+  camera.position.set(2.5, 2.5, 1.8);
+
+  const controls = new OrbitControls(camera, canvas);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.08;
+  controls.minDistance = 2.5;
+  controls.maxDistance = 6;
+  controls.enablePan = false;
+  // Look slightly above origin so the sphere sits a touch low in
+  // the canvas — leaves visible headroom for the z label.
+  controls.target.set(0, 0, 0.25);
+  controls.update();
+
+  // Sphere wireframe.
+  //
+  // SphereGeometry's wireframe latitude/longitude lines converge at
+  // its local ±Y poles by default. We want them at world ±Z so the
+  // grid visually marks |0⟩ and |1⟩ as the poles of the Bloch
+  // sphere. Rotate the geometry by π/2 about its X axis to swap
+  // local Y ↔ Z. (Without this, the camera's z-up setting only
+  // re-orients the camera; the sphere's grid still has y-poles.)
+  const sphereGeom = new THREE.SphereGeometry(1, 36, 24);
+  sphereGeom.rotateX(Math.PI / 2);
+  scene.add(
+    new THREE.Mesh(
+      sphereGeom,
+      new THREE.MeshBasicMaterial({ color: colorWire, wireframe: true, transparent: true, opacity: 0.35 }),
+    ),
+  );
+
+  // Equator ring (thicker so it reads as the boundary)
+  const equator = new THREE.Line(
+    new THREE.BufferGeometry().setFromPoints(
+      Array.from({ length: 64 }, (_, i) => {
+        const a = (i / 64) * Math.PI * 2;
+        return new THREE.Vector3(Math.cos(a), Math.sin(a), 0);
+      }).concat([new THREE.Vector3(1, 0, 0)]),
+    ),
+    new THREE.LineBasicMaterial({ color: colorEqua }),
+  );
+  scene.add(equator);
+
+  // Axes
+  const axisLen = 1.25;
+  const axisMat = new THREE.LineBasicMaterial({ color: colorAxis });
+  function axisLine(a, b) {
+    return new THREE.Line(new THREE.BufferGeometry().setFromPoints([a, b]), axisMat);
+  }
+  scene.add(axisLine(new THREE.Vector3(-axisLen, 0, 0), new THREE.Vector3(axisLen, 0, 0)));
+  scene.add(axisLine(new THREE.Vector3(0, -axisLen, 0), new THREE.Vector3(0, axisLen, 0)));
+  scene.add(axisLine(new THREE.Vector3(0, 0, -axisLen), new THREE.Vector3(0, 0, axisLen)));
+
+  // Sprite-label factory. The basis-state labels (|0⟩ etc.) are
+  // larger and dark; the axis labels (x̂, ŷ, ẑ) are smaller and
+  // dimmer so they sit in the visual hierarchy below the kets.
+  function makeLabel(text, opts = {}) {
+    const c = document.createElement("canvas");
+    c.width = 128; c.height = 64;
+    const ctx = c.getContext("2d");
+    ctx.font = opts.font ?? "600 38px 'JetBrains Mono', ui-monospace, monospace";
+    ctx.fillStyle = opts.color ?? colorLabel;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(text, 64, 34);
+    const sprite = new THREE.Sprite(
+      new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(c), transparent: true, depthTest: false }),
+    );
+    const [w, h] = opts.scale ?? [0.42, 0.21];
+    sprite.scale.set(w, h, 1);
+    sprite.renderOrder = 10;
+    return sprite;
+  }
+
+  // Basis-state labels at the six poles / equator points.
+  const ketLabels = [
+    [makeLabel("|0⟩"),   0,    0,    1.32],
+    [makeLabel("|1⟩"),   0,    0,   -1.32],
+    [makeLabel("|+⟩"),   1.32, 0,    0],
+    [makeLabel("|−⟩"),  -1.32, 0,    0],
+    [makeLabel("|+i⟩"),  0,    1.32, 0],
+    [makeLabel("|−i⟩"),  0,   -1.32, 0],
+  ];
+  for (const [s, x, y, z] of ketLabels) {
+    s.position.set(x, y, z);
+    scene.add(s);
+  }
+
+  // Axis labels (x, y, z) at the positive ends, slightly outboard
+  // of the basis-state labels so they don't overlap. Smaller than
+  // the kets but in the same dark colour so they're clearly
+  // readable — earlier dim-axis colour was too faint.
+  const axisFont = "italic 700 32px 'Times New Roman', serif";
+  const axisOpts = { font: axisFont, color: colorLabel, scale: [0.30, 0.15] };
+  const axisLabels = [
+    [makeLabel("x", axisOpts),  1.62, 0,    0   ],
+    [makeLabel("y", axisOpts),  0,    1.62, 0   ],
+    [makeLabel("z", axisOpts),  0,    0,    1.62],
+  ];
+  for (const [s, x, y, z] of axisLabels) {
+    s.position.set(x, y, z);
+    scene.add(s);
+  }
+
+  // State vector — arrow from origin + tip dot.
+  const arrow = new THREE.ArrowHelper(
+    new THREE.Vector3(0, 0, 1),
+    new THREE.Vector3(0, 0, 0),
+    1.0,
+    new THREE.Color(colorAccent),
+    0.12, 0.07,
+  );
+  scene.add(arrow);
+
+  const dot = new THREE.Mesh(
+    new THREE.SphereGeometry(0.045, 18, 14),
+    new THREE.MeshBasicMaterial({ color: colorAccent }),
+  );
+  dot.position.set(0, 0, 1);
+  scene.add(dot);
+
+  // Fidelity cap — translucent spherical patch centred on the
+  // current state vector. For F = 1 the cap collapses to a point and
+  // is hidden. For F < 1 the cap is the set of states ρ with
+  // F(|T⟩, ρ) ≥ F_slider: a spherical-cap chunk of the Bloch ball
+  // with half-angle θ_cap = acos(2F − 1).
+  const capGroup = new THREE.Group();
+  capGroup.visible = false;
+  const capSurfaceGeom = new THREE.BufferGeometry();
+  const capSurfaceMat = new THREE.MeshBasicMaterial({
+    transparent: true, opacity: 0.35, side: THREE.DoubleSide, depthWrite: false,
+  });
+  const capSurface = new THREE.Mesh(capSurfaceGeom, capSurfaceMat);
+  capSurface.renderOrder = 3;
+  capGroup.add(capSurface);
+  scene.add(capGroup);
+
+  const _capZHat = new THREE.Vector3(0, 0, 1);
+  const _capN    = new THREE.Vector3();
+  const _capQ    = new THREE.Quaternion();
+  let fidelityF = 1.0;
+
+  function buildCapPatch(thetaCap, nTheta, nPhi, rOver) {
+    // Cap-local frame: +z = target axis. θ ∈ [0, thetaCap] sweeps
+    // polar angle from the target point outward. Apex vertex avoids
+    // the degenerate ring and gives a clean fan there.
+    const positions = new Float32Array((1 + nTheta * nPhi) * 3);
+    positions[0] = 0; positions[1] = 0; positions[2] = rOver;
+    let p = 3;
+    for (let i = 1; i <= nTheta; i++) {
+      const t = (i / nTheta) * thetaCap;
+      const s = Math.sin(t), c = Math.cos(t);
+      for (let j = 0; j < nPhi; j++) {
+        const a = (j / nPhi) * Math.PI * 2;
+        positions[p++] = rOver * s * Math.cos(a);
+        positions[p++] = rOver * s * Math.sin(a);
+        positions[p++] = rOver * c;
+      }
+    }
+    const triCount = nPhi + (nTheta - 1) * nPhi * 2;
+    const indices = new Uint16Array(triCount * 3);
+    let k = 0;
+    for (let j = 0; j < nPhi; j++) {
+      indices[k++] = 0;
+      indices[k++] = 1 + j;
+      indices[k++] = 1 + ((j + 1) % nPhi);
+    }
+    for (let i = 1; i < nTheta; i++) {
+      const ringA = 1 + (i - 1) * nPhi;
+      const ringB = 1 + i * nPhi;
+      for (let j = 0; j < nPhi; j++) {
+        const jn = (j + 1) % nPhi;
+        indices[k++] = ringA + j;  indices[k++] = ringB + j;  indices[k++] = ringB + jn;
+        indices[k++] = ringA + j;  indices[k++] = ringB + jn; indices[k++] = ringA + jn;
+      }
+    }
+    return { positions, indices };
+  }
+
+  function capColorForF(F) {
+    // F=1 → green (120°), 0.75 → yellow (60°), 0.5 → orange (30°),
+    // ≤0.25 → red (0°). Piecewise linear in hue.
+    let h;
+    if (F >= 0.75)      h = 60  + (F - 0.75) * 240;
+    else if (F >= 0.5)  h = 30  + (F - 0.5)  * 120;
+    else                h = Math.max(0, (F / 0.5) * 30);
+    return new THREE.Color().setHSL(h / 360, 0.6, 0.55);
+  }
+
+  function updateFidelityCap(vx, vy, vz) {
+    if (fidelityF >= 0.999) { capGroup.visible = false; return; }
+    _capN.set(vx, vy, vz);
+    if (_capN.lengthSq() < 1e-8) { capGroup.visible = false; return; }
+    _capN.normalize();
+
+    capGroup.visible = true;
+    const Fc = Math.max(0, Math.min(1, fidelityF));
+    const thetaCap = Math.acos(2 * Fc - 1);
+    const { positions, indices } = buildCapPatch(thetaCap, 12, 64, 1.003);
+    capSurfaceGeom.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    capSurfaceGeom.setIndex(new THREE.BufferAttribute(indices, 1));
+    capSurfaceGeom.attributes.position.needsUpdate = true;
+    capSurfaceGeom.computeBoundingSphere();
+
+    _capQ.setFromUnitVectors(_capZHat, _capN);
+    capGroup.quaternion.copy(_capQ);
+    capSurfaceMat.color.copy(capColorForF(fidelityF));
+  }
+
+  // Depth occluder: an invisible sphere slightly inside the unit
+  // sphere (radius 0.99). It writes to the depth buffer but not
+  // colour, so a line drawn after with depthTest:true gets clipped
+  // wherever it sits behind the occluder — that's how the front
+  // (camera-facing) half of the indicator stays bright while the
+  // back half goes faint.
+  const occluder = new THREE.Mesh(
+    new THREE.SphereGeometry(0.99, 36, 24),
+    new THREE.MeshBasicMaterial({ colorWrite: false, depthWrite: true, depthTest: true }),
+  );
+  occluder.renderOrder = 1;
+  scene.add(occluder);
+
+  // Path indicators — orange circles drawn on the sphere that mark
+  // the current geographic line of the state, in the convention
+  // θ = latitude, φ = longitude:
+  //   θ-indicator → parallel of latitude (horizontal circle at
+  //                 z = cos θ, radius sin θ). Slides up/down as θ
+  //                 changes.
+  //   φ-indicator → meridian of longitude (vertical great circle
+  //                 through both poles at azimuth φ). Rotates
+  //                 around z as φ changes — stays visible at the
+  //                 poles, where the parallel of latitude collapses.
+  // Both fade out after the slider stops moving.
+  //
+  // Each indicator has *two* Line2 instances sharing one LineGeometry:
+  //   front — depthTest:true, full opacity. The occluder above clips
+  //           its back half so only the camera-facing arc renders.
+  //   back  — depthTest:false, low opacity. Renders all the way
+  //           around, providing a ghosted continuation behind the
+  //           sphere. Front + back summed at the camera-facing arc
+  //           reads as bright; back-only at the far arc reads as
+  //           faint. Net effect: depth-cued line.
+  function makeIndicator() {
+    const geom = new LineGeometry();
+    const base = { color: colorIndicator, linewidth: 4, transparent: true, opacity: 0 };
+    const frontMat = new LineMaterial({ ...base, depthTest: true });
+    const backMat  = new LineMaterial({ ...base, depthTest: false });
+    frontMat.resolution.set(1, 1);
+    backMat.resolution.set(1, 1);
+    const front = new Line2(geom, frontMat);
+    const back  = new Line2(geom, backMat);
+    front.renderOrder = 6;
+    back.renderOrder  = 5;
+    scene.add(back);
+    scene.add(front);
+    return { geom, front, back };
+  }
+  const thetaIndicator = makeIndicator();
+  const phiIndicator   = makeIndicator();
+
+  const N_INDICATOR = 96;
+  function setThetaPath(theta) {
+    // Parallel of latitude at z = cos θ, radius sin θ — the
+    // horizontal circle the state currently lies on.
+    const r = Math.sin(theta);
+    const z = Math.cos(theta);
+    const positions = new Array((N_INDICATOR + 1) * 3);
+    for (let i = 0; i <= N_INDICATOR; i++) {
+      const t = (i / N_INDICATOR) * Math.PI * 2;
+      positions[i * 3 + 0] = r * Math.cos(t);
+      positions[i * 3 + 1] = r * Math.sin(t);
+      positions[i * 3 + 2] = z;
+    }
+    thetaIndicator.geom.setPositions(positions);
+  }
+  function setPhiPath(phi) {
+    // Meridian of longitude at azimuth φ: a great circle through
+    // both poles, parameterised as
+    //   { (sin t · cos φ, sin t · sin φ, cos t) : t ∈ [0, 2π] }.
+    const cP = Math.cos(phi), sP = Math.sin(phi);
+    const positions = new Array((N_INDICATOR + 1) * 3);
+    for (let i = 0; i <= N_INDICATOR; i++) {
+      const t = (i / N_INDICATOR) * Math.PI * 2;
+      const st = Math.sin(t);
+      positions[i * 3 + 0] = st * cP;
+      positions[i * 3 + 1] = st * sP;
+      positions[i * 3 + 2] = Math.cos(t);
+    }
+    phiIndicator.geom.setPositions(positions);
+  }
+
+  // Per-indicator fade state. last = wall time of most recent slider
+  // input; the animate loop drives opacity from there.
+  const FADE_DELAY_MS = 500;   // hold full-opacity for this long after last input
+  const FADE_DUR_MS   = 700;   // then fade to zero over this long
+  const PEAK_OPACITY  = 0.9;
+  const BACK_FACTOR   = 0.22;  // back arc relative opacity vs front
+  const fade = {
+    theta: { last: 0, active: false },
+    phi:   { last: 0, active: false },
+  };
+
+  function bumpFade(key) {
+    fade[key].last = performance.now();
+    fade[key].active = true;
+  }
+
+  function tickFade(now) {
+    for (const [key, ind] of [["theta", thetaIndicator], ["phi", phiIndicator]]) {
+      const f = fade[key];
+      if (!f.active) continue;
+      const elapsed = now - f.last;
+      let alpha;
+      if (elapsed < FADE_DELAY_MS) {
+        alpha = 1;
+      } else if (elapsed < FADE_DELAY_MS + FADE_DUR_MS) {
+        alpha = 1 - (elapsed - FADE_DELAY_MS) / FADE_DUR_MS;
+      } else {
+        alpha = 0;
+        f.active = false;
+      }
+      ind.front.material.opacity = alpha * PEAK_OPACITY;
+      ind.back.material.opacity  = alpha * PEAK_OPACITY * BACK_FACTOR;
+    }
+  }
+
+  // ---- State update from the sliders ----
+  function fmtAngle(rad) {
+    if (Math.abs(rad) < 1e-3) return "0";
+    const ratio = rad / Math.PI;
+    const round = (x) => Math.round(x * 100) / 100;
+    if (Math.abs(ratio - 1) < 0.01) return "π";
+    if (Math.abs(ratio - 0.5) < 0.01) return "π/2";
+    if (Math.abs(ratio - 1.5) < 0.01) return "3π/2";
+    if (Math.abs(ratio - 0.25) < 0.01) return "π/4";
+    if (Math.abs(ratio - 0.75) < 0.01) return "3π/4";
+    if (Math.abs(ratio - 2) < 0.01) return "2π";
+    return `${round(ratio)}π`;
+  }
+
+  // Format a 2-dp real number, collapsing tiny values to "0" and
+  // leaving the sign symbol to the caller (so we can write "a − bi"
+  // with a typographic minus rather than a hyphen).
+  function fmtReal2(x) {
+    if (Math.abs(x) < 5e-3) return "0";
+    return x.toFixed(2);
+  }
+  // Format the |1⟩ coefficient β = e^(iφ) sin(θ/2) as a complex
+  // number a + b i, with the typographic minus and an "i" suffix on
+  // the imaginary part. Collapses to a real, an imaginary, or "0"
+  // when one or both parts vanish.
+  function fmtComplex(re, im) {
+    const tol = 5e-3;
+    const a = Math.abs(re) < tol ? 0 : re;
+    const b = Math.abs(im) < tol ? 0 : im;
+    if (a === 0 && b === 0) return "0";
+    if (b === 0) {
+      return a < 0 ? `−${(-a).toFixed(2)}` : a.toFixed(2);
+    }
+    if (a === 0) {
+      return b < 0 ? `−${(-b).toFixed(2)}i` : `${b.toFixed(2)}i`;
+    }
+    const sign = b < 0 ? " − " : " + ";
+    return `(${a < 0 ? `−${(-a).toFixed(2)}` : a.toFixed(2)}${sign}${Math.abs(b).toFixed(2)}i)`;
+  }
+
+  function update() {
+    const theta = parseFloat(thetaIn.value);
+    const phi   = parseFloat(phiIn.value);
+    const sx = Math.sin(theta) * Math.cos(phi);
+    const sy = Math.sin(theta) * Math.sin(phi);
+    const sz = Math.cos(theta);
+    arrow.setDirection(new THREE.Vector3(sx, sy, sz));
+    dot.position.set(sx, sy, sz);
+    updateFidelityCap(sx, sy, sz);
+    thetaOut.textContent = fmtAngle(theta);
+    phiOut.textContent   = fmtAngle(phi);
+    // |ψ⟩ = cos(θ/2)|0⟩ + e^(iφ) sin(θ/2)|1⟩
+    //   α = cos(θ/2)               (always real, ≥ 0 for θ ∈ [0, π])
+    //   β = e^(iφ) sin(θ/2)        = cos φ·sin(θ/2) + i sin φ·sin(θ/2)
+    const halfT = theta / 2;
+    const alpha = Math.cos(halfT);
+    const sHalf = Math.sin(halfT);
+    const betaRe = Math.cos(phi) * sHalf;
+    const betaIm = Math.sin(phi) * sHalf;
+    alphaOut.textContent = fmtReal2(alpha);
+    betaOut.textContent  = fmtComplex(betaRe, betaIm);
+  }
+  thetaIn.addEventListener("input", () => {
+    // The θ-indicator is the parallel of latitude at the *current*
+    // θ, so feed it the new θ value directly. The parallel slides
+    // up/down as θ changes.
+    setThetaPath(parseFloat(thetaIn.value));
+    bumpFade("theta");
+    update();
+  });
+  phiIn.addEventListener("input", () => {
+    // The φ-indicator is the meridian at the *current* φ, so feed
+    // it the new φ value. The meridian rotates around z as φ
+    // changes — visible at any θ, including the poles.
+    setPhiPath(parseFloat(phiIn.value));
+    bumpFade("phi");
+    update();
+  });
+  fidIn.addEventListener("input", () => {
+    fidelityF = parseFloat(fidIn.value);
+    fidOut.textContent = fidelityF.toFixed(2);
+    update();
+  });
+  update();
+
+  // ---- Preset basis-state buttons ----
+  const PRESETS = {
+    "0":  { theta: 0,             phi: 0 },
+    "1":  { theta: Math.PI,       phi: 0 },
+    "+":  { theta: Math.PI / 2,   phi: 0 },
+    "-":  { theta: Math.PI / 2,   phi: Math.PI },
+    "+i": { theta: Math.PI / 2,   phi: Math.PI / 2 },
+    "-i": { theta: Math.PI / 2,   phi: 3 * Math.PI / 2 },
+  };
+  figure.querySelectorAll("[data-bloch-preset]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const p = PRESETS[btn.dataset.blochPreset];
+      if (!p) return;
+      thetaIn.value = String(p.theta);
+      phiIn.value   = String(p.phi);
+      update();
+      // Drop focus so a later Space/Enter (commonly used to scroll
+      // the page) doesn't re-trigger this button and surprise-reset
+      // the demo.
+      btn.blur();
+    });
+  });
+
+  // ---- Reset-view button ----
+  // Save the initial camera/target state explicitly so reset()
+  // returns to exactly this view; OrbitControls auto-saves at
+  // construction but we re-save in case it was tweaked above.
+  controls.saveState();
+  const resetViewBtn = figure.querySelector("[data-bloch-reset-view]");
+  if (resetViewBtn) {
+    resetViewBtn.addEventListener("click", () => {
+      controls.reset();
+      // Same focus-trap fix — pressing Space to scroll after using
+      // this button would otherwise reset the camera again.
+      resetViewBtn.blur();
+    });
+  }
+
+  // ---- Resize / render loop ----
+  function resize() {
+    const r = stage.getBoundingClientRect();
+    if (r.width === 0) return;
+    renderer.setSize(r.width, r.height, false);
+    camera.aspect = r.width / r.height;
+    camera.updateProjectionMatrix();
+    // LineMaterial needs to know the canvas resolution for its
+    // screen-space-pixel linewidth to stay accurate.
+    for (const ind of [thetaIndicator, phiIndicator]) {
+      ind.front.material.resolution.set(r.width, r.height);
+      ind.back.material.resolution.set(r.width, r.height);
+    }
+  }
+  new ResizeObserver(resize).observe(stage);
+  resize();
+
+  function frame(now) {
+    controls.update();
+    tickFade(now);
+    renderer.render(scene, camera);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+</script>
+
+<style>
+  .bloch3d {
+    /* Light-mode tokens for the 3D scene. The script reads these via
+       getComputedStyle, so swapping the workspace to dark mode would
+       only need a media query that overrides these here. */
+    --bloch3d-accent:    #0e8db5;
+    --bloch3d-wire:      #cfd3d9;
+    --bloch3d-equator:   #b0b8c4;
+    --bloch3d-axis:      #9aa3af;
+    --bloch3d-label:     #1a1f2a;
+    /* Path-indicator circle drawn while a slider is dragged.
+       Deliberately a contrasting hue (warm orange) against the
+       cool-blue accent of the state vector so the *path* and the
+       *position* read as two distinct things on the sphere. */
+    --bloch3d-indicator: #e8731e;
+
+    margin: 0;
+    padding: var(--space-4);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    /* Canvas on the left, controls column on the right. Stacks
+       below ~50 rem so narrow viewports still get a usable layout. */
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-4);
+    align-items: start;
+  }
+
+  .bloch3d__stage {
+    position: relative;
+    inline-size: 100%;
+    aspect-ratio: 1 / 1;
+    max-block-size: 480px;
+  }
+  .bloch3d__stage canvas {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    cursor: grab;
+    touch-action: none;
+  }
+  .bloch3d__stage canvas:active { cursor: grabbing; }
+
+  /* Live state expression at top-left of the canvas. The symbolic
+     line shows the parameterisation; the numerical line shows the
+     current α and β with the slider values substituted. Sits above
+     the canvas via absolute positioning; pointer-events:none lets
+     drag-rotate work through the overlay. */
+  .bloch3d__state {
+    position: absolute;
+    inset-block-start: var(--space-2);
+    inset-inline-start: var(--space-2);
+    pointer-events: none;
+    display: grid;
+    gap: 2px;
+    padding: 6px 10px;
+    background: color-mix(in srgb, var(--card-bg) 88%, transparent);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    line-height: var(--leading-snug);
+    color: var(--color-text);
+    max-inline-size: calc(100% - 2 * var(--space-2));
+  }
+  .bloch3d__state-symbolic {
+    color: var(--color-text-mute);
+  }
+  .bloch3d__state-symbolic sup {
+    font-size: 0.85em;
+    vertical-align: super;
+    line-height: 0;
+  }
+  .bloch3d__state-numeric [data-bloch-alpha],
+  .bloch3d__state-numeric [data-bloch-beta] {
+    color: var(--bloch3d-accent);
+    font-weight: 600;
+  }
+
+  .bloch3d__controls {
+    display: grid;
+    gap: var(--space-3);
+    inline-size: 14rem;
+  }
+
+  .bloch3d__sliders {
+    display: grid;
+    gap: var(--space-2);
+  }
+  .bloch3d__slider {
+    display: grid;
+    grid-template-columns: 1rem 1fr 2.5rem;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+  }
+  .bloch3d__slider-name {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--color-text);
+  }
+  .bloch3d__slider-readout {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-mute);
+    text-align: end;
+  }
+  .bloch3d__slider input[type="range"] {
+    inline-size: 100%;
+    min-inline-size: 0;
+    accent-color: var(--bloch3d-accent);
+  }
+  .bloch3d__hint {
+    margin: 0;
+    font-size: var(--text-xs);
+    color: var(--color-text-mute);
+    line-height: var(--leading-snug);
+  }
+
+  /* Buttons. "Reset view" is on its own row at the top of the
+     controls column. Presets sit in a 2-column grid below: the
+     pairing on each row groups antipodal basis states (|0⟩+|1⟩,
+     |+⟩+|−⟩, |+i⟩+|−i⟩). */
+  .bloch3d__btn {
+    background: var(--color-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-1) var(--space-2);
+    font: inherit;
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: border-color 140ms ease, background 140ms ease, color 140ms ease;
+  }
+  .bloch3d__btn:hover,
+  .bloch3d__btn:focus-visible {
+    border-color: var(--bloch3d-accent);
+    color: var(--bloch3d-accent);
+    outline: none;
+  }
+  .bloch3d__btn--view {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-mute);
+  }
+  .bloch3d__presets {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-1);
+  }
+  .bloch3d__presets .bloch3d__btn {
+    font-family: var(--font-mono);
+    text-align: center;
+  }
+
+  @media (max-width: 50rem) {
+    .bloch3d {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .bloch3d__controls { inline-size: 100%; }
+  }
+</style>

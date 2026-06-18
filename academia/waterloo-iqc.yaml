@@ -1,0 +1,199 @@
+slug: waterloo-iqc
+name: Institute for Quantum Computing (IQC, U. Waterloo)
+categories: [qc, qkd, sensing]
+hq: Waterloo, Ontario, Canada
+founded: 2002
+status: active
+parent: null
+
+institution:
+  name: University of Waterloo
+  lab: Institute for Quantum Computing (IQC) · Department of Physics & Astronomy · Department of Electrical & Computer Engineering · Department of Chemistry · Department of Combinatorics & Optimization
+  also: Affiliations with Perimeter Institute for Theoretical Physics; collaboration with the Communications Security Establishment (CSE) on QKD security analysis; Canadian Space Agency (CSA) on the QEYSSat mission
+
+group_website: https://uwaterloo.ca/institute-for-quantum-computing/
+
+positioning: >
+  IQC is Canada's national quantum-information research centre, hosted at
+  the University of Waterloo and founded in 2002 under Raymond Laflamme
+  with a founding gift from Mike and Ophelia Lazaridis. It is a multi-PI
+  institute spanning more than thirty faculty across Physics & Astronomy,
+  Electrical & Computer Engineering, Chemistry, and Combinatorics &
+  Optimization. Active programmes cover QKD theory and experiment
+  (terrestrial and satellite via the QEYSSat mission with the Canadian
+  Space Agency), superconducting and trapped-ion qubits, spin-based
+  architectures in semiconductors, and quantum sensing.
+
+modalities:
+  qkd:
+    protocol: [BB84, decoy-state, entanglement-based, MDI-QKD]
+    rate_distance: "Ground-to-satellite QKD via the QEYSSat mission (launch planned late 2026); ground-based optical-link demonstrations from the IQC Optical Quantum Ground Station"
+    deployed_demos:
+      - "QEYSSat — Canadian Space Agency microsatellite mission, science lead at IQC (Thomas Jennewein), spacecraft prime Honeywell Aerospace; launch planned late 2026 for first ground-to-space QKD demonstration in Canada"
+      - "Free-space QKD demonstrations from rooftop links between IQC buildings and adjacent receiver sites in Waterloo"
+  qc:
+    qubit_type: trapped-ion
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: ""
+    gate_set: []
+  sensing:
+    target_quantity: NV-centre magnetometry and quantum-enhanced imaging
+    sensitivity: ""
+
+milestones:
+  - date: 2025-08
+    tag: qkd
+    headline: Canadian Space Agency presents QEYSSat satellite operations plan at the Small Satellite Conference; mission tracking toward late-2026 launch
+    source_url: https://digitalcommons.usu.edu/smallsat/2025/E-S2-2025/4/
+    source_type: conf-talk
+  - date: 2024-03
+    tag: qkd
+    headline: QEYSSat 2.0 white paper published in Canadian Journal of Physics, scoping follow-on satellite-QKD missions
+    source_url: https://cdnsciencepub.com/doi/full/10.1139/cjp-2023-0190
+    source_type: paper
+  - date: 2020-12
+    tag: qkd
+    headline: Honeywell Aerospace selected as spacecraft prime for the Canadian Space Agency QEYSSat mission
+    source_url: https://spacenews.com/honeywell-to-build-canadian-quantum-encryption-satellite/
+    source_type: press
+  - date: 2016-09
+    tag: qkd
+    headline: Quantum teleportation over 6.2 km of metropolitan dark fibre in Calgary (Valivarthi et al., Nature Photonics) — co-led by IQC alumni
+    source_url: https://www.nature.com/articles/nphoton.2016.180
+    source_type: paper
+  - date: 2002-09
+    tag: qc
+    headline: IQC founded at the University of Waterloo with founding gift from Mike Lazaridis
+    source_url: https://en.wikipedia.org/wiki/Institute_for_Quantum_Computing
+    source_type: press
+
+funding_sources:
+  - name: Natural Sciences and Engineering Research Council of Canada (NSERC)
+    role: Core federal research funding; NSERC Quantum Alliance grants to IQC faculty
+    source_url: https://nserc-crsng.canada.ca
+  - name: Canadian Foundation for Innovation (CFI)
+    role: Infrastructure funding for IQC laboratories and the Mike & Ophelia Lazaridis Quantum-Nano Centre
+    source_url: https://www.innovation.ca/
+  - name: Innovation, Science and Economic Development Canada (ISED)
+    role: Federal funding under the National Quantum Strategy
+    source_url: https://ised-isde.canada.ca/site/ised/
+  - name: Government of Canada — National Quantum Strategy
+    role: Federal strategy framework directing quantum R&D investment from 2023
+    source_url: https://ised-isde.canada.ca/site/ised/site/national-quantum-strategy/en
+  - name: Canadian Institute for Advanced Research (CIFAR)
+    role: Quantum Information Science programme fellowships
+    source_url: https://cifar.ca/
+  - name: Canadian Space Agency (CSA)
+    role: QEYSSat satellite-QKD mission funding; science lead at IQC
+    source_url: https://www.asc-csa.gc.ca/eng/satellites/qeyssat.asp
+  - name: Ontario Ministry of Research, Innovation and Science (MRIS)
+    role: Provincial research and infrastructure funding
+    source_url: https://www.ontario.ca/page/ministry-colleges-universities-research-excellence-and-security
+  - name: Mike & Ophelia Lazaridis founding gift
+    role: 2002 founding endowment and subsequent expansions enabling the Quantum-Nano Centre
+    source_url: https://uwaterloo.ca/institute-for-quantum-computing/about
+
+key_personnel:
+  - role: Executive Director; Principal Investigator — QKD security theory
+    name: Norbert Lütkenhaus
+    since: 2022-09
+    source_url: https://uwaterloo.ca/institute-for-quantum-computing/profiles/norbert-lutkenhaus
+  - role: Founding Director (emeritus)
+    name: Raymond Laflamme
+    since: 2002
+    source_url: https://en.wikipedia.org/wiki/Institute_for_Quantum_Computing
+  - role: Principal Investigator — satellite QKD; QEYSSat science lead
+    name: Thomas Jennewein
+    since: 2009
+    source_url: https://uwaterloo.ca/institute-for-quantum-computing/research/qeyssat
+  - role: Principal Investigator — superconducting qubits
+    name: Adrian Lupascu
+    since: 2009
+    source_url: https://uwaterloo.ca/institute-for-quantum-computing/
+  - role: Principal Investigator — spin qubits in semiconductors
+    name: Jonathan Baugh
+    since: 2008
+    source_url: https://uwaterloo.ca/institute-for-quantum-computing/
+  - role: Principal Investigator — trapped-ion quantum simulation
+    name: Crystal Senko
+    since: 2017
+    source_url: https://uwaterloo.ca/institute-for-quantum-computing/
+  - role: Principal Investigator — quantum simulation of gauge theories
+    name: Christine Muschik
+    since: 2017
+    source_url: https://uwaterloo.ca/institute-for-quantum-computing/
+
+roadmap:
+  - target: 2026
+    item: QEYSSat satellite launch and on-orbit commissioning; first ground-to-space QKD demonstration in Canada via the IQC Optical Quantum Ground Station
+    source_url: https://uwaterloo.ca/institute-for-quantum-computing/research/qeyssat
+    tag: qkd
+  - target: 2027
+    item: First-year QEYSSat science operations — uplink QKD experiments using weak coherent pulses and entangled-photon sources
+    source_url: https://www.asc-csa.gc.ca/eng/satellites/qeyssat.asp
+    tag: qkd
+
+current_focus:
+  name: Quantum information science across computing, communication, sensing and materials
+  description: >
+    Per IQC's own framing (uwaterloo.ca/institute-for-quantum-computing):
+    advancing quantum information science from computing and communication
+    to sensing and materials, through global collaboration, hands-on
+    training, breakthrough research and educational outreach.
+  source_url: https://uwaterloo.ca/institute-for-quantum-computing/
+
+spinout_company: null
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://cdnsciencepub.com/doi/full/10.1139/cjp-2023-0190
+    note: QEYSSat 2.0 white paper on satellite-based quantum communication missions in Canada
+  - kind: press
+    citation_key: null
+    url: https://uwaterloo.ca/institute-for-quantum-computing/research/qeyssat
+    note: IQC QEYSSat mission overview
+  - kind: press
+    citation_key: null
+    url: https://www.asc-csa.gc.ca/eng/satellites/qeyssat.asp
+    note: Canadian Space Agency QEYSSat mission page
+  - kind: press
+    citation_key: null
+    url: https://spacenews.com/honeywell-to-build-canadian-quantum-encryption-satellite/
+    note: Honeywell selected as QEYSSat spacecraft prime (SpaceNews, 2020)
+  - kind: conf-talk
+    citation_key: null
+    url: https://digitalcommons.usu.edu/smallsat/2025/E-S2-2025/4/
+    note: CSA QEYSSat satellite operations plan, Small Satellite Conference 2025
+  - kind: press
+    citation_key: null
+    url: https://en.wikipedia.org/wiki/Institute_for_Quantum_Computing
+    note: IQC founding history (2002) and Lazaridis founding gift
+  - kind: press
+    citation_key: null
+    url: https://uwaterloo.ca/institute-for-quantum-computing/profiles/norbert-lutkenhaus
+    note: Norbert Lütkenhaus Executive Director profile
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.connectivity
+  - modalities.sensing.sensitivity
+  - field: key_personnel.*.since
+    as_of: 2026-05-24
+    note: PI appointment years inferred from IQC faculty profiles and publication history; IQC people pages do not consistently state appointment date. Executive Director date (2022-09) sourced from IQC profile page.
+  - field: modalities.qkd.protocol
+    as_of: 2026-05-24
+    note: Protocol list spans the QKD theory and experimental groups at IQC; individual demonstrations cite specific protocols (BB84, decoy-state, entanglement-based, MDI-QKD).
+
+last_verified: 2026-05-24
+verification_method: web

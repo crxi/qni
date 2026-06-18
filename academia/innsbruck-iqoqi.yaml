@@ -1,0 +1,157 @@
+slug: innsbruck-iqoqi
+name: IQOQI Innsbruck — Institute for Quantum Optics and Quantum Information
+categories: [qc, network]
+hq: Innsbruck, Austria
+status: active
+parent: null
+
+institution:
+  name: University of Innsbruck + Austrian Academy of Sciences (joint)
+  lab: IQOQI Innsbruck · Institut für Experimentalphysik · Institut für Theoretische Physik
+
+group_website: https://www.iqoqi-innsbruck.at/
+
+positioning: >
+  One of Europe's longest-established quantum-information centres. The Cirac–Zoller
+  trapped-ion gate proposal (PRL 1995) originated here in collaboration
+  with MPQ, and Rainer Blatt's group ran many of the first multi-qubit
+  ion-gate demonstrations through the 2000s. IQOQI is a multi-PI centre,
+  not a single-PI group: theory under Peter Zoller and Hans Briegel
+  (the latter co-authored the measurement-based quantum-computing
+  framework), experimental ions under Blatt and Thomas Monz (also the
+  AQT spinout founder), and ion–photon network interfaces under Tracy
+  Northup.
+
+modalities:
+  qc:
+    qubit_type: trapped-ion
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: ""
+    gate_set: []
+  network:
+    role: testbed
+    products:
+      - "Ion–photon entanglement interfaces (Northup group) — calcium-ion cavity-QED platform for matter-qubit network nodes"
+
+milestones:
+  - date: 2018-05
+    tag: qc
+    headline: "Fault-tolerant operation of a logical qubit in a trapped-ion processor — Innsbruck demos of repeated QEC cycles"
+    source_url: https://www.nature.com/articles/s41586-021-04025-w
+    source_type: paper
+  - date: 2011-02
+    tag: qc
+    headline: 14-qubit GHZ entanglement in a string of trapped calcium ions
+    source_url: https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.106.130506
+    source_type: paper
+  - date: 2018
+    tag: qc
+    headline: AQT (Alpine Quantum Technologies) spun out to commercialise the Innsbruck ion-trap stack
+    source_url: https://www.aqt.eu/
+    source_type: press
+  - date: 2001-05
+    tag: qc
+    headline: Measurement-based one-way quantum computer proposed (Raussendorf and Briegel, PRL 86, 5188)
+    source_url: https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.86.5188
+    source_type: paper
+  - date: 1995-05
+    tag: qc
+    headline: "Cirac–Zoller proposal — first scalable quantum-computer architecture (trapped ions with shared phonon bus), PRL 74, 4091"
+    source_url: https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.74.4091
+    source_type: paper
+
+funding_sources:
+  - name: Austrian Academy of Sciences (ÖAW)
+    role: Host of the IQOQI institutes; core institutional funding
+    source_url: https://www.oeaw.ac.at/
+  - name: European Research Council (ERC)
+    role: Advanced Grants and Synergy Grants to Zoller, Blatt, Monz, Northup and others
+    source_url: https://erc.europa.eu/homepage
+  - name: Austrian Science Fund (FWF)
+    role: National programme grants and SFB / cluster funding
+    source_url: https://www.fwf.ac.at/
+
+key_personnel:
+  - role: Scientific Director (theory) — many-body quantum optics, quantum simulation
+    name: Peter Zoller
+    since: 1994
+    source_url: https://www.iqoqi-innsbruck.at/people/peter-zoller/
+  - role: Principal Investigator (experimental) — trapped-ion quantum computing
+    name: Rainer Blatt
+    since: 1995
+    source_url: https://www.iqoqi-innsbruck.at/people/rainer-blatt/
+  - role: Principal Investigator (theory) — measurement-based quantum computing
+    name: Hans J. Briegel
+    since: 2003
+    source_url: https://www.uibk.ac.at/de/th-physik/qicg/
+  - role: Principal Investigator (experimental) — ion–photon interfaces, cavity QED
+    name: Tracy E. Northup
+    since: 2015
+    source_url: https://www.uibk.ac.at/de/exphys/photonik/people/tracy-northup/
+  - role: Principal Investigator (experimental) — scalable ion-trap architectures; founder of AQT
+    name: Thomas Monz
+    since: 2018
+    source_url: https://www.uibk.ac.at/de/exphys/quantenoptik/team/
+
+spinout_company: aqt
+
+roadmap:
+  - target: 2025-2027
+    item: Scalable linear-trap architectures with QCCD-style ion shuttling for multi-zone multi-qubit operation (Monz / Blatt)
+    source_url: https://www.aqt.eu/
+    tag: qc
+  - target: 2025-2027
+    item: Cavity-QED ion–photon entanglement at telecom-compatible wavelengths for matter-qubit network nodes (Northup)
+    source_url: https://www.uibk.ac.at/de/exphys/photonik/
+    tag: network
+
+current_focus:
+  name: Quantum optics and quantum information
+  description: >
+    Per IQOQI Innsbruck's own framing (iqoqi.at): "Pioneering Quantum
+    Science", organised across six research groups spanning experimental
+    platforms (ultracold atoms, ion traps, optical tweezers, superconducting
+    circuits) and theoretical work in quantum optics, quantum simulation
+    and quantum information, with applications in quantum computing,
+    metrology and networking.
+  source_url: https://www.iqoqi.at/en/
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.74.4091
+    note: "Cirac & Zoller, PRL 74, 4091 (1995) — trapped-ion quantum computer proposal"
+  - kind: paper
+    citation_key: null
+    url: https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.86.5188
+    note: "Raussendorf & Briegel, PRL 86, 5188 (2001) — measurement-based one-way quantum computer"
+  - kind: paper
+    citation_key: null
+    url: https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.106.130506
+    note: "Monz et al., PRL 106, 130506 (2011) — 14-qubit GHZ entanglement in trapped ions"
+  - kind: press
+    citation_key: null
+    url: https://www.aqt.eu/
+    note: Alpine Quantum Technologies — Innsbruck ion-trap spinout (cross-link to companies/aqt.yaml)
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - field: key_personnel.*.since
+    as_of: 2026-05-24
+    note: Appointment years inferred from publication record and IQOQI / University of Innsbruck history pages; institute pages do not consistently state appointment date.
+  - field: milestones
+    as_of: 2026-05-24
+    note: Milestone selection covers the most-cited Innsbruck contributions; the institute's full output is far larger and many individual results are not surfaced here.
+
+last_verified: 2026-05-24
+verification_method: web

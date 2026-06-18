@@ -1,0 +1,364 @@
+---
+/**
+ * /academia — index page for research groups (PI dossiers).
+ *
+ * Sibling of /companies. Reads every YAML in qni/academia/ via the
+ * academia loader; each file gets a card here and a static page at
+ * /academia/<slug> via the [slug].astro template below.
+ *
+ * Visual conventions match the companies index for consistency — the
+ * tier-E "Ecosystem" pages should read as the same kind of page.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import SiteNav from "../components/SiteNav.astro";
+import {
+  ACADEMIA,
+  CATEGORY_LABEL,
+} from "../lib/academia.ts";
+import { url } from "../lib/url";
+
+const sections = [
+  { id: "overview", label: "Overview" },
+  { id: "groups",   label: "Research groups" },
+];
+
+// No per-category grouping: most research groups span multiple categories
+// (e.g. Lukin: QC + memory + network + sensing), so a primary-category
+// bucket misrepresents what they do. Show one flat list, alphabetical,
+// with a search box for narrowing. Categories still appear as chips on
+// each card so the reader can see what each group spans.
+const groups = [...ACADEMIA];
+
+const totalGroups = ACADEMIA.length;
+
+// Country comes from the last comma-separated token of `hq`. Build a
+// counts map and a frequency-sorted display order so the most-represented
+// countries surface first.
+function countryOf(hq: string): string {
+  const parts = hq.split(",").map((s) => s.trim()).filter(Boolean);
+  return parts[parts.length - 1] || hq;
+}
+const countryCounts: Record<string, number> = {};
+for (const g of groups) {
+  const c = countryOf(g.hq);
+  countryCounts[c] = (countryCounts[c] ?? 0) + 1;
+}
+const COUNTRY_ORDER = Object.keys(countryCounts).sort(
+  (a, b) => countryCounts[b] - countryCounts[a] || a.localeCompare(b),
+);
+const FLAGS: Record<string, string> = {
+  USA: "🇺🇸", UK: "🇬🇧", China: "🇨🇳", Germany: "🇩🇪",
+  Switzerland: "🇨🇭", Netherlands: "🇳🇱", Austria: "🇦🇹",
+  Singapore: "🇸🇬", Japan: "🇯🇵", Australia: "🇦🇺",
+  France: "🇫🇷", Italy: "🇮🇹", Israel: "🇮🇱", Canada: "🇨🇦",
+  India: "🇮🇳", "South Korea": "🇰🇷",
+};
+---
+
+<Infographic
+  title="Academia — research groups and PIs"
+  description="Sibling to Companies — university research groups and principal investigators carrying the field's experimental load. Same dossier shape as Companies, scoped to academic teams."
+>
+  <SiteNav slot="nav" currentSubject="academia" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>Academia — research groups and PIs</h1>
+        <p>
+          Companies don't generate the field on their own. Most experimental
+          firsts in quantum networking still come out of academic groups
+          anchoring the global research effort. This index profiles them
+          with the same dossier shape used for vendors: positioning,
+          milestones, key personnel, references. Entries are listed
+          alphabetically; descriptions are factual and don't rank groups
+          against one another.
+        </p>
+        <p>
+          <strong>{totalGroups}</strong>{" "}
+          {totalGroups === 1 ? "group" : "groups"} profiled so far.
+        </p>
+        <p class="hero-note">
+          <strong>Selection criteria:</strong> groups with sustained
+          publication output in quantum-networking primitives or qubit-platform
+          hardware over the past ~5 years, indexed by principal investigator per
+          field convention. Multi-PI research centres get a single
+          institution-anchored entry with their PIs listed as key personnel.
+          Entries are alphabetical; the list isn't exhaustive and absence
+          means "not yet added", not a judgement.
+        </p>
+      </header>
+
+      <section id="groups" data-nav-section>
+        <h2>Research groups</h2>
+        {groups.length === 0 ? (
+          <p class="empty">No groups compiled yet.</p>
+        ) : (
+          <>
+            <div class="acad-search-row">
+              <input
+                type="search"
+                id="acad-search"
+                placeholder="Search group, PI, institution, modality, location…"
+                class="acad-search"
+              />
+              <button id="acad-reset" class="acad-reset" type="button">Reset</button>
+            </div>
+            <div class="acad-country-row" data-filter-group="country">
+              <span class="acad-country-label">Country</span>
+              <div class="acad-country-chips">
+                {COUNTRY_ORDER.map((country) => (
+                  <button
+                    type="button"
+                    class="chip country-chip"
+                    data-filter-value={country}
+                    aria-pressed="false"
+                  >
+                    <span class="country-flag" aria-hidden="true">{FLAGS[country] ?? "🌐"}</span>
+                    <span class="country-name">{country}</span>
+                    <span class="chip-count">{countryCounts[country]}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+            <ul class="acad-grid">
+              {groups.map((g) => (
+                <li
+                  class="acad-card"
+                  data-country={countryOf(g.hq)}
+                  data-search={[
+                    g.name,
+                    g.positioning ?? "",
+                    g.institution.name,
+                    g.institution.lab ?? "",
+                    g.institution.also ?? "",
+                    g.hq,
+                    g.categories.map((cc) => CATEGORY_LABEL[cc]).join(" "),
+                    (g.key_personnel ?? []).map((p) => `${p.name} ${p.role}`).join(" "),
+                    (g.funding_sources ?? []).map((f) => f.name).join(" "),
+                  ].join(" ").toLowerCase()}
+                >
+                  <a href={url(`/academia/${g.slug}`)}>
+                    <div class="acad-head">
+                      <span class="acad-name">{g.name}</span>
+                    </div>
+                    <p class="acad-pos">{g.positioning}</p>
+                    <p class="acad-inst">
+                      {g.institution.name}{g.institution.lab ? ` · ${g.institution.lab}` : ""}
+                    </p>
+                    <p class="acad-meta">
+                      <span>{countryOf(g.hq)}</span>
+                    </p>
+                    <div class="acad-cats">
+                      {g.categories.map((cc) => (
+                        <span class={`cat-pill cat-${cc}`}>{CATEGORY_LABEL[cc]}</span>
+                      ))}
+                    </div>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <p id="acad-empty" class="empty" hidden>No groups match the current search.</p>
+          </>
+        )}
+      </section>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<script is:inline>
+  (function () {
+    const search = document.getElementById("acad-search");
+    const reset  = document.getElementById("acad-reset");
+    const empty  = document.getElementById("acad-empty");
+    if (!search) return;
+    const cards = Array.from(document.querySelectorAll(".acad-card"));
+    const countryChips = Array.from(document.querySelectorAll(".acad-country-chips .chip"));
+    const activeCountries = new Set();
+    function apply() {
+      const q = search.value.trim().toLowerCase();
+      let visible = 0;
+      for (const card of cards) {
+        const text = card.getAttribute("data-search") || "";
+        const country = card.getAttribute("data-country") || "";
+        const matchSearch = q === "" || text.indexOf(q) !== -1;
+        const matchCountry = activeCountries.size === 0 || activeCountries.has(country);
+        const ok = matchSearch && matchCountry;
+        card.hidden = !ok;
+        if (ok) visible++;
+      }
+      if (empty) empty.hidden = visible !== 0;
+    }
+    search.addEventListener("input", apply);
+    for (const chip of countryChips) {
+      chip.addEventListener("click", () => {
+        const v = chip.getAttribute("data-filter-value");
+        if (!v) return;
+        if (activeCountries.has(v)) {
+          activeCountries.delete(v);
+          chip.setAttribute("aria-pressed", "false");
+        } else {
+          activeCountries.add(v);
+          chip.setAttribute("aria-pressed", "true");
+        }
+        apply();
+      });
+    }
+    if (reset) {
+      reset.addEventListener("click", () => {
+        search.value = "";
+        activeCountries.clear();
+        for (const c of countryChips) c.setAttribute("aria-pressed", "false");
+        apply();
+      });
+    }
+  })();
+</script>
+
+<style>
+  .hero { padding-block: var(--space-6) var(--space-4); border-block-end: 1px solid var(--color-rule); display: grid; gap: var(--space-3); }
+  .hero h1 { margin: 0; }
+  .hero-note {
+    font-size: var(--text-sm);
+    color: var(--color-text-mute);
+    padding: var(--space-3);
+    background: var(--color-surface-2);
+    border-radius: var(--radius-sm);
+    border-inline-start: 3px solid var(--color-accent);
+  }
+  section { display: grid; gap: var(--space-3); min-inline-size: 0; }
+
+  /* Search-bar hiding handled globally via reset.css `[hidden]` rule. */
+
+  .acad-search-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-block-end: var(--space-3);
+  }
+  .acad-search {
+    flex: 1 1 16rem;
+    min-width: 12rem;
+    font-size: var(--text-sm);
+    padding: 0.35rem 0.6rem;
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-sm);
+    background: var(--card-bg);
+    color: var(--color-text);
+  }
+  .acad-search:focus { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  .acad-reset {
+    font: inherit;
+    font-size: var(--text-xs);
+    padding: 3px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--color-rule);
+    background: transparent;
+    color: var(--color-text-mute);
+    cursor: pointer;
+  }
+  .acad-reset:hover { color: var(--color-text); }
+
+  .acad-country-row {
+    display: grid;
+    gap: 0.4rem;
+    margin-block-end: var(--space-3);
+  }
+  .acad-country-label {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-mute);
+  }
+  .acad-country-chips {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+  }
+  .chip {
+    font: inherit;
+    font-size: var(--text-xs);
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--color-rule);
+    background: var(--card-bg);
+    border-radius: 999px;
+    cursor: pointer;
+    color: var(--color-text);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: background 120ms, border-color 120ms;
+  }
+  .chip:hover { border-color: var(--color-accent); }
+  .chip[aria-pressed="true"] {
+    box-shadow: inset 0 0 0 2px currentColor;
+    font-weight: 600;
+  }
+  .chip-count {
+    font-variant-numeric: tabular-nums;
+    opacity: 0.7;
+  }
+  .country-flag { font-size: 0.95em; line-height: 1; }
+
+  .acad-grid {
+    list-style: none; padding: 0; margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    inline-size: 100%; max-inline-size: 1100px; min-inline-size: 0;
+    gap: var(--space-2);
+  }
+  .acad-card {
+    padding: 0;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    transition: border-color 150ms ease;
+    min-inline-size: 0;
+  }
+  .acad-card:hover { border-color: var(--color-accent); }
+  .acad-card a {
+    display: grid; gap: 6px; padding: var(--space-3);
+    color: inherit; text-decoration: none; min-inline-size: 0;
+  }
+  .acad-head { display: flex; align-items: center; gap: var(--space-2); }
+  .acad-name { font-weight: 600; color: var(--color-text); font-size: var(--text-md); }
+  .acad-pos {
+    font-size: var(--text-sm); color: var(--color-text-mute);
+    line-height: var(--leading-snug);
+    margin: 0; overflow-wrap: anywhere;
+  }
+  .acad-inst {
+    margin: 0;
+    font-size: var(--text-xs);
+    color: var(--color-text-mute);
+    font-weight: 600;
+  }
+  .acad-meta {
+    margin: 0;
+    font-size: var(--text-xs);
+    color: var(--color-text-mute);
+  }
+  .acad-cats {
+    display: flex; flex-wrap: wrap; gap: 0.3rem;
+    margin-block-start: 0.2rem;
+  }
+  .cat-pill {
+    display: inline-flex; align-items: center;
+    font-size: var(--text-xs); line-height: 1;
+    padding: 0.18rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    white-space: nowrap;
+  }
+  .cat-qc            { background: color-mix(in srgb, #3b82f6 18%, transparent); color: #2353c7; border-color: color-mix(in srgb, #3b82f6 40%, transparent); }
+  .cat-qkd           { background: color-mix(in srgb, #8b5cf6 18%, transparent); color: #6c40d9; border-color: color-mix(in srgb, #8b5cf6 40%, transparent); }
+  .cat-memory        { background: color-mix(in srgb, #10b981 18%, transparent); color: #0c8a64; border-color: color-mix(in srgb, #10b981 40%, transparent); }
+  .cat-network       { background: color-mix(in srgb, #06b6d4 18%, transparent); color: #0289a2; border-color: color-mix(in srgb, #06b6d4 40%, transparent); }
+  .cat-source-detect { background: color-mix(in srgb, #f59e0b 18%, transparent); color: #b16e00; border-color: color-mix(in srgb, #f59e0b 40%, transparent); }
+  .cat-sensing       { background: color-mix(in srgb, #ef4444 18%, transparent); color: #c53030; border-color: color-mix(in srgb, #ef4444 40%, transparent); }
+  .cat-software      { background: color-mix(in srgb, #6b7280 18%, transparent); color: #4b5563; border-color: color-mix(in srgb, #6b7280 40%, transparent); }
+  .cat-enabling      { background: color-mix(in srgb, #ec4899 18%, transparent); color: #be1f7a; border-color: color-mix(in srgb, #ec4899 40%, transparent); }
+  .empty { color: var(--color-text-mute); }
+</style>

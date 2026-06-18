@@ -1,0 +1,228 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 670" role="img" aria-labelledby="swap4-title swap4-desc">
+  <title id="swap4-title">Canonical 1G repeater: entanglement generation and cascaded swapping</title>
+  <desc id="swap4-desc">Four-row diagram. E Gen: each matter qubit (green) is locally entangled with a flying photon (blue) — shown as a vertical wavy line between them; pairs of photons meet at midpoint photonic Bell-state analysers and a successful herald collapses the two distant matter qubits onto a Bell pair. 1st E Swap: every matter qubit is now green and entangled with its neighbour along the chain (horizontal wavy lines); local Bell measurements at R₁ and R₃ are about to fire (dashed boxes); the two qubits inside each box are not yet linked to each other. 2nd E Swap: R₁ and R₃ are spent (grey); the entanglement on either side of R₂ arches up and over the spent relay pairs. Result: a single long A↔B Bell pair, drawn as a wriggly line that arches over all three spent relay pairs.</desc>
+
+  <defs>
+    <style>
+      .matter      { fill: #22c55e; stroke: #1a1f2a; stroke-width: 1.2; }
+      .matter-used { fill: #c9ced6; stroke: #aab0ba; stroke-width: 1.0; }
+      .photon      { fill: #2f6fd6; stroke: #1a1f2a; stroke-width: 1.0; }
+      .ent         { stroke: #c84a9b; stroke-width: 2; fill: none; stroke-linecap: round; }
+      .mp-wave     { stroke: #c84a9b; stroke-width: 1.6; fill: none; }
+      .photon-path { stroke: #6a7180; stroke-width: 0.9; fill: none; stroke-dasharray: 3 3; }
+      .bm-box      { fill: none; stroke: #5a6472; stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .dev-box     { fill: none; stroke: #5a6472; stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .lbl         { font-family: "Inter", system-ui, sans-serif; font-size: 13px; fill: #1a1f2a; font-weight: 600; }
+      .lbl-relay   { font-family: "Inter", system-ui, sans-serif; font-size: 14px; fill: #5a6472; font-style: italic; }
+      .lbl-mu      { font-family: "Inter", system-ui, sans-serif; font-size: 10.5px; fill: #5a6472; }
+      .lbl-stage   { font-family: "Inter", system-ui, sans-serif; font-size: 12px; fill: #1a1f2a; font-weight: 700; letter-spacing: 0.04em; }
+      .lbl-ann-sm  { font-family: "Inter", system-ui, sans-serif; font-size: 9.5px; fill: #5a6472; }
+      .lbl-ann     { font-family: "Inter", system-ui, sans-serif; font-size: 14px; fill: #1a1f2a; font-weight: 600; text-anchor: middle; }
+      .bsm-glass   { fill: #d9eef9; stroke: #1a1f2a; stroke-width: 4; stroke-linejoin: round; }
+      .bsm-coat    { stroke: #1a1f2a; stroke-width: 3; stroke-linecap: round; }
+      .bsm-bs      { fill: #1a1f2a; stroke: none; }
+      .bsm-beam    { stroke: #5a6472; stroke-width: 6; fill: none; stroke-linecap: round; }
+      .bsm-det     { fill: #1a1f2a; stroke: #1a1f2a; stroke-width: 0.5; }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5a6472"/>
+    </marker>
+    <symbol id="bsm-detector" overflow="visible">
+      <path class="bsm-det" d="M -14,0 A 14,14 0 0 1 14,0 Z"/>
+    </symbol>
+    <!-- Scaled BSM.svg apparatus for the EG-row midpoints. Geometry matches images/BSM.svg. -->
+    <symbol id="ph-bsm" viewBox="0 0 640 540" overflow="visible">
+      <line class="bsm-beam" x1="190" y1="50"  x2="450" y2="310"/>
+      <line class="bsm-beam" x1="450" y1="310" x2="510" y2="370"/>
+      <line class="bsm-beam" x1="450" y1="310" x2="390" y2="370"/>
+      <line class="bsm-beam" x1="450" y1="50"  x2="190" y2="310"/>
+      <line class="bsm-beam" x1="190" y1="310" x2="130" y2="370"/>
+      <line class="bsm-beam" x1="190" y1="310" x2="250" y2="370"/>
+      <rect class="bsm-bs" x="312" y="140" width="16" height="80" rx="4"/>
+      <polygon class="bsm-glass" points="190,270 230,310 190,350 150,310"/>
+      <line class="bsm-coat" x1="190" y1="270" x2="190" y2="350"/>
+      <polygon class="bsm-glass" points="450,270 490,310 450,350 410,310"/>
+      <line class="bsm-coat" x1="450" y1="270" x2="450" y2="350"/>
+      <use href="#bsm-detector" transform="translate(130,370) rotate(-135)"/>
+      <use href="#bsm-detector" transform="translate(250,370) rotate(135)"/>
+      <use href="#bsm-detector" transform="translate(390,370) rotate(-135)"/>
+      <use href="#bsm-detector" transform="translate(510,370) rotate(135)"/>
+    </symbol>
+  </defs>
+
+  <!-- Column x-coords (uniform 168-wide gaps between adjacent matter qubits):
+       A=130, R₁=(316, 340), R₂=(522, 546), R₃=(728, 752), B=938
+       ph-BSM midpoints: 223 / 431 / 637 / 845
+       ph-BSM origins (90 wide): 178 / 386 / 592 / 800 -->
+
+  <!-- ═══════════ Row 1: E Gen ═══════════ -->
+  <text class="lbl-stage" x="20" y="50" text-anchor="start">E Gen</text>
+
+  <!-- Device boxes: each node groups its matter qubit(s) and emitted photon(s). -->
+  <rect class="dev-box" x="113" y="55" width="34" height="60" rx="5"/>
+  <rect class="dev-box" x="304" y="55" width="48" height="60" rx="5"/>
+  <rect class="dev-box" x="510" y="55" width="48" height="60" rx="5"/>
+  <rect class="dev-box" x="716" y="55" width="48" height="60" rx="5"/>
+  <rect class="dev-box" x="921" y="55" width="34" height="60" rx="5"/>
+
+  <!-- Matter qubits (all green); A and B same green fill as relay qubits. -->
+  <circle class="matter" cx="130" cy="70" r="11"/>
+  <text class="lbl" x="130" y="74" text-anchor="middle">A</text>
+  <circle class="matter" cx="316" cy="70" r="7"/>
+  <circle class="matter" cx="340" cy="70" r="7"/>
+  <text class="lbl-relay" x="328" y="45" text-anchor="middle">R₁</text>
+  <circle class="matter" cx="522" cy="70" r="7"/>
+  <circle class="matter" cx="546" cy="70" r="7"/>
+  <text class="lbl-relay" x="534" y="45" text-anchor="middle">R₂</text>
+  <circle class="matter" cx="728" cy="70" r="7"/>
+  <circle class="matter" cx="752" cy="70" r="7"/>
+  <text class="lbl-relay" x="740" y="45" text-anchor="middle">R₃</text>
+  <circle class="matter" cx="938" cy="70" r="11"/>
+  <text class="lbl" x="938" y="74" text-anchor="middle">B</text>
+
+  <!-- Photons (blue), positioned below their matter qubits. -->
+  <circle class="photon" cx="130" cy="105" r="4.5"/>
+  <circle class="photon" cx="316" cy="105" r="4.5"/>
+  <circle class="photon" cx="340" cy="105" r="4.5"/>
+  <circle class="photon" cx="522" cy="105" r="4.5"/>
+  <circle class="photon" cx="546" cy="105" r="4.5"/>
+  <circle class="photon" cx="728" cy="105" r="4.5"/>
+  <circle class="photon" cx="752" cy="105" r="4.5"/>
+  <circle class="photon" cx="938" cy="105" r="4.5"/>
+
+  <!-- Matter–photon entanglement: a vertical wavy line tying each matter qubit
+       to its emitted photon (matter–photon Bell pair, before the herald fires). -->
+  <path class="mp-wave" d="M 130,82 q 3,2.5 0,4.75 t 0,4.75 t 0,4.75 t 0,4.75"/>
+  <path class="mp-wave" d="M 316,78 q 3,3 0,5.875 t 0,5.875 t 0,5.875 t 0,5.875"/>
+  <path class="mp-wave" d="M 340,78 q 3,3 0,5.875 t 0,5.875 t 0,5.875 t 0,5.875"/>
+  <path class="mp-wave" d="M 522,78 q 3,3 0,5.875 t 0,5.875 t 0,5.875 t 0,5.875"/>
+  <path class="mp-wave" d="M 546,78 q 3,3 0,5.875 t 0,5.875 t 0,5.875 t 0,5.875"/>
+  <path class="mp-wave" d="M 728,78 q 3,3 0,5.875 t 0,5.875 t 0,5.875 t 0,5.875"/>
+  <path class="mp-wave" d="M 752,78 q 3,3 0,5.875 t 0,5.875 t 0,5.875 t 0,5.875"/>
+  <path class="mp-wave" d="M 938,82 q 3,2.5 0,4.75 t 0,4.75 t 0,4.75 t 0,4.75"/>
+
+  <!-- ph-BSM apparatus (scaled copy of images/BSM.svg) at each midpoint. -->
+  <use href="#ph-bsm" x="178" y="145" width="90" height="76"/>
+  <use href="#ph-bsm" x="386" y="145" width="90" height="76"/>
+  <use href="#ph-bsm" x="592" y="145" width="90" height="76"/>
+  <use href="#ph-bsm" x="800" y="145" width="90" height="76"/>
+
+  <!-- Photonic BSM label, centred under each apparatus. -->
+  <text class="lbl-mu" x="223" y="217" text-anchor="middle">Photonic BSM</text>
+  <text class="lbl-mu" x="431" y="217" text-anchor="middle">Photonic BSM</text>
+  <text class="lbl-mu" x="637" y="217" text-anchor="middle">Photonic BSM</text>
+  <text class="lbl-mu" x="845" y="217" text-anchor="middle">Photonic BSM</text>
+
+  <!-- Dashed photon-flight paths from each photon to the ph-BSM input port it heads for.
+       Input ports outer coords = (ph-BSM origin + 26.72, +7.03) and (origin + 63.28, +7.03). -->
+  <path class="photon-path" d="M 130,110 L 204.72,152.03"/>
+  <path class="photon-path" d="M 316,110 L 241.28,152.03"/>
+  <path class="photon-path" d="M 340,110 L 412.72,152.03"/>
+  <path class="photon-path" d="M 522,110 L 449.28,152.03"/>
+  <path class="photon-path" d="M 546,110 L 618.72,152.03"/>
+  <path class="photon-path" d="M 728,110 L 655.28,152.03"/>
+  <path class="photon-path" d="M 752,110 L 826.72,152.03"/>
+  <path class="photon-path" d="M 938,110 L 863.28,152.03"/>
+
+  <!-- Right-margin annotation: probabilistic retry loop. -->
+  <text class="lbl-ann" x="1040" y="232">Repeat</text>
+  <text class="lbl-ann" x="1040" y="249">until</text>
+  <text class="lbl-ann" x="1040" y="266">success</text>
+  <line x1="1040" y1="274" x2="1040" y2="292" stroke="#5a6472" stroke-width="1.4" marker-end="url(#arr)"/>
+
+  <!-- ═══════════ Row 2: 1st E Swap ═══════════ -->
+  <text class="lbl-stage" x="20" y="305" text-anchor="start">1st E Swap</text>
+
+  <!-- After EG: every adjacent matter-qubit pair is now entangled.  Four wavy lines.
+       NOT through the BM boxes — the two qubits inside each box are not entangled
+       with each other, only with their respective neighbour. -->
+  <path class="ent" d="M 141,325 q 7,-8 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0"/>
+  <path class="ent" d="M 347,325 q 7,-8 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0"/>
+  <path class="ent" d="M 553,325 q 7,-8 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0"/>
+  <path class="ent" d="M 759,325 q 7,-8 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0 t 14,0"/>
+
+  <circle class="matter" cx="130" cy="325" r="11"/>
+  <text class="lbl" x="130" y="329" text-anchor="middle">A</text>
+
+  <!-- R₁ pair: still green; dashed box marks the Bell measurement about to fire. -->
+  <rect class="bm-box" x="302" y="312" width="52" height="26" rx="3"/>
+  <circle class="matter" cx="316" cy="325" r="7"/>
+  <circle class="matter" cx="340" cy="325" r="7"/>
+  <text class="lbl-mu" x="328" y="355" text-anchor="middle">Bell measurement</text>
+
+  <!-- R₂ pair: live, no BM this round. -->
+  <circle class="matter" cx="522" cy="325" r="7"/>
+  <circle class="matter" cx="546" cy="325" r="7"/>
+
+  <!-- R₃ pair: still green; dashed box marks the BM about to fire (parallel with R₁). -->
+  <rect class="bm-box" x="714" y="312" width="52" height="26" rx="3"/>
+  <circle class="matter" cx="728" cy="325" r="7"/>
+  <circle class="matter" cx="752" cy="325" r="7"/>
+  <text class="lbl-mu" x="740" y="355" text-anchor="middle">Bell measurement</text>
+
+  <circle class="matter" cx="938" cy="325" r="11"/>
+  <text class="lbl" x="938" y="329" text-anchor="middle">B</text>
+
+  <text class="lbl-ann" x="1040" y="363">Repeat</text>
+  <text class="lbl-ann" x="1040" y="380">until</text>
+  <text class="lbl-ann" x="1040" y="397">success</text>
+  <line x1="1040" y1="405" x2="1040" y2="423" stroke="#5a6472" stroke-width="1.4" marker-end="url(#arr)"/>
+
+  <!-- ═══════════ Row 3: 2nd E Swap ═══════════ -->
+  <text class="lbl-stage" x="20" y="435" text-anchor="start">2nd E Swap</text>
+
+  <!-- R₁ and R₃ are spent (consumed in 1st E Swap).  Draw them FIRST so the
+       entanglement wavy lines render on top of them, signalling the long
+       Bell pairs pass through (over) the now-inert relays. -->
+  <circle class="matter-used" cx="316" cy="455" r="7"/>
+  <circle class="matter-used" cx="340" cy="455" r="7"/>
+  <circle class="matter-used" cx="728" cy="455" r="7"/>
+  <circle class="matter-used" cx="752" cy="455" r="7"/>
+
+  <!-- Two long entanglement lines: A↔R₂.L and R₂.R↔B.  Each is a single
+       gentle smooth arc that lifts clear of the spent grey relay pair. -->
+  <path class="ent" d="M 141.0,455 Q 148.1,445.8 155.2,452.6 Q 162.3,459.4 169.5,450.2 Q 176.6,441.1 183.7,447.9 Q 190.8,454.8 197.9,445.7 Q 205.0,436.7 212.2,443.6 Q 219.3,450.7 226.4,441.7 Q 233.5,432.9 240.6,440 Q 247.7,447.3 254.8,438.5 Q 262.0,429.9 269.1,437.3 Q 276.2,444.8 283.3,436.3 Q 290.4,427.9 297.5,435.6 Q 304.7,443.4 311.8,435.1 Q 318.9,427.1 326.0,435 Q 333.1,443.1 340.2,435.1 Q 347.3,427.4 354.5,435.6 Q 361.6,443.9 368.7,436.3 Q 375.8,428.8 382.9,437.3 Q 390.0,445.9 397.2,438.5 Q 404.3,431.3 411.4,440 Q 418.5,448.9 425.6,441.7 Q 432.7,434.7 439.8,443.6 Q 447.0,452.7 454.1,445.7 Q 461.2,438.8 468.3,447.9 Q 475.4,457.1 482.5,450.2 Q 489.7,443.4 496.8,452.6 Q 503.9,461.8 511.0,455"/>
+  <path class="ent" d="M 553.0,455 Q 560.2,445.8 567.4,452.6 Q 574.6,459.4 581.8,450.2 Q 589.0,441.1 596.2,447.9 Q 603.3,454.8 610.5,445.7 Q 617.7,436.7 624.9,443.6 Q 632.1,450.7 639.3,441.7 Q 646.5,432.9 653.7,440 Q 660.9,447.3 668.1,438.5 Q 675.3,429.9 682.5,437.3 Q 689.7,444.8 696.8,436.3 Q 704.0,427.9 711.2,435.6 Q 718.4,443.4 725.6,435.1 Q 732.8,427.1 740.0,435 Q 747.2,443.1 754.4,435.1 Q 761.6,427.4 768.8,435.6 Q 776.0,443.9 783.2,436.3 Q 790.3,428.8 797.5,437.3 Q 804.7,445.9 811.9,438.5 Q 819.1,431.3 826.3,440 Q 833.5,448.9 840.7,441.7 Q 847.9,434.7 855.1,443.6 Q 862.3,452.7 869.5,445.7 Q 876.7,438.8 883.8,447.9 Q 891.0,457.1 898.2,450.2 Q 905.4,443.4 912.6,452.6 Q 919.8,461.8 927.0,455"/>
+
+  <!-- Green endpoints and R₂ pair on top of everything. -->
+  <circle class="matter" cx="130" cy="455" r="11"/>
+  <text class="lbl" x="130" y="459" text-anchor="middle">A</text>
+
+  <rect class="bm-box" x="508" y="442" width="52" height="26" rx="3"/>
+  <circle class="matter" cx="522" cy="455" r="7"/>
+  <circle class="matter" cx="546" cy="455" r="7"/>
+  <text class="lbl-mu" x="534" y="485" text-anchor="middle">Bell measurement</text>
+
+  <circle class="matter" cx="938" cy="455" r="11"/>
+  <text class="lbl" x="938" y="459" text-anchor="middle">B</text>
+
+  <text class="lbl-ann" x="1040" y="493">Repeat</text>
+  <text class="lbl-ann" x="1040" y="510">until</text>
+  <text class="lbl-ann" x="1040" y="527">success</text>
+  <line x1="1040" y1="535" x2="1040" y2="553" stroke="#5a6472" stroke-width="1.4" marker-end="url(#arr)"/>
+
+  <!-- ═══════════ Row 4: Result ═══════════ -->
+  <text class="lbl-stage" x="20" y="565" text-anchor="start">Result</text>
+
+  <!-- All three relays now spent.  Draw them FIRST so the long wavy A↔B Bell pair
+       renders on top of them. -->
+  <circle class="matter-used" cx="316" cy="585" r="6"/>
+  <circle class="matter-used" cx="340" cy="585" r="6"/>
+  <circle class="matter-used" cx="522" cy="585" r="6"/>
+  <circle class="matter-used" cx="546" cy="585" r="6"/>
+  <circle class="matter-used" cx="728" cy="585" r="6"/>
+  <circle class="matter-used" cx="752" cy="585" r="6"/>
+
+  <!-- One long A↔B Bell pair: a single gentle smooth arc from A to B,
+       lifting clear of all three spent relay pairs. -->
+  <path class="ent" d="M 141.00,585.00 Q 146.04,579.44 151.08,583.87 Q 156.12,588.31 161.15,582.75 Q 166.19,577.19 171.23,581.62 Q 176.27,586.07 181.31,580.51 Q 186.35,574.95 191.38,579.40 Q 196.42,583.85 201.46,578.30 Q 206.50,572.75 211.54,577.21 Q 216.58,581.67 221.62,576.13 Q 226.65,570.60 231.69,575.07 Q 236.73,579.55 241.77,574.02 Q 246.81,568.51 251.85,573.00 Q 256.88,577.49 261.92,571.99 Q 266.96,566.49 272.00,571.00 Q 277.04,575.52 282.08,570.03 Q 287.12,564.56 292.15,569.09 Q 297.19,573.64 302.23,568.18 Q 307.27,562.74 312.31,567.29 Q 317.35,571.86 322.38,566.43 Q 327.42,561.02 332.46,565.60 Q 337.50,570.21 342.54,564.81 Q 347.58,559.42 352.62,564.04 Q 357.65,568.68 362.69,563.31 Q 367.73,557.96 372.77,562.62 Q 377.81,567.29 382.85,561.96 Q 387.88,556.65 392.92,561.33 Q 397.96,566.04 403.00,560.75 Q 408.04,555.48 413.08,560.21 Q 418.12,564.96 423.15,559.70 Q 428.19,554.47 433.23,559.24 Q 438.27,564.03 443.31,558.82 Q 448.35,553.63 453.38,558.44 Q 458.42,563.27 463.46,558.11 Q 468.50,552.96 473.54,557.81 Q 478.58,562.69 483.62,557.57 Q 488.65,552.46 493.69,557.36 Q 498.73,562.28 503.77,557.20 Q 508.81,552.15 513.85,557.09 Q 518.88,562.06 523.92,557.02 Q 528.96,552.01 534.00,557.00 Q 539.04,562.01 544.08,557.02 Q 549.12,552.06 554.15,557.09 Q 559.19,562.15 564.23,557.20 Q 569.27,552.28 574.31,557.36 Q 579.35,562.46 584.38,557.57 Q 589.42,552.69 594.46,557.81 Q 599.50,562.96 604.54,558.11 Q 609.58,553.27 614.62,558.44 Q 619.65,563.63 624.69,558.82 Q 629.73,554.03 634.77,559.24 Q 639.81,564.47 644.85,559.70 Q 649.88,554.96 654.92,560.21 Q 659.96,565.48 665.00,560.75 Q 670.04,556.04 675.08,561.33 Q 680.12,566.65 685.15,561.96 Q 690.19,557.29 695.23,562.62 Q 700.27,567.96 705.31,563.31 Q 710.35,558.68 715.38,564.04 Q 720.42,569.42 725.46,564.81 Q 730.50,560.21 735.54,565.60 Q 740.58,571.02 745.62,566.43 Q 750.65,561.86 755.69,567.29 Q 760.73,572.74 765.77,568.18 Q 770.81,563.64 775.85,569.09 Q 780.88,574.56 785.92,570.03 Q 790.96,565.52 796.00,571.00 Q 801.04,576.49 806.08,571.99 Q 811.12,567.49 816.15,573.00 Q 821.19,578.51 826.23,574.02 Q 831.27,569.55 836.31,575.07 Q 841.35,580.60 846.38,576.13 Q 851.42,571.67 856.46,577.21 Q 861.50,582.75 866.54,578.30 Q 871.58,573.85 876.62,579.40 Q 881.65,584.95 886.69,580.51 Q 891.73,576.07 896.77,581.62 Q 901.81,587.19 906.85,582.75 Q 911.88,578.31 916.92,583.87 Q 921.96,589.44 927.00,585.00"/>
+
+  <!-- Green endpoints A and B on top of the wavy line. -->
+  <circle class="matter" cx="130" cy="585" r="11"/>
+  <text class="lbl" x="130" y="589" text-anchor="middle">A</text>
+  <circle class="matter" cx="938" cy="585" r="11"/>
+  <text class="lbl" x="938" y="589" text-anchor="middle">B</text>
+
+  <text class="lbl-stage" x="534" y="638" text-anchor="middle">One long A↔B Bell pair — ready for teleportation or QKD</text>
+  <text class="lbl-ann-sm" x="1090" y="660" text-anchor="end" font-style="italic">after Azuma et al., Rev. Mod. Phys. 95, 045006 (2023)</text>
+</svg>

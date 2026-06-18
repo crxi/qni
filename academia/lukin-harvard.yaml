@@ -1,0 +1,171 @@
+slug: lukin-harvard
+name: Lukin group (Harvard)
+categories: [qc, memory, network, sensing]
+hq: Cambridge, Massachusetts, USA
+founded: 2001
+status: active
+parent: null
+
+institution:
+  name: Harvard University
+  lab: Lukin Lab · Harvard Quantum Initiative · joint affiliations (MIT, Harvard-MIT Center for Ultracold Atoms)
+
+group_website: https://lukin.physics.harvard.edu/
+
+positioning: >
+  Mikhail Lukin's group at Harvard works across four overlapping fronts:
+  silicon-vacancy (SiV) and nitrogen-vacancy (NV) colour-centre networking
+  with diamond nanophotonic cavities; neutral-atom programmable simulators
+  scaled to hundreds of atoms via optical tweezers and Rydberg
+  interactions, including logical-qubit fault-tolerance demos;
+  quantum-repeater prototypes, most recently 35 km telecom-fibre
+  entanglement of two SiV memory nodes on a Boston-area loop (Knaut et
+  al. 2024); and single-NV magnetometry. Current networking thrust:
+  extending SiV-cavity nodes from two-node to multi-node telecom links.
+
+modalities:
+  qc:
+    qubit_type: neutral-atom
+    physical_qubits_current: 256
+    logical_qubits_current: 48
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: surface
+    connectivity: reconfigurable
+    gate_set: [Rydberg-CZ, local-Raman]
+  memory:
+    platform: siv
+    storage_time_ms: null
+    retrieval_efficiency: null
+    fidelity: null
+    wavelength_nm: 737
+    mode_capacity: null
+  network:
+    role: repeater
+    products: ["SiV nanophotonic memory node", "two-node telecom-loop repeater demonstrator"]
+  sensing:
+    target_quantity: magnetometry
+    sensitivity: "single NV-centre, nanoscale spatial resolution"
+
+milestones:
+  - date: 2024-05
+    tag: network
+    headline: "Two-node SiV memory entanglement across 35-km Boston-area telecom loop (Knaut et al. Nature)"
+    source_url: https://www.nature.com/articles/s41586-024-07252-z
+    source_type: paper
+  - date: 2023-12
+    tag: qc
+    headline: "Logical-qubit processor with 48 logical qubits on a neutral-atom array (Bluvstein et al. Nature)"
+    source_url: https://www.nature.com/articles/s41586-023-06927-3
+    source_type: paper
+  - date: 2022-04
+    tag: qc
+    headline: "256-atom programmable quantum simulator with Rydberg interactions (Ebadi et al. Nature 2021; Scholl et al. Nature 2021)"
+    source_url: https://www.nature.com/articles/s41586-021-03582-4
+    source_type: paper
+  - date: 2022-04
+    tag: qc
+    headline: "Quantum processor based on coherent transport of entangled atom arrays (Bluvstein et al. Nature)"
+    source_url: https://www.nature.com/articles/s41586-022-04592-6
+    source_type: paper
+  - date: 2020-05
+    tag: memory
+    headline: "Experimental demonstration of memory-enhanced quantum communication with SiV (Bhaskar et al. Nature)"
+    source_url: https://www.nature.com/articles/s41586-020-2103-5
+    source_type: paper
+  - date: 2019-04
+    tag: memory
+    headline: "Quantum network nodes based on diamond nanophotonics with SiV (Nguyen et al. PRL / PRB)"
+    source_url: https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.123.183602
+    source_type: paper
+  - date: 2018-09
+    tag: memory
+    headline: "Robust multi-qubit quantum network node with integrated error detection (Sun et al. Science)"
+    source_url: https://www.science.org/doi/10.1126/science.aat3581
+    source_type: paper
+
+shareholders: []
+
+key_personnel:
+  - role: Principal Investigator
+    name: Mikhail D. Lukin
+    since: 2001
+    source_url: https://lukin.physics.harvard.edu/
+  - role: Senior collaborator (joint group)
+    name: Hongkun Park
+    since: 2004
+    source_url: https://hongkunparklab.com/
+  - role: Postdoc / lead author (SiV repeater)
+    name: Can M. Knaut
+    since: 2020
+    source_url: https://lukin.physics.harvard.edu/
+  - role: Postdoc / lead author (neutral-atom logical processor)
+    name: Dolev Bluvstein
+    since: 2019
+    source_url: https://lukin.physics.harvard.edu/
+
+funding_sources:
+  - name: NSF Center for Ultracold Atoms (Harvard-MIT CUA)
+    source_url: https://cuaweb.mit.edu/
+  - name: Army Research Office (ARO)
+    source_url: https://lukin.physics.harvard.edu/
+  - name: DARPA (ONISQ, IMPAQT, and related programs)
+    source_url: https://lukin.physics.harvard.edu/
+  - name: DOE NQI Center — Q-NEXT (member institution)
+    source_url: https://q-next.org/
+  - name: NSF QLCI — Center for Quantum Networks (CQN)
+    source_url: https://cqn-erc.arizona.edu/
+
+current_focus:
+  name: Quantum optics, AMO physics and quantum networking
+  description: ""
+
+references:
+  - kind: paper
+    citation_key: knaut-nature-2024
+    url: https://www.nature.com/articles/s41586-024-07252-z
+    note: Two-node SiV entanglement across 35-km Boston telecom loop
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41586-023-06927-3
+    note: Bluvstein et al. 2024 — 48 logical qubits on neutral-atom array
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41586-022-04592-6
+    note: Bluvstein et al. 2022 — coherent transport of entangled atom arrays
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41586-021-03582-4
+    note: Ebadi et al. 2021 — 256-atom programmable simulator
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41586-020-2103-5
+    note: Bhaskar et al. 2020 — memory-enhanced quantum communication (SiV)
+  - kind: paper
+    citation_key: null
+    url: https://www.science.org/doi/10.1126/science.aat3581
+    note: Sun et al. 2018 — robust multi-qubit network node with SiV
+
+partial:
+  - field: current_focus.description
+    as_of: 2026-05-24
+    note: lukin.physics.harvard.edu returns HTTP 403 on automated retrieval and no other accessible Harvard page carries a focus self-statement; rather than synthesise, left blank pending the group publishing one (or a successful manual fetch).
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.memory.storage_time_ms
+  - modalities.memory.retrieval_efficiency
+  - modalities.memory.fidelity
+  - modalities.memory.mode_capacity
+  - field: founded
+    as_of: 2026-05-24
+    note: Lukin joined Harvard faculty in 2001; "group founding" treated as that year
+  - field: modalities.qc.ec_code
+    as_of: 2026-05-24
+    note: Bluvstein 2023 used surface and colour codes; surface is the headline demo
+
+last_verified: 2026-05-24
+verification_method: web

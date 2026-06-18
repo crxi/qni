@@ -1,0 +1,128 @@
+slug: gao-nus
+name: Gao group (NUS)
+categories: [qc]
+hq: Singapore
+status: active
+parent: null
+
+institution:
+  name: National University of Singapore (NUS)
+  lab: Department of Physics · Centre for Quantum Technologies (CQT) · qcrew (Quantum Circuits Research & Engineering Workgroup)
+  also: Affiliated with Singapore's National Quantum Computing Hub ecosystem (CQT + A*STAR IHPC + NSCC)
+
+group_website: https://quantumcrew.org/
+
+positioning: >
+  Yvonne Gao's qcrew at NUS is a Yale-trained superconducting + circuit-QED
+  + bosonic-code group anchoring Singapore's experimental superconducting
+  quantum-computing capability. The lab builds microwave-cavity hardware and
+  develops non-Gaussian bosonic states for error-mitigated information
+  processing, with two 2025 PRX Quantum papers on cavity-coupled qubits and
+  a 2024 Nature Communications result on transposition across light-matter
+  interaction regimes. Gao is an NRF Fellow (2020) and NUS Presidential
+  Young Professor; the group sits inside CQT and contributes to the
+  superconducting thread of Singapore's National Quantum Computing Hub.
+
+modalities:
+  qc:
+    qubit_type: transmon
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: bosonic
+    connectivity: ""
+    gate_set: []
+
+milestones:
+  - date: 2025
+    tag: qc
+    headline: Two PRX Quantum papers on single qubits coupled to cavities in the standard bosonic cQED architecture
+    source_url: https://quantumcrew.org/
+    source_type: blog
+  - date: 2024
+    tag: qc
+    headline: On-demand transposition across light-matter interaction regimes in bosonic cQED (Nature Communications)
+    source_url: https://quantumcrew.org/
+    source_type: paper
+  - date: 2021-03
+    tag: qc
+    headline: "Review — Quantum information processing with bosonic qubits in circuit QED (Quantum Sci. Technol.)"
+    source_url: https://iopscience.iop.org/article/10.1088/2058-9565/abe989
+    source_type: paper
+funding_sources:
+  - name: National Research Foundation (NRF) Singapore — NRF Fellowship
+    role: Class of 2020 fellowship funding the qcrew programme at NUS
+    source_url: https://www.physics.nus.edu.sg/faculty/yvonne-y-gao/
+  - name: NUS Presidential Young Professorship
+    role: University-level appointment funding lab start-up
+    source_url: https://www.physics.nus.edu.sg/faculty/yvonne-y-gao/
+  - name: Centre for Quantum Technologies (CQT)
+    role: Host research centre — Gao is a CQT Principal Investigator
+    source_url: https://www.cqt.sg/
+  - name: National Quantum Computing Hub (NQCH)
+    role: Singapore national platform pooling CQT + A*STAR IHPC + NSCC for the superconducting QC stack
+    source_url: https://www.nqch.sg/
+
+key_personnel:
+  - role: Principal Investigator (Associate Professor, NUS Physics; CQT PI; NUS Presidential Young Professor)
+    name: Yvonne Y. Gao
+    since: 2020
+    source_url: https://www.physics.nus.edu.sg/faculty/yvonne-y-gao/
+
+roadmap:
+  - target: ongoing
+    item: Expand bosonic cQED hardware toolbox; non-Gaussian states for quantum error mitigation and metrology; bosonic quantum-information-processing techniques
+    source_url: https://quantumcrew.org/
+    tag: qc
+
+current_focus:
+  name: Modular bosonic cQED devices for robust quantum computing
+  description: >
+    Per qcrew's own framing (quantumcrew.org): building modular quantum
+    devices to enable robust quantum computing and explore novel phenomena
+    in quantum physics, across three thrusts — expanding the bosonic cQED
+    hardware toolbox, leveraging non-Gaussian bosonic states, and developing
+    bosonic quantum information processing techniques.
+  source_url: https://quantumcrew.org/
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://iopscience.iop.org/article/10.1088/2058-9565/abe989
+    note: "Joshi, Noh, Gao — Quantum information processing with bosonic qubits in circuit QED (Quantum Sci. Technol. 6, 033001, 2021)"
+  - kind: blog
+    citation_key: null
+    url: https://quantumcrew.org/
+    note: qcrew group landing page — publications, members, current projects
+  - kind: blog
+    citation_key: null
+    url: https://www.physics.nus.edu.sg/faculty/yvonne-y-gao/
+    note: NUS Physics faculty page — title, awards, NRF Fellow status
+  - kind: press
+    citation_key: null
+    url: https://news.nus.edu.sg/young-scientist-applies-good-old-problem-solving-skills-to-quantum-computing/
+    note: NUS News profile of Gao on returning from Yale to set up qcrew
+  - kind: blog
+    citation_key: null
+    url: https://www.nqch.sg/
+    note: National Quantum Computing Hub — Singapore national platform context
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.connectivity
+  - field: funding_sources
+    as_of: 2026-05-24
+    note: NRF Fellowship (2020) and NUS Presidential Young Professorship are confirmed; direct NQCH grant attribution to qcrew is inferred from Gao's CQT PI status and the NQCH's CQT-pooled-expertise charter — not from a named grant award.
+  - field: modalities.qc.ec_code
+    as_of: 2026-05-24
+    note: "\"bosonic\" is a code family (cat / binomial / GKP) rather than a single named code; the group works across bosonic encodings rather than committing to one."
+
+last_verified: 2026-05-24
+verification_method: web

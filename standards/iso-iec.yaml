@@ -1,0 +1,103 @@
+body:
+  id: iso-iec
+  name: International Organization for Standardization / International Electrotechnical Commission
+  short_name: ISO/IEC
+  url: https://www.iso.org/home.html
+  scope: >
+    Joint international standards body. Quantum-relevant work runs in
+    two homes: (1) ISO/IEC JTC 1/SC 27 (Information security), which
+    handles post-quantum cryptography and QKD security evaluation, and
+    (2) ISO/IEC JTC 3 (Quantum Technologies), the new Joint Technical
+    Committee established in 2024 with scope across quantum computing,
+    simulation, communications, sensing, and metrology.
+  notes: >
+    IEC/ISO JTC 3 ("Quantum Technologies") was launched January 2024.
+    Secretariat held by BSI (UK); Chair from the Republic of Korea
+    (Prof. Haeseong Lee). It is the first IEC/ISO-level JTC dedicated
+    to quantum tech. SC 27 produces the ISO QKD security-evaluation
+    standards (ISO/IEC 23837-1/-2). SC 27 also publishes the
+    international PQC algorithm standards (ISO/IEC 18033-series) which
+    largely mirror NIST FIPS.
+
+standards:
+  - id: IEC/ISO JTC 3
+    title: Joint Technical Committee on Quantum Technologies (charter)
+    type: charter
+    date: 2024-01
+    group: IEC/ISO JTC 3
+    tags: [qkd-protocol, qnet, sensing, qrng]
+    status: in-force
+    url: https://www.iso.org/home.html/committee/10138914.html
+    summary: >
+      First IEC/ISO JTC dedicated to quantum technologies, launched
+      January 2024. Secretariat held by BSI (UK); Chair from the
+      Republic of Korea. Scope spans quantum computing, simulation,
+      sources, detectors, communications, and metrology. Working
+      groups are forming as of 2025-2026.
+
+  - id: ISO/IEC 23837-1
+    title: "Information security - Security requirements, test and evaluation methods for quantum key distribution - Part 1: Requirements"
+    type: recommendation
+    date: 2023-09
+    group: SC 27
+    tags: [qkd-protocol, security]
+    status: in-force
+    url: https://www.iso.org/home.html/standard/77097.html
+    summary: >
+      Security requirements for QKD modules - the international
+      counterpart to ETSI GS QKD 016 / BSI-CC-PP-0120.
+
+  - id: ISO/IEC 23837-2
+    title: "Information security - Security requirements, test and evaluation methods for quantum key distribution - Part 2: Evaluation and testing methods"
+    type: recommendation
+    date: 2023-09
+    group: SC 27
+    tags: [qkd-protocol, security]
+    status: in-force
+    url: https://www.iso.org/home.html/standard/77309.html
+    summary: Evaluation and testing methods aligned with Part 1.
+
+
+  - id: ISO/IEC 18031
+    title: Information security - Random bit generation
+    type: recommendation
+    date: 2011
+    group: SC 27
+    tags: [qrng, security]
+    status: in-force
+    url: https://www.iso.org/home.html/standard/45169.html
+    summary: >
+      RBG framework that QRNG vendors target for entropy-source claims.
+      Under revision to add explicit quantum-entropy-source guidance.
+
+  - id: ISO/IEC 23837-1:2023
+    title: "Security requirements, test and evaluation methods for quantum key distribution Part 1: Requirements"
+    type: recommendation
+    group: ISO/IEC JTC1/SC27
+    tags: [qkdn, security]
+    status: in-force
+    url: https://www.iso.org/home.html/standard/77097.html
+
+  - id: ISO/IEC 23837-2:2023
+    title: "Security requirements, test and evaluation methods for quantum key distribution Part 2: Evaluation and testing methods"
+    type: recommendation
+    group: ISO/IEC JTC1/SC27
+    tags: [qkdn, security]
+    status: in-force
+    url: https://www.iso.org/home.html/standard/77309.html
+
+  - id: ISO/IEC 4879:2024
+    title: Information technology — Quantum computing — Vocabulary
+    type: recommendation
+    group: ISO/IEC JTC1
+    tags: [qkdn]
+    status: in-force
+    url: https://www.iso.org/home.html/standard/80432.html
+
+  - id: ISO/IEC AWI TR 18157
+    title: Introduction to quantum computing
+    type: draft
+    group: ISO/IEC JTC1
+    tags: [qkdn]
+    status: draft
+    url: https://www.iso.org/home.html/standard/85203.html

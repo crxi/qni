@@ -1,0 +1,256 @@
+slug: quantumctek
+name: QuantumCTek
+categories: [qkd, qc, enabling]
+hq: Hefei, Anhui, China
+founded: 2009
+status: public
+parent: null
+logo:
+  domain: quantum-info.com
+
+positioning: >
+  QuantumCTek (国盾量子) is China's largest publicly-listed commercial QKD vendor by deployed network footprint and the
+  hardware supplier behind the national quantum-secure communication backbone.
+  Spun out of Pan Jianwei's University of Science and Technology of China
+  (USTC) group in Hefei in 2009, it listed on the Shanghai STAR Market in
+  July 2020 (688027) as China's first publicly traded quantum company.
+  Its decoy-state BB84 terminals equip the Beijing–Shanghai trunk, metro QKD
+  networks, and the Micius satellite ground stations. Product range also
+  covers QRNGs, quantum-secure VPN gear, single-photon detectors, key-
+  management systems, and (since 2022) superconducting quantum computers.
+
+modalities:
+  qkd:
+    protocol: [BB84, decoy-state, polarisation-coding, phase-coding, time-bin]
+    rate_distance: "QKD-PHA300: ~50 kbps @ 10 dB loss, ~1 kbps @ 22 dB loss (decoy-state phase/time-bin BB84); QKD-POL1250 polarisation series used in Beijing–Shanghai backbone with 32 trusted-node relays over ~2,000 km"
+    deployed_demos:
+      - note: Beijing–Shanghai quantum backbone (~2,000 km, 32 trusted nodes) — QuantumCTek QKD terminals deployed across the trunk
+        source_url: https://www.nature.com/articles/s41586-020-03093-8
+      - note: Integrated space-to-ground QKD network, ~4,600 km (Chen et al., Nature 589, 214–219, 2021) — QuantumCTek hardware in the fibre backbone plus Xinglong / Nanshan ground stations for Micius links
+        source_url: https://www.nature.com/articles/s41586-020-03093-8
+      - note: Hefei metropolitan quantum-secure communication trial network (2011, expanded to 46-node Hefei MAN demonstrated in npj QI 7, 134, 2021)
+        source_url: https://www.nature.com/articles/s41534-021-00474-3
+      - note: Jinan government QKD network (2017) — 32 nodes (1 control + 8 trusted relays + 23 end-user), 8,000 km² coverage; QuantumCTek supplied QKD systems and network design
+        source_url: https://www.quantum-info.com/English/case/2017/0901/339.html
+      - note: Wuhan metropolitan QKD network and Wuhan–Hefei backbone extension (Nov 2018) linking the Wuhan MAN to the Beijing–Shanghai trunk
+        source_url: https://www.quantum-info.com/English/case/2017/0901/339.html
+      - note: Carrier-grade quantum communication network over >10,000 km (npj QI 11, 2025) — QuantumCTek terminals across China Telecom's operational network
+        source_url: https://www.nature.com/articles/s41534-025-01089-8
+  qc:
+    qubit_type: transmon
+    physical_qubits_current: 100
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: nearest-neighbour
+    gate_set: []
+  enabling:
+    products:
+      - QKD-POL1250-S series (A transmit / B receive) — polarisation-encoded decoy-state BB84
+      - QKD-PHA300 series (A / B) — phase / time-bin decoy-state BB84
+      - QRNG modules (chip-, board-, and appliance-level)
+      - Quantum-secure VPN, switching, and key-management systems
+      - Single-photon detectors (InGaAs / SNSPD)
+      - Cold-atom gravimeters
+      - Superconducting quantum computer systems (25-qubit export configuration, 100+ qubit domestic platform)
+
+milestones:
+  - date: 2025-01
+    tag: qkd
+    headline: China Telecom Quantum Information Technology Group becomes controlling shareholder via 23.1% private-placement stake plus voting-rights pact reaching 41.4%; SASAC named ultimate controller
+    source_url: https://www.caixinglobal.com/2024-03-13/china-telecom-unit-to-acquire-majority-stake-in-quantumctek-for-265-million-102174660.html
+    source_type: filing
+  - date: 2025
+    tag: qc
+    headline: Quantum-computing business contributes ~CNY 56M in revenue (+284% YoY); 25-qubit superconducting system exported abroad, 100+ qubit platforms installed domestically (per FY2025 disclosure)
+    source_url: https://thequantuminsider.com/2026/03/27/china-telecom-latest-report-flags-quantum-as-a-key-growth-driver-but-scale-remains-uncertain/
+    source_type: press
+  - date: 2025
+    tag: qkd
+    headline: Carrier-grade quantum communication network over >10,000 km on China Telecom's operational fibre — Nature partner journal npj Quantum Information
+    source_url: https://www.nature.com/articles/s41534-025-01089-8
+    source_type: paper
+  - date: 2024-03
+    tag: qkd
+    headline: China Telecom Quantum agrees to take majority stake in QuantumCTek for ~RMB 1.9B (~USD 265M) via private placement + voting-rights agreement with USTC and former chair Peng Chengzhi
+    source_url: https://www.yicaiglobal.com/news/ultra-safe-comms-firm-quantumctek-soars-after-china-telecom-grabs-biggest-stake-for-usd2647-million
+    source_type: press
+  - date: 2023-07
+    tag: qkd
+    headline: Leadership transition — founder moves to Chief Scientist role; new operational leadership takes over
+    source_url: https://craft.co/quantumctek/executives
+    source_type: press
+  - date: 2021-01
+    tag: qkd
+    headline: Chen, Y.-A. et al., "An integrated space-to-ground quantum communication network over 4,600 kilometres", Nature 589, 214–219 — QuantumCTek terminals across the fibre backbone and ground stations
+    source_url: https://www.nature.com/articles/s41586-020-03093-8
+    source_type: paper
+  - date: 2021
+    tag: qkd
+    headline: 46-node Hefei metropolitan QKD network demonstrated and operated for 31 months — npj Quantum Information 7, 134
+    source_url: https://www.nature.com/articles/s41534-021-00474-3
+    source_type: paper
+  - date: 2020-07
+    tag: qkd
+    headline: IPO on the Shanghai Stock Exchange STAR Market (ticker 688027), raising ~USD 102M — China's first listed quantum technology company
+    source_url: https://globalventuring.com/blog/2020/07/01/quantumctek-cultivates-102m-ipo/
+    source_type: press
+  - date: 2017-09
+    tag: qkd
+    headline: Beijing–Shanghai trunk line (~2,000 km, 32 trusted nodes) opens for service; QuantumCTek supplies the decoy-state phase-coding BB84 QKD terminals
+    source_url: https://www.quantum-info.com/English/News/progress/2017/0916/374.html
+    source_type: press
+  - date: 2017-08
+    tag: qkd
+    headline: Jinan government quantum-secure communication network completed (32 nodes, 8,000 km²) — QuantumCTek supplied QKD systems and network design
+    source_url: https://www.quantum-info.com/English/case/2017/0901/339.html
+    source_type: press
+  - date: 2017
+    tag: qkd
+    headline: Micius (QUESS) satellite-to-ground QKD experiments — QuantumCTek-built ground-station hardware at Xinglong and Nanshan
+    source_url: https://www.quantum-info.com/English/News/progress/2017/0916/374.html
+    source_type: press
+  - date: 2011
+    tag: qkd
+    headline: Hefei metropolitan quantum-secure communication trial demonstration network — reported as the largest QKD metropolitan-area network deployed to that date
+    source_url: https://www.quantum-info.com/English/case/2017/0901/339.html
+    source_type: press
+  - date: 2009-05
+    tag: qkd
+    headline: Founded as a USTC spin-out in Hefei to commercialise the Pan Jianwei group's quantum-communication research
+    source_url: https://www.quantum-info.com/English/about/
+    source_type: blog
+
+shareholders:
+  - holder: China Telecom Quantum Information Technology Group Co., Ltd. (中电信量子信息科技集团)
+    stake_percent: 23.1
+    stake_class: controlling
+    as_of: 2025-01
+    source_url: https://www.caixinglobal.com/2024-03-13/china-telecom-unit-to-acquire-majority-stake-in-quantumctek-for-265-million-102174660.html
+    note: >
+      Acquired 24.1M newly issued shares at CNY 78.94/share (~RMB 1.9B / USD 265M)
+      via private placement in 2024, registered as controlling shareholder January 2025.
+      Combined with voting-rights agreement with USTC and former chair Peng Chengzhi
+      this represents 41.4% of voting rights. China Telecom Quantum is a wholly-
+      owned subsidiary of China Telecom Corporation Limited; ultimate controller is
+      SASAC of the State Council.
+  - holder: University of Science and Technology of China (USTC, via USTC Asset Management / 国科大资产)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-01
+    source_url: https://www.marketscreener.com/quote/stock/QUANTUMCTEK-CO-LTD-111379905/company/
+    note: >
+      Was the largest shareholder (~18% pre-2025) before China Telecom Quantum's
+      private placement. Now a minority strategic shareholder; voting rights for
+      part of its stake assigned to China Telecom Quantum under the 2024 pact.
+  - holder: Peng Chengzhi (彭承志, founder)
+    stake_percent: null
+    stake_class: founder
+    as_of: 2025-01
+    source_url: https://www.caixinglobal.com/2024-03-13/china-telecom-unit-to-acquire-majority-stake-in-quantumctek-for-265-million-102174660.html
+    note: >
+      Co-founder and former Chairman; transferred voting rights of his personal
+      stake to China Telecom Quantum as part of the 2024 control transaction;
+      remains Chief Scientist.
+
+key_personnel:
+  - role: Chief Scientist & Co-founder
+    name: Peng Chengzhi (彭承志)
+    since: 2023-07
+    source_url: https://www.yicaiglobal.com/news/quantumctek-founder-peng-chengzhi-is-elected-to-chinese-academy-of-sciences
+    note: >
+      Founder of QuantumCTek (2009); former Chairman (until July 2023). Elected
+      member of the Chinese Academy of Sciences. Continues as USTC professor and
+      co-leader of the Pan Jianwei group's satellite QKD programme.
+  - role: President / CEO
+    name: Zhao Yong (赵勇)
+    since: 2023
+    source_url: https://craft.co/quantumctek/executives
+  - role: Scientific Advisor / Founding Academic Lead
+    name: Pan Jianwei (潘建伟)
+    since: 2009
+    source_url: https://www.quantum-info.com/English/about/
+    note: >
+      USTC professor and academician of the Chinese Academy of Sciences; principal
+      investigator of the research programme that QuantumCTek commercialises.
+      Not listed as an executive of the company but a long-standing personal
+      shareholder and scientific anchor.
+
+roadmap:
+  - target: 2026
+    item: Integration with China Telecom's nationwide quantum-secure communication build-out; continued expansion of carrier-grade QKD over operational fibre (>10,000 km class)
+    source_url: https://thequantuminsider.com/2026/03/27/china-telecom-latest-report-flags-quantum-as-a-key-growth-driver-but-scale-remains-uncertain/
+    tag: qkd
+  - target: 2026
+    item: Continued superconducting quantum-computer platform deployments (100+ qubit class) and international export configurations
+    source_url: https://thequantuminsider.com/2026/03/27/china-telecom-latest-report-flags-quantum-as-a-key-growth-driver-but-scale-remains-uncertain/
+    tag: qc
+
+current_flagship:
+  name: QKD-POL1250-S and QKD-PHA300 product series
+  generation: third-generation commercial decoy-state BB84 (polarisation and phase/time-bin), deployed on the Beijing–Shanghai trunk and Chinese provincial / municipal QKD networks
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41586-020-03093-8
+    note: Chen, Y.-A. et al., "An integrated space-to-ground quantum communication network over 4,600 kilometres", Nature 589, 214–219 (2021) — QuantumCTek hardware on the fibre backbone and Micius ground stations
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41534-021-00474-3
+    note: Chen, T.-Y. et al., "Implementation of a 46-node quantum metropolitan area network", npj Quantum Information 7, 134 (2021) — Hefei MAN
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41534-025-01089-8
+    note: '"Implementation of carrier-grade quantum communication networks over 10000 km", npj Quantum Information 11 (2025) — QuantumCTek + China Telecom operational deployment'
+  - kind: vendor
+    citation_key: null
+    url: https://www.quantum-info.com/English/product/National/
+    note: QKD-POL1250-S backbone-network QKD product datasheet
+  - kind: vendor
+    citation_key: null
+    url: https://www.quantum-info.com/English/product/quantum/2017/1013/407.html
+    note: QKD-PHA300 phase/time-bin QKD product page — 50 kbps @ 10 dB, 1 kbps @ 22 dB
+  - kind: vendor
+    citation_key: null
+    url: https://www.quantum-info.com/English/about/
+    note: QuantumCTek company profile — founding 2009, STAR Market listing 2020, China Telecom Quantum Group parent
+  - kind: press
+    citation_key: null
+    url: https://www.caixinglobal.com/2024-03-13/china-telecom-unit-to-acquire-majority-stake-in-quantumctek-for-265-million-102174660.html
+    note: Caixin coverage of China Telecom Quantum's RMB 1.9B private placement to take controlling stake
+  - kind: press
+    citation_key: null
+    url: https://www.yicaiglobal.com/news/ultra-safe-comms-firm-quantumctek-soars-after-china-telecom-grabs-biggest-stake-for-usd2647-million
+    note: Yicai Global coverage — transaction details, 41.4% voting rights, SASAC as ultimate controller
+  - kind: press
+    citation_key: null
+    url: https://globalventuring.com/blog/2020/07/01/quantumctek-cultivates-102m-ipo/
+    note: 2020 STAR Market IPO ($102M raised, ticker 688027)
+  - kind: press
+    citation_key: null
+    url: https://www.yicaiglobal.com/news/quantumctek-founder-peng-chengzhi-is-elected-to-chinese-academy-of-sciences
+    note: Peng Chengzhi background and 2023 transition from Chairman to Chief Scientist
+
+partial:
+  - modalities.qkd.deployed_demos
+  - field: modalities.qc.physical_qubits_current
+    as_of: 2026-05-17
+    note: "Vendor disclosure of '100+ qubit' platform installed domestically and 25-qubit export configuration (FY2025); no peer-reviewed benchmark paper cited yet"
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - field: shareholders
+    as_of: 2026-05-17
+    note: "Stake percentages cross-checked against Caixin / Yicai coverage of the 2024–2025 private placement; full Shanghai Stock Exchange annual-report shareholder breakdown not independently read; see the FY2024/FY2025 年度报告 on sse.com.cn for the authoritative breakdown."
+  - field: key_personnel
+    as_of: 2026-05-17
+    note: "Zhao Yong President/CEO tenure since 2023 sourced from secondary tracker (Craft.co); not yet cross-verified against an official company announcement"
+  - roadmap
+
+last_verified: 2026-05-17
+verification_method: web

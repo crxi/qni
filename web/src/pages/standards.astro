@@ -1,0 +1,585 @@
+---
+/**
+ * /standards — Standards landscape (single landing page)
+ *
+ * Tier E · Applications & market.
+ *
+ * Reads every YAML in qni/standards/ at build time and renders a
+ * filterable / sortable table. One row per standard. Filters are
+ * client-side TypeScript inside the Infographic body.
+ *
+ * Citations:
+ *   - kozlowski-rfc9340 — IETF QIRG architectural principles for the quantum internet.
+ *   - kumar-ijndc-2025 — survey-level overview of the standards landscape.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SourceNote from "../components/SourceNote.astro";
+import {
+  ALL_STANDARDS,
+  BODIES,
+  TAG_LABEL,
+  TAG_ORDER,
+  TYPE_LABEL,
+  STATUS_LABEL,
+  countByTag,
+  countByBody,
+} from "../lib/standards.ts";
+
+const sections = [
+  { id: "overview", label: "Overview" },
+  { id: "summary",  label: "By topic & body" },
+  { id: "catalogue", label: "Catalogue" },
+  { id: "notes",    label: "Notes on this page" },
+];
+
+const tagCounts = countByTag();
+const bodyCounts = countByBody();
+const totalEntries = ALL_STANDARDS.length;
+const totalBodies = BODIES.length;
+---
+
+<Infographic
+  title="Standards — QKD, QKDN, and quantum-network specifications"
+  description="A live catalogue of quantum-tech standards and standardisation work across ITU-T, ETSI, IETF, IEEE, ISO/IEC, GSMA, and national bodies. Filterable by topic and status."
+  references={[
+    "kozlowski-rfc9340",
+    "kumar-ijndc-2025",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="standards" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>Standards — quantum-network specifications</h1>
+        <p>
+          A working catalogue across three buckets:
+          <strong>QKD-protocol</strong> (BB84, decoy-state, MDI-QKD, TF-QKD),
+          <strong>QKDN</strong> (key-relay, key-management, and SDN-control on
+          top of QKD), and <strong>quantum networks beyond QKD</strong>
+          (entanglement-based architectures for distributed compute, sensing, and
+          quantum-secure protocols). Architectural anchors:
+          <a href="https://www.rfc-editor.org/rfc/rfc9340" target="_blank" rel="noopener">IETF RFC 9340</a><SourceNote id="kozlowski-rfc9340" />,
+          ITU-T Y.Sup98 (Nov 2025), and the new
+          <strong>ETSI TC QT</strong> (2025).
+        </p>
+        <p class="hero-meta">
+          <strong>{totalEntries}</strong> entries · <strong>{totalBodies}</strong> bodies ·
+          updated as standards evolve. Filter and sort below to explore.
+        </p>
+      </header>
+
+      <section id="summary" data-nav-section>
+        <h2>By topic and body</h2>
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h3>By topic</h3>
+            <ul class="summary-list">
+              {TAG_ORDER.map((t) => (
+                <li>
+                  <span class={`tag-pill tag-${t}`}>{TAG_LABEL[t]}</span>
+                  <span class="summary-count">{tagCounts[t]}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="summary-card">
+            <h3>By body</h3>
+            <ul class="summary-list">
+              {bodyCounts.map(({ body, count }) => (
+                <li>
+                  <a href={body.url} target="_blank" rel="noopener" class="body-link">
+                    <strong>{body.short_name}</strong>
+                  </a>
+                  <span class="summary-count">{count}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="catalogue" data-nav-section>
+        <h2>Catalogue</h2>
+        <p class="catalogue-help">
+          Click a tag chip to filter. Click the search box to filter by ID, title, or body.
+          Click any column header to sort.
+        </p>
+
+        <div class="filter-bar" id="std-filter-bar">
+          <input type="search" id="std-search" placeholder="Search ID, title, body, summary, group…" class="std-search" />
+          <div class="filter-chips" data-filter-group="tag">
+            {TAG_ORDER.map((t) => (
+              <button class={`chip tag-pill tag-${t}`} data-filter-value={t} aria-pressed="false">
+                {TAG_LABEL[t]}
+                <span class="chip-count">{tagCounts[t]}</span>
+              </button>
+            ))}
+          </div>
+          <div class="filter-chips" data-filter-group="status">
+            <button class="chip status-pill status-in-force"      data-filter-value="in-force"      aria-pressed="false">In force</button>
+            <button class="chip status-pill status-draft"         data-filter-value="draft"         aria-pressed="false">Draft</button>
+            <button class="chip status-pill status-planned"       data-filter-value="planned"       aria-pressed="false">Planned</button>
+            <button class="chip status-pill status-informational" data-filter-value="informational" aria-pressed="false">Informational</button>
+            <button class="chip status-pill status-superseded"    data-filter-value="superseded"    aria-pressed="false">Superseded</button>
+          </div>
+          <button id="std-reset" class="std-reset" type="button">Reset</button>
+        </div>
+
+        <div class="table-wrap">
+          <table class="std-table" data-sortable id="std-table">
+            <colgroup>
+              <col class="col-id" />
+              <col class="col-title" />
+              <col class="col-body" />
+              <col class="col-group" />
+              <col class="col-date" />
+              <col class="col-type" />
+              <col class="col-tags" />
+              <col class="col-status" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Body</th>
+                <th>Group</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Tags</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ALL_STANDARDS.map(({ body, standard }) => (
+                <tr
+                  class="std-row"
+                  data-tags={standard.tags.join(" ")}
+                  data-status={standard.status}
+                  data-search={[
+                    standard.id,
+                    standard.title,
+                    standard.summary ?? "",
+                    standard.group ?? "",
+                    standard.type ?? "",
+                    body.short_name,
+                    body.name,
+                    (standard.tags ?? []).join(" "),
+                  ].join(" ").toLowerCase()}
+                >
+                  <td data-sort={standard.id}>
+                    {standard.url ? (
+                      <a href={standard.url} target="_blank" rel="noopener" class="std-id">{standard.id}</a>
+                    ) : (
+                      <span class="std-id">{standard.id}</span>
+                    )}
+                  </td>
+                  <td class="std-title" title={standard.summary}>
+                    {standard.url ? (
+                      <a href={standard.url} target="_blank" rel="noopener" class="std-title-link">{standard.title}</a>
+                    ) : (
+                      standard.title
+                    )}
+                  </td>
+                  <td><span class="std-body" title={body.name}>{body.short_name}</span></td>
+                  <td>{standard.group ?? ""}</td>
+                  <td data-sort={standard.date}>{standard.date}</td>
+                  <td><span class="std-type">{TYPE_LABEL[standard.type]}</span></td>
+                  <td class="std-tags">
+                    {standard.tags.map((t) => (
+                      <span class={`tag-pill tag-${t}`}>{TAG_LABEL[t]}</span>
+                    ))}
+                  </td>
+                  <td><span class={`status-pill status-${standard.status}`}>{STATUS_LABEL[standard.status]}</span></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p id="std-empty" class="std-empty" hidden>No standards match the current filters.</p>
+      </section>
+
+      <section id="notes" data-nav-section>
+        <h2>Notes on this page</h2>
+        <p>
+          The catalogue is curated, not crawled — one section per standards body, rebuilt
+          on every site update. Entries cite the standard's own portal where possible;
+          some link to a local copy in the project's reference library.
+        </p>
+        <p>
+          Coverage emphasis: ITU-T (Y.3800 QKDN series + the emerging quantum-network
+          supplements), ETSI (ISG QKD's GS series plus the new TC QT), IETF/IRTF QIRG
+          (RFC 9340, RFC 9583, and the active drafts). National-body work (Singapore
+          IMDA, German BSI) and policy artefacts (US DOE, NQI) are included for context.
+        </p>
+        <p>
+          A document is tagged <strong>quantum network (qnet)</strong> only when it
+          substantively addresses entanglement-based networking — quantum repeaters,
+          entanglement swapping, distributed quantum compute, networked sensing — rather
+          than just mentioning these as future work. Most ITU-T Y.3800-series entries are
+          therefore tagged <strong>qkdn</strong>, not <strong>qnet</strong>.
+        </p>
+      </section>
+
+      <script>
+        // ---- Filter + reset wiring -----------------------------------------------
+        type FilterGroup = "tag" | "status";
+        const activeFilters: Record<FilterGroup, Set<string>> = {
+          tag: new Set(),
+          status: new Set(),
+        };
+        let searchQuery = "";
+
+        function applyFilters(): void {
+          const rows = document.querySelectorAll<HTMLTableRowElement>("tr.std-row");
+          let visible = 0;
+          rows.forEach((row) => {
+            const rowTags = (row.dataset.tags ?? "").split(/\s+/);
+            const rowStatus = row.dataset.status ?? "";
+            const rowSearch = row.dataset.search ?? "";
+            const tagOk =
+              activeFilters.tag.size === 0 ||
+              rowTags.some((t) => activeFilters.tag.has(t));
+            const statusOk =
+              activeFilters.status.size === 0 || activeFilters.status.has(rowStatus);
+            const searchOk = searchQuery === "" || rowSearch.includes(searchQuery);
+            const show = tagOk && statusOk && searchOk;
+            row.hidden = !show;
+            if (show) visible += 1;
+          });
+          const empty = document.getElementById("std-empty");
+          if (empty) empty.hidden = visible > 0;
+        }
+
+        function initFilters(): void {
+          document.querySelectorAll<HTMLButtonElement>(".filter-chips .chip").forEach((btn) => {
+            btn.addEventListener("click", () => {
+              const group = (btn.closest(".filter-chips") as HTMLElement)?.dataset.filterGroup as FilterGroup | undefined;
+              const value = btn.dataset.filterValue;
+              if (!group || !value) return;
+              const set = activeFilters[group];
+              if (set.has(value)) {
+                set.delete(value);
+                btn.setAttribute("aria-pressed", "false");
+              } else {
+                set.add(value);
+                btn.setAttribute("aria-pressed", "true");
+              }
+              applyFilters();
+            });
+          });
+          const searchEl = document.getElementById("std-search") as HTMLInputElement | null;
+          if (searchEl) {
+            searchEl.addEventListener("input", () => {
+              searchQuery = searchEl.value.trim().toLowerCase();
+              applyFilters();
+            });
+          }
+          const resetEl = document.getElementById("std-reset");
+          if (resetEl) {
+            resetEl.addEventListener("click", () => {
+              activeFilters.tag.clear();
+              activeFilters.status.clear();
+              searchQuery = "";
+              if (searchEl) searchEl.value = "";
+              document.querySelectorAll<HTMLButtonElement>(".filter-chips .chip").forEach((b) => b.setAttribute("aria-pressed", "false"));
+              applyFilters();
+            });
+          }
+        }
+
+        // ---- Sortable columns (same pattern as the qubits page) -----------------
+        type SortDir = "asc" | "desc" | "";
+        function initSortable(): void {
+          const tables = document.querySelectorAll<HTMLTableElement>("table[data-sortable]");
+          tables.forEach((table) => {
+            const headers = table.querySelectorAll<HTMLTableCellElement>("thead th");
+            const tbody = table.querySelector<HTMLTableSectionElement>("tbody");
+            if (!tbody) return;
+            const originalOrder = Array.from(tbody.querySelectorAll<HTMLTableRowElement>("tr"));
+            headers.forEach((th, colIndex) => {
+              th.addEventListener("click", () => {
+                const current = th.getAttribute("data-sort-dir") as SortDir;
+                headers.forEach((h) => h.removeAttribute("data-sort-dir"));
+                const next: SortDir = current === "asc" ? "desc" : current === "desc" ? "" : "asc";
+                if (next === "") {
+                  originalOrder.forEach((tr) => tbody.appendChild(tr));
+                  return;
+                }
+                th.setAttribute("data-sort-dir", next);
+                const rows = Array.from(tbody.querySelectorAll<HTMLTableRowElement>("tr"));
+                rows.sort((a, b) => {
+                  const ca = a.children[colIndex] as HTMLElement | undefined;
+                  const cb = b.children[colIndex] as HTMLElement | undefined;
+                  const va = ca?.dataset?.sort ?? ca?.textContent?.trim() ?? "";
+                  const vb = cb?.dataset?.sort ?? cb?.textContent?.trim() ?? "";
+                  const na = Number(va);
+                  const nb = Number(vb);
+                  const bothNum = !Number.isNaN(na) && !Number.isNaN(nb) && va !== "" && vb !== "";
+                  const cmp = bothNum ? na - nb : va.localeCompare(vb);
+                  return next === "asc" ? cmp : -cmp;
+                });
+                rows.forEach((tr) => tbody.appendChild(tr));
+              });
+            });
+          });
+        }
+
+        function init(): void {
+          initFilters();
+          initSortable();
+        }
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", init, { once: true });
+        } else {
+          init();
+        }
+      </script>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<style>
+  .hero-meta {
+    color: var(--color-text-mute);
+    font-size: var(--text-sm);
+    margin-block-start: var(--space-2);
+  }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--space-4);
+    margin-block-start: var(--space-3);
+  }
+  .summary-card {
+    border: 1px solid var(--color-rule);
+    border-radius: 6px;
+    padding: var(--space-3) var(--space-3);
+  }
+  .summary-card h3 {
+    margin: 0 0 var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-text);
+  }
+  .summary-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  .summary-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .summary-count {
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-mute);
+    font-size: var(--text-sm);
+  }
+  .body-link { color: var(--color-text); text-decoration: none; }
+  .body-link:hover { color: var(--color-link); }
+
+  .catalogue-help {
+    color: var(--color-text-mute);
+    font-size: var(--text-sm);
+  }
+
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    align-items: center;
+    margin-block: var(--space-3);
+    padding: var(--space-3);
+    background: var(--color-surface-soft, transparent);
+    border: 1px solid var(--color-rule);
+    border-radius: 6px;
+  }
+  .std-search {
+    flex: 1 1 18ch;
+    min-inline-size: 14ch;
+    padding: 0.4rem 0.6rem;
+    font: inherit;
+    border: 1px solid var(--color-rule);
+    border-radius: 4px;
+    background: transparent;
+    color: var(--color-text);
+  }
+  .filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  /* Filter chips reuse the .tag-pill / .status-pill colour classes so the
+     selector and the rendered table cells share a colour language. The
+     chip-specific rules below override only what's needed for the
+     interactive widget (cursor, gap, pressed state). */
+  .chip {
+    font: inherit;
+    font-size: var(--text-xs);
+    padding: 3px 8px;
+    border-radius: 999px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--color-text);
+    opacity: 0.65;
+    transition: opacity 0.15s, outline-color 0.15s;
+    outline: 1px solid transparent;
+    outline-offset: 1px;
+  }
+  .chip:hover { opacity: 0.9; }
+  .chip[aria-pressed="true"] {
+    opacity: 1;
+    outline-color: var(--color-text);
+    font-weight: 600;
+  }
+  .chip[aria-pressed="true"]::before {
+    content: "✓ ";
+    font-weight: 700;
+  }
+  .chip-count {
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-faint);
+    font-size: var(--text-xs);
+  }
+  .std-reset {
+    font: inherit;
+    font-size: var(--text-xs);
+    padding: 3px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--color-rule);
+    background: transparent;
+    color: var(--color-text-mute);
+    cursor: pointer;
+  }
+  .std-reset:hover { color: var(--color-text); }
+
+  .table-wrap {
+    overflow-x: auto;
+    min-inline-size: 0;
+  }
+  .std-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    /* Column widths sized to the actual data (avg 74-char titles,
+       avg 10-char IDs with a long tail up to 50 for IETF drafts).
+       Fixed layout lets the widths actually take effect; tbody
+       cells inherit them via :nth-child below. */
+    table-layout: fixed;
+    /* Keep `display: table` on mobile so `table-layout: fixed` and the
+       <col> widths actually apply. The global Infographic safety net
+       flips bare tables to `display: block` on narrow viewports, which
+       collapses fixed layout entirely; the .std-table-wrap already
+       handles horizontal scroll so we don't need that fallback here. */
+    display: table;
+    min-inline-size: 60rem;
+  }
+  /* ID | Title | Body | Group | Date | Type | Tags | Status */
+  .std-table col.col-id     { width: 12ch; }
+  .std-table col.col-title  { width: auto; }
+  .std-table col.col-body   { width: 8ch;  }
+  .std-table col.col-group  { width: 7ch;  }
+  .std-table col.col-date   { width: 8ch;  }
+  .std-table col.col-type   { width: 11ch; }
+  .std-table col.col-tags   { width: 16ch; }
+  .std-table col.col-status { width: 9ch;  }
+
+  .std-table thead th {
+    text-align: start;
+    padding: var(--space-2);
+    border-block-end: 2px solid var(--color-rule);
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .std-table thead th[data-sort-dir="asc"]::after  { content: " ▲"; opacity: 0.6; }
+  .std-table thead th[data-sort-dir="desc"]::after { content: " ▼"; opacity: 0.6; }
+  .std-table tbody td {
+    padding: var(--space-2);
+    border-block-end: 1px solid var(--color-rule);
+    vertical-align: top;
+    overflow-wrap: anywhere;       /* let long IDs / titles wrap inside their column */
+    word-break: break-word;
+  }
+  .std-id {
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 0.95em;
+    overflow-wrap: anywhere;       /* draft-cacciapuoti-... wraps cleanly */
+  }
+  a.std-id { color: var(--color-link); text-decoration: none; }
+  a.std-id:hover { text-decoration: underline; }
+  .std-title { line-height: 1.35; }
+  .std-title-link {
+    color: var(--color-link);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+    text-decoration-color: color-mix(in srgb, var(--color-link) 55%, transparent);
+  }
+  .std-title-link:hover {
+    text-decoration-color: var(--color-link);
+    text-decoration-thickness: 2px;
+  }
+  .std-title-link::after {
+    content: " ↗";
+    font-size: 0.85em;
+    color: var(--color-text-faint);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .std-body { font-weight: 600; white-space: nowrap; }
+  .std-type { color: var(--color-text-mute); font-size: var(--text-xs); }
+  /* Keep the <td> as a real table-cell so its border-bottom joins the
+     row rule; pills are inline-block and wrap on their own. The negative
+     margin trick offsets the per-pill margin so the cell padding stays
+     clean at the edges. */
+  .std-tags { line-height: 1.6; }
+  .std-tags .tag-pill { margin: 0 3px 3px 0; }
+
+  .tag-pill,
+  .status-pill {
+    display: inline-block;
+    font-size: var(--text-xs);
+    padding: 1px 6px;
+    border-radius: 999px;
+    line-height: 1.5;
+    white-space: nowrap;
+  }
+  .tag-pill { border: 1px solid var(--color-rule); color: var(--color-text-mute); }
+  .tag-qkd-protocol { background: color-mix(in srgb, #88c0ff 18%, transparent); }
+  .tag-qkdn         { background: color-mix(in srgb, #4dd4ff 18%, transparent); }
+  .tag-qnet         { background: color-mix(in srgb, #b88dff 24%, transparent); color: var(--color-text); border-color: color-mix(in srgb, #b88dff 60%, transparent); }
+  .tag-security     { background: color-mix(in srgb, #ff9d5c 18%, transparent); }
+  .tag-sensing      { background: color-mix(in srgb, #7fdf6c 18%, transparent); }
+  .tag-qrng         { background: color-mix(in srgb, #f5d76e 22%, transparent); }
+  .tag-crypto-meta  { background: color-mix(in srgb, #ff5cb4 18%, transparent); }
+  .tag-policy       { background: color-mix(in srgb, #aaa 18%, transparent); }
+
+  .status-in-force      { background: color-mix(in srgb, #7fdf6c 22%, transparent); }
+  .status-draft         { background: color-mix(in srgb, #f5d76e 22%, transparent); }
+  .status-planned       { background: color-mix(in srgb, #88c0ff 22%, transparent); }
+  .status-informational { background: color-mix(in srgb, #aaa 22%, transparent); }
+  .status-superseded    { background: color-mix(in srgb, #777 18%, transparent); color: var(--color-text-mute); }
+
+  .std-empty {
+    text-align: center;
+    color: var(--color-text-mute);
+    padding: var(--space-4);
+    font-style: italic;
+  }
+</style>

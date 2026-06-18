@@ -1,0 +1,156 @@
+slug: oxford-ionics
+name: Oxford Ionics
+categories: [qc]
+hq: Oxford, United Kingdom
+founded: 2019
+status: acquired
+parent: ionq
+logo:
+  domain: oxionics.com
+
+positioning: >
+  Trapped-ion quantum computing built on silicon-CMOS chips with on-chip
+  electronic ion control (EIC) — integrated microwave antennae replace the
+  bulk laser stacks normally used to drive trapped-ion gates, enabling
+  copy-paste scaling using existing semiconductor manufacturing. Spun out of
+  the David Lucas / Chris Ballance ion-trap group at the University of
+  Oxford in 2019 by Chris Ballance and Tom Harty. Reports 99.9992%
+  single-qubit and 99.99% two-qubit gate fidelities on a chip-trap Ca+
+  system without ground-state cooling (arXiv 2510.17286). Acquired by IonQ
+  in September 2025 for ~USD 1.075B.
+
+modalities:
+  qc:
+    qubit_type: trapped-ion
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: 0.999992
+    two_q_fidelity: 0.9999
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: all-to-all
+    gate_set: []
+
+milestones:
+  - date: 2025-10
+    tag: qc
+    headline: arXiv preprint reports two-qubit gates with >99.99% fidelity on a chip-trap Ca+ system without ground-state cooling
+    source_url: https://arxiv.org/abs/2510.17286
+    source_type: preprint
+  - date: 2025-09
+    tag: qc
+    headline: IonQ completes acquisition of Oxford Ionics — 26,622,077 IonQ shares plus $10M cash; Oxford operations to remain in the UK under UK government national-security undertakings
+    source_url: https://www.ionq.com/news/ionq-completes-acquisition-of-oxford-ionics-rapidly-accelerating-its-quantum
+    source_type: press
+  - date: 2025-09
+    tag: qc
+    headline: UK government issues final order clearing the IonQ acquisition with conditions on UK retention of technology and talent
+    source_url: https://www.gov.uk/government/publications/acquisition-of-oxford-ionics-limited-by-ionq-inc-notice-of-final-order/acquisition-of-oxford-ionics-limited-by-ionq-inc-notice-of-final-order
+    source_type: filing
+  - date: 2025-06
+    tag: qc
+    headline: IonQ announces agreement to acquire Oxford Ionics for $1.075B (~$1.065B IonQ stock + ~$10M cash)
+    source_url: https://www.ionq.com/news/ionq-announces-agreement-to-acquire-oxford-ionics-accelerating-path-to-pioneering
+    source_type: press
+  - date: 2025-02
+    tag: qc
+    headline: Nature 638, 383 — Main et al. demonstrate distributed quantum computing across a 2 m optical network link, running Grover's algorithm via teleported CZ between two trapped-ion modules using 88Sr+ network ions heralding entanglement and 43Ca+ circuit ions (collaboration with the Oxford ion-trap group)
+    source_url: https://www.nature.com/articles/s41586-024-08404-x
+    source_type: paper
+  - date: 2024-07
+    tag: qc
+    headline: arXiv preprint of scalable, high-fidelity all-electronic control of trapped-ion qubits — the underlying EIC architecture paper
+    source_url: https://arxiv.org/abs/2407.07694
+    source_type: preprint
+  - date: 2024-02
+    tag: qc
+    headline: arXiv preprint — robust and fast microwave-driven quantum logic for trapped-ion qubits (EIC physics)
+    source_url: https://arxiv.org/abs/2402.12955
+    source_type: preprint
+  - date: 2023-01
+    tag: qc
+    headline: £30M (~$36M) Series A led by Oxford Science Enterprises and Braavos Investment Partners with Lansdowne Partners
+    source_url: https://innovation.ox.ac.uk/news/quantum-leap-the-story-behind-the-university-of-oxfords-highest-value-quantum-computing-spinout-acquisition/
+    source_type: press
+  - date: 2020-06
+    tag: qc
+    headline: $3.77M seed round from Atmos Ventures, IP Group, Oxford Sciences Innovation
+    source_url: https://innovation.ox.ac.uk/news/quantum-leap-the-story-behind-the-university-of-oxfords-highest-value-quantum-computing-spinout-acquisition/
+    source_type: press
+  - date: 2019
+    tag: qc
+    headline: Company founded by Chris Ballance and Tom Harty as an Oxford spinout from the trapped-ion quantum computing group (David Lucas / Andrew Steane)
+    source_url: https://www.oxionics.com/about-us/
+    source_type: blog
+
+shareholders:
+  - holder: IonQ
+    stake_percent: 100
+    stake_class: controlling
+    as_of: 2025-09
+    source_url: https://www.ionq.com/news/ionq-completes-acquisition-of-oxford-ionics-rapidly-accelerating-its-quantum
+    note: Wholly-owned subsidiary post-September 2025 acquisition close
+
+key_personnel:
+  - role: Co-founder & President, Quantum Computing (IonQ)
+    name: Chris Ballance
+    since: 2019
+    source_url: https://investors.ionq.com/governance/executive-management/default.aspx
+    note: Co-founded Oxford Ionics in 2019 as CEO; moved to IonQ President of Quantum Computing on acquisition close
+  - role: Co-founder & CTO
+    name: Tom Harty
+    since: 2019
+    source_url: https://www.oxionics.com/about-us/
+  - role: Principal Investigator (parent academic group)
+    name: David Lucas
+    since: 2019
+    source_url: https://www.physics.ox.ac.uk/research/group/ion-trap-quantum-computing
+
+roadmap:
+  - target: 2027
+    item: Deliver 256-qubit chip-trap system as the first IonQ-Oxford-integrated product line under the merged roadmap
+    source_url: https://www.ionq.com/news/ionq-completes-acquisition-of-oxford-ionics-rapidly-accelerating-its-quantum
+    tag: qc
+
+current_flagship:
+  name: Oxford Ionics chip-trap QPU
+  generation: silicon-CMOS ion-trap chip with on-chip EIC (barium / calcium)
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41586-024-08404-x
+    note: Main et al., Nature 638, 383 (2025) — distributed Grover across two photonically-linked trapped-ion modules (Sr+/Ca+ mixed species)
+  - kind: preprint
+    citation_key: null
+    url: https://arxiv.org/abs/2407.07694
+    note: Scalable all-electronic control of trapped-ion qubits (EIC architecture)
+  - kind: preprint
+    citation_key: null
+    url: https://arxiv.org/abs/2510.17286
+    note: Trapped-ion two-qubit gates with >99.99% fidelity without ground-state cooling
+  - kind: press
+    citation_key: null
+    url: https://www.ionq.com/news/ionq-announces-agreement-to-acquire-oxford-ionics-accelerating-path-to-pioneering
+    note: IonQ acquisition announcement, June 2025
+  - kind: filing
+    citation_key: null
+    url: https://www.gov.uk/government/publications/acquisition-of-oxford-ionics-limited-by-ionq-inc-notice-of-final-order/acquisition-of-oxford-ionics-limited-by-ionq-inc-notice-of-final-order
+    note: UK government final order clearing the acquisition with conditions
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.ec_code
+  - modalities.qc.gate_set
+  - field: modalities.qc.two_q_fidelity
+    as_of: 2026-05-15
+    note: 99.99% two-qubit fidelity is the headline figure from the Oct 2025 arXiv preprint (2510.17286); not yet peer-reviewed
+  - field: modalities.qc.one_q_fidelity
+    as_of: 2026-05-15
+    note: 99.9992% single-qubit fidelity quoted on the vendor technology page; underlying paper is 2402.12955 (arXiv, not peer-reviewed)
+
+last_verified: 2026-05-15
+verification_method: web

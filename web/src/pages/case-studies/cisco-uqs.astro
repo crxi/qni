@@ -1,0 +1,144 @@
+---
+/**
+ * /case-studies/cisco-uqs — Cisco Universal Quantum Switch research prototype,
+ * announced 23 April 2026 from Cisco's Santa Monica Quantum Labs.
+ */
+import Infographic from "../../layouts/Infographic.astro";
+import Center from "../../components/Center.astro";
+import Stack from "../../components/Stack.astro";
+import SiteNav from "../../components/SiteNav.astro";
+import SourceNote from "../../components/SourceNote.astro";
+import { url } from "../../lib/url";
+
+const sections = [
+  { id: "overview", label: "Overview" },
+  { id: "what",     label: "What it is" },
+  { id: "verified", label: "Verified claims" },
+  { id: "caveats",  label: "Things to note" },
+  { id: "related",  label: "Related entries" },
+];
+---
+
+<Infographic
+  title="Cisco Universal Quantum Switch (UQS)"
+  description="Research prototype from Cisco's Santa Monica Quantum Labs that routes quantum information across four photonic encodings — polarisation, time-bin, frequency-bin and path — via a Cisco-patented in-line conversion engine. Room-temperature, telecom-fibre compatible, nanosecond electro-optic switching, sub-watt power, ≤4 % per-conversion fidelity degradation. Announced 23 April 2026."
+  references={[
+    "cisco-uqs-press-2026",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="case-studies" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>Cisco Universal Quantum Switch (UQS)</h1>
+        <p>
+          A working research prototype that switches quantum information
+          between four photonic encodings — polarisation, time-bin,
+          frequency-bin and path — through a Cisco-patented conversion engine.
+          The pitch is Cisco's positioning answer to the heterogeneity problem:
+          different quantum platforms emit photons in different encodings, and
+          a network that ties them together needs an active element that
+          translates between them. Announced 23 April 2026 by the Santa Monica
+          Quantum Labs; not a commercial product.<SourceNote id="cisco-uqs-press-2026" />
+        </p>
+        <dl class="hero-meta">
+          <div><dt>Operator</dt><dd>Cisco (Santa Monica Quantum Labs); named collaborators IBM, Qunnect, Atom Computing</dd></div>
+          <div><dt>Location</dt><dd>Santa Monica, California, USA (lab)</dd></div>
+          <div><dt>Year</dt><dd>Announced 23 April 2026</dd></div>
+          <div><dt>Technology</dt><dd>Photonic switching across four encodings (polarisation / time-bin / frequency-bin / path) via a Cisco-patented conversion engine; room-temperature; telecom-fibre compatible</dd></div>
+          <div><dt>Scale</dt><dd>Research prototype — single switch device, lab-scale</dd></div>
+          <div><dt>Status</dt><dd>Working research prototype (not for sale)</dd></div>
+          <div><dt>Commercial model</dt><dd>Vendor research demonstration; partnerships with IBM, Qunnect, Atom Computing for future integration</dd></div>
+        </dl>
+      </header>
+
+      <section id="what" data-nav-section>
+        <h2>What it is</h2>
+        <p>
+          The UQS is a single-device optical switch that accepts an incoming
+          photonic qubit in any of four encodings — polarisation
+          (H / V or diagonal superpositions), time-bin (early / late
+          temporal modes), frequency-bin (two carrier frequencies) and path
+          (which of two waveguides the photon occupies) — and re-emits the
+          quantum information in any of the four. The translation is done
+          in-line, on the flying photon, by what Cisco describes as a
+          patented electro-optic conversion engine. Reconfiguration time is
+          quoted at one nanosecond, power consumption under one watt, and the
+          fidelity penalty per conversion at four per cent or less. The device
+          operates at room temperature on standard telecom fibre.<SourceNote id="cisco-uqs-press-2026" />
+        </p>
+        <p>
+          Why the four encodings matter: a network that connects a trapped-ion
+          processor, a neutral-atom processor and a warm-vapour entanglement
+          source will see photons that were generated in different bases.
+          Polarisation is convenient over short fibre but drifts under stress
+          and birefringence; time-bin survives long fibre well but is harder
+          to interface with polarisation-selective optics; frequency-bin
+          integrates cleanly with WDM infrastructure; path encoding is the
+          native output of on-chip photonic processors. The UQS sits between
+          these and converts on demand rather than forcing every endpoint to
+          agree on one encoding.
+        </p>
+        <p>
+          The announcement positions the UQS alongside two other Santa Monica
+          programmes — Cisco's quantum-entanglement chip (a source) and its
+          network-aware quantum compiler (control-plane software) — as
+          components of a future quantum-router stack. The three are
+          announced separately and need to be evaluated separately.
+        </p>
+      </section>
+
+      <section id="verified" data-nav-section>
+        <h2>Verified claims</h2>
+        <ul class="claim-list">
+          <li><strong>Four photonic encodings supported</strong> — polarisation, time-bin, frequency-bin, path — with conversion between any pair.<SourceNote id="cisco-uqs-press-2026" /></li>
+          <li><strong>Cisco-patented in-line conversion engine</strong> performing the encoding translation on the flying photon.<SourceNote id="cisco-uqs-press-2026" /></li>
+          <li><strong>Room-temperature operation on standard telecom fibre</strong> — no cryogenics in the switch itself.<SourceNote id="cisco-uqs-press-2026" /></li>
+          <li><strong>Nanosecond electro-optic switching</strong> — 1 ns reconfiguration time between encoding modes.<SourceNote id="cisco-uqs-press-2026" /></li>
+          <li><strong>Under one watt of power consumption</strong> for the switch device.<SourceNote id="cisco-uqs-press-2026" /></li>
+          <li><strong>≤ 4 % quantum-state-fidelity degradation per conversion</strong>, as reported by Cisco.<SourceNote id="cisco-uqs-press-2026" /></li>
+          <li><strong>Strategic collaborators named</strong>: IBM, Qunnect, Atom Computing — for integration with their respective compute and source platforms.<SourceNote id="cisco-uqs-press-2026" /></li>
+          <li><strong>Companion programmes from the same lab</strong>: Cisco's quantum-entanglement chip and a network-aware quantum compiler, announced separately.<SourceNote id="cisco-uqs-press-2026" /></li>
+        </ul>
+      </section>
+
+      <section id="caveats" data-nav-section>
+        <h2>Things to note</h2>
+        <ul class="caveat-list">
+          <li><strong>Scope is a single device.</strong> The UQS is a bench-top prototype. The announcement covers the device itself; it does not include a deployed-fibre route, end-to-end Bell-pair distribution, or a multi-node testbed.</li>
+          <li><strong>"Universal" refers to the four-encoding scope.</strong> The encodings in scope are polarisation, time-bin, frequency-bin, and path. Continuous-variable (quadrature) encodings, photon-number / Fock-state encodings, and direct spin-photon interfaces are out of scope. A trapped-ion or NV-centre node that emits a spin-entangled photon would require separate frequency conversion to interface with a UQS.</li>
+          <li><strong>Per-conversion fidelity applies per hop.</strong> The ≤ 4 % figure is for one encoding change. A path that converts polarisation → frequency-bin at one switch and frequency-bin → time-bin at the next compounds the penalty across hops, before fibre loss or detector inefficiency. End-to-end fidelity numbers for cascaded use are not provided in the announcement.</li>
+          <li><strong>Vendor-reported figures.</strong> The figures above come from a Cisco press release and lab demonstrations to date; no peer-reviewed paper has been published as of this writing. Independent measurement of the conversion fidelity, the switching jitter, and the photon-loss budget through the device is not yet on the record.</li>
+          <li><strong>Separate from the other Santa Monica announcements.</strong> Cisco's quantum-entanglement chip (a source) and network-aware quantum compiler (software) are distinct programmes that share branding and a lab. Integration of the three into one stack is on the roadmap rather than demonstrated.</li>
+          <li><strong>Prototype rather than a shipping product.</strong> The device is not for sale; the named collaborators are research partners. The figures are vendor-reported pending third-party reproduction.</li>
+        </ul>
+      </section>
+
+      <section id="related" data-nav-section>
+        <h2>Related entries</h2>
+        <ul class="related-list">
+          <li><a href={url("/links")}>Photonic links</a> — the encoding choices (polarisation, time-bin, frequency-bin, path) that the UQS converts between.</li>
+          <li><a href={url("/distribution")}>Entanglement distribution</a> — where an encoding-conversion switch would sit in the stack between heterogeneous nodes.</li>
+          <li><a href={url("/case-studies/cisco-qunnect-brooklyn")}>Cisco × Qunnect Brooklyn–Manhattan metro entanglement-swap</a> — Cisco's deployed-fibre demonstration with Qunnect, on the same vendor's network agenda.</li>
+          <li><a href={url("/applications")}>Applications</a> — quantum routing and heterogeneous-platform integration as the use case the UQS targets.</li>
+          <li><a href={url("/companies")}>Companies</a> — Cisco profile.</li>
+        </ul>
+      </section>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<style>
+  .hero { padding-block: var(--space-6) var(--space-4); border-block-end: 1px solid var(--color-rule); display: grid; gap: var(--space-3); }
+  .hero h1 { margin: 0; }
+  .hero-meta { display: grid; gap: var(--space-1); margin: 0; padding: var(--space-3); background: var(--color-surface-2); border-radius: var(--radius); font-size: var(--text-sm); }
+  .hero-meta div { display: grid; grid-template-columns: 11rem 1fr; gap: var(--space-2); }
+  .hero-meta dt { color: var(--color-text-mute); text-transform: uppercase; letter-spacing: var(--tracking-wide); font-size: var(--text-xs); font-weight: 600; align-self: center; }
+  .hero-meta dd { margin: 0; color: var(--color-text); }
+  @media (max-width: 40rem) { .hero-meta div { grid-template-columns: 1fr; gap: 0; } }
+  .claim-list, .caveat-list, .related-list { display: grid; gap: var(--space-2); padding-inline-start: var(--space-4); }
+  .claim-list li, .caveat-list li { line-height: var(--leading-body); }
+</style>

@@ -1,0 +1,53 @@
+/*
+ * Figure-toolbar styles — the .zfig wrapper used by both ZoomableFigure
+ * (the component) and pages that render the inline .zfig markup around
+ * interactive components.
+ *
+ * Loaded globally from the Infographic layout so the inline-markup path
+ * doesn't depend on importing ZoomableFigure (which would otherwise be
+ * the only way to pull these rules onto the page).
+ */
+.zfig {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  display: grid;
+  gap: var(--space-2);
+}
+.zfig__toolbar {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
+.zfig__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: var(--color-text);
+  background: var(--color-surface-2);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+}
+.zfig__btn:hover { background: var(--color-surface); }
+.zfig__btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+.zfig__img-wrap img {
+  inline-size: 100%;
+  block-size: auto;
+  display: block;
+  margin: 0 auto;
+}
+.zfig figcaption {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  color: var(--color-text-mute);
+}

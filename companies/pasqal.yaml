@@ -1,0 +1,265 @@
+slug: pasqal
+name: Pasqal
+categories: [qc]
+hq: Palaiseau, France
+founded: 2019
+status: private
+parent: null
+logo:
+  domain: pasqal.com
+
+positioning: >
+  French neutral-atom quantum-computing company spun out of Institut
+  d'Optique in 2019 by Alain Aspect, Antoine Browaeys, and Thierry Lahaye.
+  Builds rubidium-87 optical-tweezer arrays that run both analog
+  Hamiltonian-simulation and digital gate-based modes; the only neutral-atom
+  vendor with QPUs installed in EuroHPC supercomputing centres and a
+  commercial 200-qubit deployment at Saudi Aramco in Dhahran. Flagship Orion
+  Gamma carries 140+ qubits; the published roadmap targets early FTQC by
+  2028 (Centaurus) and 100 logical qubits by 2029 (Lyra). SPAC business
+  combination with Bleichroeder Acquisition Corp II announced March 2026.
+
+modalities:
+  qc:
+    qubit_type: neutral-atom
+    physical_qubits_current: 200
+    logical_qubits_current: 2
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: programmable
+    gate_set: []
+
+milestones:
+  - date: 2026-03
+    tag: qc
+    headline: >
+      Announces business combination with Bleichroeder Acquisition Corp II;
+      Nasdaq listing planned 2026, Euronext Paris dual-listing to follow;
+      EUR 340M new financing (EUR 170M private round + EUR 170M convertible)
+    source_url: https://www.pasqal.com/newsroom/pasqal-a-global-leader-in-neutral-atom-quantum-computing-to-go-public-via-business-combination-with-bleichroeder-acquisition-corp-ii/
+    source_type: press
+  - date: 2026-02
+    tag: qc
+    headline: >
+      Delivers 140-qubit Orion-class neutral-atom QPU to CINECA (Bologna) under
+      EuroHPC EuroQCS-Italy contract
+    source_url: https://thequantuminsider.com/2026/02/17/pasqal-neutral-atom-qpu-italy/
+    source_type: press
+  - date: 2025-10
+    tag: qc
+    headline: >
+      200-qubit neutral-atom system — what the company described as Saudi Arabia's
+      first quantum computer — goes live at Saudi Aramco's data centre in Dhahran
+    source_url: https://www.aramco.com/en/news-media/news/2025/aramco-and-pasqal-make-history-with-saudi-arabias-first-quantum-computer
+    source_type: press
+  - date: 2025-06
+    tag: qc
+    headline: >
+      Releases updated 2025 roadmap — upgradable Orion / Vela / Centaurus /
+      Lyra platform path toward early FTQC by 2028, impactful FTQC by 2029
+    source_url: https://www.pasqal.com/newsroom/pasqal-releases-2025-roadmap/
+    source_type: press
+  - date: 2024-11
+    tag: qc
+    headline: >
+      Inaugurates Orion Beta ("Ruby") QPU at GENCI/CEA (Saclay) and a second
+      Pasqal QPU at Forschungszentrum Jülich under the HPCQS programme
+    source_url: https://www.pasqal.com/newsroom/pasqal-drives-europes-quantum-industrialization-with-the-integration-of-two-qpus-into-europes-first-hybrid-hpc-quantum-infrastructure/
+    source_type: press
+  - date: 2024
+    tag: qc
+    headline: >
+      Exceeds 1,000 trapped neutral atoms in a single processor array
+    source_url: https://www.pasqal.com/newsroom/pasqal-exceeds-1000-atoms-in-quantum-processor/
+    source_type: press
+  - date: 2023-01
+    tag: qc
+    headline: >
+      Closes EUR 100M Series B led by Temasek to scale neutral-atom hardware
+    source_url: https://www.pasqal.com/newsroom/pasqal-raises-e100-million-series-b-funding-to-advance-neutral-atoms-quantum-computing/
+    source_type: press
+
+shareholders:
+  - holder: Quantonation
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-03
+    source_url: https://techcrunch.com/2026/03/06/quantum-scale-up-pasqal-plans-2b-spac-listing-promises-to-remain-french/
+    note: Seed/Series A lead; co-founder Christophe Jurczak (Managing Partner) sits on the board
+  - holder: Temasek
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-03
+    source_url: https://www.pasqal.com/newsroom/pasqal-raises-e100-million-series-b-funding-to-advance-neutral-atoms-quantum-computing/
+    note: Led EUR 100M Series B (Jan 2023); Maynard Kang (Director of Emerging Technologies) sits on the board
+  - holder: BPIfrance Large Venture
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-03
+    source_url: https://www.pasqal.com/newsroom/pasqal-a-global-leader-in-neutral-atom-quantum-computing-to-go-public-via-business-combination-with-bleichroeder-acquisition-corp-ii/
+    note: Existing anchor investor; participating in USD 200M convertible financing for the SPAC merger
+  - holder: Saudi Aramco Entrepreneurship Ventures (Wa'ed)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-03
+    source_url: https://www.businesswire.com/news/home/20260304923225/en/Pasqal-A-Global-Leader-in-Neutral-Atom-Quantum-Computing-to-Go-Public-via-Business-Combination-with-Bleichroeder-Acquisition-Corp-II
+    note: Aramco's venture arm; tied to the 200-qubit Dhahran deployment
+  - holder: European Innovation Council Fund
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-03
+    source_url: https://www.businesswire.com/news/home/20260304923225/en/Pasqal-A-Global-Leader-in-Neutral-Atom-Quantum-Computing-to-Go-Public-via-Business-Combination-with-Bleichroeder-Acquisition-Corp-II
+    note: EU equity investor (EIC accelerator equity track)
+  - holder: ISAI
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-03
+    source_url: https://www.businesswire.com/news/home/20260304923225/en/Pasqal-A-Global-Leader-in-Neutral-Atom-Quantum-Computing-to-Go-Public-via-Business-Combination-with-Bleichroeder-Acquisition-Corp-II
+    note: French VC; cited as Pasqal backer in SPAC announcement
+  - holder: Addax Holding
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-03
+    source_url: https://www.pasqal.com/about-us/leadership/
+    note: Jean-Jacques Joulié (CEO, Addax) sits on the Pasqal board
+  - holder: Founders (Aspect, Browaeys, Lahaye, Jurczak, Reymond)
+    stake_percent: null
+    stake_class: founder
+    as_of: 2026-03
+    source_url: https://www.pasqal.com/about-us/
+    note: Institut d'Optique co-founders + Jurczak; rolling 100% of equity into the post-SPAC NewCo per "remain French" pledge
+  - holder: Inflection Point
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-03
+    source_url: https://www.pasqal.com/newsroom/pasqal-a-global-leader-in-neutral-atom-quantum-computing-to-go-public-via-business-combination-with-bleichroeder-acquisition-corp-ii/
+    note: Bleichroeder sponsor-affiliated investor anchoring the USD 200M convertible PIPE
+  - holder: Bleichroeder Acquisition Corp. II (SPAC public shareholders)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-03
+    source_url: https://www.stocktitan.net/sec-filings/BBCQ/10-q-bleichroeder-acquisition-corp-ii-quarterly-earnings-report-3924e7538819.html
+    note: SPAC trust ~USD 289M as of Feb 28 2026; will roll into NewCo at deal close (H2 2026), subject to redemptions
+
+key_personnel:
+  - role: CEO
+    name: Loïc Henriet
+    since: 2025-03
+    source_url: https://www.pasqal.com/newsroom/pasqal-announces-a-new-management-structure-with-the-appointment-of-loic-henriet-as-ceo-and-wasiq-bokhari-as-executive-chairman/
+    note: Promoted from co-CEO to sole CEO on 18 March 2025 in the same announcement that moved Wasiq Bokhari to Executive Chairman.
+  - role: Executive Chairman
+    name: Wasiq Bokhari
+    since: 2025-03
+    source_url: https://www.pasqal.com/about-us/leadership/
+  - role: Co-Founder & Chief Scientific Officer
+    name: Antoine Browaeys
+    since: 2019
+    source_url: https://www.pasqal.com/about-us/leadership/
+  - role: Co-Founder & Chief Strategic Alliances Officer
+    name: Georges-Olivier Reymond
+    since: 2025-03
+    source_url: https://www.pasqal.com/newsroom/pasqal-announces-a-new-management-structure-with-the-appointment-of-loic-henriet-as-ceo-and-wasiq-bokhari-as-executive-chairman/
+  - role: Chief Operating Officer
+    name: Barbara Bonneau
+    since: 2024
+    source_url: https://www.pasqal.com/about-us/leadership/
+  - role: Chief Production & Project Officer
+    name: Véronique Dentan
+    since: 2024
+    source_url: https://www.pasqal.com/about-us/leadership/
+  - role: Chief Hardware Officer
+    name: Adrien Signoles
+    since: 2024
+    source_url: https://www.pasqal.com/about-us/leadership/
+  - role: Chief Software Officer
+    name: Mourad Beji
+    since: 2024
+    source_url: https://www.pasqal.com/about-us/leadership/
+  - role: Chief Financial Officer
+    name: Jean-Yves Quentel
+    since: 2024
+    source_url: https://www.pasqal.com/about-us/leadership/
+  - role: Co-Founder & Board Member
+    name: Christophe Jurczak
+    since: 2019
+    source_url: https://www.pasqal.com/about-us/leadership/
+  - role: Co-Founder & Chair, Scientific Advisory Board
+    name: Alain Aspect
+    since: 2019
+    source_url: https://www.pasqal.com/about-us/leadership/
+  - role: Co-Founder (Institut d'Optique)
+    name: Thierry Lahaye
+    since: 2019
+    source_url: https://www.pasqal.com/about-us/
+
+roadmap:
+  - target: 2026
+    item: >
+      250-qubit QPU targeted at quantum advantage on an industry-relevant
+      problem (first half of 2026)
+    source_url: https://www.pasqal.com/newsroom/pasqal-releases-2025-roadmap/
+    tag: qc
+  - target: 2027
+    item: >
+      Vela generation — 200+ physical qubits, 20 logical qubits
+    source_url: https://www.pasqal.com/newsroom/pasqal-releases-2025-roadmap/
+    tag: qc
+  - target: 2028
+    item: >
+      Centaurus generation — ~10,000 physical qubits, early fault-tolerant
+      quantum computing (early FTQC)
+    source_url: https://www.pasqal.com/newsroom/pasqal-releases-2025-roadmap/
+    tag: qc
+  - target: 2029
+    item: >
+      Lyra generation — 100 high-fidelity logical qubits, impactful FTQC;
+      two-qubit gate fidelity target 99.9%
+    source_url: https://www.pasqal.com/newsroom/pasqal-releases-2025-roadmap/
+    tag: qc
+
+current_flagship:
+  name: Orion Gamma
+  generation: neutral-atom Orion gen-3 (Rb-87, 140+ qubits, 2 logical qubits demonstrated)
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://www.pasqal.com/newsroom/pasqal-releases-2025-roadmap/
+    note: 2025 roadmap — Orion / Vela / Centaurus / Lyra generations, FTQC path
+  - kind: press
+    citation_key: null
+    url: https://www.aramco.com/en/news-media/news/2025/aramco-and-pasqal-make-history-with-saudi-arabias-first-quantum-computer
+    note: Aramco 200-qubit deployment, Dhahran
+  - kind: press
+    citation_key: null
+    url: https://www.pasqal.com/newsroom/pasqal-selected-to-deliver-new-quantum-computer/
+    note: EuroQCS-Italy 140-qubit CINECA contract
+  - kind: press
+    citation_key: null
+    url: https://www.pasqal.com/newsroom/pasqal-drives-europes-quantum-industrialization-with-the-integration-of-two-qpus-into-europes-first-hybrid-hpc-quantum-infrastructure/
+    note: GENCI/CEA + Jülich HPCQS QPU inaugurations
+  - kind: press
+    citation_key: null
+    url: https://www.pasqal.com/newsroom/pasqal-a-global-leader-in-neutral-atom-quantum-computing-to-go-public-via-business-combination-with-bleichroeder-acquisition-corp-ii/
+    note: Nasdaq / Euronext dual-listing announcement (March 2026)
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41586-023-06481-y
+    note: >
+      Reference neutral-atom hardware paper (Evered et al., Nature 2023) —
+      99.5% parallel entangling gates on Rb arrays; relevant context, not a
+      Pasqal-authored result.
+
+partial:
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.ec_code
+  - modalities.qc.gate_set
+
+last_verified: 2026-05-13
+verification_method: web

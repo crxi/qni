@@ -1,0 +1,115 @@
+slug: lam-anu
+name: Lam group (ANU)
+categories: [memory, source-detect]
+hq: Canberra, ACT, Australia
+status: active
+parent: null
+
+institution:
+  name: Australian National University (ANU)
+  lab: Department of Quantum Science and Technology · Research School of Physics
+  also: ARC Centre of Excellence for Quantum Computation and Communication Technology (CQC2T) node; CSIRO partnerships through the Quantum Technologies Future Science Platform
+
+group_website: https://physics.anu.edu.au/contact/people/profile.php?ID=109
+
+positioning: >
+  Experimental quantum-optics group at ANU led by Ping Koy Lam, working
+  across continuous-variable (CV) photonic quantum information and
+  rare-earth-doped solid-state quantum memories. The rare-earth thread
+  (Eu:Y2SiO5, Pr:Y2SiO5, Er-doped crystals) has produced several of the
+  field's longest coherent optical-storage demonstrations, positioning the
+  platform as a candidate node for fibre-compatible quantum repeaters. In
+  parallel the group runs CV squeezing, CV teleportation, and quantum-key
+  experiments. Lam is also Chief Quantum Scientist at A*STAR (Singapore).
+
+modalities:
+  memory:
+    platform: rare-earth-doped crystal (Eu:Y2SiO5, Pr:Y2SiO5, Er-doped)
+    storage_time_ms: null
+    retrieval_efficiency: null
+    fidelity: null
+    wavelength_nm: null
+    mode_capacity: null
+  source-detect:
+    role: source
+    detection_efficiency: null
+    dark_count_hz: null
+    jitter_ps: null
+
+milestones:
+  - date: 2021-08
+    tag: memory
+    headline: Coherent optical storage for over an hour in a Eu:Y2SiO5 crystal using ZEFOZ + dynamical decoupling (Ma et al., Nature Communications)
+    source_url: https://www.nature.com/articles/s41467-021-22706-y
+    source_type: paper
+  - date: 2015-01
+    tag: memory
+    headline: Six-hour coherence time on a hyperfine transition in Eu:Y2SiO5 — among the longest demonstrated in any solid (Zhong et al., Nature)
+    source_url: https://www.nature.com/articles/nature14025
+    source_type: paper
+  - date: 2013
+    tag: source-detect
+    headline: Unconditional quantum teleportation of optical coherent states with the highest reported fidelity at the time (Lee et al., Science 2011) — continuing CV-teleportation programme
+    source_url: https://doi.org/10.1126/science.1201034
+    source_type: paper
+
+funding_sources:
+  - name: Australian Research Council — Centre of Excellence for Quantum Computation and Communication Technology (CQC2T)
+    role: Primary grant vehicle for the rare-earth memory and CV-photonic programmes
+    source_url: https://www.cqc2t.org/
+  - name: Australian Research Council — Discovery and Linkage Projects
+    role: Investigator-led project funding
+    source_url: https://www.arc.gov.au/
+  - name: Australian Federal Government — National Quantum Strategy
+    role: Strategic investment into quantum research at ANU
+    source_url: https://www.industry.gov.au/science-technology-and-innovation/technology/national-quantum-strategy
+
+key_personnel:
+  - role: Principal Investigator / Professor
+    name: Ping Koy Lam
+    since: 2003
+    source_url: https://physics.anu.edu.au/contact/people/profile.php?ID=109
+    note: Also Chief Quantum Scientist, A*STAR Quantum Innovation Centre (Q.InC), Singapore (since 2022)
+
+current_focus:
+  name: Quantum optics and quantum communication
+  description: ""
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41467-021-22706-y
+    note: Ma et al., Nat. Commun. 12, 2381 (2021) — one-hour coherent optical storage in Eu:Y2SiO5
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/nature14025
+    note: Zhong et al., Nature 517, 177 (2015) — six-hour hyperfine coherence in Eu:Y2SiO5
+  - kind: paper
+    citation_key: null
+    url: https://doi.org/10.1126/science.1201034
+    note: Lee et al., Science 332, 330 (2011) — high-fidelity CV teleportation of coherent states
+
+partial:
+  - modalities.memory.storage_time_ms
+  - modalities.memory.retrieval_efficiency
+  - modalities.memory.fidelity
+  - modalities.memory.wavelength_nm
+  - modalities.memory.mode_capacity
+  - modalities.source-detect.detection_efficiency
+  - modalities.source-detect.dark_count_hz
+  - modalities.source-detect.jitter_ps
+  - field: institution.also
+    as_of: 2026-05-24
+    note: ANU's role in CQC2T and CSIRO partnerships is documented at the institutional level; the exact current funding scope for the Lam group within these vehicles is not confirmed against a primary source.
+  - field: group_website
+    as_of: 2026-05-24
+    note: ANU staff-profile URL is the closest stable landing page; a dedicated group site was not located on this pass.
+  - field: current_focus.description
+    as_of: 2026-05-24
+    note: No dedicated group website carries an institutional self-statement of focus (the ANU staff-profile URL resolves to a different physicist); rather than synthesise, left blank pending the group publishing one.
+  - field: key_personnel.0.since
+    as_of: 2026-05-24
+    note: 2003 reflects Lam's professorial appointment at ANU per public CV; exact group-formation date not pinned to a primary source.
+
+last_verified: 2026-05-24
+verification_method: web

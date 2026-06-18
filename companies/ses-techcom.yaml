@@ -1,0 +1,128 @@
+slug: ses-techcom
+name: SES Techcom
+categories: [qkd, network]
+hq: Betzdorf, Luxembourg
+founded: 1989
+status: acquired
+parent: ses
+logo:
+  domain: ses-techcom.com
+
+positioning: >
+  Wholly-owned subsidiary of SES S.A. delivering end-to-end satellite-enabled
+  solutions to governmental, institutional and supranational customers. Prime
+  contractor and operator for EAGLE-1, a sovereign LEO quantum-key-distribution satellite
+  (announced as Europe's first; ~€130M, ESA + European Commission + a consortium
+  of 20+ European companies, Vega-C launch from Kourou in late 2026 / early
+  2027). Also leads the Luxembourg national quantum-communication
+  infrastructure (LuxQCI) consortium under the EuroQCI programme.
+
+modalities:
+  qkd:
+    protocol: [BB84, decoy-state]
+    rate_distance: "C-band optical downlink from LEO via Tesat SCOT80 terminal; phase-encoded double-pulse qubits to European ground stations (3-year in-orbit validation post-launch)"
+    deployed_demos:
+      - "EAGLE-1 — LEO QKD satellite, SES Techcom as prime contractor and operator, Tesat-built payload, SITAEL platform"
+      - "LuxQCI — Luxembourg national quantum-communication infrastructure consortium (InCert, itrust, LuxConnect, LuxTrust, Uni Luxembourg / SnT), SES Techcom lead"
+  network:
+    role: orchestrator
+    products:
+      - "EAGLE-1 ground segment — optical ground stations across Europe, key-management infrastructure linking national EuroQCI segments"
+      - "LuxQCI architecture and operations"
+
+milestones:
+  - date: 2025-05
+    tag: qkd
+    headline: "Eagle-1 system description published (arXiv:2505.20838) — full mission, payload, and ground-segment architecture made public"
+    source_url: https://arxiv.org/abs/2505.20838
+    source_type: preprint
+  - date: 2023-09
+    tag: qkd
+    headline: "SES selects Arianespace for Eagle-1 launch on Vega-C from Kourou"
+    source_url: https://newsroom.arianespace.com/ses-selects-arianespace-to-launch-eagle-1-satellite-for-europes-quantum-cryptography/
+    source_type: press
+  - date: 2023-05
+    tag: qkd
+    headline: "SES + Tesat-Spacecom partnership announced — Tesat to develop and integrate the EAGLE-1 QKD payload (SCOT80 + QKD module)"
+    source_url: https://www.ses.com/press-release/ses-and-tesat-develop-payload-europes-first-quantum-cryptography-leo-satellite-system
+    source_type: press
+  - date: 2022-10
+    tag: qkd
+    headline: "ESA + European Commission + SES Techcom sign the Eagle-1 project agreement at the IAC in Paris; SITAEL contracted for the satellite platform"
+    source_url: https://www.esa.int/Applications/Connectivity_and_Secure_Communications/Eagle-1
+    source_type: press
+  - date: 2021-07
+    tag: network
+    headline: "SES-led consortium awarded LuxQCI design — Luxembourg national segment of EuroQCI (InCert, itrust, LuxConnect, LuxTrust, Uni Luxembourg / SnT under SES Techcom lead)"
+    source_url: https://www.businesswire.com/news/home/20210712005866/en/SES-led-Consortium-to-Define-Luxembourg%E2%80%99s-Quantum-Communication-Infrastructure-for-Europe
+    source_type: press
+
+shareholders:
+  - holder: SES S.A. (Euronext Paris / Luxembourg Stock Exchange — SESG)
+    stake_percent: 100
+    stake_class: controlling
+    as_of: 2026-05
+    source_url: https://www.ses.com/solutions
+    note: SES Techcom is a wholly-owned subsidiary of SES S.A.
+
+key_personnel:
+  - role: CEO, SES (parent)
+    name: Adel Al-Saleh
+    since: 2024-02
+    source_url: https://www.ses.com/company/about-us
+    note: Adel Al-Saleh succeeded Steve Collar as SES Group CEO in February 2024
+  - role: Senior Director, Quantum Communications (Eagle-1 programme lead)
+    name: null
+    since: null
+    source_url: https://www.ses.com/newsroom/eagle-1-advancing-europes-leadership-quantum-communications
+    note: SES Techcom does not publish a stand-alone leadership roster separate from SES S.A.
+
+roadmap:
+  - target: 2026
+    item: "Eagle-1 satellite delivery, environmental test, ship to Kourou for Vega-C launch (late 2026 / early 2027)"
+    source_url: https://en.wikipedia.org/wiki/Eagle-1
+    tag: qkd
+  - target: 2027
+    item: "Eagle-1 commissioning and start of three-year in-orbit QKD validation mission with European optical ground stations"
+    source_url: https://www.esa.int/Applications/Connectivity_and_Secure_Communications/Eagle-1
+    tag: qkd
+  - target: 2030
+    item: "Follow-on European QKD constellation building on Eagle-1 results, integrated with EuroQCI national segments and IRIS² secure connectivity"
+    source_url: https://www.ses.com/newsroom/eagle-1-advancing-europes-leadership-quantum-communications
+    tag: qkd
+
+current_flagship:
+  name: EAGLE-1
+  generation: LEO QKD pathfinder satellite (Tesat SCOT80 payload on SITAEL platform), late-2026 / early-2027 launch
+
+references:
+  - kind: preprint
+    citation_key: null
+    url: https://arxiv.org/abs/2505.20838
+    note: "The European Satellite-Based QKD System EAGLE-1 (May 2025) — canonical mission paper"
+  - kind: press
+    citation_key: null
+    url: https://www.esa.int/Applications/Connectivity_and_Secure_Communications/Eagle-1
+    note: ESA Eagle-1 programme page
+  - kind: press
+    citation_key: null
+    url: https://www.ses.com/newsroom/eagle-1-advancing-europes-leadership-quantum-communications
+    note: SES newsroom — Eagle-1 strategic context
+  - kind: press
+    citation_key: null
+    url: https://newsroom.arianespace.com/ses-selects-arianespace-to-launch-eagle-1-satellite-for-europes-quantum-cryptography/
+    note: Arianespace launch-service contract announcement (Sep 2023)
+  - kind: press
+    citation_key: null
+    url: https://www.businesswire.com/news/home/20210712005866/en/SES-led-Consortium-to-Define-Luxembourg%E2%80%99s-Quantum-Communication-Infrastructure-for-Europe
+    note: LuxQCI consortium award (July 2021)
+
+partial:
+  - key_personnel.1.name
+  - key_personnel.1.since
+  - field: modalities.qkd.rate_distance
+    as_of: 2026-05-15
+    note: detailed key-rate vs slant-range numbers for Eagle-1 are not yet public; description is qualitative pending in-orbit data
+
+last_verified: 2026-05-15
+verification_method: web

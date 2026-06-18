@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://qni.pages.dev/sitemap-index.xml

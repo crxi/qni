@@ -1,0 +1,182 @@
+slug: infleqtion
+name: Infleqtion
+categories: [qc, sensing, software]
+hq: Boulder, Colorado, USA
+founded: 2007
+status: public
+parent: null
+logo:
+  domain: infleqtion.com
+
+positioning: >
+  US neutral-atom quantum-technology company spun out of the University of
+  Colorado (Boulder) in 2007 as ColdQuanta, rebranded to Infleqtion in 2022.
+  Builds rubidium (Rb) neutral-atom quantum computers ("Sqale"), rubidium
+  atomic clocks ("Tiqker"), and cold-atom sensing systems for positioning,
+  navigation, and timing. Acquired the quantum-software developer Super.tech
+  in 2022, integrating the SuperstaQ compiler stack. Listed on NYSE under
+  ticker INFQ on 17 February 2026 following a SPAC merger with Churchill
+  Capital Corp X at a USD 1.8B valuation. Customers include NVIDIA, the US
+  Department of Defense, NASA, and the UK government.
+
+modalities:
+  qc:
+    qubit_type: neutral-atom
+    physical_qubits_current: 100
+    logical_qubits_current: 12
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: reconfigurable
+    gate_set: []
+  sensing:
+    target_quantity: clock + PNT + RF
+    sensitivity: "Tiqker Rb atomic clock; cold-atom inertial and RF sensing payloads"
+  software:
+    products:
+      - SuperstaQ
+      - Superstaq compiler
+      - Contextual Quantum
+
+milestones:
+  - date: 2026-02
+    tag: qc
+    headline: >
+      Lists on NYSE under ticker INFQ following SPAC merger with Churchill
+      Capital Corp X; ~USD 1.8B implied valuation, ~USD 550M gross proceeds
+      (USD 125M PIPE)
+    source_url: https://mlq.ai/news/neutral-atom-quantum-leader-infleqtion-launches-on-nyse-following-spac-merger/
+    source_type: press
+  - date: 2025-10
+    tag: qc
+    headline: >
+      Inaugural launch partner for NVIDIA NVQLink — couples Sqale to NVIDIA
+      AI supercomputers for real-time quantum-classical feedback loops
+    source_url: https://infleqtion.com/infleqtion-nvidia-nvqlink-connecting-our-sqale-quantum-computer-to-ai-supercomputers-in-real-time/
+    source_type: blog
+  - date: 2025-09
+    tag: qc
+    headline: >
+      Unveils next-generation Sqale architecture; reports 12 logical qubits
+      with error detection/correction and first execution of Shor's
+      factoring algorithm using logical qubits; targets 1,000 logical
+      qubits by 2030
+    source_url: https://thequantuminsider.com/2025/09/17/infleqtion-unveils-new-architecture-to-accelerate-its-quantum-computing-roadmap-to-achieve-1000-logical-qubits-by-2030/
+    source_type: press
+  - date: 2024
+    tag: qc
+    headline: >
+      Deploys 100-qubit Sqale neutral-atom platform at the UK National
+      Quantum Computing Centre (NQCC)
+    source_url: https://quantumcomputingreport.com/infleqtion-deploys-100-qubit-sqale-platform-at-uk-national-quantum-computing-centre/
+    source_type: press
+  - date: 2022-05
+    tag: software
+    headline: >
+      Acquires Super.tech (University of Chicago spin-out), bringing the
+      SuperstaQ cross-platform compiler in-house
+    source_url: https://infleqtion.com/
+    source_type: press
+  - date: 2022
+    tag: qc
+    headline: ColdQuanta rebrands to Infleqtion
+    source_url: https://infleqtion.com/
+    source_type: press
+  - date: 2007
+    tag: qc
+    headline: Founded as ColdQuanta out of the University of Colorado Boulder
+    source_url: https://infleqtion.com/
+    source_type: web
+
+shareholders:
+  - holder: "Public float (NYSE: INFQ)"
+    stake_percent: null
+    stake_class: controlling
+    as_of: 2026-02
+    source_url: https://www.sec.gov/Archives/edgar/data/0002007825/000119312526041848/d62107d425.htm
+    note: Common stock following Churchill Capital Corp X SPAC merger (Feb 2026).
+  - holder: Churchill Capital sponsor and PIPE investors
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-02
+    source_url: https://www.sec.gov/Archives/edgar/data/0002007825/000119312526041848/d62107d425.htm
+    note: USD 125M PIPE participants in the de-SPAC transaction.
+  - holder: Pre-merger ColdQuanta/Infleqtion private investors
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-02
+    source_url: https://www.fool.com/investing/2025/11/03/infleqtion-stock-spac-ipo-quantum-computing/
+    note: Roll-over equity from prior venture rounds; cap-table detail in S-4.
+
+key_personnel:
+  - role: CEO
+    name: Matthew Kinsella
+    since: 2025
+    source_url: https://infleqtion.com/
+    note: >
+      Took over from Scott Faris in 2025 ahead of the SPAC listing; unverified
+      against a vendor /team URL — cross-checked via SPAC press materials.
+  - role: Founder & Chief Scientist
+    name: Dana Anderson
+    since: 2007
+    source_url: https://infleqtion.com/
+    note: University of Colorado Boulder / JILA; ColdQuanta founder.
+
+roadmap:
+  - target: 2026
+    item: 30 logical qubits with error detection/correction on Sqale
+    source_url: https://thequantuminsider.com/2025/09/17/infleqtion-unveils-new-architecture-to-accelerate-its-quantum-computing-roadmap-to-achieve-1000-logical-qubits-by-2030/
+    tag: qc
+  - target: 2030
+    item: >
+      Full-stack fault-tolerant Sqale system with more than 1,000 logical
+      qubits
+    source_url: https://thequantuminsider.com/2025/09/17/infleqtion-unveils-new-architecture-to-accelerate-its-quantum-computing-roadmap-to-achieve-1000-logical-qubits-by-2030/
+    tag: qc
+
+current_flagship:
+  name: Sqale
+  generation: Rb neutral-atom, reconfigurable arrays, 100-physical / 12-logical
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://mlq.ai/news/neutral-atom-quantum-leader-infleqtion-launches-on-nyse-following-spac-merger/
+    note: NYSE listing as INFQ following Churchill Capital Corp X SPAC merger (Feb 2026)
+  - kind: press
+    citation_key: null
+    url: https://www.businesswire.com/news/home/20250917332754/en/Infleqtion-Unveils-New-Architecture-to-Accelerate-Its-Quantum-Computing-Roadmap-To-Achieve-1000-Logical-Qubits-by-2030
+    note: New Sqale architecture and 12-logical-qubit Shor demonstration (Sep 2025)
+  - kind: blog
+    citation_key: null
+    url: https://infleqtion.com/quantum-computing/
+    note: Sqale product page
+  - kind: blog
+    citation_key: null
+    url: https://infleqtion.com/infleqtion-nvidia-nvqlink-connecting-our-sqale-quantum-computer-to-ai-supercomputers-in-real-time/
+    note: NVIDIA NVQLink integration (Oct 2025)
+  - kind: filing
+    citation_key: null
+    url: https://www.sec.gov/Archives/edgar/data/0002007825/000119312526041848/d62107d425.htm
+    note: SEC Form 425 — Churchill Capital Corp X / Infleqtion business-combination filings
+
+partial:
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.ec_code
+  - field: key_personnel
+    as_of: 2026-05-20
+    note: >
+      Infleqtion's /team page not independently read;
+      CEO transition (Faris -> Kinsella) noted from SPAC press but the
+      exact effective date and full executive roster are not verified.
+  - shareholders
+  - headcount
+  - revenue
+
+last_verified: 2026-05-20
+verification_method: web

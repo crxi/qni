@@ -1,0 +1,12 @@
+---
+interface Props { min?: string; gap?: string; }
+const { min = "20rem", gap = "var(--space-4)" } = Astro.props;
+---
+<div class="grid" style={`--grid-min: ${min}; --grid-gap: ${gap};`}><slot /></div>
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(var(--grid-min), 100%), 1fr));
+    gap: var(--grid-gap);
+  }
+</style>

@@ -1,0 +1,214 @@
+slug: welinq
+name: Welinq
+categories: [memory, network]
+hq: Paris, France
+founded: 2022
+status: private
+parent: null
+logo:
+  domain: welinq.fr
+
+positioning: >
+  Quantum-networking hardware vendor commercialising laser-cooled rubidium
+  quantum memories and entangled-photon sources as rack-mount appliances
+  for distributed quantum computing. Spun out of Laboratoire Kastler Brossel
+  (Sorbonne Universite / CNRS / ENS-PSL) on roughly two decades of cold-atom
+  ensemble work in Julien Laurat's group. Positions its flagship QDrive
+  memory as the interconnect layer for neutral-atom and photonic quantum
+  processors, with development partnerships at Pasqal and Quandela and
+  first deployments inside the EuroQCI national-testbed perimeter.
+
+modalities:
+  memory:
+    platform: rb-ensemble
+    storage_time_ms: 0.2
+    retrieval_efficiency: 0.9
+    fidelity: null
+    wavelength_nm: null
+    mode_capacity: null
+  network:
+    role: vendor
+    products: [QDrive, Entangled Photon Pair Source]
+
+milestones:
+  - date: 2026-04
+    tag: network
+    headline: "Quantum Insider podcast with CEO Tom Darras — full-stack networking vision, QDrive uptake, US/Asia expansion"
+    source_url: https://thequantuminsider.com/2026/04/25/podcast-with-tom-darras-ceo-and-co-founder-welinq/
+    source_type: press
+  - date: 2026-02
+    tag: network
+    headline: "Commercial launch of rack-mounted Entangled Photon Pair Source; first unit delivered to an undisclosed European institution. Positioned as a companion to QDrive for fibre-based interconnects between QPUs"
+    source_url: https://quantumzeitgeist.com/welinq-entangled-photons-quantum-infrastructure/
+    source_type: press
+  - date: 2026-01
+    tag: memory
+    headline: "First commercial QDrive sale in Europe — Institute of Physics, Slovak Academy of Sciences, for the skQCI testbed feeding into EuroQCI"
+    source_url: https://www.welinq.fr/blog/welinq-sells-qdrive-quantum-memory-in-europe
+    source_type: press
+  - date: 2025-10
+    tag: network
+    headline: "Meet-Q project announced with Qphox and Sorbonne Universite — pairs Qphox microwave-to-optical transducers with Welinq QDrive memory to interface superconducting QPUs over optical fibre; funded by Quantum Delta NL and BPI France"
+    source_url: https://www.welinq.fr/blog/meet-q-announcement
+    source_type: press
+  - date: 2025-03
+    tag: memory
+    headline: "QDrive launched as a commercial 19-inch rack-mount quantum-memory product — laser-cooled Rb-87 ensemble at room-temperature operation, >90% on-demand storage-and-retrieval efficiency for single photons, storage up to 200 us"
+    source_url: https://www.welinq.fr/blog/welinq-launches-its-world-record-storage-solution-for-quantum-computing-scale-out
+    source_type: press
+  - date: 2024-07
+    tag: network
+    headline: "Partnership with Quandela on custom quantum interconnects for photonic QPUs, under the AQADOC distributed-computing project"
+    source_url: https://www.quantonation.com/2024/07/18/quandela-and-welinq-join-forces-to-create-custom-quantum-interconnects-for-photonic-quantum-computing/
+    source_type: press
+  - date: 2024-04
+    tag: network
+    headline: "EIC Transition grant of EUR 2.5M to industrialise neutral-atom quantum memory products for the quantum internet, with Sorbonne Universite, CNRS and PSL"
+    source_url: https://www.welinq.fr/blog/eic-transition
+    source_type: press
+  - date: 2024-04
+    tag: network
+    headline: "Strategic partnership with Pasqal to build quantum interconnects for neutral-atom QPUs; joint roadmap targets industrial QM prototype and 1,000-qubit QPUs by end-2024, 10,000-qubit machines by 2026-2027"
+    source_url: https://www.pasqal.com/newsroom/pasqal-and-welinq-partnership/
+    source_type: press
+  - date: 2023-01
+    tag: memory
+    headline: "EUR 5M pre-seed led by Quantonation with Runa Capital, plus support from Paris Region, France 2030 (national quantum plan), the European Commission and BPI France"
+    source_url: https://www.quantonation.com/2023/01/23/welinq-raises-5m-to-accelerate-the-development-of-its-quantum-memory-a-key-enabling-technology-for-the-quantum-internet/
+    source_type: press
+  - date: 2022
+    tag: memory
+    headline: "Company founded as a spin-out of Laboratoire Kastler Brossel (Sorbonne Universite / CNRS / ENS-PSL) by Tom Darras (CEO), Julien Laurat, Eleni Diamanti and Jean Lautier-Gaud"
+    source_url: https://www.welinq.fr/blog/welinq-scientific-board
+    source_type: press
+
+shareholders:
+  - holder: Quantonation
+    stake_percent: null
+    stake_class: minority
+    as_of: 2023-01
+    source_url: https://www.quantonation.com/2023/01/23/welinq-raises-5m-to-accelerate-the-development-of-its-quantum-memory-a-key-enabling-technology-for-the-quantum-internet/
+    note: Lead investor of the January 2023 EUR 5M pre-seed
+  - holder: Runa Capital
+    stake_percent: null
+    stake_class: minority
+    as_of: 2023-01
+    source_url: https://www.quantonation.com/2023/01/23/welinq-raises-5m-to-accelerate-the-development-of-its-quantum-memory-a-key-enabling-technology-for-the-quantum-internet/
+    note: Co-investor in the 2023 pre-seed
+  - holder: Tom Darras
+    stake_percent: null
+    stake_class: founder
+    as_of: 2022
+    source_url: https://www.welinq.fr/blog/welinq-scientific-board
+    note: Co-founder and CEO; presumed retained equity (private company, undisclosed)
+  - holder: Julien Laurat
+    stake_percent: null
+    stake_class: founder
+    as_of: 2022
+    source_url: https://www.welinq.fr/blog/welinq-scientific-board
+    note: Co-founder; presumed retained equity (private company, undisclosed)
+  - holder: Eleni Diamanti
+    stake_percent: null
+    stake_class: founder
+    as_of: 2022
+    source_url: https://www.welinq.fr/blog/welinq-scientific-board
+    note: Co-founder; presumed retained equity (private company, undisclosed)
+  - holder: Jean Lautier-Gaud
+    stake_percent: null
+    stake_class: founder
+    as_of: 2022
+    source_url: https://www.welinq.fr/blog/welinq-scientific-board
+    note: Co-founder; presumed retained equity (private company, undisclosed)
+
+key_personnel:
+  - role: CEO & Co-founder
+    name: Tom Darras
+    since: 2022
+    source_url: https://www.welinq.fr/blog/welinq-scientific-board
+  - role: Co-founder
+    name: Julien Laurat
+    since: 2022
+    source_url: https://www.welinq.fr/blog/welinq-scientific-board
+  - role: Chief Scientific Officer & Co-founder
+    name: Eleni Diamanti
+    since: 2022
+    source_url: https://www.insidequantumtechnology.com/news-archive/eleni-diamanti-cso-protocols-welinq-will-speak-on-prospects-for-a-quantum-repeater-at-iqt-the-hague-march-13-15/
+  - role: Co-founder
+    name: Jean Lautier-Gaud
+    since: 2022
+    source_url: https://www.welinq.fr/blog/welinq-scientific-board
+  - role: Scientific Advisory Board
+    name: Alain Aspect
+    since: null
+    source_url: https://www.welinq.fr/blog/welinq-scientific-board
+  - role: Scientific Advisory Board
+    name: Artur Ekert
+    since: null
+    source_url: https://www.welinq.fr/blog/welinq-scientific-board
+  - role: Scientific Advisory Board
+    name: Kae Nemoto
+    since: null
+    source_url: https://www.welinq.fr/blog/welinq-scientific-board
+  - role: Scientific Advisory Board
+    name: Peter Zoller
+    since: null
+    source_url: https://www.welinq.fr/blog/welinq-scientific-board
+
+roadmap:
+  - target: 2026
+    item: "Scale QDrive deployments across EuroQCI national testbeds following the Slovak skQCI delivery; expand commercial footprint into the US and Asia"
+    source_url: https://quantumzeitgeist.com/welinq-entangled-photons-quantum-infrastructure/
+    tag: network
+  - target: 2026
+    item: "Deliver tailored quantum interconnects under the Pasqal partnership as Pasqal's neutral-atom QPUs cross the 10,000-qubit class (2026-2027 joint roadmap)"
+    source_url: https://www.pasqal.com/newsroom/pasqal-and-welinq-partnership/
+    tag: network
+  - target: 2026
+    item: "Demonstrate hybrid superconducting-to-optical interconnect with Qphox under the Meet-Q project — QDrive memory bridging Qphox microwave-to-optical transducers"
+    source_url: https://www.welinq.fr/blog/meet-q-announcement
+    tag: network
+
+current_flagship:
+  name: QDrive
+  generation: rack-mount cold-Rb quantum memory (room-temperature operation, >90% storage-and-retrieval efficiency, ~200 us storage)
+
+references:
+  - kind: paper
+    citation_key: Vernaz-Gris.NatComms.9.363
+    url: https://www.nature.com/articles/s41467-017-02775-8
+    note: "Vernaz-Gris, Huang, Cao, Sheremet, Laurat — highly-efficient quantum memory for polarization qubits in a spatially-multiplexed cold atomic ensemble (Nature Communications 9, 363, 2018); foundational LKB result behind Welinq's memory platform"
+  - kind: press
+    citation_key: null
+    url: https://www.welinq.fr/blog/welinq-launches-its-world-record-storage-solution-for-quantum-computing-scale-out
+    note: QDrive commercial launch announcement (March 2025) with headline performance figures
+  - kind: press
+    citation_key: null
+    url: https://www.welinq.fr/blog/welinq-sells-qdrive-quantum-memory-in-europe
+    note: First QDrive sale — Slovak Academy of Sciences, skQCI / EuroQCI deployment (January 2026)
+  - kind: press
+    citation_key: null
+    url: https://www.welinq.fr/blog/eic-transition
+    note: EIC Transition EUR 2.5M grant (April 2024)
+  - kind: press
+    citation_key: null
+    url: https://www.pasqal.com/newsroom/pasqal-and-welinq-partnership/
+    note: Pasqal-Welinq strategic partnership on neutral-atom QPU interconnects (April 2024)
+  - kind: press
+    citation_key: null
+    url: https://www.welinq.fr/blog/meet-q-announcement
+    note: Meet-Q project with Qphox and Sorbonne Universite (October 2025)
+  - kind: press
+    citation_key: null
+    url: https://www.welinq.fr/blog/welinq-scientific-board
+    note: Welinq scientific advisory board (Aspect, Ekert, Nemoto, Zoller) and founders page
+
+partial:
+  - modalities.memory.fidelity
+  - modalities.memory.wavelength_nm
+  - modalities.memory.mode_capacity
+  - shareholders.stake_percent (all rows — private company, undisclosed)
+  - key_personnel.role (CTO not publicly named; Jean Lautier-Gaud role beyond "co-founder" not stated)
+  - milestones (no public disclosure of a Series A round through May 2026; only the 2023 pre-seed plus EIC Transition grant are sourced)
+
+last_verified: 2026-05-14
+verification_method: web

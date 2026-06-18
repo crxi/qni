@@ -1,0 +1,229 @@
+slug: photonic-inc
+name: Photonic Inc.
+categories: [qc, memory, network]
+hq: Coquitlam, British Columbia, Canada
+founded: 2016
+status: private
+parent: null
+logo:
+  domain: photonic.com
+
+positioning: >
+  Silicon-spin-qubit quantum computing company building a distributed,
+  fault-tolerant architecture around the T centre — a colour centre in
+  silicon that emits telecom-band (1326 nm) photons natively, making each
+  qubit its own repeater node. The pitch is "Entanglement First": scale by
+  photonically linking many modest-size modules over standard telecom fibre
+  rather than chasing a monolithic cryogenic interconnect. Founded in 2016
+  as a Simon Fraser University spin-out by Stephanie Simmons and Paul Terry.
+  Closed a >USD 200M financing round in May 2026 at a ~USD 2B valuation;
+  Microsoft has been a strategic partner since 2023.
+
+modalities:
+  qc:
+    qubit_type: spin-si
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: photonic-link
+    gate_set: []
+  memory:
+    platform: t-centre-silicon
+    storage_time_ms: null
+    retrieval_efficiency: null
+    fidelity: null
+    wavelength_nm: 1326
+    mode_capacity: null
+  network:
+    role: repeater
+    products: [silicon T-centre repeater module]
+
+milestones:
+  - date: 2026-05
+    tag: qc
+    headline: Closed >$200M USD ($275M CAD) financing round at ~$2B valuation — BCE/Bell Ventures, BDC, Export Development Canada, InBC, Royal Bank of Canada, and Telus join existing investors
+    source_url: https://www.globenewswire.com/news-release/2026/05/12/3293143/0/en/Photonic-Inc-Closes-Investment-Round-with-over-200M-USD-275M-CAD.html
+    source_type: press
+  - date: 2026-02
+    tag: network
+    headline: "Photonic + TELUS demonstrate quantum teleportation over 30 km of installed commercial fibre on TELUS's production network, announced as a first for installed commercial fibre — validates T-centre repeaters running on today's telecom infrastructure"
+    source_url: https://photonic.com/news/photonic-inc-partners-with-telus-demonstrates-quantum-teleportation/
+    source_type: press
+  - date: 2026-02
+    tag: qc
+    headline: UK's new £250M specialist quantum fund (Quantum Innovation Fund) invests in Photonic Inc. as part of the company's international expansion
+    source_url: https://thequantuminsider.com/2026/02/13/new-british-250-million-specialist-quantum-fund-invests-in-photonic-inc/
+    source_type: press
+  - date: 2024-05
+    tag: network
+    headline: Optically-entangled silicon spin qubits demonstrated across two separate modules — teleported CNOT gate between remote T-centres over telecom fibre
+    source_url: https://photonic.com/news/accelerating-quantum-computing-benefits-with-new-architecture/
+    source_type: press
+  - date: 2023-11
+    tag: qc
+    headline: "$100M USD round closed and strategic partnership with Microsoft announced — co-development of T-centre-based networked QC and Azure integration; investors include Microsoft, BCI, UK NSSIF, Inovia Capital, Amadeus Capital Partners ($140M USD total funding)"
+    source_url: https://photonic.com/news/photonic-raises-100m-for-quantum-technology/
+    source_type: press
+  - date: 2023-11
+    tag: qc
+    headline: Microsoft strategic collaboration agreement announced — Photonic hardware to be integrated into Azure Quantum as it matures
+    source_url: https://photonic.com/news/photonic-collaborating-with-microsoft-to-power-global-quantum-ecosystem/
+    source_type: press
+  - date: 2020
+    tag: memory
+    headline: "Nature paper — silicon T-centre identified as a telecom-band optical interface to silicon spin qubits (Simmons group, Simon Fraser University); scientific basis for the company"
+    source_url: https://photonic.com/team/dr-stephanie-simmons/
+    source_type: paper
+  - date: 2016
+    tag: qc
+    headline: Company founded out of Simon Fraser University by Stephanie Simmons (Chief Quantum Officer) and Paul Terry (CEO)
+    source_url: https://photonic.com/about-us/
+    source_type: press
+
+shareholders:
+  - holder: Microsoft
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2023-11
+    source_url: https://photonic.com/news/photonic-raises-100m-for-quantum-technology/
+    note: Co-led the November 2023 $100M USD round; long-term Azure integration partner
+  - holder: British Columbia Investment Management Corporation (BCI)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2023-11
+    source_url: https://photonic.com/news/photonic-raises-100m-for-quantum-technology/
+    note: Co-led the 2023 round alongside Microsoft
+  - holder: BCE / Bell Ventures
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-05
+    source_url: https://www.globenewswire.com/news-release/2026/05/12/3293143/0/en/Photonic-Inc-Closes-Investment-Round-with-over-200M-USD-275M-CAD.html
+    note: New investor in the May 2026 round
+  - holder: Telus Corporation
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-05
+    source_url: https://www.globenewswire.com/news-release/2026/05/12/3293143/0/en/Photonic-Inc-Closes-Investment-Round-with-over-200M-USD-275M-CAD.html
+    note: Investor and commercial fibre-network partner for T-centre teleportation demonstrations
+  - holder: Royal Bank of Canada
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-05
+    source_url: https://www.globenewswire.com/news-release/2026/05/12/3293143/0/en/Photonic-Inc-Closes-Investment-Round-with-over-200M-USD-275M-CAD.html
+    note: New investor in the May 2026 round
+  - holder: Business Development Bank of Canada (BDC)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-05
+    source_url: https://www.globenewswire.com/news-release/2026/05/12/3293143/0/en/Photonic-Inc-Closes-Investment-Round-with-over-200M-USD-275M-CAD.html
+    note: Government-backed Canadian investor in the May 2026 round
+  - holder: Export Development Canada
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-05
+    source_url: https://www.globenewswire.com/news-release/2026/05/12/3293143/0/en/Photonic-Inc-Closes-Investment-Round-with-over-200M-USD-275M-CAD.html
+    note: Government-backed Canadian investor in the May 2026 round
+  - holder: InBC Investment Corp.
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-05
+    source_url: https://www.globenewswire.com/news-release/2026/05/12/3293143/0/en/Photonic-Inc-Closes-Investment-Round-with-over-200M-USD-275M-CAD.html
+    note: BC provincial strategic investment vehicle
+  - holder: UK National Security Strategic Investment Fund (NSSIF)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2023-11
+    source_url: https://photonic.com/news/photonic-raises-100m-for-quantum-technology/
+    note: UK government strategic investor; participated in the 2023 round
+  - holder: Inovia Capital
+    stake_percent: null
+    stake_class: minority
+    as_of: 2023-11
+    source_url: https://photonic.com/news/photonic-raises-100m-for-quantum-technology/
+    note: 2023 round participant
+  - holder: Amadeus Capital Partners
+    stake_percent: null
+    stake_class: minority
+    as_of: 2023-11
+    source_url: https://photonic.com/news/photonic-raises-100m-for-quantum-technology/
+    note: 2023 round participant
+  - holder: Stephanie Simmons
+    stake_percent: null
+    stake_class: founder
+    as_of: 2016
+    source_url: https://photonic.com/team/dr-stephanie-simmons/
+    note: Co-founder & Chief Quantum Officer; presumed retained equity (private company, undisclosed)
+
+key_personnel:
+  - role: CEO
+    name: Don Mattrick
+    since: 2026-03
+    source_url: https://www.globenewswire.com/news-release/2026/03/13/3255642/0/en/Photonic-Inc-Accelerates-into-its-Next-Phase-of-Growth.html
+    note: Appointed CEO on 13 March 2026; Paul Terry transitioned to Chief Product Officer.
+  - role: Chief Product Officer
+    name: Paul Terry
+    since: 2026-03
+    source_url: https://photonic.com/blog/introducing-photonic/
+    note: Founding CEO (2016 — March 2026); now Chief Product Officer.
+  - role: Founder & Chief Quantum Officer
+    name: Stephanie Simmons
+    since: 2016
+    source_url: https://photonic.com/team/dr-stephanie-simmons/
+
+roadmap:
+  - target: 2026
+    item: Scale T-centre fabrication and module count following May 2026 financing; expand UK and US footprint
+    source_url: https://www.globenewswire.com/news-release/2026/05/12/3293143/0/en/Photonic-Inc-Closes-Investment-Round-with-over-200M-USD-275M-CAD.html
+    tag: qc
+  - target: 2026
+    item: Productionise T-centre-based quantum networking primitives on TELUS commercial fibre; broaden to additional carriers
+    source_url: https://photonic.com/news/photonic-inc-partners-with-telus-demonstrates-quantum-teleportation/
+    tag: network
+
+current_flagship:
+  name: T-centre silicon networked-module platform
+  generation: distributed silicon-spin QC, telecom-band photonic interconnect (Entanglement First architecture)
+
+references:
+  - kind: blog
+    citation_key: null
+    url: https://photonic.com/
+    note: Photonic technology landing page — Distributed Quantum Computing at Scale
+  - kind: press
+    citation_key: null
+    url: https://photonic.com/news/accelerating-quantum-computing-benefits-with-new-architecture/
+    note: Entanglement First architecture white paper / announcement
+  - kind: press
+    citation_key: null
+    url: https://photonic.com/news/photonic-raises-100m-for-quantum-technology/
+    note: $100M USD round + Microsoft partnership (Nov 2023)
+  - kind: press
+    citation_key: null
+    url: https://photonic.com/news/photonic-inc-partners-with-telus-demonstrates-quantum-teleportation/
+    note: Photonic + TELUS commercial-fibre quantum teleportation (Feb 2026)
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2023/11/08/microsoft-announces-sweeping-partnership-investment-in-photonic/
+    note: Quantum Insider coverage of Microsoft partnership
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.ec_code
+  - modalities.memory.storage_time_ms
+  - modalities.memory.retrieval_efficiency
+  - modalities.memory.fidelity
+  - modalities.memory.mode_capacity
+  - field: partner-BT
+    as_of: 2026-05-15
+    note: "A reported BT (British Telecom) partnership could not be confirmed; primary sources confirm a TELUS commercial-fibre partnership (since 2024, demonstrated Feb 2026). UK government NSSIF backing is present, but no BT-specific deal surfaces in vendor press or coverage."
+
+last_verified: 2026-05-15
+verification_method: web

@@ -1,0 +1,119 @@
+slug: single-quantum
+name: Single Quantum
+categories: [source-detect, enabling]
+hq: Delft, Netherlands
+founded: 2012
+status: private
+parent: null
+logo:
+  domain: singlequantum.com
+
+positioning: >
+  Dutch single-photon-detection vendor selling closed-cycle
+  superconducting-nanowire single-photon-detector (SNSPD) systems to
+  quantum-information, LIDAR, and deep-space-optical-communications
+  customers. Spun out of TU Delft in 2012 by Sander Dorenbos and Val Zwiller
+  to commercialise NbN SNSPDs developed in the Delft quantum-optics group.
+  Flagship Eos closed-cycle multi-channel SNSPD system reports >90% system
+  detection efficiency and <15 ps timing jitter across visible-to-telecom
+  bands. Competes with IDQ, Photon Spot, and Quantum Opus in the
+  multi-channel SNSPD market; roadmap targets larger pixel counts and
+  detector arrays for imaging applications.
+
+modalities:
+  source-detect:
+    role: detector
+    detection_efficiency: 0.9
+    dark_count_hz: null
+    jitter_ps: 15
+  enabling:
+    products: [Eos, Atlas, Iris-S19, Hermes]
+
+milestones:
+  - date: 2024-02
+    tag: source-detect
+    headline: Eos closed-cycle multi-channel SNSPD system in commercial production — >90% system detection efficiency, <15 ps timing jitter, broadband (visible-to-telecom) coverage
+    source_url: https://www.singlequantum.com/technology/
+    source_type: blog
+  - date: 2020-04
+    tag: source-detect
+    headline: "ACS Photonics — efficient single-photon detection with 7.7 ps time resolution demonstrated using Single Quantum SNSPDs for photon-correlation measurements (Korzh et al., partnership demo)"
+    source_url: https://pubs.acs.org/doi/10.1021/acsphotonics.0c00433
+    source_type: paper
+  - date: 2012
+    tag: source-detect
+    headline: Company founded as TU Delft spin-out by Sander Dorenbos and Val Zwiller to commercialise NbN SNSPDs developed in the Delft quantum-optics group
+    source_url: https://thequantuminsider.com/2020/12/13/delft-company%E2%80%8A-%E2%80%8Awith-snspd-technology%E2%80%8A-%E2%80%8Aturning-photons-into-data/
+    source_type: press
+
+shareholders:
+  - holder: Sander Dorenbos
+    stake_percent: null
+    stake_class: founder
+    as_of: 2012
+    source_url: https://www.crunchbase.com/person/sander-dorenbos
+    note: Co-founder & CEO; presumed retained equity (private company, undisclosed)
+  - holder: Val Zwiller
+    stake_percent: null
+    stake_class: founder
+    as_of: 2012
+    source_url: https://thequantuminsider.com/2020/12/13/delft-company%E2%80%8A-%E2%80%8Awith-snspd-technology%E2%80%8A-%E2%80%8Aturning-photons-into-data/
+    note: Co-founder & Chief Scientific Officer; KTH Stockholm professor
+
+key_personnel:
+  - role: CEO & Co-founder
+    name: Sander Dorenbos
+    since: 2012
+    source_url: https://www.crunchbase.com/person/sander-dorenbos
+  - role: Chief Scientific Officer & Co-founder
+    name: Val Zwiller
+    since: 2012
+    source_url: https://thequantuminsider.com/2020/12/13/delft-company%E2%80%8A-%E2%80%8Awith-snspd-technology%E2%80%8A-%E2%80%8Aturning-photons-into-data/
+  - role: COO
+    name: Jessie Qin-Dregely
+    since: null
+    source_url: https://theorg.com/org/single-quantum/org-chart/sander-dorenbos
+  - role: CTO
+    name: Andreas Fognini
+    since: null
+    source_url: https://theorg.com/org/single-quantum/org-chart/sander-dorenbos
+
+roadmap:
+  - target: 2026
+    item: Scale to larger pixel counts and detector arrays for imaging applications
+    source_url: https://epic-photonics.com/wp-content/uploads/2024/07/Sander-Dorenbos-Single-Quantum.pdf
+    tag: source-detect
+
+current_flagship:
+  name: Eos
+  generation: closed-cycle multi-channel SNSPD system (>90% efficiency, <15 ps jitter)
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://pubs.acs.org/doi/10.1021/acsphotonics.0c00433
+    note: 7.7 ps time-resolution SNSPD demonstration (ACS Photonics 2020)
+  - kind: blog
+    citation_key: null
+    url: https://www.singlequantum.com/technology/
+    note: Vendor technology page — current product specs
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2020/12/13/delft-company%E2%80%8A-%E2%80%8Awith-snspd-technology%E2%80%8A-%E2%80%8Aturning-photons-into-data/
+    note: TQI profile (Dec 2020) — founder background and TU Delft origin
+  - kind: blog
+    citation_key: null
+    url: https://epic-photonics.com/wp-content/uploads/2024/07/Sander-Dorenbos-Single-Quantum.pdf
+    note: 2024 EPIC presentation — gating, scaling, roadmap
+
+partial:
+  - modalities.source-detect.dark_count_hz
+  - field: key_personnel.coo.since
+    as_of: 2026-05-15
+    note: COO and CTO start dates not published; vendor team page only lists current roles
+  - field: shareholders
+    as_of: 2026-05-15
+    note: Private company, no disclosed cap table; founder equity assumed retained
+
+last_verified: 2026-05-15
+verification_method: web

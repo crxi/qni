@@ -1,0 +1,255 @@
+slug: memq
+name: memQ
+categories: [memory, network]
+hq: Chicago, IL, USA
+founded: 2021
+status: private
+parent: null
+logo:
+  domain: memq.tech
+
+positioning: >
+  Solid-state quantum-memory and quantum-networking hardware startup spun out
+  of the University of Chicago Pritzker School of Molecular Engineering and
+  Argonne National Laboratory, productising erbium-ion quantum emitters and
+  memories in thin-film TiO2 deposited on foundry-fabricated silicon
+  photonics. Targets a CMOS-compatible, telecom C-band (~1.5 µm) memory
+  platform that interfaces directly with installed optical-fibre networks
+  without frequency conversion. Product stack spans Quantum Network Interface
+  Controllers (QNIC), Quantum Memory Modules (QMM), a Quantum Control System,
+  and an xDQC compiler for heterogeneous QPU interconnect.
+
+modalities:
+  memory:
+    platform: erbium-tio2          # Er3+ ions in anatase TiO2 on Si photonics
+    storage_time_ms: null
+    retrieval_efficiency: null
+    fidelity: null
+    wavelength_nm: 1530            # telecom C-band; vendor cites Er3+ ~1.5 um
+    mode_capacity: null
+  network:
+    role: vendor
+    products: [QNIC, QMM, QCS, xDQC]
+
+milestones:
+  - date: 2026-04
+    tag: network
+    headline: DARPA selection for hardware- and network-aware quantum-compiler development (extends xDQC distributed-quantum-computing compiler stack)
+    source_url: https://memq.tech/resources/
+    source_type: press
+  - date: 2026-03
+    tag: network
+    headline: "Series A closes — $10M co-led by Quantonation and Ocean Azul Partners with existing and new syndicate investors; proceeds to scale the QNIC / QMM / QCS / xDQC stack and on-chip quantum-repeater development"
+    source_url: https://memq.tech/memq_announces_seriesa_funding/
+    source_type: press
+  - date: 2026-03
+    tag: network
+    headline: "Full-stack simulation framework for distributed quantum processors with CUDA-Q published as a memQ technical article"
+    source_url: https://memq.tech/2026/03/16/
+    source_type: blog
+  - date: 2026-01
+    tag: network
+    headline: memQ featured in the White House OSTP highlights report on US quantum-technology progress
+    source_url: https://memq.tech/resources/
+    source_type: press
+  - date: 2025-11
+    tag: memory
+    headline: '"Erbium quantum memory platform with long optical coherence via back-end-of-line deposition on foundry-fabricated photonics" published in Physical Review Applied 24, 054037 — flagship technical demonstration of the Er:TiO2-on-silicon-photonics memory platform'
+    source_url: https://memq.tech/2025/11/13/
+    source_type: paper
+  - date: 2025-07
+    tag: memory
+    headline: memQ achieves integration of matter qubits with commercial foundry processes for quantum networking; supplemented by US government awards for photonics control and cryogenic modulators
+    source_url: https://memq.tech/2025/07/30/
+    source_type: press
+  - date: 2025-05
+    tag: memory
+    headline: '"Monolithically Integrated C-Band Quantum Emitters on Foundry Silicon Photonics" published in Nano Letters — Er3+ single-emitter isolation on a foundry photonics platform'
+    source_url: https://memq.tech/2025/05/01/
+    source_type: paper
+  - date: 2024-10
+    tag: memory
+    headline: First full-300 mm-wafer production run of memQ's erbium quantum-emitter photonic-integrated-circuit platform on a commercial foundry process
+    source_url: https://memq.tech/resources/
+    source_type: press
+  - date: 2024-09
+    tag: memory
+    headline: '"Optical and microstructural studies of erbium-doped TiO2 thin films on silicon, SrTiO3, and sapphire" published — host-material studies underpinning the Er:TiO2 memory platform'
+    source_url: https://memq.tech/2024/09/28/
+    source_type: paper
+  - date: 2024-08
+    tag: memory
+    headline: NASA Phase I STTR award to memQ for quantum-networking technology development
+    source_url: https://memq.tech/resources/
+    source_type: press
+  - date: 2024-08
+    tag: memory
+    headline: '"Isolation of individual Er quantum emitters in anatase TiO2 on Si photonics" published — single-Er3+-emitter isolation result, foundational for the memory product line'
+    source_url: https://memq.tech/2024/08/19/
+    source_type: paper
+  - date: 2024-04
+    tag: memory
+    headline: Er-atom-based telecom C-band quantum emitter announced, described by the company as the first such product
+    source_url: https://memq.tech/resources/
+    source_type: press
+  - date: 2023-08
+    tag: memory
+    headline: '"A perspective on the pathway to a scalable quantum internet using rare-earth ions" published — memQ-authored perspective framing the rare-earth-ion route to a quantum internet'
+    source_url: https://memq.tech/2023/08/08/
+    source_type: paper
+  - date: 2023-02
+    tag: memory
+    headline: "Seed round closes — $2M led by Quantonation with Exposition Ventures and the George Shultz Innovation Fund; proceeds to finish on-chip quantum-repeater prototype at Argonne"
+    source_url: https://polsky.uchicago.edu/2023/02/15/quantum-startup-memq-raises-2-million-seed-round-to-shape-the-future-of-quantum-networking/
+    source_type: press
+  - date: 2022
+    tag: memory
+    headline: memQ joins Argonne National Laboratory's Chain Reaction Innovations (CRI) clean-energy hard-tech incubator; develops prototype with access to Argonne's Molecular Engineering and Materials Science Division
+    source_url: https://www.insidequantumtechnology.com/news-archive/quantum-memory-start-up-memq-raises-2m-in-seed-funding/
+    source_type: press
+  - date: 2021
+    tag: memory
+    headline: Company founded as a spin-out of the University of Chicago Pritzker School of Molecular Engineering and Argonne National Laboratory by Manish Kumar Singh (CEO) and Sean Sullivan (CTO), based on patented Er3+-on-silicon-photonics work from the Awschalom and Guha groups
+    source_url: https://pme.uchicago.edu/news/startup-memq-led-pme-grad-develops-semiconductor-materials-quantum-memory
+    source_type: press
+
+shareholders:
+  - holder: Quantonation
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-03
+    source_url: https://memq.tech/memq_announces_seriesa_funding/
+    note: Lead investor of the February 2023 seed and co-lead of the March 2026 Series A
+  - holder: Ocean Azul Partners
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-03
+    source_url: https://memq.tech/memq_announces_seriesa_funding/
+    note: Co-lead of the March 2026 $10M Series A
+  - holder: Exposition Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2023-02
+    source_url: https://polsky.uchicago.edu/2023/02/15/quantum-startup-memq-raises-2-million-seed-round-to-shape-the-future-of-quantum-networking/
+    note: Seed-round participant (Feb 2023); Series A described as having existing-investor participation
+  - holder: George Shultz Innovation Fund
+    stake_percent: null
+    stake_class: minority
+    as_of: 2023-02
+    source_url: https://polsky.uchicago.edu/2023/02/15/quantum-startup-memq-raises-2-million-seed-round-to-shape-the-future-of-quantum-networking/
+    note: Polsky Center seed-round participant (Feb 2023)
+  - holder: Hyde Park Venture Partners
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026
+    source_url: https://memq.tech/
+    note: Listed by memQ as an investor partner on the company site; round of entry not separately disclosed
+  - holder: Manish Kumar Singh
+    stake_percent: null
+    stake_class: founder
+    as_of: 2021
+    source_url: https://pme.uchicago.edu/news/startup-memq-led-pme-grad-develops-semiconductor-materials-quantum-memory
+    note: Co-founder and CEO; equity undisclosed (private company)
+  - holder: Sean Sullivan
+    stake_percent: null
+    stake_class: founder
+    as_of: 2021
+    source_url: https://pme.uchicago.edu/news/startup-memq-led-pme-grad-develops-semiconductor-materials-quantum-memory
+    note: Co-founder and CTO; equity undisclosed
+
+key_personnel:
+  - role: Co-founder & CEO
+    name: Manish Kumar Singh
+    since: 2021
+    source_url: https://pme.uchicago.edu/news/manish-singh-pushes-boundaries-quantum-network-development
+    note: PhD in quantum engineering, UChicago Pritzker School of Molecular Engineering (Awschalom group)
+  - role: Co-founder & CTO
+    name: Sean Sullivan
+    since: 2021
+    source_url: https://pme.uchicago.edu/news/startup-memq-led-pme-grad-develops-semiconductor-materials-quantum-memory
+    note: Former postdoctoral researcher at Argonne National Laboratory (Guha group)
+  - role: Executive Chairman
+    name: Charles "Chuck" Foley
+    since: 2025-02
+    source_url: https://memq.tech/charles-foley-is-the-new-chairman-of-the-memqs-board-of-directors/
+  - role: Scientific Advisor
+    name: David Awschalom
+    since: 2025-08
+    source_url: https://www.prweb.com/releases/memq-inc-strengthens-advisory-board-with-appointment-of-quantum-industry-luminary-professor-david-awschalom-302527523.html
+    note: Distinguished Professor, UChicago Pritzker School of Molecular Engineering; Senior Scientist, Argonne; Founding Director of the Chicago Quantum Exchange; inaugural Director of Q-NEXT
+  - role: Co-founder (academic) / Scientific Advisor
+    name: Supratik Guha
+    since: 2021
+    source_url: https://polsky.uchicago.edu/2023/02/15/quantum-startup-memq-raises-2-million-seed-round-to-shape-the-future-of-quantum-networking/
+    note: Professor at UChicago Pritzker School of Molecular Engineering and Senior Scientist at Argonne; co-founder per Polsky Center seed-round announcement
+
+roadmap:
+  - target: 2026
+    item: "Scale QNIC / QMM / QCS / xDQC product stack and on-chip quantum-repeater development with Series A proceeds; commercial-deployment focus"
+    source_url: https://memq.tech/memq_announces_seriesa_funding/
+    tag: network
+  - target: 2026
+    item: "Deliver hardware- and network-aware quantum compiler under DARPA programme award"
+    source_url: https://memq.tech/resources/
+    tag: network
+
+current_flagship:
+  name: Erbium quantum-memory platform (Er:TiO2 on foundry silicon photonics)
+  generation: telecom C-band Er3+ quantum memory deposited back-end-of-line on commercial-foundry silicon-photonic integrated circuits; demonstrated long optical coherence (PRApplied 24, 054037, 2025)
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://memq.tech/2025/11/13/
+    note: "Erbium quantum memory platform with long optical coherence via back-end-of-line deposition on foundry-fabricated photonics — Physical Review Applied 24, 054037 (2025); flagship technical result"
+  - kind: paper
+    citation_key: null
+    url: https://memq.tech/2025/05/01/
+    note: "Monolithically Integrated C-Band Quantum Emitters on Foundry Silicon Photonics — Nano Letters (2025)"
+  - kind: paper
+    citation_key: null
+    url: https://memq.tech/2024/08/19/
+    note: "Isolation of individual Er quantum emitters in anatase TiO2 on Si photonics (2024); single-Er3+-emitter isolation on a foundry-compatible host"
+  - kind: paper
+    citation_key: null
+    url: https://memq.tech/2024/09/28/
+    note: "Optical and microstructural studies of erbium-doped TiO2 thin films on silicon, SrTiO3, and sapphire (2024)"
+  - kind: paper
+    citation_key: null
+    url: https://memq.tech/2023/08/08/
+    note: "A perspective on the pathway to a scalable quantum internet using rare-earth ions (2023); memQ-authored framing of the rare-earth-ion route to a quantum internet"
+  - kind: press
+    citation_key: null
+    url: https://memq.tech/memq_announces_seriesa_funding/
+    note: "$10M Series A announcement (Mar 2026), co-led by Quantonation and Ocean Azul Partners"
+  - kind: press
+    citation_key: null
+    url: https://polsky.uchicago.edu/2023/02/15/quantum-startup-memq-raises-2-million-seed-round-to-shape-the-future-of-quantum-networking/
+    note: "$2M seed announcement (Feb 2023) via the Polsky Center"
+  - kind: press
+    citation_key: null
+    url: https://www.prweb.com/releases/memq-inc-strengthens-advisory-board-with-appointment-of-quantum-industry-luminary-professor-david-awschalom-302527523.html
+    note: "Awschalom advisory-board appointment (Aug 2025)"
+  - kind: press
+    citation_key: null
+    url: https://memq.tech/charles-foley-is-the-new-chairman-of-the-memqs-board-of-directors/
+    note: "Foley executive-chairman appointment (Feb 2025)"
+  - kind: blog
+    citation_key: null
+    url: https://pme.uchicago.edu/news/startup-memq-led-pme-grad-develops-semiconductor-materials-quantum-memory
+    note: "UChicago PME profile of memQ and Manish Singh — founding context and Awschalom-group lineage"
+
+partial:
+  - modalities.memory.storage_time_ms
+  - modalities.memory.retrieval_efficiency
+  - modalities.memory.fidelity
+  - modalities.memory.mode_capacity
+  - field: modalities.memory.wavelength_nm
+    as_of: 2026-05-17
+    note: 1530 nm placeholder — vendor cites "telecom C-band" and Er3+ ~1.5 um; the exact transition wavelength in Er:TiO2 (anatase host) is not surfaced in publicly indexed memQ pages
+  - field: shareholders
+    as_of: 2026-05-17
+    note: Stake percentages not disclosed for any holder — private company; only round-participation lists are public
+
+last_verified: 2026-05-17
+verification_method: web

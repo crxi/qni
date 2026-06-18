@@ -1,0 +1,83 @@
+slug: cirac-mpq
+name: Cirac group (MPQ Munich)
+categories: [qc, memory, network]
+hq: Garching (Munich), Germany
+status: active
+parent: null
+
+institution:
+  name: Max Planck Institute of Quantum Optics (MPQ)
+  lab: Theory Division
+
+group_website: null
+
+positioning: >
+  Theoretical-quantum-information group at MPQ. Cirac co-originated the
+  DLCZ protocol for atomic-ensemble quantum repeaters
+  (Duan-Lukin-Cirac-Zoller, Nature 2001), the foundational ion-trap
+  quantum-computer proposal (Cirac-Zoller, PRL 1995), and tensor-network
+  methods (MPS, PEPS, MERA) for many-body quantum computation. The
+  reference theory anchor for much of the European experimental
+  quantum-network programme, with downstream influence on trapped-ion
+  hardware, atomic-ensemble memories, and repeater architecture across
+  the field.
+
+milestones:
+  - date: 2001-11
+    tag: network
+    headline: DLCZ protocol — long-distance quantum communication with atomic ensembles and linear optics (Duan, Lukin, Cirac, Zoller)
+    source_url: https://www.nature.com/articles/35106500
+    source_type: paper
+  - date: 1995-05
+    tag: qc
+    headline: Cirac-Zoller trapped-ion quantum-computer proposal (PRL 74, 4091)
+    source_url: https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.74.4091
+    source_type: paper
+  - date: 2000s-2020s
+    tag: qc
+    headline: MERA / PEPS / MPS tensor-network methods for many-body quantum simulation and quantum-error-correction theory
+    source_url: https://www.mpq.mpg.de/ignacio-cirac
+    source_type: blog
+
+funding_sources:
+  - name: Max Planck Society
+    role: Host institution; direct core funding for the Theory Division
+    source_url: https://www.mpg.de/en
+  - name: European Research Council (ERC)
+    role: Multiple ERC grants to Cirac and group members
+    source_url: https://erc.europa.eu/homepage
+  - name: BMBF (German Federal Ministry of Education and Research)
+    role: National quantum-technology programme funding
+    source_url: https://www.bmftr.bund.de/DE/Home/home_node.html
+
+key_personnel:
+  - role: Director, Theory Division
+    name: J. Ignacio Cirac
+    since: 2001
+    source_url: https://www.mpq.mpg.de/ignacio-cirac
+
+current_focus:
+  name: Theoretical quantum information and many-body physics
+  description: ""
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/35106500
+    note: "Duan, Lukin, Cirac, Zoller, Nature 414, 413 (2001) — DLCZ atomic-ensemble repeater protocol"
+  - kind: paper
+    citation_key: null
+    url: https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.74.4091
+    note: "Cirac & Zoller, PRL 74, 4091 (1995) — trapped-ion quantum-computer proposal"
+
+partial:
+  - group_website
+  - field: current_focus.description
+    as_of: 2026-05-24
+    note: No accessible institutional self-statement of current focus on the MPQ Theory Division pages; rather than synthesise, left blank pending the group publishing one.
+  - field: milestones
+    as_of: 2026-05-24
+    note: Cirac's bibliography spans 30+ years; the three milestones listed are anchor results, not an exhaustive list.
+
+last_verified: 2026-05-24
+verification_method: web

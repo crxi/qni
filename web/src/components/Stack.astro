@@ -1,0 +1,8 @@
+---
+interface Props { space?: string; }
+const { space = "var(--space-4)" } = Astro.props;
+---
+<div class="stack" style={`--stack-space: ${space};`}><slot /></div>
+<style>
+  .stack > * + * { margin-block-start: var(--stack-space); }
+</style>

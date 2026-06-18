@@ -1,0 +1,716 @@
+---
+/**
+ * /qubits — What is a qubit
+ *
+ * Tier A · Foundations.
+ *
+ * Definitional content drawn from primary sources:
+ *   - Kumar 2025 IJNDC §2.1 — qubit, Hilbert space, Dirac notation,
+ *     superposition, normalisation, gates, entanglement.
+ *   - Kozlowski et al. RFC 9340 — flying qubit, stationary qubit,
+ *     Bell pair as the network's unit of resource.
+ *   - DiVincenzo 2000 — the five qubit-platform criteria.
+ *   - Ezratty UQT Pt 2 — per-platform implementation detail.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import Grid from "../components/Grid.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SourceNote from "../components/SourceNote.astro";
+import BlochSphereInteractive from "../components/BlochSphereInteractive.astro";
+import Callout from "../components/Callout.astro";
+import EncodingDiagram from "../components/EncodingDiagram.astro";
+import Math from "../components/Math.astro";
+import { url } from "../lib/url";
+import { url } from "../lib/url";
+
+const sections = [
+  { id: "overview",   label: "What is a qubit" },
+  { id: "bloch",      label: "The Bloch sphere" },
+  { id: "encodings",  label: "Flying-qubit encodings" },
+  { id: "matter",     label: "Stationary-qubit encodings" },
+  { id: "indistinguishability", label: "Indistinguishability" },
+  { id: "divincenzo", label: "DiVincenzo's criteria" },
+  { id: "takeaway",   label: "Why this matters for networks" },
+  { id: "logical",    label: "Physical vs logical qubits" },
+];
+---
+
+<Infographic
+  title="What is a qubit"
+  description="A qubit is a two-level quantum system whose state is α|0⟩+β|1⟩ with |α|²+|β|²=1. This page covers the definition, the Bloch sphere as the geometric representation of pure single-qubit states, the photonic encodings used to carry qubits across a network, the matter encodings used to store and process them, and DiVincenzo's criteria."
+  references={[
+    "bradley-prx-2019",
+    "bravyi-nature-2024",
+    "divincenzo-2000",
+    "ezratty-uqt-2025-p2",
+    "knaut-nature-2024",
+    "kozlowski-rfc9340",
+    "kumar-ijndc-2025",
+    "meddeb-comnet-2025",
+    "sangouard-rmp-83",
+    "zhao-arxiv-2026",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="qubits" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>What is a qubit</h1>
+        <p>
+          A qubit is the fundamental unit of quantum information, analogous to a bit in
+          classical computing. While a classical bit can be in a state of 0 or 1, the state
+          of a qubit is
+        </p>
+
+        <Math display tex="|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle" />
+
+        <p>
+          where <Math tex="\\alpha" /> and <Math tex="\\beta" /> are complex coefficients
+          known as probability amplitudes. The state <Math tex="|\\psi\\rangle" /> is a
+          linear combination — a <strong>superposition</strong> — of <Math tex="|0\\rangle" /> and
+          <Math tex="|1\\rangle" />, which collapses to 0 or 1 upon measurement with
+          probabilities <Math tex="|\\alpha|^2" /> and <Math tex="|\\beta|^2" /> respectively.
+          By definition <Math tex="|\\alpha|^2 + |\\beta|^2 = 1" />
+          <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+
+        <p>
+          The same definition applies regardless of how the qubit is realised — a photon's
+          polarisation, an electron's spin, an ion's hyperfine state, a transmon's two
+          lowest energy levels. Each physical platform makes a different trade-off between
+          coherence time, gate fidelity, and whether the qubit can travel; the rest of the
+          page covers what those trade-offs are.
+        </p>
+
+        <Callout label="Superposition vs. classical mixture">
+          <p>
+            The distinction matters: a <strong>classical mixture</strong> would mean
+            <q>the qubit is 0 or 1, we just don't know which</q> — ignorance about a state
+            that is one of the two. A <strong>superposition</strong> is genuinely both at
+            once, interfering with itself in ways no classical mixture can reproduce. The
+            two are statistically distinguishable in any basis other than the
+            computational one.
+          </p>
+          <p>
+            Superposition is the single-qubit version of the resource quantum networks
+            rely on. When two qubits are in superposition <em>together</em> — a joint state
+            that doesn't factor into individual single-qubit states — the result is
+            <strong>entanglement</strong>, the multi-qubit phenomenon that quantum
+            networking is built around.
+          </p>
+        </Callout>
+
+        <Callout label="Notation primer">
+          <p>
+            Bra–ket notation, due to Dirac, is shorthand for vectors and their duals. The
+            <strong>ket</strong> <Math tex="|\\psi\\rangle" /> is a column vector in the
+            complex Hilbert space <Math tex="\\mathcal{H}" />; the
+            <strong>bra</strong> <Math tex="\\langle\\psi|" /> is its conjugate-transpose,
+            a row vector in the dual space. The two-level computational basis is just the
+            two standard column vectors:
+          </p>
+          <Math display tex="|0\\rangle = \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix}, \\quad |1\\rangle = \\begin{pmatrix} 0 \\\\ 1 \\end{pmatrix}, \\quad \\langle 0| = \\begin{pmatrix} 1 & 0 \\end{pmatrix}, \\quad \\langle 1| = \\begin{pmatrix} 0 & 1 \\end{pmatrix}." />
+          <p>
+            For an <Math tex="n" />-level system (a <strong>qudit</strong>),
+            <Math tex="|k\\rangle" /> is the column vector with a 1 in the
+            <Math tex="k" />-th slot (0-indexed) and zeros elsewhere — e.g. in a 4-level
+            system:
+          </p>
+          <Math display tex="|0\\rangle = \\begin{pmatrix} 1 \\\\ 0 \\\\ 0 \\\\ 0 \\end{pmatrix}, \\; |1\\rangle = \\begin{pmatrix} 0 \\\\ 1 \\\\ 0 \\\\ 0 \\end{pmatrix}, \\; |2\\rangle = \\begin{pmatrix} 0 \\\\ 0 \\\\ 1 \\\\ 0 \\end{pmatrix}, \\; |3\\rangle = \\begin{pmatrix} 0 \\\\ 0 \\\\ 0 \\\\ 1 \\end{pmatrix}." />
+          <p>
+            And a general ket has complex entries; its bra is the complex-conjugate row
+            vector — for <Math tex="|a\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle" />,
+            <Math tex="\\langle a| = (\\alpha^* \\;\\; \\beta^*)" />. The inner product
+            <Math tex="\\langle\\phi|\\psi\\rangle" /> is then ordinary row-times-column
+            matrix multiplication, and it measures overlap between states. Qudits
+            generalise this to <Math tex="n > 2" /> but lag qubits significantly and are
+            not in current quantum-internet
+            architectures <SourceNote id="kumar-ijndc-2025" />.
+          </p>
+        </Callout>
+      </header>
+
+      <section id="bloch" data-nav-section>
+        <h2>The Bloch sphere</h2>
+        <p>
+          A pure single-qubit state can be represented as a point on the surface of a unit
+          sphere — the Bloch sphere. Up to a global phase, every pure state can be written as
+        </p>
+
+        <Math display tex="|\\psi\\rangle = \\cos(\\tfrac{\\theta}{2})\\,|0\\rangle + e^{i\\varphi}\\sin(\\tfrac{\\theta}{2})\\,|1\\rangle" />
+
+        <p>
+          where <Math tex="\\theta \\in [0,\\pi]" /> and <Math tex="\\varphi \\in [0, 2\\pi)" /> are
+          the polar and azimuthal angles. The two reference states
+          <Math tex="|0\\rangle" /> and <Math tex="|1\\rangle" /> are called the
+          <strong>computational basis</strong> — the pair of mutually exclusive outcomes a
+          standard measurement can return, and the labels we use to write every other state
+          as a superposition <Math tex="\\alpha|0\\rangle + \\beta|1\\rangle" />. They sit at
+          the poles of the sphere: <Math tex="|0\\rangle" /> at the north
+          (<Math tex="\\theta=0" />) and <Math tex="|1\\rangle" /> at the south
+          (<Math tex="\\theta=\\pi" />). Equal superpositions sit on the equator.
+          <q>Measuring in the computational basis</q> means asking <q>which of <Math tex="|0\\rangle" />
+          and <Math tex="|1\\rangle" /> did we get?</q> — the answer is one of the two, with
+          probabilities <Math tex="|\\alpha|^2" /> and <Math tex="|\\beta|^2" />. Single-qubit
+          unitary gates correspond to rotations of the sphere; measurement is projection
+          onto a chosen axis (the computational basis is the <Math tex="z" /> axis).
+        </p>
+
+        <BlochSphereInteractive />
+
+        <p>
+          <strong>Mixed states</strong> — states that are statistical mixtures rather than
+          coherent superpositions — sit <em>inside</em> the sphere. A perfectly maximally
+          mixed qubit (the result of complete decoherence) sits at the centre. Distance from
+          the surface is one way of quantifying decoherence; pure-state fidelity is another.
+        </p>
+
+        <Callout label="Why two parameters, not four">
+          <p>
+            <Math tex="\\alpha" /> and <Math tex="\\beta" /> are complex, so a general
+            <Math tex="|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle" /> looks like it
+            has four real degrees of freedom. Two constraints reduce that to two:
+          </p>
+          <ol>
+            <li>
+              <strong>Normalisation</strong> — <Math tex="|\\alpha|^2 + |\\beta|^2 = 1" /> is
+              one real equation. Three real parameters left.
+            </li>
+            <li>
+              <strong>Global phase is unobservable</strong> — every measurement outcome
+              <Math tex="|\\langle m|\\psi\\rangle|^2" /> is unchanged if we multiply
+              <Math tex="|\\psi\\rangle" /> by any unit-modulus complex number
+              <Math tex="e^{i\\gamma}" />. We can spend that freedom to make
+              <Math tex="\\alpha" /> real and non-negative — write
+              <Math tex="\\alpha = |\\alpha|e^{i\\varphi_\\alpha}" /> and multiply by
+              <Math tex="e^{-i\\varphi_\\alpha} = \\alpha^*/|\\alpha|" />. Two real parameters
+              left.
+            </li>
+          </ol>
+          <p>
+            Those two are precisely <Math tex="\\theta" /> and <Math tex="\\varphi" />:
+            <Math tex="|\\alpha| = \\cos(\\theta/2)" /> sets the polar angle, and the
+            <em>relative</em> phase that survives — <Math tex="\\varphi = \\varphi_\\beta - \\varphi_\\alpha" />
+            — is the azimuth. Surface of a sphere, two coordinates.
+          </p>
+        </Callout>
+
+      </section>
+
+      <section id="encodings" data-nav-section>
+        <h2>Flying-qubit encodings</h2>
+        <p>
+          A flying qubit is a quantum state that travels — typically a single photon moving
+          through optical fibre or free space. The mathematical representation is the same
+          two-dimensional Hilbert space as any other qubit; what changes is which physical
+          degree of freedom of the photon carries <Math tex="|0\\rangle" /> and
+          <Math tex="|1\\rangle" />. Each of the encodings below has a sweet spot in the
+          channel and the kind of network it suits.
+        </p>
+
+        <Grid min="22rem" gap="var(--space-3)">
+          <article class="enc-card">
+            <EncodingDiagram kind="polarisation" />
+            <div class="enc-head">
+              <h3>Polarisation</h3>
+              <span class="enc-prefers enc-prefers--fso">free-space</span>
+            </div>
+            <p>
+              Direction of the electromagnetic field's oscillation: horizontal (H) and
+              vertical (V) form the computational basis; diagonal (D, A) and circular (R, L)
+              are equal superpositions on the Bloch sphere. Intuitive and used widely in
+              free-space and short-fibre QKD. Birefringence in long fibre rotates the
+              polarisation state and requires active compensation
+              <SourceNote id="azuma-rmp-95" />.
+            </p>
+            <p>
+              Active compensation has been shown to work on short metro routes:
+              the <a href={url("/case-studies/cisco-qunnect-brooklyn")}>Cisco × Qunnect Brooklyn ↔ 60 Hudson demonstration</a> ran polarisation-entangled
+              pairs over 17.6 km of deployed New York City fibre at &gt;99 % fidelity using
+              automatic polarisation controllers at every receiver, and the prior GothamQ
+              run on the same route held 99.84 % uptime over ~15 days. Time-bin remains the
+              default for long-haul prepare-and-measure QKD; on metro distances, polarisation
+              is a viable option when the source produces polarisation pairs natively, not
+              a forced choice over time-bin.
+            </p>
+          </article>
+
+          <article class="enc-card">
+            <EncodingDiagram kind="time-bin" />
+            <div class="enc-head">
+              <h3>Time-bin</h3>
+              <span class="enc-prefers enc-prefers--fibre">fibre</span>
+            </div>
+            <p>
+              The photon arrives in one of two well-separated time slots — early or late.
+              Time-bin is unaffected by fibre birefringence, making it the dominant encoding
+              in metropolitan and long-haul QKD deployments today. The relative phase
+              between the early and late modes is itself the resource Twin-Field QKD
+              exploits to beat the rate-loss bound.
+            </p>
+          </article>
+
+          <article class="enc-card">
+            <EncodingDiagram kind="frequency-bin" />
+            <div class="enc-head">
+              <h3>Frequency-bin</h3>
+              <span class="enc-prefers enc-prefers--fibre">fibre</span>
+            </div>
+            <p>
+              The photon occupies one of several discrete frequency modes (ω₁, ω₂, …).
+              Compatible with deployed dense-wavelength-division-multiplexing (DWDM)
+              infrastructure — quantum and classical channels can ride the same fibre on
+              non-overlapping ITU grid slots. Useful for multiplexing many quantum channels
+              on one fibre.
+            </p>
+          </article>
+
+          <article class="enc-card">
+            <EncodingDiagram kind="dual-rail" />
+            <div class="enc-head">
+              <h3>Path (spatial)</h3>
+              <span class="enc-prefers enc-prefers--fibre">fibre</span>
+            </div>
+            <p>
+              Which of two optical paths the photon takes. The default encoding inside
+              integrated photonic chips: gates (beam splitters, phase shifters) compose
+              cleanly, and measurement is unambiguous. As with time-bin, path-encoded
+              photons prefer fibre over free-space transport
+              <SourceNote id="azuma-rmp-95" />.
+            </p>
+          </article>
+        </Grid>
+
+        <p>
+          All four encodings above are <strong>dual-rail</strong> in the broader sense — the
+          qubit lives in two orthogonal modes (two polarisations, two time-bins, two
+          frequency-bins, two paths), and <Math tex="|0\\rangle" /> / <Math tex="|1\\rangle" />
+          are <q>which mode is occupied</q>. The alternative is <strong>single-rail</strong>
+          encoding, where the qubit lives in one mode and <Math tex="|0\\rangle" /> /
+          <Math tex="|1\\rangle" /> are different states <em>of</em> that mode — Fock states
+          (vacuum vs single photon), coherent / cat states, and GKP states are the standard
+          examples. Single-rail encodings show up in continuous-variable QKD and in some
+          bosonic error-corrected qubits but are not the focus of this series
+          <SourceNote id="azuma-rmp-95" />.
+        </p>
+
+        <p>
+          A photon can also carry <em>multiple</em> qubits at once by encoding in two or more
+          of the above degrees of freedom simultaneously — known as
+          <strong>hyperentanglement</strong>. Hyperentanglement is studied for boosted Bell-state
+          measurement and certain repeater architectures, though managing multiple degrees
+          of freedom adds significant complexity <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+      </section>
+
+      <section id="matter" data-nav-section>
+        <h2>Stationary-qubit encodings</h2>
+        <p>
+          A stationary qubit is held in matter for the duration of computation or storage.
+          Each platform picks two physical states and labels them <Math tex="|0\\rangle" />
+          and <Math tex="|1\\rangle" /> — mathematically still a two-level Hilbert space;
+          only the underlying physics changes. The encoding choice determines the
+          operating frequency, the dominant decoherence mechanism, and what kind of photon
+          the platform can emit when it has to talk to the network. The cards below
+          summarise the leading platforms; for the per-platform background and onward
+          references see Ezratty's hardware survey
+          <SourceNote id="ezratty-uqt-2025-p2" />.
+        </p>
+
+        <Grid min="22rem" gap="var(--space-3)">
+          <article class="enc-card">
+            <EncodingDiagram kind="transmon" />
+            <h3>Superconducting transmon</h3>
+            <p>
+              A small superconducting electrical circuit on a chip, cooled to about 15 mK
+              so it behaves as a quantum object. The qubit's <Math tex="|0\\rangle" /> and
+              <Math tex="|1\\rangle" /> are the circuit's ground and excited states,
+              separated by ~5 GHz, and are manipulated by microwave pulses. Their short
+              operation times (~20 ns) make them the leading platform for quantum
+              processors <SourceNote id="meddeb-comnet-2025" />. Used by Google, IBM,
+              IQM, Rigetti, USTC.
+            </p>
+          </article>
+
+          <article class="enc-card">
+            <EncodingDiagram kind="ion" />
+            <h3>Trapped ion (Yb⁺-171)</h3>
+            <p>
+              A single ytterbium ion confined in a vacuum chamber by electromagnetic
+              fields. The qubit is encoded in two of the ion's internal energy levels
+              (here the hyperfine sub-levels of the ground state), controlled by microwave
+              and laser pulses. Trapped ions exhibit the longest coherence times of any
+              platform — over an hour for Yb⁺-171 — making them strong candidates for
+              quantum memories as well as computing
+              <SourceNote id="meddeb-comnet-2025" />. Used by Quantinuum, IonQ, Oxford
+              Ionics, Universal Quantum.
+            </p>
+          </article>
+
+          <article class="enc-card">
+            <EncodingDiagram kind="atom" />
+            <h3>Neutral atom (Rb-87)</h3>
+            <p>
+              A single rubidium atom held in place by a tightly focused laser beam — an
+              optical tweezer. The qubit is encoded in two of the atom's hyperfine ground
+              states, manipulated by microwave and laser pulses. Two-qubit gates briefly
+              excite the atoms to a Rydberg state, where the Rydberg blockade prevents
+              simultaneous excitation of nearby atoms and creates the entanglement. Used
+              by Pasqal, QuEra, Atom Computing, Infleqtion.
+            </p>
+          </article>
+
+          <article class="enc-card">
+            <EncodingDiagram kind="nv" />
+            <h3>NV centre (diamond)</h3>
+            <p>
+              A nitrogen atom adjacent to a missing carbon in a diamond lattice — a point
+              defect that traps an electron. The qubit is the electron's spin, polarised
+              and read out optically by green and red laser pulses, and manipulated by
+              microwaves. NV centres work at room temperature with millisecond coherence
+              in isotopically purified diamond, but their optical line is too broad and at
+              the wrong wavelength (637 nm) for direct telecom use — quantum-network
+              applications need wavelength conversion.
+            </p>
+            <p>
+              The defect electron is only half the story. Nearby <strong>¹³C nuclear
+              spins</strong> in the diamond lattice couple weakly to the electron via the
+              hyperfine interaction and act as long-lived <em>register</em> qubits —
+              T₂ in the seconds range, ten or more individually addressable nuclei per
+              defect. Bradley et&nbsp;al. demonstrated a 10-qubit register around a single
+              NV (one ¹⁵N, nine ¹³C) with electron-mediated gates
+              <SourceNote id="bradley-prx-2019" />. The electron is the
+              <em>comm</em> qubit (talks to photons, short coherence); the nuclei are the
+              <em>memory</em> qubits (no optical interface, long coherence). Without that
+              split, an NV node would have one qubit, not ten.
+            </p>
+          </article>
+
+          <article class="enc-card">
+            <EncodingDiagram kind="siv" />
+            <h3>SiV centre (diamond)</h3>
+            <p>
+              A silicon atom sitting at the bond centre between two adjacent vacancies in
+              the diamond lattice — a colour-centre defect with a strong, narrow optical
+              line at 738 nm. The qubit is the electron spin of the defect, controlled by
+              microwaves and read out by spin-dependent fluorescence. Operates at ~4 K.
+              The SiV's clean optical interface makes it the leading solid-state platform
+              for quantum-network nodes — Knaut et al. demonstrated SiV-based entanglement
+              between two nodes over a 35 km fibre loop
+              <SourceNote id="knaut-nature-2024" />.
+            </p>
+            <p>
+              SiV uses the same comm/memory split as NV but with a different isotope.
+              Knaut's nodes pair the SiV electron spin (comm) with an adjacent
+              <strong>²⁹Si nuclear spin</strong> (memory) — T₂ &ge; 1&nbsp;s with dynamical
+              decoupling. Nuclear-spin registers are not a standalone qubit modality —
+              they have no direct optical interface, so a defect electron has to mediate
+              every gate and every herald — but they are why defect platforms scale past a
+              single qubit per node.
+            </p>
+          </article>
+
+          <article class="enc-card">
+            <EncodingDiagram kind="si-spin" />
+            <h3>Quantum dot (silicon spin)</h3>
+            <p>
+              Quantum dots are nanoscale semiconductor structures that confine single
+              electrons; in the silicon flavour, gate electrodes patterned on a silicon
+              chip form the trap <SourceNote id="meddeb-comnet-2025" />. The qubit is the
+              electron's spin (up vs down in an applied magnetic field), driven by
+              microwave pulses. Coherence is exceptional in isotopically purified
+              silicon-28 because the nuclear-spin background that normally dephases the
+              electron is absent. Built on CMOS manufacturing, so potentially scalable to
+              industrial densities. <em>Quantum dots also play a separate role as
+              single-photon sources for photonic networks (Quandela and others); that's a
+              source component, not a stationary qubit — covered in the spectrum and
+              transduction subjects.</em>
+            </p>
+          </article>
+
+          <article class="enc-card">
+            <EncodingDiagram kind="majorana" />
+            <h3>Topological (Majorana)</h3>
+            <p>
+              A pair of Majorana zero modes at the ends of a topological superconducting
+              nanowire — bound states with no individual location, only a shared fermion
+              parity. The qubit is that parity (even or odd), and gates are performed by
+              braiding the modes around each other rather than driving energy transitions.
+              The non-local encoding gives theoretical protection against local noise.
+              Pursued primarily by Microsoft; the least mature of the listed platforms,
+              with the first plausible Majorana-mode demonstrations published in 2023–25.
+            </p>
+          </article>
+
+          <article class="enc-card">
+            <EncodingDiagram kind="ensemble" />
+            <h3>Atomic ensemble</h3>
+            <p>
+              A cloud of <Math tex="N" /> atoms — a warm vapour cell, a cold atomic gas, or
+              a rare-earth-ion-doped crystal — operated as a single collective qubit. The
+              qubit is encoded in a delocalised spin-wave excitation shared symmetrically
+              across the ensemble: <Math tex="|0\\rangle" /> is all atoms in their ground
+              state, <Math tex="|1\\rangle" /> is a single quantum of excitation
+              distributed across them. Used primarily as a quantum memory in DLCZ-style
+              repeater protocols and Atomic-Frequency-Comb schemes; the collective
+              enhancement gives strong coupling to single photons
+              <SourceNote id="sangouard-rmp-83" />.
+            </p>
+          </article>
+        </Grid>
+
+        <p>
+          Inside a single quantum processor or repeater node, stationary qubits are
+          typically assigned distinct functional roles: <strong>computational</strong> qubits
+          run the gates, <strong>ancilla</strong> qubits assist error correction and
+          measurement, <strong>storage</strong> qubits hold state with extended coherence, and
+          <strong>communication</strong> (or <strong>interface</strong>) qubits couple to
+          flying qubits to generate the photons that carry entanglement out of the
+          node <SourceNote id="kozlowski-rfc9340" />.
+        </p>
+      </section>
+
+      <section id="indistinguishability" data-nav-section>
+        <h2>Indistinguishability — what makes these quantum, not classical</h2>
+        <p>
+          Both flying and stationary encodings share a requirement that is easy to miss.
+          An encoding produces a real qubit only when the carrier is
+          <strong>indistinguishable</strong> in every degree of freedom <em>apart from</em>
+          the one carrying the bit. If anything else tags the outcome, the superposition
+          collapses to a classical mixture.
+        </p>
+        <p>
+          Time-bin is a useful worked example. A time-bin photon must arrive with the same
+          frequency, polarisation, and pulse shape in both the early and the late slot. If
+          the early slot is slightly redder than the late slot, that frequency difference
+          tags which-slot the photon ended up in — a <em>hidden which-slot label</em>. The
+          state is now a classical mixture (<q>early or late, we just don't know which</q>),
+          not a genuine superposition
+          <Math tex="\\alpha|\\text{early}\\rangle + \\beta|\\text{late}\\rangle" />. The
+          same logic governs every flying encoding. Dual-rail: the two paths must be matched
+          in every other property, or the path is readable without measurement. Frequency-bin:
+          pulse shapes at <Math tex="\\omega_1" /> and <Math tex="\\omega_2" /> must be
+          matched in time and polarisation.
+        </p>
+        <p>
+          Photon-source quality is therefore a network-level concern. The
+          <strong>Hong-Ou-Mandel dip</strong> — the bunching of two indistinguishable photons
+          on a beam splitter — is the standard test for it. Heralded entanglement
+          and entanglement swapping (covered in later subjects) both rely on a beam splitter
+          <em>erasing</em> which-photon-came-from-where information; if the photons are
+          distinguishable in any DOF, the erasure fails and the protocol degrades to
+          classical correlation.
+        </p>
+        <p>
+          Stationary qubits face the same constraint, but in a milder form. Inside a single
+          processor or repeater node, qubits don't need to be indistinguishable — they sit
+          at known locations and are addressed individually. The constraint bites at the
+          <em>photonic interface</em>: when two distant matter qubits interfere their emitted
+          photons to herald entanglement, those photons must be indistinguishable, which
+          means the emitters themselves must match in transition frequency, linewidth, and
+          timing. <strong>Trapped ions and neutral atoms</strong> of the same isotope are
+          quantum-mechanically identical particles, so their emissions are naturally
+          well-matched. <strong>Solid-state defects</strong> (NV, SiV, quantum dots, Si
+          spin) sit in slightly different local strain environments and emit at slightly
+          different frequencies — bringing two emitters onto resonance requires active
+          per-qubit tuning (DC Stark shifts, strain control). This is one reason why
+          platforms that are excellent for local computation can still be difficult for
+          networking, and why the same indistinguishability budget reappears in subjects on
+          memories and repeaters.
+        </p>
+      </section>
+
+      <section id="divincenzo" data-nav-section>
+        <h2>DiVincenzo's criteria</h2>
+        <p>
+          DiVincenzo (2000) set out five criteria that a physical system must satisfy to
+          qualify as a viable platform for quantum
+          computation <SourceNote id="divincenzo-2000" />:
+        </p>
+        <ol class="divincenzo">
+          <li>
+            A scalable physical system with well-characterised qubits (a clean two-level
+            subspace, identifiable across many copies).
+          </li>
+          <li>
+            The ability to initialise the qubit register to a simple fiducial state, such
+            as <Math tex="|0\\dots0\\rangle" />.
+          </li>
+          <li>
+            Long relevant decoherence times — much longer than the gate-operation time
+            (typically ~10⁴× longer is the working threshold).
+          </li>
+          <li>
+            A universal set of quantum gates: arbitrary single-qubit unitaries plus at
+            least one entangling two-qubit gate.
+          </li>
+          <li>
+            High-fidelity qubit-specific measurement in the computational basis.
+          </li>
+        </ol>
+        <p>
+          DiVincenzo added two further criteria for quantum networking — that the platform
+          must be able to <strong>interconvert</strong> between stationary and flying qubits, and
+          there must be a means of <strong>faithful transmission</strong> of flying qubits between
+          specified locations.
+        </p>
+      </section>
+
+      <section id="takeaway" data-nav-section>
+        <h2>Why this matters for networks</h2>
+        <p>
+          Two computers built on different qubit modalities almost certainly emit at
+          different optical frequencies and use different photon encodings. A
+          superconducting transmon needs ~5 GHz microwave; a Yb⁺ ion's natural transition is
+          at 369 nm; an NV centre's zero-phonon line is at 637 nm; deployed telecom fibre
+          carries ~1550 nm. None of these match each other, and a usable inter-node link has
+          to bridge the gap.
+        </p>
+        <p>
+          Bridging the gap involves two distinct pieces of engineering. First,
+          <strong>transduction or quantum frequency conversion</strong> shifts the photon's
+          wavelength while preserving its quantum state. Second, <strong>encoding translation</strong>
+          converts between photonic encodings — for example, mapping a dual-rail qubit
+          emerging from a photonic-computing chip onto a polarisation qubit for free-space
+          transmission, then back again at the receiver. Both are active research areas.
+        </p>
+        <p>
+          Once a flying qubit reaches the destination it has to be re-stored, which means
+          the receiving platform must support a communication qubit that couples its native
+          stationary encoding to the incoming photon's encoding. Heterogeneous endpoints
+          don't link by laying fibre between them; they link by agreeing on the photon's
+          encoding and wavelength, plus the conversion steps to get
+          there <SourceNote id="kozlowski-rfc9340" />.
+        </p>
+      </section>
+
+      <section id="logical" data-nav-section>
+        <h2>Physical and logical qubits</h2>
+        <p>
+          Today's commercial hardware operates <strong>physical</strong> qubits — the actual
+          superconducting circuit, trapped ion, or photon — with finite coherence times,
+          imperfect gates, and continuous interaction with the environment that erodes the
+          state. A <strong>logical</strong> qubit is an error-corrected unit built from many physical
+          qubits via a quantum-error-correction code, designed so that errors in the
+          underlying physical qubits can be detected and corrected without measuring the
+          logical state directly <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+        <p>
+          Surface codes — the most-studied family today — historically needed on the order of
+          1000 physical qubits per logical qubit at currently-achievable physical-qubit error
+          rates. The overhead has fallen sharply over the past two years.
+          <strong>Quantum LDPC codes</strong> are the recent advance: Bravyi et al.'s 2024
+          bivariate-bicycle code (IBM) encodes 12 logical qubits in 288 physical (~24:1) with
+          error suppression on par with the surface code's
+          ~250:1 <SourceNote id="bravyi-nature-2024" />. More recently, the Zhao et al. 2026
+          ultra-high-rate codes on reconfigurable neutral-atom arrays reach encoding rates
+          above 50 % — about 2:1 in physical-to-logical
+          terms <SourceNote id="zhao-arxiv-2026" />. <strong>Bosonic codes</strong> (cat, GKP)
+          are a different family that protects fewer logical qubits per cavity but at much
+          lower overhead per cavity. The number to cite is no longer "1000:1" — it depends
+          on the code and the platform, and the trend is downward.
+        </p>
+
+        <p>
+          For the per-vendor product and roadmap roster — what's shipping today, what's
+          on each vendor's public roadmap, and the physical / logical / modality numbers
+          for each — see <a href={url("/companies#systems")}>Companies › QC systems and
+          roadmaps</a>. That page is the one that tracks vendor facts, so the roster
+          lives there.
+        </p>
+      </section>
+
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-4);
+    border-block-end: 1px solid var(--color-rule);
+    /* Use the same gap-based vertical rhythm as the body sections so
+       the h1 → lede → math → continuation paragraph → callout chain
+       gets one consistent spacing, instead of fighting <p> default
+       margin-collapsing against the display-math's margin-block. */
+    display: grid;
+    gap: var(--space-3);
+  }
+  .hero h1 { margin: 0; }
+  .hero p { margin: 0; }
+  /* Inside the hero, the display-math participates in the same gap
+     rhythm as the surrounding paragraphs — turn off its own
+     margin-block so we don't double up. */
+  .hero :global(.math--display) {
+    margin: 0;
+  }
+
+  section { display: grid; gap: var(--space-3); }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.92em;
+    background: var(--color-surface-2);
+    padding: 0.1em 0.35em;
+    border-radius: var(--radius-sm);
+    color: var(--color-text);
+  }
+
+
+  /* Encoding card — pin content to the top so cards in the same Grid
+     row (which stretch to the tallest sibling) don't have their body
+     paragraph drift into the middle. Default align-content for grid
+     would distribute extra vertical space among the rows; align-content:
+     start parks the extra at the bottom instead. */
+  .enc-card {
+    display: grid;
+    align-content: start;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+  }
+  .enc-card h3 {
+    margin: 0;
+    font-size: var(--text-base);
+    color: var(--color-text);
+  }
+  .enc-card p {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-mute);
+  }
+  .enc-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+  }
+  .enc-head h3 { margin: 0; }
+  .enc-prefers {
+    flex-shrink: 0;
+    font-size: var(--text-xs);
+    line-height: 1;
+    padding: 3px 7px;
+    border-radius: 999px;
+    border: 1px solid currentColor;
+    letter-spacing: 0.02em;
+    text-transform: lowercase;
+  }
+  .enc-prefers--fibre { color: var(--color-accent); }
+  .enc-prefers--fso   { color: var(--color-text-soft); }
+
+  .divincenzo {
+    list-style: decimal;
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+  .divincenzo li { line-height: var(--leading-snug); }
+</style>

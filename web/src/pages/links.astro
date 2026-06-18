@@ -1,0 +1,424 @@
+---
+/**
+ * /links — Physical-layer link types for quantum networks
+ *
+ * Tier D · Infrastructure.
+ *
+ * Citations:
+ *   - itu-g-652-d — standard single-mode fibre at 0.20 dB/km @ 1550 nm.
+ *   - jasion-ofc-2022 — best academic HCF attenuation.
+ *   - lumenisity-microsoft-2024 — commercial HCF deployment.
+ *   - schmitt-manderbach-prl-2007 — FSO 144 km decoy QKD.
+ *   - yin-science-2017 — Micius 1200 km satellite entanglement.
+ *   - huang-prl-2024 — vacuum beam guide proposal.
+ *   - kumar-ijndc-2025 — survey-level reference.
+ *   - magnard-prl-2020 — 5 m cryogenic microwave link, two-fridge transmon entanglement.
+ *   - storz-nature-2023 — 30 m cryogenic link, loophole-free Bell test with SC qubits.
+ *   - yam-npjqi-2025 — 6.6 m microwave QLAN link, CV entanglement distribution.
+ *   - mollenhauer-natelec-2025 — detachable plug-and-play microwave interconnect.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SourceNote from "../components/SourceNote.astro";
+import { url } from "../lib/url";
+
+const sections = [
+  { id: "overview",  label: "Overview" },
+  { id: "fibre",     label: "Standard fibre" },
+  { id: "hcf",       label: "Hollow-core fibre" },
+  { id: "satellite", label: "Satellite" },
+  { id: "fso",       label: "Free-space optical" },
+  { id: "microwave", label: "Microwave links" },
+  { id: "haps",      label: "High-altitude platforms" },
+  { id: "vbg",       label: "Vacuum beam guide" },
+  { id: "compare",   label: "Side-by-side comparison" },
+];
+---
+
+<Infographic
+  title="Links — fibre, hollow-core, satellite, free-space, microwave, HAPs, VBG"
+  description="Physical-layer link types for quantum networks, ordered from most common and feasible to most speculative: standard single-mode fibre, hollow-core fibre, satellite, free-space optical, cryogenic microwave for superconducting QPUs, high-altitude platforms, and vacuum beam guide. Per-channel loss, reach, latency, and operational profile, grounded in ITU-T standards and the canonical experimental demonstrations."
+  references={[
+    "itu-g-652-d",
+    "jasion-ofc-2022",
+    "kumar-ijndc-2025",
+    "lumenisity-microsoft-2024",
+    "huang-prl-2024",
+    "schmitt-manderbach-prl-2007",
+    "wang-nphoton-2013",
+    "liu-nsr-2020",
+    "liu-prl-2021",
+    "yin-science-2017",
+    "magnard-prl-2020",
+    "storz-nature-2023",
+    "yam-npjqi-2025",
+    "mollenhauer-natelec-2025",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="links" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>Links — fibre, hollow-core, satellite, free-space, microwave, HAPs, VBG</h1>
+        <p>
+          A quantum network's physical layer has seven choices in play today, ordered
+          here from most common and feasible to most speculative: standard single-mode
+          fibre (SMF), hollow-core fibre (HCF), satellite, free-space optical (FSO),
+          cryogenic microwave links between superconducting fridges, high-altitude
+          platforms (HAPs — drones and stratospheric balloons), and the vacuum beam
+          guide (VBG), an evacuated tube with relay lenses at multi-kilometre spacing.
+          Each has a different loss profile, reach, latency, and operational envelope.
+          Because no-cloning rules out the optical amplifiers that classical fibre
+          relies on, the unaided reach of a quantum link is a pure attenuation budget —
+          every dB of loss eats directly into the photon-survival probability
+          <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+        <p>
+          The regime drives the choice: SMF is ubiquitous and mature; HCF is faster and
+          lower-loss but early in commercial deployment; satellite is the only viable
+          medium for intercontinental quantum links until repeaters mature; FSO fits
+          last-mile and short metropolitan hops where fibre isn't installed; microwave
+          links are the rack-to-rack solution for superconducting QPUs that avoids
+          transduction; HAPs and VBG sit further out on the deployment curve.
+        </p>
+      </header>
+
+      <section id="fibre" data-nav-section>
+        <h2>Standard single-mode fibre (SMF)</h2>
+        <p>
+          ITU-T G.652.D defines the canonical telecom fibre: attenuation
+          <strong>0.20 dB/km at 1550 nm</strong>, in the C-band where the loss minimum
+          sits <SourceNote id="itu-g-652-d" />. SMF is deployed in every existing telecom
+          network, with installed base measured in millions of kilometres. Polarisation
+          drifts over long distances and requires active compensation; chromatic
+          dispersion is manageable; the medium is mature.
+        </p>
+        <p>
+          Practical reach for unaided quantum links: roughly 100–200 km before the
+          channel-loss budget bottoms out under realistic detector dark-count rates and
+          source brightness. Beyond that, repeaters (memory-based or otherwise) are
+          needed.
+        </p>
+      </section>
+
+      <section id="hcf" data-nav-section>
+        <h2>Hollow-core fibre (HCF)</h2>
+        <p>
+          Light propagates in an air- (or vacuum-) filled core rather than silica,
+          avoiding silica's intrinsic loss floor. The best academic demonstration to date
+          is Jasion et al.'s 2022 OFC postdeadline at <strong>0.174 dB/km</strong> in a
+          double-nested antiresonant nodeless fibre (DNANF)
+          <SourceNote id="jasion-ofc-2022" />. The commercial state of the art is
+          Lumenisity / Microsoft's <strong>0.091 dB/km</strong> hollow-core fibre, now in
+          early data-centre interconnect deployments <SourceNote id="lumenisity-microsoft-2024" />.
+        </p>
+        <p>
+          Two practical advantages over SMF: lower loss extends the unaided reach, and
+          the in-fibre speed is ~99.7 % of <em>c</em> rather than ~67 % (silica's index).
+          That second figure matters for latency-sensitive interconnects and for keeping
+          the classical-correction round-trip inside the memory-coherence budget on
+          memory-based repeaters. Manufacturing is harder than SMF; deployment is early
+          but accelerating.
+        </p>
+      </section>
+
+      <section id="satellite" data-nav-section>
+        <h2>Satellite</h2>
+        <p>
+          A satellite-borne photon source flies above the dense atmosphere; the loss
+          budget for an uplink/downlink is dominated by roughly 6 km of dense atmospheric
+          layer plus beam divergence over thousands of kilometres. Single-pass loss to
+          LEO is in the 30–50 dB range depending on elevation angle and weather. The rest
+          of the path is near-vacuum, so atmospheric attenuation only applies near the
+          ground station.
+        </p>
+        <p>
+          Yin et al. 2017 (the Micius satellite) demonstrated <strong>entanglement
+          distribution over 1200 km</strong> between two ground stations, with one photon
+          delivered to each — the canonical proof that satellite links work as a quantum
+          channel <SourceNote id="yin-science-2017" />. Operational constraints include
+          pointing acquisition, daytime background-light rejection, and pass-scheduling
+          (a LEO satellite is overhead for only a few minutes per orbit). Above
+          intercontinental distance, satellite is currently the only practical medium —
+          fibre and HCF can't yet bridge the gap.
+        </p>
+      </section>
+
+      <section id="fso" data-nav-section>
+        <h2>Free-space optical (FSO)</h2>
+        <p>
+          A telescope-to-telescope link through the atmosphere. Clear-sky loss is roughly
+          <strong>0.5 dB/km</strong> in good weather, much higher in fog or rain.
+          Atmospheric turbulence introduces beam scintillation and beam wander; daytime
+          background light is a noise source that limits usable link bandwidth.
+        </p>
+        <p>
+          The canonical demonstration is Schmitt-Manderbach et al.'s 2007 decoy-state QKD
+          over a 144 km horizontal link between La Palma and Tenerife
+          <SourceNote id="schmitt-manderbach-prl-2007" />. FSO fits where fibre isn't
+          available — across rivers, across building gaps in dense urban environments, or
+          to mobile platforms — but weather dependence makes it a poor solo backbone.
+        </p>
+      </section>
+
+      <section id="microwave" data-nav-section>
+        <h2>Cryogenic microwave links</h2>
+        <p>
+          A cryogenic microwave link is a superconducting coaxial cable or waveguide
+          running at millikelvin temperatures between two dilution refrigerators, each
+          housing a superconducting QPU. Superconducting qubits emit and absorb microwave
+          photons natively, so a transmon at one end can hand a quantum state to a
+          transmon at the other end with no frequency conversion in between. The price is
+          that the entire channel is part of the fridge plant: the inner conductor is
+          typically NbTi or aluminium, the line is shielded against stray fields, and the
+          centre of the link sits below ~100 mK so that thermal blackbody photons from a
+          4 K stage do not swamp the quantum signal. Bending the cable through room
+          temperature is not an option; the link is rack-to-rack inside a quantum
+          computing facility, with a practical reach of tens of metres.
+        </p>
+        <p>
+          The benchmark demonstration is Magnard et al. (PRL 125, 260502, 2020), a 5 m
+          cryogenic waveguide connecting two transmons in separate fridges with
+          deterministic state transfer at 85.8 % fidelity and on-demand remote
+          entanglement <SourceNote id="magnard-prl-2020" />. Storz et al. (Nature 617,
+          265, 2023) extended this to a 30 m link and used it to close the locality
+          loophole in a Bell test between two superconducting qubits — the first
+          loophole-free Bell violation with a macroscopic, microwave-controlled platform,
+          rejecting the local-hidden-variable null at P &lt; 10<sup>−108</sup>
+          <SourceNote id="storz-nature-2023" />. Two 2025 results sharpen the engineering
+          envelope: Yam et al. (npj Quantum Information 11, 87, 2025) demonstrated
+          continuous-variable entanglement distribution over a 6.6 m link held below
+          52 mK at its centre <SourceNote id="yam-npjqi-2025" />, and Mollenhauer et al.
+          (Nature Electronics, 2025) showed a detachable plug-and-play interconnect with
+          inter-module SWAP efficiency above 99 % in under 100 ns, easing the path to
+          modular multi-fridge systems <SourceNote id="mollenhauer-natelec-2025" />.
+        </p>
+        <p>
+          The strategic position is narrow but important. For two superconducting QPUs
+          inside one facility, a microwave link is the only option that avoids the
+          microwave-to-optical transducer — currently the lowest-efficiency element in
+          any inter-QPU optical link (see the <a href={url("/transduction")}>transduction</a>
+          subject). Below ~100 m, microwave wins on fidelity and rate; beyond that, the
+          cryogenic plant cost and thermal load make further extension impractical, and
+          transduction-equipped optical fibre takes over. Treat microwave as the
+          rack-to-rack and fridge-to-fridge tier of a layered network: the protocols
+          built on top — entanglement generation, swapping, purification — are the same
+          as on optical links (see <a href={url("/entanglement")}>entanglement</a> and
+          <a href={url("/swapping")}>swapping</a>); only the physical medium changes.
+        </p>
+      </section>
+
+      <section id="haps" data-nav-section>
+        <h2>High-altitude platforms (HAPs)</h2>
+        <p>
+          HAPs are airborne carriers that hold a quantum-photon payload above part of the
+          atmosphere: stratospheric balloons at 18–25 km, fixed-wing aircraft and
+          long-endurance UAVs in the 5–20 km band, and rotary-wing drones flying a few
+          hundred metres above the ground. The classical analogue is Project Loon's
+          stratospheric internet relay. For quantum links the appeal is the same — sit
+          above the densest, most turbulent layer of air; hover or loiter over a defined
+          service area; deploy and recover on hours, not launch windows.
+        </p>
+        <p>
+          The canonical balloon demonstration is Wang et al. 2013, in which the Pan group
+          flew a decoy-state BB84 transmitter on a hot-air balloon and ran a 40 km link to
+          a moving ground station — a deliberate ground-based simulation of the orbital
+          dynamics later flown on Micius, including attitude change, vibration, and
+          high-loss operation up to 96 km equivalent channel
+          <SourceNote id="wang-nphoton-2013" />. On the drone side, Liu et al. 2020 mounted
+          an entangled-photon source on a 35 kg octocopter and distributed polarisation
+          entanglement between two ground sites 200 m apart, in daytime and through rain
+          <SourceNote id="liu-nsr-2020" />. A follow-up the next year added a second drone
+          as an optical relay, extending the entanglement-distribution baseline to about
+          1 km <SourceNote id="liu-prl-2021" />.
+        </p>
+        <p>
+          HAPs fit between terrestrial FSO and full LEO satellites. The advantages are
+          persistence over a fixed region, lower latency than a LEO pass, and far cheaper
+          deployment than a launch — useful for transient or contingency coverage, military
+          and emergency-response use cases, and as a mobile trusted relay where neither
+          fibre nor a satellite pass is available. The disadvantages are daytime sky
+          background, limited payload mass and power for cryogenic sources or large
+          telescopes, station-keeping cost in wind, and the much shorter reach of a single
+          platform compared to a satellite footprint. HAPs are a niche between FSO and
+          satellite, not a substitute for either.
+        </p>
+      </section>
+
+      <section id="vbg" data-nav-section>
+        <h2>Vacuum beam guide (VBG)</h2>
+        <p>
+          A vacuum beam guide is an evacuated tube with an array of relay lenses spaced
+          kilometres apart, guiding a Gaussian beam between two endpoints without total
+          internal reflection in glass. Huang et al. (Phys Rev Lett 133, 020801, 2024)
+          analyse a confocal design with lens spacing <strong>L<sub>0</sub> = 4 km</strong>,
+          lens radius <strong>R = 10 cm</strong>, and a telecom-band beam waist
+          <strong>w<sub>0</sub> ≈ 3 cm</strong>, in a tube held below ~1 Pa. Under those
+          parameters they project a total attenuation as low as
+          <strong>5 × 10<sup>−5</sup> dB/km</strong> — an effective attenuation length
+          around 80,000 km, roughly three orders of magnitude below the best silica-core
+          fibre (~0.148 dB/km) <SourceNote id="huang-prl-2024" />.
+        </p>
+        <p>
+          The loss budget has three terms: lens absorption / scattering / reflection
+          (kept below 10<sup>−4</sup> dB/km with good AR coatings and R ≥ 10 cm to
+          suppress diffraction), residual-gas absorption (&lt;10<sup>−4</sup> dB/km at 1 Pa
+          for telecom wavelengths, per HITRAN), and misalignment of the lens array.
+          Transverse alignment is the binding constraint: σ<sub>s</sub> &lt; 0.2 mm per
+          lens keeps the misalignment term below 10<sup>−4</sup> dB/km; relaxing to 0.6 mm
+          still beats SMF by an order of magnitude. The authors point to LIGO's
+          kilometre-scale evacuated beam tubes as the existence proof that the supporting
+          civil and vacuum infrastructure is buildable.
+        </p>
+        <p>
+          The strategic claim is that a VBG could carry quantum traffic over thousands of
+          kilometres <em>without</em> repeaters, at a frequency-integrated channel
+          capacity above <strong>10<sup>13</sup> qubit/s</strong> — orders of magnitude
+          above current satellite QKD rates. None of this is built. The open engineering
+          problems are active alignment of an N-thousand-lens array against seismic
+          drift, vacuum-pump spacing and maintenance over continental distances, and the
+          capital cost of an evacuated right-of-way competitive with installing HCF in
+          existing ducts. Treat the VBG as a long-horizon alternative to space-segment
+          backbones rather than a near-term procurement option.
+        </p>
+      </section>
+
+      <section id="compare" data-nav-section>
+        <h2>Side-by-side comparison</h2>
+
+        <div class="links-table-wrap">
+        <table class="links-table">
+          <thead>
+            <tr>
+              <th scope="col">Link</th>
+              <th scope="col">Loss</th>
+              <th scope="col">Unaided reach</th>
+              <th scope="col">Latency</th>
+              <th scope="col">Operational notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">SMF (ITU G.652.D)</th>
+              <td>0.20 dB/km @ 1550 nm</td>
+              <td>~100–200 km</td>
+              <td>~5 µs/km (silica)</td>
+              <td>Ubiquitous; mature; polarisation needs active correction</td>
+            </tr>
+            <tr>
+              <th scope="row">Hollow-core (HCF)</th>
+              <td>0.091–0.174 dB/km</td>
+              <td>~300–400 km</td>
+              <td>~3.4 µs/km (vacuum)</td>
+              <td>Early commercial; lower loss + lower latency than SMF</td>
+            </tr>
+            <tr>
+              <th scope="row">Satellite</th>
+              <td>~30–50 dB single-pass to LEO</td>
+              <td>1000+ km via space</td>
+              <td>~3.4 µs/km in vacuum, plus atmospheric leg</td>
+              <td>Pointing, weather, daytime, pass-scheduling; intercontinental viable</td>
+            </tr>
+            <tr>
+              <th scope="row">Free-space (FSO)</th>
+              <td>~0.5 dB/km clear sky</td>
+              <td>10s of km terrestrial</td>
+              <td>~3.4 µs/km</td>
+              <td>Scintillation + weather + daytime background; gaps in service</td>
+            </tr>
+            <tr>
+              <th scope="row">Cryogenic microwave</th>
+              <td>Superconducting line at mK; thermal-photon limited</td>
+              <td>5 m (Magnard 2020) to 30 m (Storz 2023)</td>
+              <td>~3.3 ns/m</td>
+              <td>Rack-to-rack between SC fridges; no transducer; entire link at millikelvin</td>
+            </tr>
+            <tr>
+              <th scope="row">High-altitude platform (HAP)</th>
+              <td>FSO-like; thinner air at 20 km cuts turbulence vs ground</td>
+              <td>40 km balloon-to-ground (Wang 2013); 1 km drone relay (Liu 2021)</td>
+              <td>~3.4 µs/km</td>
+              <td>Persistence over an area; daytime background; payload + station-keeping limits</td>
+            </tr>
+            <tr>
+              <th scope="row">Vacuum beam guide (VBG)</th>
+              <td>~5 × 10<sup>−5</sup> dB/km projected</td>
+              <td>1000s of km (unrepeated, on paper)</td>
+              <td>~3.3 µs/km (vacuum)</td>
+              <td>Not built; needs evacuated right-of-way + sub-mm lens alignment</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+
+        <p>
+          Each link has a regime where it wins. The metrics subject covers loss-budget
+          composition (how the per-km numbers turn into end-to-end photon-survival
+          probabilities); the repeaters subject covers what happens past the unaided
+          reach.
+        </p>
+      </section>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-4);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .hero h1 { margin: 0; }
+  .hero p { margin: 0; }
+
+  section { display: grid; gap: var(--space-3); }
+
+  ul {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+  li { line-height: var(--leading-snug); }
+
+  .links-table-wrap {
+    inline-size: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+  }
+  .links-table {
+    min-inline-size: 56rem;
+    inline-size: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+  }
+  .links-table thead th {
+    text-align: start;
+    padding: var(--space-2) var(--space-3);
+    border-block-end: 2px solid var(--color-rule);
+    color: var(--color-text);
+    font-weight: 600;
+  }
+  .links-table tbody th,
+  .links-table tbody td {
+    padding: var(--space-2) var(--space-3);
+    vertical-align: top;
+    border-block-end: 1px solid var(--color-rule);
+  }
+  .links-table tbody th {
+    text-align: start;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+  .links-table tbody td { color: var(--color-text-mute); }
+  .links-table tbody tr:last-child th,
+  .links-table tbody tr:last-child td { border-block-end: 0; }
+</style>

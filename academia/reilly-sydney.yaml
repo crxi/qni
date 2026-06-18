@@ -1,0 +1,112 @@
+slug: reilly-sydney
+name: Reilly group (University of Sydney / EQUS)
+categories: [qc]
+hq: Sydney, NSW, Australia
+status: active
+parent: null
+
+institution:
+  name: University of Sydney
+  lab: Quantum Control Laboratory · School of Physics
+  also: ARC Centre of Excellence for Engineered Quantum Systems (EQUS); historically Microsoft Station Q Sydney (cryo-CMOS controller programme)
+
+group_website: null
+
+positioning: >
+  Cryogenic control electronics, silicon-spin readout, and quantum-engineering
+  systems integration at the University of Sydney, led by David Reilly. The
+  group pioneered cryo-CMOS controllers — the "Gooseberry" chip work co-authored
+  with Microsoft Station Q Sydney — and the broader spin-readout and
+  quantum-classical interface stack that any scalable solid-state qubit
+  platform needs. The Sydney programme is complementary to UNSW's
+  Simmons-driven donor-in-silicon direction: Reilly focuses on the control
+  and readout layer rather than the qubit-device layer itself.
+
+modalities:
+  qc:
+    qubit_type: spin-si
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: ""
+    gate_set: []
+
+milestones:
+  - date: 2021
+    tag: qc
+    headline: "\"Gooseberry\" cryo-CMOS controller chip operating at sub-100 mK to drive silicon qubits, co-authored with Microsoft (Pauka et al., Nature Electronics)"
+    source_url: https://www.nature.com/articles/s41928-020-00528-y
+    source_type: paper
+  - date: 2017
+    tag: qc
+    headline: Microsoft Station Q Sydney established at the University of Sydney to develop cryogenic control electronics for topological and spin qubits
+    source_url: https://www.sydney.edu.au/news-opinion/news/2017/07/25/microsoft-and-university-of-sydney-forge-quantum-partnership.html
+    source_type: press
+  - date: 2011
+    tag: qc
+    headline: ARC Centre of Excellence for Engineered Quantum Systems (EQUS) established
+    source_url: https://equs.org/
+    source_type: press
+
+funding_sources:
+  - source: Australian Research Council — Centre of Excellence for Engineered Quantum Systems (EQUS)
+    source_url: https://equs.org/
+    note: Primary research-grant vehicle; Reilly is a Chief Investigator
+  - source: Microsoft — Station Q Sydney partnership
+    source_url: https://www.sydney.edu.au/news-opinion/news/2017/07/25/microsoft-and-university-of-sydney-forge-quantum-partnership.html
+    note: Historical industrial partnership funding the cryo-CMOS controller programme; current status as of 2026 to be verified
+  - source: University of Sydney
+    source_url: https://www.sydney.edu.au/science/schools/school-of-physics.html
+    note: Host institution; lab space and infrastructure
+
+key_personnel:
+  - role: Principal Investigator / Professor
+    name: David Reilly
+    since: 2009
+    source_url: https://profiles.sydney.edu.au/david.reilly
+    note: Founding Director of Microsoft Station Q Sydney (2017); Chief Investigator, EQUS; current status of the Microsoft role to be verified
+
+current_focus:
+  name: Solid-state qubits and cryogenic control electronics
+  description: ""
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41928-020-00528-y
+    note: "Pauka et al., Nature Electronics 4, 64–70 (2021) — \"Gooseberry\" cryo-CMOS controller for silicon qubits"
+  - kind: press
+    citation_key: null
+    url: https://www.sydney.edu.au/news-opinion/news/2017/07/25/microsoft-and-university-of-sydney-forge-quantum-partnership.html
+    note: Microsoft Station Q Sydney partnership announcement
+  - kind: blog
+    citation_key: null
+    url: https://equs.org/
+    note: EQUS centre overview, lists Reilly among Chief Investigators
+
+partial:
+  - group_website
+  - field: current_focus.description
+    as_of: 2026-05-24
+    note: No dedicated group website carries an institutional self-statement of focus and the Sydney staff-profile page exposes no static research-thrust text on automated retrieval; rather than synthesise, left blank pending the group publishing one.
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - field: institution.also
+    as_of: 2026-05-24
+    note: EQUS Chief-Investigator affiliation listed on the centre site; Microsoft Station Q Sydney status as of 2026 (continuing partnership vs wound down) not confirmed against a primary source
+  - field: key_personnel.0.since
+    as_of: 2026-05-24
+    note: 2009 reflects Reilly's UNSW-to-Sydney move and group establishment based on his publication record; exact appointment date not pinned to a primary source
+  - field: milestones.0.date
+    as_of: 2026-05-24
+    note: Pauka et al. Nature Electronics published online December 2020 / issue January 2021; year 2021 used to match the issue date
+
+last_verified: 2026-05-24
+verification_method: web

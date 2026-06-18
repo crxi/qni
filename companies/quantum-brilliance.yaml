@@ -1,0 +1,175 @@
+slug: quantum-brilliance
+name: Quantum Brilliance
+categories: [qc]
+hq: Canberra, Australia
+founded: 2019
+status: private
+parent: null
+logo:
+  domain: quantumbrilliance.com
+
+positioning: >
+  Australian-German quantum-computing company spun out of the Australian
+  National University (ANU) in 2019. Builds nitrogen-vacancy (NV) colour-
+  centre processors in synthetic diamond that operate at room temperature,
+  removing the dilution-refrigerator footprint and enabling rack-mount or
+  edge-deployable quantum accelerators. European headquarters in Stuttgart,
+  Germany. Flagship deployment is the on-premises NV diamond accelerator at
+  the Pawsey Supercomputing Centre in Perth, described by the company as
+  the first room-temperature quantum computer installed at a major HPC
+  facility (2022). Sells the Qristal
+  software development kit alongside the diamond processor module.
+
+modalities:
+  qc:
+    qubit_type: nv  # nitrogen-vacancy centres in diamond
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: nearest-neighbour
+    gate_set: []
+  software:
+    products: [Qristal SDK]
+
+milestones:
+  - date: 2025-01
+    tag: qc
+    headline: >
+      USD 20M Series A closed with Main Sequence, In-Q-Tel, and
+      Intervalley Ventures
+    source_url: https://thequantuminsider.com/2025/01/15/quantum-brilliance-raises-20-million-in-series-a-funding-round/
+    source_type: press
+  - date: 2022
+    tag: qc
+    headline: >
+      "Deutsche Brilliance" (DE-Brill) joint research project announced —
+      EUR 19.9M / USD 22.5M with Fraunhofer IAF and the University of Ulm
+      to address fabrication / scaling challenges of diamond quantum
+      computers by 2025; Stuttgart European HQ opened
+    source_url: https://www.hpcwire.com/off-the-wire/quantum-brilliance-to-lead-22-5m-deutsche-brilliance-research-project/
+    source_type: press
+  - date: 2022
+    tag: qc
+    headline: >
+      First on-premises room-temperature quantum accelerator installed
+      at the Pawsey Supercomputing Centre (Perth) — announced by the company
+      as the first such deployment at a major HPC facility
+    source_url: https://pawsey.org.au/worlds-first-market-ready-diamond-based-quantum-accelerator-coming-to-pawsey-supercomputing-centre/
+    source_type: press
+  - date: 2022-03
+    tag: qc
+    headline: >
+      Commercialisation partner in the BMBF-funded "Spinning" project
+      (>EUR 16M) — spin-photon-based diamond quantum computer
+    source_url: https://quantumbrilliance.com/news/quantum-computers-made-in-germany-quantum-brilliance-is-commercialization-partner-in-the-bmbf-funded-research-project-spinning/
+    source_type: press
+  - date: 2019
+    tag: qc
+    headline: Founded as ANU spin-out by Andrew Horsley, Marcus Doherty, and team
+    source_url: https://physics.anu.edu.au/news_events/?NewsID=220
+    source_type: web
+
+shareholders:
+  - holder: Main Sequence Ventures
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-01
+    source_url: https://thequantuminsider.com/2025/01/15/quantum-brilliance-raises-20-million-in-series-a-funding-round/
+    note: CSIRO-backed deep-tech fund; Series A participant.
+  - holder: In-Q-Tel
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-01
+    source_url: https://thequantuminsider.com/2025/01/15/quantum-brilliance-raises-20-million-in-series-a-funding-round/
+    note: US intelligence-community strategic VC; Series A participant.
+  - holder: Intervalley Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-01
+    source_url: https://thequantuminsider.com/2025/01/15/quantum-brilliance-raises-20-million-in-series-a-funding-round/
+    note: Series A participant.
+  - holder: Founders (Horsley, Doherty, Luo)
+    stake_percent: null
+    stake_class: founder
+    as_of: 2019
+    source_url: https://www.northdata.com/Quantum+Brilliance+GmbH,+Stuttgart/HRB+783942
+    note: Founder equity assumed retained; cap-table not public.
+
+key_personnel:
+  - role: CEO
+    name: Mark Luo
+    since: 2019
+    source_url: https://quantumbrilliance.com/news/quantum-brilliance-raises-usd-20-million-in-series-a-funding-round/
+    note: Co-founder; managing director of Quantum Brilliance GmbH (Stuttgart).
+  - role: Co-founder & Managing Director (Germany)
+    name: Andrew Horsley
+    since: 2019
+    source_url: https://www.northdata.com/Quantum+Brilliance+GmbH,+Stuttgart/HRB+783942
+    note: Listed as Managing Director of Quantum Brilliance GmbH alongside Mark Luo.
+  - role: Co-founder & Chief Scientist
+    name: Marcus Doherty
+    since: 2019
+    source_url: https://quantumbrilliance.com/
+    note: ANU; NV diamond physics lead.
+
+roadmap:
+  - target: 2025-2026
+    item: >
+      Successive "drops" of increasing qubit-count NV diamond chips as
+      stepping-stones toward a 2027 prototype
+    source_url: https://postquantum.com/quantum-computing-companies/quantum-brilliance/
+    tag: qc
+  - target: 2027
+    item: Prototype-scale room-temperature NV diamond quantum accelerator
+    source_url: https://postquantum.com/quantum-computing-companies/quantum-brilliance/
+    tag: qc
+
+current_flagship:
+  name: Quantum Brilliance diamond accelerator
+  generation: room-temperature NV diamond, rack-mount form factor
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2025/01/15/quantum-brilliance-raises-20-million-in-series-a-funding-round/
+    note: USD 20M Series A (Jan 2025)
+  - kind: press
+    citation_key: null
+    url: https://pawsey.org.au/worlds-first-market-ready-diamond-based-quantum-accelerator-coming-to-pawsey-supercomputing-centre/
+    note: Pawsey deployment (2022) — room-temperature accelerator at a major HPC site, per Pawsey press release
+  - kind: press
+    citation_key: null
+    url: https://www.hpcwire.com/off-the-wire/quantum-brilliance-to-lead-22-5m-deutsche-brilliance-research-project/
+    note: Deutsche Brilliance EUR 19.9M / USD 22.5M Fraunhofer/Ulm collaboration
+  - kind: press
+    citation_key: null
+    url: https://quantumbrilliance.com/news/quantum-computers-made-in-germany-quantum-brilliance-is-commercialization-partner-in-the-bmbf-funded-research-project-spinning/
+    note: BMBF "Spinning" project commercialisation partnership
+  - kind: web
+    citation_key: null
+    url: https://quantumbrilliance.com/
+    note: Vendor homepage
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.gate_set
+  - field: modalities.qc.connectivity
+    as_of: 2026-05-20
+    note: >
+      NV-centre devices are typically nearest-neighbour electron-spin /
+      nuclear-spin clusters; Quantum Brilliance's per-chip qubit layout
+      not specified in a peer-reviewed reference checked here.
+  - shareholders
+  - revenue
+  - headcount
+
+last_verified: 2026-05-20
+verification_method: web

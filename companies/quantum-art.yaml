@@ -1,0 +1,219 @@
+slug: quantum-art
+name: Quantum Art
+categories: [qc]
+hq: Ness Ziona, Israel
+founded: 2022
+status: private
+parent: null
+logo:
+  domain: quantum-art.tech
+
+positioning: >
+  Israeli trapped-ion quantum-computing company spun out of the Weizmann
+  Institute ion-trap group in 2022. Builds full-stack systems on multi-core
+  ion chains with dynamic optical segmentation and native multi-qubit gates,
+  reporting a 200-ion fully controlled linear chain as its 2025 technical
+  milestone. Roadmap targets a 1,000-qubit "Perspective" system for quantum
+  advantage, scaling toward a third-generation 2D multi-core architecture.
+  Closed a USD 100M Series A in December 2025 led by Bedford Ridge Capital,
+  extended to USD 140M in April 2026.
+
+modalities:
+  qc:
+    qubit_type: trapped-ion
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: all-to-all
+    gate_set: []
+
+milestones:
+  - date: 2026-04
+    tag: qc
+    headline: Series A extended to $140M total with participation from additional global financial investors
+    source_url: https://finance.yahoo.com/sectors/technology/articles/quantum-art-extends-series-funding-110000099.html
+    source_type: press
+  - date: 2025-12
+    tag: qc
+    headline: $100M Series A led by Bedford Ridge Capital; cumulative funding $124M
+    source_url: https://www.prnewswire.com/news-releases/quantum-art-raises-100-million-in-series-a-round-to-drive-scalable-multi-core-quantum-computing-302637558.html
+    source_type: press
+  - date: 2025-10
+    tag: qc
+    headline: 10x circuit-depth compression and ~30% error reduction reported via NVIDIA CUDA-Q integration
+    source_url: https://www.quantum-art.tech/
+    source_type: blog
+  - date: 2025-07
+    tag: qc
+    headline: 200-ion fully controlled linear chain reported as company milestone
+    source_url: https://thequantuminsider.com/2025/12/10/quantum-art-funding-round/
+    source_type: press
+  - date: 2022
+    tag: qc
+    headline: Company founded out of the Weizmann Institute ion-trap group; seed round led by Amiti Ventures
+    source_url: https://www.quantum-art.tech/team
+    source_type: blog
+
+shareholders:
+  - holder: Bedford Ridge Capital
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-12
+    source_url: https://www.prnewswire.com/news-releases/quantum-art-raises-100-million-in-series-a-round-to-drive-scalable-multi-core-quantum-computing-302637558.html
+    note: Lead investor of December 2025 $100M Series A
+  - holder: Battery Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-12
+    source_url: https://www.prnewswire.com/news-releases/quantum-art-raises-100-million-in-series-a-round-to-drive-scalable-multi-core-quantum-computing-302637558.html
+    note: Series A participant
+  - holder: Amiti Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2022
+    source_url: https://thequantuminsider.com/2025/12/10/quantum-art-funding-round/
+    source_type: press
+    note: Lead of 2022 seed round
+  - holder: Destra Investments
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-12
+    source_url: https://www.prnewswire.com/news-releases/quantum-art-raises-100-million-in-series-a-round-to-drive-scalable-multi-core-quantum-computing-302637558.html
+    note: Series A participant
+  - holder: Lumir Growth Partners
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-12
+    source_url: https://www.prnewswire.com/news-releases/quantum-art-raises-100-million-in-series-a-round-to-drive-scalable-multi-core-quantum-computing-302637558.html
+    note: Series A participant
+  - holder: Harel Insurance
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-12
+    source_url: https://www.prnewswire.com/news-releases/quantum-art-raises-100-million-in-series-a-round-to-drive-scalable-multi-core-quantum-computing-302637558.html
+    note: Series A participant
+  - holder: Disruptive AI
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-12
+    source_url: https://www.prnewswire.com/news-releases/quantum-art-raises-100-million-in-series-a-round-to-drive-scalable-multi-core-quantum-computing-302637558.html
+    note: Series A participant
+  - holder: Corner Capital
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-12
+    source_url: https://www.prnewswire.com/news-releases/quantum-art-raises-100-million-in-series-a-round-to-drive-scalable-multi-core-quantum-computing-302637558.html
+    note: Series A participant
+  - holder: Qbeat Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-12
+    source_url: https://www.prnewswire.com/news-releases/quantum-art-raises-100-million-in-series-a-round-to-drive-scalable-multi-core-quantum-computing-302637558.html
+    note: Series A participant
+  - holder: Tal David
+    stake_percent: null
+    stake_class: founder
+    as_of: 2022
+    source_url: https://www.quantum-art.tech/team
+    note: Co-founder & CEO
+  - holder: Amit Ben Kish
+    stake_percent: null
+    stake_class: founder
+    as_of: 2022
+    source_url: https://www.quantum-art.tech/team
+    note: Co-founder & CTO
+  - holder: Roee Ozeri
+    stake_percent: null
+    stake_class: founder
+    as_of: 2022
+    source_url: https://www.quantum-art.tech/team
+    note: Co-founder & CSO; Weizmann Institute physics professor
+
+key_personnel:
+  - role: CEO & Co-founder
+    name: Tal David
+    since: 2022
+    source_url: https://www.quantum-art.tech/team
+    note: Former Head of Israel National Quantum Initiative
+  - role: CTO & Co-founder
+    name: Amit Ben Kish
+    since: 2022
+    source_url: https://www.quantum-art.tech/team
+    note: PhD Technion; research fellow under David Wineland at NIST; former Division CTO at Rafael
+  - role: Chief Science Officer & Co-founder
+    name: Roee Ozeri
+    since: 2022
+    source_url: https://www.quantum-art.tech/team
+    note: Weizmann Institute physics professor; led Israel's first full-stack trapped-ion quantum computer
+  - role: Chief Business Officer
+    name: Elkana Ben-Sinai
+    since: 2022
+    source_url: https://www.quantum-art.tech/team
+
+roadmap:
+  - target: near-term
+    item: 1,000-qubit "Perspective" system targeting quantum advantage
+    source_url: https://thequantuminsider.com/2025/12/10/quantum-art-funding-round/
+    tag: qc
+  - target: medium-term
+    item: Third-generation 2D multi-core architecture prototypes
+    source_url: https://thequantuminsider.com/2025/12/10/quantum-art-funding-round/
+    tag: qc
+  - target: long-term
+    item: Scale to thousands and ultimately millions of qubits via multi-core trapped-ion architecture
+    source_url: https://www.quantum-art.tech/
+    tag: qc
+
+current_flagship:
+  name: Multi-core trapped-ion platform (200-ion chain demonstrator)
+  generation: trapped-ion, dynamic optical segmentation with multi-qubit gates
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://www.prnewswire.com/news-releases/quantum-art-raises-100-million-in-series-a-round-to-drive-scalable-multi-core-quantum-computing-302637558.html
+    note: Series A announcement, December 2025
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2025/12/10/quantum-art-funding-round/
+    note: Quantum Insider coverage of Series A with technical positioning
+  - kind: press
+    citation_key: null
+    url: https://finance.yahoo.com/sectors/technology/articles/quantum-art-extends-series-funding-110000099.html
+    note: Series A extension to $140M, April 2026
+  - kind: blog
+    citation_key: null
+    url: https://www.quantum-art.tech/
+    note: Vendor product page describing multi-qubit gates and multi-core architecture
+  - kind: blog
+    citation_key: null
+    url: https://www.quantum-art.tech/team
+    note: Leadership and founding-team page
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.ec_code
+  - modalities.qc.gate_set
+  - field: modalities.qc.connectivity
+    as_of: 2026-05-21
+    note: within-core all-to-all assumed for ion-chain platform; cross-core links described as dynamically reconfigurable optical segmentation, not yet detailed in a peer-reviewed paper
+  - field: shareholders
+    as_of: 2026-05-21
+    note: Private company; round participants listed without stake percentages (not disclosed). Founders listed without equity figures.
+  - field: roadmap.0.target
+    as_of: 2026-05-21
+    note: Vendor uses "Perspective" branding for the 1,000-qubit milestone but no public delivery date
+  - field: current_flagship
+    as_of: 2026-05-21
+    note: No branded commercial system disclosed; 200-ion controlled chain is the most recent technical milestone reported via press, not peer-reviewed paper
+
+last_verified: 2026-05-21
+verification_method: web

@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 260" role="img" aria-labelledby="swap-title">
+  <title id="swap-title">Entanglement-swapping tree for the 4-hop chain</title>
+  <defs>
+    <style>
+      .lbl       { font: 600 11px "Inter", system-ui, sans-serif; fill: #1a1f2a; text-anchor: middle; }
+      .small     { font: 9px "Inter", system-ui, sans-serif; fill: #4a4f57; text-anchor: middle; }
+      .tier      { font: 700 10px "Inter", system-ui, sans-serif; fill: #2f4e7c; }
+      .ent       { stroke: #c84a9b; stroke-width: 2; fill: none; stroke-linecap: round; }
+      .ent-thick { stroke: #c84a9b; stroke-width: 3; fill: none; stroke-linecap: round; }
+      .matter    { fill: #22c55e; stroke: #1a1f2a; stroke-width: 1; }
+      .endpoint  { fill: #f29453; stroke: #8a3f0e; stroke-width: 1; }
+      .ion       { fill: #5a83b3; stroke: #1d4e7c; stroke-width: 1; }
+      .spent     { fill: #c9ced6; stroke: #aab0ba; stroke-width: 1; }
+      .ml        { font: 700 9.5px "Inter", system-ui, sans-serif; fill: #fff; text-anchor: middle; dominant-baseline: middle; }
+      .swapbox   { fill: #fff; stroke: #5a6472; stroke-width: 1.2; stroke-dasharray: 3 2; }
+      .swaplbl   { font: 600 9px "Inter", system-ui, sans-serif; fill: #5a6472; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <!-- 5 column centres aligned to the topology figure: 50, 210, 370, 530, 690 -->
+
+  <!-- ============ LEVEL 0: raw hops ============ -->
+  <text class="tier" x="14" y="34">Level 0 — four elementary Bell pairs from Phase 1</text>
+  <g>
+    <!-- DC-A node -->
+    <circle class="endpoint" cx="50" cy="60" r="10"/>
+    <text class="ml" x="50" y="60">A</text>
+    <text class="small" x="50" y="86">CQ-A</text>
+    <!-- QR-1 -->
+    <circle class="matter" cx="210" cy="60" r="10"/>
+    <text class="ml" x="210" y="60">1</text>
+    <text class="small" x="210" y="86">MQ-1L · MQ-1R</text>
+    <!-- QR-2 -->
+    <circle class="matter" cx="370" cy="60" r="10"/>
+    <text class="ml" x="370" y="60">2</text>
+    <text class="small" x="370" y="86">MQ-2L · MQ-2R</text>
+    <!-- QR-3 -->
+    <circle class="matter" cx="530" cy="60" r="10"/>
+    <text class="ml" x="530" y="60">3</text>
+    <text class="small" x="530" y="86">MQ-3L · MQ-3R</text>
+    <!-- DC-B node -->
+    <circle class="ion" cx="690" cy="60" r="10"/>
+    <text class="ml" x="690" y="60">B</text>
+    <text class="small" x="690" y="86">CQ-B</text>
+
+    <!-- Four entanglement arcs (the hops) -->
+    <path class="ent" d="M60 60 Q 130 40, 200 60"/>
+    <path class="ent" d="M220 60 Q 290 40, 360 60"/>
+    <path class="ent" d="M380 60 Q 450 40, 520 60"/>
+    <path class="ent" d="M540 60 Q 610 40, 680 60"/>
+    <text class="swaplbl" x="130" y="30">Hop 1</text>
+    <text class="swaplbl" x="290" y="30">Hop 2</text>
+    <text class="swaplbl" x="450" y="30">Hop 3</text>
+    <text class="swaplbl" x="610" y="30">Hop 4</text>
+  </g>
+
+  <!-- ============ LEVEL 1: swaps at QR-1 and QR-3 ============ -->
+  <text class="tier" x="14" y="124">Level 1 — local BSMs at QR-1 and QR-3 sew adjacent hops</text>
+  <g>
+    <circle class="endpoint" cx="50" cy="150" r="10"/>
+    <text class="ml" x="50" y="150">A</text>
+    <!-- QR-1 consumed -->
+    <rect class="swapbox" x="195" y="135" width="30" height="30" rx="2"/>
+    <text class="swaplbl" x="210" y="180">BSM @ QR-1</text>
+    <!-- QR-2 still intact (will be used in Level 2) -->
+    <circle class="matter" cx="370" cy="150" r="10"/>
+    <text class="ml" x="370" y="150">2</text>
+    <!-- QR-3 consumed -->
+    <rect class="swapbox" x="515" y="135" width="30" height="30" rx="2"/>
+    <text class="swaplbl" x="530" y="180">BSM @ QR-3</text>
+    <!-- DC-B -->
+    <circle class="ion" cx="690" cy="150" r="10"/>
+    <text class="ml" x="690" y="150">B</text>
+
+    <!-- Merged arcs: A↔QR-2 (Hops 1+2) and QR-2↔B (Hops 3+4) -->
+    <path class="ent-thick" d="M60 150 Q 210 116, 360 150"/>
+    <path class="ent-thick" d="M380 150 Q 530 116, 680 150"/>
+  </g>
+
+  <!-- ============ LEVEL 2: swap at QR-2 ============ -->
+  <text class="tier" x="14" y="214">Level 2 — local BSM at QR-2 merges the two halves into one end-to-end Bell pair</text>
+  <g>
+    <circle class="endpoint" cx="50" cy="240" r="10"/>
+    <text class="ml" x="50" y="240">A</text>
+    <rect class="swapbox" x="355" y="225" width="30" height="30" rx="2"/>
+    <text class="swaplbl" x="370" y="252" dy="14">BSM @ QR-2</text>
+    <circle class="ion" cx="690" cy="240" r="10"/>
+    <text class="ml" x="690" y="240">B</text>
+
+    <!-- End-to-end arc -->
+    <path class="ent-thick" d="M60 240 Q 370 200, 680 240"/>
+  </g>
+</svg>

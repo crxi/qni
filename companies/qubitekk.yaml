@@ -1,0 +1,221 @@
+slug: qubitekk
+name: Qubitekk
+categories: [source-detect, network]
+hq: Vista, California, USA
+founded: 2012
+status: acquired
+parent: ionq
+logo:
+  domain: qubitekk.com
+
+positioning: >
+  Quantum-networking hardware company founded in 2012 in Vista, California,
+  commercialising entangled-photon-pair sources and associated quantum network
+  equipment — photon-pair sources, single-photon detectors, fibre-optic
+  switches, and correlated-timing hardware — under the Bohr product line.
+  Supplied the entanglement-distribution infrastructure for the EPB Quantum
+  Network in Chattanooga, Tennessee, the first commercially available quantum
+  network in the United States (launched November 2022). Accumulated a
+  portfolio of 118 U.S. and international patents in quantum networking
+  hardware and quantum network security. Acquired by IonQ on 6 January 2025
+  for USD 22M; operates as IonQ's quantum-networking hardware business line,
+  with the team and patent portfolio integrated into IonQ's networking roadmap.
+
+modalities:
+  source-detect:
+    role: source
+    detection_efficiency: null
+    dark_count_hz: null
+    jitter_ps: null
+  network:
+    role: testbed
+    products: [Bohr-IV Metro Quantum Network, Quantum Network Essentials]
+
+milestones:
+  - date: 2025-01-06
+    tag: network
+    headline: >
+      IonQ completes acquisition of substantially all Qubitekk assets for
+      USD 22M; team of physicists, engineers, and software developers —
+      including co-founders Stan Ellis and Duncan Earl — joins IonQ, adding
+      118 U.S. and international patents to IonQ's networking portfolio
+    source_url: https://www.ionq.com/news/ionq-completes-acquisition-of-qubitekk-solidifying-leadership-in-quantum
+    source_type: press
+  - date: 2024-12
+    tag: network
+    headline: >
+      Awarded USD 21M SBIR Phase III contract by the US Air Force Research
+      Laboratory for quantum networking R&D to establish secure and robust
+      communications systems
+    source_url: https://orangeslices.ai/qubitekk-awarded-a-21m-sbir-phase-iii-contract-for-us-air-force-research-laboratory-quantum-network/
+    source_type: press
+  - date: 2024-11-06
+    tag: network
+    headline: >
+      IonQ announces definitive agreement to acquire substantially all
+      Qubitekk assets; transaction anticipated to close within six months
+    source_url: https://investors.ionq.com/news/news-details/2024/IonQ-to-Acquire-Qubitekk-Furthering-Leadership-in-Quantum-Networking/default.aspx
+    source_type: press
+  - date: 2023-12
+    tag: network
+    headline: >
+      Qubitekk and Qunnect demonstrate first quantum networking equipment
+      interoperability on a commercial network — Qunnect's QU-APC polarisation
+      stabiliser validated against Qubitekk's entangled-photon source on
+      EPB Quantum Network (Dec 4–6, 2023)
+    source_url: https://www.prnewswire.com/news-releases/quantum-technology-pioneers-qubitekk-and-qunnect-achieve-first-equipment-interoperability-on-epb-quantum-network-powered-by-qubitekk-302019186.html
+    source_type: press
+  - date: 2023-09
+    tag: network
+    headline: >
+      EPB Quantum Network and Aliro Quantum unveil quantum network controller
+      integration at Quantum World Congress; Qubitekk Bohr-IV hardware
+      operates as the entanglement layer under Aliro's software-defined
+      network orchestration
+    source_url: https://www.hpcwire.com/off-the-wire/epb-quantum-network-and-aliro-quantum-to-unveil-quantum-network-developments-at-quantum-world-congress/
+    source_type: press
+  - date: 2022-11
+    tag: network
+    headline: >
+      EPB Quantum Network powered by Qubitekk launches in Chattanooga, TN —
+      the first commercially available quantum network in the United States;
+      Bohr-IV integrated quantum network equipment provides entangled-photon
+      sources, single-photon detectors, fibre-optic switches, and
+      quantum-as-a-service access
+    source_url: https://www.prnewswire.com/news-releases/epb-and-qubitekk-launch-commercial-quantum-network-to-accelerate-development-and-adoption-of-quantum-products-301690778.html
+    source_type: press
+  - date: 2021
+    tag: network
+    headline: >
+      QED (Quantum Ensured Defense of the Smart Electric Grid) project wins
+      R&D 100 Award; collaboration with ORNL, Los Alamos National Laboratory,
+      and EPB applying quantum entanglement to protect power-grid control
+      signals — Qubitekk as industry partner
+    source_url: https://epb.com/newsroom/press-releases/ornl-los-alamos-national-lab-epb-win-rd-100-award/
+    source_type: press
+  - date: 2016
+    tag: network
+    headline: >
+      Launches QED: Quantum Ensured Defense of the Smart Electric Grid
+      initiative in partnership with EPB, ORNL, and Los Alamos National
+      Laboratory, applying quantum key distribution to utility grid
+      automation signals
+    source_url: https://www.ornl.gov/news/ornl-partnership-epb-tests-new-method-protecting-quantum-networks
+    source_type: press
+  - date: 2014
+    tag: network
+    headline: >
+      Receives USD 3M DOE Cybersecurity for Energy Delivery Systems (CEDS)
+      grant; partners with ORNL, Pacific Northwest National Laboratory,
+      University of Texas at Austin, Sandia National Laboratory, and
+      Pacific Gas & Electric to develop quantum encryption for power grid
+      protection
+    source_url: https://www.prnewswire.com/news-releases/qubitekk-to-receive-federal-funding-to-help-protect-nations-power-grid-from-cyber-attack-272714421.html
+    source_type: press
+  - date: 2012
+    tag: network
+    headline: >
+      Company founded by Stan Ellis and Duncan Earl in Vista, California,
+      to commercialise quantum-optic-based cybersecurity solutions for
+      electric-grid automation equipment; backed by Ellis Energy Investments
+    source_url: https://thequantuminsider.com/2020/05/05/qubitekk-vision-to-become-leading-global-quantum-technology-provider/
+    source_type: press
+
+shareholders:
+  - holder: IonQ
+    stake_percent: 100
+    stake_class: controlling
+    as_of: 2025-01-06
+    source_url: https://www.ionq.com/news/ionq-completes-acquisition-of-qubitekk-solidifying-leadership-in-quantum
+    note: Asset acquisition closed 6 January 2025 for USD 22M.
+  - holder: Ellis Energy Investments
+    stake_percent: null
+    stake_class: founder
+    as_of: 2012
+    source_url: https://thequantuminsider.com/2020/05/05/qubitekk-vision-to-become-leading-global-quantum-technology-provider/
+    note: Seed investor and founding backer; Stan Ellis is founder and managing director of Ellis Energy Investments.
+
+key_personnel:
+  - role: Co-Founder & CEO
+    name: Stan Ellis
+    since: 2012
+    source_url: https://www.ionq.com/news/ionq-completes-acquisition-of-qubitekk-solidifying-leadership-in-quantum
+    note: Joined IonQ as part of acquisition close (January 2025); post-acquisition IonQ title not publicly disclosed.
+  - role: Co-Founder & CTO
+    name: Duncan Earl
+    since: 2012
+    source_url: https://theorg.com/org/ionq/org-chart/duncan-earl
+    note: >
+      Ex-ORNL scientist (1994–2012); PhD Electrical and Computer Engineering,
+      University of Tennessee. Holds title Senior Director of Quantum
+      Networking at IonQ post-acquisition.
+  - role: President
+    name: Keith Clark
+    since: 2012
+    source_url: https://www.ionq.com/news/ionq-completes-acquisition-of-qubitekk-solidifying-leadership-in-quantum
+    note: Joined IonQ as part of acquisition close; post-acquisition IonQ title not publicly disclosed.
+  - role: Chief Revenue Officer
+    name: Corey McClelland
+    since: 2012
+    source_url: https://www.ionq.com/news/ionq-completes-acquisition-of-qubitekk-solidifying-leadership-in-quantum
+    note: Joined IonQ as part of acquisition close; post-acquisition IonQ title not publicly disclosed.
+
+roadmap: []
+
+current_flagship:
+  name: Bohr-IV Metro Quantum Network
+  generation: integrated entangled-photon-pair source + single-photon detectors + fibre switches + timing hardware (within IonQ)
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://www.ionq.com/news/ionq-completes-acquisition-of-qubitekk-solidifying-leadership-in-quantum
+    note: IonQ acquisition close (6 January 2025)
+  - kind: filing
+    citation_key: null
+    url: https://www.sec.gov/Archives/edgar/data/0001824920/000095017024122264/ionq-ex99_1.htm
+    note: IonQ Form 8-K (FY2024) — definitive agreement to acquire Qubitekk assets
+  - kind: press
+    citation_key: null
+    url: https://www.prnewswire.com/news-releases/epb-and-qubitekk-launch-commercial-quantum-network-to-accelerate-development-and-adoption-of-quantum-products-301690778.html
+    note: EPB Quantum Network launch, November 2022 — first commercially available quantum network in the United States
+  - kind: press
+    citation_key: null
+    url: https://www.prnewswire.com/news-releases/quantum-technology-pioneers-qubitekk-and-qunnect-achieve-first-equipment-interoperability-on-epb-quantum-network-powered-by-qubitekk-302019186.html
+    note: Qubitekk–Qunnect interoperability demonstration on EPB Quantum Network (December 2023)
+  - kind: press
+    citation_key: null
+    url: https://www.prnewswire.com/news-releases/qubitekk-to-receive-federal-funding-to-help-protect-nations-power-grid-from-cyber-attack-272714421.html
+    note: DOE CEDS USD 3M grant announcement (2014)
+
+partial:
+  - modalities.source-detect.detection_efficiency
+  - modalities.source-detect.dark_count_hz
+  - modalities.source-detect.jitter_ps
+  - field: modalities.source-detect.role
+    as_of: 2026-06-04
+    note: >
+      Bohr-IV integrates both source and detection hardware per product
+      descriptions; categorised as source as its primary product
+      identity. Peer-reviewed spec sheet not available.
+  - field: current_flagship
+    as_of: 2026-06-04
+    note: >
+      Bohr-IV is the last publicly named product generation; post-acquisition
+      roadmap is folded into IonQ's networking plan and no updated Qubitekk
+      product spec has been published.
+  - field: key_personnel.0.since
+    as_of: 2026-06-04
+    note: >
+      2012 is the founding year; exact date each officer joined in their
+      named role is not published in available sources.
+  - field: key_personnel.2.since
+    as_of: 2026-06-04
+    note: Exact start year as President not published; 2012 is the founding year used as a proxy.
+  - field: key_personnel.3.since
+    as_of: 2026-06-04
+    note: Exact start year as CRO not published; 2012 is the founding year used as a proxy.
+  - roadmap
+
+last_verified: 2026-06-04
+verification_method: web

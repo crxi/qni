@@ -1,0 +1,202 @@
+slug: nec
+name: NEC Corporation (Quantum R&D)
+categories: [qkd, qc]
+hq: Minato, Tokyo, Japan
+founded: 1899
+status: public
+parent: null
+logo:
+  domain: nec.com
+
+positioning: >
+  Japanese IT conglomerate whose quantum programme runs out of the Secure
+  System Platform Research Laboratories and the NEC-AIST Quantum Technology
+  Cooperative Research Laboratory. NEC was one of the four original Japanese
+  operators of the NICT-led Tokyo QKD Network in 2010, supplying a 1.25 GHz
+  decoy-state BB84 link with WDM multiplexing on the 45 km Koganei–Otemachi
+  loop. Commercial focus is continuous-variable QKD (CV-QKD) for in-band
+  multiplexing of QKD with classical data over standard telecom fibre. NEC
+  also leads the superconducting-qubit hardware-integration project inside
+  Japan's Cabinet Office Moonshot Goal 6 programme.
+
+business_units:
+  - name: Secure System Platform Research Laboratories (Kawasaki / Tsukuba)
+    scope: QKD systems, CV-QKD hardware, quantum-cryptography network engineering, Tokyo QKD Network link no. 2
+    hq: Kawasaki / Tsukuba, Japan
+    lead: ""
+    source_url: https://www.nec.com/en/global/rd/
+  - name: NEC-AIST Quantum Technology Cooperative Research Laboratory
+    scope: Superconducting-qubit hardware integration (Moonshot Goal 6), CV-QKD components
+    hq: Tsukuba, Japan
+    lead: Tsuyoshi Yamamoto (Research Fellow; Moonshot Goal 6 Project Manager)
+    source_url: https://www.nec.com/en/global/rd/special/202109/index.html
+
+modalities:
+  qkd:
+    protocol: [BB84, decoy-state, CV-QKD]
+    rate_distance: "Tokyo QKD link no. 2 (2010): 45 km Koganei–Otemachi, 1.25 GHz clock, decoy-state BB84 with WDM, NICT SSPDs; current product line: CV-QKD on standard SMF (specific rate-distance numbers not published in a peer-reviewed source)"
+    deployed_demos:
+      - Tokyo QKD Network (2010) — NEC operated link no. 2 (Koganei–Otemachi, 45 km, decoy-state BB84 with WDM, 1.25 GHz clock) alongside NTT-NICT, Mitsubishi Electric, Toshiba and EU partners
+      - NEC / NICT / ZenmuTech (2020) — quantum-cryptography-secured transmission and secret-sharing backup of dummy electronic medical records over a wide-area QKD network
+      - NEC / NICT / Nomura Holdings / Nomura Securities / Toshiba / NICT (2020-12 → 2022-01) — joint verification of QKD-protected FIX-format financial-transaction data; Tokyo QKD Network extended into Nomura Securities premises
+      - Mitsui & Co. / Quantinuum / NEC (2024-11) — first quantum-tokens demonstration in a commercial-style setting, 10 km Tokyo fibre, NEC-provided commercial QKD equipment
+      - NICT / Toshiba / NEC (2025-07) — first multiplexed transmission of two distinct QKD signals (Toshiba BB84 + NEC CV-QKD) and high-speed data over the same C+L-band ROADM section, built on NEC SpectralWave WX series for the IOWN Open APN
+
+milestones:
+  - date: 2025-07
+    tag: qkd
+    headline: NICT / Toshiba / NEC — announced as the first multiplexed transmission of BB84 (Toshiba) and CV-QKD (NEC) signals with high-speed data over a single C+L-band Open-APN section using NEC SpectralWave WX ROADM
+    source_url: https://www.nec.com/en/press/202507/global_20250728_02.html
+    source_type: press
+  - date: 2024-11
+    tag: qkd
+    headline: Mitsui & Co. / Quantinuum / NEC — first quantum-tokens trial using commercial off-the-shelf QKD over 10 km Tokyo fibre; NEC supplied the QKD platform
+    source_url: https://www.nec.com/en/press/202411/global_20241118_01.html
+    source_type: press
+  - date: 2022-01
+    tag: qkd
+    headline: NEC / Toshiba / NICT / Nomura — successful joint verification of low-latency QKD-protected transmission of large-volume financial-transaction data in FIX format
+    source_url: https://www.nec.com/en/press/202201/global_20220114_01.html
+    source_type: press
+  - date: 2020-12
+    tag: qkd
+    headline: NEC / Toshiba / NICT / Nomura Holdings / Nomura Securities — joint verification tests begin; Tokyo QKD Network extended into Nomura Securities premises for financial-sector cybersecurity
+    source_url: https://www.nec.com/en/press/202012/global_20201221_01.html
+    source_type: press
+  - date: 2020-10
+    tag: qkd
+    headline: NEC / NICT / ZenmuTech — quantum-cryptography-secured transmission and secret-sharing backup of (dummy) electronic medical records
+    source_url: https://www.nec.com/en/press/202010/global_20201022_01.html
+    source_type: press
+  - date: 2020
+    tag: qc
+    headline: NEC joins Cabinet Office Moonshot R&D programme (Goal 6, fault-tolerant universal QC) for superconducting-circuit integration
+    source_url: https://www.jst.go.jp/moonshot/en/program/goal6/67_yamamoto.html
+    source_type: press
+  - date: 2015
+    tag: qkd
+    headline: NEC / NICT — 120 km QKD with ultrahigh-purity single-photon source and superconducting single-photon detectors (Scientific Reports)
+    source_url: https://www.nature.com/articles/srep14383
+    source_type: paper
+  - date: 2011-06
+    tag: qkd
+    headline: Sasaki et al. report the Tokyo QKD Network field test in Optics Express; NEC operated the 45 km decoy-state BB84 link no. 2 with NICT
+    source_url: https://opg.optica.org/oe/viewmedia.cfm?uri=oe-19-11-10387&html=true
+    source_type: paper
+  - date: 2010-10
+    tag: qkd
+    headline: Tokyo QKD Network public launch at UQCC2010 — NEC, NTT-NICT, Mitsubishi Electric, Toshiba (Cambridge / Stanford) and three EU groups (ID Quantique, Toshiba Research Europe, austrian AIT–all-Vienna) demonstrate secure videoconferencing and rerouting around eavesdropping
+    source_url: http://www.uqcc.org/QKDnetwork/
+    source_type: press
+
+shareholders:
+  - holder: The Master Trust Bank of Japan, Ltd. (Trust account)
+    stake_percent: 16.36
+    stake_class: minority
+    as_of: 2024-03
+    source_url: https://www.nec.com/en/global/ir/pdf/annual/2024/ar2024-e.pdf
+    note: Largest registered holder per NEC FY2024 annual report; standard Japanese trust-bank custodial vehicle aggregating multiple beneficial owners
+  - holder: Custody Bank of Japan, Ltd. (Trust account)
+    stake_percent: 7.17
+    stake_class: minority
+    as_of: 2024-03
+    source_url: https://www.nec.com/en/global/ir/pdf/annual/2024/ar2024-e.pdf
+    note: Second-largest registered holder per NEC FY2024 annual report; trust-bank custodial vehicle
+  - holder: Sumitomo Life Insurance Co.
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2024-03
+    source_url: https://www.marketscreener.com/quote/stock/NEC-CORPORATION-6492475/company-shareholders/
+    note: Long-standing Sumitomo-group strategic holding (NEC's historical Sumitomo affiliation traces to the 1932 reorganisation); exact percent not confirmed from the FY2024 report
+  - holder: Foreign institutional investors (aggregate)
+    stake_percent: 46.74
+    stake_class: minority
+    as_of: 2024-03
+    source_url: https://www.nec.com/en/global/ir/stock/share.html
+    note: NEC FY2024 shareholder-composition disclosure (aggregate by holder class)
+
+key_personnel:
+  - role: President & CEO, NEC Corporation
+    name: Takayuki Morita
+    since: 2021-04
+    source_url: https://www.nec.com/en/global/about/executives/bio/t-morita.html
+  - role: Research Fellow, NEC; Moonshot Goal 6 Project Manager (superconducting-circuit integration)
+    name: Tsuyoshi Yamamoto
+    since: 2020
+    source_url: https://www.nec.com/en/global/rd/special/202109/index.html
+    note: NEC's most visible quantum-hardware lead; PhD applied physics, U-Tokyo 2001; works in the NEC-AIST Quantum Technology Cooperative Research Laboratory across Moonshot (gate-model QC) and NEDO (annealing)
+  - role: Director-General, NICT (collaborator on Tokyo QKD Network and IOWN-APN demos)
+    name: Masahide Sasaki
+    since: 2010
+    source_url: https://opg.optica.org/oe/viewmedia.cfm?uri=oe-19-11-10387&html=true
+    note: External — first author on the 2011 Tokyo QKD Network paper that defined NEC's link no. 2; listed here because the NEC QKD programme is operationally inseparable from NICT's
+
+roadmap:
+  - target: 2026
+    item: Continue NICT / Toshiba / NEC IOWN Open-APN integration toward telco-backbone deployment of multiplexed CV-QKD on shared C+L-band fibre
+    source_url: https://www.nec.com/en/press/202507/global_20250728_02.html
+    tag: qkd
+  - target: 2050
+    item: "Moonshot Goal 6 — fault-tolerant universal quantum computer (NEC contribution: superconducting-circuit integration under Yamamoto)"
+    source_url: https://www.jst.go.jp/moonshot/en/program/goal6/67_yamamoto.html
+    tag: qc
+
+current_flagship:
+  name: NEC CV-QKD module + SpectralWave WX-series ROADM (IOWN Open-APN configuration)
+  generation: continuous-variable QKD over standard SMF, in-band multiplexed with classical data; deployed in NICT / Toshiba joint trials and commercial-style field demos (Mitsui quantum tokens)
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://opg.optica.org/oe/viewmedia.cfm?uri=oe-19-11-10387&html=true
+    note: Sasaki et al., "Field test of quantum key distribution in the Tokyo QKD Network", Optics Express 19, 10387 (2011) — canonical reference for NEC's Tokyo QKD link no. 2 (45 km decoy-state BB84 with WDM, NICT SSPDs)
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/srep14383
+    note: NEC / NICT 120 km QKD with ultrahigh-purity single-photon source and SSPDs (Scientific Reports, 2015)
+  - kind: blog
+    citation_key: null
+    url: https://www.nec.com/en/global/techrep/journal/g21/n01/210124.html
+    note: NEC Technical Journal — "Quantum Cryptography, the Next Generation of Light-based Cryptographic Technology" (overview of NEC's CV-QKD programme)
+  - kind: press
+    citation_key: null
+    url: https://www.nec.com/en/press/202507/global_20250728_02.html
+    note: NICT / Toshiba / NEC IOWN Open-APN multiplexed-QKD demonstration, July 2025
+  - kind: press
+    citation_key: null
+    url: https://www.nec.com/en/press/202411/global_20241118_01.html
+    note: Mitsui / Quantinuum / NEC quantum-tokens trial, November 2024
+  - kind: press
+    citation_key: null
+    url: https://www.nec.com/en/press/202201/global_20220114_01.html
+    note: NEC / Toshiba / NICT / Nomura FIX-format financial-data QKD verification result, January 2022
+  - kind: press
+    citation_key: null
+    url: https://www.nec.com/en/press/202012/global_20201221_01.html
+    note: NEC / Toshiba / NICT / Nomura financial-sector QKD verification kickoff, December 2020
+  - kind: press
+    citation_key: null
+    url: https://www.nec.com/en/press/202010/global_20201022_01.html
+    note: NEC / NICT / ZenmuTech medical-records QKD + secret-sharing trial, October 2020
+  - kind: blog
+    citation_key: null
+    url: http://www.uqcc.org/QKDnetwork/
+    note: UQCC project page documenting the 2010 Tokyo QKD Network launch and link assignments
+  - kind: blog
+    citation_key: null
+    url: https://www.jst.go.jp/moonshot/en/program/goal6/67_yamamoto.html
+    note: JST Moonshot Goal 6 — Yamamoto Tsuyoshi (NEC) project page
+
+partial:
+  - field: modalities.qkd.rate_distance
+    as_of: 2026-05-17
+    note: Tokyo QKD link no. 2 numbers (45 km, 1.25 GHz, decoy-state BB84 with WDM) are from Sasaki 2011; current CV-QKD product rate-distance figures are not in a peer-reviewed source and NEC has not published a product datasheet equivalent to Toshiba's MU / LD line
+  - business_units.0.lead
+  - shareholders.2.stake_percent
+  - field: key_personnel
+    as_of: 2026-05-17
+    note: NEC does not publish a dedicated "Head of Quantum" role title; Yamamoto is the most-cited public-facing quantum lead but the QKD product line is run from Secure System Platform Research Laboratories whose head is not separately disclosed in English-language materials
+  - roadmap
+
+last_verified: 2026-05-17
+verification_method: web

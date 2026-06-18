@@ -1,0 +1,217 @@
+slug: classiq
+name: Classiq
+categories: [software]
+hq: Tel Aviv, Israel
+founded: 2020
+status: private
+parent: null
+logo:
+  domain: classiq.io
+
+positioning: >
+  Hardware-agnostic quantum software platform. Developers express algorithms
+  as high-level functional models in Qmod; the Classiq synthesis engine
+  compiles them into circuits optimised for a chosen backend (IBM, AWS
+  Braket, Azure Quantum, IonQ, Quantinuum, Rigetti, Pasqal, OQC) under
+  user-specified depth, width, and gate-count constraints. Founded in Tel
+  Aviv in 2020 by Nir Minerbi, Yehuda Naveh, and Amir Naveh. Raised a USD
+  110M Series C in May 2025 led by Entrée Capital, and added AMD Ventures, Qualcomm
+  Ventures, and IonQ in a November 2025 strategic up-round, bringing
+  cumulative funding above USD 200M.
+
+modalities:
+  software:
+    products:
+      - Classiq platform (Qmod modeling language + synthesis engine)
+      - Classiq open library (Qmod function library)
+      - NVIDIA CUDA-Q integration
+      - AWS Marketplace listing
+
+milestones:
+  - date: 2025-11
+    tag: software
+    headline: Strategic up-round with AMD Ventures, Qualcomm Ventures, and IonQ; Mirae Asset Capital, LeumiTech, Quantum Eretz joining (~$30M, cumulative funding >$200M)
+    source_url: https://www.globenewswire.com/news-release/2025/11/13/3187136/0/en/IonQ-AMD-and-Qualcomm-Ventures-Join-Classiq-Strategic-Up-Round.html
+    source_type: press
+  - date: 2025-05
+    tag: software
+    headline: $110M Series C led by Entrée Capital
+    source_url: https://www.classiq.io/insights/classiq-raises-110m-in-largest-ever-quantum-software-funding-round
+    source_type: press
+  - date: 2025-02
+    tag: software
+    headline: '"Qmod: Expressive High-Level Quantum Modeling" preprint posted (arXiv:2502.19368)'
+    source_url: https://arxiv.org/abs/2502.19368
+    source_type: preprint
+  - date: 2024
+    tag: software
+    headline: NVIDIA CUDA-Q integration — hybrid quantum-classical orchestration on DGX Quantum
+    source_url: https://developer.nvidia.com/cuquantum-sdk
+    source_type: blog
+  - date: 2022-09
+    tag: software
+    headline: Series B extended to $49M, led by Awz Ventures; Intesa Sanpaolo, HPE, HSBC, Samsung Next participating
+    source_url: https://www.classiq.io/insights/classiq-extends-series-b-funding-to-49-million
+    source_type: press
+  - date: 2021-01
+    tag: software
+    headline: Series A led by Team8 Capital and Wing Venture Capital
+    source_url: https://www.crunchbase.com/funding_round/classiq-series-a--61736497
+    source_type: press
+  - date: 2020
+    tag: software
+    headline: Company founded in Tel Aviv by Nir Minerbi, Yehuda Naveh, and Amir Naveh
+    source_url: https://www.classiq.io/about-us
+    source_type: blog
+
+shareholders:
+  - holder: Entrée Capital
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-05
+    source_url: https://quantumcomputingreport.com/classiq-raises-110m-in-series-c-to-expand-enterprise-quantum-software-platform/
+    note: Lead investor on the May 2025 $110M Series C
+  - holder: Awz Ventures
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2022-09
+    source_url: https://www.classiq.io/insights/classiq-extends-series-b-funding-to-49-million
+    note: Lead investor on the 2022 Series B extension
+  - holder: Team8 Capital
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2021-01
+    source_url: https://team8.vc/portfolio/classiq/
+    note: Series A co-lead; founding-stage backer
+  - holder: Wing Venture Capital
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2021-01
+    source_url: https://www.crunchbase.com/funding_round/classiq-series-a--61736497
+    note: Series A co-lead
+  - holder: Norwest Venture Partners
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-05
+    source_url: https://www.classiq.io/insights/classiq-raises-110m-in-largest-ever-quantum-software-funding-round
+    note: Series C participant
+  - holder: HPE
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2022-09
+    source_url: https://www.classiq.io/insights/classiq-extends-series-b-funding-to-49-million
+    note: Strategic investor since Series B
+  - holder: HSBC
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2022-09
+    source_url: https://www.classiq.io/insights/classiq-extends-series-b-funding-to-49-million
+    note: Strategic investor since Series B; Series C participant
+  - holder: Samsung Next
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2022-09
+    source_url: https://www.classiq.io/insights/classiq-extends-series-b-funding-to-49-million
+    note: Strategic investor since Series B; Series C participant
+  - holder: Intesa Sanpaolo (Neva SGR)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2022-05
+    source_url: https://www.classiq.io/insights/classiq-extends-series-b-funding-to-49-million
+    note: Series B participant via Neva SGR; continued in Series C
+  - holder: NightDragon
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-05
+    source_url: https://www.classiq.io/insights/classiq-raises-110m-in-largest-ever-quantum-software-funding-round
+    note: Series C participant
+  - holder: Hamilton Lane
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-05
+    source_url: https://www.classiq.io/insights/classiq-raises-110m-in-largest-ever-quantum-software-funding-round
+    note: Series C participant
+  - holder: AMD Ventures
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-11
+    source_url: https://www.globenewswire.com/news-release/2025/11/13/3187136/0/en/IonQ-AMD-and-Qualcomm-Ventures-Join-Classiq-Strategic-Up-Round.html
+    note: Joined the November 2025 strategic up-round
+  - holder: Qualcomm Ventures
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-11
+    source_url: https://www.globenewswire.com/news-release/2025/11/13/3187136/0/en/IonQ-AMD-and-Qualcomm-Ventures-Join-Classiq-Strategic-Up-Round.html
+    note: Joined the November 2025 strategic up-round
+  - holder: IonQ
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-11
+    source_url: https://www.globenewswire.com/news-release/2025/11/13/3187136/0/en/IonQ-AMD-and-Qualcomm-Ventures-Join-Classiq-Strategic-Up-Round.html
+    note: Joined the November 2025 strategic up-round
+  - holder: Nir Minerbi, Yehuda Naveh, Amir Naveh
+    stake_percent: null
+    stake_class: founder
+    as_of: 2020
+    source_url: https://entreecap.com/founder/nir-minerbi
+    note: Co-founders; exact founder holdings not publicly disclosed
+
+key_personnel:
+  - role: Co-founder & CEO
+    name: Nir Minerbi
+    since: 2020
+    source_url: https://www.classiq.io/about-us
+  - role: Co-founder & CTO
+    name: Yehuda Naveh
+    since: 2020
+    source_url: https://www.classiq.io/about-us
+    note: Prior IBM Research quantum computing; Technion
+  - role: Co-founder & Chief Product Officer
+    name: Amir Naveh
+    since: 2020
+    source_url: https://www.classiq.io/about-us
+
+roadmap:
+  - target: 2026
+    item: Continued expansion of backend coverage (spin-qubit C12 digital twin partnership announced January 2026) and CUDA-Q hybrid workflows
+    source_url: https://insidehpc.com/2026/01/c12-and-classiq-partner-on-spin-qubit-quantum-computing/
+    tag: software
+
+current_flagship:
+  name: Classiq platform
+  generation: Qmod 2.x + synthesis engine; multi-backend
+
+references:
+  - kind: preprint
+    citation_key: null
+    url: https://arxiv.org/abs/2502.19368
+    note: "Qmod: Expressive High-Level Quantum Modeling — describes the modeling language and synthesis-engine workflow"
+  - kind: press
+    citation_key: null
+    url: https://www.classiq.io/insights/classiq-raises-110m-in-largest-ever-quantum-software-funding-round
+    note: Series C announcement (May 2025)
+  - kind: press
+    citation_key: null
+    url: https://www.globenewswire.com/news-release/2025/11/13/3187136/0/en/IonQ-AMD-and-Qualcomm-Ventures-Join-Classiq-Strategic-Up-Round.html
+    note: Strategic up-round with AMD, Qualcomm, IonQ (November 2025)
+  - kind: blog
+    citation_key: null
+    url: https://www.classiq.io/about-us
+    note: Company "About" page (leadership and founding history)
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2025/05/12/classiq-raises-110-million-in-massive-quantum-software-funding-round/
+    note: The Quantum Insider Series C coverage
+
+partial:
+  - field: shareholders
+    as_of: 2026-05-21
+    note: Classiq is private; no percentages disclosed for any holder. Rows list lead/strategic participants per round.
+  - shareholders.14.stake_percent
+  - field: milestones.3.date
+    as_of: 2026-05-21
+    note: NVIDIA CUDA-Q integration dated to 2024 from secondary reporting; exact month not verified against an NVIDIA or Classiq press release.
+  - roadmap
+
+last_verified: 2026-05-21
+verification_method: web

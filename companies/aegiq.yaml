@@ -1,0 +1,162 @@
+slug: aegiq
+name: Aegiq
+categories: [source-detect, enabling]
+hq: Sheffield, UK
+founded: 2019
+status: private
+parent: null
+logo:
+  domain: aegiq.com
+
+positioning: >
+  UK integrated-photonics vendor commercialising deterministic quantum-dot
+  single-photon sources (iSPS) and full-stack photonic-quantum-computing and
+  networking subsystems. Spun out of the University of Sheffield in 2019
+  from the III-V semiconductor quantum-dot group by Maksym Sich, Andrii
+  Iamshanov, and Scott Dufferwiel. Flagship iSPS is a fibre-coupled
+  cryogenic quantum-dot source operating at GHz-class repetition rates;
+  selected in 2024 to deliver a full-stack photonic quantum-computer testbed
+  to the UK National Quantum Computing Centre at Harwell.
+
+modalities:
+  source-detect:
+    role: source
+    detection_efficiency: null
+    dark_count_hz: null
+    jitter_ps: null
+  enabling:
+    products: [iSPS, integrated-photonic chips, photonic QC subsystems]
+
+milestones:
+  - date: 2024-02
+    tag: enabling
+    headline: Aegiq wins NQCC photonic-testbed competition — to build and install a full-stack photonic quantum computer at the UK National Quantum Computing Centre by Q1 2025
+    source_url: https://www.aegiq.com/blog/aegiq-commissions-photonic-quantum-computer-at-the-uks-nqcc
+    source_type: press
+  - date: 2023
+    tag: enabling
+    headline: Joins UK-led project to develop a prototype hBN (hexagonal boron nitride) single-photon source for room-temperature operation
+    source_url: https://www.quantumcommshub.net/news/hub-funds-project-to-develop-prototype-single-photon-source/?site=industry-government-media
+    source_type: press
+  - date: 2022-11
+    tag: source-detect
+    headline: Launch of iSPS — fibre-coupled quantum-dot single-photon source (cryogenic) operating at GHz-class repetition rates, marketed as the first compact commercial deterministic single-photon generator
+    source_url: https://web.archive.org/web/20231004233855/https://aegiq.com/2022/11/11/aegiq-launches-the-worlds-first-compact-true-single-photon-generator/
+    source_type: press
+  - date: 2022-05
+    tag: enabling
+    headline: Closes oversubscribed seed round (~£4M / $4.9M) led by High-Tech Gründerfonds with Deepbridge Capital, NPIF
+    source_url: https://thequantuminsider.com/2022/05/17/aegiq-closes-oversubscribed-investment-round-brings-total-funding-to-nearly-4-million/
+    source_type: press
+  - date: 2022-01
+    tag: enabling
+    headline: Earlier £1.8M tranche of seed financing for quantum-networking platform development
+    source_url: https://www.uktech.news/deep-tech/sheffield-aegiq-funding-quantum-photonics-20220120
+    source_type: press
+  - date: 2021
+    tag: enabling
+    headline: Wins Institute of Physics Business Start-Up Award
+    source_url: https://www.iop.org/about/awards/business-awards/2021-winners/AEGIQ
+    source_type: press
+  - date: 2019
+    tag: enabling
+    headline: Company founded as University of Sheffield spin-out by Maksym Sich, Andrii Iamshanov, and Scott Dufferwiel from the III-V quantum-dot group
+    source_url: https://sheffield.ac.uk/news/university-sheffield-spin-out-secures-seed-investment-revolutionise-trust-global-telecommunications
+    source_type: press
+
+shareholders:
+  - holder: High-Tech Gründerfonds
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2022-05
+    source_url: https://thequantuminsider.com/2022/05/17/aegiq-closes-oversubscribed-investment-round-brings-total-funding-to-nearly-4-million/
+    note: Led the 2022 ~£4M seed round
+  - holder: Deepbridge Capital
+    stake_percent: null
+    stake_class: minority
+    as_of: 2022-05
+    source_url: https://www.deepbridge.com/news/aegiq-closes-seed-funding-round
+    note: 2022 seed-round participant
+  - holder: NPIF (Northern Powerhouse Investment Fund)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2022-01
+    source_url: https://www.uktech.news/deep-tech/sheffield-aegiq-funding-quantum-photonics-20220120
+    note: Earlier £1.8M tranche participant
+  - holder: Maksym Sich
+    stake_percent: null
+    stake_class: founder
+    as_of: 2019
+    source_url: https://thequantuminsider.com/2022/05/30/tqi-exclusive-interview-with-maksym-sich-of-aegiq/
+    note: Co-founder & CEO; presumed retained equity (private, undisclosed)
+  - holder: Andrii Iamshanov
+    stake_percent: null
+    stake_class: founder
+    as_of: 2019
+    source_url: https://sheffield.ac.uk/news/university-sheffield-spin-out-secures-seed-investment-revolutionise-trust-global-telecommunications
+    note: Co-founder; presumed retained equity
+  - holder: Scott Dufferwiel
+    stake_percent: null
+    stake_class: founder
+    as_of: 2019
+    source_url: https://sheffield.ac.uk/news/university-sheffield-spin-out-secures-seed-investment-revolutionise-trust-global-telecommunications
+    note: Co-founder; presumed retained equity
+
+key_personnel:
+  - role: CEO & Co-founder
+    name: Maksym Sich
+    since: 2019
+    source_url: https://thequantuminsider.com/2022/05/30/tqi-exclusive-interview-with-maksym-sich-of-aegiq/
+  - role: Co-founder
+    name: Andrii Iamshanov
+    since: 2019
+    source_url: https://sheffield.ac.uk/news/university-sheffield-spin-out-secures-seed-investment-revolutionise-trust-global-telecommunications
+  - role: Co-founder
+    name: Scott Dufferwiel
+    since: 2019
+    source_url: https://sheffield.ac.uk/news/university-sheffield-spin-out-secures-seed-investment-revolutionise-trust-global-telecommunications
+
+roadmap:
+  - target: 2025-Q1
+    item: Install full-stack photonic QC testbed at NQCC (Harwell)
+    source_url: https://www.aegiq.com/blog/aegiq-commissions-photonic-quantum-computer-at-the-uks-nqcc
+    tag: enabling
+  - target: 2026
+    item: Room-temperature single-photon source prototype based on hBN colour centres
+    source_url: https://www.quantumcommshub.net/news/hub-funds-project-to-develop-prototype-single-photon-source/?site=industry-government-media
+    tag: source-detect
+
+current_flagship:
+  name: iSPS
+  generation: cryogenic quantum-dot single-photon source, fibre-coupled, GHz-class repetition
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://www.science.org/doi/10.1126/sciadv.abc8268
+    note: Scalable integrated single-photon source (Science Advances) — foundational Sheffield quantum-dot work underlying Aegiq's iSPS
+  - kind: press
+    citation_key: null
+    url: https://web.archive.org/web/20231004233855/https://aegiq.com/2022/11/11/aegiq-launches-the-worlds-first-compact-true-single-photon-generator/
+    note: iSPS product launch (Nov 2022)
+  - kind: press
+    citation_key: null
+    url: https://www.aegiq.com/blog/aegiq-commissions-photonic-quantum-computer-at-the-uks-nqcc
+    note: NQCC photonic-testbed competition win (Feb 2024)
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2022/05/30/tqi-exclusive-interview-with-maksym-sich-of-aegiq/
+    note: TQI CEO interview (May 2022) — strategy and product context
+
+partial:
+  - modalities.source-detect.detection_efficiency
+  - modalities.source-detect.jitter_ps
+  - field: modalities.source-detect.dark_count_hz
+    as_of: 2026-05-15
+    note: Source-side parameter; not directly applicable for an SPS — left null. iSPS quantitative specs (g(2), HOM indistinguishability, brightness) not publicly disclosed on vendor page
+  - field: shareholders
+    as_of: 2026-05-15
+    note: Private — round participants known from press releases but stake percentages undisclosed
+
+last_verified: 2026-05-15
+verification_method: web

@@ -1,0 +1,267 @@
+---
+/**
+ * /case-studies/epb — EPB Quantum Network, Chattanooga.
+ *
+ * The first commercially-available quantum network in the US and one of the
+ * very few entanglement-based networks open to outside customers under a paid
+ * model. Differentiates from the Chinese QKD trunk (prepare-and-measure with
+ * trusted relays) by distributing entangled photon pairs, which unlocks
+ * protocols beyond QKD.
+ */
+import Infographic from "../../layouts/Infographic.astro";
+import Center from "../../components/Center.astro";
+import Stack from "../../components/Stack.astro";
+import SiteNav from "../../components/SiteNav.astro";
+import SourceNote from "../../components/SourceNote.astro";
+import { url } from "../../lib/url";
+
+const sections = [
+  { id: "overview",     label: "Overview" },
+  { id: "what",         label: "What it is" },
+  { id: "verified",     label: "Verified claims" },
+  { id: "caveats",      label: "Things to note" },
+  { id: "related",      label: "Related entries" },
+];
+---
+
+<Infographic
+  title="EPB Quantum Network — Chattanooga"
+  description="The first commercially-available quantum network in the US. Entanglement-based, customer-configurable testbed run by EPB with Qubitekk hardware, Aliro software, and an IonQ trapped-ion node from 2025."
+  references={[
+    "epb-quantum-press-2022",
+    "epb-aliro-press-2023",
+    "epb-qunnect-press-2023",
+    "epb-ionq-press-2025",
+    "ionq-epb-press-2025",
+    "epb-quantum-about",
+    "aliro-deployments-whitepaper",
+    "ornl-epb-press-2024",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="case-studies" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>EPB Quantum Network — Chattanooga</h1>
+        <p>
+          A customer-configurable, entanglement-based quantum network running
+          on dark fibre owned by Chattanooga's municipal utility. Launched in
+          2022 as the first commercially-available quantum network in the
+          United States, opened to paid customers in 2023, and extended in 2025
+          with an IonQ trapped-ion processor placed directly on the network to
+          add a quantum-compute endpoint to the testbed.
+        </p>
+        <dl class="hero-meta">
+          <div><dt>Operator</dt><dd>EPB · Qubitekk (hardware) · Aliro (controller) · IonQ (compute, 2025)</dd></div>
+          <div><dt>Location</dt><dd>Chattanooga, Tennessee, USA</dd></div>
+          <div><dt>Year</dt><dd>Announced Sep 2022; first paid customer Dec 2023; IonQ deal Apr 2025</dd></div>
+          <div><dt>Technology</dt><dd>Entanglement-based (entangled photon pairs from Qubitekk Bohr IV sources)</dd></div>
+          <div><dt>Scale</dt><dd>Metro — ~8 km fibre loop; 1 network operations centre + 2 equipment hubs (11 quantum devices each) + 10 quantum nodes; over 30 quantum devices total</dd></div>
+          <div><dt>Status</dt><dd>Operational paid testbed</dd></div>
+          <div><dt>Commercial model</dt><dd>Quantum-as-a-service subscription; customers reserve time and configure the network for their experiments</dd></div>
+        </dl>
+      </header>
+
+      <section id="what" data-nav-section>
+        <h2>What it is</h2>
+        <p>
+          The network sits on dark fibre EPB originally built between its
+          electric substations, repurposed under a 2021 collaboration with
+          Qubitekk, Oak Ridge National Laboratory, and Los Alamos National
+          Laboratory. Qubitekk supplies the quantum hardware — entangled-photon
+          sources, single-photon detectors, and the Bohr IV quantum-networking
+          system that generates, transmits, and measures qubits across the
+          loop.<SourceNote id="epb-quantum-press-2022" /> Aliro Quantum's
+          AliroNet was selected as the network controller in February 2023; it
+          provides multi-tenant role-based access, network design and emulation
+          modes, and the operations layer that lets a customer specify a
+          configuration and have the underlying optical switches and devices
+          provisioned to match.<SourceNote id="epb-aliro-press-2023" /><SourceNote id="aliro-deployments-whitepaper" />
+        </p>
+        <p>
+          The deployed topology is a network operations centre plus two
+          equipment hubs, each carrying eleven quantum devices, that fan out to
+          ten quantum nodes across the loop — over thirty quantum devices in
+          total. AliroNet's multi-tenant role-based access control is what
+          lets different customer organisations share that fabric without
+          seeing each other's experiments.<SourceNote id="aliro-deployments-whitepaper" />
+        </p>
+        <p>
+          Qunnect became the first announced commercial customer in December
+          2023, bringing its QU-APC automatic polarisation controller for
+          interoperability testing against Qubitekk's entangled-photon source.
+          The teams reported entanglement preservation with fidelity above 99 %
+          during the December 4–6 2023 run — the first time Qunnect's QU-APC
+          had been tested on a commercial quantum network outside its own
+          GothamQ testbed in New York.<SourceNote id="epb-qunnect-press-2023" />
+          ORNL ran the first national-laboratory experiment on the network in
+          2024, validating it as a research surface as well as a vendor
+          interop bench.<SourceNote id="ornl-epb-press-2024" />
+        </p>
+        <p>
+          In April 2025 the EPB board approved a $22 million deal with IonQ to
+          place an <strong>IonQ Forte Enterprise</strong> trapped-ion system on
+          the network and stand up the EPB Quantum Center. Build-out and
+          commissioning were scheduled for completion by early
+          2026.<SourceNote id="epb-ionq-press-2025" /><SourceNote id="ionq-epb-press-2025" />
+          The arrangement makes EPB the first utility company to commercially
+          offer both quantum networking and quantum compute, with IonQ opening
+          a Chattanooga office to support customer onboarding.
+        </p>
+      </section>
+
+      <section id="verified" data-nav-section>
+        <h2>Verified claims</h2>
+        <ul class="claim-list">
+          <li>
+            <strong>Announced 2022 as the first commercially available quantum
+            network in the US.</strong> EPB's own launch press uses
+            "America's first commercially available quantum network"; IEEE
+            Spectrum, ORNL, and Aliro corroborate. The "world's first
+            user-configurable, commercial-grade" wording often quoted is the
+            <em>vendor framing</em> — the verifiable claim is "first
+            commercially available in the US".<SourceNote id="epb-quantum-press-2022" />
+          </li>
+          <li>
+            <strong>Entanglement-based, not a QKD trunk.</strong> Aliro's
+            real-world-deployments white paper and EPB's own project page
+            describe the network as a "reconfigurable fiber testbed for
+            entangled photons". Qubitekk supplies the entangled-photon sources
+            and detectors; the December 2023 interop with Qunnect explicitly
+            measured entanglement-preservation fidelity.<SourceNote id="aliro-deployments-whitepaper" /><SourceNote id="epb-qunnect-press-2023" />
+          </li>
+          <li>
+            <strong>Aliro is the network OS / controller; Qubitekk is the
+            hardware vendor; EPB owns the fibre.</strong> Confirmed by the
+            February 2023 controller-selection press release.<SourceNote id="epb-aliro-press-2023" />
+          </li>
+          <li>
+            <strong>Paid testbed, not a data-replacement network.</strong>
+            EPB markets the offering as quantum-as-a-service: customers
+            reserve configurations and run experiments on the loop. It is not
+            a replacement for classical internet or backbone traffic — no
+            user data flows through it.<SourceNote id="epb-quantum-press-2022" /><SourceNote id="aliro-deployments-whitepaper" />
+          </li>
+          <li>
+            <strong>April 2025 IonQ deal — $22 million, trapped-ion node on
+            the network.</strong> Joint EPB / IonQ press, 25 April 2025; the
+            machine is an IonQ Forte Enterprise (#AQ36); build-out by early
+            2026.<SourceNote id="epb-ionq-press-2025" /><SourceNote id="ionq-epb-press-2025" />
+          </li>
+          <li>
+            <strong>Chattanooga differentiator vs the Chinese QKD trunk.</strong>
+            The Beijing–Shanghai backbone uses polarisation-coded decoy-state
+            BB84 with weak coherent pulses through 32 trusted relays —
+            prepare-and-measure with key reconstruction at each hop. EPB
+            distributes entangled photon pairs end-to-end through the loop, so
+            it supports protocols beyond key distribution (entanglement
+            swapping demos, distributed sensing, blind compute experiments).
+            See the <a href={url("/case-studies/china-backbone")}>Beijing–Shanghai
+            case study</a> for the contrast.
+          </li>
+        </ul>
+      </section>
+
+      <section id="caveats" data-nav-section>
+        <h2>Things to note</h2>
+        <ul class="caveat-list">
+          <li>
+            <strong>Scope.</strong> The deployment is a single-operator metro
+            loop on which customers run experiments. It does not provide
+            inter-domain routing, public addressing, or standing user-data
+            traffic.
+          </li>
+          <li>
+            <strong>Service model.</strong> The infrastructure can host QKD
+            experiments, and the primary product is shared access to an
+            entanglement-distribution testbed. The BT/Toshiba London
+            commercial QKD trial (also 2022) is a separate category of
+            deployment.
+          </li>
+          <li>
+            <strong>What "user-configurable" covers.</strong> AliroNet
+            provisions network topology, paths, and access policy at the
+            optical layer; the photonic protocol that runs on top is supplied
+            by the customer's hardware.
+          </li>
+          <li>
+            <strong>IonQ integration status.</strong> The 2025 press described
+            placing IonQ Forte Enterprise <em>on the network</em> as part of a
+            combined compute + networking offering, with build-out continuing
+            into 2026. The network and the trapped-ion processor are
+            co-located inside the same facility; the coupling between the
+            trapped-ion qubits and the entanglement layer is a 2026
+            deliverable.<SourceNote id="epb-ionq-press-2025" />
+          </li>
+          <li>
+            <strong>Scope of the R&amp;D 100 award.</strong> The award refers
+            to the underlying Qubitekk technology and the prior EPB/ORNL/LANL
+            field trial, rather than to a third-party rating of the
+            commercial network itself.
+          </li>
+        </ul>
+      </section>
+
+      <section id="related" data-nav-section>
+        <h2>Related entries</h2>
+        <ul class="related-list">
+          <li><a href={url("/entanglement")}>Entanglement and Bell pairs</a> — the resource the EPB network distributes.</li>
+          <li><a href={url("/distribution")}>Entanglement distribution</a> — the service model EPB sells access to.</li>
+          <li><a href={url("/links")}>Links — fibre, hollow-core, free-space, satellite</a> — the dark-fibre layer EPB uses.</li>
+          <li><a href={url("/stacks")}>Quantum-internet stacks</a> — where a network like EPB sits in the layered architecture.</li>
+          <li><a href={url("/case-studies/china-backbone")}>Beijing–Shanghai backbone</a> — the QKD-only contrast.</li>
+          <li><a href={url("/case-studies/knaut-boston")}>Knaut Boston-metro demo</a> — entanglement-based, with quantum memories.</li>
+          <li><a href={url("/companies/qubitekk")}>Qubitekk vendor dossier</a> — the entangled-photon-source hardware supplier (acquired by IonQ, 2024–25).</li>
+          <li><a href={url("/companies/ionq")}>IonQ vendor dossier</a> — the 2025 compute partner.</li>
+        </ul>
+      </section>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-4);
+    border-block-end: 1px solid var(--color-rule);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .hero h1 { margin: 0; }
+  .hero-meta {
+    display: grid;
+    gap: var(--space-1);
+    margin: 0;
+    padding: var(--space-3);
+    background: var(--color-surface-2);
+    border-radius: var(--radius);
+    font-size: var(--text-sm);
+  }
+  .hero-meta div { display: grid; grid-template-columns: 11rem 1fr; gap: var(--space-2); }
+  .hero-meta dt {
+    color: var(--color-text-mute);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    align-self: center;
+  }
+  .hero-meta dd { margin: 0; color: var(--color-text); }
+  @media (max-width: 40rem) {
+    .hero-meta div { grid-template-columns: 1fr; gap: 0; }
+  }
+
+  .claim-list,
+  .caveat-list,
+  .related-list {
+    display: grid;
+    gap: var(--space-2);
+    padding-inline-start: var(--space-4);
+  }
+  .claim-list li,
+  .caveat-list li {
+    line-height: var(--leading-body);
+  }
+</style>

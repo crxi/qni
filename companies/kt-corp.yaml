@@ -1,0 +1,136 @@
+slug: kt-corp
+name: KT Corporation
+categories: [network, qkd]
+hq: Seoul, South Korea
+founded: 1981
+status: public
+parent: null
+logo:
+  domain: kt.com
+
+positioning: >
+  South Korea's incumbent fixed-line and second-largest mobile carrier
+  (KOSPI:030200, NYSE:KT). KT operates a commercial Quantum-Safe Network
+  service on its Korean fibre footprint, using QKD endpoints sourced from
+  ID Quantique and (in pilot) Toshiba; the public reference deployments are
+  the Seoul-Daejeon QKD-as-a-Service testbed (Toshiba) and the ~490 km
+  Seoul-Busan hybrid QKD trunk. KT is the lead Korean contributor to
+  ITU-T SG13 / SG17 QKD-network standardisation and chairs SG13 WP1; the
+  company describes itself as the holder of the most QKD-network-related
+  international standard approvals.
+
+business_units:
+  - name: KT Quantum Network business
+    scope: Operates the Quantum-Safe Network service on KT's commercial fibre; runs QKD pilots and standardisation contributions
+    hq: Seoul, South Korea
+    lead: ""
+    source_url: https://en.prnasia.com/releases/apac/toshiba-group-and-kt-collaborate-on-quantum-key-distribution-pilot-projects-in-south-korea-356200.shtml
+
+modalities:
+  qkd:
+    protocol: [BB84, decoy-state, T12]
+    rate_distance: "Seoul-Busan ~490 km hybrid QKD trunk (KT + Toshiba); Seoul-Daejeon QKDaaS testbed operated 2022-2024"
+    deployed_demos:
+      - note: Seoul-Busan hybrid QKD network — approximately 490 km optical-fibre route with Toshiba QKD endpoints; described as the longest QKD network built in South Korea and the first application of an ITU-T QoS standard to a long-distance QKD network
+        source_url: https://www.global.toshiba/ww/company/digitalsolution/news/2022/0328.html
+      - note: Seoul-Daejeon QKD-as-a-Service (QKDaaS) testbed — operated for approximately two years from summer 2022; open testbed for third-party services on KT's fibre
+        source_url: https://en.prnasia.com/releases/apac/toshiba-group-and-kt-collaborate-on-quantum-key-distribution-pilot-projects-in-south-korea-356200.shtml
+      - note: KT + HEQA Security partnership to deploy QKD on KT telecom infrastructure; demonstrated at Quantum Korea 2025
+        source_url: https://quantumcomputingreport.com/kt-and-heqa-security-partner-to-deploy-quantum-key-distribution-for-telecom-infrastructure/
+  network:
+    role: operator
+    products:
+      - Quantum-Safe Network service for Korean government and enterprise customers
+
+milestones:
+  - date: 2025-06
+    tag: qkd
+    headline: KT and HEQA Security announce partnership to deploy QKD across KT's telecom infrastructure; demonstrated at Quantum Korea 2025
+    source_url: https://quantumcomputingreport.com/kt-and-heqa-security-partner-to-deploy-quantum-key-distribution-for-telecom-infrastructure/
+    source_type: press
+  - date: 2022-03
+    tag: qkd
+    headline: KT and Toshiba announce two-project QKD pilot in South Korea — Seoul-Busan ~490 km hybrid QKD network (first application of an ITU-T QoS standard) and a Seoul-Daejeon QKD-as-a-Service testbed
+    source_url: https://www.global.toshiba/ww/company/digitalsolution/news/2022/0328.html
+    source_type: press
+  - date: 2022-02
+    tag: qkd
+    headline: ITU-T approves KT-led QKD-network QoS evaluation-criteria standard — which KT described as the first international standard for QKD-network QoS
+    source_url: https://www.global.toshiba/ww/company/digitalsolution/news/2022/0328.html
+    source_type: press
+
+shareholders:
+  - holder: National Pension Service (Korea)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-05-20
+    source_url: https://corp.kt.com/eng/html/intro/gov/directors.html
+    note: NPS is consistently among the largest institutional holders of KT shares; exact stake not confirmed against a public filing.
+  - holder: Hyundai Motor Group
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2026-05-20
+    source_url: https://corp.kt.com/eng/html/intro/gov/directors.html
+    note: Hyundai Motor Group entities have held a strategic equity position in KT following the 2024 cross-shareholding arrangement; exact stake not confirmed against a public filing.
+  - holder: Public float (KOSPI:030200, NYSE:KT ADR)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2026-05-20
+    source_url: https://corp.kt.com/eng/html/intro/gov/directors.html
+    note: Widely-held domestic and foreign float outside the strategic blocks.
+
+key_personnel:
+  - role: President & CEO
+    name: Park Yoon-Young
+    since: 2026-03-31
+    source_url: https://www.koreaherald.com/article/3200389
+    note: Appointed CEO and Representative Director effective 31 March 2026, succeeding Kim Young-shub.
+  - role: Former President & CEO
+    name: Kim Young-shub
+    since: 2023-08
+    source_url: https://corp.kt.com/eng/html/intro/gov/directors.html
+    note: Stepped down at end of term, 31 March 2026.
+
+roadmap:
+  - target: 2026
+    item: Continued commercial expansion of the Quantum-Safe Network service across KT's fibre footprint; further ITU-T QKD-network standardisation contributions
+    source_url: https://www.global.toshiba/ww/company/digitalsolution/news/2022/0328.html
+    tag: qkd
+
+current_flagship:
+  name: KT Quantum-Safe Network
+  generation: Commercial QKD-secured fibre service for Korean government and enterprise customers; multi-vendor (ID Quantique + Toshiba endpoints) operated by KT
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://www.global.toshiba/ww/company/digitalsolution/news/2022/0328.html
+    note: KT + Toshiba pilot — Seoul-Busan 490 km hybrid QKD network and Seoul-Daejeon QKDaaS testbed
+  - kind: press
+    citation_key: null
+    url: https://en.prnasia.com/releases/apac/toshiba-group-and-kt-collaborate-on-quantum-key-distribution-pilot-projects-in-south-korea-356200.shtml
+    note: PR Newswire Asia version of the KT + Toshiba pilot announcement
+  - kind: press
+    citation_key: null
+    url: https://quantumcomputingreport.com/kt-and-heqa-security-partner-to-deploy-quantum-key-distribution-for-telecom-infrastructure/
+    note: KT + HEQA Security QKD partnership (Quantum Korea 2025)
+  - kind: web
+    citation_key: null
+    url: https://corp.kt.com/eng/html/intro/gov/directors.html
+    note: KT Board of Directors and corporate governance page
+
+partial:
+  - field: modalities.qkd.deployed_demos
+    as_of: 2026-05-20
+    note: Specific key rates and per-link distances on the Seoul-Busan trunk and Seoul-Daejeon testbed are not consistently disclosed in English-language sources; entries restricted to corroborated facts.
+  - field: shareholders
+    as_of: 2026-05-20
+    note: Per-holder percentages not confirmed against KT's latest annual report; KT has a widely-held float with NPS, Hyundai Motor Group, and major asset managers among the top institutional holders.
+  - revenue
+  - headcount
+  - field: business_units."KT Quantum Network business".lead
+    as_of: 2026-05-20
+    note: Current head of KT's quantum-network unit is not separately named on KT's public English-language pages.
+
+last_verified: 2026-05-20
+verification_method: web

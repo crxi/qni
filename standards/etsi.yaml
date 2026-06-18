@@ -1,0 +1,358 @@
+body:
+  id: etsi
+  name: European Telecommunications Standards Institute
+  short_name: ETSI
+  url: https://www.etsi.org
+  scope: >
+    European standards body, also used by industry worldwide. ETSI's
+    quantum work began in 2008 with the Industry Specification Group on
+    QKD (ISG-QKD), which produced the GS QKD-series specifications that
+    most commercial QKD vendors implement. In 2025 ETSI approved a full
+    Technical Committee on Quantum Technologies (TC QT) with broader
+    scope.
+  notes: >
+    Two relevant groups: (1) ISG-QKD - QKD components, interfaces, and
+    security. (2) TC CYBER QSC - post-quantum and hybrid cryptography.
+    (3) TC QT (new, 2025) - quantum communications, networks, satellite,
+    sensing, QRNG. Documents are free to download from etsi.org/standards.
+
+standards:
+  # ISG-QKD Group Specifications (normative, "GS")
+  - id: GS QKD 002
+    title: Quantum Key Distribution; Use Cases
+    type: recommendation
+    date: 2010-06
+    group: ISG-QKD
+    tags: [qkdn]
+    status: informational
+    url: https://www.etsi.org/deliver/etsi_gs/QKD/001_099/002/01.01.01_60/gs_qkd002v010101p.pdf
+    pdf: reference/standards/ETSI/gs_qkd002v010101p.pdf
+    summary: Early catalogue of QKD use cases - the ISG's first deliverable.
+
+  - id: GS QKD 004
+    title: Quantum Key Distribution (QKD); Application Interface
+    type: recommendation
+    date: 2020-08
+    group: ISG-QKD
+    tags: [qkdn]
+    status: in-force
+    url: https://www.etsi.org/deliver/etsi_gs/QKD/001_099/004/02.01.01_60/gs_qkd004v020101p.pdf
+    pdf: reference/standards/ETSI/gs_qkd004v020101p.pdf
+    summary: >
+      Application interface between an encryption application and a QKD
+      key-supply module. Companion to GS QKD 014 (REST).
+
+  - id: GS QKD 005
+    title: Quantum Key Distribution (QKD); Security Proofs
+    type: recommendation
+    date: 2010-12
+    group: ISG-QKD
+    tags: [qkd-protocol, security]
+    status: in-force
+    url: https://www.etsi.org/deliver/etsi_gs/QKD/001_099/005/01.01.01_60/gs_qkd005v010101p.pdf
+    pdf: reference/standards/ETSI/gs_qkd005v010101p.pdf
+    summary: Framework for what a QKD-protocol security proof must contain.
+
+  - id: GS QKD 008
+    title: Quantum Key Distribution (QKD); QKD Module Security Specification
+    type: recommendation
+    date: 2010-12
+    group: ISG-QKD
+    tags: [qkd-protocol, security]
+    status: in-force
+    url: https://www.etsi.org/deliver/etsi_gs/QKD/001_099/008/01.01.01_60/gs_qkd008v010101p.pdf
+    pdf: reference/standards/ETSI/gs_qkd008v010101p.pdf
+    summary: Security specification for a single QKD module (hardware envelope, side-channel hardening).
+
+  - id: GS QKD 011
+    title: Quantum Key Distribution (QKD); Component characterization - characterizing optical components for QKD systems
+    type: recommendation
+    date: 2016-05
+    group: ISG-QKD
+    tags: [qkd-protocol]
+    status: in-force
+    url: https://www.etsi.org/deliver/etsi_gs/QKD/001_099/011/01.01.01_60/gs_qkd011v010101p.pdf
+    pdf: reference/standards/ETSI/gs_qkd011v010101p.pdf
+    summary: Measurement methodology for optical components in QKD systems (source isolation, detector blinding-resistance, etc.).
+
+  - id: GS QKD 012
+    title: Quantum Key Distribution (QKD); Device and Communication Channel Parameters for QKD Deployment
+    type: recommendation
+    date: 2019-02
+    group: ISG-QKD
+    tags: [qkd-protocol, qkdn]
+    status: in-force
+    url: https://www.etsi.org/deliver/etsi_gs/QKD/001_099/012/01.01.01_60/gs_qkd012v010101p.pdf
+    pdf: reference/standards/ETSI/gs_qkd012v010101p.pdf
+    summary: Parameter list for declaring a QKD device's deployment envelope (loss, distance, key rate, environment).
+
+  - id: GS QKD 014
+    title: Quantum Key Distribution (QKD); Protocol and data format of REST-based key delivery API
+    type: recommendation
+    date: 2019-02
+    group: ISG-QKD
+    tags: [qkdn]
+    status: in-force
+    url: https://www.etsi.org/deliver/etsi_gs/QKD/001_099/014/01.01.01_60/gs_qkd014v010101p.pdf
+    pdf: reference/standards/ETSI/gs_qkd014v010101p.pdf
+    summary: >
+      REST API for delivering QKD keys to applications. Widely adopted by
+      commercial QKD vendors, including Toshiba, IDQ, and QuantumCTek.
+
+  - id: GS QKD 015
+    title: Quantum Key Distribution (QKD); Control Interface for Software Defined Networks
+    type: recommendation
+    date: 2022-04
+    group: ISG-QKD
+    tags: [qkdn]
+    status: in-force
+    url: https://www.etsi.org/deliver/etsi_gs/QKD/001_099/015/02.01.01_60/gs_qkd015v020101p.pdf
+    pdf: reference/standards/ETSI/gs_QKD015v020101p.pdf
+    summary: SDN control interface for QKD nodes - the southbound API for QKDN controllers.
+
+  - id: GS QKD 016
+    title: Quantum Key Distribution (QKD); Common Criteria Protection Profile - Pair of Prepare and Measure Quantum Key Distribution Modules
+    type: recommendation
+    date: 2024-01
+    group: ISG-QKD
+    tags: [qkd-protocol, security]
+    status: in-force
+    url: https://www.etsi.org/deliver/etsi_gs/QKD/001_099/016/02.01.01_60/gs_QKD016v020101p.pdf
+    pdf: reference/standards/ETSI/gs_QKD016v020101p.pdf
+    summary: >
+      Common Criteria Protection Profile for a P&M QKD-module pair.
+      Adopted by Germany's BSI as BSI-CC-PP-0120, making it the EU's
+      first CC-certifiable QKD specification.
+
+  - id: GS QKD 018
+    title: Quantum Key Distribution (QKD); Orchestration Interface for Software Defined Networks
+    type: recommendation
+    date: 2022-04
+    group: ISG-QKD
+    tags: [qkdn]
+    status: in-force
+    url: https://www.etsi.org/deliver/etsi_gs/QKD/001_099/018/01.01.01_60/gs_QKD018v010101p.pdf
+    pdf: reference/standards/ETSI/gs_QKD018v010101p.pdf
+    summary: Northbound orchestration interface for QKDN controllers (above the GS QKD 015 southbound).
+
+  # ISG-QKD Group Reports (informative, "GR")
+  - id: GR QKD 003
+    title: Quantum Key Distribution (QKD); Components and Internal Interfaces
+    type: technical-report
+    date: 2018-03
+    group: ISG-QKD
+    tags: [qkd-protocol]
+    status: informational
+    url: https://www.etsi.org/deliver/etsi_gr/QKD/001_099/003/02.01.01_60/gr_qkd003v020101p.pdf
+    pdf: reference/standards/ETSI/gr_qkd003v020101p.pdf
+    summary: Survey of QKD-module internal components and their interfaces - the reference text for QKD-module architecture.
+
+  - id: GR QKD 007
+    title: Quantum Key Distribution (QKD); Vocabulary
+    type: technical-report
+    date: 2018-12
+    group: ISG-QKD
+    tags: [qkd-protocol, qkdn]
+    status: informational
+    url: https://www.etsi.org/deliver/etsi_gr/QKD/001_099/007/01.01.01_60/gr_qkd007v010101p.pdf
+    pdf: reference/standards/ETSI/gr_qkd007v010101p.pdf
+    summary: Canonical vocabulary used across ISG-QKD documents.
+
+  # TC CYBER QSC
+  - id: TR 103 617
+    title: Quantum-Safe Virtual Private Networks
+    type: technical-report
+    date: 2018-09
+    group: TC CYBER QSC
+    tags: [crypto-meta]
+    status: informational
+    url: https://www.etsi.org/deliver/etsi_tr/103600_103699/103617/01.01.01_60/tr_103617v010101p.pdf
+    pdf: reference/standards/ETSI/tr_103617v010101p.pdf
+    summary: Architectural patterns for adding post-quantum / hybrid cryptography to VPNs.
+
+  - id: TR 103 619
+    title: CYBER; Migration strategies and recommendations to Quantum Safe schemes
+    type: technical-report
+    date: 2020-07
+    group: TC CYBER QSC
+    tags: [crypto-meta, policy]
+    status: informational
+    url: https://www.etsi.org/deliver/etsi_tr/103600_103699/103619/01.01.01_60/tr_103619v010101p.pdf
+    pdf: reference/standards/ETSI/tr_103619v010101p.pdf
+    summary: Migration playbook for moving an enterprise crypto estate to quantum-safe schemes (PQC, QKD, hybrid).
+
+  - id: TS 103 744
+    title: CYBER; Quantum-Safe Cryptography (QSC); Quantum-safe Hybrid Key Establishment
+    type: recommendation
+    date: 2025-03
+    group: TC CYBER QSC
+    tags: [crypto-meta]
+    status: in-force
+    url: https://www.etsi.org/deliver/etsi_ts/103700_103799/103744/01.02.01_60/ts_103744v010201p.pdf
+    pdf: reference/standards/ETSI/ts_103744v010201p.pdf
+    summary: >
+      Specification for hybrid key establishment combining classical
+      and post-quantum KEMs. The European counterpart to NIST's hybrid
+      drafts; widely cited as a baseline for hybrid TLS / IPsec.
+
+  # White Papers
+  - id: WP 27
+    title: Implementation Security of Quantum Cryptography
+    type: technical-report
+    date: 2018-07
+    group: ISG-QKD
+    tags: [qkd-protocol, security]
+    status: informational
+    url: https://www.etsi.org/images/files/ETSIWhitePapers/etsi_wp27_qkd_imp_sec_FINAL.pdf
+    pdf: reference/standards/ETSI/etsi_wp27_qkd_imp_sec.pdf
+    summary: >
+      White Paper on implementation-security challenges in commercial
+      QKD (side channels, source flaws, detector attacks). Co-authored
+      by 20+ practitioners including Lucamarini, Shields, Lütkenhaus,
+      Makarov.
+
+  # TC QT (new committee, 2025)
+  - id: TC QT
+    title: Technical Committee on Quantum Technologies (charter)
+    type: charter
+    date: 2025
+    group: TC QT
+    tags: [qnet, qkd-protocol, sensing, qrng, crypto-meta]
+    status: in-force
+    url: https://www.etsi.org/technical-groups/qt/
+    summary: >
+      Newly chartered ETSI Technical Committee (2025) with 90+ founding
+      participants from Europe, Canada, Singapore, and Japan. Chaired
+      by Mark Pecen (Approach Infinity). Vice-chairs from GovStrat,
+      Leonardo, Toshiba, and Huawei. Scope: quantum communications,
+      quantum networks, satellite quantum comms, quantum sensing, QRNG,
+      security. Expected to absorb / supersede some ISG-QKD work.
+    note: Charter only; first deliverables pending as of May 2026.
+
+  - id: GR QSC 001
+    title: Quantum-safe cryptography (QSC); Quantum-safe algorithmic framework
+    type: technical-report
+    group: TC CYBER QSC
+    tags: [crypto-meta]
+    status: in-force
+    url: https://www.etsi.org/standards/#search=GR%20QSC%20001&title=0&content=0&version=1
+
+  - id: GR QSC 003
+    title: Quantum safe cryptography; Case studies and deployment scenarios
+    type: technical-report
+    group: TC CYBER QSC
+    tags: [crypto-meta]
+    status: in-force
+    url: https://www.etsi.org/standards/#search=GR%20QSC%20003&title=0&content=0&version=1
+
+  - id: GR QSC 004
+    title: Quantum-safe cryptography; Quantum-safe threat assessment
+    type: technical-report
+    group: TC CYBER QSC
+    tags: [crypto-meta]
+    status: in-force
+    url: https://www.etsi.org/standards/#search=GR%20QSC%20004&title=0&content=0&version=1
+
+  - id: GR QSC 006
+    title: Quantum-safe cryptography (QSC); Limits to quantum computing applied to symmetric key sizes
+    type: technical-report
+    group: TC CYBER QSC
+    tags: [crypto-meta]
+    status: in-force
+    url: https://www.etsi.org/standards/#search=GR%20QSC%20006&title=0&content=0&version=1
+
+  - id: TR 103 570
+    title: CYBER; Quantum-safe key exchanges
+    type: technical-report
+    group: TC CYBER QSC
+    tags: [crypto-meta]
+    status: in-force
+    url: https://www.etsi.org/standards/#search=TR%20103%20570&title=0&content=0&version=1
+
+  - id: TR 103 616
+    title: CYBER; Quantum-safe signatures
+    type: technical-report
+    group: TC CYBER QSC
+    tags: [crypto-meta]
+    status: in-force
+    url: https://www.etsi.org/standards/#search=TR%20103%20616&title=0&content=0&version=1
+
+  - id: TR 103 618
+    title: CYBER; Quantum-safe identity-based encryption
+    type: technical-report
+    group: TC CYBER QSC
+    tags: [crypto-meta]
+    status: in-force
+    url: https://www.etsi.org/standards/#search=TR%20103%20618&title=0&content=0&version=1
+
+  - id: TR 103 692
+    title: CYBER; State management for stateful authentication mechanisms
+    type: technical-report
+    group: TC CYBER QSC
+    tags: [security]
+    status: in-force
+    url: https://www.etsi.org/standards/#search=TR%20103%20692&title=0&content=0&version=1
+
+  - id: TR 103 744
+    title: CYBER; Quantum-safe hybrid key exchanges
+    type: technical-report
+    group: TC CYBER QSC
+    tags: [crypto-meta]
+    status: in-force
+    url: https://www.etsi.org/standards/#search=TS%20103%20744&title=0&content=0&version=1
+
+  - id: TR 103 823
+    title: CYBER; Quantum-safe public-key encryption and key encapsulation
+    type: technical-report
+    group: TC CYBER QSC
+    tags: [crypto-meta]
+    status: in-force
+    url: https://www.etsi.org/standards/#search=TR%20103%20823&title=0&content=0&version=1
+
+  - id: TR 103 949
+    title: Quantum-safe cryptography (QSC) migration; ITS and C-ITS migration study
+    type: technical-report
+    group: TC CYBER QSC
+    tags: [crypto-meta]
+    status: in-force
+    url: https://www.etsi.org/standards/#search=TR%20103%20949&title=0&content=0&version=1
+
+  - id: TR 103 965
+    title: CYBER; Quantum-safe cryptography (QSC); Impact of quantum computing on cryptographic security proofs
+    type: technical-report
+    group: TC CYBER QSC
+    tags: [crypto-meta, security]
+    status: in-force
+    url: https://www.etsi.org/standards/#search=TR%20103%20965&title=0&content=0&version=1
+
+  - id: TR 103 966
+    title: CYBER Security (CYBER); Quantum-safe cryptography (QSC); Deployment considerations for hybrid schemes
+    type: technical-report
+    group: TC CYBER QSC
+    tags: [crypto-meta, security]
+    status: in-force
+    url: https://www.etsi.org/standards/#search=TR%20103%20966&title=0&content=0&version=1
+
+  - id: TR 103 967
+    title: Cyber Security (CYBER); Quantum-Safe Cryptography (QSC); Impact of Quantum Computing on Symmetric Cryptography
+    type: technical-report
+    group: TC CYBER QSC
+    tags: [crypto-meta, security]
+    status: in-force
+    url: https://www.etsi.org/standards/#search=TR%20103%20967&title=0&content=0&version=1
+
+  - id: TR 104 016
+    title: CYBER; Quantum-safe cryptography (QSC); A repeatable framework for quantum-safe migrations
+    type: technical-report
+    group: TC CYBER QSC
+    tags: [crypto-meta]
+    status: in-force
+    url: https://www.etsi.org/standards/#search=TR%20104%20016&title=0&content=0&version=1
+
+  - id: TS 104 015
+    title: Cyber Security (CYBER); Quantum-Safe Cryptography (QSC); Efficient Quantum-Safe Hybrid Key Exchanges with Hidden Access Policies
+    type: recommendation
+    group: TC CYBER QSC
+    tags: [crypto-meta, security]
+    status: in-force
+    url: https://www.etsi.org/standards/#page=1&search=TS%20104%20015&title=0&etsiNumber=1&content=0&version=1&onApproval=1&published=1&withdrawn=1&histo

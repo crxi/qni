@@ -1,0 +1,1248 @@
+---
+/**
+ * /teleportation — Quantum teleportation
+ *
+ * Tier A · Foundations.
+ *
+ * Citations:
+ *   - bennett-prl-1993 — Bennett et al., PRL 70, 1895 (1993).
+ *     The original teleportation protocol.
+ *   - wootters-nature-1982 — no-cloning theorem (the constraint
+ *     teleportation works around).
+ *   - kumar-ijndc-2025 — current survey, our default network reference.
+ *   - kozlowski-rfc9340 — link-layer service framing.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SourceNote from "../components/SourceNote.astro";
+import Callout from "../components/Callout.astro";
+import Math from "../components/Math.astro";
+import { url } from "../lib/url";
+
+const sections = [
+  { id: "overview",   label: "Overview" },
+  { id: "what",       label: "What teleportation does" },
+  { id: "theory",     label: "The theory" },
+  { id: "circuit",    label: "Circuit diagram" },
+  { id: "math",       label: "No faster-than-light shortcut" },
+  { id: "ledger",     label: "Resources and limits" },
+  { id: "role",       label: "Network role" },
+];
+---
+
+<Infographic
+  title="Quantum teleportation"
+  description="Quantum teleportation moves an unknown qubit's state from one location to another by consuming a shared Bell pair and sending two classical bits. No copy of the original state remains at the sender, consistent with no-cloning. This page covers the protocol, the resources it consumes, why it isn't faster than light, and its role as the link-layer 'send a qubit' primitive."
+  references={[
+    "bennett-prl-1993",
+    "cacciapuoti-ieeetc-2020",
+    "kozlowski-rfc9340",
+    "kumar-ijndc-2025",
+    "wootters-nature-1982",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="teleportation" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>Quantum teleportation</h1>
+        <p>
+          A qubit cannot be copied — the no-cloning theorem forbids any unitary that
+          duplicates an unknown <Math tex="|\\psi\\rangle" />. But a qubit's <em>state</em>
+          can be moved from one place to another, by consuming a shared Bell pair and
+          sending two classical bits over a classical channel. The state leaves the sender's
+          qubit in the process — no copy of <Math tex="|\\psi\\rangle" /> remains at the
+          sender afterwards — and the destination ends up holding a different physical
+          qubit in that same quantum state. This is <strong>quantum
+          teleportation</strong> <SourceNote id="bennett-prl-1993" />.
+        </p>
+        <p>
+          The network's job is to deliver Bell pairs; teleportation is what users do
+          with them. Each qubit teleported consumes one Bell pair and two classical
+          bits. In the entanglement-mediated architecture covered by 1G and 2G
+          repeaters, this is the only way to move an unknown qubit between nodes —
+          no-cloning forbids copying it, and any single photon carrying the state
+          would be lost to channel attenuation long before reaching the far end. 3G
+          repeaters take a different route: they send QEC-encoded photonic qubits
+          directly down the channel and correct loss/operation errors at each hop,
+          with no Bell pair or classical sideband involved. The repeaters page
+          covers that contrast in detail.
+        </p>
+      </header>
+
+      <section id="what" data-nav-section>
+        <h2>What teleportation does</h2>
+
+        <Callout label="Setup" tone="muted">
+          <p>
+            The protocol assumes Alice and Bob already share a Bell pair —
+            one half in Alice's lab, the other in Bob's, however far apart
+            those labs are. How that pair is delivered end-to-end is the
+            question the <a href={url("/distribution")}>distribution</a> and
+            <a href={url("/repeaters")}>repeaters</a> pages answer. For this
+            page, take the shared Bell pair as given and watch what consuming
+            it lets Alice do.
+          </p>
+        </Callout>
+
+        <p>
+          Alice has a qubit <strong>Q</strong> in some unknown state
+          <Math tex="|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle" />. She wants
+          Bob to end up holding that same state. The setup: Alice and Bob already share a
+          Bell pair — qubit <strong>A</strong> on Alice's side, qubit <strong>B</strong>
+          on Bob's. Alice performs a <strong>Bell-state measurement (BSM)</strong> on her
+          two qubits <strong>Q</strong> and <strong>A</strong>; this collapses them into
+          one of the four Bell states and produces two classical bits
+          <Math tex="(a, b)" />. The same instant the BSM fires, <strong>B</strong>
+          becomes <Math tex="P|\\psi\\rangle" /> — call it <Math tex="P(Q)" /> — where the
+          Pauli <Math tex="P \\in \\{I, X, Z, ZX\\}" /> is fixed by the Bell-state outcome.
+          Alice sends <Math tex="(a, b)" /> to Bob over a classical channel; Bob reads
+          the bits, looks up which <Math tex="P^{-1}" /> they correspond to, and applies
+          it to <Math tex="P(Q)" /> — which gives back <Math tex="Q" />, so
+          <strong>B</strong> is now in <Math tex="|\\psi\\rangle" />. <strong>Q</strong> and <strong>A</strong> are
+          consumed in the measurement and the Bell-pair entanglement is gone — exactly
+          one copy of <Math tex="|\\psi\\rangle" /> exists at any moment.
+        </p>
+
+        <figure class="tp" id="tp-fig" data-tp>
+          <div class="tp-stage">
+          <svg viewBox="0 0 630 270" role="img"
+               aria-label="Quantum teleportation animation: Q and A photons drop into Alice's BSM box; bits travel to Bob who unlocks the Pauli-locked qubit B."
+               data-tp-svg>
+            <defs>
+              <radialGradient id="tp-cloud-std" cx="0.5" cy="0.5" r="0.5">
+                <stop offset="0%"   stop-color="var(--tp-teal)"   stop-opacity="0.95"/>
+                <stop offset="40%"  stop-color="var(--tp-teal)"   stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="var(--tp-teal)"   stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="tp-cloud-psi" cx="0.5" cy="0.5" r="0.5">
+                <stop offset="0%"   stop-color="var(--tp-purple)" stop-opacity="0.95"/>
+                <stop offset="40%"  stop-color="var(--tp-purple)" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="var(--tp-purple)" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="tp-cloud-spent" cx="0.5" cy="0.5" r="0.5">
+                <stop offset="0%"   stop-color="#7a8390" stop-opacity="0.9"/>
+                <stop offset="40%"  stop-color="#7a8390" stop-opacity="0.45"/>
+                <stop offset="100%" stop-color="#7a8390" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            {/* Endpoint labels */}
+            <text x="170" y="22" text-anchor="middle" class="tp-label">Alice</text>
+            <text x="560" y="22" text-anchor="middle" class="tp-label">Bob</text>
+
+            {/* Subtle dashed region labels — just enough to delineate Alice's
+                lab from Bob's, without a solid surface block dominating the
+                figure. Sized to enclose only the actual content. */}
+            <rect x="50"  y="34" width="240" height="220" rx="6"
+                  fill="none" stroke="var(--color-rule)" stroke-width="1"
+                  stroke-dasharray="4,3" opacity="0.55"/>
+            <rect x="500" y="34" width="120" height="100" rx="6"
+                  fill="none" stroke="var(--color-rule)" stroke-width="1"
+                  stroke-dasharray="4,3" opacity="0.55"/>
+
+            {/* Photon labels are inside each photon's <g> so they
+                translate with the qubit during the animation — when
+                Q and A fly into the BSM apparatus, their labels go
+                with them. */}
+
+            {/* Bob's qubit B sits in its endpoint, awaiting correction.
+                Label rides with the group even though Bob doesn't move,
+                for consistency. */}
+            <g data-tp-b transform="translate(560 95)">
+              <circle data-tp-b-cloud r="20" fill="url(#tp-cloud-std)"/>
+              <text data-tp-b-label y="-26" text-anchor="middle" class="tp-slot-label">B</text>
+            </g>
+
+            {/* Entangled-pair wave A ↔ B */}
+            <path data-tp-bellpair d="M 0 0" fill="none"
+                  stroke="var(--tp-teal)" stroke-width="1.4" opacity="0.9"/>
+
+            {/* BSM apparatus — scaled copy of images/BSM.svg geometry
+                (viewBox 640×540).  Scale 197/640 ≈ 0.308 puts the two
+                input ports at outer (130, 95) and (210, 95) — exactly
+                the centres of Q and A above.  Diagonals are drawn as
+                dotted strokes because they represent photon paths
+                through the optics, not solid apparatus parts.  Inline
+                stroke/fill attributes (with `currentColor` set on the
+                nested SVG root) instead of a nested <style> tag —
+                Astro's JSX context doesn't evaluate `<style>{`…`}</style>`
+                inside SVG markup. */}
+            <svg data-tp-bsm-rect x="71.54" y="79.62" width="197" height="166"
+                 viewBox="0 0 640 540" overflow="visible" color="var(--color-text)">
+              <defs>
+                <symbol id="tp-bsm-detector" overflow="visible">
+                  <path d="M -22,0 A 22,22 0 0 1 22,0 Z" fill="currentColor"/>
+                </symbol>
+              </defs>
+              {/* Dotted photon-path diagonals through the apparatus. */}
+              <line x1="190" y1="50"  x2="450" y2="310" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="14,10"/>
+              <line x1="450" y1="310" x2="510" y2="370" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="14,10"/>
+              <line x1="450" y1="310" x2="390" y2="370" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="14,10"/>
+              <line x1="450" y1="50"  x2="190" y2="310" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="14,10"/>
+              <line x1="190" y1="310" x2="130" y2="370" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="14,10"/>
+              <line x1="190" y1="310" x2="250" y2="370" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="14,10"/>
+              {/* Central 50:50 beam splitter (vertical bar at inner x=320). */}
+              <rect x="312" y="140" width="16" height="80" rx="4" fill="currentColor"/>
+              {/* Two polarising beam splitters — diamonds with vertical coating. */}
+              <polygon points="190,270 230,310 190,350 150,310" fill="#d9eef9" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+              <line x1="190" y1="270" x2="190" y2="350" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              <polygon points="450,270 490,310 450,350 410,310" fill="#d9eef9" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+              <line x1="450" y1="270" x2="450" y2="350" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              {/* Four detectors — D-shapes flat side perpendicular to incoming beam. */}
+              <use href="#tp-bsm-detector" transform="translate(130,370) rotate(-135)"/>
+              <use href="#tp-bsm-detector" transform="translate(250,370) rotate(135)"/>
+              <use href="#tp-bsm-detector" transform="translate(390,370) rotate(-135)"/>
+              <use href="#tp-bsm-detector" transform="translate(510,370) rotate(135)"/>
+            </svg>
+
+            {/* Q and A photons — rendered AFTER the apparatus so they
+                travel above its beams and optical elements. */}
+            <g data-tp-c transform="translate(130 95)">
+              <circle data-tp-c-cloud r="20" fill="url(#tp-cloud-psi)"/>
+              <text y="-26" text-anchor="middle" class="tp-slot-label">Q</text>
+            </g>
+            <g data-tp-a transform="translate(210 95)">
+              <circle data-tp-a-cloud r="20" fill="url(#tp-cloud-std)"/>
+              <text y="-26" text-anchor="middle" class="tp-slot-label">A</text>
+            </g>
+
+            {/* Classical channel — left end centred under the central BS
+                bar (outer x≈170).  Label runs WELL below the dashed line
+                so the (a, b) bit pulse (which rides at y≈215 above the
+                line) doesn't visually cut the label as it slides past. */}
+            <line x1="170" y1="222" x2="560" y2="222"
+                  stroke="var(--color-text-soft)" stroke-width="1"
+                  stroke-dasharray="4,3" opacity="0.65"/>
+            <text x="365" y="252" text-anchor="middle" class="tp-channel">classical channel · 2 bits</text>
+
+            {/* Bit-pair (a, b) — rides along the classical channel */}
+            <g data-tp-bits opacity="0">
+              <text data-tp-bits-text x="170" y="215" text-anchor="middle" class="tp-bit">(0, 0)</text>
+            </g>
+
+            {/* Three stacked status lines centred in the gap between Alice
+                and Bob (x≈370), well clear of the apparatus on the left
+                and Bob on the right:
+                 line 1 — "Q and A jointly measured → |Ψ⁺⟩"  (fires at BSM)
+                 line 2 — "Q is teleported to Bob as P(Q)"   (same instant)
+                 line 3 — "so Bob applies P⁻¹ to recover |ψ⟩" (fires when
+                          the inverse chip flies up to cancel P).
+                All three persist through the hold phase so the reader
+                has time to follow the narrative end-to-end. */}
+            <text data-tp-measure x="370" y="114" text-anchor="middle"
+                  class="tp-statement" opacity="0"></text>
+            <text data-tp-statement x="370" y="134" text-anchor="middle"
+                  class="tp-statement" opacity="0"></text>
+            <text data-tp-correction x="370" y="154" text-anchor="middle"
+                  class="tp-statement" opacity="0"></text>
+
+            {/* Bob's lock — ring around B with a Pauli letter tag. Appears
+                the moment Alice's BSM fires. The ring is the visual cue
+                that B is in P|ψ⟩, not |ψ⟩. */}
+            <g data-tp-lock opacity="0">
+              <circle cx="560" cy="95" r="24" fill="none"
+                      stroke="var(--tp-purple)" stroke-width="2"
+                      stroke-dasharray="4,3"/>
+              <g data-tp-lock-tag transform="translate(560 138)">
+                <rect x="-20" y="-14" width="40" height="28" rx="4"
+                      fill="var(--color-bg)" stroke="var(--tp-purple)" stroke-width="1.5"/>
+                <text data-tp-lock-letter x="0" y="6" text-anchor="middle" class="tp-pauli-badge">P</text>
+              </g>
+            </g>
+
+            {/* Inverse chip that materializes near the arriving bits
+                and flies UP to cancel the Pauli badge on B. Same
+                dimensions as the badge above so they overlay exactly. */}
+            <g data-tp-inverse opacity="0">
+              <rect x="-20" y="-14" width="40" height="28" rx="4"
+                    fill="var(--color-bg)" stroke="var(--tp-purple)" stroke-width="1.5"/>
+              <text data-tp-inverse-text x="0" y="6" text-anchor="middle" class="tp-pauli-badge">P⁻¹</text>
+            </g>
+          </svg>
+            <aside class="tp-side-note">
+              <strong>Which outcomes are shown</strong>
+              <span>
+                Only the <Math tex="|\\Psi^\\pm\\rangle" /> outcomes are animated — the
+                two a linear-optics BSM can resolve, by firing two distinct detectors.
+                The <Math tex="|\\Phi^\\pm\\rangle" /> outcomes bunch both photons onto
+                one detector, are indistinguishable from each other, and in a real
+                linear-optics BSM are the "failed" branches that consume the Bell pair
+                without a usable teleport.
+              </span>
+            </aside>
+          </div>
+
+          <ol class="tp-step-list" data-tp-steps>
+            <li data-tp-step="1"><strong>1.</strong> Alice has Q; A and B are a shared Bell pair</li>
+            <li data-tp-step="2"><strong>2.</strong> Alice applies BSM on Q and A to get 2 classical bits (a, b); B becomes P|ψ⟩</li>
+            <li data-tp-step="3"><strong>3.</strong> Bits travel to Bob</li>
+            <li data-tp-step="4"><strong>4.</strong> Bob applies P⁻¹</li>
+            <li data-tp-step="5"><strong>5.</strong> B holds |ψ⟩</li>
+          </ol>
+
+          <figcaption>
+            <strong>Q</strong> (purple) is the qubit to teleport. <strong>A</strong> and
+            <strong>B</strong> (teal) are halves of a shared Bell pair, drawn connected
+            by the high-frequency wavy line. <strong>Q</strong> and <strong>A</strong>
+            travel through Alice's BSM apparatus and arrive at two detectors; the path
+            changes each cycle to match which pair of detectors fired. The two clouds
+            turn grey because the original states are gone the moment the measurement
+            begins. Two classical bits emerge on the channel below. At that same
+            instant <strong>B</strong> turns purple, marked with the Pauli <em>P</em>
+            the BSM outcome left on it — its state is now <Math tex="P(Q)" />.
+            When the bits arrive at Bob, the matching <Math tex="P^{-1}" /> chip rises
+            to meet that <em>P</em> badge and the two cancel. <strong>B</strong> now
+            holds <strong>Q</strong>'s state.
+          </figcaption>
+        </figure>
+
+        <Callout label="Why the naive approaches fail">
+          <ul>
+            <li>
+              <strong>Measure and send.</strong> Reading <Math tex="|\\psi\\rangle" /> in any
+              basis collapses it; the outcome reveals only one bit's worth of statistics, not
+              the continuous complex amplitudes <Math tex="\\alpha" /> and
+              <Math tex="\\beta" />. The qubit is left in a basis state and the information
+              needed to recreate <Math tex="|\\psi\\rangle" /> is gone.
+            </li>
+            <li>
+              <strong>Copy and ship.</strong> No-cloning forbids creating a second qubit in
+              the same unknown state.
+            </li>
+            <li>
+              <strong>Send the qubit physically.</strong> A photon carrying
+              <Math tex="|\\psi\\rangle" /> can travel through fibre, but no-cloning rules
+              out optical amplification — and at long distances loss compounds without an
+              amplification mechanism that preserves quantum state.
+            </li>
+          </ul>
+        </Callout>
+      </section>
+
+      <section id="theory" data-nav-section>
+        <h2>The theory</h2>
+        <p>
+          The starting resource is a Bell pair
+          <Math tex="|\\Phi^+\\rangle_{AB} = (|00\\rangle + |11\\rangle)/\\sqrt{2}" />
+          shared between Alice and Bob — Alice holds qubit <Math tex="A" />, Bob holds
+          qubit <Math tex="B" />. Alice additionally holds the qubit
+          <Math tex="Q" /> in the state <Math tex="|\\psi\\rangle" /> she wants to
+          teleport. The protocol then proceeds in four steps:
+        </p>
+
+        <ol class="tp-steps">
+          <li>
+            <strong>Initial joint state.</strong> The three qubits together are
+            <Math tex="|\\psi\\rangle_Q \\otimes |\\Phi^+\\rangle_{AB}" />. Re-expanding on
+            <Math tex="Q, A" /> in the Bell basis,
+            <Math display tex="|\\psi\\rangle_Q \\otimes |\\Phi^+\\rangle_{AB} = \\tfrac{1}{2}\\bigl( |\\Phi^+\\rangle_{QA} |\\psi\\rangle_B + |\\Phi^-\\rangle_{QA} Z|\\psi\\rangle_B + |\\Psi^+\\rangle_{QA} X|\\psi\\rangle_B + |\\Psi^-\\rangle_{QA} ZX|\\psi\\rangle_B \\bigr)." />
+            The state of the three qubits hasn't changed — this is the same vector written
+            in a different basis. But it now exposes that <Math tex="B" /> is correlated
+            with <Math tex="|\\psi\\rangle" /> up to a Pauli operator, indexed by which
+            Bell state <Math tex="Q, A" /> sit in.
+          </li>
+          <li>
+            <strong>Bell-state measurement at Alice.</strong> Alice measures
+            <Math tex="Q" /> and <Math tex="A" /> jointly in the Bell basis. The
+            measurement projects them onto one of the four Bell states with equal
+            probability ¼ and yields two classical bits
+            <Math tex="(a, b)" />.
+          </li>
+          <li>
+            <strong>Classical communication.</strong> Alice sends <Math tex="(a, b)" /> to
+            Bob over a classical channel. At this point Bob's qubit is in
+            <Math tex="P|\\psi\\rangle" /> — the right state up to a known Pauli operator
+            <Math tex="P \\in \\{I, X, Z, ZX\\}" />.
+          </li>
+          <li>
+            <strong>Pauli correction at Bob.</strong> Bob applies <Math tex="X^b Z^a" />,
+            which equals the inverse of <Math tex="P" />. His qubit is now in
+            <Math tex="|\\psi\\rangle" />.
+          </li>
+        </ol>
+
+        <p>
+          The bit pattern <Math tex="(a, b)" /> tells Bob which Bell state Alice's BSM
+          collapsed onto, and therefore which Pauli to apply:
+        </p>
+
+        <div class="tp-pauli-table-wrap">
+        <table class="tp-pauli-table">
+          <thead>
+            <tr><th>(a, b)</th><th>BSM outcome</th><th>State at Bob (<Math tex="P|\\psi\\rangle" />)</th><th>Bob applies <Math tex="P^{-1}" /></th></tr>
+          </thead>
+          <tbody>
+            <tr><td>(0, 0)</td><td><Math tex="|\\Phi^+\\rangle" /></td><td><Math tex="|\\psi\\rangle" /></td><td><Math tex="I^{-1} = I" /></td></tr>
+            <tr><td>(0, 1)</td><td><Math tex="|\\Psi^+\\rangle" /></td><td><Math tex="X|\\psi\\rangle" /></td><td><Math tex="X^{-1} = X" /></td></tr>
+            <tr><td>(1, 0)</td><td><Math tex="|\\Phi^-\\rangle" /></td><td><Math tex="Z|\\psi\\rangle" /></td><td><Math tex="Z^{-1} = Z" /></td></tr>
+            <tr><td>(1, 1)</td><td><Math tex="|\\Psi^-\\rangle" /></td><td><Math tex="ZX|\\psi\\rangle" /></td><td><Math tex="(ZX)^{-1} = XZ" /></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p class="tp-pauli-note">
+          <Math tex="I" />, <Math tex="X" />, <Math tex="Z" /> are each their own inverse
+          (<Math tex="X^2 = Z^2 = I" />); <Math tex="(ZX)^{-1} = X^{-1} Z^{-1} = XZ" />.
+        </p>
+
+        <Callout label="Does Bob already have |ψ⟩ after Alice's measurement?">
+          <p>
+            Not quite. The moment Alice's BSM fires, Bob's qubit is in
+            <Math tex="P|\\psi\\rangle" /> — one of <Math tex="|\\psi\\rangle" />,
+            <Math tex="X|\\psi\\rangle" />, <Math tex="Z|\\psi\\rangle" />, or
+            <Math tex="ZX|\\psi\\rangle" /> — and Bob doesn't yet know which. He cannot
+            distinguish these four states from local measurements alone (his density
+            matrix is <Math tex="\\tfrac{1}{2}\\mathbb{I}" /> regardless), so the qubit
+            carries no usable information until the two bits arrive and he can apply
+            <Math tex="P^{-1}" />. <em>Then</em> Bob holds <Math tex="|\\psi\\rangle" />.
+            Calling <Math tex="B" /> <q>the teleported qubit</q> before the correction is
+            a shorthand — the state of the qubit at that moment is
+            <Math tex="P|\\psi\\rangle" />, not <Math tex="|\\psi\\rangle" />.
+          </p>
+        </Callout>
+
+      </section>
+
+      <section id="circuit" data-nav-section>
+        <h2>Circuit diagram</h2>
+        <p>
+          As a quantum circuit, the protocol runs on three wires — Alice's input qubit
+          <Math tex="Q" />, Alice's half of the Bell pair <Math tex="A" />, and Bob's
+          half <Math tex="B" /> — with time flowing left to right. The three conceptual
+          stages are Bell-pair creation, the Bell-state measurement, and the Pauli
+          correction <SourceNote id="cacciapuoti-ieeetc-2020" />.
+        </p>
+
+        <figure class="tp-circuit">
+          <svg viewBox="0 0 760 280" role="img"
+               aria-label="Teleportation circuit: Bell-pair creation, Bell-state measurement, and Pauli correction">
+
+            {/* ─── Region labels (right side) ─────────────────── */}
+            <text x="730" y="74" class="tp-c-region">Alice</text>
+            <text x="730" y="134" class="tp-c-region">Alice</text>
+            <text x="730" y="194" class="tp-c-region">Bob</text>
+
+            {/* ─── Initial state labels (left) ─────────────────── */}
+            <text x="40" y="76" text-anchor="end" class="tp-c-state">|ψ⟩</text>
+            <text x="40" y="136" text-anchor="end" class="tp-c-state">|0⟩</text>
+            <text x="40" y="196" text-anchor="end" class="tp-c-state">|0⟩</text>
+
+            {/* ─── Quantum wires ───────────────────────────────── */}
+            <line x1="50" y1="70"  x2="720" y2="70"  stroke="var(--color-text)" stroke-width="1.2"/>
+            <line x1="50" y1="130" x2="720" y2="130" stroke="var(--color-text)" stroke-width="1.2"/>
+            <line x1="50" y1="190" x2="720" y2="190" stroke="var(--color-text)" stroke-width="1.2"/>
+
+            {/* ─── Block 1: Bell-pair creation ─────────────────── */}
+            <rect x="65" y="110" width="125" height="100" rx="4"
+                  fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <text x="127" y="100" text-anchor="middle" class="tp-c-block">Bell-pair |Φ⁺⟩ creation</text>
+
+            {/* H on Alice's |0⟩ (middle wire) */}
+            <rect x="85" y="120" width="22" height="20" rx="2"
+                  fill="var(--color-bg)" stroke="var(--color-text)" stroke-width="1.2"/>
+            <text x="96" y="135" text-anchor="middle" class="tp-c-gate">H</text>
+
+            {/* CNOT: control middle, target bottom */}
+            <line x1="155" y1="130" x2="155" y2="190" stroke="var(--color-text)" stroke-width="1.2"/>
+            <circle cx="155" cy="130" r="4" fill="var(--color-text)"/>
+            <circle cx="155" cy="190" r="9"
+                    fill="var(--color-bg)" stroke="var(--color-text)" stroke-width="1.2"/>
+            <line x1="146" y1="190" x2="164" y2="190" stroke="var(--color-text)" stroke-width="1.2"/>
+            <line x1="155" y1="181" x2="155" y2="199" stroke="var(--color-text)" stroke-width="1.2"/>
+
+            {/* ─── Block 2: Bell-state measurement (BSM) ──────── */}
+            <rect x="225" y="50" width="160" height="100" rx="4"
+                  fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <text x="305" y="42" text-anchor="middle" class="tp-c-block">Bell-state measurement</text>
+
+            {/* CNOT: control top, target middle */}
+            <line x1="245" y1="70" x2="245" y2="130" stroke="var(--color-text)" stroke-width="1.2"/>
+            <circle cx="245" cy="70" r="4" fill="var(--color-text)"/>
+            <circle cx="245" cy="130" r="9"
+                    fill="var(--color-bg)" stroke="var(--color-text)" stroke-width="1.2"/>
+            <line x1="236" y1="130" x2="254" y2="130" stroke="var(--color-text)" stroke-width="1.2"/>
+            <line x1="245" y1="121" x2="245" y2="139" stroke="var(--color-text)" stroke-width="1.2"/>
+
+            {/* H on top wire */}
+            <rect x="280" y="60" width="22" height="20" rx="2"
+                  fill="var(--color-bg)" stroke="var(--color-text)" stroke-width="1.2"/>
+            <text x="291" y="75" text-anchor="middle" class="tp-c-gate">H</text>
+
+            {/* Measurement on top */}
+            <rect x="335" y="60" width="32" height="20" rx="2"
+                  fill="var(--color-bg)" stroke="var(--color-text)" stroke-width="1.2"/>
+            <path d="M 343 78 A 8 8 0 0 1 359 78" fill="none" stroke="var(--color-text)" stroke-width="1"/>
+            <line x1="351" y1="78" x2="361" y2="64" stroke="var(--color-text)" stroke-width="1"/>
+
+            {/* Measurement on middle */}
+            <rect x="335" y="120" width="32" height="20" rx="2"
+                  fill="var(--color-bg)" stroke="var(--color-text)" stroke-width="1.2"/>
+            <path d="M 343 138 A 8 8 0 0 1 359 138" fill="none" stroke="var(--color-text)" stroke-width="1"/>
+            <line x1="351" y1="138" x2="361" y2="124" stroke="var(--color-text)" stroke-width="1"/>
+
+            {/* ─── Classical wires (double lines) ──────────────── */}
+            {/* Top measurement → Z gate (label "a") */}
+            <path d="M 367 68 H 638 V 184" fill="none" stroke="var(--color-text)" stroke-width="0.8"/>
+            <path d="M 367 72 H 642 V 184" fill="none" stroke="var(--color-text)" stroke-width="0.8"/>
+
+            {/* Middle measurement → X gate (label "b") */}
+            <path d="M 367 128 H 568 V 184" fill="none" stroke="var(--color-text)" stroke-width="0.8"/>
+            <path d="M 367 132 H 572 V 184" fill="none" stroke="var(--color-text)" stroke-width="0.8"/>
+
+            {/* Classical-bit labels on the wires */}
+            <text x="500" y="62" class="tp-c-bit">a</text>
+            <text x="465" y="122" class="tp-c-bit">b</text>
+
+            {/* ─── Block 3: Pauli correction ──────────────────── */}
+            <rect x="555" y="170" width="120" height="40" rx="4"
+                  fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <text x="615" y="227" text-anchor="middle" class="tp-c-block">Pauli correction</text>
+
+            {/* X^b */}
+            <rect x="565" y="180" width="28" height="20" rx="2"
+                  fill="var(--color-bg)" stroke="var(--color-text)" stroke-width="1.2"/>
+            <text x="579" y="195" text-anchor="middle" class="tp-c-gate">X<tspan baseline-shift="super" font-size="9">b</tspan></text>
+
+            {/* Z^a */}
+            <rect x="635" y="180" width="28" height="20" rx="2"
+                  fill="var(--color-bg)" stroke="var(--color-text)" stroke-width="1.2"/>
+            <text x="649" y="195" text-anchor="middle" class="tp-c-gate">Z<tspan baseline-shift="super" font-size="9">a</tspan></text>
+
+            {/* Final state label at right end of Bob's wire */}
+            <text x="710" y="186" text-anchor="end" class="tp-c-state">|ψ⟩</text>
+
+            {/* ─── Time arrow at bottom ───────────────────────── */}
+            <line x1="50" y1="252" x2="720" y2="252" stroke="var(--color-rule)" stroke-width="0.6"/>
+            <polygon points="720,252 714,249 714,255" fill="var(--color-rule)"/>
+            <text x="50" y="266" class="tp-c-time">time →</text>
+          </svg>
+          <figcaption>
+            <strong>Bell-pair creation:</strong> a Hadamard on Alice's
+            <Math tex="|0\\rangle" /> followed by a CNOT onto Bob's
+            <Math tex="|0\\rangle" /> produces the Bell pair
+            <Math tex="|\\Phi^+\\rangle_{AB}" />.
+            <strong>Bell-state measurement:</strong> a CNOT, a Hadamard, and two
+            single-qubit measurements project Alice's <Math tex="Q" /> and
+            <Math tex="A" /> jointly onto a Bell state, yielding two classical bits —
+            <em>a</em> from the <Math tex="|\\psi\\rangle" /> measurement, <em>b</em>
+            from the Bell-half measurement. Double lines are the classical wires
+            carrying those bits to Bob.
+            <strong>Pauli correction:</strong> Bob applies <Math tex="X^b" /> followed
+            by <Math tex="Z^a" /> to undo the Pauli operator the BSM outcome left on his
+            qubit, completing the transfer of <Math tex="|\\psi\\rangle" /> onto
+            <Math tex="B" />.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="math" data-nav-section>
+        <h2>No faster-than-light shortcut</h2>
+        <p>
+          The instant non-locality of entanglement was exactly what Einstein,
+          Podolsky and Rosen objected to in their 1935 paper — Einstein later
+          dismissed it as <q>spukhafte Fernwirkung</q>, <em>spooky action at a
+          distance</em>. Teleportation looks like a natural test case for that
+          worry: Alice's BSM instantaneously fixes Bob's qubit into
+          <Math tex="P|\\psi\\rangle" />. So why doesn't it let Alice signal
+          superluminally by choosing what to measure?
+        </p>
+        <p>
+          Before Alice's classical message arrives, Bob's qubit <Math tex="B" />
+          is in a uniform mixture of <Math tex="|\\psi\\rangle" />,
+          <Math tex="X|\\psi\\rangle" />, <Math tex="Z|\\psi\\rangle" />, and
+          <Math tex="ZX|\\psi\\rangle" /> — its local density matrix is
+          <Math tex="\\tfrac{1}{2}\\mathbb{I}" />, the maximally mixed state,
+          regardless of <Math tex="|\\psi\\rangle" />. Bob's local statistics are
+          independent of Alice's outcome, so he learns nothing about
+          <Math tex="|\\psi\\rangle" /> from his half alone. Only when he
+          receives the two bits and applies the matching correction does the
+          qubit become useful. Teleportation is therefore compatible with
+          relativity — no information crosses faster than the classical bits
+          do, and Einstein's worry survives as a piece of intuition about a
+          phenomenon that turns out to obey the speed limit after all.
+        </p>
+      </section>
+
+      <section id="ledger" data-nav-section>
+        <h2>Resources and limits</h2>
+        <p>
+          Each teleported qubit consumes a fixed budget:
+        </p>
+        <ul>
+          <li>
+            <strong>1 Bell pair</strong>, consumed in Alice's BSM. The Bell pair is the
+            quantum resource — getting it to both ends is the network's job
+            (covered in the distribution and links subjects).
+          </li>
+          <li>
+            <strong>2 classical bits</strong>, sent over a classical channel from Alice to
+            Bob. The classical message is what makes teleportation no faster than light.
+          </li>
+          <li>
+            <strong>The original <Math tex="|\\psi\\rangle" /> at Alice, gone.</strong>
+            Alice's BSM projects <Math tex="Q" /> and <Math tex="A" /> jointly onto a Bell
+            state, leaving no copy of <Math tex="|\\psi\\rangle" /> at Alice — consistent
+            with no-cloning. In photonic BSM the <Math tex="Q" /> and <Math tex="A" />
+            photons are absorbed at the detectors; in matter implementations (trapped ions,
+            NV centres) the qubits remain physically but are now in a known Bell state with
+            each other. Either way, exactly one copy of the state exists in the protocol at
+            any time <SourceNote id="wootters-nature-1982" />.
+          </li>
+        </ul>
+        <p>Two consequences follow from this resource ledger:</p>
+        <ul>
+          <li>
+            <strong>Teleportation inherits the Bell pair's fidelity.</strong> A noisy
+            pair gives Bob a noisy copy of <strong>Q</strong>'s state; the cleaner the
+            pair, the cleaner the teleported state. This is why purification exists —
+            to take noisy pairs and produce cleaner ones.
+          </li>
+          <li>
+            <strong>One Bell pair per qubit, no reuse.</strong> The protocol is one-shot:
+            each teleport consumes its Bell pair entirely. Teleporting many qubits
+            requires many Bell pairs, which is why entanglement-distribution rate
+            (Bell pairs per second) is the standard network rate metric.
+          </li>
+        </ul>
+      </section>
+
+      <section id="role" data-nav-section>
+        <h2>Network role</h2>
+        <p>
+          Teleportation sits at the boundary between the network and the application.
+          The network promises one thing: deliver Bell pairs at adequate rate, fidelity,
+          and reach. The application's "send a qubit" operation is implemented by
+          teleportation on top of that promise. Other applications — entanglement-based
+          QKD, blind quantum computing, distributed quantum computing — also consume
+          delivered Bell pairs; teleportation is the simplest case of using
+          one <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+        <p>
+          Two related primitives, covered in their own subjects, share teleportation's
+          BSM machinery:
+        </p>
+        <ul>
+          <li>
+            <strong>Entanglement swapping</strong> uses a BSM at a Bell-state analyser (BSA) to
+            extend a Bell pair across an extra hop, without any of the four end-to-end
+            qubits ever interacting. Memory-based repeaters chain swaps to span long
+            distances. <em>Covered in the</em> <strong>swapping</strong> <em>subject.</em>
+          </li>
+          <li>
+            <strong>Purification</strong> applies local CNOTs and measurements at both
+            ends of a noisy pair to trade two low-fidelity pairs for one higher-fidelity
+            pair. <em>Covered in the</em> <strong>purification</strong> <em>subject.</em>
+          </li>
+        </ul>
+      </section>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<script type="module" is:inline>
+  // Teleportation animation. Visual storyline:
+  //   1. Setup — Alice has Q (purple cloud = |ψ⟩) and A (standard
+  //      cloud, Bell half). Bob has B (standard cloud, Bell half).
+  //      Entangled-wave connects A and B.
+  //   2. BSM — Q and A travel along the apparatus beams (C through
+  //      the BS to the far-right detector; A symmetrically to the
+  //      far-left detector). Their clouds turn grey on entry — the
+  //      original states are gone once they touch the apparatus.
+  //      Bits (a, b) emerge from the apparatus. At the same instant,
+  //      B picks up a purple tint with a "P" badge — physically it's
+  //      now in P|ψ⟩, even though Bob doesn't know which P.
+  //   3. Classical send — (a, b) travels along the classical line.
+  //   4. Correction — bits arrive at Bob; the P badge drops, B turns
+  //      fully purple = |ψ⟩ on Bob.
+  //   5. Hold final state, reset.
+  const fig = document.querySelector("[data-tp]");
+  if (fig) {
+    const svg          = fig.querySelector("[data-tp-svg]");
+    const photonC      = svg.querySelector("[data-tp-c]");
+    const photonA      = svg.querySelector("[data-tp-a]");
+    const cCloud       = svg.querySelector("[data-tp-c-cloud]");
+    const aCloud       = svg.querySelector("[data-tp-a-cloud]");
+    const bCloud       = svg.querySelector("[data-tp-b-cloud]");
+    const bLabel       = svg.querySelector("[data-tp-b-label]");
+    const bellLine     = svg.querySelector("[data-tp-bellpair]");
+    const measureLine  = svg.querySelector("[data-tp-measure]");
+    const statement    = svg.querySelector("[data-tp-statement]");
+    const correction   = svg.querySelector("[data-tp-correction]");
+    const lock         = svg.querySelector("[data-tp-lock]");
+    const lockLetter   = svg.querySelector("[data-tp-lock-letter]");
+    const inverse      = svg.querySelector("[data-tp-inverse]");
+    const inverseText  = svg.querySelector("[data-tp-inverse-text]");
+    const bitsGroup    = svg.querySelector("[data-tp-bits]");
+    const bitsText     = svg.querySelector("[data-tp-bits-text]");
+    const stepEls      = Array.from(fig.querySelectorAll("[data-tp-step]"));
+
+    // Photon paths through the BSM apparatus. Starts coincide with
+    // the apparatus input ports (= cloud centres at y=95). The path
+    // is two legs: input → BS centre → one of four detectors. Which
+    // detector depends on the cycle's outcome (Ψ⁺ or Ψ⁻ only — see
+    // OUTCOMES and the figcaption note).
+    const C_HOME = { x: 130, y: 95 };
+    const A_HOME = { x: 210, y: 95 };
+    const B_HOME = { x: 560, y: 95 };
+    const BS_POS = { x: 170, y: 135 };       // central beam-splitter centre, outer coords
+    const DET = {
+      H1: { x: 111.5, y: 193.6 },           // far-left detector
+      V1: { x: 148.6, y: 193.6 },           // left-inner detector
+      V2: { x: 191.7, y: 193.6 },           // right-inner detector
+      H2: { x: 228.7, y: 193.6 },           // far-right detector
+    };
+    // Set per cycle by pickCycleParams() based on the outcome.
+    const C_END = { x: DET.H2.x, y: DET.H2.y };
+    const A_END = { x: DET.H1.x, y: DET.H1.y };
+    const LOCK_POS    = { x: 560, y: 138 };  // P-badge centre, not cloud centre
+    const BIT_X_START = 170;
+    const BIT_X_END   = LOCK_POS.x;          // aligned so the chip flies STRAIGHT UP
+
+    // High-frequency sinewave along the line from A's right edge to B's
+    // left edge. Rebuilt each frame while A is moving so the wave
+    // stretches and tilts with A.
+    function rebuildBellLine(ax, ay, bx, by) {
+      const dx = bx - ax, dy = by - ay;
+      const len = Math.hypot(dx, dy);
+      if (len < 1) { bellLine.setAttribute("d", ""); return; }
+      const nx = -dy / len, ny = dx / len;  // unit perpendicular
+      const wavelength = 14, amp = 5;
+      // Dense sampling (~2 px per segment) so the sine is rendered, not
+      // collapsed onto its zero-crossings.
+      const segments = Math.max(40, Math.round(len / 2));
+      let d = `M ${ax} ${ay}`;
+      for (let i = 1; i < segments; i++) {
+        const t = i / segments;
+        const baseX = ax + dx * t;
+        const baseY = ay + dy * t;
+        const phase = (t * len / wavelength) * 2 * Math.PI;
+        const off = Math.sin(phase) * amp;
+        d += ` L ${baseX + nx * off} ${baseY + ny * off}`;
+      }
+      d += ` L ${bx} ${by}`;
+      bellLine.setAttribute("d", d);
+    }
+    rebuildBellLine(A_HOME.x + 20, A_HOME.y, B_HOME.x - 22, B_HOME.y);
+
+    function setPos(g, x, y) { g.setAttribute("transform", `translate(${x} ${y})`); }
+
+    // Bell outcome (a,b) → state ket, Pauli operator. Matches the
+    // (a,b) → P table in the prose. Bob applies P⁻¹ which equals P
+    // for I, X, Z (self-inverse) and equals XZ for ZX (up to sign).
+    // `P` is the residual operator on Bob's qubit (state = P|ψ⟩);
+    // `inv` is what Bob actually applies, i.e. P⁻¹. For I/X/Z the
+    // Paulis are self-inverse so inv === P; for ZX, inv = XZ.
+    // We animate only the Ψ⁺ and Ψ⁻ outcomes — the two cases where the
+    // BSM produces two clicks at distinct detectors (the success cases
+    // of a linear-optics photonic BSM).  Φ⁺ and Φ⁻ bunch both photons
+    // at a single detector and are not resolvable here; see the
+    // figcaption.  Each Ψ outcome has two click variants — the photons
+    // are indistinguishable after the BS, so each variant is equally
+    // physical.  The cycle iterates through all four variants in order.
+    const OUTCOMES = [
+      { a: 0, b: 1, ket: "|Ψ⁺⟩", P: "X",  inv: "X",  clicks: ["H1", "V1"] },
+      { a: 0, b: 1, ket: "|Ψ⁺⟩", P: "X",  inv: "X",  clicks: ["H2", "V2"] },
+      { a: 1, b: 1, ket: "|Ψ⁻⟩", P: "ZX", inv: "XZ", clicks: ["H1", "V2"] },
+      { a: 1, b: 1, ket: "|Ψ⁻⟩", P: "ZX", inv: "XZ", clicks: ["V1", "H2"] },
+    ];
+    let outcomeIndex = -1;
+
+    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function setOpacity(el, op) { el.setAttribute("opacity", String(op)); }
+    function highlightStep(n) {
+      for (const el of stepEls) {
+        el.classList.toggle("tp-step--active", Number(el.dataset.tpStep) === n);
+      }
+    }
+    function setBitsX(x) { bitsText.setAttribute("x", String(x)); }
+
+    if (reducedMotion) {
+      const o = OUTCOMES[1];
+      bitsText.textContent  = `(${o.a}, ${o.b})`;
+      setOpacity(photonC, 0);
+      setOpacity(photonA, 0);
+      setOpacity(bellLine, 0.15);
+      setOpacity(bitsGroup, 0);
+      setOpacity(lock, 0);
+      bCloud.setAttribute("fill", "url(#tp-cloud-psi)");
+      if (bLabel) bLabel.textContent = "Q";
+      highlightStep(5);
+    } else {
+      const T_SETUP   = 1000;
+      const T_DROP    = 1100;  // Q and A traverse the BSM apparatus
+      const T_MEASURE = 1100;  // bits emerge, lock appears on B
+      const T_SEND    = 1700;  // bits slide along classical channel
+      const T_UNLOCK  = 1100;  // inverse tag flies up to lock, both vanish
+      const T_HOLD    = 2400;  // long enough to read the 3-line narrative
+      const T_PAUSE   = 400;
+      const T_TOTAL   = T_SETUP + T_DROP + T_MEASURE + T_SEND + T_UNLOCK + T_HOLD + T_PAUSE;
+
+      let cycleStart = 0;
+      let outcome = OUTCOMES[0];
+      function ease(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      }
+      // Two-leg interpolation: first 40 % runs start → mid, remaining
+      // 60 % runs mid → end.  Photons take an explicit kink at the BS
+      // for outcomes that send them to the opposite side of the apparatus.
+      function twoLeg(start, mid, end, t) {
+        if (t < 0.4) {
+          const k = t / 0.4;
+          return { x: start.x + (mid.x - start.x) * k, y: start.y + (mid.y - start.y) * k };
+        }
+        const k = (t - 0.4) / 0.6;
+        return { x: mid.x + (end.x - mid.x) * k, y: mid.y + (end.y - mid.y) * k };
+      }
+
+      function pickCycleParams() {
+        // Cycle through all four Ψ-outcome variants deterministically.
+        outcomeIndex = (outcomeIndex + 1) % OUTCOMES.length;
+        outcome = OUTCOMES[outcomeIndex];
+        bitsText.textContent  = `(${outcome.a}, ${outcome.b})`;
+        lockLetter.textContent = outcome.P;
+        inverseText.textContent = outcome.inv;
+        measureLine.textContent = `Q and A jointly measured`;
+        statement.textContent = `Q is teleported to Bob as ${outcome.P}(Q)`;
+        correction.textContent = `so Bob applies ${outcome.inv} to recover Q`;
+        bCloud.setAttribute("fill", "url(#tp-cloud-std)");
+        cCloud.setAttribute("fill", "url(#tp-cloud-psi)");
+        aCloud.setAttribute("fill", "url(#tp-cloud-std)");
+        // Q goes to the first detector in the click pair, A to the second.
+        // (Photons are indistinguishable after the BS; this fixes a
+        // labelling so each cycle looks deterministic.)
+        const cClick = outcome.clicks[0];
+        const aClick = outcome.clicks[1];
+        C_END.x = DET[cClick].x;  C_END.y = DET[cClick].y;
+        A_END.x = DET[aClick].x;  A_END.y = DET[aClick].y;
+        setPos(photonC, C_HOME.x, C_HOME.y);
+        setPos(photonA, A_HOME.x, A_HOME.y);
+      }
+
+      function frame(now) {
+        const elapsed = now - cycleStart;
+        let t0 = T_SETUP;
+
+        if (elapsed < t0) {
+          // Phase 1 — setup. Everything in starting positions.
+          highlightStep(1);
+          setOpacity(photonC, 1);
+          setOpacity(photonA, 1);
+          setPos(photonC, C_HOME.x, C_HOME.y);
+          setPos(photonA, A_HOME.x, A_HOME.y);
+          cCloud.setAttribute("fill", "url(#tp-cloud-psi)");
+          aCloud.setAttribute("fill", "url(#tp-cloud-std)");
+          rebuildBellLine(A_HOME.x + 20, A_HOME.y, B_HOME.x - 22, B_HOME.y);
+          setOpacity(bellLine, 0.9);
+          setOpacity(bitsGroup, 0);
+          setOpacity(lock, 0);
+          setOpacity(inverse, 0);
+          setOpacity(measureLine, 0);
+          setOpacity(statement, 0);
+          setOpacity(correction, 0);
+          bCloud.setAttribute("fill", "url(#tp-cloud-std)");
+          if (bLabel) bLabel.textContent = "B";
+        } else if (elapsed < (t0 += T_DROP)) {
+          // Phase 2a — Q and A traverse the BSM apparatus in two legs:
+          // input port → BS centre, then BS → their assigned detector.
+          // Which detectors fire is set by the cycle's outcome, so the
+          // photon paths change from cycle to cycle.  Clouds turn grey
+          // on entry: the original states are gone the moment they
+          // touch the apparatus.
+          highlightStep(2);
+          const t = (elapsed - (t0 - T_DROP)) / T_DROP;
+          const e = ease(t);
+          // Two legs: first 40 % of the eased timeline takes the photon
+          // from its input port to the BS centre, remaining 60 % from
+          // BS to the assigned detector.
+          const cPos = twoLeg(C_HOME, BS_POS, C_END, e);
+          const aPos = twoLeg(A_HOME, BS_POS, A_END, e);
+          setPos(photonC, cPos.x, cPos.y);
+          setPos(photonA, aPos.x, aPos.y);
+          // First ~20 % of the traversal: fade the clouds from their
+          // original colours to grey.
+          if (e < 0.2) {
+            const k = e / 0.2;
+            if (k > 0.5) {
+              cCloud.setAttribute("fill", "url(#tp-cloud-spent)");
+              aCloud.setAttribute("fill", "url(#tp-cloud-spent)");
+            }
+          } else {
+            cCloud.setAttribute("fill", "url(#tp-cloud-spent)");
+            aCloud.setAttribute("fill", "url(#tp-cloud-spent)");
+          }
+          // Bell pair line stays anchored at the A↔B start positions
+          // (don't rebuild) and simply fades — moving photons no longer
+          // drag the wave across the figure and overlay the captions.
+          setOpacity(bellLine, Math.max(0, 0.9 * (1 - e * 1.4)));
+          // "Q and A jointly measured → |Ψ±⟩" fades in as the photons
+          // start moving — the BSM is happening now, not after they
+          // land at the detectors.
+          setOpacity(measureLine, Math.min(1, e * 2));
+        } else if (elapsed < (t0 += T_MEASURE)) {
+          // Phase 2b — measurement. Photons fade out at the detectors,
+          // bits emerge under the apparatus, B picks up the Pauli badge,
+          // the statement "Q is teleported to Bob as P(Q)" fades in.
+          highlightStep(2);
+          const t = (elapsed - (t0 - T_MEASURE)) / T_MEASURE;
+          const e = ease(t);
+          setOpacity(photonC, Math.max(0, 1 - e * 2));
+          setOpacity(photonA, Math.max(0, 1 - e * 2));
+          setOpacity(bellLine, 0);
+          setOpacity(bitsGroup, Math.max(0, (e - 0.3) * 2));
+          setBitsX(BIT_X_START);
+          // B turns purple, Pauli badge appears, and the label flips
+          // from "B" to the explicit Pauli-twisted state P(Q) as soon
+          // as the BSM fires — B is no longer in its original state.
+          bCloud.setAttribute("fill", "url(#tp-cloud-psi)");
+          if (bLabel) bLabel.textContent = `${outcome.P}(Q)`;
+          setOpacity(lock, Math.min(1, e * 2.5));
+          setOpacity(measureLine, 1);            // already faded in during phase 2a
+          setOpacity(statement, Math.min(1, e * 2));
+        } else if (elapsed < (t0 += T_SEND)) {
+          // Phase 3 — bits slide right along classical channel.
+          highlightStep(3);
+          const t = (elapsed - (t0 - T_SEND)) / T_SEND;
+          setOpacity(photonC, 0);
+          setOpacity(photonA, 0);
+          setOpacity(bitsGroup, 1);
+          setBitsX(BIT_X_START + (BIT_X_END - BIT_X_START) * t);
+          setOpacity(lock, 1);
+          setOpacity(inverse, 0);
+          setOpacity(measureLine, 1);
+          setOpacity(statement, 1);
+        } else if (elapsed < (t0 += T_UNLOCK)) {
+          // Phase 4 — bits arrive; an inverse tag materialises at the
+          // bit position and flies UP to the lock; both vanish on contact.
+          highlightStep(4);
+          const t = (elapsed - (t0 - T_UNLOCK)) / T_UNLOCK;
+          const e = ease(t);
+          setBitsX(BIT_X_END);
+          // Inverse appears at the bit position, flies up to the lock.
+          const ix = BIT_X_END;
+          const iy_start = 222;  // bits row (now lifted up under the BSM)
+          const iy_end   = LOCK_POS.y;  // lock centre
+          const ix_end   = LOCK_POS.x;
+          const ix_now   = ix + (ix_end - ix) * e;
+          const iy_now   = iy_start + (iy_end - iy_start) * e;
+          setPos(inverse, ix_now, iy_now);
+          // The "so Bob applies P⁻¹" line fades in as the inverse chip
+          // takes off — same time the reader needs the prompt.
+          setOpacity(correction, Math.min(1, e * 2));
+          // Inverse visible during the flight; chip and lock fade
+          // together once the chip reaches the badge (e ≈ 0.85).  The
+          // three narrative lines stay up — they describe what just
+          // happened, and need the hold phase to be readable.
+          const fadeT = Math.max(0, (e - 0.85) / 0.15);
+          setOpacity(inverse, 1 - fadeT);
+          setOpacity(lock,    1 - fadeT);
+          // Inverse chip and lock vanish together — at the midpoint of
+          // that fade B has effectively absorbed P⁻¹ and now holds Q.
+          if (bLabel && fadeT > 0.5) bLabel.textContent = "Q";
+          setOpacity(measureLine, 1);
+          setOpacity(statement, 1);
+          // Bits dissolve as they're "consumed".
+          setOpacity(bitsGroup, Math.max(0, 1 - e * 1.5));
+        } else if (elapsed < T_TOTAL - T_PAUSE) {
+          // Phase 5 — hold.  B is purple, lock and bits gone; the three
+          // narrative lines stay visible for the entire hold so the
+          // reader has time to read them before the cycle resets.
+          highlightStep(5);
+          setOpacity(bitsGroup, 0);
+          setOpacity(lock, 0);
+          setOpacity(inverse, 0);
+          setOpacity(measureLine, 1);
+          setOpacity(statement, 1);
+          setOpacity(correction, 1);
+          if (bLabel) bLabel.textContent = "Q";
+        } else if (elapsed < T_TOTAL) {
+          // Brief fade-out tail so the lines don't blink off on reset.
+          const t = (elapsed - (T_TOTAL - T_PAUSE)) / T_PAUSE;
+          const a = Math.max(0, 1 - t);
+          setOpacity(measureLine, a);
+          setOpacity(statement, a);
+          setOpacity(correction, a);
+        } else if (elapsed >= T_TOTAL) {
+          cycleStart = now;
+          pickCycleParams();
+        }
+        requestAnimationFrame(frame);
+      }
+
+      pickCycleParams();
+      cycleStart = performance.now();
+      requestAnimationFrame(frame);
+    }
+  }
+</script>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-4);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .hero h1 { margin: 0; }
+  .hero p { margin: 0; }
+
+  section { display: grid; gap: var(--space-3); }
+
+  ol.tp-steps {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+  ol.tp-steps li { line-height: var(--leading-snug); }
+
+  .tp-pauli-table-wrap {
+    inline-size: max-content;
+    max-inline-size: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+    margin: 0 auto var(--space-3);
+  }
+  .tp-pauli-note {
+    text-align: center;
+    font-size: var(--text-sm);
+    color: var(--color-text-mute);
+    margin-block-end: var(--space-3);
+  }
+  .tp-pauli-table {
+    inline-size: auto;
+    border-collapse: collapse;
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+  }
+  .tp-pauli-table th,
+  .tp-pauli-table td {
+    text-align: left;
+    padding: 6px 20px;
+    border-bottom: 1px solid var(--color-rule);
+    color: var(--color-text);
+    white-space: nowrap;
+  }
+  .tp-pauli-table thead th {
+    font-size: var(--text-xs);
+    letter-spacing: 0.04em;
+    color: var(--color-text-mute);
+    font-weight: 600;
+  }
+  ul {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+  li { line-height: var(--leading-snug); }
+
+  /* Teleportation figure container.
+     Page-local palette overrides — the design-system teal and magenta
+     are too close in luminance for the cloud-colour story to read.
+     Use vivid cyan-teal and purple, scoped to this animation. */
+  .tp {
+    --tp-teal: #1aa0a8;
+    --tp-purple: #9333ea;
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .tp svg {
+    inline-size: 100%;
+    block-size: auto;
+    display: block;
+  }
+  /* Two-column layout: SVG keeps its natural 720:270 aspect ratio and
+     fills only the width it needs; the heads-up note sits immediately
+     beside it. `align-items: start` pins both to the top edge. The SVG's
+     intrinsic width (capped at 100%) means it consumes whatever width is
+     left after the 180px note column. */
+  .tp-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: var(--space-2);
+    align-items: start;
+  }
+  .tp .tp-stage svg {
+    inline-size: 100%;
+    block-size: auto;
+  }
+  .tp-side-note {
+    align-self: start;
+    background: var(--color-surface-2);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-2) var(--space-3);
+    display: grid;
+    gap: 4px;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-mute);
+  }
+  .tp-side-note strong {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text);
+  }
+  @media (max-width: 720px) {
+    .tp-stage { grid-template-columns: 1fr; }
+  }
+  .tp figcaption {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-mute);
+  }
+
+  /* Step list — each step lights up as the animation reaches it.
+     Default: muted text. Active: full text colour + accent rule. */
+  ol.tp-step-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 4px;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+  }
+  ol.tp-step-list li {
+    padding: var(--space-1) var(--space-2);
+    border-inline-start: 3px solid transparent;
+    color: var(--color-text-mute);
+    transition: color 200ms ease, border-color 200ms ease, background 200ms ease;
+  }
+  ol.tp-step-list li.tp-step--active {
+    color: var(--color-text);
+    border-inline-start-color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+  }
+
+  /* :global() because Astro's scoped CSS doesn't propagate to
+     <text> children inside SVG markup. */
+  :global(.tp-label) {
+    font-size: 17px;
+    font-weight: 700;
+    fill: var(--color-text);
+  }
+  :global(.tp-channel) {
+    font-size: 13px;
+    fill: var(--color-text-mute);
+    font-style: italic;
+  }
+  :global(.tp-slot-label) {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    fill: var(--color-text);
+  }
+  :global(.tp-bell-mark) {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 700;
+    fill: var(--color-text-mute);
+  }
+  :global(.tp-action-label) {
+    font-size: 14px;
+    font-weight: 700;
+    fill: var(--color-accent);
+    letter-spacing: 0.05em;
+  }
+  :global(.tp-bit) {
+    font-family: var(--font-mono);
+    font-size: 17px;
+    font-weight: 700;
+    fill: var(--color-text);
+  }
+  :global(.tp-statement) {
+    font-size: 17px;
+    font-weight: 600;
+    fill: var(--tp-purple);
+    font-style: italic;
+  }
+  :global(.tp-pauli-badge) {
+    font-family: "KaTeX_Math", "Cambria Math", "Times New Roman", serif;
+    font-style: italic;
+    font-size: 22px;
+    font-weight: 500;
+    fill: var(--tp-purple);
+  }
+
+  /* High-frequency wave path — no dash-flow needed; the wave shape
+     itself reads as "entangled". */
+
+  /* Circuit-diagram figure (static SVG) — separate from the
+     animated protocol figure above. Reuses the figure container
+     styling but the SVG is wider/shorter. */
+  .tp-circuit {
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .tp-circuit svg {
+    inline-size: 100%;
+    block-size: auto;
+    display: block;
+  }
+  .tp-circuit figcaption {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-mute);
+  }
+
+  /* Circuit SVG text classes (:global because Astro scoped CSS
+     doesn't propagate to <text> children in inline SVG). */
+  :global(.tp-c-state) {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    fill: var(--color-text);
+  }
+  :global(.tp-c-region) {
+    font-size: 11px;
+    font-style: italic;
+    fill: var(--color-text-mute);
+  }
+  :global(.tp-c-block) {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    fill: var(--color-accent);
+  }
+  :global(.tp-c-gate) {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    fill: var(--color-text);
+  }
+  :global(.tp-c-bit) {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 600;
+    fill: var(--color-accent);
+  }
+  :global(.tp-c-time) {
+    font-size: 10px;
+    fill: var(--color-text-mute);
+    font-style: italic;
+  }
+</style>

@@ -1,0 +1,1155 @@
+---
+/**
+ * /companies — Vendor landscape (landing page)
+ *
+ * Tier E · Applications & market.
+ *
+ * The landing reads every YAML in qni/companies/ via the companies
+ * loader and groups vendors by primary category. The textual platform
+ * lists below (transmon / trapped-ion / etc.) survive as a static
+ * snapshot for vendors that don't have a dossier yet — once a dossier
+ * lands in qni/companies/<slug>.yaml, the vendor's name on this
+ * landing page can be promoted to a link to its sub-page.
+ *
+ * Citations:
+ *   - ezratty-uqt-2025-p2 — survey-level coverage of the vendor landscape.
+ *   - meddeb-comnet-2025 — per-platform R&D status.
+ *   - kumar-ijndc-2025 — survey-level positioning.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SourceNote from "../components/SourceNote.astro";
+import CompanyLogo from "../components/CompanyLogo.astro";
+import {
+  COMPANIES,
+  CATEGORY_LABEL,
+  CATEGORY_ORDER,
+  companiesByPrimary,
+  type Company,
+} from "../lib/companies.ts";
+import { url } from "../lib/url";
+
+const sections = [
+  { id: "overview",   label: "Overview" },
+  { id: "dossiers",   label: "Vendor dossiers" },
+  { id: "systems",    label: "QC systems and roadmaps" },
+  { id: "notes",      label: "Notes on this page" },
+];
+
+// Group dossiers by primary category, in the canonical CATEGORY_ORDER.
+const grouped: { category: typeof CATEGORY_ORDER[number]; companies: Company[] }[] =
+  CATEGORY_ORDER
+    .map((c) => ({ category: c, companies: companiesByPrimary(c) }))
+    .filter((g) => g.companies.length > 0);
+
+const haveDossiers = COMPANIES.length > 0;
+
+// Chip counts: how many dossiers carry each category in their `categories`
+// list (not just as the primary one). A company tagged [memory, network]
+// counts under both 'memory' and 'network', which matches the chip-filter
+// semantics — clicking the chip should show every card with that category,
+// not only those where it's primary.
+const dossierCategoryCounts: Partial<Record<typeof CATEGORY_ORDER[number], number>> = {};
+for (const c of COMPANIES) {
+  for (const cat of c.categories) {
+    dossierCategoryCounts[cat] = (dossierCategoryCounts[cat] ?? 0) + 1;
+  }
+}
+
+// Country chips: extract the country (last comma-separated segment of `hq`)
+// and count dossiers per country, normalising common aliases.
+function extractCountry(hq: string | undefined | null): string {
+  if (!hq) return "Unknown";
+  const parts = hq.split(",").map((s) => s.trim()).filter(Boolean);
+  if (parts.length === 0) return "Unknown";
+  // Strip trailing parentheticals from the last segment — a dossier
+  // like "Shanghai, China (China (Shanghai) Pilot Free Trade Zone)"
+  // would otherwise land in a singleton bucket because the whole
+  // parenthesised qualifier becomes the "country" string. Apply
+  // before the alias lookup so the canonical form is what gets
+  // normalised.
+  let last = parts[parts.length - 1].replace(/\s*\(.*\)\s*$/, "").trim();
+  // Normalise common variants.
+  const aliases: Record<string, string> = {
+    "US": "USA",
+    "U.S.": "USA",
+    "United States": "USA",
+    "U.S.A.": "USA",
+    "UK": "UK",
+    "United Kingdom": "UK",
+    "PRC": "China",
+    "People's Republic of China": "China",
+  };
+  return aliases[last] ?? last;
+}
+// Per-company list of countries — primary HQ + every additional
+// significant facility. A vendor with a manufacturing plant abroad
+// (e.g., PsiQuantum's Brisbane fab) shows up under USA AND Australia.
+function companyCountries(c: Company): string[] {
+  const out = new Set<string>();
+  out.add(extractCountry(c.hq));
+  for (const loc of (c.additional_locations ?? [])) {
+    out.add(extractCountry(loc));
+  }
+  return Array.from(out);
+}
+
+const countryCounts: Record<string, number> = {};
+for (const c of COMPANIES) {
+  for (const country of companyCountries(c)) {
+    countryCounts[country] = (countryCounts[country] ?? 0) + 1;
+  }
+}
+// Sort countries by count desc, then alphabetically for ties.
+const COUNTRY_ORDER: string[] = Object.keys(countryCounts).sort((a, b) => {
+  const d = (countryCounts[b] ?? 0) - (countryCounts[a] ?? 0);
+  return d !== 0 ? d : a.localeCompare(b);
+});
+
+// Map country name → ISO 3166-1 alpha-2 code, used to pick the SVG flag in
+// public/flags/<code>.svg. SVGs (not unicode flag emoji) so the flags render
+// identically on every platform — Windows browsers don't support regional-
+// indicator flag emoji and degrade them to the bare "CN" / "JP" code. Extend
+// as new dossier HQs land; the helper falls back to a generic flag glyph.
+const COUNTRY_ISO: Record<string, string> = {
+  USA: "us",
+  UK: "gb",
+  "United Kingdom": "gb",
+  Germany: "de",
+  France: "fr",
+  Netherlands: "nl",
+  Switzerland: "ch",
+  Canada: "ca",
+  Japan: "jp",
+  Singapore: "sg",
+  Israel: "il",
+  Luxembourg: "lu",
+  China: "cn",
+  Austria: "at",
+  Finland: "fi",
+  Australia: "au",
+  Spain: "es",
+  Denmark: "dk",
+  Italy: "it",
+  Sweden: "se",
+  "South Korea": "kr",
+  India: "in",
+  Ireland: "ie",
+};
+const flagSrc = (c: string): string | null => {
+  const iso = COUNTRY_ISO[c];
+  return iso ? url(`/flags/${iso}.svg`) : null;
+};
+---
+
+<Infographic
+  title="Companies — vendor landscape"
+  description="A growing index of vendors building quantum-network hardware and applications. Each tracked vendor has a deep-dive sub-page with milestones, roadmap, and capability metrics."
+  references={[
+    "ezratty-uqt-2025-p2",
+    "kumar-ijndc-2025",
+    "meddeb-comnet-2025",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="companies" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>Companies — vendor landscape</h1>
+        <p>
+          A quantum-networking workspace that doesn't track vendors loses touch with what
+          can actually be procured. This page has two layers: a deep-dive dossier per
+          vendor — milestones, roadmap, capability metrics, all cited to primary sources
+          — and a static landscape snapshot for vendors where the dossier hasn't been
+          written yet <SourceNote id="ezratty-uqt-2025-p2" /><SourceNote id="meddeb-comnet-2025" />.
+        </p>
+        <p>
+          Vendors split naturally into three buckets: <strong>computers</strong> (build
+          quantum processors), <strong>networking &amp; QKD</strong> (build the network
+          fabric or the QKD endpoints), and <strong>components</strong> (build the
+          memories, sources, and other infrastructure that the other two consume).
+        </p>
+      </header>
+
+      <section id="dossiers" data-nav-section>
+        <h2>Vendor dossiers</h2>
+        {haveDossiers ? (
+          <p>
+            Each dossier below links to a per-vendor page with milestones, roadmap, and
+            modality-specific capability details. Compiled from primary sources (papers,
+            vendor technology pages); see each page for source links. Use the search
+            box and category chips to narrow the grid.
+          </p>
+        ) : (
+          <p class="empty">No dossiers compiled yet.</p>
+        )}
+
+        {haveDossiers && (
+          <div class="filter-bar" id="co-filter-bar">
+            <div class="filter-top">
+              <input type="search" id="co-search" placeholder="Search name, positioning, people, flagship, location…" class="co-search" />
+              <button id="co-reset" class="co-reset" type="button">Reset</button>
+            </div>
+            <div class="filter-cols">
+              <div class="filter-col">
+                <span class="filter-row-label">Category</span>
+                <div class="filter-chips" data-filter-group="category">
+                  {CATEGORY_ORDER.filter((c) => (dossierCategoryCounts[c] ?? 0) > 0).map((c) => (
+                    <button class={`chip cat-pill cat-${c}`} data-filter-value={c} aria-pressed="false" type="button">
+                      {CATEGORY_LABEL[c]}
+                      <span class="chip-count">{dossierCategoryCounts[c]}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div class="filter-col">
+                <span class="filter-row-label">Country</span>
+                <div class="filter-chips" data-filter-group="country">
+                  {COUNTRY_ORDER.map((country) => (
+                    <button class="chip country-chip" data-filter-value={country} aria-pressed="false" type="button">
+                      {flagSrc(country)
+                        ? <img class="country-flag" src={flagSrc(country)} alt="" width="20" height="15" loading="lazy" decoding="async" />
+                        : <span class="country-flag country-flag--none" aria-hidden="true">⚐</span>}
+                      <span class="country-name">{country}</span>
+                      <span class="chip-count">{countryCounts[country]}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div id="co-dossiers">
+          {grouped.map((group) => (
+            <div class="dossier-group" data-group-cat={group.category}>
+              <h3 class="dossier-group-title">{CATEGORY_LABEL[group.category]}</h3>
+              <ul class="dossier-grid">
+                {group.companies.map((c) => (
+                  <li
+                    class="dossier-card"
+                    data-categories={c.categories.join(" ")}
+                    data-country={companyCountries(c).join(" ")}
+                    data-search={[
+                      c.name,
+                      c.positioning ?? "",
+                      c.hq ?? "",
+                      (c.additional_locations ?? []).join(" "),
+                      c.categories.map((cc) => CATEGORY_LABEL[cc]).join(" "),
+                      (c.key_personnel ?? []).map((p) => `${p.name} ${p.role}`).join(" "),
+                      c.current_flagship ? `${c.current_flagship.name} ${c.current_flagship.generation ?? ""}` : "",
+                    ].join(" ").toLowerCase()}
+                  >
+                    <a href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/companies/${c.slug}`}>
+                      <div class="dossier-head">
+                        <div class="dossier-name">{c.name}</div>
+                        <CompanyLogo name={c.name} slug={c.slug} height={24} />
+                      </div>
+                      <div class="dossier-positioning">{c.positioning}</div>
+                      <div class="dossier-cats">
+                        {c.categories.map((cc) => (
+                          <span class={`cat-pill cat-${cc}`}>{CATEGORY_LABEL[cc]}</span>
+                        ))}
+                      </div>
+                      <div class="dossier-meta">
+                        <span class="dossier-hq">{c.hq}</span>
+                        {(c.additional_locations ?? []).map((loc) => (
+                          <span class="dossier-hq dossier-hq--alt">{loc}</span>
+                        ))}
+                      </div>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <p id="co-empty" class="co-empty" hidden>No dossiers match the current filters.</p>
+      </section>
+
+      <section id="systems" data-nav-section>
+        <h2>QC systems and roadmaps</h2>
+        <p>
+          A snapshot of what's actually shipping today and what the leading vendors
+          have committed to publicly. Logical-qubit numbers are 0 for NISQ machines;
+          positive integers reflect publicly-demonstrated error-corrected logical
+          qubits from a vendor announcement or a peer-reviewed paper. Roadmap rows
+          carry the vendor's stated target year — these slip routinely, so treat
+          them as direction rather than schedule.
+        </p>
+
+        <h3>Currently shipping or publicly demonstrated</h3>
+        <div class="qb-machines-wrap">
+        <table class="qb-machines" data-sortable>
+          <thead>
+            <tr>
+              <th scope="col">Vendor</th>
+              <th scope="col">Machine</th>
+              <th scope="col">Year</th>
+              <th scope="col">Physical</th>
+              <th scope="col">Logical</th>
+              <th scope="col">Modality</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">QuEra</th>
+              <td>Aquila <a class="qb-src" href="https://aws.amazon.com/blogs/quantum-computing/amazon-braket-launches-aquila-the-first-neutral-atom-quantum-processor-from-quera-computing/" target="_blank" rel="noopener" aria-label="Primary source: AWS announcement, Nov 2022" title="AWS announcement, Nov 2022">ⓘ</a></td>
+              <td data-sort="2022">2022</td>
+              <td data-sort="256">256</td>
+              <td data-sort="0">0</td>
+              <td>neutral-atom (analog)</td>
+            </tr>
+            <tr>
+              <th scope="row">Atom Computing</th>
+              <td>Phoenix <a class="qb-src" href="https://www.hpcwire.com/2023/10/24/atom-computing-wins-the-race-to-1000-qubits/" target="_blank" rel="noopener" aria-label="Primary source: HPCwire, Oct 2023" title="HPCwire, Oct 2023">ⓘ</a></td>
+              <td data-sort="2023">2023</td>
+              <td data-sort="1180">1180</td>
+              <td data-sort="0">0</td>
+              <td>neutral-atom</td>
+            </tr>
+            <tr>
+              <th scope="row">IonQ</th>
+              <td>Forte Enterprise <a class="qb-src" href="https://investors.ionq.com/news/news-details/2024/IonQ-Unveils-Its-First-Quantum-Computer-in-Europe-Online-Now-at-a-Record-AQ36/default.aspx" target="_blank" rel="noopener" aria-label="Primary source: IonQ investor release, Dec 2024" title="IonQ investor release, Dec 2024">ⓘ</a></td>
+              <td data-sort="2024">2024</td>
+              <td data-sort="36">36</td>
+              <td data-sort="0">0</td>
+              <td>trapped-ion</td>
+            </tr>
+            <tr>
+              <th scope="row">Quantinuum</th>
+              <td>H2 <a class="qb-src" href="https://www.quantinuum.com/press-releases/quantinuum-launches-industry-first-trapped-ion-56-qubit-quantum-computer-that-challenges-the-worlds-best-supercomputers" target="_blank" rel="noopener" aria-label="Primary source: Quantinuum press release, Jun 2024" title="Quantinuum press release, Jun 2024">ⓘ</a></td>
+              <td data-sort="2024">2024</td>
+              <td data-sort="56">56</td>
+              <td data-sort="0">0</td>
+              <td>trapped-ion</td>
+            </tr>
+            <tr>
+              <th scope="row">Rigetti</th>
+              <td>Ankaa-3 <a class="qb-src" href="https://investors.rigetti.com/news-releases/news-release-details/rigetti-computing-launches-84-qubit-ankaatm-3-system-achieves" target="_blank" rel="noopener" aria-label="Primary source: Rigetti press release, Dec 2024" title="Rigetti press release, Dec 2024">ⓘ</a></td>
+              <td data-sort="2024">2024</td>
+              <td data-sort="84">84</td>
+              <td data-sort="0">0</td>
+              <td>transmon</td>
+            </tr>
+            <tr>
+              <th scope="row">Google</th>
+              <td>Willow <a class="qb-src" href="https://blog.google/innovation-and-ai/technology/research/google-willow-quantum-chip/" target="_blank" rel="noopener" aria-label="Primary source: Google blog + Nature, Dec 2024" title="Google blog + Nature, Dec 2024">ⓘ</a></td>
+              <td data-sort="2024">2024</td>
+              <td data-sort="105">105</td>
+              <td data-sort="1">1</td>
+              <td>transmon (research)</td>
+            </tr>
+            <tr>
+              <th scope="row">IBM</th>
+              <td>Heron R2 <a class="qb-src" href="https://newsroom.ibm.com/2024-11-13-ibm-launches-its-most-advanced-quantum-computers,-fueling-new-scientific-value-and-progress-towards-quantum-advantage" target="_blank" rel="noopener" aria-label="Primary source: IBM newsroom, Nov 2024" title="IBM newsroom, Nov 2024">ⓘ</a></td>
+              <td data-sort="2024">2024</td>
+              <td data-sort="156">156</td>
+              <td data-sort="0">0</td>
+              <td>transmon</td>
+            </tr>
+            <tr>
+              <th scope="row">Origin Quantum</th>
+              <td>Wukong <a class="qb-src" href="https://postquantum.com/industry-news/origin-quantum-wukong/" target="_blank" rel="noopener" aria-label="Primary source: Origin Quantum launch, Jan 2024" title="Origin Quantum launch, Jan 2024">ⓘ</a></td>
+              <td data-sort="2024">2024</td>
+              <td data-sort="72">72</td>
+              <td data-sort="0">0</td>
+              <td>transmon</td>
+            </tr>
+            <tr>
+              <th scope="row">CAS / QuantumCTek</th>
+              <td>Tianyan-504 (Xiaohong) <a class="qb-src" href="https://postquantum.com/industry-news/china-xiaohong/" target="_blank" rel="noopener" aria-label="Primary source: Hefei announcement, Apr 2024" title="CAS / QuantumCTek announcement, Apr 2024">ⓘ</a></td>
+              <td data-sort="2024">2024</td>
+              <td data-sort="504">504</td>
+              <td data-sort="0">0</td>
+              <td>transmon</td>
+            </tr>
+            <tr>
+              <th scope="row">Microsoft</th>
+              <td>Majorana 1 <a class="qb-src" href="https://azure.microsoft.com/en-us/blog/quantum/2025/02/19/microsoft-unveils-majorana-1-the-worlds-first-quantum-processor-powered-by-topological-qubits/" target="_blank" rel="noopener" aria-label="Primary source: Microsoft Azure blog, Feb 2025" title="Microsoft Azure blog, Feb 2025">ⓘ</a></td>
+              <td data-sort="2025">2025</td>
+              <td data-sort="8">8</td>
+              <td data-sort="0">0</td>
+              <td>topological (claims contested)</td>
+            </tr>
+            <tr>
+              <th scope="row">Xanadu</th>
+              <td>Aurora <a class="qb-src" href="https://www.xanadu.ai/press/xanadu-introduces-aurora-worlds-first-scalable-networked-and-modular-quantum-computer" target="_blank" rel="noopener" aria-label="Primary source: Xanadu press release, Jan 2025" title="Xanadu press release, Jan 2025">ⓘ</a></td>
+              <td data-sort="2025">2025</td>
+              <td data-sort="12">12</td>
+              <td data-sort="0">0</td>
+              <td>photonic, networked</td>
+            </tr>
+            <tr>
+              <th scope="row">PsiQuantum</th>
+              <td>Omega (chipset) <a class="qb-src" href="https://www.nature.com/articles/s41586-025-08820-7" target="_blank" rel="noopener" aria-label="Primary source: Alexander et al., Nature, Feb 2025" title="Alexander et al., Nature, Feb 2025">ⓘ</a></td>
+              <td data-sort="2025">2025</td>
+              <td data-sort="0">— (chipset)</td>
+              <td data-sort="0">0</td>
+              <td>silicon-photonic (FBQC)</td>
+            </tr>
+            <tr>
+              <th scope="row">IonQ</th>
+              <td>Tempo <a class="qb-src" href="https://www.ionq.com/quantum-systems/tempo" target="_blank" rel="noopener" aria-label="Primary source: IonQ Tempo product page, Dec 2025" title="IonQ Tempo product page, Dec 2025">ⓘ</a></td>
+              <td data-sort="2025">2025</td>
+              <td data-sort="64">64 (AQ)</td>
+              <td data-sort="0">0</td>
+              <td>trapped-ion (Ba⁺, networked-cell)</td>
+            </tr>
+            <tr>
+              <th scope="row">Pasqal</th>
+              <td>Orion Gamma <a class="qb-src" href="https://www.pasqal.com/newsroom/pasqal-releases-2025-roadmap/" target="_blank" rel="noopener" aria-label="Primary source: Pasqal 2025 roadmap" title="Pasqal 2025 roadmap">ⓘ</a></td>
+              <td data-sort="2025">2025</td>
+              <td data-sort="140">140</td>
+              <td data-sort="0">0</td>
+              <td>neutral-atom</td>
+            </tr>
+            <tr>
+              <th scope="row">IBM</th>
+              <td>Nighthawk <a class="qb-src" href="https://newsroom.ibm.com/2025-11-12-ibm-delivers-new-quantum-processors,-software,-and-algorithm-breakthroughs-on-path-to-advantage-and-fault-tolerance" target="_blank" rel="noopener" aria-label="Primary source: IBM newsroom, Nov 2025" title="IBM newsroom, Nov 2025">ⓘ</a></td>
+              <td data-sort="2025">2025</td>
+              <td data-sort="120">120</td>
+              <td data-sort="0">0</td>
+              <td>transmon</td>
+            </tr>
+            <tr>
+              <th scope="row">USTC</th>
+              <td>Zuchongzhi 3.0 <a class="qb-src" href="https://arxiv.org/abs/2412.11924" target="_blank" rel="noopener" aria-label="Primary source: Gao et al., PRL 134 090601 (Mar 2025)" title="Gao et al., PRL 134 090601 (Mar 2025)">ⓘ</a></td>
+              <td data-sort="2025">2025</td>
+              <td data-sort="105">105</td>
+              <td data-sort="0">0</td>
+              <td>transmon (research)</td>
+            </tr>
+            <tr>
+              <th scope="row">Origin Quantum</th>
+              <td>Wukong-180 <a class="qb-src" href="https://thequbitreport.com/hardware/2026/05/09/chinas-origin-quantum-launches-origin-wukong-180/" target="_blank" rel="noopener" aria-label="Primary source: Origin Quantum announcement, May 9 2026" title="Origin Quantum announcement, May 9 2026">ⓘ</a></td>
+              <td data-sort="2026">2026</td>
+              <td data-sort="180">180 (+ 251 coupling)</td>
+              <td data-sort="0">0</td>
+              <td>transmon</td>
+            </tr>
+            <tr class="qb-row--highlight">
+              <th scope="row">Quantinuum</th>
+              <td>Helios <a class="qb-src" href="https://www.quantinuum.com/press-releases/quantinuum-announces-commercial-launch-of-new-helios-quantum-computer-that-offers-unprecedented-accuracy-to-enable-generative-quantum-ai-genqai" target="_blank" rel="noopener" aria-label="Primary source: Quantinuum press release, Nov 2025" title="Quantinuum press release, Nov 2025">ⓘ</a></td>
+              <td data-sort="2025">2025</td>
+              <td data-sort="98">98</td>
+              <td data-sort="48">48</td>
+              <td>trapped-ion (Ba-137)</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+
+        <h3>Public roadmaps</h3>
+        <div class="qb-machines-wrap">
+        <table class="qb-machines" data-sortable>
+          <thead>
+            <tr>
+              <th scope="col">Vendor</th>
+              <th scope="col">Machine</th>
+              <th scope="col">Target</th>
+              <th scope="col">Physical</th>
+              <th scope="col">Logical</th>
+              <th scope="col">Modality</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">IonQ</th>
+              <td>Roadmap rung <a class="qb-src" href="https://www.ionq.com/roadmap" target="_blank" rel="noopener" aria-label="Primary source: IonQ roadmap page" title="IonQ roadmap page">ⓘ</a></td>
+              <td data-sort="2026">2026</td>
+              <td data-sort="256">100–256</td>
+              <td data-sort="12">12</td>
+              <td>trapped-ion (Ba⁺)</td>
+            </tr>
+            <tr>
+              <th scope="row">IBM</th>
+              <td>Kookaburra <a class="qb-src" href="https://www.ibm.com/quantum/blog/large-scale-ftqc" target="_blank" rel="noopener" aria-label="Primary source: IBM Quantum blog, Jun 2025" title="IBM Quantum blog, Jun 2025">ⓘ</a></td>
+              <td data-sort="2026">2026</td>
+              <td data-sort="4158">4 158</td>
+              <td data-sort="0">qLDPC memory demo</td>
+              <td>transmon</td>
+            </tr>
+            <tr>
+              <th scope="row">QuEra</th>
+              <td>Gemini-class <a class="qb-src" href="https://www.quera.com/press-releases/quera-computing-marks-record-2025-as-the-year-of-fault-tolerance-and-over-230m-of-new-capital-to-accelerate-industrial-deployment" target="_blank" rel="noopener" aria-label="Primary source: QuEra 2025 review, Dec 2025" title="QuEra 2025 review, Dec 2025">ⓘ</a></td>
+              <td data-sort="2026">2026</td>
+              <td data-sort="3000">~3 000</td>
+              <td data-sort="30">30</td>
+              <td>neutral-atom</td>
+            </tr>
+            <tr>
+              <th scope="row">IonQ</th>
+              <td>Roadmap rung <a class="qb-src" href="https://www.ionq.com/roadmap" target="_blank" rel="noopener" aria-label="Primary source: IonQ roadmap page" title="IonQ roadmap page">ⓘ</a></td>
+              <td data-sort="2027">2027</td>
+              <td data-sort="10000">10 000</td>
+              <td data-sort="800">800</td>
+              <td>trapped-ion (Ba⁺)</td>
+            </tr>
+            <tr>
+              <th scope="row">PsiQuantum</th>
+              <td>Brisbane QCC <a class="qb-src" href="https://www.psiquantum.com/news-import/psiquantum-to-build-worlds-first-utility-scale-fault-tolerant-quantum-computer-in-australia" target="_blank" rel="noopener" aria-label="Primary source: PsiQuantum Australia announcement, Apr 2024" title="PsiQuantum Australia announcement, Apr 2024">ⓘ</a></td>
+              <td data-sort="2027">2027</td>
+              <td data-sort="0">utility-scale</td>
+              <td data-sort="0">early FTQC</td>
+              <td>silicon-photonic (FBQC)</td>
+            </tr>
+            <tr>
+              <th scope="row">Pasqal</th>
+              <td>Vela <a class="qb-src" href="https://www.pasqal.com/newsroom/pasqal-releases-2025-roadmap/" target="_blank" rel="noopener" aria-label="Primary source: Pasqal 2025 roadmap" title="Pasqal 2025 roadmap">ⓘ</a></td>
+              <td data-sort="2027">2027</td>
+              <td data-sort="200">200+</td>
+              <td data-sort="20">20</td>
+              <td>neutral-atom</td>
+            </tr>
+            <tr>
+              <th scope="row">Quantinuum</th>
+              <td>Sol <a class="qb-src" href="https://www.hpcwire.com/2025/11/05/quantinuum-introduces-helios-quantum-system-as-roadmap-advances-toward-apollo/" target="_blank" rel="noopener" aria-label="Primary source: HPCwire, Nov 2025" title="HPCwire, Nov 2025">ⓘ</a></td>
+              <td data-sort="2027">2027</td>
+              <td data-sort="192">192</td>
+              <td data-sort="40">tens</td>
+              <td>trapped-ion</td>
+            </tr>
+            <tr>
+              <th scope="row">IonQ</th>
+              <td>Roadmap rung <a class="qb-src" href="https://www.ionq.com/roadmap" target="_blank" rel="noopener" aria-label="Primary source: IonQ roadmap page" title="IonQ roadmap page">ⓘ</a></td>
+              <td data-sort="2028">2028</td>
+              <td data-sort="20000">20 000</td>
+              <td data-sort="1600">1 600</td>
+              <td>trapped-ion (Ba⁺, photonic interconnect)</td>
+            </tr>
+            <tr>
+              <th scope="row">Pasqal</th>
+              <td>Centaurus <a class="qb-src" href="https://www.pasqal.com/newsroom/pasqal-releases-2025-roadmap/" target="_blank" rel="noopener" aria-label="Primary source: Pasqal 2025 roadmap" title="Pasqal 2025 roadmap">ⓘ</a></td>
+              <td data-sort="2028">2028</td>
+              <td data-sort="10000">~10 000</td>
+              <td data-sort="50">early FTQC</td>
+              <td>neutral-atom</td>
+            </tr>
+            <tr>
+              <th scope="row">IBM</th>
+              <td>Starling <a class="qb-src" href="https://newsroom.ibm.com/2025-06-10-IBM-Sets-the-Course-to-Build-Worlds-First-Large-Scale,-Fault-Tolerant-Quantum-Computer-at-New-IBM-Quantum-Data-Center" target="_blank" rel="noopener" aria-label="Primary source: IBM newsroom, Jun 2025" title="IBM newsroom, Jun 2025">ⓘ</a></td>
+              <td data-sort="2029">2029</td>
+              <td data-sort="0">—</td>
+              <td data-sort="200">200</td>
+              <td>transmon (qLDPC)</td>
+            </tr>
+            <tr>
+              <th scope="row">Quantinuum</th>
+              <td>Apollo <a class="qb-src" href="https://www.quantinuum.com/press-releases/quantinuum-unveils-accelerated-roadmap-to-achieve-universal-fault-tolerant-quantum-computing-by-2030" target="_blank" rel="noopener" aria-label="Primary source: Quantinuum press release, 2025" title="Quantinuum press release, 2025">ⓘ</a></td>
+              <td data-sort="2029">2029</td>
+              <td data-sort="2000">thousands</td>
+              <td data-sort="500">hundreds</td>
+              <td>trapped-ion</td>
+            </tr>
+            <tr>
+              <th scope="row">IonQ</th>
+              <td>Roadmap rung <a class="qb-src" href="https://www.ionq.com/roadmap" target="_blank" rel="noopener" aria-label="Primary source: IonQ roadmap page" title="IonQ roadmap page">ⓘ</a></td>
+              <td data-sort="2029">2029</td>
+              <td data-sort="200000">200 000</td>
+              <td data-sort="8000">8 000</td>
+              <td>trapped-ion (Ba⁺)</td>
+            </tr>
+            <tr>
+              <th scope="row">PsiQuantum</th>
+              <td>Million-qubit FTQC <a class="qb-src" href="https://www.psiquantum.com/news-import/psiquantum-to-build-worlds-first-utility-scale-fault-tolerant-quantum-computer-in-australia" target="_blank" rel="noopener" aria-label="Primary source: PsiQuantum Australia announcement, Apr 2024" title="PsiQuantum Australia announcement, Apr 2024">ⓘ</a></td>
+              <td data-sort="2029">2029</td>
+              <td data-sort="1000000">~1 000 000</td>
+              <td data-sort="100">hundreds</td>
+              <td>silicon-photonic (FBQC)</td>
+            </tr>
+            <tr>
+              <th scope="row">IonQ</th>
+              <td>Roadmap rung <a class="qb-src" href="https://www.ionq.com/roadmap" target="_blank" rel="noopener" aria-label="Primary source: IonQ roadmap page" title="IonQ roadmap page">ⓘ</a></td>
+              <td data-sort="2030">2030</td>
+              <td data-sort="2000000">2 000 000</td>
+              <td data-sort="80000">80 000</td>
+              <td>trapped-ion (Ba⁺)</td>
+            </tr>
+            <tr>
+              <th scope="row">IBM</th>
+              <td>Blue Jay <a class="qb-src" href="https://newsroom.ibm.com/2025-06-10-IBM-Sets-the-Course-to-Build-Worlds-First-Large-Scale,-Fault-Tolerant-Quantum-Computer-at-New-IBM-Quantum-Data-Center" target="_blank" rel="noopener" aria-label="Primary source: IBM newsroom, Jun 2025" title="IBM newsroom, Jun 2025">ⓘ</a></td>
+              <td data-sort="2033">2033</td>
+              <td data-sort="100000">—</td>
+              <td data-sort="2000">2 000</td>
+              <td>transmon (qLDPC)</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+
+        <p class="qb-machines-note">
+          Each row is sourced from a vendor press release, peer-reviewed paper, or
+          investor disclosure. Two patterns stand out: trapped ions lead on
+          demonstrated logical-qubit count today (Quantinuum Helios is the only
+          shipping product with publicly-verified error-corrected qubits), and the
+          inflection to ~200 logical qubits at fault-tolerance is uniformly targeted
+          for ~2029 across superconducting, trapped-ion, neutral-atom, and
+          silicon-photonic roadmaps. IonQ's roadmap rungs and PsiQuantum's
+          million-qubit Brisbane target are the most aggressive published; treat the
+          implied delivery dates with the same caution as any vendor schedule.
+        </p>
+
+        <script>
+          // Sortable column heads — cycles asc / desc / unsorted on click.
+          // Numeric sort uses each cell's `data-sort` attribute; falls back to
+          // localeCompare on raw text.
+          type SortDir = "asc" | "desc" | "";
+
+          function initSortable(): void {
+            const tables = document.querySelectorAll<HTMLTableElement>("table[data-sortable]");
+            tables.forEach((table) => {
+              const headers = table.querySelectorAll<HTMLTableCellElement>("thead th");
+              const tbody = table.querySelector<HTMLTableSectionElement>("tbody");
+              if (!tbody) return;
+              const originalOrder = Array.from(tbody.querySelectorAll<HTMLTableRowElement>("tr"));
+              headers.forEach((th, colIndex) => {
+                th.addEventListener("click", () => {
+                  const current = th.getAttribute("data-sort-dir") as SortDir;
+                  headers.forEach((h) => h.removeAttribute("data-sort-dir"));
+                  const next: SortDir = current === "asc" ? "desc" : current === "desc" ? "" : "asc";
+                  if (next === "") {
+                    originalOrder.forEach((tr) => tbody.appendChild(tr));
+                    return;
+                  }
+                  th.setAttribute("data-sort-dir", next);
+                  const rows = Array.from(tbody.querySelectorAll<HTMLTableRowElement>("tr"));
+                  rows.sort((a, b) => {
+                    const ca = a.children[colIndex] as HTMLElement | undefined;
+                    const cb = b.children[colIndex] as HTMLElement | undefined;
+                    const va = ca?.dataset?.sort ?? ca?.textContent?.trim() ?? "";
+                    const vb = cb?.dataset?.sort ?? cb?.textContent?.trim() ?? "";
+                    const na = Number(va);
+                    const nb = Number(vb);
+                    const bothNum =
+                      !Number.isNaN(na) && !Number.isNaN(nb) && va !== "" && vb !== "";
+                    const cmp = bothNum ? na - nb : va.localeCompare(vb);
+                    return next === "asc" ? cmp : -cmp;
+                  });
+                  rows.forEach((tr) => tbody.appendChild(tr));
+                });
+              });
+            });
+          }
+
+          if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initSortable, { once: true });
+          } else {
+            initSortable();
+          }
+        </script>
+      </section>
+
+      <section id="notes" data-nav-section>
+        <h2>Notes on this page</h2>
+        <ul>
+          <li>
+            <strong>The landscape snapshot is a starting point.</strong> Names + platforms
+            + one-line positions, drawn from survey literature. Goes stale within months.
+          </li>
+          <li>
+            <strong>Dossiers are the long-term tracking surface.</strong> Milestones,
+            roadmap, capability metrics, and citations. Fields the dossier couldn't
+            verify to a primary source are shown as <em>unverified</em> rather than
+            filled in with a guess.
+          </li>
+          <li>
+            <strong>Source priority for dossiers:</strong> peer-reviewed paper &gt; arXiv
+            preprint &gt; vendor blog or technology page &gt; press release &gt; industry
+            tracker. Wikipedia is acceptable only for company-history facts, never for
+            technical numbers.
+          </li>
+          <li>
+            <strong>Staleness.</strong> Each dossier records when it was last verified.
+            Entries older than three months get a <em>stale</em> badge on the dossier
+            page — a prompt to re-check the primary sources.
+          </li>
+        </ul>
+        <p>
+          For survey-level reference on the per-platform vendor landscape, see Ezratty
+          UQT Pt 2 <SourceNote id="ezratty-uqt-2025-p2" /> and Kumar 2025
+          IJNDC <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+      </section>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<script is:inline>
+  (function () {
+    const bar = document.getElementById("co-filter-bar");
+    if (!bar) return;
+    const search = /** @type {HTMLInputElement} */ (document.getElementById("co-search"));
+    const reset  = document.getElementById("co-reset");
+    const empty  = document.getElementById("co-empty");
+    const catChips     = Array.from(bar.querySelectorAll('[data-filter-group="category"] .chip'));
+    const countryChips = Array.from(bar.querySelectorAll('[data-filter-group="country"] .chip'));
+    const cards  = Array.from(document.querySelectorAll("#co-dossiers .dossier-card"));
+    const groups = Array.from(document.querySelectorAll("#co-dossiers .dossier-group"));
+
+    const activeCats      = new Set();
+    const activeCountries = new Set();
+    let query = "";
+
+    function apply() {
+      let visibleTotal = 0;
+      for (const card of cards) {
+        const cats = (card.getAttribute("data-categories") || "").split(/\s+/).filter(Boolean);
+        const countries = (card.getAttribute("data-country") || "").split(/\s+/).filter(Boolean);
+        const searchText = card.getAttribute("data-search") || "";
+        const matchesCat     = activeCats.size === 0      || cats.some((c) => activeCats.has(c));
+        const matchesCountry = activeCountries.size === 0 || countries.some((c) => activeCountries.has(c));
+        const matchesQuery   = query === ""               || searchText.indexOf(query) !== -1;
+        const visible = matchesCat && matchesCountry && matchesQuery;
+        card.hidden = !visible;
+        if (visible) visibleTotal++;
+      }
+      // Hide whole group when all its cards are hidden.
+      for (const group of groups) {
+        const anyVisible = Array.from(group.querySelectorAll(".dossier-card"))
+          .some((el) => !el.hidden);
+        group.hidden = !anyVisible;
+      }
+      if (empty) empty.hidden = visibleTotal !== 0;
+    }
+
+    // Filter state is mirrored to the URL query string so it survives
+    // navigation — clicking into a dossier and pressing Back restores the
+    // same filters — and so a filtered view is shareable / bookmarkable.
+    // replaceState (not push) keeps each keystroke/chip toggle out of the
+    // history stack; the single /companies entry just carries the params.
+    function syncURL() {
+      const params = new URLSearchParams();
+      if (activeCats.size)      params.set("cat", Array.from(activeCats).join(","));
+      if (activeCountries.size) params.set("country", Array.from(activeCountries).join(","));
+      const raw = search.value.trim();
+      if (raw) params.set("q", raw);
+      const qs = params.toString();
+      history.replaceState(null, "", qs ? location.pathname + "?" + qs : location.pathname);
+    }
+
+    function readURL() {
+      const params = new URLSearchParams(location.search);
+      const cat = params.get("cat");
+      const country = params.get("country");
+      const q = params.get("q");
+      if (cat)     for (const v of cat.split(","))     { if (v) activeCats.add(v); }
+      if (country) for (const v of country.split(",")) { if (v) activeCountries.add(v); }
+      if (q) { search.value = q; query = q.trim().toLowerCase(); }
+      for (const c of catChips)
+        c.setAttribute("aria-pressed", activeCats.has(c.getAttribute("data-filter-value")) ? "true" : "false");
+      for (const c of countryChips)
+        c.setAttribute("aria-pressed", activeCountries.has(c.getAttribute("data-filter-value")) ? "true" : "false");
+    }
+
+    function bindChipGroup(chips, activeSet) {
+      for (const chip of chips) {
+        chip.addEventListener("click", () => {
+          const v = chip.getAttribute("data-filter-value");
+          if (!v) return;
+          if (activeSet.has(v)) {
+            activeSet.delete(v);
+            chip.setAttribute("aria-pressed", "false");
+          } else {
+            activeSet.add(v);
+            chip.setAttribute("aria-pressed", "true");
+          }
+          apply();
+          syncURL();
+        });
+      }
+    }
+    bindChipGroup(catChips,     activeCats);
+    bindChipGroup(countryChips, activeCountries);
+
+    search.addEventListener("input", () => {
+      query = search.value.trim().toLowerCase();
+      apply();
+      syncURL();
+    });
+
+    reset?.addEventListener("click", () => {
+      activeCats.clear();
+      activeCountries.clear();
+      query = "";
+      search.value = "";
+      for (const c of catChips)     c.setAttribute("aria-pressed", "false");
+      for (const c of countryChips) c.setAttribute("aria-pressed", "false");
+      apply();
+      syncURL();
+    });
+
+    // Restore any filters encoded in the URL before the first render, so a
+    // Back-navigation (or a shared link) lands on the filtered view.
+    readURL();
+    apply();
+  })();
+</script>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-4);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .hero h1 { margin: 0; }
+  .hero p { margin: 0; }
+
+  section { display: grid; gap: var(--space-3); min-inline-size: 0; }
+  section h3.vendor-platform {
+    margin: 0;
+    margin-block-start: var(--space-2);
+    font-size: var(--text-base);
+    color: var(--color-text);
+  }
+
+  ul {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+  li { line-height: var(--leading-snug); }
+
+  .vendor-list li { color: var(--color-text-mute); }
+  .vendor-list strong { color: var(--color-text); }
+
+  /* Dossier grid */
+  .dossier-group { display: grid; gap: var(--space-2); margin-block-end: var(--space-3); }
+  /* Filtered-card hiding handled globally via `[hidden] { display: none !important }`
+     in reset.css. See scripts/check_hidden_cascade.py. */
+  .dossier-group-title {
+    margin: 0;
+    font-size: var(--text-base);
+    color: var(--color-text);
+  }
+  .dossier-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    inline-size: 100%;
+    max-inline-size: 1100px;
+    min-inline-size: 0;
+    gap: var(--space-2);
+  }
+  .dossier-group { min-inline-size: 0; }
+  .dossier-card {
+    padding: 0;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    transition: border-color 150ms ease;
+    min-inline-size: 0;
+  }
+  .dossier-card:hover { border-color: var(--color-accent); }
+  .dossier-card a {
+    display: grid;
+    gap: 6px;
+    padding: var(--space-3);
+    color: inherit;
+    text-decoration: none;
+    min-inline-size: 0;
+  }
+  .dossier-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    min-inline-size: 0;
+  }
+  .dossier-name {
+    font-weight: 600;
+    color: var(--color-text);
+    font-size: var(--text-md);
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+  }
+  .dossier-positioning {
+    font-size: var(--text-sm);
+    color: var(--color-text-mute);
+    line-height: var(--leading-snug);
+    overflow-wrap: anywhere;
+  }
+  .dossier-meta {
+    margin-block-start: var(--space-1);
+    display: flex; gap: var(--space-2); flex-wrap: wrap;
+    font-size: var(--text-xs); color: var(--color-text-mute);
+  }
+  /* Secondary location chip — same line as the primary HQ, prefixed
+     by a small "+ " so the visual hierarchy stays "main HQ first,
+     additional sites after". */
+  .dossier-hq--alt::before { content: "+ "; opacity: 0.65; }
+  .dossier-hq--alt { font-style: italic; }
+  .empty { color: var(--color-text-mute); }
+
+  /* ─── Category pills (color-coded; used both inside cards and as filter chips) ─── */
+  .cat-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: var(--text-xs);
+    line-height: 1;
+    padding: 0.18rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    white-space: nowrap;
+  }
+  .cat-qc            { background: color-mix(in srgb, #3b82f6 18%, transparent); color: #2353c7; border-color: color-mix(in srgb, #3b82f6 40%, transparent); }
+  .cat-qkd           { background: color-mix(in srgb, #8b5cf6 18%, transparent); color: #6c40d9; border-color: color-mix(in srgb, #8b5cf6 40%, transparent); }
+  .cat-memory        { background: color-mix(in srgb, #10b981 18%, transparent); color: #0c8a64; border-color: color-mix(in srgb, #10b981 40%, transparent); }
+  .cat-network       { background: color-mix(in srgb, #06b6d4 18%, transparent); color: #0289a2; border-color: color-mix(in srgb, #06b6d4 40%, transparent); }
+  .cat-source-detect { background: color-mix(in srgb, #f59e0b 18%, transparent); color: #b16e00; border-color: color-mix(in srgb, #f59e0b 40%, transparent); }
+  .cat-sensing       { background: color-mix(in srgb, #ef4444 18%, transparent); color: #c53030; border-color: color-mix(in srgb, #ef4444 40%, transparent); }
+  .cat-software      { background: color-mix(in srgb, #6b7280 18%, transparent); color: #4b5563; border-color: color-mix(in srgb, #6b7280 40%, transparent); }
+  .cat-enabling      { background: color-mix(in srgb, #ec4899 18%, transparent); color: #be1f7a; border-color: color-mix(in srgb, #ec4899 40%, transparent); }
+
+  /* Filter-chip pills (cat-pill used as a button) get the same colour fill,
+     plus pressed state and hover behavior. */
+  button.cat-pill {
+    cursor: pointer;
+    font: inherit;
+    font-size: var(--text-xs);
+    padding: 0.25rem 0.6rem;
+  }
+  button.cat-pill:hover { filter: brightness(0.95); }
+  button.cat-pill[aria-pressed="true"] {
+    box-shadow: inset 0 0 0 2px currentColor;
+    font-weight: 600;
+  }
+
+  /* Per-card pill row */
+  .dossier-cats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-block-start: 0.2rem;
+  }
+
+  /* ─── Filter bar ─────────────────────────────────────────── */
+  .filter-bar {
+    display: grid;
+    gap: var(--space-3);
+    margin-block: var(--space-3) var(--space-3);
+    padding: var(--space-3);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-sm);
+    min-inline-size: 0;
+  }
+  .filter-top {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-inline-size: 0;
+    flex-wrap: wrap;
+  }
+  .filter-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+    align-items: start;
+    min-inline-size: 0;
+  }
+  .filter-col { min-inline-size: 0; }
+  .filter-chips { min-inline-size: 0; }
+  @media (max-width: 48rem) {
+    .filter-cols { grid-template-columns: 1fr; }
+  }
+  .filter-col {
+    display: grid;
+    gap: 0.4rem;
+  }
+  .filter-row-label {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-mute);
+  }
+  .country-chip {
+    font: inherit;
+    font-size: var(--text-xs);
+  }
+  .country-flag {
+    width: 20px;
+    height: 15px;
+    object-fit: cover;
+    border-radius: 2px;
+    /* Hairline edge so light flags (Japan, Finland) read against the chip. */
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+    flex: 0 0 auto;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .country-flag--none {
+    width: auto;
+    box-shadow: none;
+    font-size: 0.95em;
+    line-height: 1;
+    color: var(--color-text-mute);
+  }
+  .co-search {
+    flex: 1 1 16rem;
+    min-width: 12rem;
+    font-size: var(--text-sm);
+    padding: 0.35rem 0.6rem;
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-sm);
+    background: var(--card-bg);
+    color: var(--color-text);
+  }
+  .filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font: inherit;
+    font-size: var(--text-xs);
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--color-rule);
+    background: var(--card-bg);
+    border-radius: 999px;
+    cursor: pointer;
+    color: var(--color-text);
+    transition: background 120ms, border-color 120ms;
+  }
+  /* Category filter chips reuse `.cat-pill` colours from the card pills —
+     restate them at a more specific selector (button.chip.cat-*) so the
+     generic .chip background above doesn't win the cascade. */
+  button.chip.cat-qc            { background: color-mix(in srgb, #3b82f6 18%, transparent); color: #2353c7; border-color: color-mix(in srgb, #3b82f6 40%, transparent); }
+  button.chip.cat-qkd           { background: color-mix(in srgb, #8b5cf6 18%, transparent); color: #6c40d9; border-color: color-mix(in srgb, #8b5cf6 40%, transparent); }
+  button.chip.cat-memory        { background: color-mix(in srgb, #10b981 18%, transparent); color: #0c8a64; border-color: color-mix(in srgb, #10b981 40%, transparent); }
+  button.chip.cat-network       { background: color-mix(in srgb, #06b6d4 18%, transparent); color: #0289a2; border-color: color-mix(in srgb, #06b6d4 40%, transparent); }
+  button.chip.cat-source-detect { background: color-mix(in srgb, #f59e0b 18%, transparent); color: #b16e00; border-color: color-mix(in srgb, #f59e0b 40%, transparent); }
+  button.chip.cat-sensing       { background: color-mix(in srgb, #ef4444 18%, transparent); color: #c53030; border-color: color-mix(in srgb, #ef4444 40%, transparent); }
+  button.chip.cat-software      { background: color-mix(in srgb, #6b7280 18%, transparent); color: #4b5563; border-color: color-mix(in srgb, #6b7280 40%, transparent); }
+  button.chip.cat-enabling      { background: color-mix(in srgb, #ec4899 18%, transparent); color: #be1f7a; border-color: color-mix(in srgb, #ec4899 40%, transparent); }
+  .chip:hover { border-color: var(--color-accent); }
+  .chip[aria-pressed="true"] {
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border-color: var(--color-accent);
+  }
+  .chip-count {
+    font-size: 0.85em;
+    opacity: 0.7;
+  }
+  .co-reset {
+    font: inherit;
+    font-size: var(--text-xs);
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--color-rule);
+    background: transparent;
+    color: var(--color-text-mute);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+  }
+  .co-reset:hover { color: var(--color-text); border-color: var(--color-accent); }
+  .co-empty {
+    color: var(--color-text-mute);
+    font-style: italic;
+    margin-block-start: var(--space-3);
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.92em;
+    background: var(--color-surface-2);
+    padding: 0.1em 0.35em;
+    border-radius: var(--radius-sm);
+  }
+
+  /* QC systems / roadmap tables — moved from qubits.astro. */
+  .qb-machines-wrap {
+    inline-size: 100%;
+    min-inline-size: 0;
+    overflow-x: auto;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+    margin-block-end: var(--space-4);
+  }
+  .qb-machines {
+    inline-size: 100%;
+    min-inline-size: 44rem;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+  }
+  .qb-machines thead th {
+    text-align: start;
+    padding: var(--space-2) var(--space-3);
+    border-block-end: 2px solid var(--color-rule);
+    color: var(--color-text);
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+  }
+  .qb-machines thead th::after {
+    content: " ⇅";
+    color: var(--color-text-soft);
+    font-size: 0.85em;
+    opacity: 0.5;
+  }
+  .qb-machines thead th[data-sort-dir="asc"]::after {
+    content: " ▲";
+    opacity: 1;
+    color: var(--color-accent);
+  }
+  .qb-machines thead th[data-sort-dir="desc"]::after {
+    content: " ▼";
+    opacity: 1;
+    color: var(--color-accent);
+  }
+  .qb-machines tbody th,
+  .qb-machines tbody td {
+    padding: var(--space-2) var(--space-3);
+    vertical-align: top;
+    border-block-end: 1px solid var(--color-rule);
+  }
+  .qb-machines tbody th {
+    text-align: start;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+  .qb-machines tbody td { color: var(--color-text-mute); }
+  .qb-machines tbody tr:last-child th,
+  .qb-machines tbody tr:last-child td { border-block-end: 0; }
+  .qb-machines .qb-row--highlight th,
+  .qb-machines .qb-row--highlight td {
+    background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+  }
+  .qb-machines-note {
+    font-size: var(--text-sm);
+    color: var(--color-text-mute);
+    margin-block-start: var(--space-2);
+  }
+  .qb-src,
+  .qb-src:link,
+  .qb-src:visited,
+  .qb-src:hover,
+  .qb-src:focus-visible {
+    font-size: 0.7em;
+    vertical-align: super;
+    line-height: 1;
+    margin-inline-start: 2px;
+    color: var(--color-text-soft);
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    border-bottom: 0;
+  }
+  .qb-src:hover,
+  .qb-src:focus-visible {
+    color: var(--color-accent);
+  }
+</style>

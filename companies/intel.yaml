@@ -1,0 +1,202 @@
+slug: intel
+name: Intel (Quantum Computing)
+categories: [qc]
+hq: Hillsboro, Oregon, USA
+founded: 1968
+status: public
+parent: null
+logo:
+  domain: intel.com
+
+positioning: >
+  Silicon spin-qubit quantum computing research program inside Intel Labs, scoped
+  to Intel's Quantum Computing group (Components Research / Intel Labs). The
+  strategic bet is fab-compatibility — electron-spin qubits encoded in CMOS-style
+  silicon quantum dots, fabricated on Intel's 300-mm production lines at D1
+  (Hillsboro) using EUV lithography and the same transistor flow as logic chips,
+  paired with cryogenic CMOS control (Horse Ridge) to collapse the room-temperature
+  control rack. Research-stage, not yet a commercial product line; the current
+  flagship Tunnel Falls is distributed to academic partners under the LPS Qubit
+  Collaboratory. Long-running QuTech (TU Delft / TNO) partnership since 2015.
+
+business_units:
+  - name: Intel Labs — Quantum Hardware
+    scope: Silicon spin-qubit device design, fabrication, and characterisation
+    hq: Hillsboro, Oregon, USA
+    lead: Jim Clarke (Director, Quantum Hardware)
+  - name: Intel Labs — Quantum Applications & Architecture
+    scope: Quantum software stack, compilers, and system architecture (Intel Quantum SDK)
+    hq: Santa Clara, California, USA
+    lead: Anne Matsuura (Director, Quantum & Molecular Technologies)
+  - name: QuTech collaboration
+    scope: Joint silicon spin-qubit research; co-published 300-mm wafer-scale results
+    hq: Delft, Netherlands
+    lead: Lieven Vandersypen (QuTech Scientific Director)
+
+modalities:
+  qc:
+    qubit_type: spin-si
+    physical_qubits_current: 12
+    logical_qubits_current: 0
+    one_q_fidelity: 0.999
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: nearest-neighbour
+    gate_set: []
+
+milestones:
+  - date: 2024-05
+    tag: qc
+    headline: Nature paper — "Probing single electrons across 300-mm spin qubit wafers"; 99.9% single-qubit gate fidelity reported on all-CMOS fabrication
+    source_url: https://www.nature.com/articles/s41586-024-07275-6
+    source_type: paper
+  - date: 2024-03
+    tag: qc
+    headline: Intel and QuTech report first qubits made in industrial 300-mm semiconductor manufacturing facilities
+    source_url: https://thequantuminsider.com/2024/03/25/intel-and-qutech-deliver-first-industrially-manufactured-qubit-2/
+    source_type: press
+  - date: 2023-06
+    tag: qc
+    headline: Tunnel Falls 12-qubit silicon spin-qubit research chip released to academic partners (LPS, Sandia, U. Maryland, U. Rochester, U. Wisconsin-Madison)
+    source_url: https://www.intc.com/news-events/press-releases/detail/1626/intels-new-chip-to-advance-silicon-spin-qubit-research
+    source_type: press
+  - date: 2022-06
+    tag: qc
+    headline: Intel Quantum SDK 1.0 released — full-stack software for silicon spin qubits with C++ programming model
+    source_url: https://www.intel.com/content/www/us/en/developer/tools/quantum-sdk/overview.html
+    source_type: blog
+  - date: 2022-04
+    tag: qc
+    headline: Intel-QuTech Nature Electronics paper — silicon qubits fabricated in industrial 300-mm CMOS line
+    source_url: https://www.nature.com/articles/s41928-022-00727-9
+    source_type: paper
+  - date: 2020-12
+    tag: qc
+    headline: Horse Ridge II cryogenic CMOS control chip unveiled — 22nm FinFET, verified at 4 K, adds qubit readout and gate-potential control
+    source_url: https://www.intc.com/news-events/press-releases/detail/1429/intel-debuts-2nd-gen-horse-ridge-cryogenic-quantum-control
+    source_type: press
+  - date: 2019-12
+    tag: qc
+    headline: Horse Ridge I cryogenic control chip announced (first-generation cryo-CMOS controller)
+    source_url: https://www.intc.com/news-events/press-releases/detail/1364/intel-introduces-horse-ridge-to-enable-commercially-viable
+    source_type: press
+  - date: 2015-09
+    tag: qc
+    headline: Intel announces $50M, 10-year collaboration with QuTech (TU Delft + TNO) on quantum computing
+    source_url: https://www.intc.com/news-events/press-releases/detail/316/intel-invests-us50-million-to-advance-quantum-computing
+    source_type: press
+
+shareholders:
+  - holder: Vanguard Group
+    stake_percent: 9.5
+    stake_class: minority
+    as_of: 2025-12
+    source_url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000050863&type=DEF+14A
+    note: Largest institutional holder of Intel Corp. (NASDAQ:INTC) per 13F aggregators; Intel Quantum is a research unit not separately capitalised
+  - holder: BlackRock
+    stake_percent: 8.5
+    stake_class: minority
+    as_of: 2025-12
+    source_url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000050863&type=DEF+14A
+    note: Per Q4 2025 13F aggregators
+  - holder: US Government (CHIPS Act direct funding)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2024-11
+    source_url: https://www.commerce.gov/news/press-releases/2024/11/biden-harris-administration-announces-final-78-billion-award-intel
+    note: $7.86B direct CHIPS Act award finalised Nov 2024 (Intel manufacturing broadly, not quantum-specific)
+
+key_personnel:
+  - role: Director, Quantum Hardware (Intel Labs)
+    name: Jim Clarke
+    since: 2012
+    source_url: https://www.intel.com/content/www/us/en/research/quantum-computing.html
+    note: Leads Intel's silicon spin-qubit hardware programme; principal public spokesperson for Intel Quantum
+  - role: Director, Quantum & Molecular Technologies (Intel Labs)
+    name: Anne Matsuura
+    since: 2017
+    source_url: https://download.intel.com/newsroom/2022/press-kits/anne-matsuura-bio.pdf
+    note: Leads quantum applications, architecture, and software stack
+  - role: Senior Principal Engineer, Quantum Computing
+    name: James S. Clarke
+    since: 2015
+    source_url: https://www.intel.com/content/www/us/en/research/quantum-computing.html
+    note: Same individual as Jim Clarke above — duplicate role-grade entry retained pending verification
+  - role: CEO, Intel Corporation
+    name: Lip-Bu Tan
+    since: 2025-03
+    source_url: https://www.intc.com/news-events/press-releases/detail/1714/intel-appoints-lip-bu-tan-as-chief-executive-officer
+    note: Parent company CEO; Intel Quantum reports up through Intel Labs CTO, not directly to CEO
+  - role: Chief Technology Officer, Intel
+    name: Sachin Katti
+    since: 2025
+    source_url: https://newsroom.intel.com/news
+    note: Intel Labs (including Quantum) reports to the CTO
+
+roadmap:
+  - target: late-2020s
+    item: 2D arrays with increased qubit count and connectivity; high-fidelity two-qubit gates on industrial CMOS line
+    source_url: https://www.intc.com/news-events/press-releases/detail/1693/intel-takes-next-step-toward-building-scalable
+    tag: qc
+  - target: undated
+    item: Million-qubit-class silicon spin-qubit systems leveraging Intel's 300-mm manufacturing scale (no firm date — Intel publicly avoids hype timelines)
+    source_url: https://spectrum.ieee.org/intels-quantum-computing-plans-hot-qubits-cold-control-chips-and-rapid-testing
+    tag: qc
+
+current_flagship:
+  name: Tunnel Falls
+  generation: 12-qubit silicon spin-qubit research chip (300-mm CMOS, D1 Hillsboro)
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41586-024-07275-6
+    note: Neyens et al., Nature 629, 80–85 (2024) — 300-mm cryogenic probing of spin-qubit wafers; 99.9% single-qubit fidelity on CMOS process
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41928-022-00727-9
+    note: Zwerver et al., Nature Electronics 5, 184–190 (2022) — qubits made by advanced semiconductor manufacturing
+  - kind: press
+    citation_key: null
+    url: https://www.intc.com/news-events/press-releases/detail/1626/intels-new-chip-to-advance-silicon-spin-qubit-research
+    note: Tunnel Falls launch press release (Jun 2023)
+  - kind: press
+    citation_key: null
+    url: https://www.intc.com/news-events/press-releases/detail/1429/intel-debuts-2nd-gen-horse-ridge-cryogenic-quantum-control
+    note: Horse Ridge II launch press release (Dec 2020)
+  - kind: blog
+    citation_key: null
+    url: https://www.intel.com/content/www/us/en/research/quantum-computing.html
+    note: Intel Labs quantum computing landing page
+  - kind: blog
+    citation_key: null
+    url: https://www.intel.com/content/www/us/en/developer/tools/quantum-sdk/overview.html
+    note: Intel Quantum SDK product page
+
+partial:
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.ec_code
+  - modalities.qc.gate_set
+  - field: modalities.qc.one_q_fidelity
+    as_of: 2026-05-24
+    note: 99.9% headline figure from Neyens et al. Nature 2024 — wafer-scale CMOS-process result, not the device-best
+  - field: modalities.qc.physical_qubits_current
+    as_of: 2026-05-24
+    note: 12 reflects Tunnel Falls (the chip distributed to academic partners); Intel has not publicly disclosed a larger successor device as of May 2026
+  - key_personnel.0.since
+  - key_personnel.1.since
+  - field: key_personnel.2
+    as_of: 2026-05-24
+    note: Duplicate of Jim Clarke pending confirmation of separate Senior Principal Engineer role; may be removed on next refresh
+  - field: shareholders
+    as_of: 2026-05-24
+    note: Intel Corp. (NASDAQ:INTC) institutional stakes from 13F aggregators; Intel Quantum is not a separate legal entity so quantum-specific ownership does not apply
+  - roadmap.0.target
+  - roadmap.1.target
+
+last_verified: 2026-05-24
+verification_method: web

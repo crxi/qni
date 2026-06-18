@@ -1,0 +1,238 @@
+slug: pan-ustc
+name: Pan Jianwei group (USTC)
+categories: [qkd, network, qc, source-detect]
+hq: Hefei, Anhui, China
+founded: 2001
+status: active
+parent: null
+
+institution:
+  name: University of Science and Technology of China (USTC)
+  lab: Hefei National Laboratory · CAS Center for Excellence in Quantum Information and Quantum Physics
+  also: SIMIT (CAS) — SNSPDs and the Beijing–Shanghai trunk
+
+group_website: https://quantum.ustc.edu.cn/web/web/en
+
+positioning: >
+  Pan Jianwei's group at USTC is an experimental
+  quantum-networking and photonic-quantum-information laboratory. The
+  programme spans satellite QKD (Micius; Jinan-1; the 2025
+  Beijing–Stellenbosch intercontinental link), long-haul fibre QKD
+  (Beijing–Shanghai 2,032 km trunk; twin-field QKD to 1,002 km), photonic
+  quantum computing (the Jiuzhang boson-sampling series), and
+  multi-photon entanglement distribution. Pan founded the QuantumCTek
+  spinout (2009) and the Jinan Institute of Quantum Technology. Current
+  focus is space–ground integrated quantum networking.
+
+modalities:
+  qkd:
+    protocol: [BB84, decoy-state, MDI-QKD, twin-field, entanglement-based]
+    rate_distance: "TF-QKD over 1,002 km field fibre (Liu PRL 2023); entanglement-based QKD Delingha–Nanshan 1,120 km via Micius (Yin Nature 2020); Beijing–Stellenbosch 12,900 km via Jinan-1 (Li Nature 2025)"
+    deployed_demos:
+      - "Beijing–Shanghai 2,032 km fibre trunk, 32 trusted nodes (Chen Nature 2021)"
+      - "Micius satellite ground-link demos with Vienna, Graz, Delingha, Nanshan, Xinglong (Liao Nature 2017)"
+      - "Jinan-1 microsatellite, 23 kg payload, Beijing–Stellenbosch real-time QKD (Li Nature 2025)"
+  qc:
+    qubit_type: photonic
+    physical_qubits_current: 76
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: ""
+    gate_set: []
+  network:
+    role: testbed
+    products:
+      - "Micius LEO QKD satellite (2016, decommissioned 2024)"
+      - "Jinan-1 quantum microsatellite (2022, operational)"
+      - "Beijing–Shanghai backbone (with QuantumCTek)"
+  source-detect:
+    role: both
+    detection_efficiency: null
+    dark_count_hz: null
+    jitter_ps: null
+
+milestones:
+  - date: 2025-03
+    tag: qkd
+    headline: Jinan-1 microsatellite establishes Beijing–Stellenbosch 12,900 km QKD link — first inter-hemisphere QKD
+    source_url: https://www.nature.com/articles/s41586-025-08739-z
+    source_type: paper
+  - date: 2023-05
+    tag: qkd
+    headline: Twin-field QKD secret-key delivered over 1,002 km field fibre
+    source_url: https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.130.210801
+    source_type: paper
+  - date: 2022-07
+    tag: network
+    headline: Jinan-1 quantum microsatellite (23 kg payload) launched to LEO
+    source_url: https://www.nature.com/articles/s41586-025-08739-z
+    source_type: paper
+  - date: 2021-01
+    tag: qkd
+    headline: Integrated 4,600 km space-ground network (Micius + Beijing–Shanghai fibre trunk)
+    source_url: https://www.nature.com/articles/s41586-020-03093-8
+    source_type: paper
+  - date: 2020-12
+    tag: qc
+    headline: "Jiuzhang Gaussian-boson-sampling: quantum computational advantage with 76 detected photons"
+    source_url: https://www.science.org/doi/10.1126/science.abe8770
+    source_type: paper
+  - date: 2020-06
+    tag: qkd
+    headline: Entanglement-based QKD between Micius and two ground stations 1,120 km apart, no trusted relay
+    source_url: https://www.nature.com/articles/s41586-020-2401-y
+    source_type: paper
+  - date: 2017-08
+    tag: qkd
+    headline: Satellite-to-ground decoy-state QKD via Micius (Xinglong link)
+    source_url: https://www.nature.com/articles/nature23655
+    source_type: paper
+  - date: 2017-06
+    tag: network
+    headline: Satellite-based entanglement distribution over 1,200 km (Micius)
+    source_url: https://www.science.org/doi/10.1126/science.aan3211
+    source_type: paper
+  - date: 2017-08
+    tag: network
+    headline: Ground-to-satellite quantum teleportation via Micius
+    source_url: https://www.nature.com/articles/nature23675
+    source_type: paper
+  - date: 2016-08
+    tag: network
+    headline: Launch of Micius (QUESS) — first dedicated quantum-science satellite
+    source_url: https://www.nature.com/news/china-s-quantum-satellite-clears-major-hurdle-on-way-to-uncrackable-communications-1.20329
+    source_type: press
+
+funding_sources:
+  - name: Chinese Academy of Sciences (CAS) Strategic Priority Research Program "Quantum Science Experiments on Space Scale"
+    role: Funded Micius (QUESS) and the satellite programme
+    source_url: https://english.cas.cn/
+  - name: National Natural Science Foundation of China (NSFC)
+    role: Long-running programme grants to Pan and group members
+    source_url: https://www.nsfc.gov.cn/english/
+  - name: Ministry of Science and Technology (MoST) National Key R&D Program
+    role: Quantum-communication and quantum-computing key projects
+    source_url: https://en.most.gov.cn/
+  - name: Hefei National Laboratory
+    role: Host laboratory; major direct funding stream since 2017 designation
+    source_url: https://quantum.ustc.edu.cn/web/en/
+  - name: Anhui Initiative in Quantum Information Technologies
+    role: Provincial co-funding
+    source_url: https://quantum.ustc.edu.cn/web/
+
+key_personnel:
+  - role: Director / Principal Investigator
+    name: Jian-Wei Pan
+    since: 2001
+    source_url: https://quantum.ustc.edu.cn/web/web/en/node/32
+  - role: Professor — photonic quantum computing (Jiuzhang lead)
+    name: Chao-Yang Lu
+    since: 2011
+    source_url: https://quantum.ustc.edu.cn/web/web/en
+  - role: Professor — fibre QKD, twin-field QKD, Beijing–Shanghai trunk
+    name: Qiang Zhang
+    since: 2010
+    source_url: https://quantum.ustc.edu.cn/web/web/en
+  - role: Professor — satellite QKD, Micius optical-payload PI
+    name: Juan Yin
+    since: 2003
+    source_url: https://quantum.ustc.edu.cn/web/web/en
+  - role: Professor — satellite payload engineering (Micius, Jinan-1)
+    name: Sheng-Kai Liao
+    since: 2010
+    source_url: https://quantum.ustc.edu.cn/web/web/en
+  - role: Professor — satellite tracking and pointing
+    name: Ji-Gang Ren
+    since: 2008
+    source_url: https://quantum.ustc.edu.cn/web/web/en
+  - role: Professor — co-PI on Micius programme
+    name: Cheng-Zhi Peng
+    since: 2008
+    source_url: https://quantum.ustc.edu.cn/web/web/en
+  - role: Professor — cold-atom quantum memories and quantum simulation
+    name: Yu-Ao Chen
+    since: 2008
+    source_url: https://quantum.ustc.edu.cn/web/web/en
+  - role: Professor — measurement-device-independent QKD, photonic networks
+    name: Feihu Xu
+    since: 2018
+    source_url: https://quantum.ustc.edu.cn/web/web/en
+  - role: Professor — quantum-memory-based repeaters
+    name: Xiao-Hui Bao
+    since: 2012
+    source_url: https://quantum.ustc.edu.cn/web/web/en
+
+roadmap:
+  - target: 2025-2027
+    item: Additional LEO quantum satellites; medium-Earth-orbit satellite by 2027
+    source_url: https://phys.org/news/2025-03-world-quantum-microsatellite-communication-multiple.html
+    tag: network
+  - target: late 2020s
+    item: "\"Dawn\" geostationary quantum satellite for daytime continuous-window QKD"
+    source_url: https://phys.org/news/2025-03-world-quantum-microsatellite-communication-multiple.html
+    tag: network
+
+current_focus:
+  name: Quantum foundations, communication, computing and metrology
+  description: >
+    Per the division's own framing (quantum.ustc.edu.cn) — "Explore quantum
+    mystery, enable quantum applications!" — research directions cover
+    quantum foundations, fibre-based and free-space quantum communication,
+    quantum memory and quantum repeaters, optical and superconducting
+    quantum computing, ultra-cold-atom quantum simulation, and quantum
+    metrology.
+  source_url: https://quantum.ustc.edu.cn/web/en
+
+references:
+  - kind: paper
+    citation_key: liu-prl-2023
+    url: https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.130.210801
+    note: Twin-field QKD over 1,002 km field fibre
+  - kind: paper
+    citation_key: liao-nature-549
+    url: https://www.nature.com/articles/nature23655
+    note: Satellite-to-ground decoy-state QKD via Micius
+  - kind: paper
+    citation_key: yin-nature-2020
+    url: https://www.nature.com/articles/s41586-020-2401-y
+    note: Entanglement-based QKD between Micius and 1,120 km-separated ground stations
+  - kind: paper
+    citation_key: li-nature-2025-jinan
+    url: https://www.nature.com/articles/s41586-025-08739-z
+    note: Jinan-1 microsatellite, Beijing–Stellenbosch 12,900 km QKD
+  - kind: paper
+    citation_key: yin-science-2017
+    url: https://www.science.org/doi/10.1126/science.aan3211
+    note: Satellite-based entanglement distribution over 1,200 km
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/nature23675
+    note: "Ren et al. Nature 549, 70 (2017) — ground-to-satellite quantum teleportation"
+  - kind: paper
+    citation_key: null
+    url: https://www.science.org/doi/10.1126/science.abe8770
+    note: "Zhong et al. Science 370, 1460 (2020) — Jiuzhang Gaussian boson sampling, 76 photons"
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/s41586-020-03093-8
+    note: "Chen et al. Nature 589, 214 (2021) — integrated 4,600 km space-ground QKD network"
+
+partial:
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.source-detect.detection_efficiency
+  - modalities.source-detect.dark_count_hz
+  - modalities.source-detect.jitter_ps
+  - field: modalities.qc.physical_qubits_current
+    as_of: 2026-05-24
+    note: Jiuzhang-2.0 / 3.0 detected 113 / 255 photons in GBS; "76" cited above is the 2020 Jiuzhang result. Photonic-mode count vs detected-photon count are different metrics and the group has not published a single canonical "physical qubit" figure.
+  - field: key_personnel.*.since
+    as_of: 2026-05-24
+    note: Faculty-join years inferred from publication record and PhD timelines; USTC faculty pages do not always state appointment date.
+
+last_verified: 2026-05-24
+verification_method: web

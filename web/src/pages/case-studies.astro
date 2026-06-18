@@ -1,0 +1,538 @@
+---
+/**
+ * /case-studies — landing page for tier F.
+ *
+ * Profiles of real, operating (or recently-operating) quantum networks —
+ * not lab demos behind closed doors. Each case-study sub-page lives at
+ * /case-studies/{slug}. The cards below are the index.
+ *
+ * Adding a case study: drop a new <slug>.astro under pages/case-studies/
+ * and add a row to CASE_STUDIES below. Annotate each row with `categories`,
+ * `country`, and `statusKey` so it lands under the right filter chips.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import SiteNav from "../components/SiteNav.astro";
+import { url } from "../lib/url";
+import {
+  CASE_STUDIES,
+  CATEGORY_LABEL,
+  CATEGORY_ORDER,
+  STATUS_LABEL,
+  STATUS_ORDER,
+  type CaseCategory,
+  type CaseStatus,
+} from "../data/case-studies";
+
+// Group case studies by primary category (first entry in `categories`).
+const grouped: { category: CaseCategory; items: typeof CASE_STUDIES }[] =
+  CATEGORY_ORDER
+    .map((c) => ({
+      category: c,
+      items: CASE_STUDIES.filter((cs) => cs.categories[0] === c),
+    }))
+    .filter((g) => g.items.length > 0);
+
+// Chip counts — a study tagged [roadmap, entanglement] counts under
+// BOTH (clicking either chip shows it), matching the companies-page
+// chip semantics.
+const categoryCounts: Partial<Record<CaseCategory, number>> = {};
+for (const cs of CASE_STUDIES) {
+  for (const cat of cs.categories) {
+    categoryCounts[cat] = (categoryCounts[cat] ?? 0) + 1;
+  }
+}
+
+const countryCounts: Record<string, number> = {};
+for (const cs of CASE_STUDIES) {
+  countryCounts[cs.country] = (countryCounts[cs.country] ?? 0) + 1;
+}
+const COUNTRY_ORDER = Object.keys(countryCounts).sort(
+  (a, b) => countryCounts[b] - countryCounts[a] || a.localeCompare(b),
+);
+
+const statusCounts: Partial<Record<CaseStatus, number>> = {};
+for (const cs of CASE_STUDIES) {
+  statusCounts[cs.statusKey] = (statusCounts[cs.statusKey] ?? 0) + 1;
+}
+
+function flagFor(country: string): string {
+  const flags: Record<string, string> = {
+    USA: "🇺🇸",
+    China: "🇨🇳",
+    UK: "🇬🇧",
+    Netherlands: "🇳🇱",
+    Spain: "🇪🇸",
+  };
+  return flags[country] ?? "🌐";
+}
+---
+
+<Infographic
+  title="Case studies — real-world quantum networks"
+  description="Profiles of operating and recently-operating quantum networks: operator, location, technology family, scale, status, and commercial model. Covers commercial QKD trunks, entanglement-based research testbeds, and the new commercial QNaaS model."
+>
+  <SiteNav slot="nav" currentSubject="case-studies" />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero">
+        <h1>Case studies — real-world quantum networks</h1>
+        <p>
+          Profiles of quantum networks that exist outside a single lab — built on
+          deployed fibre, connecting more than one building or city, and either
+          carrying real traffic or open to outside users. Each entry records who
+          operates it, where it runs, the technology family
+          (<span class="cat-pill cat-entanglement">{CATEGORY_LABEL.entanglement}</span>,
+          <span class="cat-pill cat-qkd">{CATEGORY_LABEL.qkd}</span>,
+          or <span class="cat-pill cat-hybrid">{CATEGORY_LABEL.hybrid}</span>),
+          the scale, the operating status, and the commercial model.
+        </p>
+        <p>
+          Use the search box and chips below to narrow the grid — for example,
+          press <strong>Entanglement</strong> to hide the QKD-only entries, or
+          <strong>Operational</strong> to filter out research demos and roadmap
+          announcements.
+        </p>
+      </header>
+
+      <section aria-labelledby="cases-heading">
+        <h2 id="cases-heading" class="group-heading">Case studies</h2>
+
+        <div class="filter-bar" id="cs-filter-bar">
+          <div class="filter-top">
+            <input
+              type="search"
+              id="cs-search"
+              placeholder="Search title, operator, location, technology, blurb…"
+              class="cs-search"
+            />
+            <button id="cs-reset" class="cs-reset" type="button">Reset</button>
+          </div>
+          <div class="filter-cols">
+            <div class="filter-col">
+              <span class="filter-row-label">Technology</span>
+              <div class="filter-chips" data-filter-group="category">
+                {CATEGORY_ORDER.filter((c) => (categoryCounts[c] ?? 0) > 0).map((c) => (
+                  <button
+                    class={`chip cat-pill cat-${c}`}
+                    data-filter-value={c}
+                    aria-pressed="false"
+                    type="button"
+                  >
+                    {CATEGORY_LABEL[c]}
+                    <span class="chip-count">{categoryCounts[c]}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div class="filter-col">
+              <span class="filter-row-label">Status</span>
+              <div class="filter-chips" data-filter-group="status">
+                {STATUS_ORDER.filter((s) => (statusCounts[s] ?? 0) > 0).map((s) => (
+                  <button
+                    class={`chip status-chip status-${s}`}
+                    data-filter-value={s}
+                    aria-pressed="false"
+                    type="button"
+                  >
+                    {STATUS_LABEL[s]}
+                    <span class="chip-count">{statusCounts[s]}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div class="filter-col">
+              <span class="filter-row-label">Country</span>
+              <div class="filter-chips" data-filter-group="country">
+                {COUNTRY_ORDER.map((country) => (
+                  <button
+                    class="chip country-chip"
+                    data-filter-value={country}
+                    aria-pressed="false"
+                    type="button"
+                  >
+                    <span class="country-flag" aria-hidden="true">{flagFor(country)}</span>
+                    <span class="country-name">{country}</span>
+                    <span class="chip-count">{countryCounts[country]}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="cs-groups">
+          {grouped.map((group) => (
+            <div class="cs-group" data-group-cat={group.category}>
+              <h3 class="cs-group-title">
+                <span class={`cat-pill cat-${group.category}`}>{CATEGORY_LABEL[group.category]}</span>
+              </h3>
+              <div class="cs-grid">
+                {group.items.map((c) => (
+                  <a
+                    class="cs-card"
+                    href={url(`/case-studies/${c.slug}`)}
+                    data-tier="E"
+                    data-categories={c.categories.join(" ")}
+                    data-country={c.country}
+                    data-status={c.statusKey}
+                    data-search={[
+                      c.title,
+                      c.blurb,
+                      c.operator,
+                      c.location,
+                      c.country,
+                      c.technology,
+                      c.scale,
+                      c.status,
+                      c.model,
+                      c.categories.map((cc) => CATEGORY_LABEL[cc]).join(" "),
+                    ].join(" ").toLowerCase()}
+                  >
+                    <p class="cs-card__tier">{c.year} · {c.scale}</p>
+                    <h3>{c.title}</h3>
+                    <p class="cs-card__operator">{c.operator}</p>
+                    <p class="cs-card__location">{c.location}</p>
+                    <dl class="cs-card__meta">
+                      <div><dt>Technology</dt><dd>{c.technology}</dd></div>
+                      <div><dt>Status</dt><dd>{c.status}</dd></div>
+                      <div><dt>Model</dt><dd>{c.model}</dd></div>
+                    </dl>
+                    <div class="cs-card__cats">
+                      {c.categories.map((cc) => (
+                        <span class={`cat-pill cat-${cc}`}>{CATEGORY_LABEL[cc]}</span>
+                      ))}
+                    </div>
+                    <p class="cs-card__blurb">{c.blurb}</p>
+                    <span class="cs-card__cta">Open →</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        <p id="cs-empty" class="cs-empty" hidden>No case studies match the current filters.</p>
+      </section>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<script is:inline>
+  (function () {
+    const bar = document.getElementById("cs-filter-bar");
+    if (!bar) return;
+    const search = document.getElementById("cs-search");
+    const reset  = document.getElementById("cs-reset");
+    const empty  = document.getElementById("cs-empty");
+    const catChips     = Array.from(bar.querySelectorAll('[data-filter-group="category"] .chip'));
+    const statusChips  = Array.from(bar.querySelectorAll('[data-filter-group="status"] .chip'));
+    const countryChips = Array.from(bar.querySelectorAll('[data-filter-group="country"] .chip'));
+    const cards  = Array.from(document.querySelectorAll("#cs-groups .cs-card"));
+    const groups = Array.from(document.querySelectorAll("#cs-groups .cs-group"));
+
+    const activeCats      = new Set();
+    const activeStatuses  = new Set();
+    const activeCountries = new Set();
+    let query = "";
+
+    function apply() {
+      let visibleTotal = 0;
+      for (const card of cards) {
+        const cats    = (card.getAttribute("data-categories") || "").split(/\s+/).filter(Boolean);
+        const country = card.getAttribute("data-country") || "";
+        const status  = card.getAttribute("data-status")  || "";
+        const text    = card.getAttribute("data-search")  || "";
+        const matchesCat     = activeCats.size === 0      || cats.some((c) => activeCats.has(c));
+        const matchesStatus  = activeStatuses.size === 0  || activeStatuses.has(status);
+        const matchesCountry = activeCountries.size === 0 || activeCountries.has(country);
+        const matchesQuery   = query === ""               || text.indexOf(query) !== -1;
+        const visible = matchesCat && matchesStatus && matchesCountry && matchesQuery;
+        card.hidden = !visible;
+        if (visible) visibleTotal++;
+      }
+      // Hide whole group when none of its cards match.
+      for (const group of groups) {
+        const anyVisible = Array.from(group.querySelectorAll(".cs-card"))
+          .some((el) => !el.hidden);
+        group.hidden = !anyVisible;
+      }
+      if (empty) empty.hidden = visibleTotal !== 0;
+    }
+
+    function bindChipGroup(chips, activeSet) {
+      for (const chip of chips) {
+        chip.addEventListener("click", () => {
+          const v = chip.getAttribute("data-filter-value");
+          if (!v) return;
+          if (activeSet.has(v)) {
+            activeSet.delete(v);
+            chip.setAttribute("aria-pressed", "false");
+          } else {
+            activeSet.add(v);
+            chip.setAttribute("aria-pressed", "true");
+          }
+          apply();
+        });
+      }
+    }
+    bindChipGroup(catChips,     activeCats);
+    bindChipGroup(statusChips,  activeStatuses);
+    bindChipGroup(countryChips, activeCountries);
+
+    if (search) {
+      search.addEventListener("input", () => {
+        query = search.value.trim().toLowerCase();
+        apply();
+      });
+    }
+
+    if (reset) {
+      reset.addEventListener("click", () => {
+        activeCats.clear();
+        activeStatuses.clear();
+        activeCountries.clear();
+        query = "";
+        if (search) search.value = "";
+        for (const c of catChips)     c.setAttribute("aria-pressed", "false");
+        for (const c of statusChips)  c.setAttribute("aria-pressed", "false");
+        for (const c of countryChips) c.setAttribute("aria-pressed", "false");
+        apply();
+      });
+    }
+  })();
+</script>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-4);
+    border-block-end: 1px solid var(--color-rule);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .hero h1 { margin: 0; }
+  .hero p  { margin: 0; }
+
+  .group-heading {
+    font-size: var(--text-2xl);
+    margin-block-end: var(--space-3);
+  }
+  .cs-group { margin-block-end: var(--space-4); }
+  .cs-group-title {
+    margin: 0 0 var(--space-2);
+    font-size: var(--text-base);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .cs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
+    gap: var(--space-3);
+  }
+
+  /* Filtered-out card visibility is handled by the global
+     `[hidden] { display: none !important }` in reset.css (the rule that
+     ensures `el.hidden = true` actually hides). No per-class override
+     needed here — see scripts/check_hidden_cascade.py for the lint
+     that keeps this guarantee in place. */
+  .cs-card {
+    display: grid;
+    align-content: start;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 140ms ease, transform 140ms ease;
+    border-inline-start: 3px solid var(--tier-e);
+  }
+  .cs-card:hover,
+  .cs-card:focus-visible {
+    border-color: var(--color-accent);
+    transform: translateY(-1px);
+  }
+  .cs-card h3 {
+    margin: 0;
+    font-size: var(--text-xl);
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+  }
+  .cs-card p { margin: 0; font-size: var(--text-sm); }
+  .cs-card__tier {
+    display: inline-block;
+    padding: 2px 8px;
+    background: var(--tier-e);
+    color: #fff;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    justify-self: start;
+  }
+  .cs-card__operator { color: var(--color-text); font-weight: 600; }
+  .cs-card__location { color: var(--color-text-mute); }
+  .cs-card__meta {
+    display: grid;
+    gap: 2px;
+    margin: 0;
+    padding-block: var(--space-1);
+    border-block: 1px dashed var(--color-rule);
+    font-size: var(--text-xs);
+  }
+  .cs-card__meta div { display: grid; grid-template-columns: 8rem 1fr; gap: var(--space-2); }
+  .cs-card__meta dt {
+    color: var(--color-text-mute);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+  }
+  .cs-card__meta dd { margin: 0; color: var(--color-text); }
+  .cs-card__cats { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-block-start: 0.2rem; }
+  .cs-card__blurb { color: var(--color-text-mute); line-height: var(--leading-snug); }
+  .cs-card__cta {
+    margin-block-start: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  /* ─── Category pills (color-coded; used on cards, group headings, and as filter chips) ─── */
+  .cat-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: var(--text-xs);
+    line-height: 1;
+    padding: 0.18rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    white-space: nowrap;
+  }
+  .cat-entanglement { background: color-mix(in srgb, #06b6d4 18%, transparent); color: #0289a2; border-color: color-mix(in srgb, #06b6d4 40%, transparent); }
+  .cat-qkd          { background: color-mix(in srgb, #8b5cf6 18%, transparent); color: #6c40d9; border-color: color-mix(in srgb, #8b5cf6 40%, transparent); }
+  .cat-hybrid       { background: color-mix(in srgb, #10b981 18%, transparent); color: #0c8a64; border-color: color-mix(in srgb, #10b981 40%, transparent); }
+
+  /* Filter-chip variants of the category pills inherit the same colours
+     but get button styling + pressed state. */
+  button.cat-pill {
+    cursor: pointer;
+    font: inherit;
+    font-size: var(--text-xs);
+    padding: 0.25rem 0.6rem;
+  }
+  button.cat-pill:hover { filter: brightness(0.95); }
+  button.cat-pill[aria-pressed="true"] {
+    box-shadow: inset 0 0 0 2px currentColor;
+    font-weight: 600;
+  }
+
+  /* The category-filter chips also carry `.chip` (for the general chip
+     button styling). The generic `.chip` rule below sets a neutral grey
+     background and is declared later in the cascade, so it would override
+     the `.cat-*` colours at the same specificity. Restate the palette at
+     a more specific `button.chip.cat-*` selector so the colours win. */
+  button.chip.cat-entanglement { background: color-mix(in srgb, #06b6d4 18%, transparent); color: #0289a2; border-color: color-mix(in srgb, #06b6d4 40%, transparent); }
+  button.chip.cat-qkd          { background: color-mix(in srgb, #8b5cf6 18%, transparent); color: #6c40d9; border-color: color-mix(in srgb, #8b5cf6 40%, transparent); }
+  button.chip.cat-hybrid       { background: color-mix(in srgb, #10b981 18%, transparent); color: #0c8a64; border-color: color-mix(in srgb, #10b981 40%, transparent); }
+
+  /* ─── Status chips (subtler palette than the category colours) ─── */
+  button.chip.status-operational { background: color-mix(in srgb, #16a34a 14%, transparent); color: #157d3a; border-color: color-mix(in srgb, #16a34a 40%, transparent); }
+  button.chip.status-demo        { background: color-mix(in srgb, #f97316 14%, transparent); color: #b85116; border-color: color-mix(in srgb, #f97316 40%, transparent); }
+  button.chip.status-roadmap     { background: color-mix(in srgb, #94a3b8 18%, transparent); color: #475569; border-color: color-mix(in srgb, #94a3b8 40%, transparent); }
+  button.chip.status-chip[aria-pressed="true"] {
+    box-shadow: inset 0 0 0 2px currentColor;
+    font-weight: 600;
+  }
+
+  /* ─── Filter bar layout ─── */
+  .filter-bar {
+    display: grid;
+    gap: var(--space-3);
+    margin-block: var(--space-3) var(--space-3);
+    padding: var(--space-3);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-sm);
+  }
+  .filter-top {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .filter-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--space-3);
+    align-items: start;
+  }
+  @media (max-width: 64rem) { .filter-cols { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 40rem) { .filter-cols { grid-template-columns: 1fr; } }
+  .filter-col { display: grid; gap: 0.4rem; }
+  .filter-row-label {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-mute);
+  }
+  .filter-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .cs-search {
+    flex: 1 1 16rem;
+    min-width: 12rem;
+    font-size: var(--text-sm);
+    padding: 0.35rem 0.6rem;
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-sm);
+    background: var(--card-bg);
+    color: var(--color-text);
+  }
+  .cs-reset {
+    font: inherit;
+    font-size: var(--text-xs);
+    padding: 0.35rem 0.7rem;
+    border: 1px solid var(--color-rule);
+    background: var(--card-bg);
+    color: var(--color-text);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+  }
+  .cs-reset:hover { border-color: var(--color-accent); }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font: inherit;
+    font-size: var(--text-xs);
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--color-rule);
+    background: var(--card-bg);
+    border-radius: 999px;
+    cursor: pointer;
+    color: var(--color-text);
+    transition: background 120ms, border-color 120ms;
+  }
+  .chip:hover { border-color: var(--color-accent); }
+  .chip[aria-pressed="true"] {
+    box-shadow: inset 0 0 0 2px currentColor;
+    font-weight: 600;
+  }
+  .chip-count {
+    font-variant-numeric: tabular-nums;
+    opacity: 0.7;
+  }
+  .country-chip { font: inherit; font-size: var(--text-xs); }
+  .country-flag { font-size: 0.95em; line-height: 1; }
+
+  .cs-empty {
+    text-align: center;
+    color: var(--color-text-mute);
+    padding-block: var(--space-4);
+  }
+</style>

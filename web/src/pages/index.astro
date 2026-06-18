@@ -1,0 +1,286 @@
+---
+/**
+ * Subject landing page for the infographics workspace.
+ *
+ * The SiteNav rail (left side, sticky) is also visible here so a
+ * reader can jump directly to a subject without going through the
+ * landing card grid. SHIPPED_SUBJECTS / PLANNED_SUBJECTS come from
+ * the shared registry — the same arrays drive the rail and the cards.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import Grid from "../components/Grid.astro";
+import SiteNav from "../components/SiteNav.astro";
+import AnimatedOpsPrimitives from "../components/AnimatedOpsPrimitives.astro";
+import ZoomModal from "../components/ZoomModal.astro";
+import {
+  SHIPPED_SUBJECTS,
+  PLANNED_SUBJECTS,
+  TIER_LABEL,
+} from "../lib/subjects";
+import { url } from "../lib/url";
+---
+
+<Infographic
+  title="Quantum Network Infographics"
+  description="Notes on quantum networking — qubits, entanglement, distribution, repeaters, links, protocols, and vendors."
+>
+  <SiteNav slot="nav" />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero">
+        <h1>Quantum Network Infographics</h1>
+        <p>
+          Notes taken while learning about quantum networking — from
+          <em>what is a qubit</em> through entanglement distribution and
+          protocols to vendors and TRL.
+        </p>
+        <p>
+          One aim is <strong>accurate animations</strong> of the concepts that are
+          hard to picture from text alone — entanglement generation, swapping,
+          teleportation, the fibre-photon-pBSM pipeline. Where a still image gets
+          fuzzy, the animation makes the order of operations and the resource flow
+          unambiguous.
+        </p>
+        <p class="hero__contrib">
+          <strong>A caveat on the data.</strong> Much of the data collection, the
+          animations, and the prose drafting is done with AI assistance.
+          Hallucinations are getting rarer but still slip in occasionally. If you
+          spot an error, have more current information, or have an idea for a
+          concept worth animating, please
+          <a href="https://github.com/crxi/qni/issues/new" target="_blank" rel="noopener">open an issue on GitHub</a>.
+        </p>
+      </header>
+
+      <section class="ops-demo" aria-labelledby="ops-demo-heading">
+        <header class="ops-demo__header">
+          <p class="ops-demo__eyebrow">If you take one thing away from this site</p>
+          <h2 id="ops-demo-heading" class="ops-demo__title">
+            Four basic operations on a quantum network
+          </h2>
+          <p class="ops-demo__lede">
+            Heralded entanglement generation, heralded entanglement
+            purification, entanglement swapping, and teleportation —
+            composed in roughly that order to deliver an end-to-end
+            Bell pair and then consume it. The rest of this site
+            unpacks each in detail; this one figure is the through-line.
+          </p>
+        </header>
+
+      <AnimatedOpsPrimitives
+        src="/images/ops-primitives.svg"
+        alt="Four basic operations on Bell pairs: heralded entanglement generation, heralded entanglement purification, entanglement swapping, and teleportation. Each row shows the network state before and after the operation."
+        credit="Inspired by Aliro, The Evolution of Quantum Repeaters"
+      >
+        <figcaption>
+          A useful one-glance picture of what a quantum network <em>does</em>.
+          Four primitives — heralded entanglement generation (HEG), heralded
+          entanglement purification (HEP), swapping, and teleportation —
+          composed in roughly that order to deliver an end-to-end Bell pair
+          and then consume it. Each row shows the network state before and
+          after the operation; the rest of this site unpacks them. Only
+          HEG uses an active quantum channel at runtime (the blue line
+          carrying photons to the BSA — fibre, free-space optical, or
+          another medium); the other three are local matter operations
+          and need classical channels only.
+        </figcaption>
+      </AnimatedOpsPrimitives>
+      </section>
+
+      {SHIPPED_SUBJECTS.length > 0 && (
+        <section aria-labelledby="available-heading">
+          <h2 id="available-heading" class="group-heading">Available now</h2>
+          <Grid min="22rem" gap="var(--space-3)">
+            {SHIPPED_SUBJECTS.map((s) => (
+              <a class="subject-card" href={url(`/${s.slug}`)} data-tier={s.tier}>
+                <p class="subject-card__tier">{TIER_LABEL[s.tier]}</p>
+                <h3>{s.cardTitle ?? s.title}</h3>
+                <p>{s.blurb}</p>
+                <span class="subject-card__cta">Open →</span>
+              </a>
+            ))}
+          </Grid>
+        </section>
+      )}
+
+      {PLANNED_SUBJECTS.length > 0 && (
+        <section aria-labelledby="planned-heading">
+          <h2 id="planned-heading" class="group-heading">Planned</h2>
+          <p class="group-blurb">
+            The reading sequence below is the build order. Subjects ship one at a time;
+            the rail will start linking each as it lands.
+          </p>
+          <Grid min="22rem" gap="var(--space-3)">
+            {PLANNED_SUBJECTS.map((s) => (
+              <article class="subject-card subject-card--planned" aria-disabled="true" data-tier={s.tier}>
+                <p class="subject-card__tier">{TIER_LABEL[s.tier]}</p>
+                <h3>{s.cardTitle ?? s.title}</h3>
+                <p>{s.blurb}</p>
+                <span class="subject-card__cta subject-card__cta--planned">Planned</span>
+              </article>
+            ))}
+          </Grid>
+        </section>
+      )}
+
+    </Stack>
+  </Center>
+
+  <ZoomModal />
+</Infographic>
+
+<style>
+  .hero {
+    padding-block: var(--space-3) var(--space-4);
+    border-block-end: 1px solid var(--color-rule);
+    /* Match the subject-page hero rhythm: explicit grid + gap so the
+       h1 → lede gap is --space-3, instead of relying on the smaller
+       default <h1> margin-block-end. */
+    display: grid;
+    gap: var(--space-3);
+  }
+  /* The four-ops demo gets its own framed header so readers see at a
+     glance that the figure is the through-line of the whole site, not
+     just decorative content sitting between the hero and the cards. */
+  .ops-demo {
+    display: grid;
+    gap: var(--space-3);
+  }
+  .ops-demo__header {
+    display: grid;
+    gap: var(--space-1);
+    padding-block-start: var(--space-2);
+    border-block-start: 3px solid var(--color-accent);
+  }
+  .ops-demo__eyebrow {
+    margin: 0;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+  .ops-demo__title {
+    margin: 0;
+    font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+    line-height: var(--leading-tight);
+  }
+  .ops-demo__lede {
+    margin: 0;
+    color: var(--color-text-mute);
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+  }
+
+  .hero h1 {
+    margin: 0;
+    /* Scale H1 with viewport so "Infographics" fits on one line on
+       phones (~360 px viewport) without wrapping past the QR thumb. */
+    font-size: clamp(1.5rem, 5.5vw, 2.6rem);
+    line-height: var(--leading-tight);
+  }
+  .hero p  { margin: 0; }
+  .hero__contrib {
+    font-size: var(--text-sm);
+    color: var(--color-text-mute);
+  }
+
+  .group-heading {
+    font-size: var(--text-2xl);
+    margin-block-end: var(--space-3);
+  }
+  .group-blurb {
+    margin-block-end: var(--space-4);
+    color: var(--color-text-mute);
+  }
+
+  .subject-card {
+    display: grid;
+    /* Pin content to the top regardless of card height — see
+       entanglement.astro .bell-card for the long-form rationale.
+       Without this, subject cards in the same Grid row would
+       middle-align their body once one sibling stretched the row. */
+    align-content: start;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 140ms ease, transform 140ms ease;
+    /* Tier hint — thin 3px inline-start strip; the main tier signal
+       is the coloured pill on the card title row. */
+    border-inline-start: 3px solid var(--tier-color, var(--color-rule));
+  }
+  .subject-card[data-tier="A"] { --tier-color: var(--tier-a); }
+  .subject-card[data-tier="B"] { --tier-color: var(--tier-b); }
+  .subject-card[data-tier="C"] { --tier-color: var(--tier-c); }
+  .subject-card[data-tier="D"] { --tier-color: var(--tier-d); }
+  .subject-card[data-tier="E"] { --tier-color: var(--tier-e); }
+  .subject-card[data-tier="F"] { --tier-color: var(--tier-f); }
+  .subject-card[data-tier] .subject-card__tier {
+    display: inline-block;
+    padding: 2px 8px;
+    background: var(--tier-color);
+    color: #fff;
+    border-radius: 3px;
+    font-weight: 700;
+  }
+  .subject-card:hover,
+  .subject-card:focus-visible {
+    border-color: var(--color-accent);
+    transform: translateY(-1px);
+  }
+  .subject-card h3 {
+    margin: 0;
+    font-size: var(--text-xl);
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+  }
+  .subject-card p {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-mute);
+  }
+  .subject-card__tier {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-mute);
+  }
+  .subject-card__cta {
+    margin-block-start: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  .subject-card--planned {
+    opacity: 0.65;
+    border-style: dashed;
+    cursor: default;
+  }
+  .subject-card--planned:hover {
+    transform: none;
+    border-color: var(--card-border);
+  }
+  .subject-card__cta--planned {
+    color: var(--color-text-mute);
+    font-weight: 400;
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.92em;
+    background: var(--color-surface-2);
+    padding: 0.1em 0.35em;
+    border-radius: var(--radius-sm);
+  }
+
+</style>

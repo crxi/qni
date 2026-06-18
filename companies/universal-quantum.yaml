@@ -1,0 +1,130 @@
+slug: universal-quantum
+name: Universal Quantum
+categories: [qc]
+hq: Haywards Heath, United Kingdom
+founded: 2018
+status: private
+parent: null
+logo:
+  domain: universalquantum.com
+
+positioning: >
+  University of Sussex spin-out building modular trapped-ion quantum
+  computers based on ytterbium-171 ions and silicon-microchip ion traps.
+  Moves ions between modules via electric fields rather than photonic links
+  — chip-to-chip ion shuttling under extreme-high vacuum — targeting
+  fault-tolerant scale through copy-paste tiling of small modules. Founded
+  in 2018 by Winfried Hensinger and Sebastian Weidt. Anchor contract is a
+  EUR 67M four-year programme awarded by Germany's DLR in 2022 to deliver a
+  fully scalable trapped-ion quantum computer at DLR Hamburg, scaling toward
+  the ~100-qubit class.
+
+modalities:
+  qc:
+    qubit_type: trapped-ion
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: null
+    ec_code: null
+    connectivity: modular-shuttling
+    gate_set: []
+
+milestones:
+  - date: 2025-12
+    tag: qc
+    headline: Strategic MoU with Atlas Copco (Edwards / Leybold / Gamma / Montana Instruments) to co-develop extreme-high-vacuum systems for modular ion-trap architectures
+    source_url: https://thequantuminsider.com/2025/12/18/universal-quantum-atlas-copco-quantum-vacuum-mou/
+    source_type: press
+  - date: 2022-11
+    tag: qc
+    headline: "€67M (~£58M) contract awarded by Germany's DLR to build a fully scalable trapped-ion quantum computer at DLR Hamburg over 4 years — single-chip system plus a multi-chip system scaling to ~100 qubits"
+    source_url: https://thequantuminsider.com/2022/11/02/universal-quantum-subsidiary-wins-e67-million-german-contract-to-build-quantum-computer/
+    source_type: press
+  - date: 2020
+    tag: qc
+    headline: Demonstrated chip-to-chip ion transport in a modular ion-trap testbed (Sussex group), the experimental basis for UQ's "electric-field ion link" architecture
+    source_url: https://universalquantum.com/knowledge-hub/news-blog
+    source_type: web
+  - date: 2018
+    tag: qc
+    headline: Universal Quantum founded as a University of Sussex spin-out by Winfried Hensinger and Sebastian Weidt
+    source_url: https://www.sussex.ac.uk/broadcast/read/59206
+    source_type: web
+
+shareholders:
+  - holder: Founders (Hensinger, Weidt)
+    stake_percent: null
+    stake_class: founder
+    as_of: 2018
+    source_url: https://www.sussex.ac.uk/broadcast/read/59206
+  - holder: Hoxton Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2020
+    source_url: https://tracxn.com/d/companies/universal-quantum/__Ctq7Y4WcxUTJ4AgEycobzTQ8yhRzLwnhKxwrgDisJhI/funding-and-investors
+    note: Seed-stage investor per Tracxn
+  - holder: Propagator Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2020
+    source_url: https://tracxn.com/d/companies/universal-quantum/__Ctq7Y4WcxUTJ4AgEycobzTQ8yhRzLwnhKxwrgDisJhI/funding-and-investors
+
+key_personnel:
+  - role: CEO & Co-founder
+    name: Sebastian Weidt
+    since: 2018
+    source_url: https://www.sussex.ac.uk/broadcast/read/59206
+  - role: Chairman & Chief Scientist & Co-founder
+    name: Winfried Hensinger
+    since: 2018
+    source_url: https://www.sussex.ac.uk/broadcast/read/59206
+    note: Professor of Quantum Technologies at the University of Sussex
+
+roadmap:
+  - target: 2026
+    item: Continue DLR Hamburg build-out — single-chip system delivery, then multi-chip module scaling to ~100 qubits
+    source_url: https://thequantuminsider.com/2022/11/02/universal-quantum-subsidiary-wins-e67-million-german-contract-to-build-quantum-computer/
+    tag: qc
+
+current_flagship:
+  name: Modular ytterbium-ion architecture (DLR programme)
+  generation: silicon-microchip ion trap with chip-to-chip ion shuttling under XHV; pre-commercial
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2022/11/02/universal-quantum-subsidiary-wins-e67-million-german-contract-to-build-quantum-computer/
+    note: DLR €67M contract announcement
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2025/12/18/universal-quantum-atlas-copco-quantum-vacuum-mou/
+    note: Atlas Copco vacuum-systems partnership
+  - kind: blog
+    citation_key: null
+    url: https://universalquantum.com/knowledge-hub/news-blog
+    note: Vendor news index
+  - kind: web
+    citation_key: null
+    url: https://www.sussex.ac.uk/broadcast/read/59206
+    note: University of Sussex announcement of the DLR contract
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.qc.coherence_t2_ms
+  - modalities.qc.ec_code
+  - modalities.qc.gate_set
+  - field: shareholders
+    as_of: 2026-05-20
+    note: UQ is private; no equity percentages disclosed. Tracxn lists 15 investors across 6 rounds totalling ~$5M VC plus the €67M DLR commercial contract; individual seed investors not all confirmed against primary sources.
+  - field: roadmap
+    as_of: 2026-05-20
+    note: Public roadmap is essentially the DLR contract milestones; no separate vendor-published multi-year roadmap.
+
+last_verified: 2026-05-20
+verification_method: web

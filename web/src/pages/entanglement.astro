@@ -1,0 +1,2430 @@
+---
+/**
+ * /entanglement — Superposition, entanglement, and Bell pairs
+ *
+ * Tier A · Foundations.
+ *
+ * Definitional content drawn from primary sources:
+ *   - Kumar 2025 IJNDC §2.1 — entanglement, Bell states, Bell pair
+ *     as the network-resource primitive.
+ *   - Kozlowski et al. RFC 9340 §3 — Bell pair as the link-layer
+ *     service of a quantum network.
+ *   - Bell 1964 — original theorem, no local hidden variables.
+ *   - Bennett et al. PRL 70 1895 (1993) — quantum teleportation.
+ *   - Wootters & Zurek Nature 299 802 (1982) — no-cloning theorem.
+ *   - Bennett et al. PRA 54 3824 (1996) — BBPSSW purification.
+ *   - Żukowski et al. PRL 71 4287 (1993) — entanglement swapping.
+ *   - Wehner Science 362 eaam9288 (2018) — vision for the road ahead.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import Grid from "../components/Grid.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SourceNote from "../components/SourceNote.astro";
+import Callout from "../components/Callout.astro";
+import Math from "../components/Math.astro";
+import AnimatedOpsPrimitives from "../components/AnimatedOpsPrimitives.astro";
+import ZoomModal from "../components/ZoomModal.astro";
+import { url } from "../lib/url";
+
+const sections = [
+  { id: "overview",     label: "Overview" },
+  { id: "definition",   label: "What entanglement is" },
+  { id: "bell-pairs",   label: "The four Bell pairs" },
+  { id: "why-deliver",  label: "Why deliver Bell pairs" },
+  { id: "generation",   label: "How Bell pairs are made" },
+  { id: "uses",         label: "What a Bell pair lets you do" },
+  { id: "bsm",          label: "Bell-state measurement" },
+  { id: "requirements", label: "What it takes to deliver" },
+];
+---
+
+<Infographic
+  title="Entanglement and Bell pairs"
+  description="Entanglement is the multi-qubit phenomenon that makes quantum networking a separate discipline. Bell pairs are the shared resource every quantum-network protocol consumes. This page covers the definition of entanglement, the four Bell pairs, what a delivered Bell pair lets you do (teleportation, swapping, purification), how Bell pairs are generated, and what a Bell-pair delivery network needs to operate."
+  references={[
+    "azuma-rmp-95",
+    "bayerbach-sciadv-2023",
+    "bell-1964",
+    "bennett-pra-1996",
+    "bennett-prl-1993",
+    "calsamiglia-aphysb-2001",
+    "duan-nature-414",
+    "forbes-rpp-2025",
+    "knaut-nature-2024",
+    "kozlowski-rfc9340",
+    "kumar-ijndc-2025",
+    "kwiat-prl-1995",
+    "lo-prl-mdi-2012",
+    "meddeb-comnet-2025",
+    "muralidharan-scirep-2016",
+    "nielsen-chuang-qcqi",
+    "sangouard-rmp-83",
+    "wootters-nature-1982",
+    "yin-science-2017",
+    "zukowski-prl-1993",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="entanglement" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>Entanglement and Bell pairs</h1>
+        <p>
+          A qubit by itself is a richer object than a classical bit, but it is still a
+          local thing. <strong>Entanglement</strong> is the multi-qubit phenomenon that makes
+          quantum networking a separate discipline — not "wider-bandwidth classical
+          networking" but a different category of service.
+        </p>
+        <p>
+          The shared resource a quantum network delivers is the <strong>Bell pair</strong>
+          — also called an <strong>EPR pair</strong>, after the 1935 Einstein-Podolsky-Rosen
+          paper that first discussed states of this form. A Bell pair is two qubits in a
+          specific maximally entangled state, with one qubit at each of two endpoints.
+          Once a Bell pair is delivered between two distant nodes, users can teleport
+          arbitrary qubits through it, extract a cryptographic key, or run a distributed
+          protocol. The whole of quantum networking reduces to one goal: deliver Bell pairs
+          at adequate rate, fidelity, and reach <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+      </header>
+
+      <section id="definition" data-nav-section>
+        <h2>What entanglement is</h2>
+
+        <p>
+          A single qubit's state is <Math tex="\\alpha|0\\rangle + \\beta|1\\rangle" /> with
+          <Math tex="|\\alpha|^2 + |\\beta|^2 = 1" />, and measurement in the computational
+          basis collapses it to <Math tex="|0\\rangle" /> or <Math tex="|1\\rangle" /> with
+          probabilities <Math tex="|\\alpha|^2" /> and <Math tex="|\\beta|^2" />. Entanglement
+          is what happens when two of these are composed into a single joint state
+          <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+        <p>
+          For two qubits <Math tex="A" /> and <Math tex="B" />, the joint state lives in a
+          four-dimensional space with basis vectors <Math tex="|00\\rangle" />,
+          <Math tex="|01\\rangle" />, <Math tex="|10\\rangle" />, <Math tex="|11\\rangle" />.
+          The notation is just a stacked pair: <Math tex="|00\\rangle" /> means
+          <em>qubit A is in <Math tex="|0\\rangle" /> and qubit B is in <Math tex="|0\\rangle" /></em>;
+          <Math tex="|01\\rangle" /> means <em>A in <Math tex="|0\\rangle" />, B in <Math tex="|1\\rangle" /></em>;
+          and so on. A general two-qubit state is a complex superposition over all four of
+          these joint outcomes, with amplitudes whose squared magnitudes sum to 1.
+        </p>
+        <p>
+          A <strong>separable</strong> state is one that can be written as a tensor product
+          of two independent single-qubit states,
+          <Math tex="|\\psi\\rangle_{AB} = |\\psi\\rangle_A \\otimes |\\phi\\rangle_B" /> —
+          each qubit has its own state, and the joint state is just <q>A's state and B's
+          state side by side</q>. An <strong>entangled</strong> state is one that
+          <em>cannot</em> be written that way: the two qubits do not have individual states
+          of their own, only a single shared state. The canonical example is the Bell state
+        </p>
+
+        <Math display tex="|\\Phi^+\\rangle = \\tfrac{1}{\\sqrt{2}}\\bigl(|00\\rangle + |11\\rangle\\bigr)" />
+
+        <p>
+          The pair is in an equal superposition of <q>both qubits are 0</q> and <q>both
+          qubits are 1</q>. The <Math tex="\\tfrac{1}{\\sqrt{2}}" /> in front is the
+          normalising amplitude — Born's rule turns each amplitude into a probability by
+          squaring its magnitude, so each outcome has probability
+          <Math tex="(1/\\sqrt{2})^2 = \\tfrac{1}{2}" />. When Alice and Bob measure their
+          qubits in the computational basis (the standard <Math tex="|0\\rangle" /> /
+          <Math tex="|1\\rangle" /> basis — H or V for photon polarisation), two things
+          happen at once:
+        </p>
+        <ul>
+          <li>
+            <strong>Each individual outcome is random.</strong> Alice sees 0 half the time
+            and 1 half the time; same for Bob. Looked at on its own, either side is a fair
+            coin.
+          </li>
+          <li>
+            <strong>The outcomes always agree.</strong> The joint result is either 00 or 11,
+            each with probability ½. The cross-terms 01 and 10 have amplitude zero — they
+            never happen. Alice and Bob's coins are perfectly correlated, even though
+            either coin in isolation looks random.
+          </li>
+        </ul>
+        <p>
+          Each qubit is locally indeterminate, yet the pair is deterministically correlated.
+          The state has no factorisation into A and B parts, and the correlation persists
+          regardless of how far apart the two qubits are. Bell's theorem proved that this
+          correlation cannot be reproduced by any local classical pre-arrangement: no shared
+          random seed agreed on in advance recovers the same statistics across all
+          measurement bases <SourceNote id="bell-1964" />.
+        </p>
+
+        <figure class="epr">
+          <svg viewBox="0 -10 600 250" role="img"
+               aria-label="Entangled-photon source emitting a Bell pair to Alice and Bob, with correlated measurement outcomes"
+               data-eps>
+            {/* Polarisation encoding: a horizontal bar (—) is a
+                photon in |0⟩ (H-polarised); a vertical bar (|) is
+                |1⟩ (V-polarised). The same shape runs through the
+                detector indicators and the photon glyphs during
+                flight. No colour is used to encode the basis. */}
+
+            {/* Fuzzy "probability cloud" drawn around each in-flight
+                photon: opaque core, soft halo fading to transparent.
+                Signifies that the photon is in a superposition until
+                measurement; the bar inside shows the polarisation axis
+                the measurement could project onto. */}
+            <defs>
+              <radialGradient id="eps-photon-cloud">
+                <stop offset="0%"  stop-color="var(--color-accent)" stop-opacity="1"/>
+                <stop offset="35%" stop-color="var(--color-accent)" stop-opacity="0.92"/>
+                <stop offset="70%" stop-color="var(--color-accent)" stop-opacity="0.45"/>
+                <stop offset="100%" stop-color="var(--color-accent)" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            {/* Bell state label. The two-digit tspans (00 / 11) carry
+                the data-eps-ket marker and are highlighted on
+                measurement; the backing rects are positioned at run
+                time from each tspan's bounding box, then shown to
+                give a white-on-black inversion of just the digits. */}
+            <rect data-eps-ket-bg="00" fill="var(--color-text)" opacity="0" rx="2"/>
+            <rect data-eps-ket-bg="11" fill="var(--color-text)" opacity="0" rx="2"/>
+            <text x="300" y="10" text-anchor="middle" class="epr-state">
+              |Φ⁺⟩ = ( |<tspan data-eps-ket="00">00</tspan>⟩ + |<tspan data-eps-ket="11">11</tspan>⟩ ) / √2
+            </text>
+
+            {/* Static dashed flight paths from the EPS to each
+                station's PBS. */}
+            <line x1="278" y1="80" x2="80" y2="80"
+                  stroke="var(--color-text-soft)" stroke-width="1" stroke-dasharray="5,4" opacity="0.65"/>
+            <line x1="322" y1="80" x2="520" y2="80"
+                  stroke="var(--color-text-soft)" stroke-width="1" stroke-dasharray="5,4" opacity="0.65"/>
+
+            {/* Entangled-photon source — QuISP EPPS network icon
+                (sfc-aqua/quisp, Van Meter et al.). The icon is the
+                shared visual vocabulary for quantum-network
+                topologies across the workspace. Rendered white-on-
+                black for higher contrast against the page surface:
+                a filled dark backdrop sits behind the icon, and the
+                icon's black strokes are inverted to white. */}
+            <circle cx="300" cy="80" r="24" fill="var(--color-text)"/>
+            <image href={url("/icons/quisp/EPPS.svg")} x="276" y="56" width="48" height="48" style="filter: invert(1);"/>
+            <text x="300" y="128" text-anchor="middle" class="epr-caption">entangled-photon source</text>
+
+            {/* Alice apparatus. A polarising beam splitter (PBS, the
+                small square with a diagonal interface) splits the
+                incoming beam into two output beams — one goes
+                up-and-outward to D₀ (the H detector, outcome 0), the
+                other goes down-and-outward to D₁ (V, outcome 1). The
+                photon traverses the chosen output beam at the moment
+                of measurement, so the eye sees which way it went.
+                Border thickens briefly when a detector fires. */}
+            <text x="50" y="22" text-anchor="middle" class="epr-label">Alice</text>
+            <g data-eps-det="A0" transform="translate(32 45) rotate(135)">
+              <path data-eps-result="A0"
+                    d="M -6.5,0 L 6.5,0 A 6.5,6.5 0 0 1 -6.5,0 Z"
+                    fill="var(--color-text)" stroke="var(--color-text)" stroke-width="1.5"
+                    stroke-linejoin="round" opacity="0.18"/>
+            </g>
+            <text x="12" y="48" text-anchor="end" class="epr-out" dominant-baseline="middle">0</text>
+            <line x1="62" y1="72" x2="32" y2="45"
+                  stroke="var(--color-text-soft)" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+            <g data-eps-pbs>
+              <rect x="62" y="72" width="16" height="16"
+                    fill="var(--color-bg)" stroke="var(--color-text)" stroke-width="1.5"/>
+              <line x1="62" y1="72" x2="78" y2="88"
+                    stroke="var(--color-text)" stroke-width="1.5"/>
+            </g>
+            <line x1="62" y1="88" x2="32" y2="115"
+                  stroke="var(--color-text-soft)" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+            <g data-eps-det="A1" transform="translate(32 115) rotate(45)">
+              <path data-eps-result="A1"
+                    d="M -6.5,0 L 6.5,0 A 6.5,6.5 0 0 1 -6.5,0 Z"
+                    fill="var(--color-text)" stroke="var(--color-text)" stroke-width="1.5"
+                    stroke-linejoin="round" opacity="0.18"/>
+            </g>
+            <text x="12" y="116" text-anchor="end" class="epr-out" dominant-baseline="middle">1</text>
+
+            {/* Bob apparatus (mirror image of Alice). */}
+            <text x="550" y="22" text-anchor="middle" class="epr-label">Bob</text>
+            <g data-eps-det="B0" transform="translate(568 45) rotate(225)">
+              <path data-eps-result="B0"
+                    d="M -6.5,0 L 6.5,0 A 6.5,6.5 0 0 1 -6.5,0 Z"
+                    fill="var(--color-text)" stroke="var(--color-text)" stroke-width="1.5"
+                    stroke-linejoin="round" opacity="0.18"/>
+            </g>
+            <text x="588" y="48" text-anchor="start" class="epr-out" dominant-baseline="middle">0</text>
+            <line x1="538" y1="72" x2="568" y2="45"
+                  stroke="var(--color-text-soft)" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+            <g data-eps-pbs>
+              <rect x="522" y="72" width="16" height="16"
+                    fill="var(--color-bg)" stroke="var(--color-text)" stroke-width="1.5"/>
+              <line x1="522" y1="72" x2="538" y2="88"
+                    stroke="var(--color-text)" stroke-width="1.5"/>
+            </g>
+            <line x1="538" y1="88" x2="568" y2="115"
+                  stroke="var(--color-text-soft)" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+            <g data-eps-det="B1" transform="translate(568 115) rotate(315)">
+              <path data-eps-result="B1"
+                    d="M -6.5,0 L 6.5,0 A 6.5,6.5 0 0 1 -6.5,0 Z"
+                    fill="var(--color-text)" stroke="var(--color-text)" stroke-width="1.5"
+                    stroke-linejoin="round" opacity="0.18"/>
+            </g>
+            <text x="588" y="116" text-anchor="start" class="epr-out" dominant-baseline="middle">1</text>
+
+            {/* Animated photon glyphs. Each photon has two leg phases:
+                an inward leg from the EPS to the PBS (drawn as a fuzzy
+                cloud — no polarisation axis yet) and an outward leg
+                from the PBS to whichever detector it ends up at
+                (drawn as a sharp H or V bar, depending on outcome).
+                The transition happens instantaneously at the PBS. */}
+            <g data-eps-photon="L" transform="translate(278 80)" opacity="0">
+              <circle data-eps-cloud r="11" fill="url(#eps-photon-cloud)"/>
+              <line data-eps-bar x1="-8" y1="0" x2="8" y2="0"
+                    stroke="var(--color-text)" stroke-width="3" stroke-linecap="round" opacity="0"/>
+            </g>
+            <g data-eps-photon="R" transform="translate(322 80)" opacity="0">
+              <circle data-eps-cloud r="11" fill="url(#eps-photon-cloud)"/>
+              <line data-eps-bar x1="-8" y1="0" x2="8" y2="0"
+                    stroke="var(--color-text)" stroke-width="3" stroke-linecap="round" opacity="0"/>
+            </g>
+
+            {/* Per-side measurement history. Both sides accumulate
+                the same string of outcomes (since the pair is
+                correlated); the reader can read across to confirm
+                the strings match and watch them grow without an
+                obvious 0,1,0,1 pattern. */}
+            <text x="70" y="160" text-anchor="middle" class="epr-history-label">history</text>
+            <rect data-eps-history-bg="A" fill="var(--color-text)" opacity="0" rx="2"/>
+            <text data-eps-history="A" x="70" y="180" text-anchor="middle" class="epr-history">—</text>
+
+            <text x="530" y="160" text-anchor="middle" class="epr-history-label">history</text>
+            <rect data-eps-history-bg="B" fill="var(--color-text)" opacity="0" rx="2"/>
+            <text data-eps-history="B" x="530" y="180" text-anchor="middle" class="epr-history">—</text>
+
+            {/* Correlation annotation */}
+            <text x="300" y="220" text-anchor="middle" class="epr-caption">
+              outcomes always match: 00 or 11, each with probability ½ — never 01 or 10
+            </text>
+          </svg>
+          <figcaption>
+            <ul class="epr-caption-list">
+              <li>
+                <strong>Source.</strong> The entangled-photon source (EPS) at the centre
+                emits two photons in the joint state <Math tex="|\\Phi^+\\rangle" />,
+                sending one to Alice and one to Bob. Most commonly a non-linear crystal
+                pumped by a laser, in which one pump photon spontaneously down-converts
+                into a pair of lower-energy photons correlated by the conservation laws
+                of the conversion process.
+              </li>
+              <li>
+                <strong>Polarisation is one encoding among many.</strong> A photon can
+                carry a qubit in polarisation, time-bin, phase, frequency-bin, or
+                dual-rail form — the qubits subject covers the menu. The entanglement
+                physics is the same in any encoding; polarisation is the most familiar
+                and the easiest to picture.
+              </li>
+              <li>
+                <strong>Apparatus.</strong> Each station is a polarising beam splitter
+                (PBS, the square with a diagonal interface) followed by two single-photon
+                detectors. The outer-up detector D₀ clicks on the H component, the
+                outer-down D₁ on V — so a single measurement always yields one click,
+                and the slot that lit up identifies the outcome.
+              </li>
+              <li>
+                <strong>Both stations measure in the same basis.</strong> The PBSes here
+                are both oriented H/V. The
+                <Math tex="|\\Phi^+\\rangle" /> correlation holds only when Alice and
+                Bob's measurement axes match — both could have chosen diagonal or any
+                other axis and still seen perfect agreement, but a mismatch makes the
+                outcomes follow Malus's law,
+                <Math tex="P(\\text{agree}) = \\cos^2(\\theta_A - \\theta_B)" />, instead
+                of locking step. The choice of basis matters; the choice of <em>which</em>
+                basis (so long as both pick the same one) doesn't.
+              </li>
+              <li>
+                <strong>Inward leg, then split.</strong> On the inward leg each photon
+                is a fuzzy cloud with no axis — the polarisation is undefined, in the
+                superposition <Math tex="|00\\rangle + |11\\rangle" />. When the photon
+                reaches the PBS it continues onto one of the two output beams as a
+                sharp H or V bar, and the eye sees which way it went.
+              </li>
+              <li>
+                <strong>Time of measurement does not matter.</strong> Each cycle
+                randomly picks which side measures first; you'll see one detector's
+                border pulse, then the other's. The second outcome always matches the
+                first — the running history under each detector is identical, and the
+                running string is genuinely random (no <q>0,1,0,1</q> pattern; each
+                cycle is an independent fair coin).
+              </li>
+            </ul>
+          </figcaption>
+        </figure>
+
+        <script type="module" is:inline>
+          // Entangled-photon-source animation. Each side's apparatus
+          // is a polarising beam splitter (PBS) plus two single-photon
+          // detectors: the upper detector clicks on H (outcome 0), the
+          // lower clicks on V (outcome 1). Each cycle is staged as:
+          //
+          //   1. Both photons leave the EPS as fuzzy clouds — no
+          //      polarisation axis, the joint state is |00⟩+|11⟩.
+          //   2. The clouds arrive at each side's PBS and pause as
+          //      clouds for a moment (still in superposition).
+          //   3. One side measures first (chosen randomly per cycle).
+          //      Its cloud disappears and one of its two detectors
+          //      lights up — border flashes thicker, the H or V slot
+          //      indicator inside brightens, and the outcome is
+          //      appended to that side's running history. The other
+          //      photon is still a cloud at its PBS, waiting.
+          //   4. ~450 ms later the other detector measures — same
+          //      outcome, same reveal, same history append.
+          //
+          // Outcomes are independent uniform 50/50 per cycle (no
+          // fixed pattern). prefers-reduced-motion → static frame.
+          const eps = document.querySelector("[data-eps]");
+          if (eps) {
+            const photonL = eps.querySelector('[data-eps-photon="L"]');
+            const photonR = eps.querySelector('[data-eps-photon="R"]');
+            const lCloud = photonL.querySelector('[data-eps-cloud]');
+            const rCloud = photonR.querySelector('[data-eps-cloud]');
+            const lBar = photonL.querySelector('[data-eps-bar]');
+            const rBar = photonR.querySelector('[data-eps-bar]');
+            const a0 = eps.querySelector('[data-eps-result="A0"]');
+            const a1 = eps.querySelector('[data-eps-result="A1"]');
+            const b0 = eps.querySelector('[data-eps-result="B0"]');
+            const b1 = eps.querySelector('[data-eps-result="B1"]');
+            // Detector groups (rect + slot indicator). The rect inside
+            // each group is what we thicken on pulse.
+            const detRect = {
+              A0: eps.querySelector('[data-eps-det="A0"] path'),
+              A1: eps.querySelector('[data-eps-det="A1"] path'),
+              B0: eps.querySelector('[data-eps-det="B0"] path'),
+              B1: eps.querySelector('[data-eps-det="B1"] path'),
+            };
+            const aHist = eps.querySelector('[data-eps-history="A"]');
+            const bHist = eps.querySelector('[data-eps-history="B"]');
+            const aHistBg = eps.querySelector('[data-eps-history-bg="A"]');
+            const bHistBg = eps.querySelector('[data-eps-history-bg="B"]');
+            const k00 = eps.querySelector('[data-eps-ket="00"]');
+            const k11 = eps.querySelector('[data-eps-ket="11"]');
+            const bg00 = eps.querySelector('[data-eps-ket-bg="00"]');
+            const bg11 = eps.querySelector('[data-eps-ket-bg="11"]');
+
+            // Size each highlight rect to fit its digit tspan, with a
+            // tiny pad so the inverted text doesn't kiss the edges.
+            // Deferred to the next frame so the SVG text has been
+            // laid out and getBBox returns real values.
+            function positionKetHighlight(rect, tspan) {
+              const bb = tspan.getBBox();
+              rect.setAttribute("x", bb.x - 2);
+              rect.setAttribute("y", bb.y - 1);
+              rect.setAttribute("width", bb.width + 4);
+              rect.setAttribute("height", bb.height + 2);
+            }
+            requestAnimationFrame(() => {
+              positionKetHighlight(bg00, k00);
+              positionKetHighlight(bg11, k11);
+            });
+
+            const SRC_L = 278, SRC_R = 322;
+            const PBS_L = 70,  PBS_R = 530;
+            const FLIGHT_Y = 80;
+            // Detector centres — where the outward leg of each
+            // photon ends up. Outcome 0 (H) goes up-and-outward;
+            // outcome 1 (V) goes down-and-outward.
+            const DET_POS = {
+              A0: { x: 32,  y: 45  },
+              A1: { x: 32,  y: 115 },
+              B0: { x: 568, y: 45  },
+              B1: { x: 568, y: 115 },
+            };
+            const HISTORY_LIMIT = 10;
+
+            // Running history of detected outcomes, identical on both
+            // sides because the pair is correlated. The last digit on
+            // each side is rendered inside a tspan so we can toggle a
+            // "fresh" class — bold + accent at the moment of
+            // measurement; the previous digit reverts to normal weight
+            // at the next measurement (no fade, classes flip when the
+            // per-side text is rebuilt).
+            const history = [];
+            const SVG_NS = "http://www.w3.org/2000/svg";
+
+            function renderHistorySide(target, fresh) {
+              const bg = target === aHist ? aHistBg : bHistBg;
+              while (target.firstChild) target.removeChild(target.firstChild);
+              if (history.length === 0) {
+                target.textContent = "—";
+                bg.setAttribute("opacity", "0");
+                return;
+              }
+              const lastIdx = history.length - 1;
+              if (lastIdx > 0) {
+                const head = history.slice(0, lastIdx).join(" ") + " ";
+                target.appendChild(document.createTextNode(head));
+              }
+              const tspan = document.createElementNS(SVG_NS, "tspan");
+              tspan.setAttribute(
+                "class",
+                fresh ? "epr-history-last epr-history-fresh"
+                      : "epr-history-last"
+              );
+              tspan.textContent = history[lastIdx];
+              target.appendChild(tspan);
+              if (fresh) {
+                const bb = tspan.getBBox();
+                bg.setAttribute("x", bb.x - 2);
+                bg.setAttribute("y", bb.y - 1);
+                bg.setAttribute("width", bb.width + 4);
+                bg.setAttribute("height", bb.height + 2);
+                bg.setAttribute("opacity", "1");
+              } else {
+                bg.setAttribute("opacity", "0");
+              }
+            }
+
+            function renderHistory() {
+              renderHistorySide(aHist, false);
+              renderHistorySide(bHist, false);
+            }
+
+            function unboldHistory() {
+              // Drop the .epr-history-fresh class on whichever
+              // tspan still carries it, and clear both side's
+              // inversion backdrops. Snap-flip, no CSS transition.
+              for (const text of [aHist, bHist]) {
+                const tspan = text.querySelector(".epr-history-fresh");
+                if (tspan) tspan.classList.remove("epr-history-fresh");
+              }
+              aHistBg.setAttribute("opacity", "0");
+              bHistBg.setAttribute("opacity", "0");
+            }
+
+            function setPhotonPos(side, x, y) {
+              const g = side === "L" ? photonL : photonR;
+              g.setAttribute("transform", `translate(${x} ${y})`);
+            }
+
+            function showPhoton(side) {
+              const g = side === "L" ? photonL : photonR;
+              g.setAttribute("opacity", "1");
+            }
+
+            function hidePhoton(side) {
+              const g = side === "L" ? photonL : photonR;
+              g.setAttribute("opacity", "0");
+            }
+
+            // Inward leg: photon drawn as a fuzzy cloud (no axis).
+            function setGlyphCloud(side) {
+              const cloud = side === "L" ? lCloud : rCloud;
+              const bar   = side === "L" ? lBar   : rBar;
+              cloud.setAttribute("opacity", "1");
+              bar.setAttribute("opacity", "0");
+            }
+
+            // Outward leg: photon drawn as a sharp bar oriented at H
+            // (outcome 0) or V (outcome 1).
+            function setGlyphBar(side, outcome) {
+              const cloud = side === "L" ? lCloud : rCloud;
+              const bar   = side === "L" ? lBar   : rBar;
+              cloud.setAttribute("opacity", "0");
+              bar.setAttribute("opacity", "1");
+              bar.setAttribute("transform", `rotate(${outcome === 0 ? 0 : 90})`);
+            }
+
+            function detectorIndeterminate(side) {
+              const [zero, one] = side === "A" ? [a0, a1] : [b0, b1];
+              zero.setAttribute("opacity", "0.18");
+              one.setAttribute("opacity", "0.18");
+            }
+
+            function detectorLock(side, outcome) {
+              const [zero, one] = side === "A" ? [a0, a1] : [b0, b1];
+              if (outcome === 0) {
+                zero.setAttribute("opacity", "1");
+                one.setAttribute("opacity", "0.08");
+              } else {
+                zero.setAttribute("opacity", "0.08");
+                one.setAttribute("opacity", "1");
+              }
+            }
+
+            function setKets(outcome /* 0 | 1 | null */) {
+              // Active ket: bold + white fill, with its backing rect
+              // shown so the digits read as white-on-black. Non-
+              // matching ket: dimmed. During flight (outcome null):
+              // both kets neutral, both rects hidden.
+              const active = (k) => {
+                k.classList.add("eps-ket--active");
+                k.classList.remove("eps-ket--dim");
+              };
+              const dim = (k) => {
+                k.classList.remove("eps-ket--active");
+                k.classList.add("eps-ket--dim");
+              };
+              const neutral = (k) => {
+                k.classList.remove("eps-ket--active");
+                k.classList.remove("eps-ket--dim");
+              };
+              if (outcome === 0) {
+                active(k00); dim(k11);
+                bg00.setAttribute("opacity", "1");
+                bg11.setAttribute("opacity", "0");
+              } else if (outcome === 1) {
+                active(k11); dim(k00);
+                bg11.setAttribute("opacity", "1");
+                bg00.setAttribute("opacity", "0");
+              } else {
+                neutral(k00); neutral(k11);
+                bg00.setAttribute("opacity", "0");
+                bg11.setAttribute("opacity", "0");
+              }
+            }
+
+            // Border-flash state. When a detector fires we set its
+            // pulseEnd; the per-frame updateBorders() interpolates
+            // its rect stroke-width down to baseline. Keyed by
+            // side+outcome so only the detector that clicked flashes.
+            const PULSE_DUR = 280;
+            const flash = { A0: 0, A1: 0, B0: 0, B1: 0 };
+            function pulse(side, outcome, now) {
+              flash[`${side}${outcome}`] = now + PULSE_DUR;
+            }
+            function updateBorders(now) {
+              for (const key of ["A0", "A1", "B0", "B1"]) {
+                const remaining = flash[key] - now;
+                const rect = detRect[key];
+                if (remaining > 0) {
+                  const t = remaining / PULSE_DUR;
+                  rect.setAttribute("stroke-width", String(1.5 + 2.5 * t));
+                } else {
+                  rect.setAttribute("stroke-width", "1.5");
+                }
+              }
+            }
+
+            const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+            if (reducedMotion) {
+              hidePhoton("L");
+              hidePhoton("R");
+              detectorLock("A", 0);
+              detectorLock("B", 0);
+              setKets(0);
+              history.push("0", "1", "1", "0", "1", "0", "0", "1");
+              renderHistory();
+            } else {
+              // Per-side inward (EPS → PBS) travel time. The
+              // first-to-measure side travels faster (its photon
+              // arrives at its PBS earlier and goes through). The
+              // other side arrives at its PBS later. There is no
+              // "pause at the PBS" — once the photon arrives, it
+              // continues onto the H or V output beam immediately.
+              const TRAVEL_IN_FAST  = 1800;
+              const TRAVEL_IN_SLOW  = 2400;
+              const TRAVEL_OUT      = 550;
+              const HOLD            = 700;
+              const PAUSE           = 300;
+              const FIRST_MEASURE   = TRAVEL_IN_FAST + TRAVEL_OUT;
+              const SECOND_MEASURE  = TRAVEL_IN_SLOW + TRAVEL_OUT;
+              const TOTAL           = SECOND_MEASURE + HOLD + PAUSE;
+
+              // Pre-generated outcome / firstSide sequences. Pure
+              // Math.random() per cycle technically gives uniform
+              // independent draws, but humans read long runs of the
+              // same value as "not random". We pre-generate length-64
+              // sequences capped at 4 consecutive identical values
+              // and loop around. The phase offset for the wobble
+              // stays continuous-random — no run-perception issue
+              // since it's a continuous value, not a coin flip.
+              function makeConstrained(length, maxRun) {
+                const seq = new Array(length);
+                let run = 0;
+                let last = -1;
+                for (let i = 0; i < length; i++) {
+                  let v = Math.random() < 0.5 ? 0 : 1;
+                  if (v === last && run >= maxRun) v = 1 - last;
+                  seq[i] = v;
+                  if (v === last) run++;
+                  else { run = 1; last = v; }
+                }
+                return seq;
+              }
+              const outcomeSeq   = makeConstrained(64, 4);
+              const firstSideSeq = makeConstrained(64, 4);
+              let outcomeIdx = 0;
+              let firstSideIdx = 0;
+              function nextOutcome() {
+                const v = outcomeSeq[outcomeIdx];
+                outcomeIdx = (outcomeIdx + 1) % outcomeSeq.length;
+                return v;
+              }
+              function nextFirstSide() {
+                const v = firstSideSeq[firstSideIdx];
+                firstSideIdx = (firstSideIdx + 1) % firstSideSeq.length;
+                return v === 0 ? "A" : "B";
+              }
+
+              let running = false;
+              let cycleStart = 0;
+              let outcome = nextOutcome();
+              let firstSide = nextFirstSide();
+              let firedFirst = false;
+              let firedSecond = false;
+
+              const firstLR  = () => firstSide === "A" ? "L" : "R";
+              const secondLR = () => firstSide === "A" ? "R" : "L";
+              const secondSide = () => firstSide === "A" ? "B" : "A";
+
+              // Per-side trajectory: inward leg as a cloud along the
+              // horizontal flight path, then outward leg as an H or V
+              // bar along the diagonal output beam.
+              function updatePhoton(side, elapsed) {
+                const sideAB = side === "L" ? "A" : "B";
+                const isFirst = sideAB === firstSide;
+                const tIn = isFirst ? TRAVEL_IN_FAST : TRAVEL_IN_SLOW;
+                const tDet = tIn + TRAVEL_OUT;
+                const srcX = side === "L" ? SRC_L : SRC_R;
+                const pbsX = side === "L" ? PBS_L : PBS_R;
+                const det = DET_POS[`${sideAB}${outcome}`];
+
+                if (elapsed < tIn) {
+                  const p = elapsed / tIn;
+                  setPhotonPos(side, srcX + (pbsX - srcX) * p, FLIGHT_Y);
+                  setGlyphCloud(side);
+                  showPhoton(side);
+                } else if (elapsed < tDet) {
+                  const p = (elapsed - tIn) / TRAVEL_OUT;
+                  setPhotonPos(side,
+                               pbsX + (det.x - pbsX) * p,
+                               FLIGHT_Y + (det.y - FLIGHT_Y) * p);
+                  setGlyphBar(side, outcome);
+                  showPhoton(side);
+                } else {
+                  hidePhoton(side);
+                }
+              }
+
+              function frame(now) {
+                if (!running) return;
+                const elapsed = now - cycleStart;
+
+                updatePhoton("L", elapsed);
+                updatePhoton("R", elapsed);
+
+                if (elapsed < FIRST_MEASURE) {
+                  detectorIndeterminate("A");
+                  detectorIndeterminate("B");
+                  setKets(null);
+                } else if (elapsed < SECOND_MEASURE) {
+                  // First side's photon has arrived at its detector.
+                  if (!firedFirst) {
+                    pulse(firstSide, outcome, now);
+                    history.push(String(outcome));
+                    if (history.length > HISTORY_LIMIT) history.shift();
+                    renderHistorySide(firstSide === "A" ? aHist : bHist, true);
+                    firedFirst = true;
+                  }
+                  detectorLock(firstSide, outcome);
+                  detectorIndeterminate(secondSide());
+                  setKets(outcome);
+                } else if (elapsed < SECOND_MEASURE + HOLD) {
+                  // Second side's photon has now arrived.
+                  if (!firedSecond) {
+                    pulse(secondSide(), outcome, now);
+                    renderHistorySide(secondSide() === "A" ? aHist : bHist, true);
+                    firedSecond = true;
+                  }
+                  detectorLock("A", outcome);
+                  detectorLock("B", outcome);
+                  setKets(outcome);
+                } else if (elapsed < TOTAL) {
+                  // Brief pause before next cycle.
+                } else {
+                  // Snap the history back to plain weight + colour
+                  // before the next transmission begins; the next
+                  // measurement will re-bold whichever side gets the
+                  // new digit. No CSS transition — instant flip.
+                  unboldHistory();
+                  cycleStart = now;
+                  outcome = nextOutcome();
+                  firstSide = nextFirstSide();
+                  firedFirst = false;
+                  firedSecond = false;
+                }
+
+                updateBorders(now);
+                requestAnimationFrame(frame);
+              }
+
+              // Continuous animation. We deliberately don't gate on
+              // an IntersectionObserver: that approach was resetting
+              // cycleStart on re-entry, and the observer can fire on
+              // small layout shifts (e.g. hover-triggered repaints),
+              // perceived as a "restart". requestAnimationFrame is
+              // already throttled when the browser tab is hidden, so
+              // running unconditionally costs essentially nothing
+              // when the figure is off-screen.
+              running = true;
+              cycleStart = performance.now();
+              requestAnimationFrame(frame);
+            }
+          }
+        </script>
+      </section>
+
+      <section id="bell-pairs" data-nav-section>
+        <h2>The four Bell pairs</h2>
+        <p>
+          There are exactly four <strong>maximally entangled</strong> two-qubit states — the
+          Bell states. They form an orthonormal basis for the two-qubit Hilbert space and
+          are the resource on which every quantum-network protocol is built.
+        </p>
+
+        <div class="bell-grid">
+          <article class="bell-card">
+            <h3 class="bell-card__name">|Φ⁺⟩</h3>
+            <Math display tex="\\tfrac{1}{\\sqrt{2}}\\bigl(|00\\rangle + |11\\rangle\\bigr)" />
+            <p>Even parity, symmetric phase. The reference Bell state in most protocols.</p>
+          </article>
+
+          <article class="bell-card">
+            <h3 class="bell-card__name">|Φ⁻⟩</h3>
+            <Math display tex="\\tfrac{1}{\\sqrt{2}}\\bigl(|00\\rangle - |11\\rangle\\bigr)" />
+            <p>Even parity, opposite phase. Reached from <Math tex="|\\Phi^+\\rangle" /> by
+              applying <Math tex="Z" /> to either qubit.</p>
+          </article>
+
+          <article class="bell-card">
+            <h3 class="bell-card__name">|Ψ⁺⟩</h3>
+            <Math display tex="\\tfrac{1}{\\sqrt{2}}\\bigl(|01\\rangle + |10\\rangle\\bigr)" />
+            <p>Odd parity, symmetric phase. From <Math tex="|\\Phi^+\\rangle" /> by applying
+              <Math tex="X" /> to either qubit.</p>
+          </article>
+
+          <article class="bell-card">
+            <h3 class="bell-card__name">|Ψ⁻⟩</h3>
+            <Math display tex="\\tfrac{1}{\\sqrt{2}}\\bigl(|01\\rangle - |10\\rangle\\bigr)" />
+            <p>The <strong>singlet</strong> — antisymmetric, the unique rotationally invariant
+              Bell state. From <Math tex="|\\Phi^+\\rangle" /> by applying <Math tex="XZ" />
+              to either qubit.</p>
+          </article>
+        </div>
+
+        <Callout label="Why exactly four">
+          <p>
+            Two qubits live in a 4-dimensional Hilbert space, and a maximally entangled state
+            is one whose reduced density matrix on either side is the maximally mixed state
+            <Math tex="\\tfrac{1}{2}\\mathbb{I}" />. The set of such states forms a basis of
+            the joint Hilbert space — there are exactly four orthogonal such states up to a
+            global phase, the Bell states. Local single-qubit Pauli operations
+            (<Math tex="X" />, <Math tex="Z" />, <Math tex="XZ" />) on one side convert any
+            Bell state into any other, so a network only needs to deliver one canonical pair
+            (typically <Math tex="|\\Phi^+\\rangle" />); the receiver reaches the others by
+            local action.
+          </p>
+        </Callout>
+
+        <Callout label="Beyond two qubits — GHZ and W states">
+          <p>
+            Entanglement is not limited to pairs. For <Math tex="n \\geq 3" /> qubits,
+            two qualitatively different families of genuine multipartite entanglement
+            exist — and crucially, they are <em>not</em> convertible into one another by
+            any local operations and classical communication, even probabilistically.
+            Dür, Vidal and Cirac proved this for <Math tex="n = 3" />
+            in <strong>2000</strong>: the <strong>GHZ class</strong> and the
+            <strong>W class</strong> are SLOCC-inequivalent <SourceNote id="dur-pra-2000" />.
+            Their canonical representatives are
+          </p>
+          <Math display tex="|\\mathrm{GHZ}_n\\rangle = \\tfrac{1}{\\sqrt{2}}\\bigl(|0\\rangle^{\\otimes n} + |1\\rangle^{\\otimes n}\\bigr) \\quad\\text{and}\\quad |\\mathrm{W}_n\\rangle = \\tfrac{1}{\\sqrt{n}}\\bigl(|10\\dots 0\\rangle + |01\\dots 0\\rangle + \\dots + |0\\dots 01\\rangle\\bigr)." />
+          <p>
+            GHZ is the <em>all-or-nothing</em> correlation — every qubit measures the same
+            in the computational basis. W is the <em>one-excitation-shared-symmetrically</em>
+            state: exactly one qubit is in <Math tex="|1\\rangle" />, but which one is in
+            a uniform superposition across all parties.
+          </p>
+          <p>
+            <strong>Networks deliver GHZ, not W</strong>, for two structural reasons.
+          </p>
+          <ul>
+            <li>
+              <strong>GHZ composes from Bell pairs.</strong> Holding one half of a Bell
+              pair plus a fresh ancilla and applying a CNOT extends the pair into a 3-qubit
+              GHZ; iterate and you have <Math tex="\\mathrm{GHZ}_n" /> from
+              <Math tex="n-1" /> Bell pairs and <Math tex="n-2" /> local CNOTs. The same
+              entanglement-distribution stack (repeaters, swapping, purification) that
+              delivers Bell pairs delivers GHZ at no architectural cost. W states have
+              <em>no</em> Bell-pair-plus-Clifford recipe — they require coherent
+              interference between <Math tex="n" /> single-photon sources with carefully
+              tuned amplitudes, and demonstrated preparations remain modest in
+              <Math tex="n" /> <SourceNote id="bugu-pra-2013" />.
+            </li>
+            <li>
+              <strong>No W-analog of entanglement swapping.</strong> The repeater chain
+              that grows a Bell pair across a country generalises directly to GHZ but not
+              to W — there is no local two-party measurement that fuses two short W states
+              into one longer W. W states are built in one place and shipped whole; once
+              one party is lost (a photon dropped in fibre), the survivors collapse out
+              of the W class entirely. Useful asymmetry — losing one of three W qubits
+              leaves a Bell pair on the other two, whereas losing one of three GHZ qubits
+              leaves a classical mixture — but the same lack of structure that makes W
+              loss-robust is what makes it non-composable across hops.
+            </li>
+          </ul>
+          <p>
+            W states earn their keep in <strong>specific protocols</strong> where the
+            symmetric "exactly one of you holds the excitation" pattern is exactly the
+            right resource — leader election, anonymous broadcast, fault-tolerant
+            subroutines in distributed computing. The fielded quantum-network
+            architectures (memory-based 1G repeaters, all-photonic 3G repeaters built on
+            graph / cluster states) are all GHZ-flavoured. This page sticks to bipartite
+            Bell pairs — the universal primitive — and treats GHZ and W as out of scope
+            for the series.
+          </p>
+        </Callout>
+      </section>
+
+      <section id="why-deliver" data-nav-section>
+        <h2>Why deliver Bell pairs</h2>
+        <p>
+          A network could in principle ferry an arbitrary unknown qubit
+          <Math tex="|\\psi\\rangle" /> from sender to receiver — the quantum analogue of
+          a classical packet. The universally adopted approach is the other one: deliver
+          a fixed, known state — a Bell pair — and let the application extract whatever
+          <Math tex="|\\psi\\rangle" /> it wants at the endpoints. Two properties make
+          Bell pairs the right resource <SourceNote id="kumar-ijndc-2025" />:
+        </p>
+        <ul>
+          <li>
+            <strong>Maximally entangled.</strong> No two-qubit state has stronger
+            entanglement than a Bell pair. An application running an entanglement-based
+            protocol cannot do better than the resource it consumes, and Bell pairs are
+            the strongest resource available.
+          </li>
+          <li>
+            <strong>Convertible to any state by local operations.</strong> Once Alice and
+            Bob share a Bell pair, any desired two-qubit state can be produced from it by
+            single-qubit gates applied locally at each end, plus two classical bits
+            exchanged between them. Distributing Bell pairs is therefore enough to
+            support every entanglement-based application at the endpoints.
+          </li>
+        </ul>
+        <p>
+          The alternative — encoding an unknown qubit into a quantum-error-correcting
+          code and sending the encoded block directly through the lossy channel — is the
+          <strong>third-generation quantum repeater</strong> approach. It eliminates the
+          round-trip latency that gen 1 and 2 repeaters incur, but at QEC overheads well
+          above what current hardware delivers. Until that matures, Bell-pair distribution
+          plus teleportation is what works in practice, and what every fielded
+          entanglement-distribution experiment to date uses. The
+          <strong>repeaters</strong> subject later in the series goes into the gen 1 / 2 / 3
+          trade-offs in
+          detail <SourceNote id="kumar-ijndc-2025" /><SourceNote id="muralidharan-scirep-2016" />.
+        </p>
+      </section>
+
+      <section id="generation" data-nav-section>
+        <h2>How Bell pairs are made</h2>
+        <p>
+          A Bell pair has to exist before anything else in this series matters. This
+          section covers how a pair is <em>generated</em> — what physical device produces
+          the entangled state in the first place. How a generated pair is then
+          <em>distributed</em> (one half placed at each of two distant nodes) is a separate
+          engineering subject covered later in the series
+          <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+
+
+        <p>
+          Four families of generation scheme cover the literature, sorted by
+          <em>what</em> the entanglement is between: two photons, photon and ensemble,
+          photon and single matter qubit, or two distant matter qubits. The matter-matter
+          case has a few sub-protocols of its own, listed at the end
+          <SourceNote id="forbes-rpp-2025" />.
+        </p>
+
+        <h3>1. Two-photon sources (photon-photon entanglement)</h3>
+        <p>
+          <strong>Spontaneous parametric down-conversion (SPDC)</strong> in a
+          <Math tex="\\chi^{(2)}" /> non-linear crystal — PPKTP, BBO, or PPLN — converts a
+          pump photon into a pair of lower-energy photons whose polarisation, time-energy,
+          and momentum are correlated by the conservation laws of the conversion. Pair
+          rates reach the megahertz, bandwidths are broad, and the crystal runs at room
+          temperature, which is why SPDC is the workhorse for BBM92/Ekert91 QKD field
+          deployments and the Micius satellite link
+          <SourceNote id="kwiat-prl-1995" /><SourceNote id="yin-science-2017" />. Both
+          photons are fragile: any loss between source and detector destroys the pair,
+          so the scheme tolerates moderate fibre attenuation but cannot store the
+          entanglement while a classical message catches up. The chip-integrated variant
+          is <strong>spontaneous four-wave mixing (SFWM)</strong> in silicon-photonic
+          waveguides, which uses the <Math tex="\\chi^{(3)}" /> non-linearity to do the
+          same job on a CMOS-compatible platform.
+        </p>
+
+        <h3>2. Atomic-ensemble emission (DLCZ-style)</h3>
+        <p>
+          The <strong>Duan-Lukin-Cirac-Zoller (DLCZ) protocol</strong> uses a cold-atom
+          cloud as both source and memory <SourceNote id="duan-nature-414" />. A weak
+          write pulse drives a Raman transition that emits a Stokes photon entangled with
+          a delocalised collective spin-wave excitation in the ensemble; the spin wave
+          stays put until a read pulse converts it back into an idler photon entangled
+          with whatever Bell pair the surrounding network has built. The Sangouard 2011
+          review is the standard reference for the protocol family and its variants
+          <SourceNote id="sangouard-rmp-83" />. Rare-earth-doped solids — Er³⁺ in silicon
+          photonics, Pr/Eu/Yb in YSO — are the present-day solid-state analogues, packaging
+          the same ensemble physics into a chip-scale memory.
+        </p>
+
+        <h3>3. Single-emitter matter-photon entanglement</h3>
+        <p>
+          A single quantum emitter — trapped ion, neutral atom, NV or SiV colour centre
+          in diamond, or semiconductor quantum dot — emits one photon entangled with its
+          own electron spin or hyperfine level. The matter qubit then <em>holds</em> the
+          entanglement while the photon flies, which is what every memory-equipped
+          repeater architecture in the series builds on. Demonstrations exist across all
+          four platforms: SiV in nanophotonic cavities over a 35-km Boston-area fibre
+          loop <SourceNote id="knaut-nature-2024" />, NV centres across three QuTech nodes
+          <SourceNote id="pompili-science-2021" />, trapped ions separated by 230 m
+          <SourceNote id="krutyanskiy-prl-2023" /> and across an optical link supporting
+          distributed quantum computation <SourceNote id="main-nature-2025" />, and
+          neutral-atom nodes 33 km apart <SourceNote id="vanleent-nature-2022" />. This
+          is the generation mechanism the workspace's 4-hop topology figure depicts: each
+          SiV repeater node emits a 737-nm photon entangled with the diamond spin, a
+          quantum frequency converter shifts the photon to 1550 nm for fibre transport,
+          and the photon flies to a midpoint Bell-state analyser where it interferes with
+          a partner emitted by the adjacent node.
+        </p>
+
+        <h3>4. Two-node matter-matter entanglement schemes</h3>
+        <p>
+          The three protocols below all sit <em>on top</em> of single-emitter spin-photon
+          entanglement: they specify how two distant nodes use their emitted photons to
+          produce a matter-matter Bell pair. The literature names and counts them
+          explicitly, so this taxonomy is taken from the source papers rather than
+          synthesised here. The midpoint announcement that completes each scheme — what
+          the <a href={url("/swapping")}>swapping</a> page calls
+          <em>heralding</em> — is described in detail there.
+        </p>
+        <ul>
+          <li>
+            <strong>Barrett-Kok (two-photon scheme).</strong> Each node emits one photon
+            entangled with its own qubit; the two photons interfere at a midpoint
+            beam-splitter; a coincidence in either output port projects the two distant
+            matter qubits into <Math tex="|\\Psi^-\\rangle" /> or
+            <Math tex="|\\Psi^+\\rangle" /> <SourceNote id="barrett-kok-pra-2005" />.
+            Two-photon detection makes the scheme robust to optical-path phase
+            fluctuations, at the cost of a 50% ceiling on success probability set by the
+            linear-optics Bell-state-measurement bound. This is the architecture used by the SiV fibre
+            demonstration <SourceNote id="knaut-nature-2024" /> and corresponds to
+            <strong>MeetInTheMiddle</strong> on the
+            <a href={url("/distribution")}>distribution</a> page.
+          </li>
+          <li>
+            <strong>Cabrillo (single-photon scheme).</strong> Each node has a low
+            excitation probability and emits at most one photon; a single click at a
+            single midpoint detector creates entanglement by erasing which-path
+            information <SourceNote id="cabrillo-pra-1999" />. At low channel
+            transmission the rate is higher than Barrett-Kok — one photon loss is
+            tolerated instead of two — but the success amplitude depends on the relative
+            optical phase between the two arms, so the interferometer needs sub-wavelength
+            stability over the full link.
+          </li>
+          <li>
+            <strong>Duan-Kimble (cavity-mediated scheme).</strong> A single photon
+            reflects off a cavity-coupled emitter; the photon polarisation acquires a
+            <Math tex="\\pi" /> phase shift conditional on the qubit state, entangling
+            photon and qubit deterministically
+            <SourceNote id="duan-kimble-prl-2003" />. The route is less common in field
+            deployments because it requires extreme cavity-emitter cooperativity, but it
+            is the canonical reference for cavity-mediated QND readout and for the
+            deterministic gates that Generation-2 and Generation-3 repeaters assume.
+          </li>
+        </ul>
+
+      </section>
+
+      <section id="uses" data-nav-section>
+        <h2>What a Bell pair lets you do</h2>
+        <p>
+          A single qubit's state cannot be copied. The <strong>no-cloning theorem</strong>
+          says there is no unitary <Math tex="U" /> for which
+          <Math tex="U(|\\psi\\rangle|0\\rangle) = |\\psi\\rangle|\\psi\\rangle" /> for an
+          arbitrary unknown <Math tex="|\\psi\\rangle" />; copying would violate the
+          linearity of quantum mechanics <SourceNote id="wootters-nature-1982" />. A signal
+          photon cannot be passed through an amplifier and faithfully reproduced either —
+          any phase-insensitive amplifier must add at least one quantum of noise per mode,
+          which destroys the qubit's state. The consequence is that quantum networks cannot
+          reuse the engineering that makes long-distance classical optical fibre work; the
+          three primitives below replace it.
+        </p>
+        <p>
+          Each consumes the shared Bell pair (one-shot resource) and uses a classical
+          side-channel for the corrections that complete the protocol. The first two —
+          teleportation and entanglement swapping — invoke a
+          <strong>Bell-state measurement</strong>; the next section unpacks what that
+          measurement is and how it is built.
+        </p>
+
+        <Grid min="18rem" gap="var(--space-3)">
+          <article class="use-card">
+            <h3>Teleportation</h3>
+            <p>
+              Alice has an unknown qubit <Math tex="|\\psi\\rangle" /> she wants to transmit
+              to Bob. She performs a Bell-state measurement on
+              <Math tex="|\\psi\\rangle" /> together with her half of the shared Bell pair,
+              then sends the 2-bit outcome to Bob over a classical channel. Bob applies the
+              corresponding Pauli correction to his half — which is now in state
+              <Math tex="|\\psi\\rangle" />. The original at Alice is destroyed in the
+              measurement, consistent with no-cloning. Proposed in
+              <strong>1993</strong> <SourceNote id="bennett-prl-1993" />.
+            </p>
+          </article>
+
+          <article class="use-card">
+            <h3>Swapping</h3>
+            <p>
+              A Bell-state analyser (BSA) between Alice and Bob holds one half of each of two short Bell
+              pairs; a Bell-state measurement at the BSA extends the entanglement to
+              the two distant endpoints. See the <a href={url("/swapping")}>swapping</a>
+              subject for the full protocol. Proposed in <strong>1993</strong>
+              <SourceNote id="zukowski-prl-1993" />; the primitive every memory-based
+              quantum repeater is built on.
+            </p>
+          </article>
+
+          <article class="use-card">
+            <h3>Purification</h3>
+            <p>
+              Bell pairs delivered through a noisy channel are mixed states with reduced
+              fidelity. Purification protocols consume two (or more) low-fidelity pairs and
+              produce one higher-fidelity pair, trading throughput for quality. Together
+              with swapping, purification makes long-distance entanglement distribution
+              feasible without per-photon error correction
+              <SourceNote id="bennett-pra-1996" />.
+            </p>
+          </article>
+        </Grid>
+
+        {/* Synoptic four-operations figure — built at compile-time
+            by scripts/diagrams/entanglement_ops.py into
+            web/public/images/ops-primitives.svg. */}
+        <AnimatedOpsPrimitives
+          src="/images/ops-primitives.svg"
+          alt="Four basic operations on Bell pairs: heralded entanglement generation, heralded entanglement purification, entanglement swapping, and teleportation. Each row shows the network state before and after the operation, with the Bell-state measurement glyph (photonic BSA or matter-side meter) drawn at the site where the BSM happens."
+          credit="Inspired by Aliro, The Evolution of Quantum Repeaters"
+        >
+          <figcaption>
+            Four primitives a quantum network composes — read top to bottom
+            as a steady progression from a single heralded link to a
+            full-stack teleportation:
+            <strong>Heralded Entanglement Generation (HEG)</strong> mints
+            a single-hop Bell pair via a midpoint photonic BSA;
+            <strong>Heralded Entanglement Purification (HEP)</strong>
+            cleans two noisy pairs into one higher-fidelity pair;
+            <strong>swapping</strong> joins two adjacent pairs into a
+            longer-reach one via a matter-side BSM at the relay; and
+            <strong>teleportation</strong> consumes an end-to-end pair to
+            move an unknown data qubit. Each row is treated in depth on its
+            own page —
+            <a href={url("/distribution")}>distribution</a>,
+            <a href={url("/purification")}>purification</a>,
+            <a href={url("/swapping")}>swapping</a>, and
+            <a href={url("/teleportation")}>teleportation</a>. Only HEG
+            uses an active quantum channel at runtime (the blue line
+            carrying photons to the BSA — fibre, free-space optical, or
+            another medium); the other three are local matter operations
+            and need classical channels only.
+          </figcaption>
+        </AnimatedOpsPrimitives>
+
+        <Callout label="What is LOCC?" id="locc">
+          <p>
+            <strong>LOCC</strong> — <strong>local operations and classical
+            communication</strong> — is the toolbox each node has by default. Locally, do
+            anything quantum: gates, measurements, ancilla preparation. Between nodes,
+            send anything classical: bits, packets, phone calls. What LOCC does not
+            include is a quantum channel between the nodes — no qubits crossing the wire.
+          </p>
+          <p>
+            That single restriction is what makes LOCC a useful category. It splits the
+            quantum-internet stack cleanly into one thing the network has to mint and a
+            family of things applications then spend it on:
+          </p>
+          <ul class="locc-list">
+            <li>
+              <span class="locc-mark locc-mark--no" aria-label="cannot">❌</span>
+              <strong>Mint entanglement at a distance.</strong> No sequence of local
+              measurements plus classical messages will produce a shared Bell pair where
+              none existed. Entanglement between distant qubits has to be physically
+              carried in — a photon down a fibre, a satellite link, or two qubits brought
+              together and then separated. This is the part the network exists to do.
+            </li>
+            <li>
+              <span class="locc-mark locc-mark--yes" aria-label="can">✅</span>
+              <strong>Teleport an unknown quantum state.</strong> Consume one delivered
+              Bell pair plus 2 classical bits to move an arbitrary qubit from one node to
+              another — no quantum channel needed at the moment of transmission. The
+              quantum channel was used earlier, to set up the Bell pair.
+            </li>
+            <li>
+              <span class="locc-mark locc-mark--yes" aria-label="can">✅</span>
+              <strong>Purify noisy entanglement.</strong> Sacrifice many low-fidelity
+              Bell pairs to extract fewer high-fidelity ones, using only local CNOTs,
+              local measurements, and a classical comparison of outcomes (see
+              <a href={url("/purification")}>purification</a> for the protocols).
+            </li>
+            <li>
+              <span class="locc-mark locc-mark--yes" aria-label="can">✅</span>
+              <strong>Run every quantum-internet application.</strong> QKD, distributed
+              quantum computing, blind quantum computing, anonymous voting, clock
+              synchronisation — all of them assume "deliver Bell pairs on demand" as the
+              network service and run on top of LOCC. See
+              <a href={url("/applications")}>applications</a>.
+            </li>
+          </ul>
+          <p>
+            Think of it as <strong>mint versus spend</strong>. Bell pairs are the
+            currency. The photonic chain mints them — slowly, probabilistically, over a
+            quantum channel that is expensive and lossy. Everything downstream spends
+            them — fast, deterministically, over an ordinary classical link. The reason
+            the network exists at all is that LOCC alone cannot do the minting.
+          </p>
+        </Callout>
+
+      </section>
+
+      <section id="bsm" data-nav-section>
+        <h2>Bell-state measurement</h2>
+        <p>
+          A <strong>Bell-state measurement (BSM)</strong> is a joint measurement on two
+          qubits in the Bell basis. The outcome is one of four labels —
+          <Math tex="|\\Phi^+\\rangle" />, <Math tex="|\\Phi^-\\rangle" />,
+          <Math tex="|\\Psi^+\\rangle" />, <Math tex="|\\Psi^-\\rangle" /> — and the two qubits
+          are left in that Bell state. The label is two classical bits; the receiver uses
+          those bits to choose which Pauli correction to apply
+          (<Math tex="I" />, <Math tex="X" />, <Math tex="Z" />, or <Math tex="XZ" />)
+          and recover the intended state.
+        </p>
+        <p>
+          BSM is the operational primitive behind both teleportation (Alice does a BSM on
+          her unknown qubit and her half of the shared Bell pair; the 2-bit outcome tells
+          Bob which Pauli to apply) and entanglement swapping (a BSA does a BSM on one
+          half of pair AB and one half of pair BC; the end qubits A and C are left
+          entangled, even though they never interacted).
+        </p>
+
+        <h3>How a photonic BSM is built</h3>
+        <p>
+          The canonical linear-optics implementation: the two qubits enter a 50:50 beam
+          splitter, the two output ports each go through a polarising beam splitter, and
+          four single-photon detectors sit at the four PBS outputs. Two-photon interference
+          at the central beam splitter routes the photons in a way that depends on the
+          Bell state at the input. The four-detector click pattern is the readout.
+        </p>
+
+        <figure class="bsm-figure">
+          <svg viewBox="0 0 1240 700" role="img"
+               aria-label="Linear-optics Bell-state measurement schematic, top-down layout following Azuma RMP 2023 Fig. 3(b). Sources at top; photons converge at the BS, exit through two PBSes, terminate at four detectors at the bottom. Running history of identified outcomes shown on the right."
+               data-bsm>
+            <defs>
+              <radialGradient id="bsm-photon-cloud" cx="0.5" cy="0.5" r="0.5">
+                <stop offset="0%"   stop-color="var(--color-accent)" stop-opacity="0.95"/>
+                <stop offset="40%"  stop-color="var(--color-accent)" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="var(--color-accent)" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            {/* --------------------------------------------------------
+                Grid: 45° beams throughout.
+                  src1 (340,80)   src2 (620,80)
+                  BS   (480,220)
+                  PBS₁ (340,360)  PBS₂ (620,360)
+                  D_H1 (270,430)  D_V1 (410,430)
+                  D_V2 (550,430)  D_H2 (690,430)
+                Input legs (src→BS) and output legs (BS→PBS) are
+                equal length so the apparatus reads as a compact
+                relay; short PBS→detector legs match the BSM.svg
+                icon used elsewhere on the site.
+                -------------------------------------------------------- */}
+
+            {/* ===== Source labels and dots (top of schematic) ===== */}
+            <text x="340" y="56" text-anchor="middle" class="bsm-label">Qubit P</text>
+            <text x="620" y="56" text-anchor="middle" class="bsm-label">Qubit Q</text>
+            <circle cx="340" cy="80" r="3.5" fill="var(--color-text)"/>
+            <circle cx="620" cy="80" r="3.5" fill="var(--color-text)"/>
+
+            {/* ===== Beams (all 45°) — drawn first so elements overlay ===== */}
+            {/* sources → BS */}
+            <line x1="340" y1="80"  x2="480" y2="220"
+                  stroke="var(--color-text-soft)" stroke-width="1"
+                  stroke-dasharray="3,3" opacity="0.6"/>
+            <line x1="620" y1="80"  x2="480" y2="220"
+                  stroke="var(--color-text-soft)" stroke-width="1"
+                  stroke-dasharray="3,3" opacity="0.6"/>
+            {/* BS → PBSes */}
+            <line x1="480" y1="220" x2="340" y2="360"
+                  stroke="var(--color-text-soft)" stroke-width="1"
+                  stroke-dasharray="3,3" opacity="0.6"/>
+            <line x1="480" y1="220" x2="620" y2="360"
+                  stroke="var(--color-text-soft)" stroke-width="1"
+                  stroke-dasharray="3,3" opacity="0.6"/>
+            {/* PBS₁ → D_H1 (outer, down-left) and D_V1 (inner, down-right) */}
+            <line x1="340" y1="360" x2="270" y2="430"
+                  stroke="var(--color-text-soft)" stroke-width="1"
+                  stroke-dasharray="3,3" opacity="0.6"/>
+            <line x1="340" y1="360" x2="410" y2="430"
+                  stroke="var(--color-text-soft)" stroke-width="1"
+                  stroke-dasharray="3,3" opacity="0.6"/>
+            {/* PBS₂ → D_V2 (inner, down-left) and D_H2 (outer, down-right) */}
+            <line x1="620" y1="360" x2="550" y2="430"
+                  stroke="var(--color-text-soft)" stroke-width="1"
+                  stroke-dasharray="3,3" opacity="0.6"/>
+            <line x1="620" y1="360" x2="690" y2="430"
+                  stroke="var(--color-text-soft)" stroke-width="1"
+                  stroke-dasharray="3,3" opacity="0.6"/>
+
+            {/* ===== BS: solid black vertical bar, sized to match the
+                BSM.svg icon used elsewhere on the site. ===== */}
+            <rect x="471" y="180" width="18" height="80" rx="3"
+                  fill="var(--color-text)" stroke="none"/>
+            <text x="480" y="290" text-anchor="middle" class="bsm-elem-label">BS</text>
+            <text x="480" y="306" text-anchor="middle" class="bsm-elem-label">50:50</text>
+
+            {/* ===== PBS₁: 45°-rotated square (diamond) with a
+                vertical coating line through the centre.  Same style
+                as the BSM.svg icon. ===== */}
+            <g>
+              <polygon points="340,330 370,360 340,390 310,360"
+                       fill="var(--color-bg)" stroke="var(--color-text)" stroke-width="1.5"
+                       stroke-linejoin="round"/>
+              <line x1="340" y1="330" x2="340" y2="390"
+                    stroke="var(--color-text)" stroke-width="1.5"/>
+              <text x="295" y="364" text-anchor="end" class="bsm-elem-label">PBS₁</text>
+            </g>
+
+            {/* ===== PBS₂: same style, mirrored ===== */}
+            <g>
+              <polygon points="620,330 650,360 620,390 590,360"
+                       fill="var(--color-bg)" stroke="var(--color-text)" stroke-width="1.5"
+                       stroke-linejoin="round"/>
+              <line x1="620" y1="330" x2="620" y2="390"
+                    stroke="var(--color-text)" stroke-width="1.5"/>
+              <text x="665" y="364" class="bsm-elem-label">PBS₂</text>
+            </g>
+
+            {/* ===== Four detectors. D-shape, flat side facing the
+                incoming beam from above. Rotations chosen so the flat
+                normal points back along the beam towards the PBS. ===== */}
+            {/* D_H1: beam from upper-right (PBS₁); flat normal points upper-right → rotate 45° */}
+            <g data-bsm-det="H1" transform="translate(270 430) rotate(45)">
+              <path data-bsm-result="H1"
+                    d="M -10,0 L 10,0 A 10,10 0 0 1 -10,0 Z"
+                    fill="var(--color-text)" stroke="var(--color-text)" stroke-width="1.5"
+                    stroke-linejoin="round" opacity="0.2"/>
+            </g>
+            {/* D_V1: beam from upper-left (PBS₁); flat normal upper-left → rotate -45° */}
+            <g data-bsm-det="V1" transform="translate(410 430) rotate(-45)">
+              <path data-bsm-result="V1"
+                    d="M -10,0 L 10,0 A 10,10 0 0 1 -10,0 Z"
+                    fill="var(--color-text)" stroke="var(--color-text)" stroke-width="1.5"
+                    stroke-linejoin="round" opacity="0.2"/>
+            </g>
+            {/* D_V2: beam from upper-right (PBS₂); flat normal upper-right → rotate 45° */}
+            <g data-bsm-det="V2" transform="translate(550 430) rotate(45)">
+              <path data-bsm-result="V2"
+                    d="M -10,0 L 10,0 A 10,10 0 0 1 -10,0 Z"
+                    fill="var(--color-text)" stroke="var(--color-text)" stroke-width="1.5"
+                    stroke-linejoin="round" opacity="0.2"/>
+            </g>
+            {/* D_H2: beam from upper-left (PBS₂); flat normal upper-left → rotate -45° */}
+            <g data-bsm-det="H2" transform="translate(690 430) rotate(-45)">
+              <path data-bsm-result="H2"
+                    d="M -10,0 L 10,0 A 10,10 0 0 1 -10,0 Z"
+                    fill="var(--color-text)" stroke="var(--color-text)" stroke-width="1.5"
+                    stroke-linejoin="round" opacity="0.2"/>
+            </g>
+
+            <text x="270" y="470" text-anchor="middle" class="bsm-det-name">1<tspan class="bsm-det-sub">H</tspan></text>
+            <text x="410" y="470" text-anchor="middle" class="bsm-det-name">1<tspan class="bsm-det-sub">V</tspan></text>
+            <text x="550" y="470" text-anchor="middle" class="bsm-det-name">2<tspan class="bsm-det-sub">V</tspan></text>
+            <text x="690" y="470" text-anchor="middle" class="bsm-det-name">2<tspan class="bsm-det-sub">H</tspan></text>
+
+            {/* ===== This-shot outcome readout, single row below the
+                BSM diagram: this shot → [clicks] → [state] → [bits] ===== */}
+            <text x="340" y="540" text-anchor="end" dominant-baseline="central" class="bsm-outcome-label">this shot</text>
+
+            <g data-bsm-clicks transform="translate(420 540)">
+              <rect data-bsm-clicks-bg x="-60" y="-20" width="120" height="40" rx="3"
+                    fill="var(--color-text)" opacity="0"/>
+              <text data-bsm-clicks-text x="0" y="0" text-anchor="middle" dominant-baseline="central"
+                    class="bsm-flow-text">—</text>
+            </g>
+            <text x="505" y="540" text-anchor="middle" dominant-baseline="central" class="bsm-flow-arrow">→</text>
+            <text data-bsm-state x="540" y="540" text-anchor="middle" dominant-baseline="central" class="bsm-flow-state">—</text>
+            <text x="575" y="540" text-anchor="middle" dominant-baseline="central" class="bsm-flow-arrow">→</text>
+            <g data-bsm-bits transform="translate(625 540)">
+              <rect data-bsm-bits-bg x="-28" y="-20" width="56" height="40" rx="3"
+                    fill="var(--color-text)" opacity="0"/>
+              <text data-bsm-bits-text x="0" y="0" text-anchor="middle" dominant-baseline="central"
+                    class="bsm-flow-text">—</text>
+            </g>
+
+            <text x="420" y="578" text-anchor="middle" class="bsm-flow-tag">clicks</text>
+            <text x="540" y="578" text-anchor="middle" class="bsm-flow-tag">state</text>
+            <text x="625" y="578" text-anchor="middle" class="bsm-flow-tag">bits</text>
+
+            {/* ===== Animated photons. Cloud for the undefined-
+                polarisation segments (source → BS → PBS); replaced
+                by a sharp H or V bar after the PBS. Matches the
+                entanglement-page bar convention: rotate 0 = H,
+                rotate 90 = V. ===== */}
+            <g data-bsm-photon="A" transform="translate(340 80)" opacity="0">
+              <circle data-bsm-cloud r="13" fill="url(#bsm-photon-cloud)"/>
+              <line data-bsm-bar x1="-8" y1="0" x2="8" y2="0"
+                    stroke="var(--color-text)" stroke-width="3" stroke-linecap="round" opacity="0"/>
+            </g>
+            <g data-bsm-photon="B" transform="translate(620 80)" opacity="0">
+              <circle data-bsm-cloud r="13" fill="url(#bsm-photon-cloud)"/>
+              <line data-bsm-bar x1="-8" y1="0" x2="8" y2="0"
+                    stroke="var(--color-text)" stroke-width="3" stroke-linecap="round" opacity="0"/>
+            </g>
+
+            {/* ===== History pane on the right ===== */}
+            <line x1="910" y1="30" x2="910" y2="680"
+                  stroke="var(--color-rule)" stroke-width="0.8" stroke-dasharray="2,3"/>
+            <text x="1075" y="46" text-anchor="middle" class="bsm-pane-title">BSM history</text>
+            <text x="1075" y="66" text-anchor="middle" class="bsm-pane-sub">clicks → state → bits</text>
+
+            <text x="930"  y="86" class="bsm-row-header">clicks</text>
+            <text x="1075" y="86" text-anchor="middle" class="bsm-row-header">state</text>
+            <text x="1190" y="86" text-anchor="middle" class="bsm-row-header">bits</text>
+
+            {[0,1,2,3,4,5,6,7,8,9,10,11].map((i) => (
+              <g data-bsm-row={i} opacity="0">
+                <text x="930"  y={108 + i * 30} class="bsm-row-clicks" dominant-baseline="middle">—</text>
+                <text x="1075" y={108 + i * 30} text-anchor="middle" class="bsm-row-state"  dominant-baseline="middle">—</text>
+                <text x="1190" y={108 + i * 30} text-anchor="middle" class="bsm-row-bits"   dominant-baseline="middle">—</text>
+              </g>
+            ))}
+
+            <text x="1075" y="510" text-anchor="middle" class="bsm-rate-label">identified (Ψ outcomes)</text>
+            <text data-bsm-rate x="1075" y="538" text-anchor="middle" class="bsm-rate-value">0 / 0</text>
+            <text data-bsm-rate-pct x="1075" y="585" text-anchor="middle" class="bsm-rate-pct">—</text>
+            <text x="1075" y="620" text-anchor="middle" class="bsm-rate-note">long-run limit:</text>
+            <text x="1075" y="638" text-anchor="middle" class="bsm-rate-note bsm-rate-note--em">50% (linear optics)</text>
+          </svg>
+          <figcaption>
+            The BSM is a <em>measurement</em>: it projects the joint state of two
+            indistinguishable photons onto the Bell basis and announces which Bell state
+            the projection landed on. Each detector is labelled by port + polarisation:
+            <strong>1<sub>H</sub></strong> (port 1, H detector),
+            <strong>1<sub>V</sub></strong>, <strong>2<sub>H</sub></strong>,
+            <strong>2<sub>V</sub></strong>. The "this shot" panel (top-left) reads
+            <strong>clicks → state → bits</strong> for the current outcome; the history
+            pane on the right keeps a running log
+            <SourceNote id="azuma-rmp-95" /><SourceNote id="lo-prl-mdi-2012" />.
+            The demo is <em>not</em> randomised — it iterates deterministically through
+            the eight physically valid click patterns (2 each for Ψ⁺, Ψ⁻, Φ⁺, Φ⁻) so a
+            viewer sees every case in turn rather than a noisy sample.
+            <br/><br/>
+            <strong>The four outcomes.</strong> A full BSM resolves all four Bell-basis
+            projections — one 2-bit code per Bell state, mapping directly to the Pauli
+            correction Bob applies on his half of the shared pair
+            <SourceNote id="nielsen-chuang-qcqi" />:
+            <table class="bsm-click-table">
+              <thead>
+                <tr><th>BS</th><th>PBS</th><th>click pattern</th><th>Bell state</th><th>bits</th><th>Bob's correction</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>bunched</td><td>same detector, same pol</td><td>2× at 1<sub>H</sub> or 2<sub>H</sub></td><td>|Φ⁺⟩</td><td>00</td><td>I</td></tr>
+                <tr><td>bunched</td><td>same detector, same pol</td><td>2× at 1<sub>V</sub> or 2<sub>V</sub></td><td>|Φ⁻⟩</td><td>01</td><td>Z</td></tr>
+                <tr><td>bunched</td><td>same port, opposite pol</td><td>1<sub>H</sub>+1<sub>V</sub> or 2<sub>H</sub>+2<sub>V</sub></td><td>|Ψ⁺⟩</td><td>10</td><td>X</td></tr>
+                <tr><td>antibunched</td><td>different ports, opposite pol</td><td>1<sub>H</sub>+2<sub>V</sub> or 1<sub>V</sub>+2<sub>H</sub></td><td>|Ψ⁻⟩</td><td>11</td><td>XZ</td></tr>
+              </tbody>
+            </table>
+            The (a, b) labelling is chosen so the bits are the exponents in
+            <Math tex="X^b Z^a" />. By construction this product equals
+            <Math tex="P^{-1}" />, the inverse of the residual Pauli on Bob's qubit — so
+            applying <Math tex="X^b Z^a" /> directly is the correction. When a bit is 1,
+            the matching Pauli gets applied; when 0, it's skipped. Bob's classical-control
+            logic reads the bits over a classical channel and triggers the gates
+            accordingly — no separate <Math tex="^{-1}" /> needs to be computed.
+            Linear-optics hardware can only distinguish the two Ψ outcomes; the two Φ
+            outcomes bunch at the same detector pattern and are post-selected away,
+            giving the 50 % ceiling that §<q>Why only half the time, on photons</q>
+            below unpacks. In the history pane, Φ rows are shown muted to flag the
+            post-selection.
+            <br/><br/>
+            <em>Note on inputs.</em> The BSM is fed two photons that are <em>not</em> a
+            Bell state — in teleportation, one is the unknown state |ψ⟩ and the other is
+            Alice's half of a Bell pair shared with Bob (which has no well-defined
+            polarisation state on its own). The two photons must be indistinguishable in
+            wavelength, arrival time, and spatial mode, and they must share the same H/V
+            polarisation basis. HOM interference at the BS sorts the four Bell-basis
+            components by exchange symmetry. The animation samples the projection outcome
+            directly each cycle and replays the click pattern that fires for it.
+          </figcaption>
+        </figure>
+
+        <script type="module" is:inline>
+          // BSM animation, top-down layout.
+          //
+          // Each cycle:
+          //   1. Pick a uniformly random input Bell state.
+          //   2. Decide the click signature (Lo/Curty/Qi PRL 108.130503):
+          //        Ψ⁺: same port, opposite pol → {H1,V1} or {H2,V2}
+          //        Ψ⁻: different ports, opposite pol → {H1,V2} or {V1,H2}
+          //        Φ±: 2 photons coincident at one of the 4 detectors
+          //   3. Animate photons sources → BS → assigned PBSes → assigned
+          //      detectors. Polarisation is resolved at the PBS — the
+          //      photon glyph switches from a cloud (undefined pol) to
+          //      a sharp H or V bar at the PBS.
+          //   4. Click flash + bit-cell flash + outcome cells flash
+          //      (white-on-black). For Φ outcomes the second outcome
+          //      cell stays "—" because only one detector fired.
+          //   5. History row prepended; success-rate counter updated.
+          const root = document.querySelector("[data-bsm]");
+          if (root) {
+            const photon = {
+              A: root.querySelector('[data-bsm-photon="A"]'),
+              B: root.querySelector('[data-bsm-photon="B"]'),
+            };
+            const glyph = {};
+            for (const k of ["A", "B"]) {
+              glyph[k] = {
+                cloud: photon[k].querySelector('[data-bsm-cloud]'),
+                bar:   photon[k].querySelector('[data-bsm-bar]'),
+              };
+            }
+            const detPath = {
+              H1: root.querySelector('[data-bsm-result="H1"]'),
+              V1: root.querySelector('[data-bsm-result="V1"]'),
+              H2: root.querySelector('[data-bsm-result="H2"]'),
+              V2: root.querySelector('[data-bsm-result="V2"]'),
+            };
+            const clicksCell = {
+              bg:   root.querySelector('[data-bsm-clicks-bg]'),
+              text: root.querySelector('[data-bsm-clicks-text]'),
+            };
+            const bitsCell = {
+              bg:   root.querySelector('[data-bsm-bits-bg]'),
+              text: root.querySelector('[data-bsm-bits-text]'),
+            };
+            const stateLabel = root.querySelector('[data-bsm-state]');
+            const rateValue  = root.querySelector('[data-bsm-rate]');
+            const ratePct    = root.querySelector('[data-bsm-rate-pct]');
+            const HISTORY_ROWS = 12;
+            const rows = [];
+            for (let i = 0; i < HISTORY_ROWS; i++) {
+              const g = root.querySelector(`[data-bsm-row="${i}"]`);
+              rows.push({
+                group:  g,
+                clicks: g.querySelector('.bsm-row-clicks'),
+                state:  g.querySelector('.bsm-row-state'),
+                bits:   g.querySelector('.bsm-row-bits'),
+              });
+            }
+
+            // Element coordinates (must match SVG above exactly).
+            const SRC_A = { x: 340, y: 80  };
+            const SRC_B = { x: 620, y: 80  };
+            const BS    = { x: 480, y: 220 };
+            const PBS = {
+              1: { x: 340, y: 360 },
+              2: { x: 620, y: 360 },
+            };
+            const DET = {
+              H1: { x: 270, y: 430 },
+              V1: { x: 410, y: 430 },
+              V2: { x: 550, y: 430 },
+              H2: { x: 690, y: 430 },
+            };
+            const DET_KEYS = ["H1", "V1", "H2", "V2"];
+            const polOf = (k) => k[0];                  // "H" or "V"
+            const portOf = (k) => +k[1];                // 1 or 2
+            const pbsOf = (k) => PBS[portOf(k)];
+            const SUB = { H: "ₕ", V: "ᵥ" };
+            const shortKey = (k) => k[1] + SUB[k[0]];   // "H1" → "1ₕ" (Unicode subscript)
+
+            // Nielsen & Chuang bit convention. Linear-optics BSM only
+            // identifies the two Ψ states; Φ outcomes get discarded.
+            const STATE_BITS    = { "Φ+": "00", "Φ-": "01", "Ψ+": "10", "Ψ-": "11" };
+            const STATE_DISPLAY = { "Φ+": "Φ⁺", "Φ-": "Φ⁻", "Ψ+": "Ψ⁺", "Ψ-": "Ψ⁻" };
+            const isSuccess = (state) => state[0] === "Ψ";
+            const clicksFor = (o) => shortKey(o.a) + " + " + shortKey(o.b);
+            const bitsFor   = (o) => STATE_BITS[o.state];
+            const ketFor    = (state) => "|" + STATE_DISPLAY[state] + "⟩";
+
+            function setPos(g, x, y) { g.setAttribute("transform", `translate(${x} ${y})`); }
+            function show(g)         { g.setAttribute("opacity", "1"); }
+            function hide(g)         { g.setAttribute("opacity", "0"); }
+            function setCloud(tag) {
+              glyph[tag].cloud.setAttribute("opacity", "1");
+              glyph[tag].bar.setAttribute("opacity", "0");
+            }
+            function setBar(tag, pol) {
+              glyph[tag].cloud.setAttribute("opacity", "0");
+              glyph[tag].bar.setAttribute("opacity", "1");
+              glyph[tag].bar.setAttribute("transform", `rotate(${pol === "H" ? 0 : 90})`);
+            }
+            function setDetAll(op) {
+              for (const k of DET_KEYS) detPath[k].setAttribute("opacity", String(op));
+            }
+            function lockDet(keys) {
+              for (const k of DET_KEYS) {
+                detPath[k].setAttribute("opacity", keys.includes(k) ? "1" : "0.08");
+              }
+            }
+            function setFlowCell(cell, value, active) {
+              cell.text.textContent = value;
+              cell.text.classList.toggle("bsm-flow-text--active", active);
+              cell.bg.setAttribute("opacity", active ? "1" : "0");
+            }
+            function setStateLabel(state, active) {
+              stateLabel.textContent = state === null ? "—" : ketFor(state);
+              stateLabel.classList.toggle("bsm-flow-state--success", active && isSuccess(state));
+              stateLabel.classList.toggle("bsm-flow-state--fail",    active && !isSuccess(state));
+            }
+
+            // The eight physically realisable click patterns. Two per
+            // Bell state. Cycled through deterministically so a viewer
+            // sees every case in turn, not a noisy random subset.
+            const ALL_OUTCOMES = [
+              { state: "Ψ+", a: "H1", b: "V1" },
+              { state: "Ψ+", a: "H2", b: "V2" },
+              { state: "Ψ-", a: "H1", b: "V2" },
+              { state: "Ψ-", a: "V1", b: "H2" },
+              // Φ⁺ bunches at the H ports only.
+              { state: "Φ+", a: "H1", b: "H1" },
+              { state: "Φ+", a: "H2", b: "H2" },
+              // Φ⁻ bunches at the V ports only.
+              { state: "Φ-", a: "V1", b: "V1" },
+              { state: "Φ-", a: "V2", b: "V2" },
+            ];
+            let outcomeIdx = 0;
+            function pickOutcome() {
+              const o = ALL_OUTCOMES[outcomeIdx];
+              outcomeIdx = (outcomeIdx + 1) % ALL_OUTCOMES.length;
+              return o;
+            }
+
+            const log = [];
+            let identified = 0;
+            let total      = 0;
+            function pushHistory(o) {
+              total += 1;
+              const success = isSuccess(o.state);
+              if (success) identified += 1;
+              log.unshift({
+                clicks: clicksFor(o),
+                state:  success ? ketFor(o.state) : "—",
+                bits:   success ? bitsFor(o)      : "—",
+                success,
+              });
+              if (log.length > HISTORY_ROWS) log.length = HISTORY_ROWS;
+              for (let i = 0; i < HISTORY_ROWS; i++) {
+                const r = rows[i];
+                const e = log[i];
+                if (!e) {
+                  r.group.setAttribute("opacity", "0");
+                  continue;
+                }
+                r.group.setAttribute("opacity", "1");
+                r.clicks.textContent = e.clicks;
+                r.state.textContent  = e.state;
+                r.bits.textContent   = e.bits;
+                for (const cell of [r.clicks, r.state, r.bits]) {
+                  cell.classList.toggle("bsm-row--success",  e.success);
+                  cell.classList.toggle("bsm-row--fail",    !e.success);
+                  cell.classList.toggle("bsm-row--latest", i === 0);
+                }
+              }
+              rateValue.textContent = identified + " / " + total;
+              const pct = total === 0 ? 0 : Math.round(100 * identified / total);
+              ratePct.textContent = pct + "%";
+            }
+
+            const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+            if (reduced) {
+              const sampleShot = { state: "Ψ+", a: "H1", b: "V1" };
+              setPos(photon.A, DET.H1.x, DET.H1.y);
+              setPos(photon.B, DET.V1.x, DET.V1.y);
+              setBar("A", "H");
+              setBar("B", "V");
+              show(photon.A); show(photon.B);
+              lockDet(["H1", "V1"]);
+              setFlowCell(clicksCell, clicksFor(sampleShot), true);
+              setFlowCell(bitsCell,   bitsFor(sampleShot),   true);
+              setStateLabel(sampleShot.state, true);
+              const sample = [
+                { state: "Ψ+", a: "H1", b: "V1" },
+                { state: "Φ-", a: "V1", b: "V1" },
+                { state: "Ψ-", a: "H1", b: "V2" },
+                { state: "Φ+", a: "H2", b: "H2" },
+                { state: "Ψ+", a: "H2", b: "V2" },
+                { state: "Φ+", a: "V2", b: "V2" },
+                { state: "Ψ-", a: "V1", b: "H2" },
+                { state: "Φ-", a: "H1", b: "H1" },
+              ];
+              for (const e of sample.slice().reverse()) pushHistory(e);
+            } else {
+              const T_IN    = 1100;
+              const T_PAUSE =  350;
+              const T_OUT1  =  550;
+              const T_OUT2  =  650;
+              const T_CLICK =  200;
+              const T_HOLD  = 1500;
+              const T_RESET =  400;
+              const CYCLE   = T_IN + T_PAUSE + T_OUT1 + T_OUT2 + T_CLICK + T_HOLD + T_RESET;
+              const P_IN_END    = T_IN;
+              const P_PAUSE_END = P_IN_END    + T_PAUSE;
+              const P_OUT1_END  = P_PAUSE_END + T_OUT1;
+              const P_OUT2_END  = P_OUT1_END  + T_OUT2;
+              const P_CLICK_END = P_OUT2_END  + T_CLICK;
+              const P_HOLD_END  = P_CLICK_END + T_HOLD;
+
+              const ease = (t) => t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2;
+
+              const PULSE_DUR = 320;
+              const pulseEnd = { H1: 0, V1: 0, H2: 0, V2: 0 };
+              let pulseActive = false;
+
+              // Continuous animation, EPR-demo pattern. `cycleStart` is
+              // bumped at the end of each cycle (no modulo on elapsed),
+              // and we deliberately don't gate on an IntersectionObserver
+              // — the rAF clock keeps ticking, and the browser already
+              // throttles offscreen rAF for free. This is what stops the
+              // "reset when you scroll" feeling that the modulo approach
+              // had: with modulo, a long off-screen pause leaves the
+              // per-cycle flags stale; with cycleStart-reset-on-completion
+              // every cycle is a clean state.
+              let cycleStart = 0;
+              let outcome = pickOutcome();
+              let recorded = false;
+              let barsSet = false;
+              let pausePosSet = false;
+              let resetDone = false;
+
+              function frame(now) {
+                const elapsed = now - cycleStart;
+
+                if (elapsed < P_IN_END) {
+                  const t = ease(elapsed / T_IN);
+                  setPos(photon.A, SRC_A.x + (BS.x - SRC_A.x) * t,
+                                   SRC_A.y + (BS.y - SRC_A.y) * t);
+                  setPos(photon.B, SRC_B.x + (BS.x - SRC_B.x) * t,
+                                   SRC_B.y + (BS.y - SRC_B.y) * t);
+                } else if (elapsed < P_PAUSE_END) {
+                  if (!pausePosSet) {
+                    setPos(photon.A, BS.x - 6, BS.y + 4);
+                    setPos(photon.B, BS.x + 6, BS.y + 4);
+                    pausePosSet = true;
+                  }
+                } else if (elapsed < P_OUT1_END) {
+                  const t = ease((elapsed - P_PAUSE_END) / T_OUT1);
+                  const pbsA = pbsOf(outcome.a);
+                  const pbsB = pbsOf(outcome.b);
+                  const sameDet = outcome.a === outcome.b;
+                  const dxA = sameDet ? -6 : 0;
+                  const dxB = sameDet ?  6 : 0;
+                  setPos(photon.A,
+                    BS.x + (pbsA.x - BS.x) * t + dxA * t,
+                    BS.y + (pbsA.y - BS.y) * t);
+                  setPos(photon.B,
+                    BS.x + (pbsB.x - BS.x) * t + dxB * t,
+                    BS.y + (pbsB.y - BS.y) * t);
+                } else if (elapsed < P_OUT2_END) {
+                  if (!barsSet) {
+                    setBar("A", polOf(outcome.a));
+                    setBar("B", polOf(outcome.b));
+                    barsSet = true;
+                  }
+                  const t = ease((elapsed - P_OUT1_END) / T_OUT2);
+                  const pbsA = pbsOf(outcome.a);
+                  const pbsB = pbsOf(outcome.b);
+                  const detA = DET[outcome.a];
+                  const detB = DET[outcome.b];
+                  const sameDet = outcome.a === outcome.b;
+                  const dxA = sameDet ? -6 * (1 - t) : 0;
+                  const dxB = sameDet ?  6 * (1 - t) : 0;
+                  setPos(photon.A,
+                    pbsA.x + (detA.x - pbsA.x) * t + dxA,
+                    pbsA.y + (detA.y - pbsA.y) * t);
+                  setPos(photon.B,
+                    pbsB.x + (detB.x - pbsB.x) * t + dxB,
+                    pbsB.y + (detB.y - pbsB.y) * t);
+                } else if (elapsed < P_HOLD_END) {
+                  if (!recorded) {
+                    const keys = outcome.a === outcome.b
+                      ? [outcome.a]
+                      : [outcome.a, outcome.b];
+                    const success = isSuccess(outcome.state);
+                    hide(photon.A); hide(photon.B);
+                    lockDet(keys);
+                    setFlowCell(clicksCell, clicksFor(outcome), true);
+                    // Linear-optics BSM cannot distinguish Φ⁺ from Φ⁻
+                    // (both bunch identically), so on a Φ shot the state
+                    // and bits cells read "—" — the clicks happened, but
+                    // they don't identify a Bell state.
+                    if (success) {
+                      setFlowCell(bitsCell, bitsFor(outcome), true);
+                      setStateLabel(outcome.state, true);
+                    } else {
+                      setFlowCell(bitsCell, "—", false);
+                      setStateLabel(null, false);
+                    }
+                    for (const k of keys) pulseEnd[k] = now + PULSE_DUR;
+                    pulseActive = true;
+                    pushHistory(outcome);
+                    recorded = true;
+                  }
+                } else if (elapsed < CYCLE) {
+                  if (!resetDone) {
+                    hide(photon.A); hide(photon.B);
+                    setDetAll(0.2);
+                    setFlowCell(clicksCell, "—", false);
+                    setFlowCell(bitsCell,   "—", false);
+                    setStateLabel(null, false);
+                    resetDone = true;
+                  }
+                } else {
+                  // Cycle complete — start a fresh cycle. After a long
+                  // offscreen pause, this branch fires once on the first
+                  // visible frame and the next cycle plays cleanly from
+                  // the start.
+                  cycleStart = now;
+                  outcome = pickOutcome();
+                  recorded = false;
+                  barsSet = false;
+                  pausePosSet = false;
+                  resetDone = false;
+                  setDetAll(0.2);
+                  setCloud("A"); setCloud("B");
+                  show(photon.A); show(photon.B);
+                  setFlowCell(clicksCell, "—", false);
+                  setFlowCell(bitsCell,   "—", false);
+                  setStateLabel(null, false);
+                }
+
+                if (pulseActive) {
+                  let anyActive = false;
+                  for (const k of DET_KEYS) {
+                    const remaining = pulseEnd[k] - now;
+                    if (remaining > 0) {
+                      detPath[k].setAttribute(
+                        "stroke-width", String(1.5 + 3 * (remaining / PULSE_DUR)));
+                      anyActive = true;
+                    } else if (pulseEnd[k] !== 0) {
+                      detPath[k].setAttribute("stroke-width", "1.5");
+                      pulseEnd[k] = 0;
+                    }
+                  }
+                  pulseActive = anyActive;
+                }
+                requestAnimationFrame(frame);
+              }
+
+              // Prime the very first cycle: cloud glyphs visible at the
+              // sources, blank readouts. Then start the rAF loop.
+              setCloud("A"); setCloud("B");
+              show(photon.A); show(photon.B);
+              setPos(photon.A, SRC_A.x, SRC_A.y);
+              setPos(photon.B, SRC_B.x, SRC_B.y);
+              cycleStart = performance.now();
+              requestAnimationFrame(frame);
+            }
+          }
+        </script>
+
+        <h3>Why only half the time, on photons</h3>
+        <p>
+          An ideal Bell-state measurement projects onto all four Bell states with equal
+          fidelity. Linear-optics hardware doesn't realise the ideal: it can only
+          <em>distinguish</em> the two Ψ outcomes from each other. The two Φ outcomes
+          (|Φ⁺⟩ and |Φ⁻⟩) bunch at the same single detector with the same polarisation,
+          producing an identical click pattern, so the observer cannot tell which Φ has
+          fired and neither bit code is deliverable. Real linear-optics teleportation
+          post-selects on the Ψ clicks and discards the Φ-pattern shots —
+          2 of 4 distinguishable outcomes, hence the 50 % ceiling.
+        </p>
+        <p>
+          The ceiling is fundamental to linear-optics BSM, not a hardware limitation: no
+          arrangement of beam splitters, phase shifters, and detectors that uses only the
+          two input photons can do better. Calsamiglia and Lütkenhaus proved this as an
+          upper bound for dual-rail / polarisation encodings without ancillas
+          <SourceNote id="calsamiglia-aphysb-2001" />; Azuma's review re-derives it next
+          to the click-pattern table for the same apparatus this animation uses
+          <SourceNote id="azuma-rmp-95" />. Lifting the bound requires either ancilla
+          photons in the apparatus or genuine non-linearity (cross-Kerr media, Rydberg
+          interactions, atom–photon gates). A demonstration exceeding 50 % with
+          squeezed-light ancillas exists <SourceNote id="bayerbach-sciadv-2023" />, but
+          at a hardware cost that has not yet entered fielded systems.
+        </p>
+
+        <h3>How a matter-side BSM is built</h3>
+        <p>
+          A <strong>matter-side BSM</strong> projects onto the Bell basis using local
+          gates plus measurement, with no photon interference involved. It is performed
+          on two stationary qubits sitting in the same node — two trapped-ion register
+          slots, two NV-centre spins, two superconducting qubits on the same chip, two
+          neutral atoms in the same array — and is <em>deterministic in principle</em>:
+          all four Bell outcomes are distinguishable, no post-selection, no 50 % ceiling.
+        </p>
+        <p>
+          The standard circuit is <strong>CNOT</strong> on the pair, then
+          <strong>Hadamard</strong> on the control qubit, then a single-qubit
+          computational-basis readout of each qubit. The two classical readout bits label
+          the four Bell states one-to-one <SourceNote id="nielsen-chuang-qcqi" />:
+        </p>
+        <ul>
+          <li><Math tex="00 \\to |\\Phi^+\\rangle" /></li>
+          <li><Math tex="01 \\to |\\Phi^-\\rangle" /></li>
+          <li><Math tex="10 \\to |\\Psi^+\\rangle" /></li>
+          <li><Math tex="11 \\to |\\Psi^-\\rangle" /></li>
+        </ul>
+        <p>
+          Success probability reduces to the fidelity of the underlying CNOT and readout
+          — today routinely 99 %+ on trapped-ion, neutral-atom, and superconducting
+          hardware — so "close to 100 %" is shorthand for "as good as the gate stack on
+          that platform". The trade is in time: two-qubit gate and readout times are
+          platform-specific (≈10–100&nbsp;μs gates and ≈100&nbsp;μs–1&nbsp;ms readout on
+          trapped ions, ≈1&nbsp;μs gates on NV, ≈50–300&nbsp;ns gates on superconducting
+          circuits) <SourceNote id="meddeb-comnet-2025" />, so a matter-side BSM is
+          several orders of magnitude slower than a photonic linear-optics BSM
+          (nanoseconds — set by optical path length plus detector response).
+        </p>
+
+        <h3>Where each kind is used</h3>
+        <div class="bsm-key">
+          <div class="bsm-key__item">
+            <img class="bsm-key__icon"
+                 src={url("/images/icon-bsa-white.svg")}
+                 alt="Photonic BSM glyph — beam splitter flanked by two single-photon detectors (QuISP BSA icon)"/>
+            <div class="bsm-key__text">
+              <strong>Photonic BSM (BSA)</strong>
+              <span>Two flying photons meet at an optical midpoint. Linear-optics: 50 % ceiling.</span>
+            </div>
+          </div>
+          <div class="bsm-key__item">
+            <img class="bsm-key__icon"
+                 src={url("/images/icon-bsm-meter.svg")}
+                 alt="Matter-side BSM glyph — semicircular gauge with needle inside a rounded rectangle"/>
+            <div class="bsm-key__text">
+              <strong>Matter-side BSM (meter)</strong>
+              <span>Two stationary qubits in one node. Local CNOT + H + readout: deterministic.</span>
+            </div>
+          </div>
+        </div>
+        <p>
+          The BSM <em>between two distant nodes</em> — for entanglement swapping at a
+          repeater, or for the central node in MDI-QKD
+          <SourceNote id="lo-prl-mdi-2012" /> — is performed on photons at a midpoint
+          Bell-state-analyser station, with the photonic 50 % retry overhead baked into
+          the architecture. The matter-side BSM is used <em>inside</em> a single node —
+          to teleport a qubit between two memory slots in the same register, to fuse
+          two adjacent end-to-end pairs at a memory-equipped repeater (matter-side
+          swapping), or to consume an end-to-end pair and a data qubit at Alice's lab
+          (teleportation). Memory-based 1G/2G repeater architectures combine both: a
+          photonic BSA at the midpoint to mint each hop's Bell pair, then a matter-side
+          BSM at the relay to swap two adjacent hops together.
+        </p>
+      </section>
+
+
+      <section id="requirements" data-nav-section>
+        <h2>What it takes to deliver Bell pairs</h2>
+        <p>
+          The link-layer service of a quantum network is <q>deliver Bell pair (A, B)</q>
+          on demand <SourceNote id="kozlowski-rfc9340" />. Once delivered, the application
+          layer can teleport, purify, swap, or measure as it likes. The network does not
+          transport classical messages or copy arbitrary qubits — it distributes
+          entanglement between named endpoints, and everything else is built on top.
+        </p>
+        <p>
+          Providing that service end-to-end requires every piece below working at adequate
+          rate, fidelity, and reach. Each is a separate engineering challenge, covered in
+          a dedicated subject later in the series.
+        </p>
+        <ul>
+          <li>
+            <strong>Sources</strong> — generate the Bell pairs in the first place
+            (SPDC, atomic-ensemble, single-emitter). <em>Covered above.</em>
+          </li>
+          <li>
+            <strong>Distribution</strong> — place one half of a generated pair at each of
+            two distant nodes across a single link, via one of the MM / SR / MS
+            architectures. <em>Covered in the</em> <strong>distribution</strong>
+            <em>subject.</em>
+          </li>
+          <li>
+            <strong>Memory</strong> — hold a qubit while its partner photon is in flight,
+            with coherence longer than the link's classical round-trip.
+            <em>Covered in the</em> <strong>memories</strong> <em>subject.</em>
+          </li>
+          <li>
+            <strong>Reach extension</strong> — chain Bell-state measurements across
+            multiple hops so entanglement spans further than a single link can reach.
+            <em>Covered in the</em> <strong>swapping</strong> <em>and</em>
+            <strong>repeaters</strong> <em>subjects.</em>
+          </li>
+          <li>
+            <strong>Fidelity extension</strong> — purification trades two noisy pairs for
+            one cleaner pair, so the delivered fidelity is high enough for downstream use.
+            <em>Covered in the</em> <strong>purification</strong> <em>subject.</em>
+          </li>
+          <li>
+            <strong>Physical channel</strong> — fibre, hollow-core fibre, free-space, or
+            satellite. Loss bounds reach; the channel choice sets the loss budget.
+            <em>Covered in the</em> <strong>links</strong> <em>and</em>
+            <strong>metrics</strong> <em>subjects.</em>
+          </li>
+          <li>
+            <strong>Protocol stack</strong> — link-layer scheduling, routing, addressing,
+            and the classical side-channel needed by every protocol on this page.
+            <em>Covered in the</em> <a href={url("/stacks")}><strong>stacks</strong></a> <em>subject.</em>
+          </li>
+        </ul>
+      </section>
+
+    </Stack>
+  </Center>
+
+  <ZoomModal />
+</Infographic>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-4);
+    /* Same gap-based vertical rhythm as qubits.astro so the h1 →
+       lede → continuation chain is one consistent spacing. No
+       border-block-end here: the entanglement hero is short (h1 +
+       two paragraphs), so a horizontal rule lands too close to the
+       lede and reads as an arbitrary divider before the first
+       section. The Stack's own gap separates hero from §1. */
+    display: grid;
+    gap: var(--space-3);
+  }
+  .hero h1 { margin: 0; }
+  .hero p  { margin: 0; }
+
+  section { display: grid; gap: var(--space-3); }
+
+  /* EPR-style figure */
+  .epr {
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .epr svg {
+    inline-size: 100%;
+    block-size: auto;
+    display: block;
+  }
+  .epr figcaption {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-mute);
+  }
+  .epr-caption-list {
+    list-style: disc;
+    margin: 0;
+    padding-inline-start: var(--space-3);
+    display: grid;
+    gap: var(--space-2);
+  }
+  .epr-caption-list strong {
+    color: var(--color-text);
+  }
+  /* :global because Astro's scoped-CSS data attribute doesn't
+     propagate to <text> children inside SVG markup. */
+  :global(.epr-state) {
+    font-family: var(--font-mono);
+    font-size: 20px;
+    font-weight: 600;
+    fill: var(--color-text);
+  }
+  :global(.epr-label) {
+    font-size: 13px;
+    font-weight: 600;
+    fill: var(--color-text);
+  }
+  :global(.epr-out) {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    fill: var(--color-text-mute);
+  }
+  :global(.epr-caption) {
+    font-size: 11px;
+    fill: var(--color-text-mute);
+  }
+
+  .bsm-figure {
+    margin: var(--space-4) 0;
+    padding: var(--space-3) var(--space-4);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .bsm-figure svg {
+    inline-size: 100%;
+    block-size: auto;
+    max-inline-size: 880px;
+    display: block;
+    margin: 0 auto;
+  }
+  .bsm-figure figcaption {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-mute);
+  }
+  .bsm-figure figcaption strong {
+    color: var(--color-text);
+  }
+  .bsm-click-table {
+    border-collapse: collapse;
+    margin: var(--space-2) auto;
+    inline-size: max-content;
+    max-inline-size: 100%;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+  }
+  .bsm-click-table th,
+  .bsm-click-table td {
+    text-align: left;
+    padding: 4px 12px 4px 0;
+    border-bottom: 1px solid var(--color-rule);
+    color: var(--color-text);
+  }
+  .bsm-click-table thead th {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-mute);
+    font-weight: 600;
+  }
+  :global(.bsm-label) {
+    font-size: 17px;
+    font-weight: 600;
+    fill: var(--color-text);
+  }
+  :global(.bsm-elem-label) {
+    font-size: 13px;
+    font-weight: 600;
+    fill: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  :global(.bsm-det-name) {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 600;
+    fill: var(--color-text);
+  }
+  :global(.bsm-det-sub) {
+    font-size: 0.7em;
+    baseline-shift: -25%;
+  }
+
+  :global(.bsm-outcome-label) {
+    font-size: 14px;
+    font-weight: 600;
+    fill: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  :global(.bsm-flow-tag) {
+    font-size: 11px;
+    fill: var(--color-text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  :global(.bsm-flow-text) {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 600;
+    fill: var(--color-text-soft);
+  }
+  :global(.bsm-flow-text--active) {
+    fill: var(--color-bg);
+    font-weight: 700;
+  }
+  :global(.bsm-flow-arrow) {
+    font-size: 20px;
+    fill: var(--color-text-soft);
+  }
+  :global(.bsm-flow-state) {
+    font-size: 22px;
+    font-weight: 600;
+    fill: var(--color-text-soft);
+  }
+  :global(.bsm-flow-state--success) {
+    fill: var(--color-accent);
+    font-weight: 700;
+  }
+  :global(.bsm-flow-state--fail) {
+    fill: var(--color-text-soft);
+    font-weight: 700;
+  }
+
+  :global(.bsm-pane-title) {
+    font-size: 15px;
+    font-weight: 600;
+    fill: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  :global(.bsm-pane-sub) {
+    font-size: 13px;
+    fill: var(--color-text);
+  }
+  :global(.bsm-row-header) {
+    font-size: 10px;
+    fill: var(--color-text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  :global(.bsm-row-clicks) {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    fill: var(--color-text-soft);
+  }
+  :global(.bsm-row-state) {
+    font-size: 18px;
+    font-weight: 600;
+    fill: var(--color-text-soft);
+  }
+  :global(.bsm-row-bits) {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    fill: var(--color-text-soft);
+  }
+  :global(.bsm-row--success) {
+    fill: var(--color-accent);
+  }
+  :global(.bsm-row--fail) {
+    fill: var(--color-text-soft);
+  }
+  :global(.bsm-row--latest) {
+    font-weight: 700;
+  }
+  :global(.bsm-rate-label) {
+    font-size: 13px;
+    fill: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  :global(.bsm-rate-value) {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 600;
+    fill: var(--color-text);
+  }
+  :global(.bsm-rate-pct) {
+    font-family: var(--font-mono);
+    font-size: 30px;
+    font-weight: 700;
+    fill: var(--color-accent);
+  }
+  :global(.bsm-rate-note) {
+    font-size: 13px;
+    fill: var(--color-text);
+  }
+  :global(.bsm-rate-note--em) {
+    font-style: italic;
+  }
+
+  /* Per-side measurement-history readout under each detector. Both
+     sides accumulate the same string of outcomes (correlated pair),
+     so a reader can scan the two side-by-side and confirm they
+     match. Mono font + small size keeps a long history compact. */
+  :global(.epr-history-label) {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    fill: var(--color-text-mute);
+  }
+  :global(.epr-history) {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    fill: var(--color-text);
+    letter-spacing: 0.05em;
+  }
+  /* Most-recently-measured digit: bold + accent at the moment of
+     measurement, snapping back to normal weight + plain text colour
+     when the next measurement rebuilds the per-side text and the
+     .epr-history-fresh class lands on a different tspan. No CSS
+     transition — the change is instant. */
+  :global(.epr-history-last) {
+    font-weight: 400;
+    fill: var(--color-text);
+  }
+  :global(.epr-history-last.epr-history-fresh) {
+    font-weight: 700;
+    fill: var(--color-bg);
+  }
+
+  /* Bell-state ket highlighting in the formula. The matching ket's
+     digits go white-on-black via a backing rect drawn behind the
+     tspan; the non-matching ket dims. Brackets sit outside the
+     tspan so they aren't covered by the highlight. */
+  :global([data-eps-ket].eps-ket--active) {
+    font-weight: 700;
+    fill: var(--color-bg);
+  }
+  :global([data-eps-ket].eps-ket--dim) {
+    opacity: 0.25;
+  }
+
+  /* Bell-pair grid */
+  .bell-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
+  @media (max-width: 50rem) {
+    .bell-grid { grid-template-columns: 1fr; }
+  }
+
+  .bell-card {
+    display: grid;
+    /* Pin the card's content (h3, math, p) to the top. Without this,
+       align-content defaults to "normal" / "stretch", and a card
+       stretched by its outer Grid (because a sibling is taller)
+       distributes the extra vertical space *between* its rows —
+       pushing the body paragraph into the middle of the card and
+       breaking visual alignment across cards in the same row. */
+    align-content: start;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+  }
+  .bell-card__name {
+    margin: 0;
+    /* Dirac notation: | and ⟩ are upright delimiters and uppercase
+       Greek is upright by convention. KaTeX_Main is the upright
+       serif used by KaTeX for these glyphs in inline math. */
+    font-family: "KaTeX_Main", "Cambria Math", "Times New Roman", serif;
+    font-size: var(--text-xl);
+    font-weight: 500;
+    color: var(--color-text);
+  }
+  .bell-card p {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-mute);
+  }
+  /* Display math inside Bell cards uses the card's own grid rhythm */
+  .bell-card :global(.math--display) {
+    margin: 0;
+    text-align: start;
+  }
+
+  /* Cards inside a Grid component (uses, generation, anything similar).
+     align-content: start pins their h3 + body to the top regardless
+     of whether the outer Grid stretches them to a sibling's height
+     — see .bell-card above for the long version of why this matters. */
+  .use-card {
+    display: grid;
+    align-content: start;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+  }
+  .use-card h3 {
+    margin: 0;
+    font-size: var(--text-base);
+    color: var(--color-text);
+  }
+  .use-card p {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-mute);
+  }
+
+  ul {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+  li { line-height: var(--leading-snug); }
+
+  /* Sub-heading inside a section — sits between an h2 and a body
+     paragraph, smaller than h2, larger than body. Used in the
+     "How Bell pairs are made" section to split device vs
+     architecture content without promoting them to full sections. */
+  .section-sub {
+    margin: 0;
+    margin-block-start: var(--space-2);
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+
+  .locc-list {
+    list-style: none;
+    padding-left: 0;
+    margin: var(--space-2) 0 0;
+  }
+  .locc-list li + li {
+    margin-top: var(--space-1);
+  }
+  .locc-mark {
+    margin-right: 0.4em;
+  }
+
+  /* Visual key for the two BSM glyphs — shown above the "where each
+     kind is used" prose so the reader can tie the icon they saw on
+     the ops figure to the two kinds of BSM. */
+  .bsm-key {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+    margin: 0 0 var(--space-3);
+  }
+  @media (max-width: 36rem) {
+    .bsm-key { grid-template-columns: 1fr; }
+  }
+  .bsm-key__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    background: var(--color-surface-2);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm);
+  }
+  .bsm-key__icon {
+    flex: 0 0 auto;
+    width: 48px;
+    height: 48px;
+    background: #ffffff;
+    border-radius: var(--radius-sm);
+    padding: 4px;
+  }
+  .bsm-key__text {
+    display: grid;
+    gap: 2px;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+  }
+  .bsm-key__text span {
+    color: var(--color-text-mute);
+  }
+</style>

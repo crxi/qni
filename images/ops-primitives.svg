@@ -1,0 +1,294 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 604" role="img">
+  <title>Four basic operations on Bell pairs — HEG, HEP, swapping, teleportation.</title>
+  <defs>
+  <style>
+  .data       { fill: #f29453; stroke: #8a3f0e; stroke-width: 1; }
+  .comm       { fill: #22c55e; stroke: #15803d; stroke-width: 1; }
+  .memory     { fill: #9b87c4; stroke: #6048a3; stroke-width: 1; }
+  .user       { fill: #d97706; stroke: #7c3a05; stroke-width: 1; }
+  .photon     { fill: #2f6fd6; stroke: #1a4a99; stroke-width: 0.8; }
+
+  .panel      { fill: none; stroke: #c9ced6; stroke-width: 1; }
+  .node       { fill: #ffffff; stroke: #8a929e; stroke-width: 1; }
+  .fibre      { stroke: #2f6fd6; stroke-width: 1.6; fill: none; opacity: 0.6; }
+  .fibre-dot  { stroke: #aab0ba; stroke-width: 1; fill: none; stroke-dasharray: 3 3; opacity: 0.7; }
+  .classical  { stroke: #9aa3af; stroke-width: 1; fill: none; }
+  .bond       { stroke: #1a4a99; stroke-width: 1.7; fill: none; }
+  .bond--thick{ stroke: #1a4a99; stroke-width: 3.0; fill: none; }
+  .bond--matter-photon { stroke: #1a4a99; stroke-width: 1.4; fill: none; opacity: 0.85; }
+  /* Raw entanglement bond — used for the post-BSM, pre-correction Bell pair.
+     Grey because the entanglement exists but is in one of four random Bell
+     states until the classical correction arrives; once corrected it
+     becomes a canonical |Φ+⟩ rendered as `bond--thick` (photon-blue).
+     Initial opacity 0; the JS toggles it visible at sub 2–3 and hides it
+     again at sub ≥ 4 when the canonical bond takes over. */
+  .bond--raw  { stroke: #9aa3af; stroke-width: 3.0; fill: none; opacity: 0; }
+  .bond-lbl   { font: 600 10px sans-serif; fill: #1a4a99; text-anchor: middle; }
+
+  .row-ttl    { font: 700 13px sans-serif; fill: #1a1f2a; text-anchor: start; }
+  .row-sub    { font: 11px sans-serif; fill: #5a6472; text-anchor: start; }
+  .herald     { font: 700 11px sans-serif; fill: #15803d; text-anchor: middle; }
+  .credit     { font: italic 9.5px sans-serif; fill: #8a929e; text-anchor: start; }
+  .legend-ttl { font: 700 11px sans-serif; fill: #1a1f2a; text-anchor: start; }
+  .legend-txt { font: 10.5px sans-serif; fill: #3a4150; text-anchor: start; dominant-baseline: middle; }
+  .qbit-in    { font: 700 10px sans-serif; fill: #ffffff; text-anchor: middle; dominant-baseline: central; }
+  .arrow      { fill: #6a7280; opacity: 0.55; }
+</style>
+  <symbol id="quisp-bsa-white" viewBox="0 0 100 100" overflow="visible"><circle cx="50" cy="50" r="48.6" fill="#ffffff"/>
+  <g transform="rotate(180 50 50)"><g
+     id="layer1"
+     transform="translate(-31.460882,77.692164)">
+    <g
+       id="g20029"
+       transform="matrix(2.8375292,0,0,2.8375292,-4.7434798,-1217.7596)">
+      <circle
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none"
+         id="circle19883"
+         cx="30.380079"
+         cy="419.40271"
+         r="17.120964" />
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         id="rect19885"
+         width="11.686096"
+         height="11.686096"
+         x="-324.79691"
+         y="-281.83298"
+         ry="0"
+         transform="rotate(-135)" />
+      <path
+         id="path19887"
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 20.283432,411.29099 c -1.339849,1.33985 -1.04876,3.78799 0.652297,5.48904 l 0.614274,0.61427 5.535592,-5.53559 -0.614276,-0.61427 c -1.701048,-1.70106 -4.149184,-1.99215 -5.489033,-0.6523 z" />
+      <path
+         id="path19889"
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 39.687025,410.68297 c -1.339857,-1.33985 -3.787985,-1.04875 -5.489042,0.6523 l -0.614274,0.61427 5.535592,5.5356 0.614274,-0.61427 c 1.701057,-1.70106 1.992154,-4.14919 0.652297,-5.48904 z" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 30.38007,428.95209 V 412.42545"
+         id="path19891" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 24.317803,414.62651 1.951624,1.95163"
+         id="path19893" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 36.3515,414.71734 -1.951624,1.95163"
+         id="path19895" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 34.511736,424.82045 1.951624,1.95163"
+         id="path19897" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 36.201761,426.66422 h 5.848874"
+         id="path19899" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 26.248414,424.82045 -1.951624,1.95163"
+         id="path19903" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 24.558389,426.66422 H 18.709515"
+         id="path19905" />
+    </g>
+  </g></g></symbol>
+  <symbol id="bsm-meter" viewBox="0 0 36 36" overflow="visible"><rect x="2" y="6" width="32" height="24" rx="2" fill="#ffffff" stroke="#1a1f2a" stroke-width="1.6"/><path d="M 6 26 A 12 12 0 0 1 30 26 Z" fill="none" stroke="#1a1f2a" stroke-width="1.4"/><line x1="10" y1="17" x2="8"  y2="15" stroke="#1a1f2a" stroke-width="1.1"/><line x1="18" y1="14" x2="18" y2="12" stroke="#1a1f2a" stroke-width="1.1"/><line x1="26" y1="17" x2="28" y2="15" stroke="#1a1f2a" stroke-width="1.1"/><line x1="18" y1="26" x2="27" y2="16" stroke="#d97706" stroke-width="2.0" stroke-linecap="round"/><circle cx="18" cy="26" r="1.6" fill="#1a1f2a"/></symbol>
+  <radialGradient id="ops-cloud"><stop offset="0%"   stop-color="#2f6fd6" stop-opacity="1"/><stop offset="35%"  stop-color="#2f6fd6" stop-opacity="0.92"/><stop offset="70%"  stop-color="#2f6fd6" stop-opacity="0.45"/><stop offset="100%" stop-color="#2f6fd6" stop-opacity="0"/></radialGradient>
+  </defs>
+  <g data-op-row="generation">
+  <text data-name="ttl-Heralded-0" x="12" y="40.0" class="row-ttl" style="text-anchor:start">Heralded</text>
+  <text data-name="ttl-Heralded-1" x="12" y="56.0" class="row-ttl" style="text-anchor:start">Entanglement</text>
+  <text data-name="ttl-Heralded-2" x="12" y="72.0" class="row-ttl" style="text-anchor:start">Generation</text>
+  <text data-name="ttl-Heralded-3" x="12" y="88.0" class="row-ttl" style="text-anchor:start">(HEG)</text>
+  <text data-name="sub-Heralded-0" x="12" y="108.0" class="row-sub" style="text-anchor:start">single hop via</text>
+  <text data-name="sub-Heralded-1" x="12" y="122.0" class="row-sub" style="text-anchor:start">midpoint BSA</text>
+  <g data-op-side="before">
+  <rect data-name="HEG-before" x="130" y="20" width="290" height="104" rx="6" class="panel"/>
+  <rect data-name="HEG-A" x="146" y="44" width="56" height="48" rx="6" class="node"/>
+  <rect data-name="HEG-B" x="348" y="44" width="56" height="48" rx="6" class="node"/>
+  <circle data-name="HEG-CA" cx="160" cy="68" r="11" class="comm"/>
+  <text data-name="HEG-CA-in" x="160" y="68" class="qbit-in" style="text-anchor:middle">C</text>
+  <circle data-name="HEG-CB" cx="390" cy="68" r="11" class="comm"/>
+  <text data-name="HEG-CB-in" x="390" y="68" class="qbit-in" style="text-anchor:middle">C</text>
+  <path data-name="HEG-mp-A" d="M 171 68 L 167.5 68 q 4.0 -4 8 0 t 8 0 L 180 68" class="bond--matter-photon"/>
+  <path data-name="HEG-mp-B" d="M 370 68 L 366.5 68 q 4.0 -4 8 0 t 8 0 L 379 68" class="bond--matter-photon"/>
+  <circle data-name="HEG-phA" cx="188" cy="68" r="8" fill="url(#ops-cloud)"/>
+  <circle data-name="HEG-phB" cx="362" cy="68" r="8" fill="url(#ops-cloud)"/>
+  <use data-name="HEG-bsa-before" href="#quisp-bsa-white" x="261.0" y="54.0" width="28" height="28"/>
+  <line data-name="HEG-fA" x1="196" y1="68" x2="261.0" y2="68" class="fibre"/>
+  <line data-name="HEG-fB" x1="289.0" y1="68" x2="354" y2="68" class="fibre"/>
+  <line data-name="HEG-classical-before" x1="146" y1="114" x2="404" y2="114" class="classical"/>
+  <line data-name="HEG-classical-before-stub-0" x1="174" y1="92" x2="174" y2="114" class="classical"/>
+  <line data-name="HEG-classical-before-stub-1" x1="275.0" y1="82.0" x2="275.0" y2="114" class="classical"/>
+  <line data-name="HEG-classical-before-stub-2" x1="376" y1="92" x2="376" y2="114" class="classical"/>
+  </g>
+  <path data-name="arrow" d="M 425 63 L 437 68 L 425 73 L 428 68 Z" class="arrow"/>
+  <g data-op-side="after">
+  <rect data-name="HEG-after" x="442" y="20" width="290" height="104" rx="6" class="panel"/>
+  <rect data-name="HEG-A2" x="458" y="44" width="56" height="48" rx="6" class="node"/>
+  <rect data-name="HEG-B2" x="660" y="44" width="56" height="48" rx="6" class="node"/>
+  <circle data-name="HEG-CA2" cx="486" cy="68" r="11" class="comm"/>
+  <text data-name="HEG-CA2-in" x="486" y="68" class="qbit-in" style="text-anchor:middle">C</text>
+  <circle data-name="HEG-CB2" cx="688" cy="68" r="11" class="comm"/>
+  <text data-name="HEG-CB2-in" x="688" y="68" class="qbit-in" style="text-anchor:middle">C</text>
+  <line data-name="HEG-classical-after" x1="458" y1="114" x2="716" y2="114" class="classical"/>
+  <line data-name="HEG-classical-after-stub-0" x1="486" y1="92" x2="486" y2="114" class="classical"/>
+  <line data-name="HEG-classical-after-stub-1" x1="688" y1="92" x2="688" y2="114" class="classical"/>
+  <path data-name="HEG-bond" d="M 497.00 68.00 L 500.09 66.74 L 503.10 65.39 L 505.85 63.48 L 508.69 61.80 L 512.00 61.28 L 515.43 61.17 L 518.30 59.72 L 520.68 56.93 L 523.44 55.15 L 527.00 55.78 L 530.61 56.80 L 533.39 55.25 L 535.60 51.64 L 538.36 49.79 L 542.00 51.50 L 545.63 53.55 L 548.38 51.92 L 550.63 47.65 L 553.44 45.82 L 557.00 48.44 L 560.49 51.33 L 563.28 49.69 L 565.75 45.02 L 568.65 43.28 L 572.00 46.61 L 575.24 50.10 L 578.11 48.54 L 580.92 43.76 L 583.94 42.23 L 587.00 46.00 L 589.94 49.82 L 592.92 48.43 L 596.11 43.90 L 599.24 42.68 L 602.00 46.61 L 604.65 50.48 L 607.75 49.38 L 611.28 45.43 L 614.49 44.63 L 617.00 48.44 L 619.44 52.10 L 622.63 51.39 L 626.38 48.34 L 629.63 48.03 L 632.00 51.50 L 634.36 54.72 L 637.60 54.49 L 641.39 52.59 L 644.61 52.85 L 647.00 55.78 L 649.44 58.41 L 652.68 58.73 L 656.30 58.14 L 659.43 58.99 L 662.00 61.28 L 664.69 63.25 L 667.85 64.16 L 671.10 64.94 L 674.09 66.38 L 677.00 68.00" class="bond"/>
+  <text data-name="HEG-herald" x="587.0" y="32" class="herald" style="text-anchor:middle">✓ herald</text>
+  </g>
+  </g>
+  <g data-op-row="purification">
+  <text data-name="ttl-Heralded-0" x="12" y="168.0" class="row-ttl" style="text-anchor:start">Heralded</text>
+  <text data-name="ttl-Heralded-1" x="12" y="184.0" class="row-ttl" style="text-anchor:start">Entanglement</text>
+  <text data-name="ttl-Heralded-2" x="12" y="200.0" class="row-ttl" style="text-anchor:start">Purification</text>
+  <text data-name="ttl-Heralded-3" x="12" y="216.0" class="row-ttl" style="text-anchor:start">(HEP)</text>
+  <text data-name="sub-Heralded-0" x="12" y="236.0" class="row-sub" style="text-anchor:start">two noisy pairs in,</text>
+  <text data-name="sub-Heralded-1" x="12" y="250.0" class="row-sub" style="text-anchor:start">one cleaner pair out</text>
+  <g data-op-side="before">
+  <rect data-name="HEP-before" x="130" y="148" width="290" height="104" rx="6" class="panel"/>
+  <rect data-name="HEP-A" x="146" y="158" width="56" height="76" rx="6" class="node"/>
+  <rect data-name="HEP-B" x="348" y="158" width="56" height="76" rx="6" class="node"/>
+  <circle data-name="HEP-MA1" cx="174" cy="174" r="11" class="memory"/>
+  <text data-name="HEP-MA1-in" x="174" y="174" class="qbit-in" style="text-anchor:middle">M</text>
+  <circle data-name="HEP-MA2" cx="174" cy="218" r="11" class="memory"/>
+  <text data-name="HEP-MA2-in" x="174" y="218" class="qbit-in" style="text-anchor:middle">M</text>
+  <circle data-name="HEP-MB1" cx="376" cy="174" r="11" class="memory"/>
+  <text data-name="HEP-MB1-in" x="376" y="174" class="qbit-in" style="text-anchor:middle">M</text>
+  <circle data-name="HEP-MB2" cx="376" cy="218" r="11" class="memory"/>
+  <text data-name="HEP-MB2-in" x="376" y="218" class="qbit-in" style="text-anchor:middle">M</text>
+  <path data-name="HEP-pair1" d="M 185 174 L 191.0 174 q 7.0 -4 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 L 365 174" class="bond"/>
+  <path data-name="HEP-pair2" d="M 185 218 L 191.0 218 q 7.0 -4 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 L 365 218" class="bond"/>
+  <text data-name="HEP-F-before" x="275.0" y="196" class="bond-lbl" style="text-anchor:middle">F = 0.70</text>
+  <line data-name="HEP-classical-before" x1="146" y1="242" x2="404" y2="242" class="classical"/>
+  <line data-name="HEP-classical-before-stub-0" x1="174" y1="234" x2="174" y2="242" class="classical"/>
+  <line data-name="HEP-classical-before-stub-1" x1="376" y1="234" x2="376" y2="242" class="classical"/>
+  </g>
+  <path data-name="arrow" d="M 425 191 L 437 196 L 425 201 L 428 196 Z" class="arrow"/>
+  <g data-op-side="after">
+  <rect data-name="HEP-after" x="442" y="148" width="290" height="104" rx="6" class="panel"/>
+  <rect data-name="HEP-A2" x="458" y="158" width="56" height="76" rx="6" class="node"/>
+  <rect data-name="HEP-B2" x="660" y="158" width="56" height="76" rx="6" class="node"/>
+  <circle data-name="HEP-MA" cx="486" cy="196" r="11" class="memory"/>
+  <text data-name="HEP-MA-in" x="486" y="196" class="qbit-in" style="text-anchor:middle">M</text>
+  <circle data-name="HEP-MB" cx="688" cy="196" r="11" class="memory"/>
+  <text data-name="HEP-MB-in" x="688" y="196" class="qbit-in" style="text-anchor:middle">M</text>
+  <path data-name="HEP-pair-out" d="M 497 196 L 503.0 196 q 7.0 -6 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 t 14 0 L 677 196" class="bond--thick"/>
+  <text data-name="HEP-F-after" x="587.0" y="182" class="bond-lbl" style="text-anchor:middle">F = 0.74</text>
+  <text data-name="HEP-herald" x="587.0" y="166" class="herald" style="text-anchor:middle">✓ herald</text>
+  <line data-name="HEP-classical-after" x1="458" y1="242" x2="716" y2="242" class="classical"/>
+  <line data-name="HEP-classical-after-stub-0" x1="486" y1="234" x2="486" y2="242" class="classical"/>
+  <line data-name="HEP-classical-after-stub-1" x1="688" y1="234" x2="688" y2="242" class="classical"/>
+  </g>
+  </g>
+  <g data-op-row="swapping">
+  <text data-name="ttl-Swapping-0" x="12" y="313.0" class="row-ttl" style="text-anchor:start">Swapping</text>
+  <text data-name="sub-Swapping-0" x="12" y="333.0" class="row-sub" style="text-anchor:start">matter-side BSM at</text>
+  <text data-name="sub-Swapping-1" x="12" y="347.0" class="row-sub" style="text-anchor:start">the repeater</text>
+  <text data-name="sub-Swapping-2" x="12" y="361.0" class="row-sub" style="text-anchor:start">extends the reach</text>
+  <g data-op-side="before">
+  <rect data-name="Swapping-before" x="130" y="276" width="290" height="104" rx="6" class="panel"/>
+  <rect data-name="Swapping-A" x="144" y="300" width="56" height="48" rx="6" class="node"/>
+  <rect data-name="Swapping-R" x="247.0" y="300" width="56" height="48" rx="6" class="node"/>
+  <rect data-name="Swapping-B" x="350" y="300" width="56" height="48" rx="6" class="node"/>
+  <path data-name="Swapping-AR" d="M 172 324 L 174.5 324 q 6.0 -5 12 0 t 12 0 t 12 0 t 12 0 t 12 0 t 12 0 t 12 0 L 261.0 324" class="bond--thick"/>
+  <path data-name="Swapping-RB" d="M 289.0 324 L 291.5 324 q 6.0 -5 12 0 t 12 0 t 12 0 t 12 0 t 12 0 t 12 0 t 12 0 L 378 324" class="bond--thick"/>
+  <path data-name="Swapping-bond-raw" d="M 172.00 324.00 L 175.58 321.86 L 178.93 319.45 L 181.90 316.53 L 185.51 314.68 L 189.73 313.97 L 193.04 311.83 L 195.40 307.99 L 198.78 306.02 L 203.49 306.84 L 207.25 305.96 L 209.32 301.43 L 212.12 298.38 L 216.87 300.17 L 221.23 301.36 L 223.50 297.00 L 225.79 292.33 L 230.13 293.99 L 234.84 297.46 L 237.66 294.49 L 239.82 288.35 L 243.56 288.68 L 248.16 293.90 L 251.53 293.38 L 254.01 286.67 L 257.35 284.85 L 261.45 290.62 L 265.03 293.05 L 268.09 287.13 L 271.45 283.08 L 275.00 288.00 L 278.32 293.00 L 281.82 289.19 L 285.63 283.67 L 288.92 286.66 L 291.68 293.15 L 295.21 292.21 L 299.59 286.54 L 303.09 287.22 L 305.36 293.80 L 308.48 295.65 L 313.19 291.19 L 317.24 290.06 L 319.40 295.53 L 321.92 299.35 L 326.50 297.00 L 331.10 295.12 L 333.61 298.95 L 335.72 303.54 L 339.78 303.45 L 344.58 302.04 L 347.69 304.44 L 349.84 308.70 L 353.34 310.33 L 357.84 310.25 L 361.40 312.03 L 364.05 315.40 L 367.30 317.79 L 371.19 319.27 L 374.71 321.42 L 378.00 324.00" class="bond--raw"/>
+  <circle data-name="Swapping-MA" cx="172" cy="324" r="11" class="memory"/>
+  <text data-name="Swapping-MA-in" x="172" y="324" class="qbit-in" style="text-anchor:middle">M</text>
+  <circle data-name="Swapping-MRL" cx="261.0" cy="324" r="11" class="memory"/>
+  <text data-name="Swapping-MRL-in" x="261.0" y="324" class="qbit-in" style="text-anchor:middle">M</text>
+  <circle data-name="Swapping-MRR" cx="289.0" cy="324" r="11" class="memory"/>
+  <text data-name="Swapping-MRR-in" x="289.0" y="324" class="qbit-in" style="text-anchor:middle">M</text>
+  <circle data-name="Swapping-MB" cx="378" cy="324" r="11" class="memory"/>
+  <text data-name="Swapping-MB-in" x="378" y="324" class="qbit-in" style="text-anchor:middle">M</text>
+  <use data-name="Swapping-bsm" href="#bsm-meter" x="257.0" y="336.0" width="36" height="28.0"/>
+  <line data-name="Swapping-classical-before" x1="144" y1="370" x2="406" y2="370" class="classical"/>
+  <line data-name="Swapping-classical-before-stub-0" x1="172" y1="348" x2="172" y2="370" class="classical"/>
+  <line data-name="Swapping-classical-before-stub-1" x1="275.0" y1="348" x2="275.0" y2="370" class="classical"/>
+  <line data-name="Swapping-classical-before-stub-2" x1="378" y1="348" x2="378" y2="370" class="classical"/>
+  </g>
+  <path data-name="arrow" d="M 425 319 L 437 324 L 425 329 L 428 324 Z" class="arrow"/>
+  <g data-op-side="after">
+  <rect data-name="Swapping-after" x="442" y="276" width="290" height="104" rx="6" class="panel"/>
+  <rect data-name="Swapping-A2" x="456" y="300" width="56" height="48" rx="6" class="node"/>
+  <rect data-name="Swapping-R2" x="559.0" y="300" width="56" height="48" rx="6" class="node"/>
+  <rect data-name="Swapping-B2" x="662" y="300" width="56" height="48" rx="6" class="node"/>
+  <path data-name="Swapping-bond" d="M 484.00 324.00 L 487.58 321.86 L 490.93 319.45 L 493.90 316.53 L 497.51 314.68 L 501.73 313.97 L 505.04 311.83 L 507.40 307.99 L 510.78 306.02 L 515.49 306.84 L 519.25 305.96 L 521.32 301.43 L 524.12 298.38 L 528.87 300.17 L 533.23 301.36 L 535.50 297.00 L 537.79 292.33 L 542.13 293.99 L 546.84 297.46 L 549.66 294.49 L 551.82 288.35 L 555.56 288.68 L 560.16 293.90 L 563.53 293.38 L 566.01 286.67 L 569.35 284.85 L 573.45 290.62 L 577.03 293.05 L 580.09 287.13 L 583.45 283.08 L 587.00 288.00 L 590.32 293.00 L 593.82 289.19 L 597.63 283.67 L 600.92 286.66 L 603.68 293.15 L 607.21 292.21 L 611.59 286.54 L 615.09 287.22 L 617.36 293.80 L 620.48 295.65 L 625.19 291.19 L 629.24 290.06 L 631.40 295.53 L 633.92 299.35 L 638.50 297.00 L 643.10 295.12 L 645.61 298.95 L 647.72 303.54 L 651.78 303.45 L 656.58 302.04 L 659.69 304.44 L 661.84 308.70 L 665.34 310.33 L 669.84 310.25 L 673.40 312.03 L 676.05 315.40 L 679.30 317.79 L 683.19 319.27 L 686.71 321.42 L 690.00 324.00" class="bond--thick"/>
+  <circle data-name="Swapping-MA2" cx="484" cy="324" r="11" class="memory"/>
+  <text data-name="Swapping-MA2-in" x="484" y="324" class="qbit-in" style="text-anchor:middle">M</text>
+  <circle data-name="Swapping-MB2" cx="690" cy="324" r="11" class="memory"/>
+  <text data-name="Swapping-MB2-in" x="690" y="324" class="qbit-in" style="text-anchor:middle">M</text>
+  <line data-name="Swapping-classical-after" x1="456" y1="370" x2="718" y2="370" class="classical"/>
+  <line data-name="Swapping-classical-after-stub-0" x1="484" y1="348" x2="484" y2="370" class="classical"/>
+  <line data-name="Swapping-classical-after-stub-1" x1="587.0" y1="348" x2="587.0" y2="370" class="classical"/>
+  <line data-name="Swapping-classical-after-stub-2" x1="690" y1="348" x2="690" y2="370" class="classical"/>
+  </g>
+  </g>
+  <g data-op-row="teleportation">
+  <text data-name="ttl-Teleportation-0" x="12" y="441.0" class="row-ttl" style="text-anchor:start">Teleportation</text>
+  <text data-name="sub-Teleportation-0" x="12" y="461.0" class="row-sub" style="text-anchor:start">consume an</text>
+  <text data-name="sub-Teleportation-1" x="12" y="475.0" class="row-sub" style="text-anchor:start">end-to-end pair;</text>
+  <text data-name="sub-Teleportation-2" x="12" y="489.0" class="row-sub" style="text-anchor:start">move the data qubit</text>
+  <g data-op-side="before">
+  <rect data-name="Teleportation-before" x="130" y="404" width="290" height="104" rx="6" class="panel"/>
+  <rect data-name="Teleportation-N0" x="142.0" y="428.0" width="56" height="48" rx="6" class="node"/>
+  <rect data-name="Teleportation-N1" x="212.0" y="428.0" width="56" height="48" rx="6" class="node"/>
+  <rect data-name="Teleportation-N2" x="282.0" y="428.0" width="56" height="48" rx="6" class="node"/>
+  <rect data-name="Teleportation-N3" x="352.0" y="428.0" width="56" height="48" rx="6" class="node"/>
+  <path data-name="Teleportation-bond" d="M 184.00 452.00 L 187.42 449.85 L 190.59 447.45 L 193.39 444.54 L 196.84 442.68 L 200.92 441.96 L 204.06 439.82 L 206.21 436.00 L 209.42 434.03 L 214.01 434.83 L 217.62 433.94 L 219.47 429.44 L 222.07 426.40 L 226.72 428.16 L 230.95 429.34 L 233.00 425.00 L 235.07 420.34 L 239.29 421.99 L 243.88 425.45 L 246.51 422.49 L 248.44 416.36 L 252.04 416.68 L 256.52 421.89 L 259.72 421.38 L 261.99 414.67 L 265.16 412.85 L 269.13 418.62 L 272.54 421.04 L 275.42 415.13 L 278.61 411.08 L 282.00 416.00 L 285.15 421.00 L 288.48 417.19 L 292.14 411.68 L 295.26 414.66 L 297.82 421.15 L 301.19 420.21 L 305.45 414.54 L 308.79 415.23 L 310.84 421.80 L 313.77 423.64 L 318.38 419.19 L 322.28 418.07 L 324.22 423.53 L 326.53 427.34 L 331.00 425.00 L 335.48 423.14 L 337.78 426.96 L 339.67 431.52 L 343.60 431.44 L 348.29 430.06 L 351.21 432.45 L 353.15 436.69 L 356.48 438.32 L 360.86 438.26 L 364.25 440.04 L 366.71 443.40 L 369.79 445.78 L 373.53 447.27 L 376.88 449.43 L 380.00 452.00" class="bond--thick"/>
+  <circle data-name="Teleportation-ML" cx="184.0" cy="452" r="11" class="memory"/>
+  <text data-name="Teleportation-ML-in" x="184.0" y="452" class="qbit-in" style="text-anchor:middle">M</text>
+  <circle data-name="Teleportation-MR" cx="380.0" cy="452" r="11" class="memory"/>
+  <text data-name="Teleportation-MR-in" x="380.0" y="452" class="qbit-in" style="text-anchor:middle">M</text>
+  <circle data-name="Teleportation-D" cx="156.0" cy="452" r="11" class="data"/>
+  <text data-name="Teleportation-Din" x="156.0" y="452" class="qbit-in" style="text-anchor:middle">D</text>
+  <text data-name="Teleportation-MR-q" x="380.0" y="452" class="qbit-in" style="text-anchor:middle;opacity:0">?</text>
+  <use data-name="Teleportation-bsm" href="#bsm-meter" x="152.0" y="464.0" width="36" height="28.0"/>
+  <line data-name="Teleportation-classical-before" x1="142.0" y1="498" x2="408.0" y2="498" class="classical"/>
+  <line data-name="Teleportation-classical-before-stub-0" x1="170.0" y1="476.0" x2="170.0" y2="498" class="classical"/>
+  <line data-name="Teleportation-classical-before-stub-1" x1="240.0" y1="476.0" x2="240.0" y2="498" class="classical"/>
+  <line data-name="Teleportation-classical-before-stub-2" x1="310.0" y1="476.0" x2="310.0" y2="498" class="classical"/>
+  <line data-name="Teleportation-classical-before-stub-3" x1="380.0" y1="476.0" x2="380.0" y2="498" class="classical"/>
+  </g>
+  <path data-name="arrow" d="M 425 447 L 437 452 L 425 457 L 428 452 Z" class="arrow"/>
+  <g data-op-side="after">
+  <rect data-name="Teleportation-after" x="442" y="404" width="290" height="104" rx="6" class="panel"/>
+  <rect data-name="Teleportation-N0-after" x="454.0" y="428.0" width="56" height="48" rx="6" class="node"/>
+  <rect data-name="Teleportation-N1-after" x="524.0" y="428.0" width="56" height="48" rx="6" class="node"/>
+  <rect data-name="Teleportation-N2-after" x="594.0" y="428.0" width="56" height="48" rx="6" class="node"/>
+  <rect data-name="Teleportation-N3-after" x="664.0" y="428.0" width="56" height="48" rx="6" class="node"/>
+  <circle data-name="Teleportation-D-after" cx="692.0" cy="452" r="11" class="data"/>
+  <text data-name="Teleportation-Din-after" x="692.0" y="452" class="qbit-in" style="text-anchor:middle">D</text>
+  <line data-name="Teleportation-classical-after" x1="454.0" y1="498" x2="720.0" y2="498" class="classical"/>
+  <line data-name="Teleportation-classical-after-stub-0" x1="482.0" y1="476.0" x2="482.0" y2="498" class="classical"/>
+  <line data-name="Teleportation-classical-after-stub-1" x1="552.0" y1="476.0" x2="552.0" y2="498" class="classical"/>
+  <line data-name="Teleportation-classical-after-stub-2" x1="622.0" y1="476.0" x2="622.0" y2="498" class="classical"/>
+  <line data-name="Teleportation-classical-after-stub-3" x1="692.0" y1="476.0" x2="692.0" y2="498" class="classical"/>
+  </g>
+  </g>
+  <line data-name="legend-rule" x1="12" y1="528" x2="748" y2="528" class="panel"/>
+  <circle data-name="legend-memory" cx="68.35" cy="546" r="9" class="memory"/>
+  <text data-name="legend-memory-in" x="68.35" y="546" class="qbit-in" style="text-anchor:middle">M</text>
+  <text data-name="legend-txt-memory" x="90.35" y="546" class="legend-txt" style="text-anchor:start">memory qubit</text>
+  <circle data-name="legend-comm" cx="258.125" cy="546" r="9" class="comm"/>
+  <text data-name="legend-comm-in" x="258.125" y="546" class="qbit-in" style="text-anchor:middle">C</text>
+  <text data-name="legend-txt-comm" x="280.125" y="546" class="legend-txt" style="text-anchor:start">comm qubit</text>
+  <circle data-name="legend-data" cx="442.125" cy="546" r="9" class="data"/>
+  <text data-name="legend-data-in" x="442.125" y="546" class="qbit-in" style="text-anchor:middle">D</text>
+  <text data-name="legend-txt-data" x="464.125" y="546" class="legend-txt" style="text-anchor:start">data qubit</text>
+  <circle data-name="legend-photon" cx="637.675" cy="546" r="9" fill="url(#ops-cloud)"/>
+  <text data-name="legend-txt-photon" x="659.675" y="546" class="legend-txt" style="text-anchor:start">photon</text>
+  <path data-name="legend-bond" d="M 39.94999999999999 568 L 42.94999999999999 568 q 3.5 -3 7 0 t 7 0 L 59.94999999999999 568" class="bond"/>
+  <text data-name="legend-txt-bond" x="71.94999999999999" y="568" class="legend-txt" style="text-anchor:start">entanglement</text>
+  <use data-name="legend-bsa" href="#quisp-bsa-white" x="168.825" y="557.0" width="22" height="22"/>
+  <text data-name="legend-txt-bsa" x="201.825" y="568" class="legend-txt" style="text-anchor:start">photonic BSM (BSA)</text>
+  <use data-name="legend-meter" href="#bsm-meter" x="324.6875" y="559.4444444444445" width="22" height="17.11111111111111"/>
+  <text data-name="legend-txt-meter" x="357.6875" y="568" class="legend-txt" style="text-anchor:start">matter-side BSM</text>
+  <line data-name="legend-fibre" x1="472.88749999999993" y1="568" x2="492.88749999999993" y2="568" class="fibre"/>
+  <text data-name="legend-txt-fibre" x="504.88749999999993" y="568" class="legend-txt" style="text-anchor:start">quantum channel</text>
+  <line data-name="legend-classical" x1="614.3125" y1="568" x2="634.3125" y2="568" class="classical"/>
+  <text data-name="legend-txt-classical" x="646.3125" y="568" class="legend-txt" style="text-anchor:start">classical channel</text>
+</svg>

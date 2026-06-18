@@ -1,0 +1,167 @@
+slug: nu-quantum
+name: Nu Quantum
+categories: [network, enabling]
+hq: Cambridge, UK
+founded: 2018
+status: private
+parent: null
+logo:
+  domain: nu-quantum.com
+
+positioning: >
+  Cavendish Laboratory spin-out building the "Entanglement Fabric" — a
+  vendor-agnostic quantum-networking layer that interconnects heterogeneous
+  quantum processors into a modular, distributed fault-tolerant machine.
+  Founded in 2018 by Carmen Palacios-Berraquero. Sells the Qubit-Photon
+  Interface and the rack-mounted Quantum Networking Unit, which launched in
+  June 2025 with <3e-3 Bell-state-measurement error, up to 99.7%
+  remote-qubit fidelity, and MHz entanglement-attempt rates. Closed a USD
+  60M Series A in December 2025 led by National Grid Partners, with Gresham
+  House Ventures, Morpheus Ventures, Amadeus, IQ Capital, Ahren, Cambridge
+  Enterprise Ventures, NSSIF, and Sumitomo/Presidio.
+
+modalities:
+  network:
+    role: orchestrator
+    products: [Qubit-Photon Interface, Quantum Networking Unit]
+  enabling:
+    products: [Quantum Networking Unit, real-time entanglement orchestrator]
+
+milestones:
+  - date: 2025-12
+    tag: network
+    headline: Oversubscribed $60M Series A closed — led by National Grid Partners with Gresham House Ventures, Morpheus Ventures, and existing investors (Amadeus, IQ Capital, Ahren, Cambridge Enterprise Ventures, NSSIF, Sumitomo/Presidio)
+    source_url: https://www.nu-quantum.com/news/nu-quantum-raises-60m-series-a-in-largest-financing-round-for-quantum-computer-networking
+    source_type: press
+  - date: 2025-06
+    tag: network
+    headline: "Quantum Networking Unit (QNU) launched — rack-mounted real-time quantum-network orchestrator with <3e-3 Bell-state-measurement error, up to 99.7% remote-qubit fidelity, 300 ns control latency and MHz entanglement-attempt rates; integrates CERN White Rabbit time-sync"
+    source_url: https://thequantuminsider.com/2025/06/12/nu-quantum-launches-world-first-quantum-networking-unit-for-dynamic-entanglement/
+    source_type: press
+  - date: 2025-01
+    tag: network
+    headline: "Distributed quantum error correction theory paper — hyperbolic Floquet codes shown compatible with modular interconnected-processor architecture; charts path to fault-tolerant distributed QC (Innovate UK grant 10074653)"
+    source_url: https://arxiv.org/abs/2501.14029
+    source_type: preprint
+  - date: 2024
+    tag: network
+    headline: Qubit-Photon Interface (QPI) subsystem announced — couples matter-qubit processors to photonic networks; first product in the Entanglement Fabric roadmap
+    source_url: https://www.nu-quantum.com/news
+    source_type: press
+  - date: 2018
+    tag: network
+    headline: Company founded as University of Cambridge Cavendish Laboratory spinout by Carmen Palacios-Berraquero
+    source_url: https://www.cam.ac.uk/news/cambridge-spinout-nu-quantum-attracts-60-million-investment-for-quantum-computer-networking
+    source_type: press
+
+shareholders:
+  - holder: National Grid Partners
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-12
+    source_url: https://www.nu-quantum.com/news/nu-quantum-raises-60m-series-a-in-largest-financing-round-for-quantum-computer-networking
+    note: Lead investor on the December 2025 $60M Series A
+  - holder: Amadeus Capital Partners
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-12
+    source_url: https://www.nu-quantum.com/news/nu-quantum-raises-60m-series-a-in-largest-financing-round-for-quantum-computer-networking
+    note: Existing investor; participated in the 2025 Series A
+  - holder: IQ Capital
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-12
+    source_url: https://www.nu-quantum.com/news/nu-quantum-raises-60m-series-a-in-largest-financing-round-for-quantum-computer-networking
+    note: Existing investor; participated in the 2025 Series A
+  - holder: Ahren Innovation Capital
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-12
+    source_url: https://www.nu-quantum.com/news/nu-quantum-raises-60m-series-a-in-largest-financing-round-for-quantum-computer-networking
+    note: Existing investor; participated in the 2025 Series A
+  - holder: Cambridge Enterprise Ventures
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-12
+    source_url: https://www.enterprise.cam.ac.uk/news/nu-quantum-raises-60m-series-a-in-largest-financing-round-for-quantum-computer-networking/
+    note: University of Cambridge commercialisation arm; original spinout investor
+  - holder: Gresham House Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-12
+    source_url: https://www.nu-quantum.com/news/nu-quantum-raises-60m-series-a-in-largest-financing-round-for-quantum-computer-networking
+    note: New investor in the 2025 Series A
+  - holder: Morpheus Ventures
+    stake_percent: null
+    stake_class: minority
+    as_of: 2025-12
+    source_url: https://www.nu-quantum.com/news/nu-quantum-raises-60m-series-a-in-largest-financing-round-for-quantum-computer-networking
+    note: New investor in the 2025 Series A
+  - holder: NSSIF (UK National Security Strategic Investment Fund)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-12
+    source_url: https://www.nu-quantum.com/news/nu-quantum-raises-60m-series-a-in-largest-financing-round-for-quantum-computer-networking
+    note: UK government strategic investor
+  - holder: Sumitomo (Presidio Ventures)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2025-12
+    source_url: https://www.nu-quantum.com/news/nu-quantum-raises-60m-series-a-in-largest-financing-round-for-quantum-computer-networking
+    note: Corporate venture arm of Sumitomo Corporation
+  - holder: Carmen Palacios-Berraquero
+    stake_percent: null
+    stake_class: founder
+    as_of: 2018
+    source_url: https://www.cam.ac.uk/news/cambridge-spinout-nu-quantum-attracts-60-million-investment-for-quantum-computer-networking
+    note: Founder & CEO; presumed retained equity (private company, undisclosed)
+
+key_personnel:
+  - role: Founder & CEO
+    name: Carmen Palacios-Berraquero
+    since: 2018
+    source_url: https://uk.linkedin.com/in/carmen-palacios-berraquero
+
+roadmap:
+  - target: 2026
+    item: International expansion into Europe and US; product-development and deployment phase funded by Series A
+    source_url: https://www.nu-quantum.com/news/nu-quantum-raises-60m-series-a-in-largest-financing-round-for-quantum-computer-networking
+    tag: network
+  - target: 2026
+    item: Build out Entanglement Fabric reference deployments integrating QPI + QNU across third-party quantum processors
+    source_url: https://thequantuminsider.com/2025/06/12/nu-quantum-launches-world-first-quantum-networking-unit-for-dynamic-entanglement/
+    tag: network
+
+current_flagship:
+  name: Quantum Networking Unit (QNU)
+  generation: rack-mounted real-time entanglement orchestrator (sub-ns latency, 99.7% remote-qubit fidelity)
+
+references:
+  - kind: preprint
+    citation_key: null
+    url: https://arxiv.org/abs/2501.14029
+    note: Distributed quantum error correction based on hyperbolic Floquet codes (Jan 2025)
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2025/06/12/nu-quantum-launches-world-first-quantum-networking-unit-for-dynamic-entanglement/
+    note: QNU launch announcement, June 2025
+  - kind: press
+    citation_key: null
+    url: https://www.nu-quantum.com/news/nu-quantum-raises-60m-series-a-in-largest-financing-round-for-quantum-computer-networking
+    note: $60M Series A press release, December 2025
+  - kind: press
+    citation_key: null
+    url: https://www.cam.ac.uk/news/cambridge-spinout-nu-quantum-attracts-60-million-investment-for-quantum-computer-networking
+    note: University of Cambridge spinout backgrounder
+
+partial:
+  - field: positioning
+    as_of: 2026-05-15
+    note: "Vendor materials describe the offering as the 'Entanglement Fabric'; the user-supplied 'Q-MAN / Quantum Modular Area Network' branding is not used on Nu Quantum's current site"
+  - key_personnel
+  - field: key_personnel
+    as_of: 2026-05-15
+    note: Only the founder/CEO is confirmed via primary source; CTO/CFO/CSO roles not surfaced on the public team page
+
+last_verified: 2026-05-15
+verification_method: web

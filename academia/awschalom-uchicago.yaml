@@ -1,0 +1,181 @@
+slug: awschalom-uchicago
+name: Awschalom group (UChicago / Argonne)
+categories: [qc, memory, network, sensing]
+hq: Chicago, Illinois, USA
+status: active
+parent: null
+
+institution:
+  name: University of Chicago
+  lab: Pritzker School of Molecular Engineering · Argonne National Laboratory
+  also: Q-NEXT (DOE National Quantum Information Science Research Center, Argonne lead)
+
+group_website: https://pme.uchicago.edu/group/awschalom-group
+
+positioning: >
+  The Awschalom group works on colour-centre quantum networking, quantum
+  memories, and quantum sensing using diamond NV centres and silicon
+  carbide divacancy / silicon-vacancy defects. The group operates the
+  Chicago-area entanglement testbed on Argonne dark fibre — among the
+  longest land-based quantum links in the United States — and pioneered
+  SiC as a CMOS-compatible spin-qubit platform alongside diamond NV.
+  David Awschalom is the inaugural director (now chief science officer)
+  of Q-NEXT, the DOE National Quantum Information Science Research Center
+  led by Argonne.
+
+modalities:
+  qc:
+    qubit_type: nv
+    physical_qubits_current: null
+    logical_qubits_current: 0
+    one_q_fidelity: null
+    two_q_fidelity: null
+    coherence_t1_ms: null
+    coherence_t2_ms: 5000
+    ec_code: null
+    connectivity: ""
+    gate_set: []
+  memory:
+    platform: sic-divacancy
+    storage_time_ms: 5000
+    retrieval_efficiency: null
+    fidelity: null
+    wavelength_nm: 1100
+    mode_capacity: null
+  network:
+    role: testbed
+    products:
+      - "Chicago-area quantum entanglement testbed on Argonne dark fibre (two 26-mile loops, ~52 miles total)"
+  sensing:
+    target_quantity: magnetometry / nanoscale imaging via NV and SiC defects
+    sensitivity: ""
+
+milestones:
+  - date: 2024
+    tag: network
+    headline: Spin-photon entanglement generated in silicon carbide
+    source_url: https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.132.160801
+    source_type: paper
+  - date: 2024
+    tag: enabling
+    headline: Silicon-on-silicon-carbide platform for wafer-scale integrated quantum photonics
+    source_url: https://advanced.onlinelibrary.wiley.com/doi/10.1002/adom.202401101
+    source_type: paper
+  - date: 2022-04
+    tag: qc
+    headline: Five-second coherence of a single SiC defect spin with single-shot readout
+    source_url: https://www.science.org/doi/10.1126/sciadv.abm5912
+    source_type: paper
+  - date: 2020-08
+    tag: network
+    headline: Chicago-area 52-mile quantum entanglement testbed first runs on Argonne dark fibre
+    source_url: https://www.anl.gov/article/argonne-and-uchicago-scientists-take-important-step-in-developing-national-quantum-internet
+    source_type: press
+  - date: 2020-08
+    tag: network
+    headline: DOE awards Argonne $115M over five years to lead Q-NEXT National QIS Research Center
+    source_url: https://www.anl.gov/article/department-of-energy-selects-argonne-to-lead-national-quantum-center
+    source_type: press
+  - date: 2016-09
+    tag: qc
+    headline: Divacancy spins in 4H-SiC reach 1.3 ms Hahn-echo coherence in a natural-isotope crystal
+    source_url: https://www.nature.com/articles/ncomms12935
+    source_type: paper
+  - date: 2011-11
+    tag: qc
+    headline: Room-temperature coherent control of defect spin qubits in silicon carbide
+    source_url: https://www.nature.com/articles/nature10562
+    source_type: paper
+
+funding_sources:
+  - name: DOE Office of Science — Q-NEXT National QIS Research Center
+    role: Founding 2020 award $115M / 5 yr; renewed 2025 at $125M / 5 yr
+    source_url: https://www.anl.gov/article/argonneled-qnext-quantum-center-renewed-for-five-years
+  - name: DOE Office of Science — Basic Energy Sciences
+    role: Funds the Chicago-area entanglement testbed and SiC / NV materials programmes
+    source_url: https://science.osti.gov/bes
+  - name: National Science Foundation (NSF)
+    role: Long-running programme grants including the Chicago MRSEC and Quantum Leap Challenge Institutes
+    source_url: https://www.nsf.gov/
+  - name: Army Research Office (ARO)
+    role: Spin-defect and quantum-network programme grants
+    source_url: https://arl.devcom.army.mil/who-we-are/aro/
+  - name: Air Force Office of Scientific Research (AFOSR)
+    role: Fundamental quantum-materials and spin-photonics grants
+    source_url: https://www.afrl.af.mil/AFOSR/
+
+key_personnel:
+  - role: Principal Investigator (Liew Family Professor of Molecular Engineering, UChicago; Argonne senior scientist; Q-NEXT inaugural director, now Chief Science Officer)
+    name: David D. Awschalom
+    since: 2013
+    source_url: https://pme.uchicago.edu/faculty/david-awschalom
+
+roadmap:
+  - target: 2026-2030
+    item: Q-NEXT phase-2 programme (renewed Nov 2025, $125M / 5 yr) — distributing quantum information across the Chicago testbed and scaling colour-centre repeater hardware
+    source_url: https://www.anl.gov/article/argonneled-qnext-quantum-center-renewed-for-five-years
+    tag: network
+
+current_focus:
+  name: Spintronics and solid-state quantum information science
+  description: >
+    Per the group's own framing (pme.uchicago.edu): spintronics, solid-state,
+    and molecular quantum information science for computing, sensing, and
+    communication, combining quantum optics with electron-spin resonance,
+    materials engineering, and nanofabrication.
+  source_url: https://pme.uchicago.edu/group/awschalom-group
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/nature10562
+    note: "Koehl et al. Nature 479, 84 (2011) — room-temperature coherent control of SiC defect spin qubits"
+  - kind: paper
+    citation_key: null
+    url: https://www.nature.com/articles/ncomms12935
+    note: "Christle et al. Nat. Commun. 7, 12935 (2016) — 1.3 ms Hahn-echo coherence of 4H-SiC divacancy spins"
+  - kind: paper
+    citation_key: null
+    url: https://www.science.org/doi/10.1126/sciadv.abm5912
+    note: "Anderson et al. Sci. Adv. 8, eabm5912 (2022) — five-second single-spin coherence in SiC with single-shot readout"
+  - kind: paper
+    citation_key: null
+    url: https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.132.160801
+    note: "PRL 132, 160801 (2024) — spin-photon entanglement in silicon carbide"
+  - kind: paper
+    citation_key: null
+    url: https://advanced.onlinelibrary.wiley.com/doi/10.1002/adom.202401101
+    note: "DeVault et al. Adv. Opt. Mater. (2024) — silicon-on-silicon-carbide platform for integrated photonics"
+  - kind: press
+    citation_key: null
+    url: https://www.anl.gov/article/department-of-energy-selects-argonne-to-lead-national-quantum-center
+    note: "DOE selects Argonne to lead Q-NEXT (2020, $115M / 5 yr)"
+  - kind: press
+    citation_key: null
+    url: https://www.anl.gov/article/argonneled-qnext-quantum-center-renewed-for-five-years
+    note: "Q-NEXT renewed Nov 2025 ($125M / 5 yr); Awschalom transitions to Chief Science Officer, Martin Holt becomes Director"
+
+partial:
+  - modalities.qc.physical_qubits_current
+  - modalities.qc.one_q_fidelity
+  - modalities.qc.two_q_fidelity
+  - modalities.qc.coherence_t1_ms
+  - modalities.memory.retrieval_efficiency
+  - modalities.memory.fidelity
+  - modalities.memory.mode_capacity
+  - modalities.sensing.sensitivity
+  - field: modalities.qc.coherence_t2_ms
+    as_of: 2026-05-24
+    note: "5,000 ms = Anderson et al. Sci. Adv. 2022 single-spin SiC coherence under dynamical decoupling; not a system-level qubit-array figure."
+  - field: modalities.memory.storage_time_ms
+    as_of: 2026-05-24
+    note: "Same 5-second SiC defect coherence figure used as memory-storage proxy; group has not published a single canonical memory-storage benchmark."
+  - field: modalities.memory.wavelength_nm
+    as_of: 2026-05-24
+    note: "~1100 nm = SiC divacancy zero-phonon line; the group also works with NV (637 nm) and SiV (737 nm) in diamond."
+  - field: key_personnel.0.since
+    as_of: 2026-05-24
+    note: "2013 = year Awschalom moved from UCSB to UChicago/Argonne; his research group predates this at UCSB."
+
+last_verified: 2026-05-24
+verification_method: web

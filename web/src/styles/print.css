@@ -1,0 +1,24 @@
+@page {
+  size: A4 landscape;
+  margin: 14mm 14mm 18mm 14mm;
+  @bottom-right { content: counter(page); font-family: var(--font-sans); font-size: 9pt; color: var(--color-text-mute); }
+  @bottom-center { content: string(running-title); font-family: var(--font-sans); font-size: 9pt; color: var(--color-text-mute); }
+}
+
+@page :first { @bottom-right { content: none; } @bottom-center { content: none; } }
+
+@media print {
+  html, body { background: white; color: black; }
+  h1 { string-set: running-title content(); break-after: avoid; }
+  h2 { break-before: page; break-after: avoid; }
+  h3, h4 { break-after: avoid; }
+
+  .stat-callout, .platform-card, figure, table { break-inside: avoid; }
+
+  .skip-link, .toggle, button { display: none !important; }
+  a, a:visited { color: black; text-decoration: none; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8pt; color: var(--color-text-mute); }
+
+  /* Spectrum hero — let it bleed across one full page */
+  .spectrum-embed { break-before: page; break-after: page; }
+}

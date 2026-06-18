@@ -1,0 +1,223 @@
+slug: qblox
+name: Qblox
+categories: [enabling]
+hq: Delft, Netherlands
+founded: 2019
+status: private
+parent: null
+logo:
+  domain: qblox.com
+
+positioning: >
+  Qblox B.V. designs and manufactures the Cluster, a modular 19" rack quantum
+  control system for qubit control and readout, sold to academic laboratories and
+  quantum hardware builders worldwide. The Cluster is platform-agnostic,
+  supporting superconducting, spin-qubit, and colour-centre (NV) systems over a
+  frequency range up to 18.5 GHz via hot-swappable modules and the proprietary
+  SYNQ synchronisation protocol. A QuTech / TU Delft spin-out founded in Delft
+  in 2019 by Niels Bultink and Jules van Oven, the company reached more than 100
+  customers before raising its first equity round, a €24.2 M ($26 M) Series A in
+  June 2024. A North America hub opened in Boston in June 2025 and US
+  manufacturing via Prodrive Technologies in Canton, Massachusetts began April
+  2026.
+
+modalities:
+  enabling:
+    products:
+      - "Cluster (modular 19\" rack system, up to 20 module slots, up to 120 Q1 sequence processor cores per rack)"
+      - QCM — Qubit Control Module (0–400 MHz, 4 output channels)
+      - QCM-RF II — Qubit Control Module RF II (2–18.5 GHz)
+      - QRM — Qubit Readout Module (0–400 MHz, 2 in / 2 out channels)
+      - QRM-RF — Qubit Readout Module RF (2–18.5 GHz)
+      - QRC — High-density Qubit Readout & Control (100 MHz–10 GHz, RFSoC-based)
+      - QTM — Qubit Timetag Module (photon counting / time-tagging, 20 ps resolution, 8 digital I/O)
+      - QSM — Quantum Source & Measurement Module (DC channels)
+      - Q1ASM (low-level pulse-sequence programming language)
+      - Qblox Scheduler (Python-based control framework)
+
+milestones:
+  - date: 2026-04
+    tag: enabling
+    headline: US manufacturing of Cluster systems begins in Canton, Massachusetts via Prodrive Technologies partnership
+    source_url: https://qblox.com/newsroom/qblox-introduces-first-made-in-america-quantum-control-systems
+    source_type: press
+  - date: 2026-03
+    tag: enabling
+    headline: Qblox and Riverlane demonstrate real-time QEC integration — Deltaflow decoder coupled to Cluster control hardware, supporting 300 physical qubits and 5 logical qubits
+    source_url: https://www.prnewswire.com/news-releases/qblox-and-riverlane-demonstrate-integration-enabling-real-time-quantum-error-correction-302716275.html
+    source_type: press
+  - date: 2025-11
+    tag: enabling
+    headline: DOE / Fermilab partnership announced — Qblox to manufacture and distribute the open-source QICK quantum control platform across US national labs, universities, and industry
+    source_url: https://news.fnal.gov/2025/11/energy-department-announces-partnership-with-fermilab-and-qblox-to-manufacture-foundational-quantum-control-platform-for-u-s-research-and-innovation/
+    source_type: press
+  - date: 2025-11
+    tag: enabling
+    headline: Quantum Utility Block (QUB) launched with QuantWare and Q-CTRL — pre-validated full-stack quantum computer reference systems in Small (5 Q), Medium (17 Q), and Large (41 Q) configurations
+    source_url: https://qblox.com/newsroom/quantware-q-ctrl-and-qblox-launch-the-quantum-utility-block----the-fastest-path-to-quantum-utility-for-enterprise-and-research-institutions
+    source_type: press
+  - date: 2025-09
+    tag: enabling
+    headline: Strategic partnership with Qruise to integrate ML-based quantum system calibration software with Cluster control systems
+    source_url: https://qblox.com/newsroom/qruise-and-qblox-partner-to-accelerate-scalable-quantum-computing
+    source_type: press
+  - date: 2025-09
+    tag: enabling
+    headline: Collaboration with Qilimanjaro Quantum Tech extended to Qilimanjaro's Hybrid Quantum Data Center in Barcelona for digital-analog quantum computing
+    source_url: https://qblox.com/newsroom/qilimanjaro-and-qblox-announce-strategic-collaboration-to-advance-hybrid-digital-analog-quantum-computing
+    source_type: press
+  - date: 2025-06
+    tag: enabling
+    headline: North America headquarters opened at 99 High Street, Boston, Massachusetts
+    source_url: https://qblox.com/newsroom/qblox-opens-north-america-headquarters-in-the-heart-of-boston
+    source_type: press
+  - date: 2025-05
+    tag: enabling
+    headline: Tuna-5 superconducting quantum computer launched on Quantum Inspire cloud platform — Qblox provided control electronics in the HectoQubit/2 consortium (QuTech, TNO, QuantWare, Orange Quantum Systems, Delft Circuits)
+    source_url: https://qblox.com/newsroom/delft-quantum-ecosystem-launches-open-architecture-quantum-computer
+    source_type: press
+  - date: 2025-03
+    tag: enabling
+    headline: Collaboration MOU signed with Bluefors to develop integrated control-and-cryostat solutions for spin-qubit systems
+    source_url: https://qblox.com/newsroom/bluefors-and-qblox-announce-collaboration-to-accelerate-combined-quantum-technology-development
+    source_type: press
+  - date: 2024-06
+    tag: enabling
+    headline: Series A closed — €24.2 M ($26 M) led by Quantonation and Invest-NL Deep Tech fund, with QDNL participations and EIC
+    source_url: https://qblox.com/newsroom/qblox-secures-series-a-funding-quantum-control-stack-development
+    source_type: press
+  - date: 2020-07
+    tag: enabling
+    headline: Seed investment received from UNIIQ (TU Delft / Delft Enterprises vehicle) to develop and commercialise the Cluster control stack
+    source_url: https://qutech.nl/2020/07/08/qutech-spin-off-qblox-receives-uniiq-investment-to-enhance-quantum-computings-scalability/
+    source_type: press
+  - date: 2019
+    tag: enabling
+    headline: Founded in Delft as a QuTech / TU Delft spin-out by Niels Bultink and Jules van Oven
+    source_url: https://qblox.com/about
+    source_type: blog
+
+shareholders:
+  - holder: Quantonation
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-06
+    source_url: https://qblox.com/newsroom/qblox-secures-series-a-funding-quantum-control-stack-development
+    note: Co-led Series A (June 2024); stake undisclosed
+  - holder: Invest-NL Deep Tech fund
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-06
+    source_url: https://qblox.com/newsroom/qblox-secures-series-a-funding-quantum-control-stack-development
+    note: Co-led Series A (June 2024); stake undisclosed
+  - holder: QDNL participations
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2024-06
+    source_url: https://qblox.com/newsroom/qblox-secures-series-a-funding-quantum-control-stack-development
+    note: Participated in Series A; Quantum Delta NL ecosystem vehicle
+  - holder: European Innovation Council (EIC)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2024-06
+    source_url: https://qblox.com/newsroom/qblox-secures-series-a-funding-quantum-control-stack-development
+    note: Participated in Series A; EU grant/equity instrument
+  - holder: UNIIQ / Delft Enterprises (TU Delft)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2020-07
+    source_url: https://qutech.nl/2020/07/08/qutech-spin-off-qblox-receives-uniiq-investment-to-enhance-quantum-computings-scalability/
+    note: Seed investor (July 2020); half of seed from TU Delft via Delft Enterprises; amount undisclosed
+  - holder: Niels Bultink, Jules van Oven
+    stake_percent: null
+    stake_class: founder
+    as_of: 2019
+    source_url: https://qblox.com/about
+    note: Co-founders; combined stake undisclosed
+
+key_personnel:
+  - role: Co-Founder & CEO
+    name: Niels Bultink
+    since: 2019
+    source_url: https://qblox.com/team
+  - role: Co-Founder & CTO
+    name: Jules van Oven
+    since: 2019
+    source_url: https://qblox.com/team
+  - role: COO
+    name: Eric Kievit
+    since: null
+    source_url: https://qblox.com/team
+  - role: CFO
+    name: Bauke van Rhijn
+    since: null
+    source_url: https://qblox.com/team
+
+roadmap:
+  - target: 2026
+    item: QEC-integrated control stacks supporting 300+ physical qubits with real-time sub-microsecond feedback (Riverlane Deltaflow integration)
+    source_url: https://www.prnewswire.com/news-releases/qblox-and-riverlane-demonstrate-integration-enabling-real-time-quantum-error-correction-302716275.html
+    tag: enabling
+  - target: 2026
+    item: Quantum Utility Block (QUB) deployment at Elevate Quantum facility (Q-PAC, Colorado) — Qblox control stack in a 41-qubit pre-validated reference system
+    source_url: https://qblox.com/newsroom/quantware-q-ctrl-and-qblox-launch-the-quantum-utility-block----the-fastest-path-to-quantum-utility-for-enterprise-and-research-institutions
+    tag: enabling
+  - target: 2026+
+    item: Scale Cluster-based control stacks toward thousands-of-qubits class systems; deepen QEC decoder integration; expand quantum network solutions product line
+    source_url: https://qblox.com/product/cluster
+    tag: enabling
+
+current_flagship:
+  name: Cluster
+  generation: Modular 19" rack quantum control system (up to 20 modules, up to 120 Q1 sequence processor cores; SYNQ/LINQ protocols; 2–18.5 GHz RF coverage)
+
+references:
+  - kind: blog
+    citation_key: null
+    url: https://qblox.com/product/cluster
+    note: Cluster product page — full module list and architecture overview
+  - kind: press
+    citation_key: null
+    url: https://qblox.com/newsroom/qblox-secures-series-a-funding-quantum-control-stack-development
+    note: Series A announcement (June 2024), €24.2 M / $26 M
+  - kind: press
+    citation_key: null
+    url: https://news.fnal.gov/2025/11/energy-department-announces-partnership-with-fermilab-and-qblox-to-manufacture-foundational-quantum-control-platform-for-u-s-research-and-innovation/
+    note: DOE / Fermilab / Qblox QICK manufacturing partnership (November 2025)
+  - kind: press
+    citation_key: null
+    url: https://qblox.com/newsroom/qblox-opens-north-america-headquarters-in-the-heart-of-boston
+    note: Boston North America HQ opening (June 2025)
+  - kind: press
+    citation_key: null
+    url: https://qblox.com/newsroom/qblox-introduces-first-made-in-america-quantum-control-systems
+    note: US manufacturing launch with Prodrive Technologies, Canton MA (March 2026)
+  - kind: press
+    citation_key: null
+    url: https://www.prnewswire.com/news-releases/qblox-and-riverlane-demonstrate-integration-enabling-real-time-quantum-error-correction-302716275.html
+    note: Qblox–Riverlane real-time QEC integration demonstration (March 2026)
+  - kind: press
+    citation_key: null
+    url: https://qutech.nl/2020/07/08/qutech-spin-off-qblox-receives-uniiq-investment-to-enhance-quantum-computings-scalability/
+    note: QuTech announcement of UNIIQ seed investment (July 2020)
+  - kind: blog
+    citation_key: null
+    url: https://qblox.com/team
+    note: Leadership roster and full team page
+
+partial:
+  - field: founded
+    as_of: 2026-06-17
+    note: >
+      Crunchbase cites 2019; PitchBook and Dealroom cite 2018; the Series A press release
+      references "four year" company journey from 2024, consistent with ~2019–2020;
+      the UNIIQ seed round closed July 2020. The Netherlands company register
+      (KvK 72525053) would be authoritative; not independently consulted.
+  - field: shareholders
+    as_of: 2026-06-17
+    note: All stake percentages undisclosed — private company with no equivalent of 13F/S-1; rows reflect publicly announced lead/participant roles only
+  - key_personnel.2.since
+  - key_personnel.3.since
+
+last_verified: 2026-06-17
+verification_method: web

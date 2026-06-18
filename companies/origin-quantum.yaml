@@ -1,0 +1,263 @@
+slug: origin-quantum
+name: Origin Quantum
+categories: [qc, software]
+hq: Hefei, Anhui, China
+founded: 2017
+status: private
+parent: null
+logo:
+  domain: originqc.com.cn
+
+positioning: >
+  Hefei-based superconducting quantum-computing vendor (本源量子) spun out
+  of the CAS Key Laboratory of Quantum Information at USTC in September 2017
+  by Guo Guangcan and Guo Guoping. Full-stack vertically integrated programme
+  covering the QPU (Wuyuan → Wukong → Wukong-180 chip families), the Tianji
+  measurement-and-control electronics, the Origin Pilot OS, and the Origin
+  Quantum Cloud service. Positioned as China's domestically controllable
+  superconducting QC champion and the country's QC counterpart to QuantumCTek.
+  Initiated A-share STAR-Market IPO counselling in September 2025 at an
+  implied valuation of ~CNY 6.9 B.
+
+modalities:
+  qc:
+    qubit_type: transmon
+    physical_qubits_current: 180
+    logical_qubits_current: 0
+    one_q_fidelity: 0.999
+    two_q_fidelity: 0.99
+    coherence_t1_ms: 0.040
+    coherence_t2_ms: 0.020
+    ec_code: null
+    connectivity: tunable-coupler (single-chip, 251 coupling qubits on Wukong-180)
+    gate_set: []
+  software:
+    products:
+      - Origin Pilot — quantum-classical-AI integrated operating system (v4.0 open-source download, Feb 2026)
+      - Origin Quantum Cloud — global cloud access to Wukong / Wukong-180 QPUs
+      - QPanda — open-source quantum-programming framework
+
+milestones:
+  - date: 2026-05
+    tag: qc
+    headline: "Origin Wukong-180 launched — fourth-generation superconducting QPU, single-chip 180 computational + 251 coupling qubits, ~99.9% 1Q / 99% 2Q / 99% readout fidelity, T1 ~40 µs / T2-echo ~20 µs, opened to global cloud users"
+    source_url: https://thequbitreport.com/hardware/2026/05/09/chinas-origin-quantum-launches-origin-wukong-180/
+    source_type: press
+  - date: 2026-02
+    tag: software
+    headline: "Origin Pilot v4.0 released for free public download as an open-source quantum-classical-AI operating system supporting superconducting, ion-trap and neutral-atom backends"
+    source_url: https://thequantuminsider.com/2026/02/27/chinese-firm-releases-open-source-quantum-operating-system-for-public-download/
+    source_type: press
+  - date: 2025-09
+    tag: qc
+    headline: "A-share STAR-Market IPO counselling initiated at ~CNY 6.9 B implied valuation; Guo Guoping confirmed as controlling shareholder (21.08% direct ownership, >30% voting rights)"
+    source_url: https://eu.36kr.com/en/p/3474408032131719
+    source_type: press
+  - date: 2025-05
+    tag: qc
+    headline: "Tianji 4.0 measurement-and-control system unveiled — supports 500+ qubit operation, positioned as production infrastructure for next-generation chips"
+    source_url: https://asiatimes.com/2025/05/chinas-origin-quantum-upgrades-its-software-for-chip-debugging/
+    source_type: press
+  - date: 2025-02
+    tag: qc
+    headline: "Origin Wukong cloud platform passes 20 million global visits since the January 2024 launch; majority of international access reported from the United States"
+    source_url: https://english.www.gov.cn/news/202502/16/content_WS67b1d60cc6d0868f4e8efaf2.html
+    source_type: press
+  - date: 2024-01
+    tag: qc
+    headline: "Origin Wukong (third-generation) launched — 72 computational + 126 coupler qubits on a single chip, opened to global cloud users from Hefei; China's first home-grown superconducting QC at this scale"
+    source_url: https://quantumcomputingreport.com/origin-quantum-computing-places-a-72-qubit-superconducting-processor-online/
+    source_type: press
+  - date: 2023-01
+    tag: qc
+    headline: "First commercial delivery of an Origin Wuyuan superconducting QC system (24-qubit, second generation) — first commercial delivery of a complete superconducting QC system by a Chinese vendor (per vendor announcement)"
+    source_url: https://thequantuminsider.com/2023/02/03/chinas-origin-quantum-ships-first-quantum-computer/
+    source_type: press
+  - date: 2022
+    tag: qc
+    headline: "Series B closes at ~CNY 1 B (~US$148 M), led by China Internet Investment Fund (Cyberspace Administration of China) — reported as the largest QC funding round globally in 2022"
+    source_url: https://www.insidequantumtechnology.com/news-archive/chinas-origin-quantum-reportedly-raises-148-million/
+    source_type: press
+  - date: 2020-09
+    tag: qc
+    headline: "Origin Quantum Cloud platform launched — described as China's first superconducting quantum-computing cloud service"
+    source_url: http://www.china.org.cn/china/2020-09/17/content_76711962.htm
+    source_type: press
+  - date: 2017-09
+    tag: qc
+    headline: "Origin Quantum founded in Hefei by Guo Guangcan (CAS academician, founder of Chinese quantum-information science) and Guo Guoping (USTC professor), spun out of the CAS Key Laboratory of Quantum Information at USTC; seed round of CNY 30 M at a CNY 200 M valuation"
+    source_url: http://hefeihightech.chinadaily.com.cn/2019-05/10/c_372521.htm
+    source_type: press
+
+shareholders:
+  - holder: Guo Guoping
+    stake_percent: 21.08
+    stake_class: controlling
+    as_of: 2025-09
+    source_url: https://eu.36kr.com/en/p/3474408032131719
+    note: Co-founder, USTC professor; controlling shareholder per pre-IPO disclosure with >30% voting rights through aggregated control
+  - holder: Shenzhen Capital Group (Red Earth Fund)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2022
+    source_url: https://eu.36kr.com/en/p/3474408032131719
+    note: Lead investor in 2022 Series B (~CNY 1 B round)
+  - holder: China Internet Investment Fund (中网投, Cyberspace Administration of China)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2022
+    source_url: https://www.insidequantumtechnology.com/news-archive/chinas-origin-quantum-reportedly-raises-148-million/
+    note: State-backed lead investor in 2022 Series B
+  - holder: Guoxin Fund (国新基金, State Council)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2022
+    source_url: https://eu.36kr.com/en/p/3474408032131719
+    note: State-Council-backed strategic investor
+  - holder: CITIC Securities
+    stake_percent: null
+    stake_class: minority
+    as_of: 2022
+    source_url: https://eu.36kr.com/en/p/3474408032131719
+    note: Financial-sector investor
+  - holder: China International Capital Corporation (CICC) Capital
+    stake_percent: null
+    stake_class: minority
+    as_of: 2022
+    source_url: https://eu.36kr.com/en/p/3474408032131719
+    note: Financial-sector investor
+  - holder: Bank of China Group Investment (BOCGI)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2022
+    source_url: https://eu.36kr.com/en/p/3474408032131719
+    note: Bank of China subsidiary
+  - holder: Anhui Science and Technology Transformation Fund
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2022
+    source_url: https://eu.36kr.com/en/p/3474408032131719
+    note: Anhui-provincial government investment vehicle
+  - holder: Hefei High-tech Construction Investment Group
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2017
+    source_url: http://hefeihightech.chinadaily.com.cn/2019-05/10/c_372521.htm
+    note: Co-led the 2017 seed round (CNY 30 M); Hefei-municipal investment vehicle
+  - holder: Guo Guangcan
+    stake_percent: null
+    stake_class: founder
+    as_of: 2017-09
+    source_url: https://eu.36kr.com/en/p/3474408032131719
+    note: CAS academician and co-founder; founder of Chinese quantum-information science
+
+key_personnel:
+  - role: CEO
+    name: Kong Weicheng (孔伟成)
+    since: 2017
+    source_url: https://postquantum.com/quantum-computing-companies/origin-quantum/
+    note: Co-founder and CEO; also deputy director of the Anhui Quantum Computing Engineering Research Center
+  - role: Founder & Chief Scientist
+    name: Guo Guoping (郭国平)
+    since: 2017
+    source_url: http://hefeihightech.chinadaily.com.cn/2019-05/10/c_372521.htm
+    note: USTC professor; established China's first semiconductor-quantum-chip research group (2005); controlling shareholder
+  - role: Co-founder
+    name: Guo Guangcan (郭光灿)
+    since: 2017
+    source_url: http://hefeihightech.chinadaily.com.cn/2019-05/10/c_372521.htm
+    note: CAS academician; widely regarded as the founder of quantum-information science in China; PhD supervisor of Guo Guoping
+  - role: General Manager
+    name: Zhang Hui (张辉)
+    since: 2017
+    source_url: https://postquantum.com/quantum-computing-companies/origin-quantum/
+    note: Public-facing spokesperson on strategy and industry positioning
+  - role: Director, Quantum-Chip R&D
+    name: Jia Zhilong (贾志龙)
+    since: 2017
+    source_url: https://postquantum.com/quantum-computing-companies/origin-quantum/
+
+roadmap:
+  - target: 2026
+    item: Open-source Origin Pilot v4.0 quantum-classical-AI OS to global developer community across superconducting, ion-trap and neutral-atom backends
+    source_url: https://thequantuminsider.com/2026/02/27/chinese-firm-releases-open-source-quantum-operating-system-for-public-download/
+    tag: software
+  - target: 2026
+    item: Scale Wukong-180 cloud service; Tianji 4.0 control electronics already provisioned for 500+ qubit operation
+    source_url: https://asiatimes.com/2025/05/chinas-origin-quantum-upgrades-its-software-for-chip-debugging/
+    tag: qc
+  - target: 2027
+    item: Complete STAR-Market A-share IPO (counselling launched Sep 2025; ~CNY 6.9 B implied valuation)
+    source_url: https://eu.36kr.com/en/p/3474408032131719
+    tag: qc
+
+current_flagship:
+  name: Origin Wukong-180 (悟空-180)
+  generation: fourth-generation superconducting QPU (180 computational + 251 coupling qubits, single-chip)
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://originqc.com.cn/en/
+    note: Origin Quantum official English site — product catalogue (Wukong, Wukong-180, Origin Pilot, Origin Quantum Cloud)
+  - kind: press
+    citation_key: null
+    url: https://thequbitreport.com/hardware/2026/05/09/chinas-origin-quantum-launches-origin-wukong-180/
+    note: Wukong-180 launch (May 2026) with full specification table
+  - kind: press
+    citation_key: null
+    url: https://english.www.gov.cn/news/202502/16/content_WS67b1d60cc6d0868f4e8efaf2.html
+    note: PRC State Council government portal — Wukong global-usage statistics (20M+ visits, 139 countries)
+  - kind: press
+    citation_key: null
+    url: https://quantumcomputingreport.com/origin-quantum-computing-places-a-72-qubit-superconducting-processor-online/
+    note: 72-qubit Wukong (third-generation) launch (Jan 2024)
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2023/02/03/chinas-origin-quantum-ships-first-quantum-computer/
+    note: First commercial delivery of an Origin Wuyuan (24-qubit, second-generation) system
+  - kind: press
+    citation_key: null
+    url: http://www.china.org.cn/china/2020-09/17/content_76711962.htm
+    note: Origin Quantum Cloud platform launch (Sep 2020)
+  - kind: press
+    citation_key: null
+    url: http://hefeihightech.chinadaily.com.cn/2019-05/10/c_372521.htm
+    note: Guo Guoping profile from Hefei High-tech Zone / China Daily — founding history
+  - kind: press
+    citation_key: null
+    url: https://eu.36kr.com/en/p/3474408032131719
+    note: 36Kr pre-IPO reporting (Aug-Sep 2025) — STAR-Market counselling, ~CNY 6.9 B valuation, shareholder list, 2024 financials
+  - kind: press
+    citation_key: null
+    url: https://www.insidequantumtechnology.com/news-archive/chinas-origin-quantum-reportedly-raises-148-million/
+    note: 2022 Series B at ~US$148 M led by China Internet Investment Fund
+  - kind: press
+    citation_key: null
+    url: https://asiatimes.com/2025/05/chinas-origin-quantum-upgrades-its-software-for-chip-debugging/
+    note: Tianji 4.0 measurement-and-control electronics (May 2025) — provisioned for 500+ qubit operation
+
+partial:
+  - field: modalities.qc.one_q_fidelity
+    as_of: 2026-05-17
+    note: 99.9% 1Q gate fidelity is the Wukong-180 launch-press number; no peer-reviewed paper yet
+  - field: modalities.qc.two_q_fidelity
+    as_of: 2026-05-17
+    note: 99% 2Q gate fidelity is the Wukong-180 launch-press number; no peer-reviewed paper yet
+  - field: modalities.qc.coherence_t1_ms
+    as_of: 2026-05-17
+    note: T1 ~40 µs is the Wukong-180 launch-press number; no peer-reviewed paper yet
+  - field: modalities.qc.coherence_t2_ms
+    as_of: 2026-05-17
+    note: T2-echo ~20 µs is the Wukong-180 launch-press number; no peer-reviewed paper yet
+  - modalities.qc.ec_code
+  - modalities.qc.gate_set
+  - field: shareholders.1.stake_percent
+    as_of: 2026-05-17
+    note: pre-IPO disclosure lists Shenzhen Capital Group / Red Earth Fund as Series B lead but not as % ownership; cross-check against STAR-Market prospectus when filed
+  - field: shareholders
+    as_of: 2026-05-17
+    note: per-investor stake percentages other than Guo Guoping's 21.08% await STAR-Market prospectus disclosure
+
+last_verified: 2026-05-17
+verification_method: web

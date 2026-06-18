@@ -1,0 +1,124 @@
+slug: element-six
+name: Element Six
+categories: [enabling, memory]
+hq: Didcot, Oxfordshire, UK
+founded: 1946
+status: private
+parent: de-beers-group
+logo:
+  domain: e6.com
+
+positioning: >
+  Element Six is the synthetic-diamond foundry of the De Beers Group,
+  designing and manufacturing CVD- and HPHT-grown diamond with controlled
+  defect content. Supplies the substrates that solid-state quantum programmes
+  built on NV (nitrogen-vacancy) and SiV (silicon-vacancy) colour centres
+  depend on, via the DNV-B1 / DNV-B14 ensemble product lines and electronic-
+  grade single-crystal diamond for single-defect work in quantum-memory and
+  repeater nodes. Supplies substrates to multiple diamond-defect quantum-networking programmes,
+  including QuTech, Harvard, Lightsynq (equity stake Nov 2024), IonQ, AWS,
+  and Quantum Brilliance. Does not build quantum end-systems itself.
+
+modalities:
+  enabling:
+    products:
+      - DNV-B1 (single-crystal CVD diamond, low-density NV ensembles)
+      - DNV-B14 (single-crystal CVD diamond, high-density NV ensembles, ~10x NV density vs DNV-B1)
+      - Electronic-grade single-crystal CVD diamond (for single-defect NV / SiV qubits)
+      - Quantum-grade diamond thin films bonded onto silicon / silicon-nitride substrates (joint product with IonQ, 2025)
+  memories:
+    platform: nv / siv (substrate supplier; Element Six provides the host material, not the qubit device)
+    storage_time_ms: null
+    retrieval_efficiency: null
+    fidelity: null
+    wavelength_nm: null
+    mode_capacity: null
+
+milestones:
+  - date: 2025-09
+    tag: enabling
+    headline: IonQ and Element Six announce quantum-grade diamond thin films bonded onto silicon and silicon-nitride substrates, compatible with standard semiconductor foundries — building block for scalable quantum memories and photonic interconnects on IonQ's roadmap
+    source_url: https://investors.ionq.com/news/news-details/2025/IonQ-Breakthrough-in-Synthetic-Diamond-Materials-Accelerates-Quantum-Networking-Scale-and-Production/default.aspx
+    source_type: press
+  - date: 2024-11
+    tag: enabling
+    headline: Element Six takes an equity stake in Lightsynq, a Harvard / AWS-CQN spin-out building SiV-based quantum interconnects using Element Six diamond
+    source_url: https://www.e6.com/en/about/news/element-six-investment-lightsynq
+    source_type: press
+  - date: 2023-04
+    tag: enabling
+    headline: AWS and De Beers Group / Element Six announce a research collaboration on synthetic-diamond materials for quantum networking (AWS Center for Quantum Networking)
+    source_url: https://www.e6.com/about/news/aws_element_six_quantum_collaboration
+    source_type: press
+  - date: 2022
+    tag: enabling
+    headline: DNV-B14 grade launched — high-density NV ensemble diamond with ~10x NV density vs DNV-B1, targeted at sensing, masers, gyroscopes
+    source_url: https://www.e6.com/en/about/News/DNV-B14-Launch
+    source_type: press
+shareholders:
+  - holder: De Beers Group
+    stake_percent: 100
+    stake_class: controlling
+    as_of: 2025-12
+    source_url: https://www.debeersgroup.com/news-insights/business-market/2024/element-six-shaping-the-future-with-synthetic-diamond-solutions
+    note: Element Six is a wholly-owned subsidiary of the De Beers Group. De Beers itself is being demerged from Anglo American (announced 2024); the eventual De Beers ownership structure post-demerger is not yet finalised in public filings.
+
+key_personnel:
+  - role: Chief Executive Officer
+    name: Siobhán Duffy
+    since: 2023-02
+    source_url: https://www.e6.com/en/about/news/siobhan-duffy-appointed-new-chief-executive-office
+    note: 30+ years at Element Six; previously Executive Director, Innovation; sits on the De Beers Group Executive Committee.
+
+roadmap: []
+
+current_flagship:
+  name: DNV-B14 + quantum-grade diamond thin films (IonQ-bonded)
+  generation: high-density NV ensemble substrate (DNV-B14) and foundry-compatible diamond-on-silicon thin films (with IonQ, 2025)
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://investors.ionq.com/news/news-details/2025/IonQ-Breakthrough-in-Synthetic-Diamond-Materials-Accelerates-Quantum-Networking-Scale-and-Production/default.aspx
+    note: IonQ / Element Six quantum-grade diamond thin films announcement (September 2025)
+  - kind: press
+    citation_key: null
+    url: https://www.e6.com/en/about/news/element-six-investment-lightsynq
+    note: Element Six investment in Lightsynq (November 2024)
+  - kind: press
+    citation_key: null
+    url: https://www.e6.com/about/news/aws_element_six_quantum_collaboration
+    note: AWS / Element Six quantum-networking diamond materials collaboration (April 2023)
+  - kind: press
+    citation_key: null
+    url: https://www.e6.com/en/about/News/DNV-B14-Launch
+    note: DNV-B14 product launch
+  - kind: blog
+    citation_key: null
+    url: https://www.e6.com/en/about/news/dnv-b1-launch
+    note: DNV-B1 product launch
+  - kind: blog
+    citation_key: null
+    url: https://www.debeersgroup.com/news-insights/business-market/2024/element-six-shaping-the-future-with-synthetic-diamond-solutions
+    note: De Beers Group profile of Element Six (2024)
+
+partial:
+  - field: roadmap
+    as_of: 2026-05-20
+    note: Element Six does not publish a public quantum-materials roadmap; future product launches surface as one-off press releases tied to customer programmes (e.g. IonQ thin films, Lightsynq SiV substrates).
+  - modalities.memories.storage_time_ms
+  - modalities.memories.retrieval_efficiency
+  - modalities.memories.fidelity
+  - modalities.memories.wavelength_nm
+  - modalities.memories.mode_capacity
+  - field: modalities.memories
+    as_of: 2026-05-20
+    note: Element Six is a substrate supplier, not a device vendor — memory metrics belong to the customer device (Delft / Harvard / Lightsynq / IonQ nodes) built on the substrate, not to Element Six itself.
+  - field: shareholders.0
+    as_of: 2026-05-20
+    note: De Beers Group is being demerged from Anglo American (announced 2024); post-demerger ownership structure not yet finalised in public filings.
+  - revenue
+  - headcount
+
+last_verified: 2026-05-20
+verification_method: web

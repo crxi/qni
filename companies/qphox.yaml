@@ -1,0 +1,161 @@
+slug: qphox
+name: QphoX
+categories: [network, enabling]
+hq: Delft, Netherlands
+founded: 2020
+status: private
+parent: null
+logo:
+  domain: qphox.eu
+
+positioning: >
+  TU Delft spin-out (Kavli Institute of Nanoscience) building
+  piezo-optomechanical microwave-to-optical transducers — "Quantum Modems"
+  that interface superconducting qubits with telecom-band optical fibre.
+  Founded in 2020 by Simon Gröblacher, Robert Stockill, and Frederick
+  Hijazi. Demonstrated the first optical readout of a superconducting qubit
+  with Rigetti and Qblox in February 2025 (Nature Physics) and won a USD
+  5.8M three-year AFRL contract with Rigetti later that year. Launched the
+  Quantum Transducer as a commercial product in March 2026 with IBM named as
+  first partner for distributed-quantum-computing testing.
+
+modalities:
+  network:
+    role: transducer
+    products: [Quantum Modem, Quantum Transducer]
+  enabling:
+    products:
+      - Piezo-optomechanical microwave-to-optical transducer module
+      - Cryogenic optical readout assembly
+
+milestones:
+  - date: 2026-03
+    tag: network
+    headline: Quantum Transducer launched as a commercial product; IBM named as first partner for distributed-quantum-computing testing with its Quantum Networking Unit
+    source_url: https://thequantuminsider.com/2026/03/12/qphox-quantum-transducer-distributed-quantum-computing/
+    source_type: press
+  - date: 2025-09
+    tag: network
+    headline: Rigetti + QphoX awarded $5.8M AFRL contract (3 years) to develop multi-channel optical readout of superconducting qubits
+    source_url: https://investors.rigetti.com/news-releases/news-release-details/rigetti-collaboration-qphox-awarded-58m-afrl-contract-advance
+    source_type: press
+  - date: 2025-02
+    tag: enabling
+    headline: "QphoX, Rigetti and Qblox report optical readout of a superconducting qubit via the piezo-optomechanical transducer (Nature Physics, 2025)"
+    source_url: https://thequantuminsider.com/2025/02/11/qphox-rigetti-and-qblox-demonstrate-optical-readout-for-superconducting-qubits/
+    source_type: press
+  - date: 2024-01
+    tag: enabling
+    headline: "€8M Series A led by QDNL Participations; EIC Fund, Quantonation, Speedinvest, HTGF, and Delft Enterprises participated"
+    source_url: https://www.htgf.de/en/series-a-qphox-2/
+    source_type: press
+  - date: 2023-10
+    tag: enabling
+    headline: "arXiv:2310.06026 — Optical readout of a superconducting qubit using a scalable piezo-optomechanical transducer (published in Nature Physics, 2025)"
+    source_url: https://arxiv.org/abs/2310.06026
+    source_type: paper
+  - date: 2021-05
+    tag: enabling
+    headline: "€2M seed round led by Quantonation with Speedinvest, High-Tech Gründerfonds, and Delft Enterprises"
+    source_url: https://qphox.eu/news/qphox-raises-e2m-to-turbo-charge-quantum-computing-with-breakthrough-quantum-modem/
+    source_type: press
+  - date: 2020
+    tag: enabling
+    headline: QphoX founded as a TU Delft spin-out by Simon Gröblacher, Robert Stockill, and Frederick Hijazi
+    source_url: https://qphox.eu/about/
+    source_type: web
+
+shareholders:
+  - holder: QDNL Participations
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-01
+    source_url: https://www.htgf.de/en/series-a-qphox-2/
+    note: Lead investor in the January 2024 €8M Series A
+  - holder: EIC Fund (European Innovation Council)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-01
+    source_url: https://eic.ec.europa.eu/eic-fund/eic-fund-portfolio/qphox_en
+  - holder: Quantonation
+    stake_percent: null
+    stake_class: minority
+    as_of: 2021-05
+    source_url: https://www.quantonation.com/wp-content/uploads/2021/05/QphoX-press-release_EN-1.pdf
+    note: Seed-round lead; participated in 2024 Series A
+  - holder: Speedinvest
+    stake_percent: null
+    stake_class: minority
+    as_of: 2021-05
+    source_url: https://qphox.eu/news/qphox-raises-e2m-to-turbo-charge-quantum-computing-with-breakthrough-quantum-modem/
+  - holder: High-Tech Gründerfonds (HTGF)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2021-05
+    source_url: https://www.htgf.de/en/htgf-investment-qphox/
+  - holder: Delft Enterprises (TU Delft)
+    stake_percent: null
+    stake_class: strategic
+    as_of: 2021-05
+    source_url: https://qphox.eu/news/qphox-raises-e2m-to-turbo-charge-quantum-computing-with-breakthrough-quantum-modem/
+    note: TU Delft technology-transfer arm
+  - holder: Founders (Gröblacher, Stockill, Hijazi)
+    stake_percent: null
+    stake_class: founder
+    as_of: 2024-01
+    source_url: https://qphox.eu/about/
+
+key_personnel:
+  - role: CEO & Co-founder
+    name: Simon Gröblacher
+    since: 2020
+    source_url: https://qphox.eu/about/
+    note: Professor at TU Delft, Kavli Institute of Nanoscience
+  - role: CTO & Co-founder
+    name: Robert Stockill
+    since: 2020
+    source_url: https://qphox.eu/about/
+  - role: Co-founder
+    name: Frederick Hijazi
+    since: 2020
+    source_url: https://qphox.eu/about/
+
+roadmap: []
+# QphoX has not published a multi-year public roadmap; commercial-launch
+# cadence will be driven by the IBM partnership and the AFRL/Rigetti programme.
+
+current_flagship:
+  name: Quantum Transducer
+  generation: piezo-optomechanical microwave-to-optical transducer (commercial as of March 2026)
+
+references:
+  - kind: paper
+    citation_key: null
+    url: https://arxiv.org/abs/2310.06026
+    note: Optical readout of a superconducting qubit using a scalable piezo-optomechanical transducer
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2026/03/12/qphox-quantum-transducer-distributed-quantum-computing/
+    note: Commercial transducer launch with IBM as first partner
+  - kind: press
+    citation_key: null
+    url: https://investors.rigetti.com/news-releases/news-release-details/rigetti-collaboration-qphox-awarded-58m-afrl-contract-advance
+    note: AFRL contract for multi-channel optical readout
+  - kind: blog
+    citation_key: null
+    url: https://qphox.eu/news/
+    note: Vendor news index
+
+partial:
+  - modalities.network.role
+  - revenue
+  - headcount
+  - field: shareholders
+    as_of: 2026-05-20
+    note: QphoX is private; no equity percentages disclosed. Holder list compiled from announced round participation.
+  - field: roadmap
+    as_of: 2026-05-20
+    note: No public multi-year roadmap; near-term direction set by IBM and AFRL/Rigetti contracts.
+
+last_verified: 2026-05-20
+verification_method: web

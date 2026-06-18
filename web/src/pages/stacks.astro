@@ -1,0 +1,488 @@
+---
+/**
+ * /stacks — Quantum-internet protocol stacks (comparison page)
+ *
+ * Tier C · Network.
+ *
+ * Covers the seven stack / architecture proposals worth surfacing as of
+ * mid-2026: Van Meter 2014, Wehner 2018, Dahlberg 2019, Pirker 2019,
+ * RFC 9340 (2023), Lopez multiplane (IRTF draft, 2026), Cacciapuoti
+ * quantum-native (IRTF draft + IEEE T-Comm, 2026), plus Caleffi 2026
+ * "Beyond Layering" as a contrast section.
+ *
+ * Citations:
+ *   - meter-ieee-2014               — Van Meter's "Quantum Networking" book.
+ *   - wehner-science-2018           — 5-stage capability roadmap.
+ *   - dahlberg-sigcomm-2019         — EGP + DQP link-layer protocol.
+ *   - pirker-njp-2019               — 3-tier recursive-modular stack.
+ *   - kozlowski-rfc9340             — IRTF architectural principles (current anchor).
+ *   - lopez-qirg-multiplane-2026    — IRTF draft, 3 strata × 4 planes.
+ *   - cacciapuoti-ieeetc-2026       — Quantum Data Plane + Quantum Control Plane.
+ *   - caleffi-ieeetnse-2026         — "Beyond Layering" — dynamic kernel + stamps.
+ *   - kumar-ijndc-2025              — survey-level reference.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SourceNote from "../components/SourceNote.astro";
+import ZoomableFigure from "../components/ZoomableFigure.astro";
+import ZoomModal from "../components/ZoomModal.astro";
+import { url } from "../lib/url";
+
+const sections = [
+  { id: "overview",       label: "Overview" },
+  { id: "compare",        label: "Side-by-side comparison" },
+  { id: "historic",       label: "The first wave (2014–2019)" },
+  { id: "rfc9340",        label: "RFC 9340 (current anchor)" },
+  { id: "frontier",       label: "Post-RFC-9340 directions" },
+  { id: "beyond-layering",label: "Beyond layering" },
+  { id: "deferred",       label: "Open questions" },
+];
+---
+
+<Infographic
+  title="Quantum-internet stacks"
+  description="A side-by-side comparison of layered protocol-stack proposals for the quantum internet — Van Meter 2014, Wehner 2018, Dahlberg 2019, Pirker 2019, RFC 9340, the 2026 IRTF multiplane and quantum-native drafts, and the post-layering challenge from Caleffi 2026."
+  references={[
+    "meter-ieee-2014",
+    "wehner-science-2018",
+    "dahlberg-sigcomm-2019",
+    "pirker-njp-2019",
+    "kozlowski-rfc9340",
+    "lopez-qirg-multiplane-2026",
+    "cacciapuoti-ieeetc-2026",
+    "caleffi-ieeetnse-2026",
+    "kumar-ijndc-2025",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="stacks" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>Quantum-internet stacks</h1>
+        <p>
+          A quantum-internet protocol stack faces design constraints absent from
+          TCP/IP: no-cloning forbids store-and-forward retransmission, the link-layer
+          service delivers an entangled resource rather than a bit stream, and the
+          network coordinates two-way classical communication alongside the quantum
+          channel <SourceNote id="kozlowski-rfc9340" />.
+        </p>
+        <p>
+          Seven proposals have shaped the field. The first wave (2014–2019) mapped
+          classical-style layering onto quantum networks: Van Meter, Wehner, Dahlberg,
+          and Pirker. RFC 9340 (2023) consolidated their shared architectural principles
+          and remains the only document with IRTF consensus. Two new directions emerged
+          in 2026 — the Lopez operator-facing <em>multiplane</em> draft inside the IRTF,
+          and the Cacciapuoti academic <em>quantum-native</em> architecture — and a third
+          proposal (Caleffi 2026) argues that layering itself should be abandoned. The
+          field has an anchor; it does not yet have an agreed successor.
+        </p>
+      </header>
+
+      <section id="compare" data-nav-section>
+        <h2>Side-by-side comparison</h2>
+        <p>
+          The seven proposals share five functional bands — physical, link, network,
+          service, application — but disagree on how many layers to split them into,
+          whether to use planes instead, and which concerns belong inside the stack
+          versus outside. The figure aligns each proposal's layers to the bands;
+          missing bands indicate either out-of-scope or deferred.
+        </p>
+
+        <ZoomableFigure
+          src={url("/images/stacks-comparison.svg")}
+          alt="Seven quantum-internet stack proposals (Van Meter 2014, Wehner 2018, Dahlberg 2019, Pirker 2019, RFC 9340, Lopez multiplane 2026, Cacciapuoti quantum-native 2026) aligned against five functional bands."
+          downloadName="qni-stacks-comparison.png"
+        >
+          <figcaption>
+            Seven stack / architecture proposals aligned against five functional bands. The
+            spread shows how much the field disagrees on layer count, on whether to use
+            layers at all (Lopez and Cacciapuoti adopt strata and planes respectively), and
+            on which concerns belong inside the stack <SourceNote id="kumar-ijndc-2025" />.
+          </figcaption>
+        </ZoomableFigure>
+      </section>
+
+      <section id="historic" data-nav-section>
+        <h2>The first wave (2014–2019)</h2>
+        <p>
+          Four proposals defined the early literature. Each took a different cut at the
+          same problem.
+        </p>
+        <ul>
+          <li>
+            <strong>Van Meter 2014</strong> — the earliest comprehensive stack. Five
+            layers mapped onto TCP/IP structure: physical, link, network, transport,
+            application. Entanglement generation sits at the link layer, purification
+            and routing at the network layer <SourceNote id="meter-ieee-2014" />.
+          </li>
+          <li>
+            <strong>Wehner 2018</strong> — a five-stage capability roadmap rather than
+            a layered split. Stage 1 (trusted-node QKD) through stage 5 (fault-tolerant
+            quantum computing across the network) each unlock a class of applications.
+            Influential as a strategic framing; less useful as a wire-level
+            architecture <SourceNote id="wehner-science-2018" />.
+          </li>
+          <li>
+            <strong>Dahlberg 2019</strong> — the first concrete protocol design for
+            the link layer specifically. The Entanglement Generation Protocol (EGP)
+            requests on-demand Bell pairs with a target fidelity; the Distributed Queue
+            Protocol (DQP) schedules competing requests across two nodes. Implemented
+            on the NV-centre stack at Delft <SourceNote id="dahlberg-sigcomm-2019" />.
+          </li>
+          <li>
+            <strong>Pirker & Dür 2019</strong> — a three-tier recursive-modular stack.
+            Tier 1: point-to-point physical entanglement. Tier 2: intra-network
+            graph-state generation. Tier 3: inter-network entanglement routing. The
+            recursion lets a failure of a whole sub-network be compensated by re-routing
+            at the next tier up — a property absent from the Van Meter and Wehner
+            framings <SourceNote id="pirker-njp-2019" />.
+          </li>
+        </ul>
+      </section>
+
+      <section id="rfc9340" data-nav-section>
+        <h2>RFC 9340 — the current anchor</h2>
+        <p>
+          RFC 9340 (IRTF, 2023) is the only quantum-internet architecture document with
+          standards-body consensus. It is informational, not a wire-protocol standard —
+          it names requirements, layer boundaries, and a shared vocabulary, but does not
+          specify on-wire formats <SourceNote id="kozlowski-rfc9340" />.
+        </p>
+        <p>
+          Three principles carry the document:
+        </p>
+        <ul>
+          <li>
+            <strong>Bell pair as the network resource.</strong> The network's product is
+            entanglement, not bits. Applications consume Bell pairs; the success metric
+            is entanglement-delivery rate × fidelity, not bandwidth.
+          </li>
+          <li>
+            <strong>Classical co-routing.</strong> Every quantum protocol needs a classical
+            side-channel for measurement results, corrections, and heralding signals. The
+            classical channel is in-band with the quantum service; the stack schedules
+            both.
+          </li>
+          <li>
+            <strong>Deferred concerns.</strong> Naming, addressing, routing, and the
+            control plane are acknowledged as open. The document calls these out so
+            implementations don't accidentally invent incompatible solutions.
+          </li>
+        </ul>
+        <p>
+          The 2026 proposals below are explicit attempts to fill in what RFC 9340
+          deferred.
+        </p>
+      </section>
+
+      <section id="frontier" data-nav-section>
+        <h2>Post-RFC-9340 directions</h2>
+        <p>
+          Two architectures from 2026 represent the current frontier — and they pull in
+          different directions.
+        </p>
+
+        <h3>Lopez multiplane (IRTF draft, Feb 2026)</h3>
+        <p>
+          The most operationally concrete post-RFC-9340 document. Three strata, each
+          with four internal planes (resource, control, telemetry, SDN intelligence):
+          a <strong>Service Stratum</strong> exposing key management, entanglement
+          distribution, synchronisation, and sensing; a <strong>Quantum Fabric Stratum</strong>
+          executing the quantum protocols among link endpoints; and a
+          <strong>Connectivity Stratum</strong> for the optical transport paths
+          (OTN-based) that carry both quantum and classical signals
+          <SourceNote id="lopez-qirg-multiplane-2026" />.
+        </p>
+        <p>
+          Drafted by Telefónica, UPM, and IMDEA Networks — a telecom-operator
+          perspective. The SDN plane decomposition per stratum is novel against RFC
+          9340's principles-only approach. Adopted by the IRTF QIRG as a working
+          draft in February 2026; the most likely near-term IRTF successor to RFC 9340.
+        </p>
+
+        <h3>Cacciapuoti quantum-native (IRTF individual + IEEE T-Comm, 2026)</h3>
+        <p>
+          Two planes — the <strong>Quantum Data Plane (QDP)</strong> for forwarding
+          entangled qubits (ebits), and the <strong>Quantum Control Plane (QCP)</strong>
+          for lifecycle orchestration. Three mechanisms span both planes: Quantum
+          Internet Addressing (QIA — node identifiers encode quantum state via a
+          Schrödinger-oracle splitting), Generalised Quantum Forwarding (GQF), and
+          Entanglement-Defined Controllers (EDCs)
+          <SourceNote id="cacciapuoti-ieeetc-2026" />.
+        </p>
+        <p>
+          The argument: a control plane that routes entangled packets cannot be
+          classical-bit-based — the addressing scheme itself must be quantum-native.
+          The companion IEEE T-Comm paper specifies the routing mechanism; together
+          they constitute the first complete architecture post-RFC 9340 with both
+          addressing and forwarding fully specified. Academic / ERC-funded provenance,
+          still an individual IRTF submission rather than an adopted draft.
+        </p>
+      </section>
+
+      <section id="beyond-layering" data-nav-section>
+        <h2>Beyond layering — the post-layering challenge</h2>
+        <p>
+          A third 2026 proposal rejects the layered model itself. Caleffi & Cacciapuoti
+          identify three incompatibilities between classical layering and quantum
+          networks: non-local statefulness of entanglement, redundant state duplication
+          across layers, and scalability collapse of out-of-band control planes. They
+          replace encapsulation + demultiplexing with <em>ordering by certification</em>:
+          dependencies are enforced locally; what ran is proven via stamps that ride
+          with the packet <SourceNote id="caleffi-ieeetnse-2026" />.
+        </p>
+
+        <figure class="beyond-layering">
+          <svg viewBox="0 0 800 320" role="img" aria-labelledby="bl-title bl-desc">
+            <title id="bl-title">Beyond-layering: dynamic kernel, meta-header, and stamps</title>
+            <desc id="bl-desc">
+              Three nodes (A, B, C) handle a quantum packet in sequence. At each node, a
+              local Dynamic Kernel reads the meta-header's service intent and current
+              stamp list, constructs a Plan of Actions, executes the actions, then
+              appends a stamp recording what it did. The end-to-end stamp sequence forms
+              a distributed certification graph.
+            </desc>
+
+            <defs>
+              <marker id="bl-arrow" viewBox="0 0 10 10" refX="8" refY="5"
+                      markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="var(--color-text-mute)"/>
+              </marker>
+            </defs>
+
+            {/* Three nodes along the bottom — A, B, C. */}
+            {[
+              { x: 120, label: "A" },
+              { x: 400, label: "B" },
+              { x: 680, label: "C" },
+            ].map((n) => (
+              <>
+                <rect x={n.x - 60} y="200" width="120" height="80" rx="4"
+                      class="bl-node-box" />
+                <text x={n.x}        y="220" class="bl-node-name" text-anchor="middle">Node {n.label}</text>
+                <text x={n.x}        y="245" class="bl-node-detail" text-anchor="middle">Dynamic kernel</text>
+                <text x={n.x}        y="263" class="bl-node-detail" text-anchor="middle">→ Plan of Actions</text>
+              </>
+            ))}
+
+            {/* Quantum packet with meta-header — three positions, one per hop. */}
+            {[
+              { x: 120, stamps: 0 },
+              { x: 400, stamps: 1 },
+              { x: 680, stamps: 2 },
+            ].map((p) => (
+              <>
+                <rect x={p.x - 50} y="80" width="100" height="80" rx="3"
+                      class="bl-packet" />
+                <text x={p.x} y="100" class="bl-packet-label" text-anchor="middle">packet</text>
+                <line x1={p.x - 40} y1="108" x2={p.x + 40} y2="108" class="bl-packet-rule" />
+                <text x={p.x} y="122" class="bl-packet-meta" text-anchor="middle">intent: …</text>
+                <text x={p.x} y="138" class="bl-packet-meta" text-anchor="middle">
+                  {p.stamps === 0 ? "stamps: ∅" : p.stamps === 1 ? "stamps: [A]" : "stamps: [A,B]"}
+                </text>
+                {p.stamps === 2 && (
+                  <text x={p.x} y="154" class="bl-packet-meta" text-anchor="middle">+ B's stamp pending</text>
+                )}
+              </>
+            ))}
+
+            {/* Arrows: packet → node (read), node → packet (stamp), packet → next packet (transit). */}
+            {[120, 400, 680].map((x) => (
+              <>
+                {/* Down: kernel reads meta-header */}
+                <line x1={x - 20} y1="160" x2={x - 20} y2="200" class="bl-arrow-line"
+                      marker-end="url(#bl-arrow)" />
+                {/* Up: kernel writes stamp */}
+                <line x1={x + 20} y1="200" x2={x + 20} y2="160" class="bl-arrow-line"
+                      marker-end="url(#bl-arrow)" />
+              </>
+            ))}
+
+            {/* Forward arrows: packet A → B → C. */}
+            <line x1="170" y1="120" x2="350" y2="120" class="bl-transit"
+                  marker-end="url(#bl-arrow)" />
+            <line x1="450" y1="120" x2="630" y2="120" class="bl-transit"
+                  marker-end="url(#bl-arrow)" />
+
+            {/* Top label */}
+            <text x="400" y="40" class="bl-title-text" text-anchor="middle">
+              Each hop reads the stamps, executes a local Plan of Actions, appends a stamp, forwards.
+            </text>
+            <text x="400" y="60" class="bl-subtitle-text" text-anchor="middle">
+              No layered encapsulation — dependencies enforced by the stamp sequence.
+            </text>
+          </svg>
+          <figcaption>
+            Caleffi 2026: each node runs a Dynamic Kernel that reads the packet's
+            meta-header, constructs a local Plan of Actions, and appends a stamp
+            certifying what it did. The end-to-end stamp sequence is a distributed
+            acyclic certification graph — the structural alternative to layered
+            encapsulation <SourceNote id="caleffi-ieeetnse-2026" />.
+          </figcaption>
+        </figure>
+
+        <p>
+          The position is contested — layering has decades of TCP/IP success behind it
+          and the post-layering case has not been demonstrated at scale. It is included
+          here because the layered proposals above all have to answer the same
+          underlying challenge: classical layering assumes per-layer encapsulation
+          works, and entanglement's non-locality strains that assumption.
+        </p>
+      </section>
+
+      <section id="deferred" data-nav-section>
+        <h2>What's still open</h2>
+        <p>
+          RFC 9340 named several concerns as deferred. The 2026 frontier proposals
+          answer some of them in different ways; others remain open across all
+          architectures.
+        </p>
+        <ul>
+          <li>
+            <strong>Addressing.</strong> Lopez treats addressing as a Service-Stratum
+            concern; Cacciapuoti makes it quantum-native (QIA). Neither has IRTF
+            consensus yet. Classical analogues (IP, DNS) may not transfer cleanly
+            because the network resource is a Bell pair, not a destination IP.
+          </li>
+          <li>
+            <strong>Routing.</strong> Multi-hop swapping introduces fidelity decay that
+            classical shortest-path ignores. Pirker, Lopez, and Cacciapuoti each
+            propose different routing primitives; the comparative performance is an
+            active research area.
+          </li>
+          <li>
+            <strong>Control plane.</strong> RFC 9340 left this out of scope. Lopez
+            decomposes it across all four planes per stratum (SDN-style); Cacciapuoti
+            defines it as a quantum-native plane (QCP). The two approaches embody
+            the operator-vs-research split in the field.
+          </li>
+          <li>
+            <strong>Heterogeneity.</strong> Two endpoints running different qubit
+            modalities (transmon ↔ NV centre, for example) need entanglement generation
+            that bridges their photonic encodings and wavelengths. The
+            <a href={url("/transduction")}>transduction</a> page covers the physical
+            mechanism; the stack-level answer remains under-specified.
+          </li>
+        </ul>
+      </section>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+
+{/* Single ZoomModal — picks up the [data-zoom-open] toolbar button in the
+    ZoomableFigure component above. */}
+<ZoomModal />
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-4);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .hero h1 { margin: 0; }
+  .hero p { margin: 0; }
+
+  section { display: grid; gap: var(--space-3); }
+  section h3 {
+    margin: var(--space-3) 0 0;
+    font-size: var(--text-lg);
+  }
+
+  ul {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+  li { line-height: var(--leading-snug); }
+
+  /* Beyond-layering figure. */
+  .beyond-layering {
+    margin: var(--space-4) 0;
+    padding: var(--space-3) var(--space-4);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .beyond-layering svg {
+    display: block;
+    width: 100%;
+    max-width: 800px;
+    margin-inline: auto;
+    height: auto;
+  }
+  .beyond-layering figcaption {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-mute);
+  }
+
+  :global(.bl-node-box) {
+    fill: color-mix(in srgb, var(--platform-superconducting) 8%, var(--color-bg));
+    stroke: var(--platform-superconducting);
+    stroke-width: 1.4;
+  }
+  :global(.bl-node-name) {
+    fill: var(--color-text);
+    font-size: 14px;
+    font-weight: 700;
+    font-family: var(--font-sans);
+  }
+  :global(.bl-node-detail) {
+    fill: var(--color-text-mute);
+    font-size: 11px;
+    font-family: var(--font-sans);
+  }
+  :global(.bl-packet) {
+    fill: color-mix(in srgb, var(--magenta-600) 14%, var(--color-bg));
+    stroke: var(--magenta-600);
+    stroke-width: 1.4;
+  }
+  :global(.bl-packet-label) {
+    fill: var(--magenta-600);
+    font-size: 12px;
+    font-weight: 700;
+    font-family: var(--font-sans);
+  }
+  :global(.bl-packet-rule) {
+    stroke: var(--magenta-600);
+    stroke-width: 0.7;
+  }
+  :global(.bl-packet-meta) {
+    fill: var(--color-text-mute);
+    font-size: 10px;
+    font-family: var(--font-mono);
+  }
+  :global(.bl-arrow-line),
+  :global(.bl-transit) {
+    stroke: var(--color-text-mute);
+    stroke-width: 1.2;
+    fill: none;
+  }
+  :global(.bl-transit) {
+    stroke-dasharray: 4 3;
+  }
+  :global(.bl-title-text) {
+    fill: var(--color-text);
+    font-size: 13px;
+    font-weight: 500;
+    font-family: var(--font-sans);
+  }
+  :global(.bl-subtitle-text) {
+    fill: var(--color-text-mute);
+    font-size: 11px;
+    font-family: var(--font-sans);
+    font-style: italic;
+  }
+</style>
+</content>
+</invoke>

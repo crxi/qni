@@ -1,0 +1,155 @@
+slug: cisco
+name: Cisco Quantum Labs
+categories: [network]
+hq: San Jose, California, USA
+founded: 1984
+status: public
+parent: null
+logo:
+  domain: cisco.com
+
+positioning: >
+  Quantum-networking research arm of Cisco Systems Inc. (NASDAQ:CSCO). This
+  dossier covers Cisco Quantum Labs and the Outshift-by-Cisco quantum-networking
+  programme — not Cisco's broader classical networking business. Cisco does not
+  build a quantum computer; its bet is on the telecom-fibre quantum-networking
+  layer: photonic encoding translators, entanglement-distribution infrastructure,
+  and protocol/control software for inter-QPU networks. Cisco is also an
+  active strategic investor in pure-play quantum-networking startups (Aliro,
+  Qunnect).
+
+business_units:
+  - name: Cisco Quantum Labs
+    scope: Research prototype hardware (Cisco Universal Quantum Switch), entanglement-distribution infrastructure, protocol stacks for quantum networks
+    hq: San Jose, California, USA
+    lead: Vijoy Pandey (SVP, Outshift by Cisco / Cisco Office of the CTO)
+    source_url: https://investor.cisco.com/overview/default.aspxnews/news-details/2026/Cisco-Introduces-Universal-Quantum-Switch-Advancing-the-Path-to-a-Quantum-Network/default.aspx
+  - name: Outshift by Cisco
+    scope: Cisco's incubation arm for emerging technologies; houses the quantum-networking research programme and publishes the public roadmap via the Outshift blog
+    hq: San Jose, California, USA
+    lead: Vijoy Pandey (SVP)
+    source_url: https://outshift.cisco.com/
+  - name: Cisco Investments
+    scope: Corporate strategic-investment arm; quantum-networking portfolio positions in Aliro Quantum (Series B, 2026) and Qunnect (Series A extension, 2025)
+    hq: San Jose, California, USA
+    lead: ""
+    source_url: https://www.ciscoinvestments.com/
+
+modalities:
+  network:
+    role: orchestrator
+    products: [Cisco Universal Quantum Switch]
+
+milestones:
+  - date: 2026-04
+    tag: network
+    headline: Cisco introduces the Universal Quantum Switch — research prototype photonic encoding translator across polarization, time-bin, and frequency-bin on standard telecom fibre; room-temperature operation, <4% fidelity degradation, ~1 ns electro-optic switching, <1 mW power draw
+    source_url: https://investor.cisco.com/overview/default.aspxnews/news-details/2026/Cisco-Introduces-Universal-Quantum-Switch-Advancing-the-Path-to-a-Quantum-Network/default.aspx
+    source_type: press
+  - date: 2026-02
+    tag: network
+    headline: Cisco Investments participates in Aliro Quantum's oversubscribed $15M Series B led by Gutbrain Ventures (existing investor; strategic position)
+    source_url: https://thequantuminsider.com/2026/02/18/aliro-raises-15-million-in-oversubscribed-round/
+    source_type: press
+  - date: 2025-11
+    tag: network
+    headline: "IBM × Cisco × Fermilab/SQMS partnership announced — plans to build a network of large-scale fault-tolerant quantum computers; Cisco's contribution is quantum-networking innovations, entanglement-distribution infrastructure, and software protocol frameworks (targeting 2030 PoC)"
+    source_url: https://newsroom.ibm.com/2025-11-20-ibm-and-cisco-announce-plans-to-build-a-network-of-large-scale,-fault-tolerant-quantum-computers
+    source_type: press
+  - date: 2025-06
+    tag: network
+    headline: Cisco Investments joins Qunnect's $10M Series A extension (led by Airbus Ventures) — strategic position in room-temperature Rb-vapour quantum-memory and GothamQ testbed operator
+    source_url: https://www.qunnect.inc/press-release-2025-06-24
+    source_type: press
+
+shareholders:
+  - holder: The Vanguard Group, Inc.
+    stake_percent: 9.8
+    stake_class: minority
+    as_of: 2024-12
+    source_url: https://www.cisco.com/c/dam/en_us/about/annual-report/2024-cisco-proxy.pdf
+    note: Largest institutional holder per the 2024 DEF 14A proxy statement; passive index aggregator
+  - holder: BlackRock, Inc.
+    stake_percent: 7.5
+    stake_class: minority
+    as_of: 2024-12
+    source_url: https://www.cisco.com/c/dam/en_us/about/annual-report/2024-cisco-proxy.pdf
+    note: Second-largest institutional holder per the 2024 DEF 14A; passive index aggregator
+  - holder: State Street Corporation
+    stake_percent: 4.1
+    stake_class: minority
+    as_of: 2024-12
+    source_url: https://www.cisco.com/c/dam/en_us/about/annual-report/2024-cisco-proxy.pdf
+    note: Third-largest institutional holder per the 2024 DEF 14A; passive index aggregator
+  - holder: Public float (NASDAQ:CSCO)
+    stake_percent: null
+    stake_class: minority
+    as_of: 2024-12
+    source_url: https://investor.cisco.com/overview/default.aspx
+    note: Cisco Systems Inc. is a NASDAQ-listed US public company with widely held float; no single controlling shareholder
+
+key_personnel:
+  - role: Chair & CEO (Cisco Systems Inc.)
+    name: Chuck Robbins
+    since: 2015-07
+    source_url: https://investor.cisco.com/overview/default.aspxgovernance/executive-management/default.aspx
+  - role: SVP, Outshift by Cisco / Office of the CTO (head of Cisco Quantum Labs)
+    name: Vijoy Pandey
+    since: 2022
+    source_url: https://outshift.cisco.com/blog
+    note: Senior executive credited in the April 2026 Universal Quantum Switch announcement; runs the Outshift incubation arm that publishes Cisco's public quantum-networking roadmap
+  - role: EVP & CFO
+    name: Scott Herren
+    since: 2020-12
+    source_url: https://investor.cisco.com/overview/default.aspxgovernance/executive-management/default.aspx
+
+roadmap:
+  - target: 2026-2027
+    item: Validation of the Universal Quantum Switch's time-bin and frequency-bin translation modes (polarization mode demonstrated in the April 2026 prototype announcement)
+    source_url: https://investor.cisco.com/overview/default.aspxnews/news-details/2026/Cisco-Introduces-Universal-Quantum-Switch-Advancing-the-Path-to-a-Quantum-Network/default.aspx
+    tag: network
+  - target: 2030
+    item: Proof-of-concept network of large-scale fault-tolerant quantum computers under the IBM × Cisco × Fermilab/SQMS partnership; Cisco delivers the networking layer (entanglement distribution, protocol/control software)
+    source_url: https://newsroom.ibm.com/2025-11-20-ibm-and-cisco-announce-plans-to-build-a-network-of-large-scale,-fault-tolerant-quantum-computers
+    tag: network
+
+current_flagship:
+  name: Cisco Universal Quantum Switch
+  generation: research prototype (April 2026) — photonic encoding translator across polarization / time-bin / frequency-bin on standard telecom fibre; room-temperature, ~1 ns electro-optic switching, <4% fidelity degradation, <1 mW power
+
+references:
+  - kind: press
+    citation_key: null
+    url: https://investor.cisco.com/overview/default.aspxnews/news-details/2026/Cisco-Introduces-Universal-Quantum-Switch-Advancing-the-Path-to-a-Quantum-Network/default.aspx
+    note: Cisco Universal Quantum Switch announcement (23 April 2026) — primary technical-spec source
+  - kind: press
+    citation_key: null
+    url: https://newsroom.ibm.com/2025-11-20-ibm-and-cisco-announce-plans-to-build-a-network-of-large-scale,-fault-tolerant-quantum-computers
+    note: IBM × Cisco × Fermilab/SQMS partnership announcement (20 November 2025) — establishes Cisco's networking role in the 2030 PoC target
+  - kind: blog
+    citation_key: null
+    url: https://outshift.cisco.com/blog
+    note: Outshift by Cisco blog — Cisco's public publication channel for quantum-networking research and roadmap posts
+  - kind: press
+    citation_key: null
+    url: https://thequantuminsider.com/2026/02/18/aliro-raises-15-million-in-oversubscribed-round/
+    note: Cisco Investments as participating investor in Aliro Quantum Series B (Feb 2026)
+  - kind: press
+    citation_key: null
+    url: https://www.qunnect.inc/press-release-2025-06-24
+    note: Cisco Investments as participating investor in Qunnect Series A extension (June 2025)
+
+partial:
+  - field: key_personnel
+    as_of: 2026-05-13
+    note: Vijoy Pandey is the most publicly visible head of Cisco's quantum-networking research via the Outshift / Office of the CTO programme, but Cisco has not published a formal "head of Cisco Quantum Labs" title. Title inferred from the April 2026 Universal Quantum Switch press attribution and the Outshift blog masthead.
+  - field: shareholders
+    as_of: 2026-05-13
+    note: Institutional ownership percentages are point-in-time from the 2024 DEF 14A and shift with index rebalancing; CSCO has no controlling shareholder. Quantum-networking activity does not have a separately disclosed cap table — it sits inside the consolidated Cisco Systems Inc. entity.
+  - revenue
+  - headcount
+  - modalities.network.products  # The Universal Quantum Switch is a research prototype, not a commercial SKU; Cisco does not yet sell a quantum-networking product line
+  - business_units  # Organisational scoping is based on Cisco's public communications; Cisco has not published an org chart for the quantum-networking programme
+
+last_verified: 2026-05-13
+verification_method: web

@@ -1,0 +1,274 @@
+---
+/**
+ * /maturity — TRL landscape for quantum networking
+ *
+ * Tier E · Applications & market.
+ *
+ * Citations:
+ *   - purohit-arxiv-2023 — QTRL 1–9 framework (the spine).
+ *   - meddeb-comnet-2025 — per-platform memory TRL ratings (Table 5).
+ *   - kumar-ijndc-2025 — survey-level context.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SourceNote from "../components/SourceNote.astro";
+
+const sections = [
+  { id: "overview",  label: "Overview" },
+  { id: "qtrl",      label: "The QTRL framework" },
+  { id: "platforms", label: "Per-platform memory TRLs" },
+  { id: "capability", label: "Capability-aware ratings" },
+  { id: "bottlenecks", label: "Where the bottlenecks are" },
+];
+---
+
+<Infographic
+  title="Maturity — TRL across platforms"
+  description="Technology Readiness Levels applied to quantum networking. Purohit's QTRL 1–9 framework adapted from NASA TRL with quantum-specific S-curve thinking; Meddeb's per-platform memory TRL benchmarks; capability-aware ratings rather than one-number-per-platform."
+  references={[
+    "kumar-ijndc-2025",
+    "meddeb-comnet-2025",
+    "purohit-arxiv-2023",
+  ]}
+>
+  <SiteNav slot="nav" currentSubject="maturity" sections={sections} />
+
+  <Center max="var(--wide-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-6)">
+
+      <header class="hero" id="overview" data-nav-section>
+        <h1>Maturity — TRL across platforms</h1>
+        <p>
+          A procurement-ready quantum platform is one that has graduated from basic
+          research through prototype demonstration to operational deployment. NASA's
+          Technology Readiness Level (TRL) scale measures this graduation on a 1–9
+          ladder. <strong>Purohit et al. 2023</strong> adapt this to the quantum context
+          as <strong>QTRL</strong>, with quantum-specific milestones at each level and an
+          S-curve framing of how fast progress happens at each step <SourceNote id="purohit-arxiv-2023" />.
+        </p>
+        <p>
+          Applied to today's quantum-network hardware, the picture is uneven. Some
+          components (commercial QKD, certain memory platforms) sit in the 5–7 range —
+          field-deployable. Others (microwave-to-optical transduction, fault-tolerant
+          logical qubits) sit at 2–4, still pre-prototype.
+          <strong>Meddeb 2025</strong> Table 5 gives concrete ratings for the
+          per-platform memory landscape <SourceNote id="meddeb-comnet-2025" />.
+        </p>
+      </header>
+
+      <section id="qtrl" data-nav-section>
+        <h2>The QTRL framework</h2>
+        <p>
+          The QTRL ladder mirrors NASA TRL semantics but anchors each level in a
+          quantum-specific milestone <SourceNote id="purohit-arxiv-2023" />:
+        </p>
+        <ul>
+          <li><strong>QTRL 1–2</strong> — basic principles observed; concept formulated.</li>
+          <li><strong>QTRL 3</strong> — analytical or experimental proof-of-concept.</li>
+          <li><strong>QTRL 4</strong> — component validated in lab.</li>
+          <li><strong>QTRL 5</strong> — component validated in relevant environment.</li>
+          <li><strong>QTRL 6</strong> — system prototype demonstrated in relevant environment.</li>
+          <li><strong>QTRL 7</strong> — system prototype demonstrated in operational environment.</li>
+          <li><strong>QTRL 8</strong> — actual system completed and qualified.</li>
+          <li><strong>QTRL 9</strong> — actual system proven in operational environment.</li>
+        </ul>
+        <p>
+          Purohit's framing adds an S-curve observation: progress is slow at QTRL 1–3
+          (fundamental physics still under exploration), accelerates through 4–6 (the
+          engineering payoff phase), then slows again at 7–9 (operational hardening
+          dominates). A platform that has been at the same QTRL for several years without
+          a clear blocking issue is usually mid-S-curve and likely to advance soon; one
+          stuck at QTRL 3 for a decade is more likely to be limited by physics rather
+          than engineering.
+        </p>
+      </section>
+
+      <section id="platforms" data-nav-section>
+        <h2>Per-platform memory TRLs (Meddeb 2025 Table 5)</h2>
+        <p>
+          Meddeb's survey provides the cleanest published per-platform TRL benchmark for
+          quantum-memory hardware. The table below reproduces the ratings (TRL columns
+          are Meddeb's; the surrounding context comes from the cited
+          paper) <SourceNote id="meddeb-comnet-2025" />.
+        </p>
+
+        <div class="trl-table-wrap">
+        <table class="trl-table">
+          <thead>
+            <tr>
+              <th scope="col">Platform</th>
+              <th scope="col">Best storage time</th>
+              <th scope="col">QTRL band</th>
+              <th scope="col">Reference demo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Atomic ensembles (cold atoms, rare-earth crystals)</th>
+              <td>~1 hour</td>
+              <td>7–8</td>
+              <td>Ytterbium-171, Eu:YSO crystals</td>
+            </tr>
+            <tr>
+              <th scope="row">Trapped ions</th>
+              <td>~10 s (network-grade)</td>
+              <td>6–7</td>
+              <td>Multi-node trapped-ion demos</td>
+            </tr>
+            <tr>
+              <th scope="row">Neutral atoms</th>
+              <td>~seconds</td>
+              <td>5–6</td>
+              <td>Optical-tweezer arrays</td>
+            </tr>
+            <tr>
+              <th scope="row">NV / SiV centres (diamond)</th>
+              <td>~100 µs (electron); s (nuclear)</td>
+              <td>5–6</td>
+              <td>Delft / Harvard multi-node demos</td>
+            </tr>
+            <tr>
+              <th scope="row">Quantum dots</th>
+              <td>~ms–days (depending on encoding)</td>
+              <td>5–6</td>
+              <td>Indistinguishable-photon emitters</td>
+            </tr>
+            <tr>
+              <th scope="row">Photonic delay-line memories</th>
+              <td>~µs</td>
+              <td>4–5</td>
+              <td>Optical-fibre delay loops</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <section id="capability" data-nav-section>
+        <h2>Capability-aware ratings</h2>
+        <p>
+          A single TRL per platform misses the structure of the field. Most platforms
+          are good at one role and worse at others:
+        </p>
+        <ul>
+          <li>
+            <strong>Trapped ions</strong> are mature for compute (QTRL ~7 for small-scale
+            machines) but slow for networking — the photonic interface for remote
+            entanglement runs at lower rates than transmons or atoms.
+          </li>
+          <li>
+            <strong>Superconducting transmons</strong> are mature for compute (QTRL ~7
+            for noisy intermediate-scale machines) but lack a native optical interface;
+            the microwave-to-optical transduction problem sits at QTRL ~3.
+          </li>
+          <li>
+            <strong>NV centres</strong> sit at QTRL ~6 for matter-photon entanglement
+            (the link-layer interface that memory-based repeaters need) but lower for
+            high-fidelity computation, since gate fidelities lag the leading compute
+            platforms.
+          </li>
+          <li>
+            <strong>Photonic dual-rail</strong> is well-suited to communication (QTRL ~6
+            for QKD endpoints) but room-scale fault-tolerant photonic compute remains
+            QTRL ~3.
+          </li>
+        </ul>
+      </section>
+
+      <section id="bottlenecks" data-nav-section>
+        <h2>Where the bottlenecks are</h2>
+        <p>
+          Across the field, four areas sit at low TRL and dominate the gating roadmap to
+          deployable quantum networking:
+        </p>
+        <ul>
+          <li>
+            <strong>Microwave-to-optical transduction</strong> (QTRL ~3) — until coherent
+            efficiency rises above ~1 %, superconducting quantum computers can't
+            distribute entanglement off-chip without a heterogeneous matter-platform
+            bridge.
+          </li>
+          <li>
+            <strong>Multi-mode quantum memory</strong> (QTRL ~5) — single-mode storage is
+            mature; storing many qubits in parallel (needed for multiplexed repeater
+            designs) is still pre-engineering.
+          </li>
+          <li>
+            <strong>High-rate indistinguishable single-photon sources</strong> (QTRL
+            ~5–6) — heralded photon sources at the rates and indistinguishabilities
+            all-photonic repeaters need are not yet routine.
+          </li>
+          <li>
+            <strong>Fault-tolerant logical qubits at network scale</strong> (QTRL ~3) —
+            third-generation quantum repeaters need this; current prototypes do at most a
+            handful of logical operations.
+          </li>
+        </ul>
+        <p>
+          Forward references: the <strong>transduction</strong>, <strong>memories</strong>,
+          <strong>repeaters</strong>, and <strong>companies</strong> subjects unpack
+          these bottlenecks and the vendors working on them <SourceNote id="kumar-ijndc-2025" />.
+        </p>
+      </section>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-4);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .hero h1 { margin: 0; }
+  .hero p { margin: 0; }
+
+  section { display: grid; gap: var(--space-3); }
+
+  ul {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+  li { line-height: var(--leading-snug); }
+
+  .trl-table-wrap {
+    inline-size: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+  }
+  .trl-table {
+    min-inline-size: 48rem;
+    inline-size: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+  }
+  .trl-table thead th {
+    text-align: start;
+    padding: var(--space-2) var(--space-3);
+    border-block-end: 2px solid var(--color-rule);
+    color: var(--color-text);
+    font-weight: 600;
+  }
+  .trl-table tbody th,
+  .trl-table tbody td {
+    padding: var(--space-2) var(--space-3);
+    vertical-align: top;
+    border-block-end: 1px solid var(--color-rule);
+  }
+  .trl-table tbody th {
+    text-align: start;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+  .trl-table tbody td { color: var(--color-text-mute); }
+  .trl-table tbody tr:last-child th,
+  .trl-table tbody tr:last-child td { border-block-end: 0; }
+</style>
