@@ -1,0 +1,89 @@
+---
+/**
+ * /changelog — major, reader-relevant changes to the site and its data.
+ *
+ * Entries come from src/data/changelog.ts (single source of truth). Kept off
+ * the landing page so the hero stays about the subject; reachable from the
+ * rail foot next to Feedback.
+ */
+import Infographic from "../layouts/Infographic.astro";
+import Center from "../components/Center.astro";
+import Stack from "../components/Stack.astro";
+import SiteNav from "../components/SiteNav.astro";
+import { CHANGELOG } from "../data/changelog";
+
+const fmt = (iso: string) =>
+  new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+---
+
+<Infographic
+  title="Changelog"
+  description="Major changes to the site and its data, newest first."
+>
+  <SiteNav slot="nav" />
+
+  <Center max="var(--content-width)" gutter="var(--space-3)">
+    <Stack space="var(--space-5)">
+
+      <header class="cl-hero">
+        <h1>Changelog</h1>
+        <p>Major changes to the site and its data, newest first.</p>
+      </header>
+
+      <ol class="cl-list">
+        {CHANGELOG.map((entry) => (
+          <li class="cl-item">
+            <time class="cl-date" datetime={entry.date}>{fmt(entry.date)}</time>
+            <p class="cl-summary">{entry.summary}</p>
+          </li>
+        ))}
+      </ol>
+
+    </Stack>
+  </Center>
+</Infographic>
+
+<style>
+  .cl-hero {
+    padding-block: var(--space-6) var(--space-2);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .cl-hero h1 {
+    margin: 0;
+    font-size: clamp(1.5rem, 5.5vw, 2.6rem);
+    line-height: var(--leading-tight);
+  }
+  .cl-hero p {
+    margin: 0;
+    color: var(--color-text-mute);
+  }
+  .cl-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+  .cl-item {
+    display: grid;
+    gap: var(--space-1);
+    padding-inline-start: var(--space-3);
+    border-inline-start: 2px solid var(--card-border);
+  }
+  .cl-date {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .cl-summary {
+    margin: 0;
+    line-height: var(--leading-snug);
+  }
+</style>

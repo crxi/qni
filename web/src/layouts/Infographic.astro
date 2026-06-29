@@ -167,6 +167,7 @@ const currentTier = currentIdx >= 0 ? SHIPPED_SUBJECTS[currentIdx].tier : null;
           <aside id="page-nav-rail" class="page-nav-rail" aria-label="Section navigation" data-pagefind-ignore="all">
             <slot name="nav" />
             <div class="rail-foot">
+              <a class="rail-foot__link" href={url("/changelog")}>Changelog</a>
               <a class="rail-foot__link" href={url("/feedback")}>Feedback</a>
               {buildDate && (
                 <span class="build-version" title="Build date (YYMMDD.HHMM) · source-tree hash (identical content = identical hash)">
@@ -545,8 +546,8 @@ const currentTier = currentIdx >= 0 ? SHIPPED_SUBJECTS[currentIdx].tier : null;
         padding: 0 var(--space-4) var(--space-7);
       }
 
-      /* Rail foot — feedback link + build version, sitting under the
-         nav so they fall at the bottom of the rail. */
+      /* Rail foot — changelog + feedback links + build version, sitting
+         under the nav so they fall at the bottom of the rail. */
       .rail-foot {
         display: grid;
         gap: var(--space-2);
