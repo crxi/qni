@@ -199,6 +199,26 @@
   type: paper
   doi: "10.1126/science.aan3211"
 
+- id: inagaki-oe-2013
+  title: "Entanglement distribution over 300 km of fiber"
+  authors: ["Takahiro Inagaki", "Nobuyuki Matsuda", "Osamu Tadanaga", "Masaki Asobe", "Hiroki Takesue"]
+  publisher: "Optics Express"
+  year: 2013
+  type: paper
+  doi: "10.1364/OE.21.023241"
+  note: "Time-bin entanglement distributed over 300 km of fibre via PPLN waveguides and SNSPDs — long-standing all-photonic fibre distance record. Post-selected coincidence detection (no heralding)."
+
+- id: neumann-natcomms-2022
+  title: "Continuous entanglement distribution over a transnational 248 km fiber link"
+  authors: ["Sebastian Philipp Neumann", "Alexander Buchner", "Lukas Bulla", "Martin Bohmann", "Rupert Ursin"]
+  publisher: "Nature Communications"
+  year: 2022
+  volume: "13"
+  pages: "6134"
+  type: paper
+  doi: "10.1038/s41467-022-33919-0"
+  note: "Polarisation-entangled pairs over 248 km of deployed Austria–Slovakia telecom fibre; ~79 dB loss; ~9 detected pairs/s over 110 h continuous operation. Post-selected coincidence detection."
+
 - id: ren-nature-2017
   title: "Ground-to-satellite quantum teleportation"
   authors: ["Ji-Gang Ren", "Ping Xu", "Hai-Lin Yong", "Liang Zhang", "Sheng-Kai Liao", "Juan Yin", "Wei-Yue Liu", "Wen-Qi Cai", "et al.", "Jian-Wei Pan"]
@@ -432,6 +452,16 @@
   year: 1993
   type: paper
   doi: "10.1103/PhysRevLett.71.4287"
+
+- id: peng-natphys-2026
+  title: "Unconditional advantage of quantum teleportation over direct transmission of single photons through a lossy channel"
+  authors: ["Li-Chao Peng", "Dian Wu", "Xue-Mei Gu", "Jian Qin", "Ke-Mi Xu", "Han-Sen Zhong", "Hui Wang", "Yu-Ming He", "Ming-Chen Chen", "Li Li", "Nai-Le Liu", "Chao-Yang Lu", "Jian-Wei Pan"]
+  publisher: "Nature Physics"
+  year: 2026
+  type: paper
+  doi: "10.1038/s41567-026-03348-7"
+  url: "https://arxiv.org/abs/2511.08951"
+  note: "First faithful, free-flying photonic entanglement swapping with high heralding efficiency — 82.8% event-ready heralded EPR pairs through 15 dB effective channel loss (≈100 km of 0.15 dB/km fibre), via a midpoint ancillary SPDC pair plus two complementary-basis BSMs acting as an unconditional QND that suppresses double-pair contamination without destroying the heralded photons. Downstream single-photon teleportation shows a 2.95-fold survival-probability advantage over the best classical strategy (optimal cloning) at 18.6σ. Channel loss simulated with attenuators, not deployed fibre."
 
 - id: cacciapuoti-ieeetc-2020
   title: "When Entanglement Meets Classical Communications: Quantum Teleportation for the Quantum Internet"

@@ -18,6 +18,7 @@ const sections = [
   { id: "overview",     label: "Overview" },
   { id: "qkd",          label: "QKD distance" },
   { id: "entanglement", label: "Entanglement distance" },
+  { id: "photonic",     label: "All-photonic distribution" },
   { id: "coherence",    label: "Coherence times" },
   { id: "storage",      label: "Memory storage" },
   { id: "method",       label: "What counts as a record" },
@@ -56,6 +57,9 @@ const sections = [
     "tittel-arxiv-2501",
     "meddeb-comnet-2025",
     "azuma-rmp-95",
+    "peng-natphys-2026",
+    "inagaki-oe-2013",
+    "neumann-natcomms-2022",
   ]}
 >
   <SiteNav slot="nav" currentSubject="records" sections={sections} />
@@ -311,6 +315,87 @@ const sections = [
           transmon rows reflect that those platforms are early in the
           remote-entanglement-over-fibre curve — neither has a published demo
           past a few hundred metres.
+        </p>
+      </section>
+
+      <section id="photonic" data-nav-section>
+        <h2>All-photonic entanglement distribution</h2>
+        <p>
+          These rows distribute a <em>photon pair</em> down a channel rather than
+          heralding two stationary qubits into a Bell pair — a different axis from
+          the matter-qubit table above. The decisive distinction is
+          <strong>post-selected</strong> versus <strong>heralded</strong>: a
+          post-selected experiment confirms a pair only by destructively detecting
+          both photons, so it never yields a usable, still-propagating pair, whereas
+          a heralded (event-ready) scheme announces a surviving pair in advance.
+        </p>
+
+        <div class="rec-table-wrap">
+        <table class="rec-table" data-sortable>
+          <thead>
+            <tr>
+              <th data-sort="text">Result</th>
+              <th data-sort="numeric">Year</th>
+              <th data-sort="numeric">Distance / loss</th>
+              <th data-sort="text">Medium</th>
+              <th data-sort="text">Detection</th>
+              <th data-sort="text">Rate</th>
+              <th data-sort="text">Group</th>
+              <th data-sort="text">Citation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Fibre photon-pair record (time-bin)</td>
+              <td>2013</td>
+              <td data-sort-value="300">300 km</td>
+              <td>Fibre (time-bin, 1.5 µm PPLN)</td>
+              <td>Post-selected</td>
+              <td>~0.85 Hz</td>
+              <td>NTT (Takesue)</td>
+              <td>Inagaki OE 21.23241 <SourceNote id="inagaki-oe-2013" /></td>
+            </tr>
+            <tr>
+              <td>Deployed transnational fibre (polarization)</td>
+              <td>2022</td>
+              <td data-sort-value="248">248 km, ~79 dB</td>
+              <td>Deployed fibre (polarization, Austria–Slovakia)</td>
+              <td>Post-selected</td>
+              <td>~9 pairs/s, 110 h</td>
+              <td>Vienna (Ursin / IQOQI)</td>
+              <td>Neumann NatComms 13.6134 <SourceNote id="neumann-natcomms-2022" /></td>
+            </tr>
+            <tr>
+              <td>Satellite double downlink (Micius)</td>
+              <td>2017</td>
+              <td data-sort-value="1203">1203 km</td>
+              <td>Satellite double downlink (Micius free-space)</td>
+              <td>Post-selected</td>
+              <td>~1 Hz</td>
+              <td>USTC / Micius (Yin)</td>
+              <td>Yin Science 356.1140 <SourceNote id="yin-science-2017" /></td>
+            </tr>
+            <tr>
+              <td>First heralded event-ready photonic EPR pairs</td>
+              <td>2026</td>
+              <td data-sort-value="100">~100 km (15 dB, simulated)</td>
+              <td>Fibre-equivalent (attenuators, not deployed span)</td>
+              <td>Heralded (82.8%)</td>
+              <td>—</td>
+              <td>USTC (Pan)</td>
+              <td>Peng NatPhys 2026 <SourceNote id="peng-natphys-2026" /></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <p class="note">
+          The three post-selected rows are genuine all-photonic distribution
+          records but deliver no heralded pair — both photons are consumed at
+          detection. Peng 2026 is the first heralded, event-ready photonic
+          distribution result (82.8% heralding efficiency through 15 dB effective
+          loss), but the channel is attenuator-simulated, not a deployed fibre span.
+          Its "~100 km" equivalent is a heralding-efficiency milestone, not a
+          distance record.
         </p>
       </section>
 
